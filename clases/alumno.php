@@ -1,44 +1,8 @@
 <?php 
 
-class Alumno {
+require("personas.php");
 
-	private $id;
-
-	private $PrimerNombre;
-	private $SegundoNombre;
-	private $PrimerApellido;
-	private $SegundoApellido;
-	
-	private $Genero;
-	
-	private $Cedula;
-	private $TipoCedula;
-	private $CedulaRepresentante;
-	
-	private $FechaNacimiento;
-	private $Estado;
-	private $Municipio;
-	private $Parroquia;
-	private $Ciudad;
-	
-	private $PuedeIrseSolo;
-	private $ContactoAuxiliar;
-	private $TelefonoAuxiliar;
-	private $RelacionAuxiliar;
-	
-	private $Estatura;
-	private $Peso;
-	private $GrupoSanguineo;
-	private $Medicacion;
-	private $DietaEspecial;
-	private $ImpedimentoFisico;
-	private $Alergias;
-	private $ProblemasVista;
-	private $ProblemasSalud;
-	
-	private $Grado;
-	private $TipoInscripcion;
-
+class Alumnos extends Personas {
 
 	public function __construct() {}
 
