@@ -10,9 +10,8 @@ class Usuarios extends Personas {
 	private Privilegios;
 
 
-	public function __construct() {
-
-	}
+	public function __construct() {}
+	
 	//Setters
 	public function setId($id){
 		this->Id = $Id;

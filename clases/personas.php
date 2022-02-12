@@ -1,6 +1,5 @@
 <?php 
 
-
 	class Personas {
 		private Id;
 		private Nombres;
@@ -13,7 +12,7 @@
 		public function __construct() {}
 
 		//setters
-		public function  setId($Id){
+		public function setId($Id){
 			this->Id = $Id;
 		}
 		public function setNombres($Nombres){
@@ -58,7 +57,4 @@
 			return this->FechaNacimiento;
 		}
 	}
-
-
-
 ?>
