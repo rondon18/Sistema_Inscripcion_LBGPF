@@ -3,10 +3,10 @@
 session_start();
 
 require_once('../clases/usuario.php');
-require_once('crud-usuarios.php');
+require_once('../clases/crud-usuarios.php');
 
 $crud 	= new CrudUsuarios();
-$usuario	= new Usuario();
+$usuario	= new Usuarios();
 
 if (isset($_POST['orden']) and $_POST['orden']) {
 	
@@ -15,25 +15,43 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	if ($orden == "Insertar") {
 
 		#Se asignan los valores del objeto antes de pasarlo al crud
-		$usuario->setNombre1($_POST['PrimerNombre']);
-		$usuario->setNombre2($_POST['SegundoNombre']);
-		$usuario->setApellido1($_POST['PrimerApellido']);
-		$usuario->setApellido2($_POST['SegundoApellido']);
-		
+
+		if (isset($_POST['Nombres'],$_POST['Apellidos'],$_POST['Cedula'],$_POST['FechaNacimiento'],$_POST['Genero'],$_POST['Correo'],$_POST['Telefono'],$_POST['Direccion'],$_POST['Clave'])) {
+			echo "todos los campos fueron llenados<br>";
+		}
+		else{
+			echo "faltan campos por llenar<br>";
+		}
+
+		$usuario->setNombres($_POST['Nombres']);
+		$usuario->setApellidos($_POST['Apellidos']);
 		$usuario->setCedula($_POST['Cedula']);
+		$usuario->setFechaNacimiento($_POST['FechaNacimiento']);
 		$usuario->setGenero($_POST['Genero']);
-		
-		$usuario->setEmail($_POST['Email']);
-		$usuario->setTelefono1($_POST['Telefono1']);
-		$usuario->setTelefono2($_POST['Telefono2']);
-		$usuario->setClave($_POST['Clave']);
+		$usuario->setCorreo($_POST['Correo']);
+		$usuario->setTelefono($_POST['Telefono']);
 		$usuario->setDireccion($_POST['Direccion']);
+		$usuario->setClave($_POST['Clave']);
+
+
+		echo "getNombres: ".$usuario->getNombres()."<br>";
+		echo "getApellidos: ".$usuario->getApellidos()."<br>";
+		echo "getCedula: ".$usuario->getCedula()."<br>";
+		echo "getFechaNacimiento: ".$usuario->getFechaNacimiento()."<br>";
+		echo "getGenero: ".$usuario->getGenero()."<br>";
+		echo "getCorreo: ".$usuario->getCorreo()."<br>";
+		echo "getTelefono: ".$usuario->getTelefono()."<br>";
+		echo "getDireccion: ".$usuario->getDireccion()."<br>";
+		echo "getClave: ".$usuario->getClave()."<br>";
+
+		var_dump($usuario);
+
 		$crud->insertarUsuario($usuario);
 
 
 		header('Location: ../index.php');
 	}
-	
+/*	
 	elseif ($orden == "Editar") {
 		
 		#Se asignan los valores del objeto antes de pasarlo al crud
@@ -131,7 +149,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	else {
 		echo "La orden: ' ". $orden . " ' no es valida.";
 	}
-
+*/
 	
 	//Esto hace lo suyo y manda de regreso a la pagina inicial
 

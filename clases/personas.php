@@ -1,60 +1,73 @@
 <?php 
 
 	class Personas {
-		private Id;
-		private Nombres;
-		private Apellidos;
-		private Cedula;
-		private Correo;
-		private Genero;
-		private FechaNacimiento;
+		private $Id;
+		private $Nombres;
+		private $Apellidos;
+		private $Cedula;
+		private $Correo;
+		private $Genero;
+		private $FechaNacimiento;
+		private $Direccion;
+		private $Telefono;
 
 		public function __construct() {}
 
 		//setters
 		public function setId($Id){
-			this->Id = $Id;
+			$this->Id = $Id;
 		}
 		public function setNombres($Nombres){
-			this->Nombres = $Nombres;
+			$this->Nombres = $Nombres;
 		}
 		public function setApellidos($Apellidos){
-			this->Apellidos = $Apellidos;
+			$this->Apellidos = $Apellidos;
 		}
 		public function setCedula($Cedula){
-			this->Cedula = $Cedula;
+			$this->Cedula = $Cedula;
 		}
 		public function setCorreo($Correo){
-			this->Correo = $Correo;
+			$this->Correo = $Correo;
 		}
 		public function setGenero($Genero){
-			this->Genero = $Genero;
+			$this->Genero = $Genero;
 		}
 		public function setFechaNacimiento($FechaNacimiento){
-			this->FechaNacimiento = $FechaNacimiento;
+			$this->FechaNacimiento = $FechaNacimiento;
 		}
-	
+		public function setDireccion($Direccion){
+			$this->Direccion = $Direccion;
+		}
+		public function setTelefono($Telefono){
+			$this->Telefono = $Telefono;
+		}
 		//getters
 		public function getId(){
-			return this->Id;
+			return $this->Id;
 		}
 		public function  getNombres(){
-			return this->Nombres;
+			return $this->Nombres;
 		}
 		public function getApellidos(){
-			return this->Apellidos;
+			return $this->Apellidos;
 		}
 		public function getCedula(){
-			return this->Cedula;
+			return $this->Cedula;
 		}
 		public function getCorreo(){
-			return this->Correo;
+			return $this->Correo;
 		}
 		public function getGenero(){
-			return this->Genero;
+			return $this->Genero;
 		}
 		public function getFechaNacimiento(){
-			return this->FechaNacimiento;
+			return $this->FechaNacimiento;
+		}
+		public function getDireccion() {
+			return $this->Direccion;
+		}
+		public function getTelefono() {
+			return $this->Telefono;
 		}
 	}
 ?>

@@ -1,78 +1,69 @@
 <?php 
 
 	class DatosSociales {
-		private CedulaEstudiante;
-		private Dirección;
-		private PropietarioDomicilio;
-		private PoseeCanaima;
-		private CondicionCanaima;
-		private PoseeCarnetPatria;
-		private CodigoCarnetPatria;
-		private SerialCarnetPatria;
-		private AccesoInternet;
+		
+		private idDatos_Sociales;
+		private Posee_Canaima;
+		private Condicion_Canaima;
+		private Posee_Carnet_Patria;
+		private Codigo_Carnet_Patria;
+		private Serial_Carnet_Patria;
+		private Acceso_Internet;
+		private idAlumnos;
 
 		public function __construct(){}
 
 		//Setters
-		public function setCedulaEstudiante($CedulaEstudiante){
-			this->CedulaEstudiante = $CedulaEstudiante;
+		public function setidDatos_Sociales($idDatos_Sociales){
+			this->idDatos_Sociales = $idDatos_Sociales;
 		}
-		public function setDirección($Dirección){
-			this->Dirección = $Dirección;
+		public function setPosee_Canaima($Posee_Canaima){
+			this->Posee_Canaima = $Posee_Canaima;
 		}
-		public function setPropietarioDomicilio($PropietarioDomicilio){
-			this->PropietarioDomicilio = $PropietarioDomicilio;
+		public function setCondicion_Canaima($Condicion_Canaima){
+			this->Condicion_Canaima = $Condicion_Canaima;
 		}
-		public function setPoseeCanaima($PoseeCanaima){
-			this->PoseeCanaima = $PoseeCanaima;
+		public function setPosee_Carnet_Patria($Posee_Carnet_Patria){
+			this->Posee_Carnet_Patria = $Posee_Carnet_Patria;
 		}
-		public function setCondicionCanaima($CondicionCanaima){
-			this->CondicionCanaima = $CondicionCanaima;
+		public function setCodigo_Carnet_Patria($Codigo_Carnet_Patria){
+			this->Codigo_Carnet_Patria = $Codigo_Carnet_Patria;
 		}
-		public function setPoseeCarnetPatria($PoseeCarnetPatria){
-			this->PoseeCarnetPatria = $PoseeCarnetPatria;
+		public function setSerial_Carnet_Patria($Serial_Carnet_Patria){
+			this->Serial_Carnet_Patria = $Serial_Carnet_Patria;
 		}
-		public function setCodigoCarnetPatria($CodigoCarnetPatria){
-			this->CodigoCarnetPatria = $CodigoCarnetPatria;
+		public function setAcceso_Internet($Acceso_Internet){
+			this->Acceso_Internet = $Acceso_Internet;
 		}
-		public function setSerialCarnetPatria($SerialCarnetPatria){
-			this->SerialCarnetPatria = $SerialCarnetPatria;
-		}
-		public function setAccesoInternet($AccesoInternet){
-			this->AccesoInternet = $AccesoInternet;
+		public function setidAlumnos($idAlumnos){
+			this->idAlumnos = $idAlumnos;
 		}
 
 		//Getters
-		public function getCedulaEstudiante(){
-			return this->CedulaEstudiante;
+		public function getidDatos_Sociales() {
+			return this->idDatos_Sociales;
 		}
-		public function getDirección(){
-			return this->Dirección;
+		public function getPosee_Canaima() {
+			return this->Posee_Canaima;
 		}
-		public function getPropietarioDomicilio(){
-			return this->PropietarioDomicilio;
+		public function getCondicion_Canaima() {
+			return this->Condicion_Canaima;
 		}
-		public function getPoseeCanaima(){
-			return this->PoseeCanaima;
+		public function getPosee_Carnet_Patria() {
+			return this->Posee_Carnet_Patria;
 		}
-		public function getCondicionCanaima(){
-			return this->CondicionCanaima;
+		public function getCodigo_Carnet_Patria() {
+			return this->Codigo_Carnet_Patria;
 		}
-		public function getPoseeCarnetPatria(){
-			return this->PoseeCarnetPatria;
+		public function getSerial_Carnet_Patria() {
+			return this->Serial_Carnet_Patria;
 		}
-		public function getCodigoCarnetPatria(){
-			return this->CodigoCarnetPatria;
+		public function getAcceso_Internet() {
+			return this->Acceso_Internet;
 		}
-		public function getSerialCarnetPatria(){
-			return this->SerialCarnetPatria;
+		public function getidAlumnos() {
+			return this->idAlumnos;
 		}
-		public function getAccesoInternet(){
-			return this->AccesoInternet;
-		}
-
-
-
 
 
 	}

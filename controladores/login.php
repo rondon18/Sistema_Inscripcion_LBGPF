@@ -1,6 +1,6 @@
 <?php 
 
-require_once("php/conexion.php");
+require_once("../clases/conexion.php");
 
 function login($cedula,$clave) {
 	$conexion = conectarBD();
@@ -27,14 +27,9 @@ function login($cedula,$clave) {
 	}
 	else {
 		return False;
-	}
-
-
-
-
-
-	
+	}	
 }
+
 
 
 ?>

@@ -7,7 +7,7 @@
 	</title>
 </head>
 <body>
-	<form action="php/control-usuarios.php" method="POST">
+	<form action="controladores/control-usuarios.php" method="POST">
 	
 		<table border="1" cellpadding="12" style="max-width:600px; margin:auto; overflow:scroll;">
 			<tr>
@@ -20,34 +20,18 @@
 			</tr>
 			<tr>
 				<td>
-					<label>Primer nombre:</label>
+					<label>Nombres:</label>
 				</td>
 				<td colspan="2">
-					<input type="text" name="PrimerNombre">					
+					<input type="text" name="Nombres">					
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label>Segundo nombre:</label>
+					<label>Apellidos:</label>
 				</td>
 				<td colspan="2">
-					<input type="text" name="SegundoNombre">				
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Primer apellido:</label>
-				</td>
-				<td colspan="2">
-					<input type="text" name="PrimerApellido">				
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Segundo apellido:</label>
-				</td>
-				<td colspan="2">
-					<input type="text" name="SegundoApellido">					
+					<input type="text" name="Apellidos">				
 				</td>
 			</tr>
 			<tr>
@@ -56,6 +40,14 @@
 				</td>
 				<td colspan="2">
 					<input type="text" name="Cedula">				
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Fecha de nacimiento:</label>
+				</td>
+				<td colspan="2">
+					<input type="date" name="FechaNacimiento">				
 				</td>
 			</tr>
 			<tr>
@@ -72,23 +64,15 @@
 					<label>Correo electronico:</label>
 				</td>
 				<td colspan="2">
-					<input type="email" name="Email">					
+					<input type="email" name="Correo">					
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label>Telefono principal:</label>
+					<label>Teléfono:</label>
 				</td>
 				<td colspan="2">
-					<input type="tel" name="Telefono1">					
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Telefono auxiliar:</label>
-				</td>
-				<td colspan="2">
-					<input type="tel" name="Telefono2">				
+					<input type="tel" name="Telefono">				
 				</td>
 			</tr>
 			<tr>
