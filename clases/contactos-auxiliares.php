@@ -1,0 +1,74 @@
+<?php 
+
+class ContactoAuxiliar {
+
+
+	private $idContactoAuxiliar;
+	private $idRepresentante;
+	private $Relación;
+	private $Nombre_Aux;
+	private $Tfl_P_Contacto_Aux;
+	private $Tfl_S_Contacto_Aux;
+
+	public function __construct(){}
+
+	public function retornarTodo() {
+		$datos = [
+			"idContactoAuxiliar" => $this->getidContactoAuxiliar(),
+			"idRepresentante" => $this->getidRepresentante(),
+			"Relación" => $this->getRelación(),
+			"Nombre_Aux" => $this->getNombre_Aux(),
+			"Tfl_P_Contacto_Aux" => $this->getTfl_P_Contacto_Aux(),
+			"Tfl_S_Contacto_Aux" => $this->getTfl_S_Contacto_Aux()
+		];
+		return $datos;
+	}
+
+	public function setidContactoAuxiliar($idContactoAuxiliar) {
+		$this->idContactoAuxiliar = $idContactoAuxiliar;
+	}
+	public function setidRepresentante($idRepresentante) {
+		$this->idRepresentante = $idRepresentante;
+	}
+	public function setRelación($Relación) {
+		$this->Relación = $Relación;
+	}
+	public function setNombre_Aux($Nombre_Aux) {
+		$this->Nombre_Aux = $Nombre_Aux;
+	}
+	public function setTfl_P_Contacto_Aux($Tfl_P_Contacto_Aux) {
+		$this->Tfl_P_Contacto_Aux = $Tfl_P_Contacto_Aux;
+	}
+	public function setTfl_S_Contacto_Aux($Tfl_S_Contacto_Aux) {
+		$this->Tfl_S_Contacto_Aux = $Tfl_S_Contacto_Aux;
+	}	
+
+	public function getidContactoAuxiliar() {
+		return $this->idContactoAuxiliar;
+	}
+	public function getidRepresentante() {
+		return $this->idRepresentante;
+	}
+	public function getRelación() {
+		return $this->Relación;
+	}
+	public function getNombre_Aux() {
+		return $this->Nombre_Aux;
+	}
+	public function getTfl_P_Contacto_Aux() {
+		return $this->Tfl_P_Contacto_Aux;
+	}
+	public function getTfl_S_Contacto_Aux() {
+		return $this->Tfl_S_Contacto_Aux;
+	}
+
+
+
+
+
+
+}
+
+
+
+?>

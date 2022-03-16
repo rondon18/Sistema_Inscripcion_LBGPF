@@ -21,37 +21,60 @@ if (!$_SESSION['login']) {
 		</tr>
 		<tr>
 			<td>Nombres:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->PrimerNombre." ".$_SESSION['usuario']->SegundoNombre; ?></td>
+			<td colspan="2"><?php echo  $_SESSION['persona'][1]?></td>
 		</tr>
 		<tr>
 			<td>Apellidos:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->PrimerApellido." ".$_SESSION['usuario']->SegundoApellido; ?></td>
+			<td colspan="2"><?php echo  $_SESSION['persona'][2]?></td>
 		</tr>
 		<tr>
 			<td>Cedula de identidad:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->Cedula; ?></td>
+			<td colspan="2"><?php echo "CI:".$_SESSION['persona'][3]?></td>
+		</tr>
+		<tr>
+			<td>Fecha de nacimiento:</td>
+			<td colspan="2"><?php echo $_SESSION['persona'][4]?></td>
+		</tr>
+		<tr>
+			<td>Lugar de nacimiento:</td>
+			<td colspan="2"><?php echo $_SESSION['persona'][5]?></td>
+		</tr>
+		<tr>
+			<td>Genero:</td>
+			<td colspan="2"><?php echo $_SESSION['persona'][6]?></td>
 		</tr>
 		<tr>
 			<td>Correo electronico:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->Correo; ?></td>
-		</tr>
-		<tr>
-			<td>Telefono principal:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->Telefono1; ?></td>
-		</tr>
-		<tr>
-			<td>Telefono auxiliar:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->Telefono2; ?></td>
+			<td colspan="2"><?php echo $_SESSION['persona'][7]?></td>
 		</tr>
 		<tr>
 			<td>Dirección de residencia:</td>
-			<td colspan="2"><?php echo $_SESSION['usuario']->Direccion; ?></td>
+			<td colspan="2"><?php echo $_SESSION['persona'][8]?></td>
+		</tr>
+		<tr>
+			<td>Telefonos:</td>
+			<td> <?php echo "Principal: ".$_SESSION['persona'][9];?></td>
+			<td> <?php echo "Auxiliar: ".$_SESSION['persona'][10] ?></td>
+		</tr>
+		<tr>
+			<td>Privilegios:</td>
+			<td colspan="2"> <?php
+			if ($_SESSION['usuario'][2] == "2") {
+				echo "Administrador";
+			}
+			elseif($_SESSION['usuario'][2] == "1") {
+				echo "Representante";
+			}
+			else {
+				echo "error";
+			}
+			;?></td>
 		</tr>
 		<tr>
 			<td><a href="index.php">Volver</a></td>
 			<td><a href="editar-perfil.php">Editar perfil</a></td>
 			<td>
-				<form action="../php/control-usuarios.php" method="POST">
+				<form action="../controladores/control-usuarios.php" method="POST">
 					<input type="submit" name="DarseDeBaja" value="Darse de baja">
 					<input type="hidden" name="orden" value="Eliminar">
 				</form>

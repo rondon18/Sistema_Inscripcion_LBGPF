@@ -2,11 +2,17 @@
 
 session_start();
 
-require_once('../clases/usuario.php');
-require_once('../clases/crud-usuarios.php');
+require("conexion.php");
 
-$crud 	= new CrudUsuarios();
-$usuario	= new Usuarios();
+require("../clases/representantes.php");
+require("../clases/contactos-auxiliares.php");
+require("../clases/crud-usuarios.php");
+
+$conexion = conectarBD();
+
+$representante = new Representantes;
+$auxiliar = new ContactoAuxiliar;
+$crud = new CrudUsuarios;
 
 if (isset($_POST['orden']) and $_POST['orden']) {
 	
@@ -14,114 +20,118 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		
 	if ($orden == "Insertar") {
 
-		#Se asignan los valores del objeto antes de pasarlo al crud
+		$representante->setNombres($_POST['Primer_Nombre_Representante']." ".$_POST['Segundo_Nombre_Representante']);
+		$representante->setApellidos($_POST['Primer_Apellido_Representante']." ".$_POST['Segundo_Apellido_Representante']);
+		$representante->setCedula($_POST['Cédula_Representante']);
+		$representante->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Representante']);
+		$representante->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Representante']);
+		$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
+		$representante->setGenero($_POST['Genero_Representante']);
+		$representante->setCorreo($_POST['Correo_electrónico']);
+		$representante->setDireccion($_POST['Direccion_Representante']);
+		$representante->setTeléfono_Principal($_POST['Teléfono_Principal_Representante']);
+		$representante->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Representante']);
+		$representante->setEstado_Civil($_POST['Estado_Civil_Representante']);
 
-		if (isset($_POST['Nombres'],$_POST['Apellidos'],$_POST['Cedula'],$_POST['FechaNacimiento'],$_POST['Genero'],$_POST['Correo'],$_POST['Telefono'],$_POST['Direccion'],$_POST['Clave'])) {
-			echo "todos los campos fueron llenados<br>";
+
+		if ($_POST['Vinculo_Representante'] == "Otro") {
+			$representante->setVinculo($_POST['Otro_Vinculo']);
 		}
-		else{
-			echo "faltan campos por llenar<br>";
+		else {
+			$representante->setVinculo($_POST['Vinculo_Representante']);
 		}
 
-		$usuario->setNombres($_POST['Nombres']);
-		$usuario->setApellidos($_POST['Apellidos']);
-		$usuario->setCedula($_POST['Cedula']);
-		$usuario->setFechaNacimiento($_POST['FechaNacimiento']);
-		$usuario->setGenero($_POST['Genero']);
-		$usuario->setCorreo($_POST['Correo']);
-		$usuario->setTelefono($_POST['Telefono']);
-		$usuario->setDireccion($_POST['Direccion']);
-		$usuario->setClave($_POST['Clave']);
+
+		$representante->setBanco($_POST['Banco']);
+		$representante->setTipo_Cuenta($_POST['Tipo_Cuenta']);
+		$representante->setNro_Cuenta($_POST['Nro_Cuenta']);
 
 
-		echo "getNombres: ".$usuario->getNombres()."<br>";
-		echo "getApellidos: ".$usuario->getApellidos()."<br>";
-		echo "getCedula: ".$usuario->getCedula()."<br>";
-		echo "getFechaNacimiento: ".$usuario->getFechaNacimiento()."<br>";
-		echo "getGenero: ".$usuario->getGenero()."<br>";
-		echo "getCorreo: ".$usuario->getCorreo()."<br>";
-		echo "getTelefono: ".$usuario->getTelefono()."<br>";
-		echo "getDireccion: ".$usuario->getDireccion()."<br>";
-		echo "getClave: ".$usuario->getClave()."<br>";
+		$representante->setGrado_Inst($_POST['Grado_Instrucción']);
 
-		var_dump($usuario);
+		if ($_POST['Representante_Trabaja'] == "No") {
+			$representante->setEmpleo("Desempleado");
+			$representante->setLugar_Trabajo(NULL);
+			$representante->setTeléfono_Trabajo(NULL);
+			$representante->setRemuneración(NULL);
+			$representante->setTipo_Remuneración(NULL);
+		}
+		else {
+			$representante->setEmpleo($_POST['Cargo_Representante']);
+			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
+			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_Representante']);
+			$representante->setRemuneración($_POST['Remuneracion']);
+			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
+		}
 
-		$crud->insertarUsuario($usuario);
+		$representante->setClave($_POST['Contraseña']);
+		$representante->setPrivilegios(1);//Esto establese la autoridad 1: usuario, 2: administrador
 
+		$auxiliar->setRelación($_POST['Relación_Auxiliar']);
+		$auxiliar->setNombre_Aux($_POST['Nombre_Contacto_Emergencia']);
+		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
+		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
 
+		$crud->insertarUsuario($representante,$auxiliar);
 		header('Location: ../index.php');
 	}
-/*	
+
 	elseif ($orden == "Editar") {
 		
-		#Se asignan los valores del objeto antes de pasarlo al crud
-		$usuario->setNombre1($_POST['PrimerNombre']);
-		$usuario->setNombre2($_POST['SegundoNombre']);
-		$usuario->setApellido1($_POST['PrimerApellido']);
-		$usuario->setApellido2($_POST['SegundoApellido']);
-		
-		$usuario->setCedula($_POST['Cedula']);
-		$usuario->setGenero($_POST['Genero']);
-		
-		$usuario->setEmail($_POST['Email']);
-		$usuario->setTelefono1($_POST['Telefono1']);
-		$usuario->setTelefono2($_POST['Telefono2']);
-		$usuario->setClave($_POST['Clave']);
-		$usuario->setDireccion($_POST['Direccion']);
+		$representante->setNombres($_POST['Primer_Nombre_Representante']." ".$_POST['Segundo_Nombre_Representante']);
+		$representante->setApellidos($_POST['Primer_Apellido_Representante']." ".$_POST['Segundo_Apellido_Representante']);
+		$representante->setCedula($_POST['Cédula_Representante']);
+		$representante->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Representante']);
+		$representante->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Representante']);
+		$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
+		$representante->setGenero($_POST['Genero_Representante']);
+		$representante->setCorreo($_POST['Correo_electrónico']);
+		$representante->setDireccion($_POST['Direccion_Representante']);
+		$representante->setTeléfono_Principal($_POST['Teléfono_Principal_Representante']);
+		$representante->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Representante']);
+		$representante->setEstado_Civil($_POST['Estado_Civil_Representante']);
 
-		
-		
-		//esto es para editar el perfil
-		$crud->editarUsuario($usuario,$_SESSION['usuario']->id);
 
-		if ($usuario->getNombre1() != $_SESSION['usuario']->PrimerNombre) {
-			$_SESSION['usuario']->PrimerNombre = $usuario->getNombre1();
+		if ($_POST['Vinculo_Representante'] == "Otro") {
+			$representante->setVinculo($_POST['Otro_Vinculo']);
 		}
-		
-		if ($usuario->getNombre2() != $_SESSION['usuario']->SegundoNombre) {
-			$_SESSION['usuario']->SegundoNombre = $usuario->getNombre2();
-		}
-		
-		if ($usuario->getApellido1() != $_SESSION['usuario']->PrimerApellido) {
-			$_SESSION['usuario']->PrimerApellido = $usuario->getApellido1();
-		}
-		
-		if ($usuario->getApellido2() != $_SESSION['usuario']->SegundoApellido) {
-			$_SESSION['usuario']->SegundoApellido = $usuario->getApellido2();
-		}
-		
-		if ($usuario->getCedula() != $_SESSION['usuario']->Cedula) {
-			$_SESSION['usuario']->Cedula = $usuario->getCedula();
-		}
-		
-		if ($usuario->getGenero() != $_SESSION['usuario']->Genero) {
-			$_SESSION['usuario']->Genero = $usuario->getGenero();
-		}
-		
-		if ($usuario->getEmail() != $_SESSION['usuario']->Correo) {
-			$_SESSION['usuario']->Correo = $usuario->getEmail();
-		}
-		
-		if ($usuario->getTelefono1() != $_SESSION['usuario']->Telefono1) {
-			$_SESSION['usuario']->Telefono1 = $usuario->getTelefono1();
-		}
-		
-		if ($usuario->getTelefono2() != $_SESSION['usuario']->Telefono2) {
-			$_SESSION['usuario']->Telefono2 = $usuario->getTelefono2();
-		}
-		
-		if ($usuario->getClave() != $_SESSION['usuario']->Clave) {
-			$_SESSION['usuario']->Clave = $usuario->getClave();
-		}
-		
-		if ($usuario->getDireccion() != $_SESSION['usuario']->Direccion) {
-			$_SESSION['usuario']->Direccion = $usuario->getDireccion();
+		else {
+			$representante->setVinculo($_POST['Vinculo_Representante']);
 		}
 
-		header('Location: ../lobby/index.php');
 
+		$representante->setBanco($_POST['Banco']);
+		$representante->setTipo_Cuenta($_POST['Tipo_Cuenta']);
+		$representante->setNro_Cuenta($_POST['Nro_Cuenta']);
+
+
+		$representante->setGrado_Inst($_POST['Grado_Instrucción']);
+
+		if ($_POST['Representante_Trabaja'] == "No") {
+			$representante->setEmpleo("Desempleado");
+			$representante->setLugar_Trabajo(NULL);
+			$representante->setTeléfono_Trabajo(NULL);
+			$representante->setRemuneración(NULL);
+			$representante->setTipo_Remuneración(NULL);
+		}
+		else {
+			$representante->setEmpleo($_POST['Cargo_Representante']);
+			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
+			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_Representante']);
+			$representante->setRemuneración($_POST['Remuneración']);
+			$representante->setTipo_Remuneración($_POST['Tipo_Remuneración']);
+		}
+
+		$representante->setClave($_POST['Contraseña']);
+
+		$auxiliar->setRelación($_POST['Relación_Auxiliar']);
+		$auxiliar->setNombre_Aux($_POST['Nombre_Contacto_Emergencia']);
+		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
+		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
+
+		$crud->insertarUsuario($representante,$auxiliar);
+		header('Location: ../index.php');
 	}
-	
 	elseif ($orden == "Consultar") {
 		//texto a buscar
 		$criterio = $_POST['Criterio'];
@@ -131,31 +141,25 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		#$crud->
 	}
-	
 	elseif ($orden == "Eliminar") {
 		
 		if (isset($_POST['DarseDeBaja'])) {
-			echo $_SESSION['usuario']->id;
-			$crud->eliminarUsuario($_SESSION['usuario']->id);
+			$crud->eliminarUsuario($_SESSION['usuario'][0]);
 			header('Location: ../lobby/logout.php');
 		}
 		elseif (isset($_POST['id'])) {
-			echo $_POST['id'];
 			$crud->eliminarUsuario($_POST['id']);
 			header('Location: ../lobby/index.php');
 		}
 	}
-	
 	else {
 		echo "La orden: ' ". $orden . " ' no es valida.";
 	}
-*/
-	
 	//Esto hace lo suyo y manda de regreso a la pagina inicial
 
 }
 else {
-	header('Location: ../index.php');
+	//header('Location: ../index.php');
 }
 
 

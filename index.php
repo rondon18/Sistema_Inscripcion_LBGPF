@@ -7,7 +7,7 @@
 	<title>Ingresar al sistema</title>
 </head>
 <body>
-	<form action="login.php" method="POST">
+	<form action="controladores/login.php" method="POST">
 		<table border="1" style="max-width:600px; margin:auto; overflow:scroll;">
 			<tr>
 				<th colspan="3">Ingresar:</th>
@@ -23,7 +23,7 @@
 			<tr>
 				<th colspan="3">
 					<input type="submit" name="Ingresar" value="Ingresar">
-					<a href="registrarse.php">Registrarse</a>
+					<a href="registrarse/paso-1.php">Registrarse</a>
 				</th>
 			</tr>
 		</table>

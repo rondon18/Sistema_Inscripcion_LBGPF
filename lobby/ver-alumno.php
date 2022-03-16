@@ -143,7 +143,6 @@ desconectarBD($conexion);
 
 		<tr>
 			
-			
 			<td><input type="submit" value="Guardar cambios"></td>
 			<td><input type="submit" value="Volver"></td>
 		

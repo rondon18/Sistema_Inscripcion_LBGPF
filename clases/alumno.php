@@ -4,61 +4,66 @@ require("personas.php");
 
 class Alumnos extends Personas {
 
-	private CedulaRepresentante;
-	private FechaNacimiento;
-	private LugarNacimiento;
-	private PlantelProcedencia;
-	private MateriasPendientes1;
-	private MateriasPendientes2;
-	private Grado;
+	private $idAlumnos;
+	private $Plantel_Procedencia;
+	private $idRepresentante;	
 
 	public function __construct() {}
 
-	public function setCedulaRepresentante($CedulaRepresentante){
-		this->CedulaRepresentante = $CedulaRepresentante;
-	}
-	public function setFechaNacimiento($FechaNacimiento){
-		this->FechaNacimiento = $FechaNacimiento;
-	}
-	public function setLugarNacimiento($LugarNacimiento){
-		this->LugarNacimiento = $LugarNacimiento;
-	}
-	public function setPlantelProcedencia($PlantelProcedencia){
-		this->PlantelProcedencia = $PlantelProcedencia;
-	}
-	public function setMateriasPendientes1($MateriasPendientes1){
-		this->MateriasPendientes1 = $MateriasPendientes1;
-	}
-	public function setMateriasPendientes2($MateriasPendientes2){
-		this->MateriasPendientes2 = $MateriasPendientes2;
-	}
-	public function setGrado($Grado){
-		this->Grado = $Grado;
+	public function insertarAlumno($idRepresentante,$idPadre) {
+		$conexion = conectarBD();
+		
+		$Plantel_Procedencia = $this->getPlantel_Procedencia();
+		$Cedula_Persona = $this->getCedula();
+		
+		$sql = "INSERT INTO `alumnos`(`idAlumnos`, `Plantel_Procedencia`, `Cedula_Persona`, `idRepresentante`, `idPadre`) VALUES (
+			NULL,
+			'$Plantel_Procedencia',
+			'$Cedula_Persona',
+			'$idRepresentante',
+			'$idPadre'
+		)";
+		
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		$this->setidAlumnos($conexion->insert_id);
+		desconectarBD($conexion);
 	}
 	
-	public function getCedulaRepresentante(){
-		return this->CedulaRepresentante;
+	public function retornarTodo() {
+		$valores = [
+			'Id' => $this->getId(),
+			'Nombres' => $this->getNombres(),
+			'Apellidos' => $this->getApellidos(),
+			'Cedula' => $this->getCedula(),
+			'Correo' => $this->getCorreo(),
+			'Genero' => $this->getGenero(),
+			'Fecha_Nacimiento' => $this->getFecha_Nacimiento(),
+			'Lugar_Nacimiento' => $this->getLugar_Nacimiento(),
+			'Direccion' => $this->getDireccion(),
+			'Teléfono_Principal' => $this->getTeléfono_Principal(),
+			'Teléfono_Auxiliar' => $this->getTeléfono_Auxiliar(),
+			'Estado_Civil' => $this->getEstado_Civil(),
+		];
+		return $valores;
 	}
-	public function getFechaNacimiento(){
-		return this->FechaNacimiento;
+	public function setidAlumnos($idAlumnos) {
+		$this->idAlumnos = $idAlumnos;
 	}
-	public function getLugarNacimiento(){
-		return this->LugarNacimiento;
+	public function setPlantel_Procedencia($Plantel_Procedencia) {
+		$this->Plantel_Procedencia = $Plantel_Procedencia;
 	}
-	public function getPlantelProcedencia(){
-		return this->PlantelProcedencia;
-	}
-	public function getMateriasPendientes1(){
-		return this->MateriasPendientes1;
-	}
-	public function getMateriasPendientes2(){
-		return this->MateriasPendientes2;
-	}
-	public function getGrado(){
-		return this->Grado;
+	public function setidRepresentante($idRepresentante) {
+		$this->idRepresentante = $idRepresentante;
 	}
 
-
+	public function getidAlumnos() {
+		return $this->idAlumnos;
+	}
+	public function getPlantel_Procedencia() {
+		return $this->Plantel_Procedencia;
+	}
+	public function getidRepresentante() {
+		return $this->idRepresentante;
 	}
 
 

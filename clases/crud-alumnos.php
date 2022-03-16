@@ -6,80 +6,98 @@ class CrudAlumnos {
 
 
 	#debe recibir un alumno como tal
-	public function insertarAlumno($alumno) {
+	public function insertarAlumno($alumno,$ficha_medica,$datos_sociales,$tallas_alumnos,$grado,$año_escolar,$padre,$es_padre) {
 		$conexion = conectarBD();
 			
-			$PrimerNombre = $alumno->getPrimerNombre();
-			$SegundoNombre = $alumno->getSegundoNombre();
-			$PrimerApellido = $alumno->getPrimerApellido();
-			$SegundoApellido = $alumno->getSegundoApellido();
+		#datos del padre o madre
 
-			$Genero = $alumno->getGenero();
-			
+		if ($es_padre != "Es_el_representante") {
+			#Si no es el representante, se inserta la persona
+			$array = $padre->retornarTodo();
+
+			$Nombres = $padre->getNombres();
+			$Apellidos = $padre->getApellidos();
+			$Cedula = $padre->getCedula();
+			$Correo = $padre->getCorreo();
+			$Genero = $padre->getGenero();
+			$Fecha_Nacimiento = $padre->getFecha_Nacimiento();
+			$Lugar_Nacimiento = $padre->getLugar_Nacimiento();
+			$Direccion = $padre->getDireccion();
+			$Teléfono_Principal = $padre->getTeléfono_Principal();
+			$Teléfono_Auxiliar = $padre->getTeléfono_Auxiliar();
+			$Estado_Civil = $padre->getEstado_Civil();
+
+			$sql = "INSERT INTO `personas`(`idPersonas`, `Nombres`, `Apellidos`, `Cédula`, `Fecha_Nacimiento`, `Lugar_Nacimiento`, `Género`, `Correo_Electronico`, `Dirección`, `Teléfono_Principal`, `Teléfono_Auxiliar`, `Estado_Civil`) VALUES (
+				NULL,
+				'$Nombres',
+				'$Apellidos',
+				'$Cedula',
+				'$Fecha_Nacimiento',
+				'$Lugar_Nacimiento',
+				'$Genero',
+				'$Correo',
+				'$Direccion',
+				'$Teléfono_Principal',
+				'$Teléfono_Auxiliar',
+				'$Estado_Civil'
+			)";
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			$padre->setidPadres($conexion->insert_id);
+		}
+
+		$alumno->insertarPersona();
+/*
+			$Nombres = $alumno->getNombres();
+			$Apellidos = $alumno->getApellidos();
 			$Cedula = $alumno->getCedula();
-			$TipoCedula = $alumno->getTipoCedula();
-			$CedulaRepresentante = $alumno->getCedulaRepresentante();
-			
-			$FechaNacimiento = $alumno->getFechaNacimiento();
+			$Correo = $alumno->getCorreo();
+			$Genero = $alumno->getGenero();
+			$Fecha_Nacimiento = $alumno->getFecha_Nacimiento();
+			$Lugar_Nacimiento = $alumno->getLugar_Nacimiento();
+			$Direccion = $alumno->getDireccion();
+			$Teléfono_Principal = $alumno->getTeléfono_Principal();
+			$Teléfono_Auxiliar = $alumno->getTeléfono_Auxiliar();
+			$Estado_Civil = $alumno->getEstado_Civil();
 
-			$Estado = $alumno->getEstado();
-			$Municipio = $alumno->getMunicipio();
-			$Parroquia = $alumno->getParroquia();
-			$Ciudad = $alumno->getCiudad();
-			
-			$PuedeIrseSolo = $alumno->getPuedeIrseSolo();
-			
-			$ContactoAuxiliar = $alumno->getContactoAuxiliar();
-			$TelefonoAuxiliar = $alumno->getTelefonoAuxiliar();
-			$RelacionAuxiliar = $alumno->getRelacionAuxiliar();
-			
-			$Estatura = $alumno->getEstatura();
-			$Peso = $alumno->getPeso();
-			$GrupoSanguineo = $alumno->getGrupoSanguineo();
-			$Medicacion = $alumno->getMedicacion();
-			$DietaEspecial = $alumno->getDietaEspecial();
-			$ImpedimentoFisico = $alumno->getImpedimentoFisico();
-			$Alergias = $alumno->getAlergias();
-			$ProblemasVista = $alumno->getProblemasVista();
-			
+			$sql = "INSERT INTO `personas`(`idPersonas`, `Nombres`, `Apellidos`, `Cédula`, `Fecha_Nacimiento`, `Lugar_Nacimiento`, `Género`, `Correo_Electronico`, `Dirección`, `Teléfono_Principal`, `Teléfono_Auxiliar`, `Estado_Civil`) VALUES (
+				NULL,
+				'$Nombres',
+				'$Apellidos',
+				'$Cedula',
+				'$Fecha_Nacimiento',
+				'$Lugar_Nacimiento',
+				'$Genero',
+				'$Correo',
+				'$Direccion',
+				'$Teléfono_Principal',
+				'$Teléfono_Auxiliar',
+				'$Estado_Civil'
+			)";
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			$alumno->setidAlumnos($conexion->insert_id);
+			*/
+		$datos_alumno = $alumno->retornarTodo();
 
-			$ProblemasSalud = $alumno->getProblemasSalud();
-			
-			$Grado = $alumno->getGrado();
-			$TipoInscripcion = $alumno->getTipoInscripcion();
-		
-		$sql = "INSERT INTO `alumnos`(`id`, `PrimerNombre`, `SegundoNombre`, `PrimerApellido`, `SegundoApellido`, `Genero`, `Cedula`, `TipoCedula`, `CedulaRepresentante`, `FechaNacimiento`, `Estado`, `Municipio`, `Parroquia`, `Ciudad`, `PuedeIrseSolo`, `ContactoAuxiliar`, `TelefonoAuxiliar`, `RelacionAuxiliar`, `Estatura`, `Peso`, `GrupoSanguineo`, `Medicacion`, `DietaEspecial`, `ImpedimentoFisico`, `Alergias`, `ProblemasVista`, `ProblemasSalud`, `Grado`, `TipoInscripcion`) 
-		VALUES (
-		NULL,
-		'$PrimerNombre',
-		'$SegundoNombre',
-		'$PrimerApellido',
-		'$SegundoApellido',
-		'$Genero',
-		'$Cedula',
-		'$TipoCedula',
-		'$CedulaRepresentante','
-		$FechaNacimiento',
-		'$Estado',
-		'$Municipio',
-		'$Parroquia',
-		'$Ciudad',
-		'$PuedeIrseSolo',
-		'$ContactoAuxiliar',
-		'$TelefonoAuxiliar',
-		'$RelacionAuxiliar',
-		'$Estatura','$Peso',
-		'$GrupoSanguineo',
-		'$Medicacion',
-		'$DietaEspecial',
-		'$ImpedimentoFisico',
-		'$Alergias',
-		'$ProblemasVista',
-		'$ProblemasSalud',
-		'$Grado',
-		'$TipoInscripcion')";
+		$Plantel_Procedencia = $datos_alumno['Plantel_Procedencia'];
 
-		$conexion->query($sql) or die("error: ".$conexion->error);
+		$sql = "SELECT `Cédula` FROM `personas` WHERE `idPersonas` = $conexion->insert_id";
+		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$resultados = $busqueda->fetch_array();
+
+		$Cedula_Persona = $resultados[0];
+		$idRepresentante = $_SESSION['representante'][0];
+
+		print_r($resultados); 
+
+/*
+		$sql = "INSERT INTO `alumnos`(`idAlumnos`, `Plantel_Procedencia`, `Cedula_Persona`, `idRepresentante`, `idPadre`) VALUES (
+			NULL,
+			'$Plantel_Procedencia',
+			'$Cedula_Persona',
+			'$idRepresentante',
+			'$idPadre')";
+	*/
+		#$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}
