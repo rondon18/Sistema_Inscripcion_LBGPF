@@ -23,20 +23,19 @@ class Representantes extends Usuarios {
 	public function insertarRepresentante() {
 		$conexion = conectarBD();
 
-		$Vinculo = $this->getVinculo()
+		$Vinculo = $this->getVinculo();
 		$Banco = $this->getBanco();
-		$Tipo_Cuenta = $this->getTipo_Cuenta()
+		$Tipo_Cuenta = $this->getTipo_Cuenta();
 		$Nro_Cuenta = $this->getNro_Cuenta();
-		$Grado_Inst = $this->getGrado_Inst()
+		$Grado_Inst = $this->getGrado_Inst();
 		$Empleo = $this->getEmpleo();
 		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Teléfono_Trabajo = $this->getTeléfono_Trabajo()
+		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
 		$Remuneración = $this->getRemuneración();
-		$Tipo_Remuneración = $this->getTipo_Remuneración()
-		$Id_usuario = $this->getId_usuario()
+		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$Cedula = $this->getCedula();
 
-		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `id_Usuario`, `Cedula_Persona`) VALUES (
+		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `Cedula_Persona`) VALUES (
 			NULL,
 			'$Vinculo',
 			'$Banco',
@@ -48,7 +47,6 @@ class Representantes extends Usuarios {
 			'$Teléfono_Trabajo',
 			'$Remuneración',
 			'$Tipo_Remuneración',
-			'$Id_usuario',
 			'$Cedula'
 			)";
 

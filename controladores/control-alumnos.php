@@ -96,18 +96,17 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Condiciones_Salud = "";
 		if (!empty($_POST['Condiciones_Salud'])) {
 			for ($i=0; $i < sizeof($_POST['Condiciones_Salud']); $i++) { 
-			if ($i == sizeof($_POST['Condiciones_Salud'])-1 and sizeof($_POST['Condiciones_Salud']) > 1) {
-				$Condiciones_Salud .= "y ".$_POST['Condiciones_Salud'][$i];
-			}
-			elseif (sizeof($_POST['Condiciones_Salud']) == 1 or $i == 1) {
-				$Condiciones_Salud .= $_POST['Condiciones_Salud'][$i];
-			}
-			else {
-				$Condiciones_Salud .= ", ".$_POST['Condiciones_Salud'][$i];
+				if ($i == sizeof($_POST['Condiciones_Salud'])-1 and sizeof($_POST['Condiciones_Salud']) > 1) {
+					$Condiciones_Salud .= "y ".$_POST['Condiciones_Salud'][$i];
+				}
+				elseif (sizeof($_POST['Condiciones_Salud']) == 1 or $i == 1) {
+					$Condiciones_Salud .= $_POST['Condiciones_Salud'][$i];
+				}
+				else {
+					$Condiciones_Salud .= ", ".$_POST['Condiciones_Salud'][$i];
+				}
 			}
 		}
-		}
-		
 		
 		$ficha_medica->setImpedimento_Físico($Condiciones_Salud);#Hacer explode()
 

@@ -11,15 +11,8 @@ class TallasAlumno {
 
 	function __construct(){}
 
-	public function retornarTodo() {
-		$datos =  [
-			'idDatos_Tallas' => $this->getidDatos_Tallas(),
-			'Talla_Camisa' => $this->getTalla_Camisa(),
-			'Talla_Pantalón' => $this->getTalla_Pantalón(),
-			'Talla_Zapatos' => $this->getTalla_Zapatos(),
-			'idAlumnos' => $this->getidAlumnos()
-		];
-		return $datos;
+	public function insertarTallasAlumno() {
+		
 	}
 
 	public function setidDatos_Tallas($idDatos_Tallas) {

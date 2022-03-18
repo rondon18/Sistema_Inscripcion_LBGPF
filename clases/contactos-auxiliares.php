@@ -12,6 +12,30 @@ class ContactoAuxiliar {
 
 	public function __construct(){}
 
+	public function insertarContactoAuxiliar($id_representante) {
+		$conexion = conectarBD();
+		
+
+		$Relación_Auxiliar = $this->getRelación();
+		$Nombre_Contacto_Emergencia = $this->getNombre_Aux();
+		$Tfl_P_Contacto_Aux = $this->getTfl_P_Contacto_Aux();
+		$Tfl_S_Contacto_Aux = $this->getTfl_S_Contacto_Aux();
+
+		$sql ="INSERT INTO `contactos_auxiliares`(`idContactoAuxiliar`, `idRepresentante`, `Relación`, `Nombre_Aux`, `Tfl_P_Contacto_Aux`, `Tfl_S_Contacto_Aux`) VALUES (
+			NULL,
+			'$id_representante',
+			'$Relación_Auxiliar',
+			'$Nombre_Contacto_Emergencia',
+			'$Tfl_P_Contacto_Aux',
+			'$Tfl_S_Contacto_Aux'
+			)";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		$this->setidContactoAuxiliar($conexion->insert_id);
+
+		desconectarBD($conexion);
+	}
+
 	public function retornarTodo() {
 		$datos = [
 			"idContactoAuxiliar" => $this->getidContactoAuxiliar(),

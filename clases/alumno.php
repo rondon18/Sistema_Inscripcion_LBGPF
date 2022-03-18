@@ -28,24 +28,7 @@ class Alumnos extends Personas {
 		$this->setidAlumnos($conexion->insert_id);
 		desconectarBD($conexion);
 	}
-	
-	public function retornarTodo() {
-		$valores = [
-			'Id' => $this->getId(),
-			'Nombres' => $this->getNombres(),
-			'Apellidos' => $this->getApellidos(),
-			'Cedula' => $this->getCedula(),
-			'Correo' => $this->getCorreo(),
-			'Genero' => $this->getGenero(),
-			'Fecha_Nacimiento' => $this->getFecha_Nacimiento(),
-			'Lugar_Nacimiento' => $this->getLugar_Nacimiento(),
-			'Direccion' => $this->getDireccion(),
-			'Teléfono_Principal' => $this->getTeléfono_Principal(),
-			'Teléfono_Auxiliar' => $this->getTeléfono_Auxiliar(),
-			'Estado_Civil' => $this->getEstado_Civil(),
-		];
-		return $valores;
-	}
+
 	public function setidAlumnos($idAlumnos) {
 		$this->idAlumnos = $idAlumnos;
 	}

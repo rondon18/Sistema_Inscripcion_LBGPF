@@ -15,8 +15,9 @@ class Usuarios extends Personas {
 		$Clave = $this->getClave();
 		$Privilegios = $this->getPrivilegios();
 		$Cedula = $this->getCedula();
+		$idRepresentantes = $this->getidRepresentantes();
 
-		$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Cedula_Persona`) VALUES (NULL, '$Clave','$Privilegios', '$Cedula')";
+		$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Cedula_Persona`, `idRepresentante`) VALUES (NULL, '$Clave',$Privilegios, '$Cedula',$idRepresentantes)";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		$this->setId_usuario($conexion->insert_id);

@@ -13,20 +13,6 @@
 
 		public function __construct(){}
 
-		public function retornarTodo() {
-			$datos = [
-				'idDatos_Sociales' => $this->getidDatos_Sociales(),
-				'Posee_Canaima' => $this->getPosee_Canaima(),
-				'Condicion_Canaima' => $this->getCondicion_Canaima(),
-				'Posee_Carnet_Patria' => $this->getPosee_Carnet_Patria(),
-				'Codigo_Carnet_Patria' => $this->getCodigo_Carnet_Patria(),
-				'Serial_Carnet_Patria' => $this->getSerial_Carnet_Patria(),
-				'Acceso_Internet' => $this->getAcceso_Internet(),
-				'idAlumnos' => $this->getidAlumnos()
-			];
-			return $datos;
-		}
-
 		//Setters
 		public function setidDatos_Sociales($idDatos_Sociales){
 			$this->idDatos_Sociales = $idDatos_Sociales;

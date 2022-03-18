@@ -20,6 +20,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		
 	if ($orden == "Insertar") {
 
+		#asigna los valores del objeto antes de ejecutar los metodos de inserción
+
 		$representante->setNombres($_POST['Primer_Nombre_Representante']." ".$_POST['Segundo_Nombre_Representante']);
 		$representante->setApellidos($_POST['Primer_Apellido_Representante']." ".$_POST['Segundo_Apellido_Representante']);
 		$representante->setCedula($_POST['Cédula_Representante']);
@@ -33,14 +35,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$representante->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Representante']);
 		$representante->setEstado_Civil($_POST['Estado_Civil_Representante']);
 
-
 		if ($_POST['Vinculo_Representante'] == "Otro") {
 			$representante->setVinculo($_POST['Otro_Vinculo']);
 		}
 		else {
 			$representante->setVinculo($_POST['Vinculo_Representante']);
 		}
-
 
 		$representante->setBanco($_POST['Banco']);
 		$representante->setTipo_Cuenta($_POST['Tipo_Cuenta']);
@@ -63,16 +63,24 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setRemuneración($_POST['Remuneracion']);
 			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
+		
 
 		$representante->setClave($_POST['Contraseña']);
-		$representante->setPrivilegios(1);//Esto establese la autoridad 1: usuario, 2: administrador
+		$representante->setPrivilegios(1);
+		#Esto establese la autoridad 1: usuario, 2: administrador
 
 		$auxiliar->setRelación($_POST['Relación_Auxiliar']);
 		$auxiliar->setNombre_Aux($_POST['Nombre_Contacto_Emergencia']);
 		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
 		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
 
-		$crud->insertarUsuario($representante,$auxiliar);
+		$representante->insertarPersona();
+		$representante->insertarRepresentante();
+		$representante->insertarUsuario();
+
+		#usa el id del representante insertado para añadir la foranea al contacto auxiliar
+		$auxiliar->insertarContactoAuxiliar($representante->getidRepresentantes());
+
 		header('Location: ../index.php');
 	}
 
@@ -133,13 +141,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		header('Location: ../index.php');
 	}
 	elseif ($orden == "Consultar") {
-		//texto a buscar
-		$criterio = $_POST['Criterio'];
-
-		//buscar entre nombres, apellidos, etc
-		$condiciones = $_POST['Condiciones'];
-
-		#$crud->
+		
 	}
 	elseif ($orden == "Eliminar") {
 		
