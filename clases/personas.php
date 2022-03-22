@@ -53,6 +53,83 @@
 			desconectarBD($conexion);
 		}
 
+		public function editarPersona($id) {
+			$conexion = conectarBD();
+
+			$Nombres = $this->getNombres();
+			$Apellidos = $this->getApellidos();
+			$Cedula = $this->getCedula();
+			$Correo = $this->getCorreo();
+			$Genero = $this->getGenero();
+			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
+			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
+			$Direccion = $this->getDireccion();
+			$Teléfono_Principal = $this->getTeléfono_Principal();
+			$Teléfono_Auxiliar = $this->getTeléfono_Auxiliar();
+			$Estado_Civil = $this->getEstado_Civil();
+			
+			$sql = "UPDATE `personas` SET
+				`Nombres`='$Nombres',
+				`Apellidos`='$Apellidos',
+				`Cédula`='$Cedula',
+				`Fecha_Nacimiento`='$Fecha_Nacimiento',
+				`Lugar_Nacimiento`='$Lugar_Nacimiento',
+				`Género`='$Genero',
+				`Correo_Electronico`='$Correo',
+				`Dirección`='$Direccion',
+				`Teléfono_Principal`='$Teléfono_Principal',
+				`Teléfono_Auxiliar`='$Teléfono_Auxiliar',
+				`Estado_Civil`='$Estado_Civil' 
+			WHERE `idPersonas`='$id'";
+
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+		public function eliminarPersona($id) {
+			$conexion = conectarBD();
+
+			$sql = "DELETE FROM `personas` WHERE `idPersonas` = '$id'";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			desconectarBD($conexion);
+		}
+
+		public function consultarPersona($id) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `personas` WHERE `idPersonas` = '$id'";
+
+			$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$persona = $consulta_personas->fetch_assoc();
+
+			desconectarBD($conexion);
+
+			return $persona;
+		}
+
+		public function mostrarPersonas() {
+			#Muestra todas las personas en la tabla
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `personas`";
+
+			$consulta_personas = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$personas = $consulta_personas->fetch_assoc();
+
+			#Hace un arreglo de arreglos para contener los campos de la persona
+			$Lista_Personas = [];
+			foreach ($personas as $persona) {
+				$Lista_Personas[]= $persona;
+			}
+
+			desconectarBD($conexion);
+
+			return $Lista_Personas;
+		}
+
 		//setters
 		public function setId($Id){
 			$this->Id = $Id;

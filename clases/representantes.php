@@ -35,7 +35,7 @@ class Representantes extends Usuarios {
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$Cedula = $this->getCedula();
 
-		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `Cedula_Persona`) VALUES (
+		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `Cedula_Representantes`) VALUES (
 			NULL,
 			'$Vinculo',
 			'$Banco',
@@ -55,38 +55,93 @@ class Representantes extends Usuarios {
 
 		desconectarBD($conexion);
 	}
+	public function editarRepresentante($id = NULL) {
 
-	public function retornarTodo() {
-		$valores = [
-			'Id' => $this->getId(),
-			'Nombres' => $this->getNombres(),
-			'Apellidos' => $this->getApellidos(),
-			'Cedula' => $this->getCedula(),
-			'Correo' => $this->getCorreo(),
-			'Genero' => $this->getGenero(),
-			'Fecha_Nacimiento' => $this->getFecha_Nacimiento(),
-			'Lugar_Nacimiento' => $this->getLugar_Nacimiento(),
-			'Direccion' => $this->getDireccion(),
-			'Teléfono_Principal' => $this->getTeléfono_Principal(),
-			'Teléfono_Auxiliar' => $this->getTeléfono_Auxiliar(),
-			'idRepresentantes' => $this->getidRepresentantes(),
-			'Vinculo' => $this->getVinculo(),
-			'Banco' => $this->getBanco(),
-			'Tipo_Cuenta' => $this->getTipo_Cuenta(),
-			'Nro_Cuenta' => $this->getNro_Cuenta(),
-			'Estado_Civil' => $this->getEstado_Civil(),
-			'Contacto_Aux' => $this->getContacto_Aux(),
-			'Grado_Inst' => $this->getGrado_Inst(),
-			'Empleo' => $this->getEmpleo(),
-			'Lugar_Trabajo' => $this->getLugar_Trabajo(),
-			'Teléfono_Trabajo' => $this->getTeléfono_Trabajo(),
-			'Remuneración' => $this->getRemuneración(),
-			'Tipo_Remuneración' => $this->getTipo_Remuneración(),
-			'Id_usuario' => $this->getId_usuario(),
-			'Clave' => $this->getClave(),
-			'Privilegios' => $this->getPrivilegios(),
-		];
-		return $valores;
+		if ($id == NULL) {
+			$id = $this->getidRepresentantes();
+		}
+
+		$conexion = conectarBD();
+
+		$Vinculo = $this->getVinculo();
+		$Banco = $this->getBanco();
+		$Tipo_Cuenta = $this->getTipo_Cuenta();
+		$Nro_Cuenta = $this->getNro_Cuenta();
+		$Grado_Inst = $this->getGrado_Inst();
+		$Empleo = $this->getEmpleo();
+		$Lugar_Trabajo = $this->getLugar_Trabajo();
+		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
+		$Remuneración = $this->getRemuneración();
+		$Tipo_Remuneración = $this->getTipo_Remuneración();
+		$Cedula = $this->getCedula();
+		
+		#Edita los campos a excepción del id, que deberia mantenerse inmutable
+		$sql = "UPDATE `representantes` SET 
+					`Vinculo`='$Vinculo',
+					`Banco`='$Banco',
+					`Tipo_Cuenta`='$Tipo_Cuenta',
+					`Cta_Bancaria`='$Nro_Cuenta',
+					`Grado_Inst`='$Grado_Inst',
+					`Empleo`='$Empleo',
+					`Lugar_Trabajo`='$Lugar_Trabajo',
+					`Teléfono_Trabajo`='$Teléfono_Trabajo',
+					`Remuneracion`='$Remuneración',
+					`Tipo_Remuneración`='$Tipo_Remuneración'
+				WHERE `idRepresentantes`='$id'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+
+		desconectarBD($conexion);
+	}
+	public function eliminarRepresentante($id) {
+		$conexion = conectarBD();
+
+		$sql = "DELETE FROM `representantes` WHERE `idRepresentantes` = '$id'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		desconectarBD($conexion);
+	}
+
+	public function consultarRepresentante($id) {
+		$conexion = conectarBD();
+		
+		$sql = "SELECT * FROM `personas`,`representantes` WHERE `representantes`.`idRepresentantes` = '$id' AND `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
+
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$representantes = $consulta_representantes->fetch_assoc();
+
+		desconectarBD($conexion);
+		
+		return $representantes;
+
+		$sql = "SELECT * FROM `representantes` WHERE `idRepresentantes` = '$id'";
+
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$representantes = $consulta_representantes->fetch_array();
+
+		desconectarBD($conexion);
+
+		return $representantes;
+	}
+
+	public function mostrarRepresentantes() {
+		#Muestra todas las representantes en la tabla
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `representantes`";
+
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$representantes = $consulta_representantes->fetch_array();
+
+		#Hace un arreglo de arreglos para contener los campos de la representantes
+		$Lista_Representantes = [];
+		foreach ($representantes as $representantes) {
+			$Lista_Representantes[]= $representantes;
+		}
+
+		desconectarBD($conexion);
+
+		return $Lista_Representantes;
 	}
 
 	//Setters

@@ -24,7 +24,34 @@ class Usuarios extends Personas {
 
 		desconectarBD($conexion);
 	}
-	
+
+	public function editarUsuario($id = NULL) {
+
+		if ($id == NULL) {
+			$id = $this->getId_usuario();
+		}
+
+		$conexion = conectarBD();
+		
+		$Clave = $this->getClave();
+
+		$sql = "UPDATE `usuarios` SET 
+			`Clave`='$Clave'
+		WHERE `idUsuarios`='[value-1]'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		
+		desconectarBD($conexion);
+	}
+	public function eliminarUsuario() {
+
+	}
+	public function consultarUsuario() {
+
+	}
+	public function mostrarUsuarios() {
+
+	}
 	//Setters
 	public function setId_usuario($Id_usuario){
 		$this->Id_usuario = $Id_usuario;

@@ -1,6 +1,7 @@
 <?php  
 
 class Año_Escolar {
+	
 	private $idAño_Escolar;
 	private $Año_Escolar;
 

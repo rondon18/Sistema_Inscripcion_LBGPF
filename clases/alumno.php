@@ -14,12 +14,12 @@ class Alumnos extends Personas {
 		$conexion = conectarBD();
 		
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
-		$Cedula_Persona = $this->getCedula();
+		$Cedula_Alumno = $this->getCedula();
 		
 		$sql = "INSERT INTO `alumnos`(`idAlumnos`, `Plantel_Procedencia`, `Cedula_Persona`, `idRepresentante`, `idPadre`) VALUES (
 			NULL,
 			'$Plantel_Procedencia',
-			'$Cedula_Persona',
+			'$Cedula_Alumno',
 			'$idRepresentante',
 			'$idPadre'
 		)";
@@ -27,6 +27,52 @@ class Alumnos extends Personas {
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		$this->setidAlumnos($conexion->insert_id);
 		desconectarBD($conexion);
+	}
+
+	public function eliminarAlumno($id_Alumno) {
+		$conexion = conectarBD();
+		
+		$sql = "DELETE FROM `alumnos` WHERE `idAlumnos` = '$id_Alumno'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		desconectarBD($conexion);
+	}
+
+	public function consultarAlumno($id_Alumno) {
+
+		$conexion = conectarBD();
+		
+		#Consulta los datos de las tablas personas y alumnos del alumno solicitado
+		$sql = "SELECT * FROM `personas`,`alumnos` WHERE `alumnos`.`idAlumnos` = '$id_Alumno' AND `personas`.`Cédula` = `alumnos`.`Cedula_Persona`";
+
+		$consulta_alumnos = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$alumnos = $consulta_alumnos->fetch_assoc();
+
+		desconectarBD($conexion);
+
+		return $alumnos;
+	}
+
+	public function mostrarAlumnos() {
+		#Muestra todos las alumnos en la tabla
+		$conexion = conectarBD();
+
+		#consulta solo las personas que tengan presencia en la tabla alumnos
+		$sql = "SELECT * FROM `personas`,`alumnos` WHERE `personas`.`Cédula` = `alumnos`.`Cedula_Persona`";
+
+		$consulta_alumnos = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$alumnos = $consulta_alumnos->fetch_all();
+
+
+		#Hace un arreglo de arreglos para contener los campos de la alumno
+		$Lista_Alumnos = [];
+		foreach ($alumnos as $alumno) {
+			$Lista_Alumnos[]= $alumno;
+		}
+
+		desconectarBD($conexion);
+
+		return $Lista_Alumnos;
 	}
 
 	public function setidAlumnos($idAlumnos) {

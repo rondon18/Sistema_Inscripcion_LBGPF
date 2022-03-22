@@ -9,6 +9,23 @@ class MateriasPendientes {
 
 	public function __construct() {}
 
+	public function insertarMateriasPendientes($idAlumno) {
+		$conexion = conectarBD();
+		
+		$Tiene_Mat_Pend = $this->getTiene_Mat_Pend();
+		$Materias_Pendientes = $this->getMaterias_Pendientes();
+
+		$sql = "INSERT INTO `materias-pendientes`(`idMaterias-Pendientes`, `Tiene_Mat_Pend`, `Materias_Pendientes`, `idAlumno`) VALUES (
+			NULL,
+			'$Tiene_Mat_Pend',
+			'$Materias_Pendientes',
+			'$idAlumno'
+		)"
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		$this->setidMaterias_Pendientes($conexion->insert_id);
+		desconectarBD($conexion);
+	}
 
 	public function setidMaterias_Pendientes($idMaterias_Pendientes) {
 		$this->idMaterias_Pendientes = $idMaterias_Pendientes;

@@ -35,17 +35,39 @@ class ContactoAuxiliar {
 
 		desconectarBD($conexion);
 	}
+	public function editarContactoAuxiliar($id = NULL) {
+		
+		if ($id == NULL) {
+			$id = $this->getidContactoAuxiliar();
+		}
 
-	public function retornarTodo() {
-		$datos = [
-			"idContactoAuxiliar" => $this->getidContactoAuxiliar(),
-			"idRepresentante" => $this->getidRepresentante(),
-			"Relación" => $this->getRelación(),
-			"Nombre_Aux" => $this->getNombre_Aux(),
-			"Tfl_P_Contacto_Aux" => $this->getTfl_P_Contacto_Aux(),
-			"Tfl_S_Contacto_Aux" => $this->getTfl_S_Contacto_Aux()
-		];
-		return $datos;
+		$Relación = $this->getRelación();
+		$Nombre_Aux = $this->getNombre_Aux();
+		$Tfl_P_Contacto_Aux = $this->getTfl_P_Contacto_Aux();
+		$Tfl_S_Contacto_Aux = $this->getTfl_S_Contacto_Aux();
+
+		$conexion = conectarBD();
+
+		$sql = "UPDATE `contactos_auxiliares` SET 
+				`Relación`='$Relación',
+				`Nombre_Aux`='$Nombre_Aux',
+				`Tfl_P_Contacto_Aux`='$Tfl_P_Contacto_Aux',
+				`Tfl_S_Contacto_Aux`='$Tfl_S_Contacto_Aux' 
+			WHERE `idContactoAuxiliar`='$id'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		
+		desconectarBD($conexion);
+
+	}
+	public function eliminarContactoAuxiliar($id = NULL) {
+
+	}
+	public function consultarContactoAuxiliar($id = NULL) {
+
+	}
+	public function mostrarContactosAuxiliares() {
+
 	}
 
 	public function setidContactoAuxiliar($idContactoAuxiliar) {

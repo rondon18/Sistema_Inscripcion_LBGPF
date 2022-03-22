@@ -81,11 +81,18 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		#usa el id del representante insertado para añadir la foranea al contacto auxiliar
 		$auxiliar->insertarContactoAuxiliar($representante->getidRepresentantes());
 
+		#Si el usuario se esta registrando destruye las variables de la sesión y que no aparezcan al registrar otro usuario
+		if (isset($_POST['Registrar'])) {
+			session_destroy();
+		}
+
 		header('Location: ../index.php');
 	}
 
 	elseif ($orden == "Editar") {
 		
+		#asigna los valores del objeto antes de ejecutar los metodos de inserción
+
 		$representante->setNombres($_POST['Primer_Nombre_Representante']." ".$_POST['Segundo_Nombre_Representante']);
 		$representante->setApellidos($_POST['Primer_Apellido_Representante']." ".$_POST['Segundo_Apellido_Representante']);
 		$representante->setCedula($_POST['Cédula_Representante']);
@@ -99,14 +106,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$representante->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Representante']);
 		$representante->setEstado_Civil($_POST['Estado_Civil_Representante']);
 
-
 		if ($_POST['Vinculo_Representante'] == "Otro") {
 			$representante->setVinculo($_POST['Otro_Vinculo']);
 		}
 		else {
 			$representante->setVinculo($_POST['Vinculo_Representante']);
 		}
-
 
 		$representante->setBanco($_POST['Banco']);
 		$representante->setTipo_Cuenta($_POST['Tipo_Cuenta']);
@@ -126,22 +131,72 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setEmpleo($_POST['Cargo_Representante']);
 			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
 			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_Representante']);
-			$representante->setRemuneración($_POST['Remuneración']);
-			$representante->setTipo_Remuneración($_POST['Tipo_Remuneración']);
+			$representante->setRemuneración($_POST['Remuneracion']);
+			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
+		
 
 		$representante->setClave($_POST['Contraseña']);
+		$representante->setPrivilegios(1);
+		#Esto establese la autoridad 1: usuario, 2: administrador
 
 		$auxiliar->setRelación($_POST['Relación_Auxiliar']);
 		$auxiliar->setNombre_Aux($_POST['Nombre_Contacto_Emergencia']);
 		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
 		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
 
-		$crud->insertarUsuario($representante,$auxiliar);
-		header('Location: ../index.php');
+		if (isset($_POST['editar-perfil'])) {
+			$representante->editarPersona($_SESSION['persona'][0]);
+			$representante->editarRepresentante($_SESSION['representante'][0]);
+			$representante->editarUsuario($_SESSION['usuario'][0]);
+		}
+		else {
+			$representante->editarPersona($representante->getId());
+			$representante->editarRepresentante($representante->getidRepresentantes());
+			$representante->editarUsuario($representante->getId_usuario());
+		}
+		$auxiliar->editarContactoAuxiliar($representante->getidRepresentantes());
+
+		if (isset($_POST['editar-perfil'])) {
+			$_SESSION['persona'][1] = $representante->getNombres();
+			$_SESSION['persona'][2] = $representante->getApellidos();
+			$_SESSION['persona'][3] = $representante->getCedula();
+			$_SESSION['persona'][4] = $representante->getFecha_Nacimiento();
+			$_SESSION['persona'][5] = $representante->getLugar_Nacimiento();
+			$_SESSION['persona'][6] = $representante->getGenero();
+			$_SESSION['persona'][7] = $representante->getCorreo();
+			$_SESSION['persona'][8] = $representante->getDireccion();
+			$_SESSION['persona'][9] = $representante->getTeléfono_Principal();
+			$_SESSION['persona'][10] = $representante->getTeléfono_Auxiliar();
+			$_SESSION['persona'][11] = $representante->getEstado_Civil();
+			
+			$_SESSION['representante'][1] = $representante->getVinculo();
+			$_SESSION['representante'][2] = $representante->getBanco();
+			$_SESSION['representante'][3] = $representante->getTipo_Cuenta();
+			$_SESSION['representante'][4] = $representante->getNro_Cuenta();
+			$_SESSION['representante'][5] = $representante->getGrado_Inst();
+			$_SESSION['representante'][6] = $representante->getEmpleo();
+			$_SESSION['representante'][7] = $representante->getLugar_Trabajo();
+			$_SESSION['representante'][8] = $representante->getTeléfono_Trabajo();
+			$_SESSION['representante'][9] = $representante->getRemuneración();
+			$_SESSION['representante'][10] = $representante->getTipo_Remuneración();
+
+			#Relación, Nombre, telefonos principal y auxiliar.
+			$_SESSION['auxiliar'][2] = $auxiliar->getRelación();
+			$_SESSION['auxiliar'][3] = $auxiliar->getNombre_Aux();
+			$_SESSION['auxiliar'][4] = $auxiliar->getTfl_P_Contacto_Aux();
+			$_SESSION['auxiliar'][5] = $auxiliar->getTfl_S_Contacto_Aux();
+
+			#Clave
+			$_SESSION['usuario'][1] = $representante->getClave();
+
+		}
+
+		header('Location: ../lobby/index.php');
 	}
 	elseif ($orden == "Consultar") {
-		
+		$representante->setidRepresentantes($_POST['idRepresentantes']);
+		$representante->consultarRepresentante($representante->getidRepresentantes());
 	}
 	elseif ($orden == "Eliminar") {
 		

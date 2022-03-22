@@ -30,7 +30,7 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 	}
 </style>
 <body>
-	<form action="../php/control-usuarios.php" method="POST" style="max-width: 600px; margin:auto;">
+	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin:auto;">
 		<div>
 			<div>
 				<!--Datos del representante-->
@@ -83,6 +83,19 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 					<div>
 						<label>Lugar de nacimiento:</label><br>
 						<input type="text" name="Lugar_Nacimiento_Representante" required value="<?php echo $_SESSION['persona'][5];?>">
+					</div>
+
+					<!--Vinculo del representante con el estudiante-->
+					<div>
+						<label>Vinculo con el estudiante:</label><br>
+					
+						<select name="Vinculo_Representante" required>
+							<option value="Madre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Madre"){ echo "selected";} ?>>Madre</option>
+							<option value="Padre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Padre"){ echo "selected";} ?>>Padre</option>
+							<option value="Abuelo(a)" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
+							<option value="Otro" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Otro"){ echo "selected";} ?>>Otro</option>
+						</select>
+					
 					</div>
 
 					<!--Correo electronico del representante-->
@@ -275,6 +288,8 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 				</div>
 			</div>
 		<a href="index.php">Volver al inicio</a>
+		<input type="hidden" name="orden" value="Editar">
+		<input type="hidden" name="editar-perfil" value="editar-perfil">
 		<input type="submit" value="Guardar y continuar">
 		</div>
 	</form>
@@ -375,21 +390,7 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 				</div>
 			</div>
 
-					<!--Vinculo del representante con el estudiante-->
-					<div>
-						<label>Vinculo con el estudiante:</label><br>
-					
-						<select name="Vinculo_Representante" required>
-					
-							<option value="Madre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Madre"){ echo "selected";} ?>>Madre</option>
-							<option value="Padre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Padre"){ echo "selected";} ?>>Padre</option>
-							<option value="Abuelo(a)" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
-							<option value="Otro" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Otro"){ echo "selected";} ?>>Otro</option>
-					
-						</select>
-					
-						<input type="text" name="Otro_Vinculo" placeholder="Si es otro, ¿Cual?" value="<?php echo $_SESSION['Otro_Vinculo'];?>">
-					</div>
+			
 		*/?>
 </body>
 </html>

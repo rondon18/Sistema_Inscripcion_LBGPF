@@ -19,7 +19,7 @@ class GradoAcademico {
 		$busqueda = $conexion->query("SELECT * FROM `año-escolar` WHERE `Año_Escolar` = '$año_escolar'");
 
 		$resultado = $busqueda->fetch_array();
-		echo $resultado[0];
+		var_dump($resultado[0]);
 
 		$sql = "INSERT INTO `grado`(`idGrado`, `Grado_A_Cursar`, `idAlumnos`, `idAño-Escolar`) VALUES (
 			NULL,
