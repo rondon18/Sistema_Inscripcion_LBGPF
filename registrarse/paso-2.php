@@ -22,7 +22,7 @@ if (isset($_POST['Paso_2'])) {
 
 	$_SESSION['Paso_2'] = $_POST['Paso_2'];
 
-	header('Location: paso-4.php');
+	header('Location: paso-3.php');
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if (isset($_POST['Paso_2'])) {
 </style>
 
 <body>
-	<form action="paso-3.php" method="POST" style="max-width: 600px; margin:auto;">
+	<form action="paso-2.php" method="POST" style="max-width: 600px; margin:auto;">
 		<div>
 			<div>
 				<!--Datos Económicos-->

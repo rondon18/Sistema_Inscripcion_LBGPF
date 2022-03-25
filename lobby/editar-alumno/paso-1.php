@@ -70,7 +70,6 @@ if (!$_SESSION['login']) {
 		
 			<!--Botón para guardar-->
 			<div class="border-t p-6 text-white">
-				<a href="../index.php">Volver al menú</a>
 				<button class="block w-1/2 mx-auto rounded-xl p-3 bg-purple-500 text-white transform transition-transform hover:scale-105 hover:bg-purple-600" type="submit">Ingresar</button>
 			</div>
 		

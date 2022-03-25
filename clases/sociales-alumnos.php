@@ -13,6 +13,72 @@
 
 		public function __construct(){}
 
+		public function insertarDatosSociales($id_Alumno) {
+			$conexion = conectarBD();
+
+			$Posee_Canaima = $this->getPosee_Canaima();
+			$Condicion_Canaima = $this->getCondicion_Canaima();
+			$Posee_Carnet_Patria = $this->getPosee_Carnet_Patria();
+			$Codigo_Carnet_Patria = $this->getCodigo_Carnet_Patria();
+			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
+			$Acceso_Internet = $this->getAcceso_Internet();
+
+			$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Posee_Carnet_Patria`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idAlumnos`) VALUES (
+				NULL,
+				'$Posee_Canaima',
+				'$Condicion_Canaima',
+				'$Posee_Carnet_Patria',
+				'$Codigo_Carnet_Patria',
+				'$Serial_Carnet_Patria',
+				'$Acceso_Internet',
+				'$id_Alumno'
+			)";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			$this->setidDatos_Sociales($conexion->insert_id);
+
+			desconectarBD($conexion);
+		}
+
+		public function editarDatosSociales($id_Alumno) {
+			$conexion = conectarBD();
+
+			$Posee_Canaima = $this->getPosee_Canaima();
+			$Condicion_Canaima = $this->getCondicion_Canaima();
+			$Posee_Carnet_Patria = $this->getPosee_Carnet_Patria();
+			$Codigo_Carnet_Patria = $this->getCodigo_Carnet_Patria();
+			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
+			$Acceso_Internet = $this->getAcceso_Internet();
+
+			$sql = "UPDATE `datos-sociales` SET 
+				`Posee_Canaima`='$Posee_Canaima',
+				`Condicion_Canaima`='$Condicion_Canaima',
+				`Posee_Carnet_Patria`='$Posee_Carnet_Patria',
+				`Codigo_Carnet_Patria`='$Codigo_Carnet_Patria',
+				`Serial_Carnet_Patria`='$Serial_Carnet_Patria',
+				`Acceso_Internet`='$Acceso_Internet',
+			WHERE `idAlumnos`='$id_Alumno'";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+		public function consultarDatosSociales($id_Alumno) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `datos-sociales` WHERE `idAlumnos` = '$id_Alumno'";
+
+			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$sociales = $consulta_sociales->fetch_assoc();
+
+			desconectarBD($conexion);
+
+			return $sociales;
+		}
+
+		#No hay eliminar porque este registro se va en cascada si se elimina el alumno
+
 		//Setters
 		public function setidDatos_Sociales($idDatos_Sociales){
 			$this->idDatos_Sociales = $idDatos_Sociales;

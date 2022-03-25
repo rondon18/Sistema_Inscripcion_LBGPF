@@ -10,7 +10,7 @@ if (isset($_POST['Paso_3'])) {
 
 		$_SESSION['Paso_3'] = $_POST['Paso_3'];
 
-		header('Location: paso-5.php');
+		header('Location: paso-4.php');
 	}
 	else {
 		$check = "Las contraseñas ingresadas no coinciden";
@@ -35,7 +35,7 @@ if (isset($_POST['Paso_3'])) {
 </style>
 
 <body>
-	<form action="paso-4.php" method="POST" style="max-width: 600px; margin:auto;">
+	<form action="paso-3.php" method="POST" style="max-width: 600px; margin:auto;">
 		<div>
 			<div>
 				<!--Datos del usuario-->

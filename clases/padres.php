@@ -21,27 +21,39 @@ class Padres extends Personas {
 		$this->setidPadres($conexion->insert_id);
 		
 		desconectarBD($conexion);
-
 	}
 
-	public function retornarTodo() {
-		$valores = [
-			'Id' => $this->getId(),
-			'Nombres' => $this->getNombres(),
-			'Apellidos' => $this->getApellidos(),
-			'Cedula' => $this->getCedula(),
-			'Correo' => $this->getCorreo(),
-			'Genero' => $this->getGenero(),
-			'idPadres' => $this->getPadres(),
-			'Fecha_Nacimiento' => $this->getFecha_Nacimiento(),
-			'Lugar_Nacimiento' => $this->getLugar_Nacimiento(),
-			'Direccion' => $this->getDireccion(),
-			'Teléfono_Principal' => $this->getTeléfono_Principal(),
-			'Teléfono_Auxiliar' => $this->getTeléfono_Auxiliar(),
-			'Estado_Civil' => $this->getEstado_Civil(),
-			'Parentezco' => $this->getParentezco(),
-		];
-		return $valores;
+	public function editarPadres(){
+		$conexion = conectarBD();
+		
+		$sql = "";
+
+		$conexion->query($sql);
+		desconectarBD($conexion);
+	}
+	public function eliminarPadres(){
+		$conexion = conectarBD();
+		
+		$sql = "";
+
+		$conexion->query($sql);
+		desconectarBD($conexion);
+	}
+	public function consutarPadres(){
+		$conexion = conectarBD();
+		
+		$sql = "";
+
+		$conexion->query($sql);
+		desconectarBD($conexion);
+	}
+	public function mostrarPadres(){
+		$conexion = conectarBD();
+		
+		$sql = "";
+
+		$conexion->query($sql);
+		desconectarBD($conexion);
 	}
 
 	public function setidPadres($idPadres) {

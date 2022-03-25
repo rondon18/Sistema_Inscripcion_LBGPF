@@ -29,6 +29,20 @@ class Alumnos extends Personas {
 		desconectarBD($conexion);
 	}
 
+	public function editarAlumno($idRepresentante,$idPadre) {
+		$conexion = conectarBD();
+		
+		$Plantel_Procedencia = $this->getPlantel_Procedencia();
+
+		$sql = "UPDATE `alumnos` SET 
+				`Plantel_Procedencia`='$Plantel_Procedencia',
+			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		
+		desconectarBD($conexion);
+	}
+
 	public function eliminarAlumno($id_Alumno) {
 		$conexion = conectarBD();
 		

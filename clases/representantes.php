@@ -35,7 +35,7 @@ class Representantes extends Usuarios {
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$Cedula = $this->getCedula();
 
-		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `Cedula_Representantes`) VALUES (
+		$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `Grado_Inst`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneracion`, `Tipo_Remuneración`, `Cedula_Persona`) VALUES (
 			NULL,
 			'$Vinculo',
 			'$Banco',
@@ -55,11 +55,9 @@ class Representantes extends Usuarios {
 
 		desconectarBD($conexion);
 	}
-	public function editarRepresentante($id = NULL) {
+	public function editarRepresentante($id) {
 
-		if ($id == NULL) {
-			$id = $this->getidRepresentantes();
-		}
+
 
 		$conexion = conectarBD();
 
@@ -101,7 +99,6 @@ class Representantes extends Usuarios {
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
-
 	public function consultarRepresentante($id) {
 		$conexion = conectarBD();
 		
@@ -113,15 +110,6 @@ class Representantes extends Usuarios {
 		desconectarBD($conexion);
 		
 		return $representantes;
-
-		$sql = "SELECT * FROM `representantes` WHERE `idRepresentantes` = '$id'";
-
-		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
-		$representantes = $consulta_representantes->fetch_array();
-
-		desconectarBD($conexion);
-
-		return $representantes;
 	}
 
 	public function mostrarRepresentantes() {
@@ -131,7 +119,7 @@ class Representantes extends Usuarios {
 		$sql = "SELECT * FROM `representantes`";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
-		$representantes = $consulta_representantes->fetch_array();
+		$representantes = $consulta_representantes->fetch_all();
 
 		#Hace un arreglo de arreglos para contener los campos de la representantes
 		$Lista_Representantes = [];

@@ -21,7 +21,7 @@
 
 		public function __construct(){}
 
-		public function insertarFicha_Medica() {
+		public function insertarFicha_Medica($id_Alumno) {
 			$conexion = conectarBD();
 
 			$Estatura = $this->getEstatura();
@@ -38,9 +38,6 @@
 			$Cond_Dental = $this->getCond_Dental();
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
-			$idAlumnos = $this->getidAlumnos();
-
-
 
 			$sql = "INSERT INTO `datos-medicos`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idAlumnos`) VALUES (
 					NULL,
@@ -58,37 +55,70 @@
 					'$Cond_Dental',
 					'$Institucion_Medica',
 					'$Carnet_Discapacidad',
-					'$idAlumnos'
+					'$id_Alumno'
 				)";
+
+			echo $sql;
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidDatos_Medicos($conexion->insert_id);
 
 			desconectarBD($conexion);
-
 		}
 
-		public function retornarTodo() {
-			$datos = [
-				'idDatos_Medicos' => $this->getidDatos_Medicos(),
-				'Estatura' => $this->getEstatura(),
-				'Peso' => $this->getPeso(),
-				'Indice' => $this->getIndice(),
-				'Circ_Braquial' => $this->getCirc_Braquial(),
-				'Lateralidad' => $this->getLateralidad(),
-				'Tipo_Sangre' => $this->getTipo_Sangre(),
-				'Medicación' => $this->getMedicación(),
-				'Dieta_Especial' => $this->getDieta_Especial(),
-				'Impedimento_Físico' => $this->getImpedimento_Físico(),
-				'Alergias' => $this->getAlergias(),
-				'Cond_Vista' => $this->getCond_Vista(),
-				'Cond_Dental' => $this->getCond_Dental(),
-				'Institucion_Medica' => $this->getInstitucion_Medica(),
-				'Carnet_Discapacidad' => $this->getCarnet_Discapacidad(),
-				'idAlumnos' => $this->getidAlumnos()
-			];
-			return $datos;
+		public function editarFicha_Medica($id_Alumno) {
+			$conexion = conectarBD();
+
+			$Estatura = $this->getEstatura();
+			$Peso = $this->getPeso();
+			$Indice = $this->getIndice();
+			$Circ_Braquial = $this->getCirc_Braquial();
+			$Lateralidad = $this->getLateralidad();
+			$Tipo_Sangre = $this->getTipo_Sangre();
+			$Medicación = $this->getMedicación();
+			$Dieta_Especial = $this->getDieta_Especial();
+			$Impedimento_Físico = $this->getImpedimento_Físico();
+			$Alergias = $this->getAlergias();
+			$Cond_Vista = $this->getCond_Vista();
+			$Cond_Dental = $this->getCond_Dental();
+			$Institucion_Medica = $this->getInstitucion_Medica();
+			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
+			
+			$sql = "UPDATE `datos-medicos` SET 
+			`Estatura`='$Estatura',
+			`Peso`='$Peso',
+			`Indice`='$Indice',
+			`Circ_Braquial`='$Circ_Braquial',
+			`Lateralidad`='$Lateralidad',
+			`Tipo_Sangre`='$Tipo_Sangre',
+			`Medicación`='$Medicación',
+			`Dieta_Especial`='$Dieta_Especial',
+			`Impedimento_Físico`='$Impedimento_Físico',
+			`Alergias`='$Alergias',
+			`Cond_Vista`='$Cond_Vista',
+			`Cond_Dental`='$Cond_Dental',
+			`Institucion_Medica`='$Institucion_Medica',
+			`Carnet_Discapacidad`='$Carnet_Discapacidad'
+			 WHERE `idAlumnos`='$id_Alumno'";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
 		}
+
+		public function consultarFicha_Medica($id_Alumno) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `datos-medicos` WHERE `idAlumnos` = '$id_Alumno'";
+
+			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$datos_medicos = $consulta_sociales->fetch_assoc();
+
+			desconectarBD($conexion);
+
+			return $datos_medicos;
+		}
+
 		public function setidDatos_Medicos($idDatos_Medicos) {
 			$this->idDatos_Medicos = $idDatos_Medicos;
 		}

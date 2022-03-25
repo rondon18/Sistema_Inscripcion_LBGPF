@@ -11,9 +11,61 @@ class TallasAlumno {
 
 	function __construct(){}
 
-	public function insertarTallasAlumno() {
-		
+	public function insertarTallasAlumno($id_Alumno) {
+		$conexion = conectarBD();
+
+		$Talla_Camisa = $this->getTalla_Camisa();
+		$Talla_Pantalón = $this->getTalla_Pantalón();
+		$Talla_Zapatos = $this->getTalla_Zapatos();
+
+		$sql = "INSERT INTO `datos-tallas`(`idDatos-Tallas`, `Talla_Camisa`, `Talla_Pantalón`, `Talla_Zapatos`, `idAlumnos`) VALUES (
+			NULL,
+			'$Talla_Camisa',
+			'$Talla_Pantalón',
+			'$Talla_Zapatos',
+			'$id_Alumno'
+		)";
+
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		$this->setidDatos_Tallas($conexion->insert_id);
+
+		desconectarBD($conexion);
 	}
+
+	public function editarTallasAlumno($id_Alumno) {
+		$conexion = conectarBD();
+
+		$Talla_Camisa = $this->getTalla_Camisa();
+		$Talla_Pantalón = $this->getTalla_Pantalón();
+		$Talla_Zapatos = $this->getTalla_Zapatos();
+		
+		$sql = "UPDATE `datos-tallas` SET 
+				`Talla_Camisa`='$Talla_Camisa',
+				`Talla_Pantalón`='$Talla_Pantalón',
+				`Talla_Zapatos`='$Talla_Zapatos'
+			WHERE `idAlumnos`='$id_Alumno'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+
+		desconectarBD($conexion);
+	}
+
+	public function consultarTallasAlumno($id_Alumno) {
+		$conexion = conectarBD();
+		
+		#Consulta los datos de las tallas del alumno solicitado
+		$sql = "SELECT * FROM `datos-tallas` WHERE `idAlumnos` = '$id_Alumno'";
+
+		$consulta_tallas = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$tallas = $consulta_tallas->fetch_assoc();
+
+		desconectarBD($conexion);
+
+		return $tallas;
+	}
+
+	#No hay eliminar porque este registro se va en cascada si se elimina el alumno
 
 	public function setidDatos_Tallas($idDatos_Tallas) {
 		$this->idDatos_Tallas = $idDatos_Tallas;

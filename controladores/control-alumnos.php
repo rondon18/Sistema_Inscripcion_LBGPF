@@ -16,9 +16,8 @@ require_once('../clases/grado.php');
 require_once('../clases/año-escolar.php');
 require_once('../clases/padres.php');
 
-require_once('../clases/crud-alumnos.php');
+require_once('../controladores/conexion.php');
 
-$crud 	= new CrudAlumnos();
 $alumno	= new Alumnos();
 $ficha_medica	= new FichaMedica();
 $datos_sociales = new DatosSociales();
@@ -33,12 +32,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		
 	if ($orden == "Insertar") {
 
-
 		#Persona -> padre 
 		if (!isset($_POST['Es_el_representante'])) {
 			$padre->setNombres($_POST['Primer_Nombre_Familiar']." ".$_POST['Segundo_Nombre_Familiar']);
 			$padre->setApellidos($_POST['Primer_Apellido_Familiar']." ".$_POST['Segundo_Apellido_Familiar']);
-			$padre->setCedula($_POST['Cedula_Familiar']);
+			$padre->setCedula($_POST['Cédula_Familiar']);
 			$padre->setCorreo($_POST['Correo_electrónico_Familiar']);
 			$padre->setGenero($_POST['Genero_Familiar']);
 			$padre->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
@@ -81,33 +79,45 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		
 
 		#datos medicos
-		$ficha_medica->setEstatura($_POST['Estatura']);
+		$ficha_medica->setEstatura($_POST['Talla']);
 		$ficha_medica->setPeso($_POST['Peso']);
 		$ficha_medica->setIndice($_POST['Indice']);
-		$ficha_medica->setCirc_Braquial($_POST['Circ_Braquial']);
+		$ficha_medica->setCirc_Braquial($_POST['C_Braquial']);
 		$ficha_medica->setLateralidad($_POST['Lateralidad']);
-		$ficha_medica->setTipo_Sangre($_POST['Tipo_Sangre']);
-		$ficha_medica->setMedicación($_POST['Medicación']);
+		$ficha_medica->setTipo_Sangre($_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus']);
+		$ficha_medica->setMedicación($_POST['Medicacion']);
 		$ficha_medica->setDieta_Especial($_POST['Dieta_Especial']);
-		$ficha_medica->setImpedimento_Físico($_POST['Impedimento_Físico']);
+
+		if (isset($_POST['Condiciones_Salud'])) {
+			foreach ($_POST['Condiciones_Salud'] as $impedimento) {
+				echo $impedimento;
+			}
+			$ficha_medica->setImpedimento_Físico($_POST['Condiciones_Salud']);
+		}
+		else {
+			$ficha_medica->setImpedimento_Físico(NULL);
+		}
+		
+
+		
 		$ficha_medica->setAlergias($_POST['Alergias']);
-		$ficha_medica->setCond_Vista($_POST['Cond_Vista']);
-		$ficha_medica->setCond_Dental($_POST['Cond_Dental']);
+		$ficha_medica->setCond_Vista($_POST['Condicion_Vista']);
+		$ficha_medica->setCond_Dental($_POST['Condicion_Dentadura']);
 		$ficha_medica->setInstitucion_Medica($_POST['Institucion_Medica']);
-		$ficha_medica->setCarnet_Discapacidad($_POST['Carnet_Discapacidad']);
-		$ficha_medica->setidAlumnos($_POST['idAlumnos']);
+		$ficha_medica->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
+
 
 		#datos sociales del alumno
-		$datos_sociales->setPosee_Canaima($_POST['Posee_Canaima']);
-		$datos_sociales->setCondicion_Canaima($_POST['Condicion_Canaima']);
-		$datos_sociales->setPosee_Carnet_Patria($_POST['Posee_Carnet_Patria']);
+		$datos_sociales->setPosee_Canaima($_POST['Tiene_Canaima']);
+		$datos_sociales->setCondicion_Canaima($_POST['Condiciones_Canaima']);
+		$datos_sociales->setPosee_Carnet_Patria($_POST['Tiene_Carnet_Patria']);
 		$datos_sociales->setCodigo_Carnet_Patria($_POST['Codigo_Carnet_Patria']);
 		$datos_sociales->setSerial_Carnet_Patria($_POST['Serial_Carnet_Patria']);
-		$datos_sociales->setAcceso_Internet($_POST['Acceso_Internet']);
+		$datos_sociales->setAcceso_Internet($_POST['Internet_Vivienda']);
 
 		#Tallas del alumno
 		$tallas_alumnos->setTalla_Camisa($_POST['Talla_Camisa']);
-		$tallas_alumnos->setTalla_Pantalón($_POST['Talla_Pantalón']);
+		$tallas_alumnos->setTalla_Pantalón($_POST['Talla_Pantalon']);
 		$tallas_alumnos->setTalla_Zapatos($_POST['Talla_Zapatos']);
 
 		#alumno -> grado -> año-escolar
@@ -117,20 +127,18 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$alumno->insertarPersona();
 		$alumno->insertarAlumno($_SESSION['representante'][0],$padre->getidPadres());
 
-		$ficha_medica->insertar($alumno->getidAlumnos());
-		$datos_sociales->insertar($alumno->getidAlumnos());
-		$tallas_alumnos->insertar($alumno->getidAlumnos());
+		$ficha_medica->insertarFicha_Medica($alumno->getidAlumnos());
+		$datos_sociales->insertarDatosSociales($alumno->getidAlumnos());
+		$tallas_alumnos->insertarTallasAlumno($alumno->getidAlumnos());
 
-		$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
-		$grado->insertarGrado($alumno->getidAlumnos(),$año_escolar->getAño_Escolar());
+		#$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
+		#$grado->insertarGrado($alumno->getidAlumnos(),$año_escolar->getAño_Escolar());
 
 		#ALumno_Repitente
 		#Año_Repitente
 		#Tiene_Materias_Pendientes
 					
-		#$crud->insertarAlumno($alumno,$ficha_medica,$datos_sociales,$tallas_alumnos,$grado,$año_escolar,$padre,$_POST['Es_el_representante']);
-
-		#header('Location: ../lobby/index.php');
+		header('Location: ../lobby/index.php');
 	}
 	
 	elseif ($orden == "Editar") {
@@ -176,8 +184,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		//buscar entre nombres, apellidos, etc
 		$condiciones = $_POST['Condiciones'];
-
-		#$crud->
 	}
 	
 	elseif ($orden == "Eliminar") {

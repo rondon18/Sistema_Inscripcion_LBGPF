@@ -164,95 +164,8 @@ if (!isset($_SESSION['Paso_1'],$_SESSION['Paso_2'],$_SESSION['Paso_3'])) {
 				</div>
 			</div>
 			<div>
-				<!--Datos del padre o la madre-->
-				<h1>Datos del padre o la madre. <a href="paso-2.php">Editar</a></h1>
-
-				<div>
-					<!--Nombres del familiar-->
-					<div>
-						<span>Nombres:</span><br>
-						<span><?php echo $_SESSION['Primer_Nombre_Familiar'] ?? NULL;?></span>
-						<span><?php echo $_SESSION['Segundo_Nombre_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Apellidos del familiar-->
-					<div>
-						<span>Apellidos:</span><br>
-						<span><?php echo $_SESSION['Primer_Apellido_Familiar'] ?? NULL;?></span>
-						<span><?php echo $_SESSION['Segundo_Apellido_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Genero del representante-->
-					<div>
-							<span>Genero:</span><br>
-
-							<span><?php echo $_SESSION['Genero_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Vinculo con el estudiante del familiar-->
-					<div>
-						<span>Vinculo con el estudiante:</span><br>
-						<span><?php echo $_SESSION['Vinculo_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Cédula del familiar-->
-					<div>
-						<span>Cédula:</span><br>
-						<span><?php echo $_SESSION['Cédula_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Fecha de nacimiento del familiar-->
-					<div>
-						<span>Fecha de nacimiento:</span><br>
-						<span><?php echo $_SESSION['Fecha_Nacimiento_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Lugar de nacimiento del familiar-->
-					<div>
-						<span>Lugar de nacimiento:</span><br>
-						<span><?php echo $_SESSION['Lugar_Nacimiento_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Correo electrónico del familiar-->
-					<div>
-						<span>Correo electrónico:</span><br>
-						<span><?php echo $_SESSION['Correo_electrónico_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Teléfono del familiar-->
-					<div>
-						<span>Teléfono:</span><br>
-						<span>Principal: <?php echo $_SESSION['Teléfono_Principal_Familiar'] ?? NULL;?></span>
-						<span>Auxiliar: <?php echo $_SESSION['Teléfono_Auxiliar_Familiar'] ?? NULL;?></span>
-					</div>
-
-					<!--Estado civil del familiar-->
-					<div>
-						<span>Estado civil:</span><br>
-						<span><?php echo $_SESSION['Estado_Civil_Familiar'] ?? NULL;?></span>
-					</div>
-					
-					<!--Dirección de residencia del Familiar-->
-					<div>
-						<span>Dirección de residencia:</span><br>
-						<span><?php echo $_SESSION['Direccion_Familiar'] ?? NULL;?></span>
-					</div>
-					
-					<!--Se encuentra el familiar en el país-->
-					<div>
-						<span>Se encuentra en el país:</span><br>
-
-						<span><?php echo $_SESSION['Reside_En_El_País'] ?? NULL;?></span><br>
-					</div>
-					<div>
-						<span>¿Donde?</span><br>
-						<span><?php echo $_SESSION['País'] ?? NULL;?></span>
-					</div>
-				</div>
-			</div>
-			<div>
 				<!--Datos Económicos-->
-				<h1>Datos económicos. <a href="paso-3.php">Editar</a></h1>
+				<h1>Datos económicos. <a href="paso-2.php">Editar</a></h1>
 
 				<div>
 					<!--Trabaja el representante-->
@@ -300,7 +213,7 @@ if (!isset($_SESSION['Paso_1'],$_SESSION['Paso_2'],$_SESSION['Paso_3'])) {
 			</div>
 			<div>
 				<!--Datos del usuario-->
-				<h1>Datos de usuario. <a href="paso-4.php">Editar</a></h1>
+				<h1>Datos de usuario. <a href="paso-3.php">Editar</a></h1>
 
 				<div>
 					<!--Trabaja el representante-->
@@ -315,7 +228,6 @@ if (!isset($_SESSION['Paso_1'],$_SESSION['Paso_2'],$_SESSION['Paso_3'])) {
 					<a href="paso-1.php">Volver al paso 1</a>
 					<a href="paso-2.php">Volver al paso 2</a>
 					<a href="paso-3.php">Volver al paso 3</a>
-					<a href="paso-4.php">Volver al paso 4</a>
 				</div>
 
 				<div>

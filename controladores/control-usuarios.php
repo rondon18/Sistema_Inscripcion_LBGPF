@@ -6,13 +6,11 @@ require("conexion.php");
 
 require("../clases/representantes.php");
 require("../clases/contactos-auxiliares.php");
-require("../clases/crud-usuarios.php");
 
 $conexion = conectarBD();
 
 $representante = new Representantes;
 $auxiliar = new ContactoAuxiliar;
-$crud = new CrudUsuarios;
 
 if (isset($_POST['orden']) and $_POST['orden']) {
 	
@@ -60,7 +58,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setEmpleo($_POST['Cargo_Representante']);
 			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
 			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_Representante']);
-			$representante->setRemuneración($_POST['Remuneracion']);
+			$representante->setRemuneración($_POST['Remuneración']);
 			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
 		
