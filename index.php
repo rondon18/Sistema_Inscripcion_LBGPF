@@ -27,6 +27,7 @@
 				</th>
 			</tr>
 		</table>
+		<?php include("ayuda.php"); ?>
 	</form>
 </body>
 </html>

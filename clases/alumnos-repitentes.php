@@ -1,21 +1,21 @@
 <?php  
 
-class MateriasPendientes {
+class AlumnosRepitentes {
 
-	private $idMaterias_Pendientes;
+	private $idAlumno_Repitente;
 	private $Tiene_Mat_Pend;
 	private $Materias_Pendientes;
 	private $idAlumno;
 
 	public function __construct() {}
 
-	public function insertarMateriasPendientes($idAlumno) {
+	public function insertarAlumnosRepitentes($idAlumno) {
 		$conexion = conectarBD();
 		
 		$Tiene_Mat_Pend = $this->getTiene_Mat_Pend();
 		$Materias_Pendientes = $this->getMaterias_Pendientes();
 
-		$sql = "INSERT INTO `materias-pendientes`(`idMaterias-Pendientes`, `Tiene_Mat_Pend`, `Materias_Pendientes`, `idAlumno`) VALUES (
+		$sql = "INSERT INTO `alumnos-repitentes`(`idAlumno-Repitente`, `Tiene_Mat_Pend`, `Materias_Pendientes`, `idAlumno`) VALUES (
 			NULL,
 			'$Tiene_Mat_Pend',
 			'$Materias_Pendientes',
@@ -23,12 +23,12 @@ class MateriasPendientes {
 		)"
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		$this->setidMaterias_Pendientes($conexion->insert_id);
+		$this->setidAlumno_Repitente($conexion->insert_id);
 		desconectarBD($conexion);
 	}
 
-	public function setidMaterias_Pendientes($idMaterias_Pendientes) {
-		$this->idMaterias_Pendientes = $idMaterias_Pendientes;
+	public function setidAlumno_Repitente($idAlumno_Repitente) {
+		$this->idAlumno_Repitente = $idAlumno_Repitente;
 	}
 	public function setTiene_Mat_Pend($Tiene_Mat_Pend) {
 		$this->Tiene_Mat_Pend = $Tiene_Mat_Pend;
@@ -40,8 +40,8 @@ class MateriasPendientes {
 		$this->idAlumno = $idAlumno;
 	}
 
-	public function getidMaterias_Pendientes() {
-		return $this->idMaterias_Pendientes;
+	public function getidAlumno_Repitente() {
+		return $this->idAlumno_Repitente;
 	}
 	public function getTiene_Mat_Pend() {
 		return $this->Tiene_Mat_Pend;

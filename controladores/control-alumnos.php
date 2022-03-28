@@ -85,14 +85,19 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$ficha_medica->setCirc_Braquial($_POST['C_Braquial']);
 		$ficha_medica->setLateralidad($_POST['Lateralidad']);
 		$ficha_medica->setTipo_Sangre($_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus']);
+
 		$ficha_medica->setMedicación($_POST['Medicacion']);
+
 		$ficha_medica->setDieta_Especial($_POST['Dieta_Especial']);
+
+		$impedimentos = "";
 
 		if (isset($_POST['Condiciones_Salud'])) {
 			foreach ($_POST['Condiciones_Salud'] as $impedimento) {
-				echo $impedimento;
+				$impedimentos .= $impedimento.", ";
 			}
-			$ficha_medica->setImpedimento_Físico($_POST['Condiciones_Salud']);
+			#elimina el ", " al final de la cadena de texto
+			$ficha_medica->setImpedimento_Físico(substr($impedimentos,0,-2));
 		}
 		else {
 			$ficha_medica->setImpedimento_Físico(NULL);
@@ -101,9 +106,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		
 		$ficha_medica->setAlergias($_POST['Alergias']);
+
 		$ficha_medica->setCond_Vista($_POST['Condicion_Vista']);
 		$ficha_medica->setCond_Dental($_POST['Condicion_Dentadura']);
+		
 		$ficha_medica->setInstitucion_Medica($_POST['Institucion_Medica']);
+
 		$ficha_medica->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
 
 
@@ -177,17 +185,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$crud->editarAlumno($alumno);
 	}
-	
-	elseif ($orden == "Consultar") {
-		//texto a buscar
-		$criterio = $_POST['Criterio'];
-
-		//buscar entre nombres, apellidos, etc
-		$condiciones = $_POST['Condiciones'];
-	}
-	
+		
 	elseif ($orden == "Eliminar") {
-		echo $orden;
+		
 	}
 	else {
 		echo "La orden: ' ". $orden . " ' no es valida.";

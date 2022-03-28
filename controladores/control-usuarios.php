@@ -133,8 +133,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
 		
-
-		$representante->setClave($_POST['Contraseña']);
+		if ($_POST['Contraseña'] and(!empty($_POST['Contraseña']))) {
+			$representante->setClave($_POST['Contraseña']);
+		}
+		else {
+			$representante->setClave($_SESSION['usuario'][1]);
+		}
+		
 		$representante->setPrivilegios(1);
 		#Esto establese la autoridad 1: usuario, 2: administrador
 
@@ -143,6 +148,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
 		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
 
+		#Permite que un usuario edite su propio perfil o que un administrador edite otro usuario
 		if (isset($_POST['editar-perfil'])) {
 			$representante->editarPersona($_SESSION['persona'][0]);
 			$representante->editarRepresentante($_SESSION['representante'][0]);
@@ -153,6 +159,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->editarRepresentante($representante->getidRepresentantes());
 			$representante->editarUsuario($representante->getId_usuario());
 		}
+
+		#Hace los cambios en la tabla contacto auxiliar
 		$auxiliar->editarContactoAuxiliar($representante->getidRepresentantes());
 
 		if (isset($_POST['editar-perfil'])) {

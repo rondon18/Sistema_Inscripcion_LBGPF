@@ -59,9 +59,9 @@ if (!$_SESSION['login']) {
 						<span>Vinculo con el estudiante:</span>
 						<div>
 							<label>Madre </label>
-							<input type="radio" name="Vinculo_Familiar" value="Madre">
+							<input type="radio" name="Vinculo_Familiar" value="Madre" required>
 							<label>Padre </label>
-							<input type="radio" name="Vinculo_Familiar" value="Padre">
+							<input type="radio" name="Vinculo_Familiar" value="Padre" required>
 						</div>
 					</div>
 				</div>

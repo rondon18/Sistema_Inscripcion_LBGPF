@@ -25,11 +25,7 @@ class Usuarios extends Personas {
 		desconectarBD($conexion);
 	}
 
-	public function editarUsuario($id = NULL) {
-
-		if ($id == NULL) {
-			$id = $this->getId_usuario();
-		}
+	public function editarUsuario($id) {
 
 		$conexion = conectarBD();
 		
@@ -37,7 +33,7 @@ class Usuarios extends Personas {
 
 		$sql = "UPDATE `usuarios` SET 
 			`Clave`='$Clave'
-		WHERE `idUsuarios`='[value-1]'";
+		WHERE `idUsuarios`='$id'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		

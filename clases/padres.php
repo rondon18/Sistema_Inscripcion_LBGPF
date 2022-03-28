@@ -11,46 +11,70 @@ class Padres extends Personas {
 
 		$Parentezco = $this->getParentezco();
 
-		$sql = "INSERT INTO `padres`(`idPadres`, `Parentezco`, `Cedula_Persona`) VALUES (
-			NULL,
-			'$Parentezco',
-			'$Cedula_Persona'
-		)";
+		#verifica si el registro del padre existe para evitar error por entrada duplicada
+		$sql = "SELECT * FROM `padres` WHERE `Cedula_Persona`='$Cedula_Persona'";
 
-		$conexion->query($sql);
-		$this->setidPadres($conexion->insert_id);
+		$registro_existe = $conexion->query($sql);
+		$resultado = $registro_existe->fetch_assoc();
+
+		
+		if ($resultado == NULL) {
+			#Si el registro no existe se crea con esta orden
+			$sql = "INSERT INTO `padres`(`idPadres`, `Parentezco`, `Cedula_Persona`) VALUES (
+				NULL,
+				'$Parentezco',
+				'$Cedula_Persona'
+			)";
+			
+			$conexion->query($sql);
+			$this->setidPadres($conexion->insert_id);
+		}
+		elseif ($resultado != NULL) {
+			$this->setidPadres($resultado['idPadres']);
+		}
 		
 		desconectarBD($conexion);
 	}
 
-	public function editarPadres(){
+	public function editarPadres($id_padres){
 		$conexion = conectarBD();
+
+		$Parentezco = $this->getParentezco();
 		
-		$sql = "";
+		#para los padres solo se puede ajustar el parentezco con el alumno, sea padre o madre
+		$sql = "UPDATE `padres` SET 
+		`Parentezco`='$Parentezco' 
+		WHERE `idPadres`='$id_padres'";
 
 		$conexion->query($sql);
 		desconectarBD($conexion);
 	}
-	public function eliminarPadres(){
+	public function eliminarPadres($id_padres){
+		#Elimina el padre en especifico segun su id.
 		$conexion = conectarBD();
 		
-		$sql = "";
+		$sql = "DELETE FROM `padres` WHERE `idPadres`='$id_padres'";
 
 		$conexion->query($sql);
 		desconectarBD($conexion);
 	}
-	public function consutarPadres(){
+	public function consultarPadres($id_padres){
+		#consulta los datos de personas y de padres donde las cedulas en ambos registros coincidan
 		$conexion = conectarBD();
 		
-		$sql = "";
+		$sql = "SELECT * FROM `personas`,`padres` WHERE `padres`.`idPadres`='$id_padres' AND `personas`.`Cédula` = `padres`.`Cedula_Persona`";
 
-		$conexion->query($sql);
+		$padre = $conexion->query($sql);
+		$resultado = $padre->fetch_assoc();
+
 		desconectarBD($conexion);
+		return $resultado;
 	}
 	public function mostrarPadres(){
+		#Retorna todos los registros de padres
 		$conexion = conectarBD();
 		
-		$sql = "";
+		$sql = "SELECT * FROM `padres` WHERE ";
 
 		$conexion->query($sql);
 		desconectarBD($conexion);

@@ -29,8 +29,23 @@ if (!$_SESSION['login']) {
 			<td><a href="perfil.php">Ver perfil</a></td>
 			<td><a href="registrar-alumno/paso-1.php">Registrar alumno representado</a></td>
 			<td><a href="consultar.php">Consultar mis registros</a></td>
+		</tr>
+		<?php if ($_SESSION['usuario'][2] == "2"): ?>
+		<tr>
+			<th colspan="3">Opciones de administrador</th>
+		</tr>
+		<tr>
+			<td>Gestionar</td>
+			<td>Generar reporte de alumnos</td>
+			<td>Generar reporte general</td>
+		</tr>
+		<tr>
+			<td>Generar respaldo</td>
+			<td>Restarurar base de datos</td>
+			<td>Vaciar registros</td>
 			
 		</tr>
+		<?php endif ?>
 		<tr>
 			<th colspan="3"><a href="logout.php">Cerrar sesión</a></td>
 		</tr>
