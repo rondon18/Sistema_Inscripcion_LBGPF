@@ -9,14 +9,17 @@ if (!$_SESSION['login']) {
 
 require("../clases/alumno.php");
 require("../clases/representantes.php");
+require("../clases/padres.php");
 require("../controladores/conexion.php");
 
 $conexion = conectarBD();
 $alumno = new Alumnos();
 $representante = new Representantes();
+$padres = new Padres();
 
 $listaAlumnos = $alumno->mostrarAlumnos();
 $listaRepresentantes = $representante->mostrarRepresentantes();
+$listaPadres = $padres->mostrarPadres();
 
 desconectarBD($conexion);
 ?>
@@ -72,7 +75,7 @@ desconectarBD($conexion);
 								</form>
 								
 								<?php if ($_SESSION['representante'][0] == $alumno[15]): 
-								#el representante es quien debe realizar esta acción?>
+								#el representante del alumno es quien debe realizar esta acción?>
 								<!--Editar alumno-->
 								<form action="editar-alumno.php" method="POST" style="display: inline-block;">
 									<input type="hidden" name="id_alumno" value="<?php echo $alumno[12] ?>">
@@ -167,6 +170,59 @@ desconectarBD($conexion);
 				</table>	
 			</div>
 		</div>
+				
+		<hr>
+
+		<div class="card">
+		
+			<div class="card-header">
+				Padres registrados
+			</div>
+			<div class="card-body">
+				<table id="padres" class="table table-striped table-bordered" style="max-width: 100%;">
+					<thead>
+						<th>Nombres</th>
+						<th>Apellidos</th>
+						<th>Cédula</th>
+						<th>Fecha de nacimiento</th>
+						<th>Lugar de nacimiento</th>
+						<th>Genero</th>
+						<th>Correo electronico</th>
+						<th>Dirección</th>
+						<th>Teléfono principal</th>
+						<th>Teléfono auxiliar</th>
+						<th>Estado civil</th>	
+						<th>Parentezco con</th>	
+					</thead>
+					<tbody style="min-width: 100%;">
+				<?php foreach ($listaPadres as $padre): ?>	
+						<tr>			
+							<td><?php echo $padre[1]?></td>
+							<td><?php echo $padre[2]?></td>
+							<td><?php echo $padre[3]?></td>
+							<td><?php echo $padre[4]?></td>
+							<td><?php echo $padre[5]?></td>
+							<td><?php echo $padre[6]?></td>
+							<td><?php echo $padre[7]?></td>
+							<td><?php echo $padre[8]?></td>
+							<td><?php echo $padre[9]?></td>
+							<td><?php echo $padre[10]?></td>
+							<td><?php echo $padre[11]?></td>
+							<?php 
+							$hijo = "";
+							foreach ($listaAlumnos as $alumno) {
+								if ($alumno[16] == $padre[12]) {
+									$hijo .= $alumno[1];
+								}
+							} 
+							?>
+							<td><?php echo $hijo.". ".$representante[13]; ?></td>
+						</tr>
+				<?php endforeach ?>
+					</tbody>
+				</table>	
+			</div>
+		</div>
 		<?php endif; ?>
 
 
@@ -223,6 +279,29 @@ $(document).ready( function () {
             sheetName: 'Reporte de representantes',
             className: 'btn btn-success',
             messageTop: 'Reporte de representantes'
+        }
+	  	]
+	  	<?php endif; ?>
+	});
+} );
+
+$(document).ready( function () {
+	$('#padres').DataTable({
+		responsive: true,
+		"language": {
+				"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+		  },
+	  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+		dom: 'Bfrtip',
+		buttons: [
+			{
+            extend: 'excelHtml5',
+            text: 'Generar reporte en Excel',
+            autoFilter: true,
+            filename: 'Reporte de padres',
+            sheetName: 'Reporte de padres',
+            className: 'btn btn-success',
+            messageTop: 'Reporte de padres'
         }
 	  	]
 	  	<?php endif; ?>

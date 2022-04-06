@@ -74,10 +74,20 @@ class Padres extends Personas {
 		#Retorna todos los registros de padres
 		$conexion = conectarBD();
 		
-		$sql = "SELECT * FROM `padres` WHERE ";
+		$sql = "SELECT * FROM `personas`,`padres` WHERE `personas`.`Cédula` = `padres`.`Cedula_Persona`";
 
-		$conexion->query($sql);
+		$consulta_padres = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$padres = $consulta_padres->fetch_all();
+
+		#Hace un arreglo de arreglos para contener los campos de la padres
+		$Lista_Padres = [];
+		foreach ($padres as $padres) {
+			$Lista_Padres[]= $padres;
+		}
+
 		desconectarBD($conexion);
+
+		return $Lista_Padres;
 	}
 
 	public function setidPadres($idPadres) {
