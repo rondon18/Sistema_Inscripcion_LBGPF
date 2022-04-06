@@ -16,15 +16,22 @@ require_once('../clases/grado.php');
 require_once('../clases/año-escolar.php');
 require_once('../clases/padres.php');
 
+require_once('../clases/alumnos-repitentes.php');
+
 require_once('../controladores/conexion.php');
 
 $alumno	= new Alumnos();
+$padre = new Padres();
+
 $ficha_medica	= new FichaMedica();
 $datos_sociales = new DatosSociales();
 $tallas_alumnos = new TallasAlumno();
-$grado = new GradoAcademico();
+
 $año_escolar = new Año_Escolar();
-$padre = new Padres();
+$grado = new GradoAcademico();
+$alumno_repitente = new AlumnosRepitentes();
+
+
 
 if (isset($_POST['orden']) and $_POST['orden']) {
 	
@@ -76,8 +83,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$alumno->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
 		$alumno->setidRepresentante($_SESSION['representante'][0]);
 
-		
-
 		#datos medicos
 		$ficha_medica->setEstatura($_POST['Talla']);
 		$ficha_medica->setPeso($_POST['Peso']);
@@ -102,8 +107,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 			$ficha_medica->setImpedimento_Físico(NULL);
 		}
-		
-
 		
 		$ficha_medica->setAlergias($_POST['Alergias']);
 
@@ -130,7 +133,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		#alumno -> grado -> año-escolar
 		#datos academicos
+		$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
 
+		#ALumno_Repitente
+		if ($_POST['ALumno_Repitente'] == 'Si') {
+			#Si tiene materias pendientes se asigna un valor, de lo contrario pasa como NULL por defecto
+			$alumno_repitente->setMaterias_Pendientes($_POST['Materias_Pendientes']);
+		}
+
+		#Insersiones
 
 		$alumno->insertarPersona();
 		$alumno->insertarAlumno($_SESSION['representante'][0],$padre->getidPadres());
@@ -139,12 +150,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_sociales->insertarDatosSociales($alumno->getidAlumnos());
 		$tallas_alumnos->insertarTallasAlumno($alumno->getidAlumnos());
 
-		#$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
-		#$grado->insertarGrado($alumno->getidAlumnos(),$año_escolar->getAño_Escolar());
-
-		#ALumno_Repitente
-		#Año_Repitente
-		#Tiene_Materias_Pendientes
+		
+		$grado->insertarGrado($alumno->getidAlumnos(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
+		$alumno_repitente->insertarAlumnosRepitentes($alumno->getidAlumnos());
 					
 		header('Location: ../lobby/index.php');
 	}
@@ -187,20 +195,16 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 		
 	elseif ($orden == "Eliminar") {
-		
+		$alumno->eliminarAlumno($_POST['cedula_alumno']);
+		header('Location: ../lobby/consultar.php');
 	}
 	else {
 		echo "La orden: ' ". $orden . " ' no es valida.";
+		header('Location: ../lobby/index.php');
 	}
-
-	
-	//Esto hace lo suyo y manda de regreso a la pagina inicial
-
-	#header('Location: index.php');
-	
 }
 else {
-	#header('Location: index.php');
+	header('Location: index.php');
 }
 
 

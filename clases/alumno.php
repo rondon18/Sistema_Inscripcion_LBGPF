@@ -43,10 +43,10 @@ class Alumnos extends Personas {
 		desconectarBD($conexion);
 	}
 
-	public function eliminarAlumno($id_Alumno) {
+	public function eliminarAlumno($cedula_Alumno) {
 		$conexion = conectarBD();
 		
-		$sql = "DELETE FROM `alumnos` WHERE `idAlumnos` = '$id_Alumno'";
+		$sql = "DELETE FROM `personas` WHERE `Cédula` = '$cedula_Alumno'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);

@@ -4,30 +4,37 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ingresar al sistema</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/colores.css"/>
 </head>
 <body>
-	<form action="controladores/login.php" method="POST">
-		<table border="1" style="max-width:600px; margin:auto; overflow:scroll;">
-			<tr>
-				<th colspan="3">Ingresar:</th>
-			</tr>
-			<tr>
-				<td>Cedula</td>
-				<td><input type="text" name="cedula" required=""></td>
-			</tr>
-			<tr>
-				<td>Clave:</td>
-				<td><input type="password" name="clave" required=""></td>
-			</tr>
-			<tr>
-				<th colspan="3">
-					<input type="submit" name="Ingresar" value="Ingresar">
-					<a href="registrarse/paso-1.php">Registrarse</a>
-				</th>
-			</tr>
-		</table>
-		<?php include("ayuda.php"); ?>
+	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
+		<div class="card text-center m-auto" style="max-width:400px; margin:auto;">
+			<div class="card-header">
+				<img src="https://picsum.photos/24" class="float-start d-inline"><b>Ingresar al sistema</b>
+			</div>
+			<div class="card-body">
+				<p class="card-text">
+					<table class="table table-borderless">
+						<tr>
+							<td class="text-end">Cedula:</td>
+							<td><input class="block" type="text" name="cedula" required></td>
+						</tr>
+						<tr>
+							<td class="text-end">Clave:</td>
+							<td><input class="block" type="password" name="clave" required></td>
+						</tr>
+					</table>
+				</p>
+			</div>
+			<div class="card-footer">
+				<input class="btn btn-primary" type="submit" name="Ingresar" value="Ingresar">
+				<a class="btn btn-primary" href="registrarse/paso-1.php">Registrarse</a>
+			</div>
+		</div>
 	</form>
+	<?php #include("ayuda.php"); ?>
 </body>
 </html>

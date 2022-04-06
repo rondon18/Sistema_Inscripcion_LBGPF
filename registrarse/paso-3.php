@@ -22,43 +22,35 @@ if (isset($_POST['Paso_3'])) {
 <head>
 	<meta charset="utf-8">
 	<title>Registro - Datos del usuario</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
-<style type="text/css">
-	div {
-		padding: .4rem;
-		margin: 16px 2px;
-		border: solid 1px #000000AA;
-	}
-	html{
-		font-family: Calibri;
-	}
-</style>
-
 <body>
-	<form action="paso-3.php" method="POST" style="max-width: 600px; margin:auto;">
-		<div>
-			<div>
-				<!--Datos del usuario-->
+	<form action="paso-3.php" method="POST" style="max-width: 600px; margin: 74px auto;">
+		<div class="card">
+			<!--Datos del usuario-->
+			<div class="card-header">
 				<h1>Datos de usuario.</h1>
-
+			</div>
+			<div class="card-body">
+				<!--Contraseña y validación-->
 				<div>
-					<!--Trabaja el representante-->
-					<div>
-						<span>Contraseña:</span>
-						<?php //Si las claves no coinciden, muestra un recuadro con un mensaje de error 
-						if (isset($check)) { echo '<font color="red">Las contraseñas no coinciden</font>';}?>
-						<div>
-							<input type="password" name="Contraseña" placeholder="Contraseña">
-							<input type="password" name="RepetirContraseña" placeholder="Repertir la contraseña">
-						</div>
-						<small>La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y número</small>
+					<span>Contraseña:</span>
+					<?php //Si las claves no coinciden, muestra un recuadro con un mensaje de error 
+					if (isset($check)) { echo '<font color="red">Las contraseñas no coinciden</font>';}?>
+					<div class="input-group">
+						<input class="form-control" type="password" name="Contraseña" placeholder="Contraseña">
+						<input class="form-control" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña">
 					</div>
+					<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y número</small>
 				</div>
+				
+			</div>
+			<div class="card-footer text-center">
 				<input type="hidden" name="Paso_3" value="Paso_3">
-
-				<a href="../index.php">Volver al inicio</a>
-				<a href="paso-3.php">Volver al paso anterior</a>
-				<input type="submit" value="Guardar y continuar">
+				<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+				<a class="btn btn-primary" href="paso-3.php">Volver al paso anterior</a>
+				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
 		</div>
 	</form>

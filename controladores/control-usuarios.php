@@ -129,11 +129,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setEmpleo($_POST['Cargo_Representante']);
 			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_Representante']);
 			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_Representante']);
-			$representante->setRemuneración($_POST['Remuneracion']);
+			$representante->setRemuneración($_POST['Remuneración']);
 			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
 		
-		if ($_POST['Contraseña'] and(!empty($_POST['Contraseña']))) {
+		if (!empty($_POST['Contraseña']) and $_POST['Contraseña'] == $_POST['RepetirContraseña']) {
 			$representante->setClave($_POST['Contraseña']);
 		}
 		else {

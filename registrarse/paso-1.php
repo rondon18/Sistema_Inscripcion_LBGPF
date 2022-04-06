@@ -36,108 +36,112 @@ if (isset($_POST['Paso_1'])) {
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registro - Datos del representante</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
-<style type="text/css">
-	div {
-		padding: .4rem;
-		margin: 16px 2px;
-		border: solid 1px #000000AA;
-	}
-	html{
-		font-family: Calibri;
-	}
-</style>
-
 <body>
-	<form action="paso-1.php" method="POST" style="max-width: 600px; margin:auto;">
-		<div>
-			<div>
-				<!--Datos del representante-->
+	<form action="paso-1.php" method="POST" style="max-width: 600px; margin: 75px auto;">
+		<div class="card">
+			<!--Datos del representante-->
+			<div class="card-header">
 				<h1>Datos personales.</h1>
-
+			</div>
+			<div class="card-body">
 				<div>
 					
 					<!--Nombres del representante-->
 					<div>
-						<label>Nombres:</label><br>
-					
-						<input type="text" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $_SESSION['Primer_Nombre_Representante'] ?? NULL;?>">
-						<input type="text" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $_SESSION['Segundo_Nombre_Representante'] ?? NULL;?>">
+						<label class="form-label">Nombres:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $_SESSION['Primer_Nombre_Representante'] ?? NULL;?>">
+							<input type="text" class="form-control" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $_SESSION['Segundo_Nombre_Representante'] ?? NULL;?>">
+						</div>
+						
 					</div>
 					
 					<!--Apellidos del representante-->
 					<div>
-						<label>Apellidos:</label><br>
-
-						<input type="text" name="Primer_Apellido_Representante" placeholder="Primer apellido" required value="<?php echo $_SESSION['Primer_Apellido_Representante'] ?? NULL;?>">
-						<input type="text" name="Segundo_Apellido_Representante" placeholder="Segundo apellido" required value="<?php echo $_SESSION['Segundo_Apellido_Representante'] ?? NULL;?>">
+						<label class="form-label">Apellidos:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="Primer_Apellido_Representante" placeholder="Primer apellido" required value="<?php echo $_SESSION['Primer_Apellido_Representante'] ?? NULL;?>">
+							<input type="text" class="form-control" name="Segundo_Apellido_Representante" placeholder="Segundo apellido" required value="<?php echo $_SESSION['Segundo_Apellido_Representante'] ?? NULL;?>">
+						</div>
 					</div>
 
 					<!--Genero del representante-->
 					<div>
-								
-							<p>Genero:</p>
-							
-							<label>F </label>
-							<input type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "F"){ echo "checked";} ?>>
-
-							<label>M </label>
-							<input type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "M"){ echo "checked";} ?>>
-
+						<p>Genero:</p>
+						<div class="form-check">
+							<label class="form-label">F </label>
+							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "F"){ echo "checked";} ?>>
+						</div>
+						
+						<div class="form-check">
+							<label class="form-label">M </label>
+							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "M"){ echo "checked";} ?>>
+						</div>
+						
 					</div>
 					
 					<!--Vinculo del representante con el estudiante-->
 					<div>
-						<label>Vinculo con el estudiante:</label><br>
+						<label class="form-label">Vinculo con el estudiante:</label>
+						
+						<div class="input-group">
+							<select class="form-select" name="Vinculo_Representante" required>
 					
-						<select name="Vinculo_Representante" required>
+								<option value="Madre" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Madre"){ echo "selected";} ?>>Madre</option>
+								<option value="Padre" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Padre"){ echo "selected";} ?>>Padre</option>
+								<option value="Abuelo(a)" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
+								<option value="Otro" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Otro"){ echo "selected";} ?>>Otro</option>
 					
-							<option value="Madre" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Madre"){ echo "selected";} ?>>Madre</option>
-							<option value="Padre" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Padre"){ echo "selected";} ?>>Padre</option>
-							<option value="Abuelo(a)" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
-							<option value="Otro" <?php if(isset($_SESSION['Vinculo_Representante']) and $_SESSION['Vinculo_Representante'] == "Otro"){ echo "selected";} ?>>Otro</option>
-					
-						</select>
-					
-						<input type="text" name="Otro_Vinculo" placeholder="Si es otro, ¿Cual?" value="<?php echo $_SESSION['Otro_Vinculo'] ?? NULL;?>">
+							</select>
+						
+							<input type="text" class="form-control" name="Otro_Vinculo" placeholder="Si es otro, ¿Cual?" value="<?php echo $_SESSION['Otro_Vinculo'] ?? NULL;?>">
+						</div>
+						
 					</div>
 
 					<!--Cédula del representante-->
 					<div>
-						<label>Cédula:</label><br>
-						<input type="text" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['Cédula_Representante'] ?? NULL;?>">
+						<label class="form-label">Cédula:</label>
+						<input type="text" class="form-control" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['Cédula_Representante'] ?? NULL;?>">
 					</div>
 
 					<!--Fecha de nacimiento del representante-->
 					<div>
-						<label>Fecha de nacimiento:</label><br>
-						<input type="date" name="Fecha_Nacimiento_Representante" required value="<?php echo $_SESSION['Fecha_Nacimiento_Representante'] ?? NULL;?>">
+						<label class="form-label">Fecha de nacimiento:</label>
+						<input type="date" class="form-control" name="Fecha_Nacimiento_Representante" required value="<?php echo $_SESSION['Fecha_Nacimiento_Representante'] ?? NULL;?>">
 					</div>
 
 					<!--Lugar de nacimiento del representante-->
 					<div>
-						<label>Lugar de nacimiento:</label><br>
-						<input type="text" name="Lugar_Nacimiento_Representante" required value="<?php echo $_SESSION['Lugar_Nacimiento_Representante'] ?? NULL;?>">
+						<label class="form-label">Lugar de nacimiento:</label>
+						<input type="text" class="form-control" name="Lugar_Nacimiento_Representante" required value="<?php echo $_SESSION['Lugar_Nacimiento_Representante'] ?? NULL;?>">
 					</div>
 
 					<!--Correo electronico del representante-->
 					<div>
-						<label>Correo electrónico:</label><br>
-						<input type="email" name="Correo_electrónico" required value="<?php echo $_SESSION['Correo_electrónico'] ?? NULL;?>">
+						<label class="form-label">Correo electrónico:</label>
+						<input type="email" class="form-control" name="Correo_electrónico" required value="<?php echo $_SESSION['Correo_electrónico'] ?? NULL;?>">
 					</div>
 
 					<!--Telefonos principal y auxiliar del representante-->
 					<div>
-						<label>Teléfonos:</label><br>
-						<input type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['Teléfono_Principal_Representante'] ?? NULL;?>">
-						<input type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['Teléfono_Auxiliar_Representante'] ?? NULL;?>">
+						<label class="form-label">Teléfonos:</label>
+						<div class="input-group">
+							<input type="tel" class="form-control" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['Teléfono_Principal_Representante'] ?? NULL;?>">
+							<input type="tel" class="form-control" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['Teléfono_Auxiliar_Representante'] ?? NULL;?>">
+						</div>
+						
 					</div>
 					
 					<!--Estado civil del representante-->
 					<div>
-						<label>Estado civil:</label><br>
-						<select name="Estado_Civil_Representante">
+						<label class="form-label">Estado civil:</label>
+						<select class="form-select" name="Estado_Civil_Representante">
 							<option value="Soltero(a)" <?php if(isset($_SESSION['Estado_Civil_Representante']) and $_SESSION['Estado_Civil_Representante'] == "Soltero(a)"){ echo "selected";} ?>>Soltero(a)</option>
 							<option value="Casado(a)" <?php if(isset($_SESSION['Estado_Civil_Representante']) and $_SESSION['Estado_Civil_Representante'] == "Casado(a)"){ echo "selected";} ?>>Casado(a)</option>
 							<option value="Divorsiado(a)" <?php if(isset($_SESSION['Estado_Civil_Representante']) and $_SESSION['Estado_Civil_Representante'] == "Divorsiado(a)"){ echo "selected";} ?>>Divorsiado(a)</option>
@@ -147,36 +151,35 @@ if (isset($_POST['Paso_1'])) {
 					
 					<!--Dirección de residencia-->
 					<div>
-						<label>Dirección de residencia:</label><br>
-						<textarea name="Direccion_Representante" required><?php echo $_SESSION['Direccion_Representante'] ?? NULL;?></textarea>
+						<label class="form-label">Dirección de residencia:</label>
+						<textarea class="form-control" name="Direccion_Representante" required><?php echo $_SESSION['Direccion_Representante'] ?? NULL;?></textarea>
 					</div>
 					
 					<!--Persona de contacto en caso de emergencia-->
 					<div>
-						<label>Otro contacto de emergencia:</label><br>
-						<input type="text" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['Nombre_Contacto_Emergencia'] ?? NULL;?>">
-						<div>
-							<!--Relacion de la persona con el representante-->
-							<span>Relación:</span><br>
-							<input type="text" name="Relación_Auxiliar" placeholder="Ingrese texto aquí..." required value="<?php echo $_SESSION['Relación_Auxiliar'] ?? NULL;?>"><br>
-						</div>
-						<div>
+						<label class="form-label">Otro contacto de emergencia:</label>
+						<input type="text" class="form-control" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['Nombre_Contacto_Emergencia'] ?? NULL;?>">
+
+						<!--Relacion de la persona con el representante-->
+						<span class="form-label">Relación:</span>
+						<input type="text" class="form-control" name="Relación_Auxiliar" placeholder="Ingrese texto aquí..." required value="<?php echo $_SESSION['Relación_Auxiliar'] ?? NULL;?>">
+						
+						<span class="form-label">Teléfonos:</span>
+						<div class="input-group">
 							<!--Telefono de la persona auxiliar-->
-							<span>Teléfono principal:</span><br>
-							<input type="tel" name="Tfl_P_Contacto_Aux" placeholder="Telefono" required value="<?php echo $_SESSION['Tfl_P_Contacto_Aux'] ?? NULL;?>">
-						</div>
-						<div>
+							<input type="tel" class="form-control" name="Tfl_P_Contacto_Aux" placeholder="Telefono" placeholder="Principal" required value="<?php echo $_SESSION['Tfl_P_Contacto_Aux'] ?? NULL;?>">
+							
 							<!--Telefono de la persona auxiliar-->
-							<span>Teléfono auxiliar:</span><br>
-							<input type="tel" name="Tfl_S_Contacto_Aux" placeholder="Telefono" required value="<?php echo $_SESSION['Tfl_S_Contacto_Aux'] ?? NULL;?>">
+							<input type="tel" class="form-control" name="Tfl_S_Contacto_Aux" placeholder="Telefono" placeholder="Auxiliar" required value="<?php echo $_SESSION['Tfl_S_Contacto_Aux'] ?? NULL;?>">
 						</div>
+
 					</div>
 					
 					<!--Datos bancarios del representante-->
 					<div>
-						<label>Banco:</label><br>
+						<label class="form-label">Banco:</label>
 
-						<select name="Banco">
+						<select class="form-select" name="Banco">
 							<option value="Banco de Venezuela S.A." <?php if(isset($_SESSION['Banco']) and $_SESSION['Banco'] == "Banco de Venezuela S.A."){ echo "selected";} ?>>Banco de Venezuela S.A.</option>
 							<option value="Venezolano de Crédito S.A." <?php if(isset($_SESSION['Banco']) and $_SESSION['Banco'] == "Venezolano de Crédito S.A."){ echo "selected";} ?>>Venezolano de Crédito S.A.</option>
 							<option value="Banco Mercantil, C.A" <?php if(isset($_SESSION['Banco']) and $_SESSION['Banco'] == "Banco Mercantil, C.A"){ echo "selected";} ?>>Banco Mercantil, C.A</option>
@@ -211,26 +214,29 @@ if (isset($_POST['Paso_1'])) {
 						<div>
 								
 							<p>Tipo de cuenta:</p>
+
+							<div class="form-check">
+								<input type="radio" name="Tipo_Cuenta" value="Ahorro" required <?php if(isset($_SESSION['Tipo_Cuenta']) and $_SESSION['Tipo_Cuenta'] == "Ahorro"){ echo "checked";} ?>>
+								<label class="form-label">Ahorro </label>
+							</div>
 							
-							<label>Ahorro </label>
-							<input type="radio" name="Tipo_Cuenta" value="Ahorro" required <?php if(isset($_SESSION['Tipo_Cuenta']) and $_SESSION['Tipo_Cuenta'] == "Ahorro"){ echo "checked";} ?>>
-
-							<label>Corriente </label>
-							<input type="radio" name="Tipo_Cuenta" value="Corriente" required <?php if(isset($_SESSION['Tipo_Cuenta']) and $_SESSION['Tipo_Cuenta'] == "Corriente"){ echo "checked";} ?>>
-
+							<div class="form-check">
+								<input type="radio" name="Tipo_Cuenta" value="Corriente" required <?php if(isset($_SESSION['Tipo_Cuenta']) and $_SESSION['Tipo_Cuenta'] == "Corriente"){ echo "checked";} ?>>
+								<label class="form-label">Corriente </label>
+							</div>
+							
 						</div>
 					</div>
 					<div>
-						<label>Nro. de cuenta:</label><br>
-						<input type="text" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required value="<?php echo $_SESSION['Nro_Cuenta'] ?? NULL;?>">
+						<label class="form-label">Número de cuenta:</label>
+						<input type="text" class="form-control" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required value="<?php echo $_SESSION['Nro_Cuenta'] ?? NULL;?>">
 					</div>
-
-					<input type="hidden" name="Paso_1" value="Paso_1">
-
-					<a href="../index.php">Volver al inicio</a>
-					<input type="submit" value="Guardar y continuar">
-
 				</div>
+			</div>
+			<div class="card-footer">
+				<input type="hidden" name="Paso_1" value="Paso_1">
+				<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
 		</div>
 	</form>

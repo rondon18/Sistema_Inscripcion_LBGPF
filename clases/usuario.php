@@ -39,8 +39,14 @@ class Usuarios extends Personas {
 		
 		desconectarBD($conexion);
 	}
-	public function eliminarUsuario() {
+	public function eliminarUsuario($id) {
+		$conexion = conectarBD();
 
+		$sql = "DELETE FROM `usuarios` WHERE `idUsuarios`='$id'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		
+		desconectarBD($conexion);
 	}
 	public function consultarUsuario() {
 

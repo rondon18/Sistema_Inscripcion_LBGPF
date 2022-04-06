@@ -25,80 +25,77 @@ else {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>
-		Registrar nuevo alumno
-	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registrar nuevo alumno</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 </head>
-<style type="text/css">
-	div {
-		padding: .4rem;
-		margin: 16px 2px;
-		border: solid 1px #000000AA;
-	}
-	html{
-		font-family: Calibri;
-	}
-	input[type="text"], input[type="number"], input[type="tel"], textarea {
-		display: inline-block;
-		width: auto;
-	}
-</style>
 <body>
 
-		<form action="../../controladores/control-alumnos.php" method="POST" style="max-width: 600px; margin:auto;">
+		<form class="card" action="../../controladores/control-alumnos.php" method="POST" style="max-width: 600px; margin: 74px auto;">
 
-			<div>Formulario de registro de alumnos</div>
+			<div class="card-header">
+				<h4>Formulario de registro de alumnos</h4>
+			</div>
 
-			<div>
+			<div class="card-body">
 
-				<h1>Datos personales.</h1>
+				<h5>Datos personales.</h5>
 
 				<div>
-					
-					<div class="col-span-5 flex">
-						<label class="border rounded-l-2xl p-2 bg-gray-300">Nombres:</label>
-						<input type="text" name="Primer_Nombre_Alumno" placeholder="Primer nombre" class="w-full border p-2" required>
-						<input type="text" name="Segundo_Nombre_Alumno" placeholder="Segundo nombre" class="w-full border rounded-r-2xl p-2" required>
-					</div>
-					<div class="col-span-5 flex">
-						<label class="border rounded-l-2xl p-2 bg-gray-300">Apellidos:</label>
-						<input type="text" name="Primer_Apellido_Alumno" placeholder="Primer apellido" class="w-full border p-2">
-						<input type="text" name="Segundo_Apellido_Alumno" placeholder="Segundo apellido" class="w-full border rounded-r-2xl p-2">
-					</div>
-					
-					<div class="col-span-3 flex">
-						<label class="border rounded-l-2xl p-2 bg-gray-300">Cédula:</label>
-						<input type="text" name="Cedula_Alumno" placeholder="Cédula de identidad" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<label class="form-label">Nombres:</label>
+						<div class="input-group">
+							<input class="form-control mb-2" type="text" name="Primer_Nombre_Alumno" placeholder="Primer nombre"  required>
+							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Alumno" placeholder="Segundo nombre"  required>
+						</div>	
 					</div>
 					<div>
-						<span>Genero:</span><br>
-						
-						<label>F </label>
-						<input type="radio" name="Genero_Alumno" value="F" required>
-
-						<label>M </label>
-						<input type="radio" name="Genero_Alumno" value="M" required>
+						<label class="form-label">Apellidos:</label>
+						<div class="input-group">
+							<input class="form-control mb-2" type="text" name="Primer_Apellido_Alumno" placeholder="Primer apellido">
+							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Alumno" placeholder="Segundo apellido">
+						</div>
+					</div>					
+					<div>
+						<label class="form-label">Cédula:</label>
+						<input class="form-control mb-2" type="text" name="Cedula_Alumno" placeholder="Cédula de identidad">
 					</div>
-					<div class="col-span-5 flex">
-						<label class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Fecha de nacimiento:</label>
-						<input type="date" name="Fecha_Nacimiento_Alumno" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<span class="form-label">Genero:</span>
+						<div class="form-check">
+							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Alumno" value="F" required>
+							<label class="form-label">F</label>
+						</div>
+						<div class="form-check">
+							
+							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Alumno" value="M" required>
+							<label class="form-label">M</label>
+						</div>
 					</div>
-					<div class="col-span-5 flex">
-						<label class="border rounded-l-2xl p-2 bg-gray-300">Lugar de nacimiento:</label>
-						<input type="text" name="Lugar_Nacimiento_Alumno" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<label class="form-label">Fecha de nacimiento:</label>
+						<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Alumno" >
 					</div>
-					<div class="col-span-5 flex">
-						<label class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Correo electrónico:</label>
-						<input type="text" name="Correo_electrónico_Alumno" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<label class="form-label">Lugar de nacimiento:</label>
+						<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Alumno" >
 					</div>
-					<div class="col-span-5 flex">
-						<label class="border rounded-l-2xl p-2 bg-gray-300">Teléfono:</label>
-						<input type="tel" name="Teléfono_Principal_Alumno" placeholder="Movil" class="w-full border p-2">
-						<input type="tel" name="Teléfono_Auxiliar_Alumno" placeholder="Fijo" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<label class="form-label">Correo electrónico:</label>
+						<input class="form-control mb-2" type="text" name="Correo_electrónico_Alumno" >
 					</div>
-					<div class="col-span-5 flex">
-						<label class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Grado a cursar:</label>
-						<select name="Grado_A_Cursar" class="w-full border rounded-r-2xl p-2">
+					<div>
+						<label class="form-label">Teléfono:</label>
+						<div class="input-group">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Alumno" placeholder="Movil">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Alumno" placeholder="Fijo">
+						</div>
+					</div>
+					<div>
+						<label class="form-label">Grado a cursar:</label>
+						<select class="form-select" name="Grado_A_Cursar" >
 							<option value="Primer año">Primer año</option>
 							<option value="Segundo año">Segundo año</option>
 							<option value="Tercer año">Tercer año</option>
@@ -106,67 +103,74 @@ else {
 							<option value="Quinto año">Quinto año</option>
 						</select>
 					</div>
-					<div class="col-span-5 flex">
-						<span class="border rounded-l-2xl p-2 bg-gray-300">¿El estudiante ha repetido algún año?:</span>
+					<div>
+						<span class="form-label">¿El estudiante es repitente?:</span>
 
-						<div class="flex justify-evenly items-center w-full border p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="ALumno_Repitente" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="ALumno_Repitente" value="No" required>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="ALumno_Repitente" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="ALumno_Repitente" value="No" required>
 							</div>
 
-							<span>¿Qué año repite?</span>
-							<input type="text" name="Año_Repitente" class="
-							w-full border rounded-r-2xl p-2">
+							<span class="form-label">¿Qué año repite?</span>
+							<input class="form-control mb-2" type="text" name="Año_Repitente" list="grados">
+							<datalist id="grados">
+							  <option value="Primer año"></option>
+							  <option value="Segundo año"></option>
+							  <option value="Tercer año"></option>
+							  <option value="Cuarto año"></option>
+							  <option value="Quinto año"></option>
+							</datalist>
 						</div>
 					</div>
-					<div class="col-span-5 flex">
-						<span class="border w-1/2 rounded-l-2xl p-2 bg-gray-300">¿Tiene materias pendientes?</span>
+					<div>
+						<span class="form-label">¿Tiene materias pendientes?</span>
 
-						<div class="flex justify-evenly items-center w-1/2 border p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="Tiene_Materias_Pendientes" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="Tiene_Materias_Pendientes" value="No" required>
-							</div>
-							<span>¿Cuales?</span>
-							<input type="text" name="Materias_Pendientes" class="w-full border rounded-r-2xl p-2">
+						<div class="form-check">
+							<label class="form-label">Si </label>
+							<input class="form-check-input" type="radio" name="Tiene_Materias_Pendientes" value="Si" required>
 						</div>
+						<div class="form-check">
+							<label class="form-label">No </label>
+							<input class="form-check-input" type="radio" name="Tiene_Materias_Pendientes" value="No" required>
+						</div>
+						<span class="form-label">¿Cuales?</span>
+						<input class="form-control mb-2" type="text" name="Materias_Pendientes">
 					</div>
-					
-					<div class="col-span-5 flex flex-col">
-						<label class="border w-full rounded-t-2xl p-2 bg-gray-300">Plantel de procedencia:</label><br>
-						<textarea name="Plantel_Procedencia" class="w-full border rounded-b-2xl p-2 resize-none"></textarea>
+					<div>
+						<label class="form-label">Plantel de procedencia:</label>
+						<textarea class="form-control mb-2"name="Plantel_Procedencia"></textarea>
 					</div>
 
 				</div>
+
 				<!--Datos sociales-->
-				<h1 class="text-2xl mb-3">Datos sociales.</h1>
-
-				<div class="grid grid-cols-5 gap-2 text-sm">
+				<h5>Datos sociales.</h5>
+				
+				<div>
 					<!--Dirección de residencia-->
-					<div class="col-span-5 flex flex-col">
-						<label class="border w-full rounded-t-2xl p-2 bg-gray-300">Dirección de residencia:</label><br>
-						<textarea name="Direccion_Alumno" class="w-full border rounded-b-2xl p-2 resize-none"></textarea>
+					<div>
+						<label class="form-label">Dirección de residencia:</label>
+						<textarea class="form-control mb-2"name="Direccion_Alumno"></textarea>
 					</div>
-					<div class="col-span-5 flex">
-						<span class="border rounded-l-2xl p-2 bg-gray-300">¿Tiene canaima?</span>
+					<div>
+						<span class="form-label">¿Tiene canaima?</span>
 
-						<div class="flex justify-evenly items-center w-full border p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="Tiene_Canaima" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="Tiene_Canaima" value="No" required>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Tiene_Canaima" value="Si" required>
 							</div>
-							<label class="w-full border p-2">¿En que condiciones?</label>
-							<select name="Condiciones_Canaima" class="w-full border rounded-r-2xl p-2">
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Tiene_Canaima" value="No" required>
+							</div>
+							<label class="form-label">¿En que condiciones?</label>
+							<select class="form-select" name="Condiciones_Canaima" >
 								<option value="Muy buenas condiciones">Muy buenas condiciones</option>
 								<option value="Buenas condiciones">Buenas condiciones</option>
 								<option value="Malas condiciones">Malas condiciones</option>
@@ -175,361 +179,376 @@ else {
 						</div>
 					</div>
 					<!--Carnet de la patria-->
-					<div class="col-span-5 flex">
-						<span class="border w-full rounded-l-2xl p-2 bg-gray-300">Tiene carnet de la patria:</span>
+					<div>
+						<span class="form-label">Tiene carnet de la patria:</span>
 
-						<div class="flex justify-evenly items-center w-full border p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="Tiene_Carnet_Patria" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="Tiene_Carnet_Patria" value="No" required>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Tiene_Carnet_Patria" value="Si" required>
 							</div>
-							<span>Código:</span>
-							<input type="text" name="Codigo_Carnet_Patria" class="w-full border p-2"><br>
-							<hr>
-							<span>Serial:</span>
-							<input type="text" name="Serial_Carnet_Patria" class="w-full border rounded-r-2xl p-2">
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Tiene_Carnet_Patria" value="No" required>
+							</div>
+							<span class="form-label">Código:</span>
+							<input class="form-control mb-2" type="text" name="Codigo_Carnet_Patria" >
+							
+							<span class="form-label">Serial:</span>
+							<input class="form-control mb-2" type="text" name="Serial_Carnet_Patria" >
 						</div>
 					</div>
 					<!--Conexión a internet-->
-					<div class="col-span-5 flex">
-						<span class="border w-full rounded-l-2xl p-2 bg-gray-300">Cuenta con conexión a internet en su vivienda:</span>
-
-						<div class="flex justify-evenly items-center w-full border rounded-r-2xl p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="Internet_Vivienda" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="Internet_Vivienda" value="No" required>
-							</div>
-						</div>
-						
-				</div>
-			</div>
-		
-			<!--Datos de salud-->
-			<h1 class="text-2xl mb-3">Datos de salud.</h1>
-
-			<div class="grid grid-cols-5 gap-2 text-sm">
-				<div class="col-span-5 flex flex-col">
-					<label class="border w-full rounded-t-2xl p-2 bg-gray-300">Antropométricos:</label>
-					<div class="flex">
-						<span class="border w-full rounded-bl-2xl p-2 bg-gray-300">Índice</span>
-						<input type="text" name="Indice" placeholder="Índice" class="w-full border p-2"><br><hr>
-						
-						<span class="border w-full p-2 bg-gray-300">Talla</span>
-						<input type="text" name="Talla" placeholder="Talla" class="w-full border p-2"><br><hr>
-						<span class="border w-full p-2 bg-gray-300">Peso</span>
-						<input type="text" name="Peso" placeholder="Peso" class="w-full border p-2"><br><hr>
-						
-						<span class="border w-full p-2 bg-gray-300">C.Brazo</span>
-						<input type="text" name="C_Braquial" placeholder="C.brazo" class="w-full border rounded-br-2xl p-2">
-					</div>
-				</div>
-				<div class="col-span-5 flex flex-col">
-					<label class="border w-full rounded-t-2xl p-2 bg-gray-300">Tallas</label>
-					<div class="flex">
-						<span class="border w-full rounded-bl-2xl p-2 bg-gray-300">Pantalón</span>
-						<input type="text" name="Talla_Pantalon" placeholder="Pantalón" class="w-full border p-2"><br><hr>
-					
-						<span class="border w-full p-2 bg-gray-300">Camisa</span>
-						<input type="text" name="Talla_Camisa" placeholder="Camisa" class="w-full border p-2"><br><hr>
-					
-						<span class="border w-full p-2 bg-gray-300">Zapatos</span>
-						<input type="text" name="Talla_Zapatos" placeholder="Zapatos" class="w-full border rounded-br-2xl p-2">
-					</div>
-				</div>
-				<div class="col-span-5 flex">
-						<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Padece alguna enfermedad:</span>
-
-						<div class="flex justify-evenly items-center w-1/2 border p-2">
-							<div>
-								<label>Si </label>
-								<input type="radio" name="Padece_Enfermedad" value="Si" required>
-
-								<label>No </label>
-								<input type="radio" name="Padece_Enfermedad" value="No" required>
-							</div>
-							<span>¿Cual?:</span><br>
-							<input type="text" name="Cual_Enfermedad" class="
-						w-full border rounded-r-2xl p-2">
-						</div>
-				</div>
-				<!--Teléfono del familiar-->
 					<div>
-						<label>Alergias:</label><br>
-						<input type="text" name="Alergias">
-					</div>
-				<div class="col-span-5 flex items-center">
-						<span class="w-full border rounded-l-2xl p-2 bg-gray-300">Tipo de sangre:</span>
-						<select name="Grupo_Sanguineo" class="w-full border p-2">
-							<option value="O">O</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="AB">AB</option>
-						</select>
-						<span class="border p-2 bg-gray-300">Rh</span>
-						<select name="Factor_Rhesus" class="w-full border rounded-r-2xl p-2">
-							<option value="+">+</option>
-							<option value="-">-</option>
-						</select>
-				</div>
-				<div class="col-span-5 flex">
-						<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Lateralidad:</span>
-						<div class="flex justify-evenly items-center w-full border rounded-r-2xl p-2">
-							<div>
-								<label>Ambidextro </label>
-								<input type="radio" name="Lateralidad" value="Ambidextro" required>
-
-								<label>Diestro </label>
-								<input type="radio" name="Lateralidad" value="Diestro" required>
-
-								<label>Zurdo </label>
-								<input type="radio" name="Lateralidad" value="Zurdo" required>
+						<span class="form-label">Cuenta con conexión a internet en su vivienda:</span>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Internet_Vivienda" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Internet_Vivienda" value="No" required>
 							</div>
 						</div>
-				</div>
-				<div class="col-span-5 flex">
-						<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Condición de la dentadura:</span>
-						<div class="flex justify-evenly items-center w-full border rounded-r-2xl p-2">
-							<div>
-								<label>Buena </label>
-								<input type="radio" name="Condicion_Dentadura" value="Buena" required>
-
-								<label>Regular </label>
-								<input type="radio" name="Condicion_Dentadura" value="Regular" required>
-
-								<label>Mala </label>
-								<input type="radio" name="Condicion_Dentadura" value="Mala" required>
-							</div>
-						</div>
-				</div>
-				<div class="col-span-5 flex">
-						<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Condición oftalmológicas:</span>
-						<div class="flex justify-evenly items-center w-full border rounded-r-2xl p-2">
-							<div>
-								<label>Buena </label>
-								<input type="radio" name="Condicion_Vista" value="Buena" required>
-
-								<label>Regular </label>
-								<input type="radio" name="Condicion_Vista" value="Regular" required>
-
-								<label>Mala </label>
-								<input type="radio" name="Condicion_Vista" value="Mala" required>
-							</div>
-						</div>
-				</div>
-				<div class="col-span-5 flex flex-col">
-					<span class="border w-full rounded-t-2xl p-2 bg-gray-300">Presenta alguna de estas condiciones:</span>
-					<div class="flex justify-evenly items-center w-full border rounded-b-2xl p-2">
-						<div>
-							<label>Visual </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Visual">
-
-							<label>Motora </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Motora">
-
-							<label>Auditiva </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Auditiva">
-
-							<label>Escritura </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Escritura">
-
-							<label>Lectura </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Lectura">
-
-							<label>Embarazo </label>
-							<input type="checkbox" name="Condiciones_Salud[]" value="Embarazo">
-						</div>
 					</div>
-				</div>
-				<div class="col-span-5 flex">
-					<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Es atendido por otra institución:</span>
-
-					<div class="flex justify-evenly items-center w-1/2 border p-2">
-						<div>
-							<label>Si </label>
-							<input type="radio" name="Recibe_Atención_Inst" value="Si" required>
-
-							<label>No </label>
-							<input type="radio" name="Recibe_Atención_Inst" value="No" required>
-						</div>
-						<span>¿Cual institución?</span><br>
-						<input type="text" name="Institucion_Medica" class="w-full border rounded-r-2xl p-2">
-					</div>
-				</div>
-				<div class="col-span-5 flex">
-					<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">¿Recibe alguna medicacion especial?:</span>
-
-					<div class="flex justify-evenly items-center w-1/2 border p-2">
-						<div>
-							<label>Si </label>
-							<input type="radio" name="Recibe_Medicacion" value="Si" required>
-
-							<label>No </label>
-							<input type="radio" name="Recibe_Medicacion" value="No" required>
-						</div>
-						<span>¿Cual?</span><br>
-						<input type="text" name="Medicacion" class="w-full border rounded-r-2xl p-2">
-					</div>
-				</div>
-				<div class="col-span-5 flex">
-					<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">¿Tiene alguna dieta especial?:</span>
-
-					<div class="flex justify-evenly items-center w-1/2 border p-2">
-						<div>
-							<label>Si </label>
-							<input type="radio" name="Tiene_Dieta_Especial" value="Si" required>
-
-							<label>No </label>
-							<input type="radio" name="Tiene_Dieta_Especial" value="No" required>
-						</div>
-						<span>¿Cual?</span><br>
-						<input type="text" name="Dieta_Especial" class="w-full border rounded-r-2xl p-2">
-					</div>
-				</div>
-				<div class="col-span-5 flex">
-					<span class="w-1/2 border rounded-l-2xl p-2 bg-gray-300">Posee carnet de discapacidad:</span>
-
-					<div class="flex justify-evenly items-center w-1/2 border p-2">
-						<div>
-							<label>Si </label>
-							<input type="radio" name="Tiene_Carnet_Discapacidad" value="Si" required>
-
-							<label>No </label>
-							<input type="radio" name="Tiene_Carnet_Discapacidad" value="No" required>
-						</div>
-						<span>Número de carnet de discapacidad:</span>
-						<input type="text" name="Nro_Carnet_Discapacidad" class="w-full border rounded-r-2xl p-2">
-					</div>
-
-					
 				</div>
 				
-			</div>
-
-			<?php if (!$Es_el_representante): #Si el representante es el padre no se le pide otra vez el formulario, se asumen todos los campos?>
-			<div>
-				<!--Datos del padre o la madre-->
-				<h1>Datos del padre o la madre.</h1>
+				<!--Datos de salud-->
+				<h5>Datos de salud.</h5>
 
 				<div>
-					<!--Nombres del familiar-->
 					<div>
-						<label>Nombres:</label><br>
-						<input type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
-						<input type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
+						<label class="form-label">Datos antropométricos:</label>
+						<div class="input-group">
+							<input class="form-control mb-2" type="text" name="Indice" placeholder="Índice">
+							<input class="form-control mb-2" type="text" name="Talla" placeholder="Talla">
+							<input class="form-control mb-2" type="text" name="Peso" placeholder="Peso">
+							<input class="form-control mb-2" type="text" name="C_Braquial" placeholder="C.brazo">
+						</div>
 					</div>
-
-					<!--Apellidos del familiar-->
 					<div>
-						<label>Apellidos:</label><br>
-						<input type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido">
-						<input type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
+						<label class="form-label">Tallas</label>
+						<div class="input-group">
+							<input class="form-control mb-2" type="text" name="Talla_Pantalon" placeholder="Pantalón" >
+							<input class="form-control mb-2" type="text" name="Talla_Camisa" placeholder="Camisa" >
+							<input class="form-control mb-2" type="text" name="Talla_Zapatos" placeholder="Zapatos">
+						</div>
 					</div>
-
-					<!--Genero del familiar-->
 					<div>
-								
-							<p>Genero:</p>
+						<span class="form-label">Padece alguna enfermedad:</span>
+
+						<div class="form-check">
+							<label class="form-label">Si </label>
+							<input class="form-check-input" type="radio" name="Padece_Enfermedad" value="Si" required>
+						</div>
+						<div class="form-check">
+							<label class="form-label">No </label>
+							<input class="form-check-input" type="radio" name="Padece_Enfermedad" value="No" required>
+						</div>
+						<span class="form-label">¿Cual?:</span>
+						<input class="form-control mb-2" type="text" name="Cual_Enfermedad">
+					</div>
+					<div>
+						<label class="form-label">Alergias:</label>
+						<input class="form-control mb-2" type="text" name="Alergias">
+					</div>
+					<div>
+						<span class="form-label">Tipo de sangre:</span>
+						<div class="input-group">
 							
-							<label>F </label>
-							<input type="radio" name="Genero_Familiar" value="F">
-
-							<label>M </label>
-							<input type="radio" name="Genero_Familiar" value="M">
-
-					</div>
-
-					<!--Vinculo con el estudiante del familiar-->
-					<div>
-						<span>Vinculo con el estudiante:</span>
-						<div>
-							<label>Madre </label>
-							<input type="radio" name="Vinculo_Familiar" value="Madre">
-							<label>Padre </label>
-							<input type="radio" name="Vinculo_Familiar" value="Padre">
+							<select class="form-select" name="Grupo_Sanguineo" >
+								<option value="O">O</option>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="AB">AB</option>
+							</select>
+							<span class="input-group-text">Factor Rhesus:</span>
+							<select class="form-select" name="Factor_Rhesus" >
+								<option value="+">+</option>
+								<option value="-">-</option>
+							</select>
 						</div>
 					</div>
-
-					<!--Cédula del familiar-->
 					<div>
-						<label>Cédula:</label><br>
-						<input type="text" name="Cédula_Familiar" placeholder="Cédula de identidad">
+						<span class="form-label">Lateralidad:</span>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Ambidextro </label>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Ambidextro" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">Diestro </label>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Diestro" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">Zurdo </label>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Zurdo" required>
+							</div>
+						</div>
 					</div>
-
-					<!--Fecha de nacimiento del familiar-->
 					<div>
-						<label>Fecha de nacimiento:</label><br>
-						<input type="date" name="Fecha_Nacimiento_Familiar">
+						<span class="form-label">Condición de la dentadura:</span>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Buena </label>
+								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Buena" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">Regular </label>
+								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Regular" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">Mala </label>
+								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Mala" required>
+							</div>
+						</div>
 					</div>
-
-					<!--Lugar de nacimiento del familiar-->
 					<div>
-						<label>Lugar de nacimiento:</label><br>
-						<input type="text" name="Lugar_Nacimiento_Familiar">
+							<span class="form-label">Condición oftalmológicas:</span>
+							<div>
+								<div class="form-check">
+									<label class="form-label">Buena </label>
+									<input class="form-check-input" type="radio" name="Condicion_Vista" value="Buena" required>
+								</div>
+								<div class="form-check">
+									<label class="form-label">Regular </label>
+									<input class="form-check-input" type="radio" name="Condicion_Vista" value="Regular" required>
+								</div>
+								<div class="form-check">
+									<label class="form-label">Mala </label>
+									<input class="form-check-input" type="radio" name="Condicion_Vista" value="Mala" required>
+								</div>
+							</div>
 					</div>
-
-					<!--Correo electrónico del familiar-->
 					<div>
-						<label>Correo electrónico:</label><br>
-						<input type="email" name="Correo_electrónico_Familiar">
+						<span class="form-label">Presenta alguna de estas condiciones:</span>
+						<div>
+							<div class="form-check">
+								<label class="form-label">Visual </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Motora </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Auditiva </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Escritura </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Lectura </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Embarazo </label>
+								<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo">
+							</div>
+						</div>
 					</div>
-
-					<!--Teléfono del familiar-->
 					<div>
-						<label>Teléfono:</label><br>
-						<input type="tel" name="Teléfono_Principal_Familiar" placeholder="Movil">
-						<input type="tel" name="Teléfono_Auxiliar_Familiar" placeholder="Fijo">
-					</div>
-
-					<!--Estado civil del familiar-->
-					<div>
-						<label>Estado civil:</label><br>
-						<select name="Estado_Civil_Familiar">
-							<option value="Soltero(a)">Soltero(a)</option>
-							<option value="Casado(a)">Casado(a)</option>
-							<option value="Divorsiado(a)">Divorsiado(a)</option>
-							<option value="Viudo(a)">Viudo(a)</option>
-						</select>
-					</div>
-					
-					<!--Dirección de residencia del Familiar-->
-					<div>
-						<label>Dirección de residencia:</label><br>
-						<textarea name="Direccion_Familiar"></textarea>
-					</div>
-					
-					<!--Se encuentra el familiar en el país-->
-					<div>
-						<span>Se encuentra en el país:</span>
+						<span class="form-label">Es atendido por otra institución:</span>
 
 						<div>
-							<label>Si </label>
-							<input type="radio" name="Reside_En_El_País" value="Si">
-							<label>No </label>
-							<input type="radio" name="Reside_En_El_País" value="No">
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required>
+							</div>
+							<span class="form-label">¿Cual institución?</span>
+							<input class="form-control mb-2" type="text" name="Institucion_Medica" >
 						</div>
+					</div>
+					<div>
+						<span class="form-label">¿Recibe alguna medicacion especial?:</span>
 
-						<input type="text" name="País" placeholder="¿Donde?" value="<?php echo $_SESSION['País'] ?? NULL;?>">
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Recibe_Medicacion" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Recibe_Medicacion" value="No" required>
+							</div>
+							<span class="form-label">¿Cual?</span>
+							<input class="form-control mb-2" type="text" name="Medicacion" >
+						</div>
+					</div>
+					<div>
+						<span class="form-label">¿Tiene alguna dieta especial?:</span>
+
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Tiene_Dieta_Especial" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Tiene_Dieta_Especial" value="No" required>
+							</div>
+							<span class="form-label">¿Cual?</span>
+							<input class="form-control mb-2" type="text" name="Dieta_Especial" >
+						</div>
+					</div>
+					<div>
+						<span class="form-label">Posee carnet de discapacidad:</span>
+
+						<div>
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Tiene_Carnet_Discapacidad" value="Si" required>
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Tiene_Carnet_Discapacidad" value="No" required>
+							</div>
+							<span class="form-label">Número de carnet de discapacidad:</span>
+							<input class="form-control mb-2" type="text" name="Nro_Carnet_Discapacidad" >
+						</div>
 					</div>
 				</div>
+
+
+				<?php if (!$Es_el_representante): #Si el representante es el padre no se le pide otra vez el formulario, se asumen todos los campos?>
+				<div>
+					<!--Datos del padre o la madre-->
+					<h5>Datos del padre o la madre.</h5>
+
+					<div>
+						<!--Nombres del familiar-->
+						<div>
+							<label class="form-label">Nombres:</label>
+							<div class="input-group">
+								<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
+								<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
+							</div>
+							
+						</div>
+
+						<!--Apellidos del familiar-->
+						<div>
+							<label class="form-label">Apellidos:</label>
+							<div class="input-group">
+								<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido">
+								<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
+							</div>
+						</div>
+
+						<!--Genero del familiar-->
+						<div>
+									
+							<p>Genero:</p>
+							<div class="form-check">
+								<label class="form-label">F </label>
+								<input class="form-check-input" type="radio" name="Genero_Familiar" value="F">
+							</div>
+							<div class="form-check">
+								<label class="form-label">M </label>
+								<input class="form-check-input" type="radio" name="Genero_Familiar" value="M">
+							</div>
+
+						</div>
+
+						<!--Vinculo con el estudiante del familiar-->
+						<div>
+							<span class="form-label">Vinculo con el estudiante:</span>
+							<div class="form-check">
+								<label class="form-label">Madre </label>
+								<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre">
+							</div>
+							<div class="form-check">
+								<label class="form-label">Padre </label>
+								<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre">
+							</div>
+						</div>
+
+						<!--Cédula del familiar-->
+						<div>
+							<label class="form-label">Cédula:</label>
+							<input class="form-control mb-2" type="text" name="Cédula_Familiar" placeholder="Cédula de identidad">
+						</div>
+
+						<!--Fecha de nacimiento del familiar-->
+						<div>
+							<label class="form-label">Fecha de nacimiento:</label>
+							<input class="form-control" type="date" name="Fecha_Nacimiento_Familiar">
+						</div>
+
+						<!--Lugar de nacimiento del familiar-->
+						<div>
+							<label class="form-label">Lugar de nacimiento:</label>
+							<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar">
+						</div>
+
+						<!--Correo electrónico del familiar-->
+						<div>
+							<label class="form-label">Correo electrónico:</label>
+							<input class="form-control" type="email" name="Correo_electrónico_Familiar">
+						</div>
+
+						<!--Teléfono del familiar-->
+						<div>
+							<label class="form-label">Teléfono:</label>
+							<div class="input-group">
+								<input class="form-control" type="tel" name="Teléfono_Principal_Familiar" placeholder="Movil">
+								<input class="form-control" type="tel" name="Teléfono_Auxiliar_Familiar" placeholder="Fijo">
+							</div>
+							
+						</div>
+
+						<!--Estado civil del familiar-->
+						<div>
+							<label class="form-label">Estado civil:</label>
+							<select class="form-select" name="Estado_Civil_Familiar">
+								<option value="Soltero(a)">Soltero(a)</option>
+								<option value="Casado(a)">Casado(a)</option>
+								<option value="Divorsiado(a)">Divorsiado(a)</option>
+								<option value="Viudo(a)">Viudo(a)</option>
+							</select>
+						</div>
+						
+						<!--Dirección de residencia del Familiar-->
+						<div>
+							<label class="form-label">Dirección de residencia:</label>
+							<textarea class="form-control mb-2"name="Direccion_Familiar"></textarea>
+						</div>
+						
+						<!--Se encuentra el familiar en el país-->
+						<div>
+							<span class="form-label">Se encuentra en el país:</span>
+
+							<div class="form-check">
+								<label class="form-label">Si </label>
+								<input class="form-check-input" type="radio" name="Reside_En_El_País" value="Si">
+							</div>
+							<div class="form-check">
+								<label class="form-label">No </label>
+								<input class="form-check-input" type="radio" name="Reside_En_El_País" value="No">
+							</div>
+							<label class="form-label">¿Donde?:</label>
+							<input class="form-control mb-2" type="text" name="País" value="<?php echo $_SESSION['País'] ?? NULL;?>">
+						</div>
+					</div>
+				</div>
+				<?php else: ?>
+				
+				<input type="hidden" name="Es_el_representante" value="Es_el_representante">
+				<input type="hidden" name="Vinculo_Familiar" value="<?php echo $_POST['Vinculo_Familiar'] ;?>">
+				<?php endif ?>
 			</div>
-			<?php else: ?>
-			
-			<input type="hidden" name="Es_el_representante" value="Es_el_representante">
-			<input type="hidden" name="Vinculo_Familiar" value="<?php echo $_POST['Vinculo_Familiar'] ;?>">
-			<?php endif ?>
-		
 			<!--Botón para guardar-->
-			<div class="border-t p-6 text-white">
+			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">
-				<button type="submit">Registrar alumno</button>
+				<button class="btn btn-primary" type="submit">Registrar alumno</button>
 			</div>
-		
 		</form>
 
 </body>

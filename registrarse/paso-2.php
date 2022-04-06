@@ -30,91 +30,92 @@ if (isset($_POST['Paso_2'])) {
 <head>
 	<meta charset="utf-8">
 	<title>Registro - Datos economicos</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
-<style type="text/css">
-	div {
-		padding: .4rem;
-		margin: 16px 2px;
-		border: solid 1px #000000AA;
-	}
-	html{
-		font-family: Calibri;
-	}
-</style>
-
 <body>
-	<form action="paso-2.php" method="POST" style="max-width: 600px; margin:auto;">
-		<div>
-			<div>
-				<!--Datos Económicos-->
+	<form action="paso-2.php" method="POST" style="max-width: 600px; margin: 74px auto;">
+		<div class="card">
+			<!--Datos Económicos-->
+			<div class="card-header">
 				<h1>Datos económicos.</h1>
-
+			</div>
+			<div class="card-body">
 				<div>
 					<!--Grado de instruccion del representante-->
 					<div>
-						<span>Grado de instrucción:</span>
-						<div>
+						<p class="form-label">Grado de instrucción:</p>
+						<div class="form-check">
 							<label>Primaria </label>
-							<input type="radio" name="Grado_Instrucción" value="Primaria" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Primaria"){ echo "checked";}?>>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Primaria"){ echo "checked";}?>>
+						</div>
+						<div class="form-check">
 							<label>Bachillerato </label>
-							<input type="radio" name="Grado_Instrucción" value="Bachillerato" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Bachillerato"){ echo "checked";}?>>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Bachillerato"){ echo "checked";}?>>
+						</div>
+						<div class="form-check">
 							<label>Universitario </label>
-							<input type="radio" name="Grado_Instrucción" value="Universitario" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Universitario"){ echo "checked";}?>>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required <?php if(isset($_SESSION['Grado_Instrucción']) and $_SESSION['Grado_Instrucción'] == "Universitario"){ echo "checked";}?>>
 						</div>
 					</div>
 					
 					<!--Trabaja el representante-->
 					<div>
-						<span>Trabaja:</span>
-						<div>
+						<p class="form-label">Trabaja:</p>
+						<div class="form-check">
 							<label>Si </label>
-							<input type="radio" name="Representante_Trabaja" value="Si" required <?php if(isset($_SESSION['Representante_Trabaja']) and $_SESSION['Representante_Trabaja'] == "Si"){ echo "checked";}?>>
-							<label>No </label>
-							<input type="radio" name="Representante_Trabaja" value="No" required <?php if(isset($_SESSION['Representante_Trabaja']) and $_SESSION['Representante_Trabaja'] == "No"){ echo "checked";}?>>
+							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="Si" required <?php if(isset($_SESSION['Representante_Trabaja']) and $_SESSION['Representante_Trabaja'] == "Si"){ echo "checked";}?>>
 						</div>
-					</div>
-
-					<!--Telefono del trabajo de representante-->
-					<div>
-						<label>Teléfono del trabajo:</label><br>
-						<input type="tel" name="Telefono_Trabajo_Representante" placeholder="Movil" value="<?php echo $_SESSION['Telefono_Trabajo_Representante'] ?? NULL;?>">
+						<div class="form-check">
+							<label>No </label>
+							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="No" required <?php if(isset($_SESSION['Representante_Trabaja']) and $_SESSION['Representante_Trabaja'] == "No"){ echo "checked";}?>>
+						</div>
 					</div>
 
 					<!--Cargo que ocupa el representante-->
 					<div>
-						<label>Cargo que ocupa:</label><br>
-						<input type="text" name="Cargo_Representante" value="<?php echo $_SESSION['Cargo_Representante'] ?? NULL;?>">
+						<label class="form-label">Cargo que ocupa:</label>
+						<input class="form-control" type="text" name="Cargo_Representante" value="<?php echo $_SESSION['Cargo_Representante'] ?? NULL;?>">
+					</div>
+
+					<!--Telefono del trabajo de representante-->
+					<div>
+						<label class="form-label">Teléfono del trabajo:</label>
+						<input class="form-control" type="tel" name="Telefono_Trabajo_Representante" value="<?php echo $_SESSION['Telefono_Trabajo_Representante'] ?? NULL;?>">
 					</div>
 
 					<!--Lugar en el que trabaja el representante-->
 					<div>
-						<label>Lugar del trabajo:</label><br>
-						<textarea name="Lugar_Trabajo_Representante"><?php echo $_SESSION['Lugar_Trabajo_Representante'] ?? NULL;?></textarea>
+						<label class="form-label">Lugar del trabajo:</label>
+						<textarea class="form-control" name="Lugar_Trabajo_Representante"><?php echo $_SESSION['Lugar_Trabajo_Representante'] ?? NULL;?></textarea>
 					</div>
 
 					<!--Remuneración del representante-->
 					<div>
-						<label>Remuneración:</label><br>
-						<small>Monto aproximado</small><br>
-						<input type="number" name="Remuneración" placeholder="Ingrese un numero" min="0" value="<?php echo $_SESSION['Remuneración'] ?? NULL;?>"><span> BsD</span>
-					</div>
+						<label class="form-label">Remuneración:</label>
+						<div class="input-group">
+							<input class="form-control text-end" type="number" name="Remuneración" placeholder="Ingrese un numero..." min="0" value="<?php echo $_SESSION['Remuneración'] ?? NULL;?>">
+							
+							<span class="input-group-text">BsD.</span>
 
-					<!--Tipo de remuneracion del representante-->
-					<div>
-						<span>Tipo de remuneración:</span>
-						<select name="Tipo_Remuneracion">
-							<option value="Diaria" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Diaria"){ echo "selected";} ?>>Diaria</option>
-							<option value="Semanal" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Semanal"){ echo "selected";} ?>>Semanal</option>
-							<option value="Quincenal" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Quincenal"){ echo "selected";} ?>>Quincenal</option>
-							<option value="Mensual" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Mensual"){ echo "selected";} ?>>Mensual</option>
-						</select>
+							<!--Tipo de remuneracion del representante-->
+							<select class="form-select" name="Tipo_Remuneracion">
+								<option value="Diaria" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Diaria"){ echo "selected";} ?>>Remuneración diaria</option>
+								<option value="Semanal" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Semanal"){ echo "selected";} ?>>Remuneración semanal</option>
+								<option value="Quincenal" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Quincenal"){ echo "selected";} ?>>Remuneración quincenal</option>
+								<option value="Mensual" <?php if(isset($_SESSION['Tipo_Remuneracion']) and $_SESSION['Tipo_Remuneracion'] == "Mensual"){ echo "selected";} ?>>Remuneración mensual</option>
+							</select>
+						</div>
+						<small class="form-text">Monto aproximado</small>
 					</div>
-					<input type="hidden" name="Paso_2" value="Paso_2">
-
-					<a href="../index.php">Volver al inicio</a>
-					<a href="paso-2.php">Volver al paso anterior</a>
-					<input type="submit" value="Guardar y continuar">
 				</div>
+			</div>
+			<div class="card-footer text-center">
+				<input type="hidden" name="Paso_2" value="Paso_2">
+
+				<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+				<a class="btn btn-primary" href="paso-2.php">Volver al paso anterior</a>
+				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
 		</div>
 	</form>

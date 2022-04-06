@@ -31,7 +31,7 @@ class Representantes extends Usuarios {
 		$Empleo = $this->getEmpleo();
 		$Lugar_Trabajo = $this->getLugar_Trabajo();
 		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
-		$Remuneración = $this->getRemuneración();
+		$Remuneración = (int)$this->getRemuneración();
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$Cedula = $this->getCedula();
 
@@ -56,9 +56,6 @@ class Representantes extends Usuarios {
 		desconectarBD($conexion);
 	}
 	public function editarRepresentante($id) {
-
-
-
 		$conexion = conectarBD();
 
 		$Vinculo = $this->getVinculo();
@@ -69,7 +66,7 @@ class Representantes extends Usuarios {
 		$Empleo = $this->getEmpleo();
 		$Lugar_Trabajo = $this->getLugar_Trabajo();
 		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
-		$Remuneración = $this->getRemuneración();
+		$Remuneración = (int)$this->getRemuneración();
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$Cedula = $this->getCedula();
 		
@@ -86,7 +83,6 @@ class Representantes extends Usuarios {
 					`Remuneracion`='$Remuneración',
 					`Tipo_Remuneración`='$Tipo_Remuneración'
 				WHERE `idRepresentantes`='$id'";
-
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
@@ -116,7 +112,7 @@ class Representantes extends Usuarios {
 		#Muestra todas las representantes en la tabla
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `representantes`";
+		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
 		$representantes = $consulta_representantes->fetch_all();

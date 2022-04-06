@@ -13,73 +13,73 @@ if (!$_SESSION['login']) {
 <head>
 	<meta charset="utf-8">
 	<title>Perfil del usuario</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
-	<table border="1" cellpadding="12" style="max-width:600px; margin:auto; overflow:scroll;">
-		<tr>
-			<th colspan="3">Perfil de usuario</th>
-		</tr>
-		<tr>
-			<td>Nombres:</td>
-			<td colspan="2"><?php echo  $_SESSION['persona'][1]?></td>
-		</tr>
-		<tr>
-			<td>Apellidos:</td>
-			<td colspan="2"><?php echo  $_SESSION['persona'][2]?></td>
-		</tr>
-		<tr>
-			<td>Cedula de identidad:</td>
-			<td colspan="2"><?php echo "CI:".$_SESSION['persona'][3]?></td>
-		</tr>
-		<tr>
-			<td>Fecha de nacimiento:</td>
-			<td colspan="2"><?php echo $_SESSION['persona'][4]?></td>
-		</tr>
-		<tr>
-			<td>Lugar de nacimiento:</td>
-			<td colspan="2"><?php echo $_SESSION['persona'][5]?></td>
-		</tr>
-		<tr>
-			<td>Genero:</td>
-			<td colspan="2"><?php echo $_SESSION['persona'][6]?></td>
-		</tr>
-		<tr>
-			<td>Correo electronico:</td>
-			<td colspan="2"><?php echo $_SESSION['persona'][7]?></td>
-		</tr>
-		<tr>
-			<td>Dirección de residencia:</td>
-			<td colspan="2"><?php echo $_SESSION['persona'][8]?></td>
-		</tr>
-		<tr>
-			<td>Telefonos:</td>
-			<td> <?php echo "Principal: ".$_SESSION['persona'][9];?></td>
-			<td> <?php echo "Auxiliar: ".$_SESSION['persona'][10] ?></td>
-		</tr>
-		<tr>
-			<td>Privilegios:</td>
-			<td colspan="2"> <?php
-			if ($_SESSION['usuario'][2] == "2") {
-				echo "Administrador";
-			}
-			elseif($_SESSION['usuario'][2] == "1") {
-				echo "Representante";
-			}
-			else {
-				echo "error";
-			}
-			;?></td>
-		</tr>
-		<tr>
-			<td><a href="index.php">Volver</a></td>
-			<td><a href="editar-perfil.php">Editar perfil</a></td>
-			<td>
-				<form action="../controladores/control-usuarios.php" method="POST">
-					<input type="submit" name="DarseDeBaja" value="Darse de baja">
-					<input type="hidden" name="orden" value="Eliminar">
-				</form>
-			</td>
-		</tr>
-	</table>
+	<div class="card" style="max-width: 600px; margin: 74px auto;">
+		<div class="card-header">
+			<h4>Perfil de usuario</h4>
+		</div>
+		<div class="card-body">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<b>Nombres:</b>
+					<span><?php echo  $_SESSION['persona'][1]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Apellidos:</b>
+					<span><?php echo  $_SESSION['persona'][2]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Cedula de identidad:</b>
+					<span><?php echo $_SESSION['persona'][3]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Fecha de nacimiento:</b>
+					<span><?php echo $_SESSION['persona'][4]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Lugar de nacimiento:</b>
+					<span><?php echo $_SESSION['persona'][5]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Genero:</b>
+					<span><?php echo $_SESSION['persona'][6]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Correo electronico:</b>
+					<span><?php echo $_SESSION['persona'][7]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Dirección de residencia:</b>
+					<span><?php echo $_SESSION['persona'][8]?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Telefonos principal:</b>
+					<span><?php echo $_SESSION['persona'][9];?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Telefono auxiliar:</b>
+					<span><?php echo $_SESSION['persona'][10] ?></span>
+				</li>
+				<li class="list-group-item">
+					<b>Privilegios:</b>
+					<span><?php if ($_SESSION['usuario'][2] == "2") {echo "Administrador";}elseif ($_SESSION['usuario'][2] == "1") {echo "Representante";}else {echo "error";};?></span>
+				</li>
+			</ul>
+		</div>
+		<div class="card-footer">
+			<a class="btn btn-primary" href="index.php">Volver</a>
+			<a class="btn btn-primary" href="editar-perfil.php">Editar perfil</a>
+			<?php if ($_SESSION['usuario'][2] == "1"): ?>
+			<form class="d-inline" action="../controladores/control-usuarios.php" method="POST">
+				<input class="btn btn-primary" type="submit" name="DarseDeBaja" value="Darse de baja">
+				<input type="hidden" name="orden" value="Eliminar">
+			</form>
+			<?php endif;?>
+		</div>
+	</div>
 </body>
 </html>
