@@ -25,7 +25,7 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 <body>
 	<form class="card" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 74px auto;">
 		<div class="card-header">
-			<h4>Editar perfil</h4>
+			<h4>Editar perfi</h4>
 		</div>
 		<div class="card-body">
 			<div>
@@ -42,8 +42,6 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 							<input class="form-control mb-2" type="text" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $nombres[0];?>">
 							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $nombres[1];?>">
 						</div>
-
-						
 					</div>
 					
 					<!--Apellidos del representante-->

@@ -4,12 +4,12 @@ class GradoAcademico {
 	
 	private $idGrado;
 	private $Grado_A_Cursar;
-	private $idAlumnos;
+	private $idEstudiantes;
 	private $idAño_Escolar;
 
 	public function __construct(){}
 
-	public function insertarGrado($idAlumno,$año_Inicio,$año_Fin) {
+	public function insertarGrado($idEstudiante,$año_Inicio,$año_Fin) {
 		$conexion = conectarBD();
 		
 		$Grado_A_Cursar = $this->getGrado_A_Cursar();
@@ -21,10 +21,10 @@ class GradoAcademico {
 		$idAño_Escolar = $resultado = $busqueda->fetch_assoc()['idAño-Escolar'];
 
 		if ($idAño_Escolar != NULL) {
-			$sql = "INSERT INTO `grado`(`idGrado`, `Grado_A_Cursar`, `idAlumnos`, `idAño-Escolar`) VALUES (
+			$sql = "INSERT INTO `grado`(`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escolar`) VALUES (
 				NULL,
 				'$Grado_A_Cursar',
-				'$idAlumno',
+				'$idEstudiante',
 				'$idAño_Escolar'
 			)";
 			
@@ -38,23 +38,23 @@ class GradoAcademico {
 		desconectarBD($conexion);
 	}
 
-	public function editarGrado($id_Alumno) {
+	public function editarGrado($id_Estudiante) {
 		$conexion = conectarBD();
 
 		$Grado_A_Cursar = $this->getGrado_A_Cursar();
 
 		$sql = "UPDATE `grado` SET 
 					`Grado_A_Cursar`='$Grado_A_Cursar',
-				WHERE `idAlumnos`='$id_Alumno'";
+				WHERE `idEstudiantes`='$id_Estudiante'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
 
-	public function consultarGrado($id_Alumno) {
+	public function consultarGrado($id_Estudiante) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `grado` WHERE `idAlumnos` = '$id_Alumno'";
+		$sql = "SELECT * FROM `grado` WHERE `idEstudiantes` = '$id_Estudiante'";
 		  
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$grado = $resultado = $busqueda->fetch_assoc();
@@ -70,8 +70,8 @@ class GradoAcademico {
 	public function setGrado_A_Cursar($Grado_A_Cursar) {
 		$this->Grado_A_Cursar = $Grado_A_Cursar;
 	}
-	public function setidAlumnos($idAlumnos) {
-		$this->idAlumnos = $idAlumnos;
+	public function setidEstudiantes($idEstudiantes) {
+		$this->idEstudiantes = $idEstudiantes;
 	}
 	public function setidAño_Escolar($idAño_Escolar) {
 		$this->idAño_Escolar = $idAño_Escolar;
@@ -83,8 +83,8 @@ class GradoAcademico {
 	public function getGrado_A_Cursar() {
 		return $this->Grado_A_Cursar;
 	}
-	public function getidAlumnos() {
-		return $this->idAlumnos;
+	public function getidEstudiantes() {
+		return $this->idEstudiantes;
 	}
 	public function getidAño_Escolar() {
 		return $this->idAño_Escolar;

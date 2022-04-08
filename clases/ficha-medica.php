@@ -17,11 +17,11 @@
 		private $Cond_Dental;
 		private $Institucion_Medica;
 		private $Carnet_Discapacidad;
-		private $idAlumnos;
+		private $idEstudiantes;
 
 		public function __construct(){}
 
-		public function insertarFicha_Medica($id_Alumno) {
+		public function insertarFicha_Medica($id_Estudiante) {
 			$conexion = conectarBD();
 
 			$Estatura = $this->getEstatura();
@@ -39,7 +39,7 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-medicos`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idAlumnos`) VALUES (
+			$sql = "INSERT INTO `datos-medicos`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
 					NULL,
 					'$Estatura',
 					'$Peso',
@@ -55,7 +55,7 @@
 					'$Cond_Dental',
 					'$Institucion_Medica',
 					'$Carnet_Discapacidad',
-					'$id_Alumno'
+					'$id_Estudiante'
 				)";
 
 			echo $sql;
@@ -66,7 +66,7 @@
 			desconectarBD($conexion);
 		}
 
-		public function editarFicha_Medica($id_Alumno) {
+		public function editarFicha_Medica($id_Estudiante) {
 			$conexion = conectarBD();
 
 			$Estatura = $this->getEstatura();
@@ -99,17 +99,17 @@
 			`Cond_Dental`='$Cond_Dental',
 			`Institucion_Medica`='$Institucion_Medica',
 			`Carnet_Discapacidad`='$Carnet_Discapacidad'
-			 WHERE `idAlumnos`='$id_Alumno'";
+			 WHERE `idEstudiantes`='$id_Estudiante'";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
 			desconectarBD($conexion);
 		}
 
-		public function consultarFicha_Medica($id_Alumno) {
+		public function consultarFicha_Medica($id_Estudiante) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `datos-medicos` WHERE `idAlumnos` = '$id_Alumno'";
+			$sql = "SELECT * FROM `datos-medicos` WHERE `idEstudiantes` = '$id_Estudiante'";
 
 			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);			
 			$datos_medicos = $consulta_sociales->fetch_assoc();
@@ -164,8 +164,8 @@
 		public function setCarnet_Discapacidad($Carnet_Discapacidad) {
 			$this->Carnet_Discapacidad = $Carnet_Discapacidad;
 		}
-		public function setidAlumnos($idAlumnos) {
-			$this->idAlumnos = $idAlumnos;
+		public function setidEstudiantes($idEstudiantes) {
+			$this->idEstudiantes = $idEstudiantes;
 		}
 
 		public function getidDatos_Medicos() {
@@ -213,8 +213,8 @@
 		public function getCarnet_Discapacidad() {
 			return $this->Carnet_Discapacidad;
 		}
-		public function getidAlumnos() {
-			return $this->idAlumnos;
+		public function getidEstudiantes() {
+			return $this->idEstudiantes;
 		}
 	}
 ?>

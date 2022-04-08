@@ -216,6 +216,7 @@ if (isset($_POST['Paso_1'])) {
 							<p>Tipo de cuenta:</p>
 
 							<div class="form-check">
+								
 								<input type="radio" name="Tipo_Cuenta" value="Ahorro" required <?php if(isset($_SESSION['Tipo_Cuenta']) and $_SESSION['Tipo_Cuenta'] == "Ahorro"){ echo "checked";} ?>>
 								<label class="form-label">Ahorro </label>
 							</div>

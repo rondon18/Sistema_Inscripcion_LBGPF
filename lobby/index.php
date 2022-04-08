@@ -33,11 +33,9 @@ if (!$_SESSION['login']) {
 				<li class="list-group-item">
 					<p>¿Qué desea hacer?</p>
 					<a class="btn btn-sm dark-primary-color text-white" href="perfil.php">Ver perfil</a>
+					<a class="btn btn-sm dark-primary-color text-white" href="registrar-estudiante/paso-1.php">Registrar estudiante</a>
 					<?php if ($_SESSION['usuario'][2] == "1"): ?>
-					<a class="btn btn-sm dark-primary-color text-white" href="registrar-alumno/paso-1.php">Registrar alumno</a>
-					<?php endif; ?>
-					<?php if ($_SESSION['usuario'][2] == "1"): ?>
-					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Consultar alumnos</a>
+					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Consultar estudiantes</a>
 					<?php elseif ($_SESSION['usuario'][2] == "2"): ?>
 					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Gestionar registros</a>
 					<?php endif;?>

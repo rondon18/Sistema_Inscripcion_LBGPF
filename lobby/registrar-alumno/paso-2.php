@@ -26,17 +26,17 @@ else {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Registrar nuevo alumno</title>
+	<title>Registrar nuevo estudiante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 </head>
 <body>
 
-		<form class="card" action="../../controladores/control-alumnos.php" method="POST" style="max-width: 600px; margin: 74px auto;">
+		<form class="card" action="../../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 74px auto;">
 
 			<div class="card-header">
-				<h4>Formulario de registro de alumnos</h4>
+				<h4>Formulario de registro de estudiantes</h4>
 			</div>
 
 			<div class="card-body">
@@ -47,50 +47,50 @@ else {
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group">
-							<input class="form-control mb-2" type="text" name="Primer_Nombre_Alumno" placeholder="Primer nombre"  required>
-							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Alumno" placeholder="Segundo nombre"  required>
+							<input class="form-control mb-2" type="text" name="Primer_Nombre_Estudiante" placeholder="Primer nombre"  required>
+							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Estudiante" placeholder="Segundo nombre"  required>
 						</div>	
 					</div>
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group">
-							<input class="form-control mb-2" type="text" name="Primer_Apellido_Alumno" placeholder="Primer apellido">
-							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Alumno" placeholder="Segundo apellido">
+							<input class="form-control mb-2" type="text" name="Primer_Apellido_Estudiante" placeholder="Primer apellido">
+							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Estudiante" placeholder="Segundo apellido">
 						</div>
 					</div>					
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input class="form-control mb-2" type="text" name="Cedula_Alumno" placeholder="Cédula de identidad">
+						<input class="form-control mb-2" type="text" name="Cedula_Estudiante" placeholder="Cédula de identidad">
 					</div>
 					<div>
 						<span class="form-label">Genero:</span>
 						<div class="form-check">
-							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Alumno" value="F" required>
+							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Estudiante" value="F" required>
 							<label class="form-label">F</label>
 						</div>
 						<div class="form-check">
 							
-							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Alumno" value="M" required>
+							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Estudiante" value="M" required>
 							<label class="form-label">M</label>
 						</div>
 					</div>
 					<div>
 						<label class="form-label">Fecha de nacimiento:</label>
-						<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Alumno" >
+						<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Estudiante" >
 					</div>
 					<div>
 						<label class="form-label">Lugar de nacimiento:</label>
-						<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Alumno" >
+						<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Estudiante" >
 					</div>
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input class="form-control mb-2" type="text" name="Correo_electrónico_Alumno" >
+						<input class="form-control mb-2" type="text" name="Correo_electrónico_Estudiante" >
 					</div>
 					<div>
 						<label class="form-label">Teléfono:</label>
 						<div class="input-group">
-							<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Alumno" placeholder="Movil">
-							<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Alumno" placeholder="Fijo">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Estudiante" placeholder="Movil">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Estudiante" placeholder="Fijo">
 						</div>
 					</div>
 					<div>
@@ -109,11 +109,11 @@ else {
 						<div>
 							<div class="form-check">
 								<label class="form-label">Si </label>
-								<input class="form-check-input" type="radio" name="ALumno_Repitente" value="Si" required>
+								<input class="form-check-input" type="radio" name="EStudiante_Repitente" value="Si" required>
 							</div>
 							<div class="form-check">
 								<label class="form-label">No </label>
-								<input class="form-check-input" type="radio" name="ALumno_Repitente" value="No" required>
+								<input class="form-check-input" type="radio" name="EStudiante_Repitente" value="No" required>
 							</div>
 
 							<span class="form-label">¿Qué año repite?</span>
@@ -155,7 +155,7 @@ else {
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2"name="Direccion_Alumno"></textarea>
+						<textarea class="form-control mb-2"name="Direccion_Estudiante"></textarea>
 					</div>
 					<div>
 						<span class="form-label">¿Tiene canaima?</span>
@@ -547,7 +547,7 @@ else {
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">
-				<button class="btn btn-primary" type="submit">Registrar alumno</button>
+				<button class="btn btn-primary" type="submit">Registrar estudiante</button>
 			</div>
 		</form>
 

@@ -7,17 +7,17 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-require("../clases/alumno.php");
+require("../clases/estudiante.php");
 require("../clases/representantes.php");
 require("../clases/padres.php");
 require("../controladores/conexion.php");
 
 $conexion = conectarBD();
-$alumno = new Alumnos();
+$estudiante = new Estudiantes();
 $representante = new Representantes();
 $padres = new Padres();
 
-$listaAlumnos = $alumno->mostrarAlumnos();
+$listaEstudiantes = $estudiante->mostrarEstudiantes();
 $listaRepresentantes = $representante->mostrarRepresentantes();
 $listaPadres = $padres->mostrarPadres();
 
@@ -37,10 +37,10 @@ desconectarBD($conexion);
 	<div style="width: 90%; margin: auto;">
 		<div class="card">
 			<div class="card-header">
-				Alumnos registrados
+				Estudiantes registrados
 			</div>
 			<div class="card-body">
-				<table id="alumnos" class="table table-striped table-bordered" style="max-width: 100%;">
+				<table id="estudiantes" class="table table-striped table-bordered" style="max-width: 100%;">
 					<thead>
 						<th>Nombres</th>
 						<th>Apellidos</th>
@@ -53,49 +53,49 @@ desconectarBD($conexion);
 						<th>Acciones</th>
 					</thead>
 					<tbody style="min-width: 100%;">
-				<?php foreach ($listaAlumnos as $alumno): ?>	
-					<?php if (($alumno[15] == $_SESSION['representante'][0]) or ($_SESSION['usuario'][2] == 2)): 
-					#si el id del representante coincide con el vinculado al alumno se muestra. 
+				<?php foreach ($listaEstudiantes as $estudiante): ?>	
+					<?php if (($estudiante[15] == $_SESSION['representante'][0]) or ($_SESSION['usuario'][2] == 2)): 
+					#si el id del representante coincide con el vinculado al estudiante se muestra. 
 					#Se muestran todos si el usuario es un administrador?>			
 						<tr>
-							<td><?php echo $alumno[1]; ?></td>
-							<td><?php echo $alumno[2]; ?></td>
-							<td><?php echo $alumno[3]; ?></td>
-							<td><?php echo $alumno[4]; ?></td>
-							<td><?php echo $alumno[5]; ?></td>
-							<td><?php echo $alumno[6]; ?></td>
-							<td><?php echo $alumno[8]; ?></td>
-							<td><?php echo $alumno[13]; ?></td>
+							<td><?php echo $estudiante[1]; ?></td>
+							<td><?php echo $estudiante[2]; ?></td>
+							<td><?php echo $estudiante[3]; ?></td>
+							<td><?php echo $estudiante[4]; ?></td>
+							<td><?php echo $estudiante[5]; ?></td>
+							<td><?php echo $estudiante[6]; ?></td>
+							<td><?php echo $estudiante[8]; ?></td>
+							<td><?php echo $estudiante[13]; ?></td>
 							<td>
-								<form action="consultar-alumno.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_alumno" value="<?php echo $alumno[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $alumno[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $alumno[16] ?>">
+								<form action="consultar-estudiante.php" method="POST" style="display: inline-block;">
+									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
 									<input type="submit" name="Consultar" value="Consultar">
 								</form>
 								
-								<?php if ($_SESSION['representante'][0] == $alumno[15]): 
-								#el representante del alumno es quien debe realizar esta acción?>
-								<!--Editar alumno-->
-								<form action="editar-alumno.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_alumno" value="<?php echo $alumno[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $alumno[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $alumno[16] ?>">
+								<?php if ($_SESSION['representante'][0] == $estudiante[15]): 
+								#el representante del estudiante es quien debe realizar esta acción?>
+								<!--Editar estudiante-->
+								<form action="editar-estudiante.php" method="POST" style="display: inline-block;">
+									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
 									<input type="submit" name="orden" value="Editar">
 								</form>
 								<?php endif ?>
 								
 								
-								<form action="../controladores/control-alumnos.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="cedula_alumno" value="<?php echo $alumno[3]; ?>">
+								<form action="../controladores/control-estudiantes.php" method="POST" style="display: inline-block;">
+									<input type="hidden" name="cedula_estudiante" value="<?php echo $estudiante[3]; ?>">
 									<input type="submit" name="orden" value="Eliminar">
 								</form>
 
 								<!--Generar planilla de inscripción-->
 								<form action="" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_alumno" value="<?php echo $alumno[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $alumno[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $alumno[16] ?>">
+									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
 									<input type="submit" name="Generar planilla" value="Generar planilla">
 								</form>
 								
@@ -210,9 +210,9 @@ desconectarBD($conexion);
 							<td><?php echo $padre[11]?></td>
 							<?php 
 							$hijo = "";
-							foreach ($listaAlumnos as $alumno) {
-								if ($alumno[16] == $padre[12]) {
-									$hijo .= $alumno[1];
+							foreach ($listaEstudiantes as $estudiante) {
+								if ($estudiante[16] == $padre[12]) {
+									$hijo .= $estudiante[1];
 								}
 							} 
 							?>
@@ -239,76 +239,73 @@ desconectarBD($conexion);
 
 
 <script type="text/javascript">
-$(document).ready( function () {
-	$('#alumnos').DataTable({
-		responsive: true,
-		"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
-		  },
-	  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
-		dom: 'Bfrtip',
-		buttons: [
-			{
-            extend: 'excelHtml5',
-            text: 'Generar reporte en Excel',
-            autoFilter: true,
-            filename: 'Reporte de alumnos',
-            sheetName: 'Reporte de alumnos',
-            className: 'btn btn-success',
-            messageTop: 'Reporte de alumnos'
-        	}
-	  	],
-	  	"pagingType": "numbers"
-	  	<?php endif; ?>
-	});
-} );
-$(document).ready( function () {
-	$('#representantes').DataTable({
-		responsive: true,
-		"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
-		  },
-	  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
-		dom: 'Bfrtip',
-		buttons: [
-			{
-            extend: 'excelHtml5',
-            text: 'Generar reporte en Excel',
-            autoFilter: true,
-            filename: 'Reporte de representantes',
-            sheetName: 'Reporte de representantes',
-            className: 'btn btn-success',
-            messageTop: 'Reporte de representantes'
-        }
-	  	]
-	  	<?php endif; ?>
-	});
-} );
-
-$(document).ready( function () {
-	$('#padres').DataTable({
-		responsive: true,
-		"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
-		  },
-	  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
-		dom: 'Bfrtip',
-		buttons: [
-			{
-            extend: 'excelHtml5',
-            text: 'Generar reporte en Excel',
-            autoFilter: true,
-            filename: 'Reporte de padres',
-            sheetName: 'Reporte de padres',
-            className: 'btn btn-success',
-            messageTop: 'Reporte de padres'
-        }
-	  	]
-	  	<?php endif; ?>
-	});
-} );
-
-
+	$(document).ready( function () {
+		$('#estudiantes').DataTable({
+			responsive: true,
+			"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+			  },
+		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+			dom: 'Bfrtip',
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel',
+	            autoFilter: true,
+	            filename: 'Reporte de estudiantes',
+	            sheetName: 'Reporte de estudiantes',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de estudiantes'
+	        	}
+		  	],
+		  	"pagingType": "numbers"
+		  	<?php endif; ?>
+		});
+	} );
+	$(document).ready( function () {
+		$('#representantes').DataTable({
+			responsive: true,
+			"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+			  },
+		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+			dom: 'Bfrtip',
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel',
+	            autoFilter: true,
+	            filename: 'Reporte de representantes',
+	            sheetName: 'Reporte de representantes',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de representantes'
+	        }
+		  	]
+		  	<?php endif; ?>
+		});
+	} );
+	$(document).ready( function () {
+		$('#padres').DataTable({
+			responsive: true,
+			"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+			  },
+		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+			dom: 'Bfrtip',
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel',
+	            autoFilter: true,
+	            filename: 'Reporte de padres',
+	            sheetName: 'Reporte de padres',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de padres'
+	        }
+		  	]
+		  	<?php endif; ?>
+		});
+	} );
 </script>
 </body>
 </html>

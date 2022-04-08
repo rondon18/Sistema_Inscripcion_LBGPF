@@ -5,11 +5,11 @@ class Inscripciones {
 	private $Fecha_Inscripcion;
 	private $Hora_Inscripción;
 	private $idUsuario;
-	private $idAlumno;
+	private $idEstudiante;
 
 	public function __construct(){}
 
-	public function insertarRegistro($idUsuario,$idAlumno) {
+	public function insertarRegistro($idUsuario,$idEstudiante) {
 		$conexion = conectarBD();
 
 		date_default_timezone_set("America/Caracas");
@@ -17,19 +17,19 @@ class Inscripciones {
 		$Hora_Inscripción = date('h:i:sa');
 
 
-		$sql = "INSERT INTO `inscripciones`(`idInscripciones`, `Fecha_Inscripcion`, `Hora_Inscripción`, `idUsuario`, `idAlumno`) VALUES (
+		$sql = "INSERT INTO `inscripciones`(`idInscripciones`, `Fecha_Inscripcion`, `Hora_Inscripción`, `idUsuario`, `idEstudiante`) VALUES (
 				NULL,
 				'$Fecha_Inscripcion',
 				'$Hora_Inscripción',
 				'$idUsuario',
-				'$idAlumno'
+				'$idEstudiante'
 			)";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
 
-	public function editarRegistro($idUsuario,$idAlumno) {
+	public function editarRegistro($idUsuario,$idEstudiante) {
 		$conexion = conectarBD();
 
 		$Fecha_Inscripcion = date('Y-m-d');
@@ -38,7 +38,7 @@ class Inscripciones {
 		$sql = "UPDATE `inscripciones` SET
 				`Fecha_Inscripcion`='$Fecha_Inscripcion',
 				`Hora_Inscripción`='$Hora_Inscripción',
-			WHERE `idUsuario`='$idUsuario' AND `idAlumno`='$idAlumno'";
+			WHERE `idUsuario`='$idUsuario' AND `idEstudiante`='$idEstudiante'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
@@ -56,8 +56,8 @@ class Inscripciones {
 	public function setidUsuario($idUsuario) {
 		$this->idUsuario = $idUsuario;
 	}
-	public function setidAlumno($idAlumno) {
-		$this->idAlumno = $idAlumno;
+	public function setidEstudiante($idEstudiante) {
+		$this->idEstudiante = $idEstudiante;
 	}
 
 	public function getidInscripciones() {
@@ -72,8 +72,8 @@ class Inscripciones {
 	public function getidUsuario() {
 		return $this->idUsuario;
 	}
-	public function getidAlumno() {
-		return $this->idAlumno;
+	public function getidEstudiante() {
+		return $this->idEstudiante;
 	}
 
 

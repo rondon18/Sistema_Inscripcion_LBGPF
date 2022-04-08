@@ -41,7 +41,7 @@ class Padres extends Personas {
 
 		$Parentezco = $this->getParentezco();
 		
-		#para los padres solo se puede ajustar el parentezco con el alumno, sea padre o madre
+		#para los padres solo se puede ajustar el parentezco con el estudiante, sea padre o madre
 		$sql = "UPDATE `padres` SET 
 		`Parentezco`='$Parentezco' 
 		WHERE `idPadres`='$id_padres'";

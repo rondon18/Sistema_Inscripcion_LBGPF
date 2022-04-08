@@ -198,7 +198,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		}
 
-		header('Location: ../lobby/index.php');
+		#header('Location: ../lobby/index.php');
 	}
 	elseif ($orden == "Consultar") {
 		$representante->setidRepresentantes($_POST['idRepresentantes']);

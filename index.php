@@ -6,14 +6,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ingresar al sistema</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/colores.css"/>
 </head>
 <body>
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
 		<div class="card text-center m-auto" style="max-width:400px; margin:auto;">
 			<div class="card-header">
-				<img src="https://picsum.photos/24" class="float-start d-inline"><b>Ingresar al sistema</b>
+				<img src="https://picsum.photos/24" class="float-start d-inline">
+				<b>Ingresar al sistema</b>
 			</div>
 			<div class="card-body">
 				<p class="card-text">

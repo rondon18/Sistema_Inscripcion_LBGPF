@@ -83,7 +83,7 @@ class Representantes extends Usuarios {
 					`Remuneracion`='$Remuneración',
 					`Tipo_Remuneración`='$Tipo_Remuneración'
 				WHERE `idRepresentantes`='$id'";
-		$conexion->query($sql) or die("error: ".$conexion->error);
+		#$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}

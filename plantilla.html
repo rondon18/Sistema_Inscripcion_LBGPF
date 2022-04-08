@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Plantilla</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/colores.css"/>
+</head>
+<body>
+	<div class="card" style="max-width: 600px; margin: 74px auto;">
+		<div class="card-header">
+			<img src="https://picsum.photos/24" class="float-start d-inline">
+			<b>Lorem ipsum dolor sit amet consectetur adipisicing elit.</b>
+		</div>
+		
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Paso 1</a>
+			</li>
+			<li class="nav-item">
+				<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Paso 2</a>
+			</li>
+			<li class="nav-item">
+				<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Paso 3</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#">Paso 4</a>
+			</li>
+		</ul>
+	
+		<div class="card-body">	
+
+			<form action="">
+
+				<!--revelar y ocultar secciones con javascript y la navegación-->
+				<section id="seccion1" class="border p-4 mb-2">
+					<legend><u>Sección 1</u></legend>
+					
+					<label for="" class="form-label">Titulo del campo(text):</label>
+					<input type="text" placeholder="Insertar texto" id="1" class="form-control mb-2">
+
+					<span class="form-label">Titulo del campo(text)(agrupado):</span>
+					<div class="input-group mb-2">
+						<input type="text" placeholder="Insertar texto" id="1" class="form-control">
+						<span class="input-group-text">Texto</span>
+						<input type="text" placeholder="Insertar texto" id="1" class="form-control">
+					</div>
+					
+					<label for="" class="form-label">Titulo del campo(number):</label>
+					<input type="number" min="" max="" placeholder="Insertar número" id="1" class="form-control mb-2">
+					
+					<label for="" class="form-label">Titulo del campo(email):</label>
+					<input type="email" placeholder="Insertar número" id="1" class="form-control mb-2">
+				</section>
+				
+				<section id="seccion2" class="border p-4 mb-2" style="display: none;">
+					<legend><u>Sección 2</u></legend>
+					
+					<label for="" class="form-label">Titulo del campo(date):</label>
+					<input type="date" placeholder="Insertar fecha" id="1" class="form-control mb-2">
+					
+					<label for="" class="form-label">Titulo del campo(textarea):</label>
+					<textarea name="" id="" cols="30" rows="5" class="form-control mb-2"></textarea>
+
+					<label for="" class="form-label">Titulo del campo(select):</label>
+					<select name="" id="" class="form-select mb-2">
+						<option value="" selected disabled>Seleccione una opción</option>
+						<option value="">Opción 1</option>
+						<option value="">Opción 2</option>
+						<option value="">Opción 3</option>
+						<option value="">Opción 4</option>
+						<option value="">Opción 5</option>
+						<option value="">Opción 6</option>
+					</select>
+				</section>
+				
+				<section id="seccion3" class="border p-4 mb-2" style="display: none;">
+					<legend><u>Sección 3</u></legend>
+					
+					<span>Titulo del campo(checkbox):</span>
+					<div class="form-check">
+						<label for="" class="form-label">Opción checkbox</label>
+						<input type="checkbox" name="check[]" id="5" class="form-check-input">
+					</div>
+					<div class="form-check">
+						<label for="" class="form-label">Opción checkbox</label>
+						<input type="checkbox" name="check[]" id="5" class="form-check-input">
+					</div>
+					<div class="form-check">
+						<label for="" class="form-label">Opción checkbox</label>
+						<input type="checkbox" name="check[]" id="5" class="form-check-input">
+					</div>
+
+					<span>Titulo del campo(radio):</span>
+					<div class="form-check">
+						<label for="" class="form-label">Opción radio</label>
+						<input type="radio" name="campo" id="5" class="form-check-input">
+					</div>
+					<div class="form-check">
+						<label for="" class="form-label">Opción radio</label>
+						<input type="radio" name="campo" id="5" class="form-check-input">
+					</div>
+					<div class="form-check">
+						<label for="" class="form-label">Opción radio</label>
+						<input type="radio" name="campo" id="5" class="form-check-input">
+					</div>
+				</section>
+				
+			</form>
+
+		</div>
+		<div class="card-footer">
+			<a href="#" class="btn btn-primary">Botón</a>
+			<a href="#" class="btn btn-primary">Botón</a>
+			<a href="#" class="btn btn-primary">Botón</a>
+		</div>
+	</div>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script>
+	function seccion(seccion) {
+
+		//secciones
+		var a = document.getElementById("seccion1");
+		var b = document.getElementById("seccion2");
+		var c = document.getElementById("seccion3");
+		
+		//botones en la navegación
+		var link_a = document.getElementById("link1");
+		var link_b = document.getElementById("link2");
+		var link_c = document.getElementById("link3");
+
+		//seccion seleccionada como activa(seccion 1 por defecto)
+		var seccion = document.getElementById(seccion);
+
+		a.style.display = "none";
+		b.style.display = "none";
+		c.style.display = "none";
+
+		link_a.classList.remove("active");
+		link_b.classList.remove("active");
+		link_c.classList.remove("active");
+
+		if (seccion == a) {
+			a.style.display = "block";
+			link_a.classList.add("active");
+		}
+		else if (seccion == b) {
+			b.style.display = "block";
+			link_b.classList.add("active");
+		}
+		else if (seccion == c) {
+			c.style.display = "block";
+			link_c.classList.add("active");
+		}
+	}
+</script>
+</body>
+</html>

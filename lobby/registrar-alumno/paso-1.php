@@ -13,7 +13,7 @@ if (!$_SESSION['login']) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Registrar nuevo alumno</title>
+	<title>Registrar nuevo estudiante</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 </head>
@@ -22,7 +22,7 @@ if (!$_SESSION['login']) {
 		<form class="card" action="paso-2.php" method="POST" style="max-width: 600px; margin: 74px auto;">
 
 			<div class="card-header">
-				<h4>Formulario de registro de alumnos</h4>
+				<h4>Formulario de registro de estudiantes</h4>
 			</div>
 
 			<div class="card-body">
