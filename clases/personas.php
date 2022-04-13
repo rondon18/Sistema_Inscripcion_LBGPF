@@ -1,54 +1,64 @@
 <?php 
 
 	class Personas {
-		
-		private $Id;
-		private $Nombres;
-		private $Apellidos;
-		private $Cedula;
-		private $Correo;
-		private $Genero;
+		private $idPersonas;
+		private $Primer_Nombre;
+		private $Segundo_Nombre;
+		private $Primer_Apellido;
+		private $Segundo_Apellido;
+		private $Cédula;
 		private $Fecha_Nacimiento;
 		private $Lugar_Nacimiento;
-		private $Direccion;
-		private $Teléfono_Principal;
-		private $Teléfono_Auxiliar;
+		private $Género;
+		private $Correo_Electrónico;
+		private $Dirección;
 		private $Estado_Civil;
 
 		public function __construct() {}
 
 		public function insertarPersona() {
 			$conexion = conectarBD();
-
-			$Nombres = $this->getNombres();
-			$Apellidos = $this->getApellidos();
-			$Cedula = $this->getCedula();
-			$Correo = $this->getCorreo();
-			$Genero = $this->getGenero();
+			
+			$Primer_Nombre = $this->getPrimer_Nombre();
+			$Segundo_Nombre = $this->getSegundo_Nombre();
+			$Primer_Apellido = $this->getPrimer_Apellido();
+			$Segundo_Apellido = $this->getSegundo_Apellido();
+			$Cédula = $this->getCédula();
 			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
 			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
-			$Direccion = $this->getDireccion();
-			$Teléfono_Principal = $this->getTeléfono_Principal();
-			$Teléfono_Auxiliar = $this->getTeléfono_Auxiliar();
+			$Género = $this->getGénero();
+			$Correo_Electrónico = $this->getCorreo_Electrónico();
+			$Dirección = $this->getDirección();
 			$Estado_Civil = $this->getEstado_Civil();
 
-			$sql = "INSERT INTO `personas`(`idPersonas`, `Nombres`, `Apellidos`, `Cédula`, `Fecha_Nacimiento`, `Lugar_Nacimiento`, `Género`, `Correo_Electronico`, `Dirección`, `Teléfono_Principal`, `Teléfono_Auxiliar`, `Estado_Civil`) VALUES (
-				NULL,
-				'$Nombres',
-				'$Apellidos',
-				'$Cedula',
-				'$Fecha_Nacimiento',
-				'$Lugar_Nacimiento',
-				'$Genero',
-				'$Correo',
-				'$Direccion',
-				'$Teléfono_Principal',
-				'$Teléfono_Auxiliar',
-				'$Estado_Civil'
-			)";
+			$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$Cédula'";
 
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			$this->setId($conexion->insert_id);
+			$registro_existe = $conexion->query($sql);
+			$resultado = $registro_existe->fetch_assoc();
+			
+			#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
+			if ($resultado == NULL) {
+				$sql = "INSERT INTO `personas`(`idPersonas`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Cédula`, `Fecha_Nacimiento`, `Lugar_Nacimiento`, `Género`, `Correo_Electrónico`, `Dirección`, `Estado_Civil`) VALUES (
+					NULL,
+					'$Primer_Nombre',
+					'$Segundo_Nombre',
+					'$Primer_Apellido',
+					'$Segundo_Apellido',
+					'$Cédula',
+					'$Fecha_Nacimiento',
+					'$Lugar_Nacimiento',
+					'$Género',
+					'$Correo_Electrónico',
+					'$Dirección',
+					'$Estado_Civil'
+				)";
+
+				$conexion->query($sql) or die("error: ".$conexion->error);
+				$this->setidPersonas($conexion->insert_id);
+			}
+			elseif ($resultado != NULL) {
+				$this->setidPersonas($resultado['idPersonas']);
+			}
 
 			desconectarBD($conexion);
 		}
@@ -97,13 +107,13 @@
 			desconectarBD($conexion);
 		}
 
-		public function consultarPersona($id) {
+		public function consultarPersona($cedula) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `personas` WHERE `idPersonas` = '$id'";
+			$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$cedula'";
 
 			$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);			
-			$persona = $consulta_personas->fetch_assoc();
+			$persona = $consulta_persona->fetch_assoc();
 
 			desconectarBD($conexion);
 
@@ -130,78 +140,77 @@
 			return $Lista_Personas;
 		}
 
-		//setters
-		public function setId($Id){
-			$this->Id = $Id;
+		public function setidPersonas($idPersonas) {
+			$this->idPersonas = $idPersonas;
 		}
-		public function setNombres($Nombres){
-			$this->Nombres = $Nombres;
+		public function setPrimer_Nombre($Primer_Nombre) {
+			$this->Primer_Nombre = $Primer_Nombre;
 		}
-		public function setApellidos($Apellidos){
-			$this->Apellidos = $Apellidos;
+		public function setSegundo_Nombre($Segundo_Nombre) {
+			$this->Segundo_Nombre = $Segundo_Nombre;
 		}
-		public function setCedula($Cedula){
-			$this->Cedula = $Cedula;
+		public function setPrimer_Apellido($Primer_Apellido) {
+			$this->Primer_Apellido = $Primer_Apellido;
 		}
-		public function setCorreo($Correo){
-			$this->Correo = $Correo;
+		public function setSegundo_Apellido($Segundo_Apellido) {
+			$this->Segundo_Apellido = $Segundo_Apellido;
 		}
-		public function setGenero($Genero){
-			$this->Genero = $Genero;
+		public function setCédula($Cédula) {
+			$this->Cédula = $Cédula;
 		}
-		public function setFecha_Nacimiento($Fecha_Nacimiento){
+		public function setFecha_Nacimiento($Fecha_Nacimiento) {
 			$this->Fecha_Nacimiento = $Fecha_Nacimiento;
 		}
 		public function setLugar_Nacimiento($Lugar_Nacimiento) {
 			$this->Lugar_Nacimiento = $Lugar_Nacimiento;
 		}
-		public function setDireccion($Direccion){
-			$this->Direccion = $Direccion;
+		public function setGénero($Género) {
+			$this->Género = $Género;
 		}
-		public function setTeléfono_Principal($Teléfono_Principal) {
-			$this->Teléfono_Principal = $Teléfono_Principal;
+		public function setCorreo_Electrónico($Correo_Electrónico) {
+			$this->Correo_Electrónico = $Correo_Electrónico;
 		}
-		public function setTeléfono_Auxiliar($Teléfono_Auxiliar) {
-			$this->Teléfono_Auxiliar = $Teléfono_Auxiliar;
+		public function setDirección($Dirección) {
+			$this->Dirección = $Dirección;
 		}
 		public function setEstado_Civil($Estado_Civil) {
 			$this->Estado_Civil = $Estado_Civil;
-		}	
-		//getters
-		public function getId(){
-			return $this->Id;
 		}
-		public function  getNombres(){
-			return $this->Nombres;
+
+		public function getidPersonas() {
+			return $this->idPersonas;
 		}
-		public function getApellidos(){
-			return $this->Apellidos;
+		public function getPrimer_Nombre() {
+			return $this->Primer_Nombre;
 		}
-		public function getCedula(){
-			return $this->Cedula;
+		public function getSegundo_Nombre() {
+			return $this->Segundo_Nombre;
 		}
-		public function getCorreo(){
-			return $this->Correo;
+		public function getPrimer_Apellido() {
+			return $this->Primer_Apellido;
 		}
-		public function getGenero(){
-			return $this->Genero;
+		public function getSegundo_Apellido() {
+			return $this->Segundo_Apellido;
 		}
-		public function getFecha_Nacimiento(){
+		public function getCédula() {
+			return $this->Cédula;
+		}
+		public function getFecha_Nacimiento() {
 			return $this->Fecha_Nacimiento;
 		}
-		public function getLugar_Nacimiento(){
+		public function getLugar_Nacimiento() {
 			return $this->Lugar_Nacimiento;
 		}
-		public function getDireccion() {
-			return $this->Direccion;
+		public function getGénero() {
+			return $this->Género;
 		}
-		public function getTeléfono_Principal(){
-			return $this->Teléfono_Principal;
+		public function getCorreo_Electrónico() {
+			return $this->Correo_Electrónico;
 		}
-		public function getTeléfono_Auxiliar(){
-			return $this->Teléfono_Auxiliar;
+		public function getDirección() {
+			return $this->Dirección;
 		}
-		public function getEstado_Civil(){
+		public function getEstado_Civil() {
 			return $this->Estado_Civil;
 		}
 	}

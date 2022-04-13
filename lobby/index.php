@@ -26,7 +26,7 @@ if (!$_SESSION['login']) {
 		<div class="card-body">
 			
 			<p class="card-text">
-				<span>Bienvenido, <?php echo $_SESSION['persona'][1]." ".$_SESSION['persona'][2]; ?>.</span>
+				<span>Bienvenido, <?php echo $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Primer_Apellido']; ?>.</span>
 			</p>
 
 			<ul class="list-group list-group-flush">
@@ -39,7 +39,7 @@ if (!$_SESSION['login']) {
 					<?php elseif ($_SESSION['usuario'][2] == "2"): ?>
 					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Gestionar registros</a>
 					<?php endif;?>
-					<a class="btn btn-sm dark-primary-color text-white" href="logout.php">Cerrar sesión</a>
+					<a class="btn btn-sm dark-primary-color text-white" href="../controladores/logout.php">Cerrar sesión</a>
 				</li>
 				
 				<?php if ($_SESSION['usuario'][2] == "2"): ?>

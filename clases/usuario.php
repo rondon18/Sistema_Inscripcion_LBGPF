@@ -1,11 +1,13 @@
 <?php 
+
 require_once("personas.php");
 
-class Usuarios extends Personas {
-    
-	private $Id_usuario;
+class Usuarios {
+	
+	private $idUsuarios;
 	private $Clave;
 	private $Privilegios;
+	private $Cedula_Persona;
 
 	public function __construct() {}
 
@@ -14,18 +16,32 @@ class Usuarios extends Personas {
 
 		$Clave = $this->getClave();
 		$Privilegios = $this->getPrivilegios();
-		$Cedula = $this->getCedula();
-		$idRepresentantes = $this->getidRepresentantes();
+		$Cedula_Persona = $this->getCedula_Persona();
 
-		$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Cedula_Persona`, `idRepresentante`) VALUES (NULL, '$Clave',$Privilegios, '$Cedula',$idRepresentantes)";
+		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$Cedula_Persona'";
 
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		$this->setId_usuario($conexion->insert_id);
+		$registro_existe = $conexion->query($sql);
+		$resultado = $registro_existe->fetch_assoc();
 
+		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
+		if ($resultado == NULL) {
+			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Cedula_Persona`) VALUES (
+				NULL,
+				'$Clave',
+				'$Privilegios',
+				'$Cedula_Persona'
+			)";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			$this->setidUsuarios($conexion->insert_id);
+		}
+		elseif ($resultado != NULL) {
+			$this->setidUsuarios($resultado['idUsuarios']);
+		}
 		desconectarBD($conexion);
 	}
 
-	public function editarUsuario($id) {
+	public function editarUsuario($Cedula_Persona) {
 
 		$conexion = conectarBD();
 		
@@ -33,16 +49,16 @@ class Usuarios extends Personas {
 
 		$sql = "UPDATE `usuarios` SET 
 			`Clave`='$Clave'
-		WHERE `idUsuarios`='$id'";
+		WHERE `Cedula_Persona`='$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		
 		desconectarBD($conexion);
 	}
-	public function eliminarUsuario($id) {
+	public function eliminarUsuario($Cedula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "DELETE FROM `usuarios` WHERE `idUsuarios`='$id'";
+		$sql = "DELETE FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		
@@ -54,25 +70,32 @@ class Usuarios extends Personas {
 	public function mostrarUsuarios() {
 
 	}
-	//Setters
-	public function setId_usuario($Id_usuario){
-		$this->Id_usuario = $Id_usuario;
+
+	public function setidUsuarios($idUsuarios) {
+		$this->idUsuarios = $idUsuarios;
 	}
-	public function setClave($Clave){
+	public function setClave($Clave) {
 		$this->Clave = $Clave;
 	}
-	public function setPrivilegios($Privilegios){
+	public function setPrivilegios($Privilegios) {
 		$this->Privilegios = $Privilegios;
 	}
-	//Getters
-	public function getId_usuario(){
-		return $this->Id_usuario;
+	public function setCedula_Persona($Cedula_Persona) {
+		$this->Cedula_Persona = $Cedula_Persona;
 	}
-	public function getClave(){
+
+	public function getidUsuarios() {
+		return $this->idUsuarios;
+	}
+	public function getClave() {
 		return $this->Clave;
 	}
-	public function getPrivilegios(){
+	public function getPrivilegios() {
 		return $this->Privilegios;
 	}
+	public function getCedula_Persona() {
+		return $this->Cedula_Persona;
+	}
+
 }
 ?>
