@@ -15,7 +15,6 @@ class DatosLaborales {
 	public function insertarDatosLaborales() {
 		$conexion = conectarBD();
 
-
 		$Empleo = $this->getEmpleo();
 		$Lugar_Trabajo = $this->getLugar_Trabajo();
 		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
@@ -31,8 +30,6 @@ class DatosLaborales {
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
 		
-			
-
 			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`) VALUES (
 				NULL,
 				'$Empleo',
@@ -48,10 +45,22 @@ class DatosLaborales {
 			$this->setidDatos_laborales($resultado['idDatos-laborales']);
 		}
 
-
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		
 		desconectarBD($conexion);
+	}
+
+	public function consultarDatosLaborales($idRepresentantes) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
+
+		$consulta_laborales = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$datos_laborales = $consulta_laborales->fetch_assoc();
+		
+		desconectarBD($conexion);
+
+		return $datos_laborales;
 	}
 
 	

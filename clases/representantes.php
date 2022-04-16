@@ -38,7 +38,7 @@ class Representantes {
 
 		desconectarBD($conexion);
 	}
-	public function editarRepresentante($id) {
+	public function editarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 
 		$Vinculo = $this->getVinculo();
@@ -70,7 +70,7 @@ class Representantes {
 
 		desconectarBD($conexion);
 	}
-	public function eliminarRepresentante($id) {
+	public function eliminarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 
 		$sql = "DELETE FROM `representantes` WHERE `idRepresentantes` = '$id'";
@@ -81,7 +81,7 @@ class Representantes {
 	public function consultarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 		
-		$sql = "SELECT * FROM `personas`,`representantes` WHERE `representantes`.`Cedula_Persona` = '$Cedula_Persona' AND `personas`.`Cédula` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
 		$representantes = $consulta_representantes->fetch_assoc();

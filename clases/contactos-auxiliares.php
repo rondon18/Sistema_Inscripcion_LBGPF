@@ -2,40 +2,41 @@
 
 class ContactoAuxiliar {
 
-
 	private $idContactoAuxiliar;
-	private $idRepresentante;
 	private $Relación;
-	private $Nombre_Aux;
-	private $Tfl_P_Contacto_Aux;
-	private $Tfl_S_Contacto_Aux;
+	private $Cédula_Persona;
+	private $idRepresentante;
 
 	public function __construct(){}
 
-	public function insertarContactoAuxiliar($id_representante) {
+	public function insertarContactoAuxiliar($idRepresentante) {
 		$conexion = conectarBD();
 		
+		$Relación = $this->getRelación();
+		$Cédula_Persona = $this->getCédula_Persona();
 
-		$Relación_Auxiliar = $this->getRelación();
-		$Nombre_Contacto_Emergencia = $this->getNombre_Aux();
-		$Tfl_P_Contacto_Aux = $this->getTfl_P_Contacto_Aux();
-		$Tfl_S_Contacto_Aux = $this->getTfl_S_Contacto_Aux();
+		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `Cédula_Persona` = '$Cédula_Persona' AND`idRepresentante` = '$idRepresentante'";
 
-		$sql ="INSERT INTO `contactos_auxiliares`(`idContactoAuxiliar`, `idRepresentante`, `Relación`, `Nombre_Aux`, `Tfl_P_Contacto_Aux`, `Tfl_S_Contacto_Aux`) VALUES (
-			NULL,
-			'$id_representante',
-			'$Relación_Auxiliar',
-			'$Nombre_Contacto_Emergencia',
-			'$Tfl_P_Contacto_Aux',
-			'$Tfl_S_Contacto_Aux'
+		$registro_existe = $conexion->query($sql);
+		$resultado = $registro_existe->fetch_assoc();
+		
+		if ($resultado == NULL) {
+			$sql = "INSERT INTO `contactos_auxiliares`(`idContactoAuxiliar`, `Relación`, `Cédula_Persona`, `idRepresentante`) VALUES (
+				NULL,
+				'$Relación',
+				'$Cédula_Persona',
+				'$idRepresentante'
 			)";
 
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		$this->setidContactoAuxiliar($conexion->insert_id);
-
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			$this->setidContactoAuxiliar($conexion->insert_id);
+		}
+		elseif ($resultado != NULL) {
+			$this->setidContactoAuxiliar($resultado['idContactoAuxiliar']);
+		}
 		desconectarBD($conexion);
 	}
-	public function editarContactoAuxiliar($id = NULL) {
+	public function editarContactoAuxiliar() {
 		
 		if ($id == NULL) {
 			$id = $this->getidContactoAuxiliar();
@@ -60,11 +61,18 @@ class ContactoAuxiliar {
 		desconectarBD($conexion);
 
 	}
-	public function eliminarContactoAuxiliar($id = NULL) {
+	public function consultarContactoAuxiliar($idRepresentante) {
+		$conexion = conectarBD();
+			
+		$Relación = $this->getRelación();
+		$Cédula_Persona = $this->getCédula_Persona();
 
-	}
-	public function consultarContactoAuxiliar($id = NULL) {
+		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `idRepresentante` = '$idRepresentante'";
 
+		$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$persona = $consulta_persona->fetch_assoc();
+
+		return $persona;
 	}
 	public function mostrarContactosAuxiliares() {
 
@@ -73,42 +81,28 @@ class ContactoAuxiliar {
 	public function setidContactoAuxiliar($idContactoAuxiliar) {
 		$this->idContactoAuxiliar = $idContactoAuxiliar;
 	}
-	public function setidRepresentante($idRepresentante) {
-		$this->idRepresentante = $idRepresentante;
-	}
 	public function setRelación($Relación) {
 		$this->Relación = $Relación;
 	}
-	public function setNombre_Aux($Nombre_Aux) {
-		$this->Nombre_Aux = $Nombre_Aux;
+	public function setCédula_Persona($Cédula_Persona) {
+		$this->Cédula_Persona = $Cédula_Persona;
 	}
-	public function setTfl_P_Contacto_Aux($Tfl_P_Contacto_Aux) {
-		$this->Tfl_P_Contacto_Aux = $Tfl_P_Contacto_Aux;
+	public function setidRepresentante($idRepresentante) {
+		$this->idRepresentante = $idRepresentante;
 	}
-	public function setTfl_S_Contacto_Aux($Tfl_S_Contacto_Aux) {
-		$this->Tfl_S_Contacto_Aux = $Tfl_S_Contacto_Aux;
-	}	
 
 	public function getidContactoAuxiliar() {
 		return $this->idContactoAuxiliar;
 	}
-	public function getidRepresentante() {
-		return $this->idRepresentante;
-	}
 	public function getRelación() {
 		return $this->Relación;
 	}
-	public function getNombre_Aux() {
-		return $this->Nombre_Aux;
+	public function getCédula_Persona() {
+		return $this->Cédula_Persona;
 	}
-	public function getTfl_P_Contacto_Aux() {
-		return $this->Tfl_P_Contacto_Aux;
+	public function getidRepresentante() {
+		return $this->idRepresentante;
 	}
-	public function getTfl_S_Contacto_Aux() {
-		return $this->Tfl_S_Contacto_Aux;
-	}
-
-
 
 
 

@@ -3,6 +3,7 @@
 require("conexion.php");
 require("../clases/personas.php");
 require("../clases/representantes.php");
+require("../clases/contactos-auxiliares.php");
 require("../clases/economicos-representantes.php");
 require("../clases/laborales-representantes.php");
 require("../clases/telefonos.php");
@@ -35,6 +36,8 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 			header("Location: ../index.php");
 		}
 		else{
+			session_start();
+
 			#se crea variable de sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
@@ -43,33 +46,65 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 			$datos_persona = $persona->consultarPersona($cedula);
 
 			$_SESSION['persona'] = $datos_persona;
-			foreach ($_SESSION['persona'] as $llave => $dato) {
-				echo "<p style='color:blue;'>".$llave." - ".$dato."<p>";
-			}
 			
+			#Solo si el usuario es un represenante
 			if ($_SESSION['usuario']['Privilegios'] == 2) {
 				
+				#Datos del representante
 				$representante = new Representantes();
 
 				$datos_representante = $representante->consultarRepresentante($cedula);
 
 				$_SESSION['representante'] = $datos_representante;
 
+				#Telefonos del representante
 				$telefonos = new Telefonos();
 
 				$telefonos_representante = $telefonos->consultarTelefonos($cedula);
 				#la variable telefonos_representante es una matriz asociativa
 
-				foreach ($telefonos_representante as $telefono) {
-					foreach ($telefono as $llave => $dato) {
-						echo "<p>".$llave." - ".$dato."<p>";
-					}
-				}	
-
 				$_SESSION['telefonos'] = $telefonos_representante;
+			
+				#Datos economicos
+				$economicos = new DatosEconomicos();
+
+				$datos_economicos = $economicos->consultarDatosEconomicos($_SESSION['representante']['idRepresentantes']);
+
+
+				$_SESSION['datos_economicos'] = $datos_economicos;
+
+				#Datos laborales
+				$laborales 	= new DatosLaborales();
+
+				$datos_laborales = $laborales->consultarDatosLaborales($_SESSION['representante']['idRepresentantes']);
+				
+
+				$_SESSION['datos_laborales'] = $datos_laborales;
+
+				#Contacto auxiliar
+
+
+				$contacto_aux = new ContactoAuxiliar();
+
+				$datos_contacto_aux = $contacto_aux->consultarContactoAuxiliar($_SESSION['representante']['idRepresentantes']);
+
+				$persona_aux = new Personas();
+
+				$datos_persona_aux = $persona_aux->consultarPersona($datos_contacto_aux['Cédula_Persona']);
+
+				#Telefonos del representante
+				$telefonos_aux = new Telefonos();
+
+				$telefonos_contacto_aux = $telefonos_aux->consultarTelefonos($datos_contacto_aux['Cédula_Persona']);
+				#la variable telefonos_representante es una matriz asociativa
+
+				#Une todo esto en una sola matriz
+				$_SESSION['ContactoAuxiliar'] = $ContactoAuxiliar = [$datos_persona_aux,$datos_contacto_aux,$telefonos_contacto_aux];
 			}
 
-					
+			$_SESSION['login'] = "Sessión valida";
+
+			header('Location: ../lobby/index.php');	
 		}
 		/*
 		if ($consulta_usuario = $conexion->query($sql)) {

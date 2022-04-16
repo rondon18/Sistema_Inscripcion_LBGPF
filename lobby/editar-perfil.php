@@ -7,10 +7,6 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-$nombres = explode(" ", $_SESSION['persona'][1]);
-$apellidos = explode(" ", $_SESSION['persona'][2]);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +23,19 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 		<div class="card-header">
 			<h4>Editar perfi</h4>
 		</div>
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
+			</li>
+			<li class="nav-item">
+				<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de representante</a>
+			</li>
+			<li class="nav-item">
+				<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos socio-economicos</a>
+			</li>
+		</ul>
 		<div class="card-body">
-			<div>
+			<section id="seccion1">
 				<!--Datos del representante-->
 				<h5>Datos personales.</h5>
 
@@ -39,8 +46,8 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 						<label>Nombres:</label>
 					
 						<div class="input-group">
-							<input class="form-control mb-2" type="text" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $nombres[0];?>">
-							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $nombres[1];?>">
+							<input class="form-control mb-2" type="text" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $_SESSION['persona']['Primer_Nombre'];?>">
+							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $_SESSION['persona']['Segundo_Nombre'];?>">
 						</div>
 					</div>
 					
@@ -48,9 +55,15 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 					<div>
 						<label>Apellidos:</label>
 						<div class="input-group">
-							<input class="form-control mb-2" type="text" name="Primer_Apellido_Representante" placeholder="Primer apellido" required value="<?php echo $apellidos[0];?>">
-							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Representante" placeholder="Segundo apellido" required value="<?php echo $apellidos[1];?>">
+							<input class="form-control mb-2" type="text" name="Primer_Apellido_Representante" placeholder="Primer apellido" required value="<?php echo $_SESSION['persona']['Primer_Apellido'];?>">
+							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Representante" placeholder="Segundo apellido" required value="<?php echo $_SESSION['persona']['Segundo_Apellido'];?>">
 						</div>
+					</div>
+
+					<!--Cédula del representante-->
+					<div>
+						<label>Cédula:</label>
+						<input class="form-control mb-2" type="text" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['persona']['Cédula'];?>">
 					</div>
 
 					<!--Genero del representante-->
@@ -60,21 +73,17 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 						
 						<div class="form-check">
 							<label>F </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['persona'][6]) and $_SESSION['persona'][6] == "F"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "F"){ echo "checked";} ?>>
 						</div>
 						
 						<div class="form-check">
 							<label>M </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['persona'][6]) and $_SESSION['persona'][6] == "M"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "M"){ echo "checked";} ?>>
 						</div>
 
 					</div>
 
-					<!--Cédula del representante-->
-					<div>
-						<label>Cédula:</label>
-						<input class="form-control mb-2" type="text" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['persona'][3];?>">
-					</div>
+					
 
 					<!--Fecha de nacimiento del representante-->
 					<div>
@@ -92,26 +101,42 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 					<div>
 						<label>Vinculo con el estudiante:</label>
 					
-						<select class="form-select" name="Vinculo_Representante" required>
-							<option value="Madre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Madre"){ echo "selected";} ?>>Madre</option>
-							<option value="Padre" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Padre"){ echo "selected";} ?>>Padre</option>
-							<option value="Abuelo(a)" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
-							<option value="Otro" <?php if(isset($_SESSION['representante'][1]) and $_SESSION['representante'][1] == "Otro"){ echo "selected";} ?>>Otro</option>
-						</select>
-					
+						<div class="input-group">
+							<select class="form-select" name="Vinculo_Representante" required>
+								<option value="Madre" <?php if(isset($_SESSION['representante']['Vinculo']) and $_SESSION['representante']['Vinculo'] == "Madre"){ echo "selected";} ?>>Madre</option>
+								<option value="Padre" <?php if(isset($_SESSION['representante']['Vinculo']) and $_SESSION['representante']['Vinculo'] == "Padre"){ echo "selected";} ?>>Padre</option>
+								<option value="Abuelo(a)" <?php if(isset($_SESSION['representante']['Vinculo']) and $_SESSION['representante']['Vinculo'] == "Abuelo(a)"){ echo "selected";} ?>>Abuelo(a)</option>
+								<option value="Otro" <?php if(isset($_SESSION['representante']['Vinculo']) and $_SESSION['representante']['Vinculo'] == "Otro"){ echo "selected";} ?>>Otro</option>
+							</select>
+							<input class="form-control" type="text" value="<?php if($_SESSION['representante']['Vinculo'] == 'Otro'){ echo $_SESSION['representante']['Vinculo'];}?>" placeholder="Otro">
+						</div>
+
+						
+						
 					</div>
 
 					<!--Correo electronico del representante-->
 					<div>
 						<label>Correo electrónico:</label>
-						<input class="form-control mb-2" type="email" name="Correo_electrónico" required value="<?php echo $_SESSION['persona'][7];?>">
+						<input class="form-control mb-2" type="email" name="Correo_electrónico" required value="<?php echo $_SESSION['persona']['Correo_Electrónico'];?>">
 					</div>
 
 					<!--Telefonos principal y auxiliar del representante-->
 					<div>
 						<label>Teléfonos:</label>
-						<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['persona'][9];?>">
-						<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['persona'][10];?>">
+
+						<div class="input-group">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['persona'][9];?>">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['persona'][9];?>">
+						</div>
+						<div class="input-group">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['persona'][10];?>">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['persona'][10];?>">
+						</div>
+						<div class="input-group">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['persona'][10];?>">
+							<input class="form-control mb-2" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['persona'][10];?>">
+						</div>
 					</div>
 					
 					<!--Estado civil del representante-->
@@ -205,10 +230,9 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 						<label>Nro. de cuenta:</label>
 						<input class="form-control mb-2" type="text" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required value="<?php echo $_SESSION['representante'][4];?>">
 					</div>
-				</div>
-			</div>
-
-			<div>
+				</div>	
+			</section>
+			<section id="seccion2" style="display: none;">
 				<!--Datos Económicos-->
 				<h5>Datos económicos.</h5>
 
@@ -278,9 +302,8 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 						<small class="form-text">Monto aproximado</small>
 					</div>
 				</div>
-			</div>
-			
-			<div>
+			</section>
+			<section id="seccion3" style="display: none;">
 				<!--Datos del usuario-->
 				<h5>Datos de usuario.</h5>
 
@@ -294,8 +317,7 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 					</div>
 					<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y número</small>
 				</div>
-
-			</div>
+			</section>
 
 		</div>
 		<div class="card-footer">
@@ -306,5 +328,43 @@ $apellidos = explode(" ", $_SESSION['persona'][2]);
 		</div>
 		
 	</form>
+<script>
+	function seccion(seccion) {
+
+		//secciones
+		var a = document.getElementById("seccion1");
+		var b = document.getElementById("seccion2");
+		var c = document.getElementById("seccion3");
+		
+		//botones en la navegación
+		var link_a = document.getElementById("link1");
+		var link_b = document.getElementById("link2");
+		var link_c = document.getElementById("link3");
+
+		//seccion seleccionada como activa(seccion 1 por defecto)
+		var seccion = document.getElementById(seccion);
+
+		a.style.display = "none";
+		b.style.display = "none";
+		c.style.display = "none";
+
+		link_a.classList.remove("active");
+		link_b.classList.remove("active");
+		link_c.classList.remove("active");
+
+		if (seccion == a) {
+			a.style.display = "block";
+			link_a.classList.add("active");
+		}
+		else if (seccion == b) {
+			b.style.display = "block";
+			link_b.classList.add("active");
+		}
+		else if (seccion == c) {
+			c.style.display = "block";
+			link_c.classList.add("active");
+		}
+	}
+</script>
 </body>
 </html>

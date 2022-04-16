@@ -34,15 +34,15 @@ if (!$_SESSION['login']) {
 					<p>¿Qué desea hacer?</p>
 					<a class="btn btn-sm dark-primary-color text-white" href="perfil.php">Ver perfil</a>
 					<a class="btn btn-sm dark-primary-color text-white" href="registrar-estudiante/paso-1.php">Registrar estudiante</a>
-					<?php if ($_SESSION['usuario'][2] == "1"): ?>
+					<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Consultar estudiantes</a>
-					<?php elseif ($_SESSION['usuario'][2] == "2"): ?>
+					<?php elseif ($_SESSION['usuario']['Privilegios'] == 1): ?>
 					<a class="btn btn-sm dark-primary-color text-white" href="consultar.php">Gestionar registros</a>
 					<?php endif;?>
 					<a class="btn btn-sm dark-primary-color text-white" href="../controladores/logout.php">Cerrar sesión</a>
 				</li>
 				
-				<?php if ($_SESSION['usuario'][2] == "2"): ?>
+				<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 				
 				<li class="list-group-item">
 					<p>Mantenimiento</p>

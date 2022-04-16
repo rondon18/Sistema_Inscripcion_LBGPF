@@ -3,11 +3,14 @@
 require('clases/personas.php');
 require('clases/telefonos.php');
 require('clases/representantes.php');
+require('clases/contactos-auxiliares.php');
 require('clases/usuario.php');
 require('clases/laborales-representantes.php');
+require('clases/economicos-representantes.php');
 require('controladores/conexion.php');
 
 $persona = new Personas();
+$persona_auxiliar = new Personas();
 
 $telefonoP = new Telefonos();
 $telefonoS = new Telefonos();
@@ -15,7 +18,9 @@ $telefonoA = new Telefonos();
 $telefonoT = new Telefonos();
 
 $representante = new Representantes();
+$contacto_aux = new ContactoAuxiliar();
 $datos_laborales = new DatosLaborales();
+$datos_economicos = new DatosEconomicos();
 
 $usuario = new Usuarios();
 
@@ -80,13 +85,69 @@ $datos_laborales->setTeléfono_Trabajo('');
 $datos_laborales->setRemuneración('');
 $datos_laborales->setTipo_Remuneración('');
 
-echo $representante->getidRepresentantes();
 $datos_laborales->setidRepresentantes($representante->getidRepresentantes());
 
+$datos_laborales->insertarDatosLaborales();
+
+#Datos economicos
+$datos_economicos->setBanco('Provincial');
+$datos_economicos->setTipo_Cuenta('Corriente');
+$datos_economicos->setCta_Bancaria('1351351351384135');
+$datos_economicos->setidRepresentantes($representante->getidRepresentantes());
+$datos_economicos->insertarDatosEconomicos();
+
+#Contacto Auxiliar
+#Persona
+$persona_auxiliar->setPrimer_Nombre('Elber');
+$persona_auxiliar->setSegundo_Nombre('Alonso');
+$persona_auxiliar->setPrimer_Apellido('Rondón');
+$persona_auxiliar->setSegundo_Apellido('Hernández');
+$persona_auxiliar->setCédula('27919567');
+$persona_auxiliar->setFecha_Nacimiento('2001-05-05');
+$persona_auxiliar->setLugar_Nacimiento('Mérida');
+$persona_auxiliar->setGénero('M');
+$persona_auxiliar->setCorreo_Electrónico('earh_2001@outlook.com');
+$persona_auxiliar->setDirección('La Pedregosa Alta');
+$persona_auxiliar->setEstado_Civil('S');
+
+$persona_auxiliar->insertarPersona();
+
+#Telefono principal
+$telefonoP->setPrefijo('0416');
+$telefonoP->setNúmero_Telefónico('12345678');
+$telefonoP->setRelación_Teléfono('Principal');
+$telefonoP->setCedula_Persona('27919567');
+
+$telefonoP->insertarTelefono($telefonoP->getCedula_Persona());
+
+#Telefono secundario
+$telefonoS->setPrefijo('0412');
+$telefonoS->setNúmero_Telefónico('87654321');
+$telefonoS->setRelación_Teléfono('Secundario');
+$telefonoS->setCedula_Persona('27919567');
+
+$telefonoS->insertarTelefono($telefonoS->getCedula_Persona());
+
+#Telefono auxiliar
+$telefonoA->setPrefijo('0274');
+$telefonoA->setNúmero_Telefónico('12349587');
+$telefonoA->setRelación_Teléfono('Auxiliar');
+$telefonoA->setCedula_Persona('27919567');
+
+$telefonoA->insertarTelefono($telefonoA->getCedula_Persona());
+
+
+#datos auxiliar
+$contacto_aux->setRelación('Vecino');
+$contacto_aux->setCédula_Persona($persona_auxiliar->getCédula());
+
+$contacto_aux->insertarContactoAuxiliar($representante->getidRepresentantes());
 
 $usuario->setClave("12345");
 $usuario->setPrivilegios("1");
 $usuario->setCedula_Persona("27919566");
+
+$usuario->insertarUsuario();
 
 //INSERCIONES
 
@@ -96,9 +157,8 @@ $usuario->setCedula_Persona("27919566");
 
 
 
-$datos_laborales->insertarDatosLaborales();
 
-$usuario->insertarUsuario();
+
 
 ?>
 
@@ -148,5 +208,209 @@ $usuario->insertarUsuario();
 		</tr>
 	</table>
 	<?php  ?>
+
+	<select name="" id="">
+		<optgroup label="MOVILES">
+			<option value="0416">0416</option>
+			<option value="0426">0426</option>
+			<option value="0414">0414</option>
+			<option value="0412">0412</option>
+		</optgroup>
+		<optgroup label="FIJOS">
+			<optgroup label="Amazonas">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Anzoátegui">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Apure">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Aragua">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Barinas">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Bolívar">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Carabobo">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Cojedes">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Delta Amacuro">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Distrito Capital">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Falcón">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Guárico">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Lara">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Mérida">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Miranda">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Monagas">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Nueva Esparta">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Portuguesa">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			></optgroup>
+			<optgroup label="Sucre">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Táchira">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Trujillo">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="La Guaira">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Yaracuy">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+			<optgroup label="Zulia">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</optgroup>
+		</optgroup>
+		
+	</select>
 </body>
 </html>
