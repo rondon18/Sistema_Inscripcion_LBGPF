@@ -5,7 +5,6 @@ class DatosLaborales {
 	private $idDatos_laborales;
 	private $Empleo;
 	private $Lugar_Trabajo;
-	private $Teléfono_Trabajo;
 	private $Remuneración;
 	private $Tipo_Remuneración;
 	private $idRepresentantes;
@@ -17,7 +16,6 @@ class DatosLaborales {
 
 		$Empleo = $this->getEmpleo();
 		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Teléfono_Trabajo = $this->getTeléfono_Trabajo();
 		$Remuneración = $this->getRemuneración();
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$idRepresentantes = $this->getidRepresentantes();
@@ -30,11 +28,10 @@ class DatosLaborales {
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
 		
-			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Teléfono_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`) VALUES (
+			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`) VALUES (
 				NULL,
 				'$Empleo',
 				'$Lugar_Trabajo',
-				'$Teléfono_Trabajo',
 				'$Remuneración',
 				'$Tipo_Remuneración',
 				'$idRepresentantes'

@@ -56,7 +56,7 @@ CREATE TABLE `contactos_auxiliares` (
   KEY `fk_personas_auxiliares` (`Cédula_Persona`),
   CONSTRAINT `fk_personas_auxiliares` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_representantes_auxiliares` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +65,7 @@ CREATE TABLE `contactos_auxiliares` (
 
 LOCK TABLES `contactos_auxiliares` WRITE;
 /*!40000 ALTER TABLE `contactos_auxiliares` DISABLE KEYS */;
+INSERT INTO `contactos_auxiliares` VALUES (7,'Vecino','27919567',3);
 /*!40000 ALTER TABLE `contactos_auxiliares` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +85,7 @@ CREATE TABLE `datos-economicos` (
   PRIMARY KEY (`idDatos-economicos`,`idRepresentantes`),
   KEY `fk_datos-economicos_representantes1_idx` (`idRepresentantes`),
   CONSTRAINT `fk_datos-economicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +115,7 @@ CREATE TABLE `datos-laborales` (
   PRIMARY KEY (`idDatos-laborales`,`idRepresentantes`),
   KEY `fk_datos-laborales_representantes1_idx` (`idRepresentantes`),
   CONSTRAINT `fk_datos-laborales_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `datos-laborales` (
 
 LOCK TABLES `datos-laborales` WRITE;
 /*!40000 ALTER TABLE `datos-laborales` DISABLE KEYS */;
-INSERT INTO `datos-laborales` VALUES (4,'','','','',3);
+INSERT INTO `datos-laborales` VALUES (4,'Desempleado','','','',3);
 /*!40000 ALTER TABLE `datos-laborales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,7 +393,7 @@ CREATE TABLE `personas` (
   `Estado_Civil` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idPersonas`),
   UNIQUE KEY `Cédula_UNIQUE` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +402,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','27919566','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S');
+INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','27919566','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(10,'Elber','Alonso','Rondón','Hernández','27919567','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(12,'María','Gabriela','Ballestero','Rodríguez','28636530','2002-05-09','Caja Seca','M','mgbrodriguez952@gmail.com','Caja Seca','S');
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,7 +420,7 @@ CREATE TABLE `representantes` (
   PRIMARY KEY (`idRepresentantes`),
   KEY `fk_personas_representantes` (`Cedula_Persona`),
   CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -448,7 +449,7 @@ CREATE TABLE `teléfonos` (
   PRIMARY KEY (`idTeléfonos`),
   KEY `fk_personas_teléfonos` (`Cedula_Persona`),
   CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +458,7 @@ CREATE TABLE `teléfonos` (
 
 LOCK TABLES `teléfonos` WRITE;
 /*!40000 ALTER TABLE `teléfonos` DISABLE KEYS */;
-INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','27919566'),(20,'0412','87654321','Secundario','27919566'),(21,'0274','12349587','Auxiliar','27919566'),(22,'0274','12349587','Trabajo','27919566');
+INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','27919566'),(20,'0412','87654321','Secundario','27919566'),(21,'0274','12349587','Auxiliar','27919566'),(22,'0274','12349587','Trabajo','27919566'),(23,'0416','12345678','Principal','27919567'),(24,'0412','87654321','Secundario','27919567'),(25,'0274','12349587','Auxiliar','27919567');
 /*!40000 ALTER TABLE `teléfonos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +477,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`idUsuarios`),
   KEY `Cedula_Persona_idx` (`Cedula_Persona`),
   CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,7 +486,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'12345',2,'27919566');
+INSERT INTO `usuarios` VALUES (2,'12345',2,'27919566'),(4,'12345',1,'28636530');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -498,4 +499,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-14 13:39:22
+-- Dump completed on 2022-04-16 19:18:06

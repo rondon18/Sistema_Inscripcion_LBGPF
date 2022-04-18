@@ -26,33 +26,35 @@ $usuario = new Usuarios();
 
 
 #Persona
-$persona->setPrimer_Nombre('Elber');
-$persona->setSegundo_Nombre('Alonso');
-$persona->setPrimer_Apellido('Rondón');
-$persona->setSegundo_Apellido('Hernández');
-$persona->setCédula('27919566');
-$persona->setFecha_Nacimiento('2001-05-05');
-$persona->setLugar_Nacimiento('Mérida');
+$persona->setPrimer_Nombre('María');
+$persona->setSegundo_Nombre('Gabriela');
+$persona->setPrimer_Apellido('Ballestero');
+$persona->setSegundo_Apellido('Rodríguez');
+$persona->setCédula('28636530');
+$persona->setFecha_Nacimiento('2002-05-09');
+$persona->setLugar_Nacimiento('Caja Seca');
 $persona->setGénero('M');
-$persona->setCorreo_Electrónico('earh_2001@outlook.com');
-$persona->setDirección('La Pedregosa Alta');
+$persona->setCorreo_Electrónico('mgbrodriguez952@gmail.com');
+$persona->setDirección('Caja Seca');
 $persona->setEstado_Civil('S');
 
 $persona->insertarPersona();
-
+/*
 #Telefono principal
-$telefonoP->setPrefijo('0416');
-$telefonoP->setNúmero_Telefónico('12345678');
+$telefonoP->setPrefijo('0426');
+$telefonoP->setNúmero_Telefónico('8994472');
 $telefonoP->setRelación_Teléfono('Principal');
-$telefonoP->setCedula_Persona('27919566');
+$telefonoP->setCedula_Persona('28636530');
+
+
 
 $telefonoP->insertarTelefono($telefonoP->getCedula_Persona());
 
 #Telefono secundario
 $telefonoS->setPrefijo('0412');
-$telefonoS->setNúmero_Telefónico('87654321');
+$telefonoS->setNúmero_Telefónico('0763135');
 $telefonoS->setRelación_Teléfono('Secundario');
-$telefonoS->setCedula_Persona('27919566');
+$telefonoS->setCedula_Persona('28636530');
 
 $telefonoS->insertarTelefono($telefonoS->getCedula_Persona());
 
@@ -60,7 +62,7 @@ $telefonoS->insertarTelefono($telefonoS->getCedula_Persona());
 $telefonoA->setPrefijo('0274');
 $telefonoA->setNúmero_Telefónico('12349587');
 $telefonoA->setRelación_Teléfono('Auxiliar');
-$telefonoA->setCedula_Persona('27919566');
+$telefonoA->setCedula_Persona('28636530');
 
 $telefonoA->insertarTelefono($telefonoA->getCedula_Persona());
 
@@ -68,13 +70,13 @@ $telefonoA->insertarTelefono($telefonoA->getCedula_Persona());
 $telefonoT->setPrefijo('0274');
 $telefonoT->setNúmero_Telefónico('12349587');
 $telefonoT->setRelación_Teléfono('Trabajo');
-$telefonoT->setCedula_Persona('27919566');
+$telefonoT->setCedula_Persona('28636530');
 
 $telefonoT->insertarTelefono($telefonoA->getCedula_Persona());
 
 #Representante
-$representante->setVinculo("Padre");
-$representante->setCedula_Persona("27919566");
+$representante->setVinculo("Madre");
+$representante->setCedula_Persona("28636530");
 
 $representante->insertarRepresentante();
 
@@ -142,10 +144,10 @@ $contacto_aux->setRelación('Vecino');
 $contacto_aux->setCédula_Persona($persona_auxiliar->getCédula());
 
 $contacto_aux->insertarContactoAuxiliar($representante->getidRepresentantes());
-
+*/
 $usuario->setClave("12345");
 $usuario->setPrivilegios("1");
-$usuario->setCedula_Persona("27919566");
+$usuario->setCedula_Persona("28636530");
 
 $usuario->insertarUsuario();
 
@@ -208,8 +210,13 @@ $usuario->insertarUsuario();
 		</tr>
 	</table>
 	<?php  ?>
+<?php 
 
-	<select name="" id="">
+
+function prefijo($id) {
+	echo '
+	<select name="" id="'.$id.'">
+		<option disabled selected>Seleccione un prefijo</option>
 		<optgroup label="MOVILES">
 			<option value="0416">0416</option>
 			<option value="0426">0426</option>
@@ -410,7 +417,34 @@ $usuario->insertarUsuario();
 				<option value=""></option>
 			</optgroup>
 		</optgroup>
-		
 	</select>
+	';
+}
+
+prefijo("select1");
+prefijo("select2");
+prefijo("select3");
+
+
+ ?>
+
+ <input type="text" name="" list="prefijos">
+ <input type="text" name="" list="prefijos">
+ <input type="text" name="" list="prefijos">
+ <datalist id="prefijos">
+ 	<option value="1">
+ 	<option value="2">
+ 	<option value="3">
+ 	<option value="4">
+ 	<option value="5">
+ 	<option value="6">
+ 	<option value="7">
+ 	<option value="8">
+ 	<option value="9">
+ 	<option value="10">
+ 	<option value="11">
+ 	<option value="12">
+ </datalist>
+	
 </body>
 </html>

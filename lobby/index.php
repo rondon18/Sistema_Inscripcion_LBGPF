@@ -42,7 +42,7 @@ if (!$_SESSION['login']) {
 					<a class="btn btn-sm dark-primary-color text-white" href="../controladores/logout.php">Cerrar sesión</a>
 				</li>
 				
-				<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
+				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 				
 				<li class="list-group-item">
 					<p>Mantenimiento</p>

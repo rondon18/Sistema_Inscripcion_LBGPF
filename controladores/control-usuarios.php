@@ -18,6 +18,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		
 	if ($orden == "Insertar") {
 
+		foreach ($_POST as $value) {
+			print_r($value);
+		}
+
 		#asigna los valores del objeto antes de ejecutar los metodos de inserción
 
 		$representante->setNombres($_POST['Primer_Nombre_Representante']." ".$_POST['Segundo_Nombre_Representante']);
@@ -84,7 +88,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			session_destroy();
 		}
 
-		header('Location: ../index.php');
+		#header('Location: ../index.php');
 	}
 
 	elseif ($orden == "Editar") {

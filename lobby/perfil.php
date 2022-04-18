@@ -22,6 +22,7 @@ if (!$_SESSION['login']) {
 		<div class="card-header">
 			<h4>Perfil de usuario</h4>
 		</div>
+		<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
@@ -33,6 +34,13 @@ if (!$_SESSION['login']) {
 				<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos adicionales</a>
 			</li>
 		</ul>
+		<?php else: ?>
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<p class="nav-link active">Datos personales</p>
+			</li>
+		</ul>
+		<?php endif ?>
 		<div class="card-body">
 			<section id="seccion1">
 				<ul class="list-group list-group-flush">
@@ -61,23 +69,24 @@ if (!$_SESSION['login']) {
 						<span><?php echo $_SESSION['persona']['Género']?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Correo electronico:</b>
+						<b>Correo electrónico:</b>
 						<span><?php echo $_SESSION['persona']['Correo_Electrónico']?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Dirección de residencia:</b>
 						<span><?php echo $_SESSION['persona']['Dirección']?></span>
 					</li>
+					<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 					<li class="list-group-item">
-						<b>Telefonos principal:</b>
+						<b>Teléfono principal:</b>
 						<span><?php echo $_SESSION['telefonos'][0]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'];?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Telefonos secundario:</b>
+						<b>Teléfono secundario:</b>
 						<span><?php echo $_SESSION['telefonos'][1]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'];?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Telefono auxiliar:</b>
+						<b>Teléfono auxiliar:</b>
 						<span><?php echo $_SESSION['telefonos'][2]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'] ?></span>
 					</li>
 					<li class="list-group-item">
@@ -85,9 +94,18 @@ if (!$_SESSION['login']) {
 						<span><?php if ($_SESSION['usuario']['Privilegios'] == "1") {echo "Administrador";}elseif ($_SESSION['usuario']['Privilegios'] == "2") {echo "Representante";}else {echo "error";};?></span>
 					</li>
 				</ul>
+				<?php endif ?>
 			</section>
+			<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 			<section id="seccion2" style="display: none;">
-				Datos economicos
+				Datos académicos
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<b>Grado de instrucción:</b>
+						<span><?php echo $_SESSION['representante']['Grado_Academico']?></span>
+					</li>
+				</ul>
+				Datos económicos
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<b>Banco:</b>
@@ -114,7 +132,7 @@ if (!$_SESSION['login']) {
 					</li>
 					<li class="list-group-item">
 						<b>Remuneración:</b>
-						<span><?php if(!empty($_SESSION['datos_laborales']['Remuneración'])){ echo $_SESSION['datos_laborales']['Remuneración'];} else { echo "N/A";}?></span>
+						<span><?php if(!empty($_SESSION['datos_laborales']['Remuneración'])){ echo $_SESSION['datos_laborales']['Remuneración']." Salarios minimos";} else { echo "N/A";}?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Tipo de remuneración:</b>
@@ -134,7 +152,7 @@ if (!$_SESSION['login']) {
 						<span><?php echo $_SESSION['ContactoAuxiliar'][0]['Primer_Apellido']." ".$_SESSION['ContactoAuxiliar'][0]['Segundo_Apellido']?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Cedula de identidad:</b>
+						<b>Cédula de identidad:</b>
 						<span><?php echo $_SESSION['ContactoAuxiliar'][0]['Cédula']?></span>
 					</li>
 					<li class="list-group-item">
@@ -146,24 +164,28 @@ if (!$_SESSION['login']) {
 						<span><?php echo $_SESSION['ContactoAuxiliar'][0]['Correo_Electrónico']?></span>
 					</li>
 					<li class="list-group-item">
+						<b>Relación con la persona:</b>
+						<span><?php echo $_SESSION['ContactoAuxiliar'][1]['Relación']?></span>
+					</li>
+					<li class="list-group-item">
 						<b>Dirección de residencia:</b>
 						<span><?php echo $_SESSION['ContactoAuxiliar'][0]['Dirección']?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Telefonos principal:</b>
+						<b>Teléfono principal:</b>
 						<span><?php echo $_SESSION['ContactoAuxiliar'][2][0]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico'];?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Telefonos secundario:</b>
+						<b>Teléfono secundario:</b>
 						<span><?php echo $_SESSION['ContactoAuxiliar'][2][1]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][1]['Número_Telefónico'];?></span>
 					</li>
 					<li class="list-group-item">
-						<b>Telefono auxiliar:</b>
+						<b>Teléfono auxiliar:</b>
 						<span><?php echo $_SESSION['ContactoAuxiliar'][2][2]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico'] ?></span>
 					</li>
 				</ul>
 			</section>
-			
+			<?php endif ?>
 		</div>
 		<div class="card-footer">
 			<a class="btn btn-primary" href="index.php">Volver</a>
