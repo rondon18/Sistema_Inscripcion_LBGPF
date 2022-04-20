@@ -19,6 +19,7 @@ class Telefonos {
 		$Prefijo = $this->getPrefijo();
 		$Número_Telefónico = $this->getNúmero_Telefónico();
 		$Relación_Teléfono = $this->getRelación_Teléfono();
+		$Cedula_Persona = $this->getCedula_Persona();
 
 		$sql = "SELECT * FROM `teléfonos` WHERE `Relación_Teléfono` = '$Relación_Teléfono' AND `Cedula_Persona` = '$Cedula_Persona'";
 

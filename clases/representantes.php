@@ -45,6 +45,9 @@ class Representantes {
 	public function editarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 
+		$Vinculo = $this->getVinculo();
+		$Grado_Academico = $this->getGrado_Academico();
+
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 

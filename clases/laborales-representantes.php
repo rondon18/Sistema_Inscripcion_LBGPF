@@ -70,9 +70,6 @@ class DatosLaborales {
 	public function setLugar_Trabajo($Lugar_Trabajo) {
 		$this->Lugar_Trabajo = $Lugar_Trabajo;
 	}
-	public function setTeléfono_Trabajo($Teléfono_Trabajo) {
-		$this->Teléfono_Trabajo = $Teléfono_Trabajo;
-	}
 	public function setRemuneración($Remuneración) {
 		$this->Remuneración = $Remuneración;
 	}
@@ -91,9 +88,6 @@ class DatosLaborales {
 	}
 	public function getLugar_Trabajo() {
 		return $this->Lugar_Trabajo;
-	}
-	public function getTeléfono_Trabajo() {
-		return $this->Teléfono_Trabajo;
 	}
 	public function getRemuneración() {
 		return $this->Remuneración;

@@ -6,6 +6,18 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
+
+function calculaedad($fechanacimiento){
+  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+  $ano_diferencia  = date("Y") - $ano;
+  $mes_diferencia = date("m") - $mes;
+  $dia_diferencia   = date("d") - $dia;
+  if ($dia_diferencia < 0 || $mes_diferencia < 0)
+    $ano_diferencia--;
+  return $ano_diferencia;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -78,8 +90,12 @@ if (!$_SESSION['login']) {
 					</li>
 					<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 					<li class="list-group-item">
+						<b>Vinculo con los representados:</b>
+						<span><?php echo $_SESSION['representante']['Vinculo']?></span>
+					</li>
+					<li class="list-group-item">
 						<b>Teléfono principal:</b>
-						<span><?php echo $_SESSION['telefonos'][0]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'];?></span>
+						<span><?php echo $_SESSION['telefonos'][0]['Prefijo']."-".$_SESSION['telefonos'][0]['Número_Telefónico'];?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono secundario:</b>
@@ -87,7 +103,7 @@ if (!$_SESSION['login']) {
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono auxiliar:</b>
-						<span><?php echo $_SESSION['telefonos'][2]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'] ?></span>
+						<span><?php echo $_SESSION['telefonos'][2]['Prefijo']."-".$_SESSION['telefonos'][2]['Número_Telefónico'] ?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Privilegios:</b>

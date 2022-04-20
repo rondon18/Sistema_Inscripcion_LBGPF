@@ -7,6 +7,7 @@ require('clases/contactos-auxiliares.php');
 require('clases/usuario.php');
 require('clases/laborales-representantes.php');
 require('clases/economicos-representantes.php');
+require('clases/vivienda-representantes.php');
 require('controladores/conexion.php');
 
 $persona = new Personas();
@@ -21,6 +22,7 @@ $representante = new Representantes();
 $contacto_aux = new ContactoAuxiliar();
 $datos_laborales = new DatosLaborales();
 $datos_economicos = new DatosEconomicos();
+$datos_vivienda = new DatosVivienda();
 
 $usuario = new Usuarios();
 
@@ -39,7 +41,7 @@ $persona->setDirección('Caja Seca');
 $persona->setEstado_Civil('S');
 
 $persona->insertarPersona();
-/*
+
 #Telefono principal
 $telefonoP->setPrefijo('0426');
 $telefonoP->setNúmero_Telefónico('8994472');
@@ -98,6 +100,14 @@ $datos_economicos->setCta_Bancaria('1351351351384135');
 $datos_economicos->setidRepresentantes($representante->getidRepresentantes());
 $datos_economicos->insertarDatosEconomicos();
 
+#Datos vivienda
+$datos_vivienda->setCondiciones_Vivienda('Buena');
+$datos_vivienda->setTipo_Vivienda('Casa');
+$datos_vivienda->setTenencia_Vivienda('Propia');
+$datos_vivienda->setidRepresentante('3');
+
+$datos_vivienda->insertarDatosVivienda();
+
 #Contacto Auxiliar
 #Persona
 $persona_auxiliar->setPrimer_Nombre('Elber');
@@ -144,7 +154,8 @@ $contacto_aux->setRelación('Vecino');
 $contacto_aux->setCédula_Persona($persona_auxiliar->getCédula());
 
 $contacto_aux->insertarContactoAuxiliar($representante->getidRepresentantes());
-*/
+
+#Usuario
 $usuario->setClave("12345");
 $usuario->setPrivilegios("1");
 $usuario->setCedula_Persona("28636530");
@@ -156,7 +167,35 @@ $usuario->insertarUsuario();
 
 
 
+	#Se crea
+	$_SESSION['registro'] = [];
 
+
+	#cuando entra al lobby
+	$_SESSION['registro'][] = "visita menú principal";
+	
+	#cuando entra al lobby
+	$_SESSION['registro'][] = "visita su perfil";
+	
+	#cuando entra al lobby
+	$_SESSION['registro'][] = "edita su perfil";
+
+	#.............
+
+	#Cierra sesión
+	$_SESSION['registro'][] = "Cierra sesión";
+
+	$registro_usuario = "Usuario: Elber. Acciones realizadas: ";
+	foreach ($_SESSION['registro'] as $registro) {
+		if ($registro == "Cierra sesión") {
+			$registro_usuario .= $registro.".";
+		}
+		else {
+			$registro_usuario .= $registro.", ";
+		}
+		
+	}
+	echo $registro_usuario;
 
 
 
