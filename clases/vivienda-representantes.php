@@ -41,6 +41,38 @@ class DatosVivienda {
 		}
 		desconectarBD($conexion);
 	}
+	public function editarDatosVivienda() {
+		$conexion = conectarBD();
+
+		$Condiciones_Vivienda = $this->getCondiciones_Vivienda();
+		$Tipo_Vivienda = $this->getTipo_Vivienda();
+		$Tenencia_Vivienda = $this->getTenencia_Vivienda();
+		$idRepresentante = $this->getidRepresentante();
+		
+		$sql = "UPDATE `datos-vivienda` SET 
+			`Condiciones_Vivienda`='$Condiciones_Vivienda',
+			`Tipo_Vivienda`='$Tipo_Vivienda',
+			`Tenencia_Vivienda`='$Tenencia_Vivienda'
+			WHERE `idRepresentante`='$idRepresentante'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+
+		desconectarBD($conexion);
+	}
+	public function consultarDatosvivienda($idRepresentante) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `datos-vivienda` WHERE `idRepresentante` = '$idRepresentante'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		
+		$consulta_Datosvivienda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$Datosvivienda = $consulta_Datosvivienda->fetch_assoc();
+		
+		desconectarBD($conexion);
+		
+		return $Datosvivienda;
+	}
 
 	public function setidDatos_vivienda($idDatos_vivienda) {
 		$this->idDatos_vivienda = $idDatos_vivienda;

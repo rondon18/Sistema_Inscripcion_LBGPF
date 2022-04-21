@@ -37,9 +37,9 @@ $usuario = new Usuarios();
 
 
 if (isset($_POST['orden']) and $_POST['orden']) {
-	
+
 	$orden = $_POST['orden'];
-		
+
 	if ($orden == "Insertar") {
 
 		/*
@@ -110,12 +110,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$representante->insertarRepresentante();
 
 		#Datos laborales
-		$datos_laborales->setEmpleo($_POST['Empleo_R']);
-		$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-		$datos_laborales->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
-		$datos_laborales->setRemuneración($_POST['Remuneración']);
-		$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
-		$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
 
 		#Si se marca que si, se asignan los datos
 		if ($_POST['Representante_Trabaja'] == "No") {
@@ -124,12 +118,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 			$datos_laborales->setEmpleo($_POST['Empleo_R']);
 			$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-			$datos_laborales->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
 			$datos_laborales->setRemuneración($_POST['Remuneración']);
 			$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
-			$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
+
 		}
 
+		$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
 		$datos_laborales->insertarDatosLaborales();
 
 		#Datos economicos
@@ -381,30 +375,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		#Usuario
 		$usuario->setClave($_POST['Contraseña']);
-		$usuario->setPrivilegios(2);#Se establese como 2 para todos los representantes
 		$usuario->setCedula_Persona($persona->getCédula());
 
 		$usuario->editarUsuario();
 
-		
-		
-		
-		
-		$datos_laborales->setEmpleo
-		$datos_laborales->setLugar_Trabajo
-		$datos_laborales->setTeléfono_Trabajo
-		$datos_laborales->setRemuneración
-		$datos_laborales->setTipo_Remuneración
-		$datos_laborales->setidRepresentantes
-		$datos_laborales->setEmpleo
-		$datos_laborales->setLugar_Trabajo
-		$datos_laborales->setTeléfono_Trabajo
-		$datos_laborales->setRemuneración
-		$datos_laborales->setTipo_Remuneración
-		$datos_laborales->setidRepresentantes
+		/*
 
+			Cambia las variables de sesion para no redireccionar al usuario a iniciar sesión
 
-
+		*/
 
 
 		$_SESSION['persona']['Primer_Nombre'] = $persona->getPrimer_Nombre();
@@ -422,55 +401,51 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		if ($_SESSION['usuario']['Privilegios'] == 2) {
 			$_SESSION['telefonos'][0]['Prefijo'] = $telefonoP->getPrefijo();
 			$_SESSION['telefonos'][0]['Número_Telefónico'] = $telefonoP->getNúmero_Telefónico();
-		
+
 			$_SESSION['telefonos'][1]['Prefijo'] = $telefonoS->getPrefijo();
 			$_SESSION['telefonos'][1]['Número_Telefónico'] = $telefonoS->getNúmero_Telefónico();
-		
+
 			$_SESSION['telefonos'][2]['Prefijo'] = $telefonoA->setPrefijo();
 			$_SESSION['telefonos'][2]['Número_Telefónico'] = $telefonoA->getNúmero_Telefónico();
-			
+
 			$_SESSION['telefonos'][3]['Prefijo'] = $telefonoT->setPrefijo();
 			$_SESSION['telefonos'][3]['Número_Telefónico'] = $telefonoT->getNúmero_Telefónico();
 
 			$_SESSION['representante']['Vinculo'] = $representante->getVinculo();
 			$_SESSION['representante']['Grado_Academico'] = $representante->getGrado_Academico();
 
-			$_SESSION['datos_economicos']['Banco']
-			$_SESSION['datos_economicos']['Tipo_Cuenta']
-			$_SESSION['datos_economicos']['Cta_Bancaria']
+			$_SESSION['datos_economicos']['Banco'] = $datos_economicos->getBanco();
+			$_SESSION['datos_economicos']['Tipo_Cuenta'] = $datos_economicos->getTipo_Cuenta();
+			$_SESSION['datos_economicos']['Cta_Bancaria'] = $datos_economicos->getCta_Bancaria();
 
-			$_SESSION['datos_laborales']['Empleo']
-			$_SESSION['datos_laborales']['Lugar_Trabajo']
-			$_SESSION['datos_laborales']['Remuneración']
-			$_SESSION['datos_laborales']['Tipo_Remuneración']
+			$_SESSION['datos_laborales']['Empleo'] = $datos_laborales->getEmpleo();
+			$_SESSION['datos_laborales']['Lugar_Trabajo'] = $datos_laborales->getLugar_Trabajo();
+			$_SESSION['datos_laborales']['Remuneración'] = $datos_laborales->getRemuneración();
+			$_SESSION['datos_laborales']['Tipo_Remuneración'] = $datos_laborales->getTipo_Remuneración();
 
-			$_SESSION['ContactoAuxiliar'][0]['Primer_Nombre']
-			$_SESSION['ContactoAuxiliar'][0]['Segundo_Nombre']
-			$_SESSION['ContactoAuxiliar'][0]['Primer_Apellido']
-			$_SESSION['ContactoAuxiliar'][0]['Segundo_Apellido']
-		
-			$_SESSION['ContactoAuxiliar'][0]['Cédula']
-			$_SESSION['ContactoAuxiliar'][0]['Género']
-			$_SESSION['ContactoAuxiliar'][0]['Correo_Electrónico']
-			$_SESSION['ContactoAuxiliar'][1]['Relación']
-			$_SESSION['ContactoAuxiliar'][0]['Dirección']
+			$_SESSION['datos_vivienda']['Condiciones_Vivienda'] = $datos_vivienda->getCondiciones_Vivienda();
+			$_SESSION['datos_vivienda']['Tipo_Vivienda'] = $datos_vivienda->getTipo_Vivienda();
+			$_SESSION['datos_vivienda']['Tenencia_Vivienda'] = $datos_vivienda->getTenencia_Vivienda();
 
-			$_SESSION['ContactoAuxiliar'][2][0]['Prefijo']
-			$_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico']
+			$_SESSION['ContactoAuxiliar'][0]['Primer_Nombre'] = $persona_auxiliar->getPrimer_Nombre();
+			$_SESSION['ContactoAuxiliar'][0]['Segundo_Nombre'] = $persona_auxiliar->getSegundo_Nombre();
+			$_SESSION['ContactoAuxiliar'][0]['Primer_Apellido'] = $persona_auxiliar->getPrimer_Apellido();
+			$_SESSION['ContactoAuxiliar'][0]['Segundo_Apellido'] = $persona_auxiliar->getSegundo_Apellido();
+			$_SESSION['ContactoAuxiliar'][0]['Cédula'] = $persona_auxiliar->getCédula();
+			$_SESSION['ContactoAuxiliar'][0]['Género'] = $persona_auxiliar->getGénero();
+			$_SESSION['ContactoAuxiliar'][0]['Correo_Electrónico'] = $persona_auxiliar->getCorreo_Electrónico();
+			$_SESSION['ContactoAuxiliar'][0]['Dirección'] = $persona_auxiliar->getDirección();
+			$_SESSION['ContactoAuxiliar'][0]['Estado_Civil'] = $persona_auxiliar->getEstado_Civil();
 
-			$_SESSION['ContactoAuxiliar'][2][1]['Prefijo']
-			$_SESSION['ContactoAuxiliar'][2][1]['Número_Telefónico']
-			$_SESSION['ContactoAuxiliar'][2][2]['Prefijo']
-			$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico']
+			$_SESSION['ContactoAuxiliar'][1]['Relación'] = $contacto_aux->getRelación();
 
-
+			$_SESSION['ContactoAuxiliar'][2][0]['Prefijo'] = $telefonoP_Aux->getPrefijo();
+			$_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico'] = $telefonoP_Aux->getNúmero_Telefónico();
+			$_SESSION['ContactoAuxiliar'][2][1]['Prefijo'] = $telefonoS_Aux->getPrefijo();
+			$_SESSION['ContactoAuxiliar'][2][1]['Número_Telefónico'] = $telefonoS_Aux->getNúmero_Telefónico();
+			$_SESSION['ContactoAuxiliar'][2][2]['Prefijo'] = $telefonoA_Aux->getPrefijo();
+			$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico'] = $telefonoA_Aux->getNúmero_Telefónico();
 		}
-
-		
-
-
-
-
 
 		#asigna los valores del objeto antes de ejecutar los metodos de inserción
 
@@ -515,14 +490,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$representante->setRemuneración($_POST['Remuneración']);
 			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 		}
-		
+
 		if (!empty($_POST['Contraseña']) and $_POST['Contraseña'] == $_POST['RepetirContraseña']) {
 			$representante->setClave($_POST['Contraseña']);
 		}
 		else {
 			$representante->setClave($_SESSION['usuario'][1]);
 		}
-		
+
 		$representante->setPrivilegios(1);
 		#Esto establese la autoridad 1: usuario, 2: administrador
 
@@ -558,7 +533,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['persona'][9] = $representante->getTeléfono_Principal();
 			$_SESSION['persona'][10] = $representante->getTeléfono_Auxiliar();
 			$_SESSION['persona'][11] = $representante->getEstado_Civil();
-			
+
 			$_SESSION['representante'][1] = $representante->getVinculo();
 			$_SESSION['representante'][2] = $representante->getBanco();
 			$_SESSION['representante'][3] = $representante->getTipo_Cuenta();
@@ -588,7 +563,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$representante->consultarRepresentante($representante->getidRepresentantes());
 	}
 	elseif ($orden == "Eliminar") {
-		
+
 		if (isset($_POST['DarseDeBaja'])) {
 			$crud->eliminarUsuario($_SESSION['usuario'][0]);
 			header('Location: ../lobby/logout.php');

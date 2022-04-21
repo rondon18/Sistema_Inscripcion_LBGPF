@@ -6,6 +6,7 @@ require("../clases/representantes.php");
 require("../clases/contactos-auxiliares.php");
 require("../clases/economicos-representantes.php");
 require("../clases/laborales-representantes.php");
+require("../clases/vivienda-representantes.php");
 require("../clases/telefonos.php");
 
 if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $clave = $_POST['clave'] != "")) {
@@ -24,14 +25,11 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 		$resultado_persona = $consulta_persona->fetch_assoc();
 
 		//consulto si la contraseña es correcta
-		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$cedula' AND `Clave` =$clave";
-		#$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$cedula'";
-
+		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$cedula' AND `Clave` = '$clave'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado_usuario = $registro_existe->fetch_assoc();
 
-		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado_usuario == NULL) {
 			header("Location: ../index.php");
 		}
@@ -81,6 +79,14 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 
 				$_SESSION['datos_laborales'] = $datos_laborales;
 
+				#Datos de vivienda
+				$vivienda 	= new DatosVivienda();
+
+				$datos_vivienda = $vivienda->consultarDatosVivienda($_SESSION['representante']['idRepresentantes']);
+				
+
+				$_SESSION['datos_vivienda'] = $datos_vivienda;
+
 				#Contacto auxiliar
 
 
@@ -106,42 +112,6 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 
 			header('Location: ../lobby/index.php');	
 		}
-		/*
-		if ($consulta_usuario = $conexion->query($sql)) {
-			
-			$resultado_usuario = $consulta_usuario->fetch_assoc();
-
-			if ($resultado_usuario and $clave == $resultado_usuario['Clave']) {
-				
-
-				$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$cedula'";
-				$consulta_representante = $conexion->query($sql);
-				$resultado_representante = $consulta_representante->fetch_assoc();
-				
-				$sql = "SELECT * FROM `contactos_auxiliares` WHERE `idRepresentante` = '$resultado_representante[0]'";
-				$consulta_auxiliar = $conexion->query($sql);
-				$resultado_auxiliar = $consulta_auxiliar->fetch_assoc();
-
-				session_start();
-				
-				$_SESSION['persona'] = $resultado_persona;
-				$_SESSION['representante'] = $resultado_representante;
-				$_SESSION['auxiliar'] = $resultado_auxiliar;
-				
-				
-				$_SESSION['login'] = "Sessión valida";
-
-				header('Location: ../lobby/index.php');
-			}
-			else {
-				header("Location: ../index.php");
-			}	
-		}
-		else {
-			header("Location: ../index.php");
-			var_dump($consulta_usuario);
-		}
-		*/	
 	}
 	else {
 		header("Location: ../index.php");

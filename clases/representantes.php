@@ -37,9 +37,6 @@ class Representantes {
 		elseif ($resultado != NULL) {
 			$this->setidRepresentantes($resultado['idRepresentantes']);
 		}
-
-		
-
 		desconectarBD($conexion);
 	}
 	public function editarRepresentante($Cedula_Persona) {
@@ -48,6 +45,10 @@ class Representantes {
 		$Vinculo = $this->getVinculo();
 		$Grado_Academico = $this->getGrado_Academico();
 
+		$sql = "UPDATE `representantes` SET 
+			`Vinculo`='$Vinculo',
+			`Grado_Academico`='$Grado_Academico',
+		 WHERE `Cedula_Persona`='$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
@@ -56,7 +57,7 @@ class Representantes {
 	public function eliminarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "DELETE FROM `representantes` WHERE `idRepresentantes` = '$id'";
+		$sql = "DELETE FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
@@ -73,7 +74,6 @@ class Representantes {
 		
 		return $representantes;
 	}
-
 	public function mostrarRepresentantes() {
 		#Muestra todas las representantes en la tabla
 		$conexion = conectarBD();
@@ -93,6 +93,7 @@ class Representantes {
 
 		return $Lista_Representantes;
 	}
+	
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;
 	}

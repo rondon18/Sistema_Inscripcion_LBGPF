@@ -4,9 +4,9 @@
 
 function conectarBD() {
 	
-	$servidor = "localhost";
-	$usuario	= "root";	
-	$bd       = "bd_proyecto";
+	$servidor 	= "localhost";
+	$usuario		= "root";	
+	$bd       	= "bd_proyecto";
 	$clave		= "";
 	
 	//instancia la clase mysqli y se conecta a la base de datos

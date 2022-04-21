@@ -22,8 +22,7 @@ require("conexion.php");
 
 	   	$conexion = conectarBD();
 
-
-		   $sql="SELECT * FROM `usuarios` WHERE idUsuarios='$usuarioBitacora' AND `Clave`='$cl'";
+		  $sql="SELECT * FROM `usuarios` WHERE idUsuarios='$usuarioBitacora' AND `Clave`='$cl'";
 
 	       $stmt=$conexion->ejecutar($sql);
 		   $numeroDeRegistros=$conexion->contarRegistros($stmt);

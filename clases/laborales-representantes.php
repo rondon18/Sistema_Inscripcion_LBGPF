@@ -47,19 +47,38 @@ class DatosLaborales {
 		desconectarBD($conexion);
 	}
 
+	public function editarDatosLaborales() {
+		$conexion = conectarBD();
+		
+		$Empleo = $this->getEmpleo();
+		$Lugar_Trabajo = $this->getLugar_Trabajo();
+		$Remuneración = $this->getRemuneración();
+		$Tipo_Remuneración = $this->getTipo_Remuneración();
+		
+		$sql = "UPDATE `datos-laborales` SET 
+		`Empleo`='$Empleo',
+		`Lugar_Trabajo`='$Lugar_Trabajo',
+		`Remuneración`='$Remuneración',
+		`Tipo_Remuneración`='$Tipo_Remuneración'
+		WHERE `idRepresentantes`='[value-6]'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+
+		desconectarBD($conexion);
+	}
+
 	public function consultarDatosLaborales($idRepresentantes) {
 		$conexion = conectarBD();
 
 		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
 
-		$consulta_laborales = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_laborales = $conexion->query($sql) or die("error: ".$conexion->error);
 		$datos_laborales = $consulta_laborales->fetch_assoc();
 		
 		desconectarBD($conexion);
 
 		return $datos_laborales;
 	}
-
 	
 	public function setidDatos_laborales($idDatos_laborales) {
 		$this->idDatos_laborales = $idDatos_laborales;
@@ -99,7 +118,4 @@ class DatosLaborales {
 		return $this->idRepresentantes;
 	}
 }
-
-
-
- ?>
+?>

@@ -127,7 +127,7 @@
 			$sql = "SELECT * FROM `personas`";
 
 			$consulta_personas = $conexion->query($sql) or die("error: ".$conexion->error);			
-			$personas = $consulta_personas->fetch_assoc();
+			$personas = $consulta_personas->fetch_all(MYSQLI_ASSOC);
 
 			#Hace un arreglo de arreglos para contener los campos de la persona
 			$Lista_Personas = [];

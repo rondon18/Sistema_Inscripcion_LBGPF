@@ -9,14 +9,13 @@ if (!$_SESSION['login']) {
 
 function calculaedad($fechanacimiento){
   list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-  $ano_diferencia  = date("Y") - $ano;
+  $año_diferencia  = date("Y") - $ano;
   $mes_diferencia = date("m") - $mes;
   $dia_diferencia   = date("d") - $dia;
   if ($dia_diferencia < 0 || $mes_diferencia < 0)
-    $ano_diferencia--;
-  return $ano_diferencia;
+    $año_diferencia--;
+  return $año_diferencia;
 }
-
 
 ?>
 
@@ -121,6 +120,21 @@ function calculaedad($fechanacimiento){
 						<span><?php echo $_SESSION['representante']['Grado_Academico']?></span>
 					</li>
 				</ul>
+				Datos de vivienda
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<b>Condiciones de vivienda:</b>
+						<span><?php echo $_SESSION['datos_vivienda']['Condiciones_Vivienda']?></span>
+					</li>
+					<li class="list-group-item">
+						<b>Tipo de vivienda:</b>
+						<span><?php echo $_SESSION['datos_vivienda']['Tipo_Vivienda']?></span>
+					</li>
+					<li class="list-group-item">
+						<b>Tenencia de vivienda:</b>
+						<span><?php echo $_SESSION['datos_vivienda']['Tenencia_Vivienda']?></span>
+					</li>
+				</ul>
 				Datos económicos
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
@@ -157,7 +171,7 @@ function calculaedad($fechanacimiento){
 				</ul>
 			</section>
 			<section id="seccion3" style="display: none;">
-				<h4>Contacto auxiliar</h4>
+				Contacto auxiliar
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<b>Nombres:</b>
