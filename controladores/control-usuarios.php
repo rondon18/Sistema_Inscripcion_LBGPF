@@ -210,8 +210,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 
 	elseif ($orden == "Editar") {
-
-
 		/*
 
 			Datos del representante
@@ -233,140 +231,142 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->editarPersona();
 
-		#Telefono principal
-		$telefonoP->setPrefijo($_POST['Prefijo_Principal_R']);
-		$telefonoP->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
-		$telefonoP->setRelación_Teléfono('Principal');
-		$telefonoP->setCedula_Persona($persona->getCédula());
+		if ($_SESSION[$_SESSION['usuario']['Privilegios'] == 2]) {
+			#Telefono principal
+			$telefonoP->setPrefijo($_POST['Prefijo_Principal_R']);
+			$telefonoP->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
+			$telefonoP->setRelación_Teléfono('Principal');
+			$telefonoP->setCedula_Persona($persona->getCédula());
 
-		$telefonoP->editarTelefono();
+			$telefonoP->editarTelefono();
 
-		#Telefono secundario
-		$telefonoS->setPrefijo($_POST['Prefijo_Secundario_R']);
-		$telefonoS->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
-		$telefonoS->setRelación_Teléfono('Secundario');
-		$telefonoS->setCedula_Persona($persona->getCédula());
+			#Telefono secundario
+			$telefonoS->setPrefijo($_POST['Prefijo_Secundario_R']);
+			$telefonoS->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
+			$telefonoS->setRelación_Teléfono('Secundario');
+			$telefonoS->setCedula_Persona($persona->getCédula());
 
-		$telefonoS->editarTelefono();
+			$telefonoS->editarTelefono();
 
-		#Telefono auxiliar
-		$telefonoA->setPrefijo($_POST['Prefijo_Auxiliar_R']);
-		$telefonoA->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);
-		$telefonoA->setRelación_Teléfono('Auxiliar');
-		$telefonoA->setCedula_Persona($persona->getCédula());
+			#Telefono auxiliar
+			$telefonoA->setPrefijo($_POST['Prefijo_Auxiliar_R']);
+			$telefonoA->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);
+			$telefonoA->setRelación_Teléfono('Auxiliar');
+			$telefonoA->setCedula_Persona($persona->getCédula());
 
-		$telefonoA->editarTelefono();
+			$telefonoA->editarTelefono();
 
-		#Telefono del trabajo
-		$telefonoT->setPrefijo($_POST['Prefijo_Trabajo_R']);
-		$telefonoT->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
-		$telefonoT->setRelación_Teléfono('Trabajo');
-		$telefonoT->setCedula_Persona($persona->getCédula());
+			#Telefono del trabajo
+			$telefonoT->setPrefijo($_POST['Prefijo_Trabajo_R']);
+			$telefonoT->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
+			$telefonoT->setRelación_Teléfono('Trabajo');
+			$telefonoT->setCedula_Persona($persona->getCédula());
 
-		$telefonoT->editarTelefono();
+			$telefonoT->editarTelefono();
 
-		#Representante
-		#Verifica si el vinculo es distinto a madre o padre
-		if ($_POST['Vinculo_R'] == "Otro") {
-			$representante->setVinculo($_POST['Otro_Vinculo']);
-		}
-		else {
-			$representante->setVinculo($_POST['Vinculo_R']);
-		}
+			#Representante
+			#Verifica si el vinculo es distinto a madre o padre
+			if ($_POST['Vinculo_R'] == "Otro") {
+				$representante->setVinculo($_POST['Otro_Vinculo']);
+			}
+			else {
+				$representante->setVinculo($_POST['Vinculo_R']);
+			}
 
-		$representante->setCedula_Persona($persona->getCédula());
-		$representante->setGrado_Academico($_POST['Grado_Instrucción']);
+			$representante->setCedula_Persona($persona->getCédula());
+			$representante->setGrado_Academico($_POST['Grado_Instrucción']);
 
-		$representante->editarRepresentante();
+			$representante->editarRepresentante();
 
-		#Datos laborales
-		$datos_laborales->setEmpleo($_POST['Empleo_R']);
-		$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-		$datos_laborales->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
-		$datos_laborales->setRemuneración($_POST['Remuneración']);
-		$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
-		$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
-
-		#Si se marca que si, se asignan los datos
-		if ($_POST['Representante_Trabaja'] == "No") {
-			$datos_laborales->setEmpleo("Desempleado");
-		}
-		else {
+			#Datos laborales
 			$datos_laborales->setEmpleo($_POST['Empleo_R']);
 			$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
 			$datos_laborales->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
 			$datos_laborales->setRemuneración($_POST['Remuneración']);
 			$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
 			$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
+
+			#Si se marca que si, se asignan los datos
+			if ($_POST['Representante_Trabaja'] == "No") {
+				$datos_laborales->setEmpleo("Desempleado");
+			}
+			else {
+				$datos_laborales->setEmpleo($_POST['Empleo_R']);
+				$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
+				$datos_laborales->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
+				$datos_laborales->setRemuneración($_POST['Remuneración']);
+				$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
+				$datos_laborales->setidRepresentantes($representante->getidRepresentantes());
+			}
+
+			$datos_laborales->editarDatosLaborales();
+
+			#Datos economicos
+			$datos_economicos->setBanco($_POST['Banco']);
+			$datos_economicos->setTipo_Cuenta($_POST['Tipo_Cuenta']);
+			$datos_economicos->setCta_Bancaria($_POST['Nro_Cuenta']);
+			$datos_economicos->setidRepresentantes($representante->getidRepresentantes());
+			$datos_economicos->editarDatosEconomicos();
+
+			#Datos vivienda
+			$datos_vivienda->setCondiciones_Vivienda($_POST['Condicion_vivienda']);
+			$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
+			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda']);
+			$datos_vivienda->setidRepresentante($representante->getidRepresentantes());
+
+			$datos_vivienda->editarDatosVivienda();
+
+			/*
+
+				Datos del contacto auxiliar
+
+			*/
+
+			#Persona
+			$persona_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
+			$persona_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
+			$persona_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
+			$persona_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
+			$persona_auxiliar->setCédula($_POST['Cédula_Aux']);
+			$persona_auxiliar->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
+			$persona_auxiliar->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
+			$persona_auxiliar->setGénero($_POST['Genero_Aux']);
+			$persona_auxiliar->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
+			$persona_auxiliar->setDirección($_POST['Direccion_Aux']);
+			$persona_auxiliar->setEstado_Civil($_POST['Estado_Civil_Aux']);
+
+			$persona_auxiliar->editarPersona();
+
+			#Telefono principal
+			$telefonoP_Aux->setPrefijo($_POST['Prefijo_Principal_Aux']);
+			$telefonoP_Aux->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
+			$telefonoP_Aux->setRelación_Teléfono($_POST['Principal']);
+			$telefonoP_Aux->setCedula_Persona($persona_auxiliar->getCédula());
+
+			$telefonoP_Aux->editarTelefono();
+
+			#Telefono secundario
+			$telefonoS_Aux->setPrefijo($_POST['Prefijo_Secundario_Aux']);
+			$telefonoS_Aux->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
+			$telefonoS_Aux->setRelación_Teléfono($_POST['Secundario']);
+			$telefonoS_Aux->setCedula_Persona($persona_auxiliar->getCédula());
+
+			$telefonoS->editarTelefono();
+
+			#Telefono auxiliar
+			$telefonoA_Aux->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
+			$telefonoA_Aux->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
+			$telefonoA_Aux->setRelación_Teléfono($_POST['Auxiliar']);
+			$telefonoA_Aux->setCedula_Persona($persona_auxiliar->getCédula());
+
+			$telefonoA_Aux->editarTelefono();
+
+			#datos auxiliar
+			$contacto_aux->setRelación($_POST['Relación_Auxiliar']);
+			$contacto_aux->setCédula_Persona($persona_auxiliar->getCédula());
+
+			$contacto_aux->editarContactoAuxiliar($representante->getidRepresentantes());
 		}
-
-		$datos_laborales->editarDatosLaborales();
-
-		#Datos economicos
-		$datos_economicos->setBanco($_POST['Banco']);
-		$datos_economicos->setTipo_Cuenta($_POST['Tipo_Cuenta']);
-		$datos_economicos->setCta_Bancaria($_POST['Nro_Cuenta']);
-		$datos_economicos->setidRepresentantes($representante->getidRepresentantes());
-		$datos_economicos->editarDatosEconomicos();
-
-		#Datos vivienda
-		$datos_vivienda->setCondiciones_Vivienda($_POST['Condicion_vivienda']);
-		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
-		$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda']);
-		$datos_vivienda->setidRepresentante($representante->getidRepresentantes());
-
-		$datos_vivienda->editarDatosVivienda();
-
-		/*
-
-			Datos del contacto auxiliar
-
-		*/
-
-		#Persona
-		$persona_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
-		$persona_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
-		$persona_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
-		$persona_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
-		$persona_auxiliar->setCédula($_POST['Cédula_Aux']);
-		$persona_auxiliar->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
-		$persona_auxiliar->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
-		$persona_auxiliar->setGénero($_POST['Genero_Aux']);
-		$persona_auxiliar->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
-		$persona_auxiliar->setDirección($_POST['Direccion_Aux']);
-		$persona_auxiliar->setEstado_Civil($_POST['Estado_Civil_Aux']);
-
-		$persona_auxiliar->editarPersona();
-
-		#Telefono principal
-		$telefonoP_Aux->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		$telefonoP_Aux->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		$telefonoP_Aux->setRelación_Teléfono($_POST['Principal']);
-		$telefonoP_Aux->setCedula_Persona($persona_auxiliar->getCédula());
-
-		$telefonoP_Aux->editarTelefono();
-
-		#Telefono secundario
-		$telefonoS_Aux->setPrefijo($_POST['Prefijo_Secundario_Aux']);
-		$telefonoS_Aux->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
-		$telefonoS_Aux->setRelación_Teléfono($_POST['Secundario']);
-		$telefonoS_Aux->setCedula_Persona($persona_auxiliar->getCédula());
-
-		$telefonoS->editarTelefono();
-
-		#Telefono auxiliar
-		$telefonoA_Aux->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
-		$telefonoA_Aux->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
-		$telefonoA_Aux->setRelación_Teléfono($_POST['Auxiliar']);
-		$telefonoA_Aux->setCedula_Persona($persona_auxiliar->getCédula());
-
-		$telefonoA_Aux->editarTelefono();
-
-		#datos auxiliar
-		$contacto_aux->setRelación($_POST['Relación_Auxiliar']);
-		$contacto_aux->setCédula_Persona($persona_auxiliar->getCédula());
-
-		$contacto_aux->editarContactoAuxiliar($representante->getidRepresentantes());
 
 		/*
 
@@ -445,125 +445,16 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['ContactoAuxiliar'][2][2]['Prefijo'] = $telefonoA_Aux->getPrefijo();
 			$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico'] = $telefonoA_Aux->getNúmero_Telefónico();
 		}
-
-		#asigna los valores del objeto antes de ejecutar los metodos de inserción
-
-		$representante->setNombres($_POST['Primer_Nombre_R']." ".$_POST['Segundo_Nombre_R']);
-		$representante->setApellidos($_POST['Primer_Apellido_R']." ".$_POST['Segundo_Apellido_R']);
-		$representante->setCedula($_POST['Cédula_R']);
-		$representante->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
-		$representante->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
-		$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-		$representante->setGenero($_POST['Genero_R']);
-		$representante->setCorreo($_POST['Correo_electrónico']);
-		$representante->setDireccion($_POST['Direccion_R']);
-		$representante->setTeléfono_Principal($_POST['Teléfono_Principal_R']);
-		$representante->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_R']);
-		$representante->setEstado_Civil($_POST['Estado_Civil_R']);
-
-		if ($_POST['Vinculo_R'] == "Otro") {
-			$representante->setVinculo($_POST['Otro_Vinculo']);
-		}
-		else {
-			$representante->setVinculo($_POST['Vinculo_R']);
-		}
-
-		$representante->setBanco($_POST['Banco']);
-		$representante->setTipo_Cuenta($_POST['Tipo_Cuenta']);
-		$representante->setNro_Cuenta($_POST['Nro_Cuenta']);
-
-
-		$representante->setGrado_Inst($_POST['Grado_Instrucción']);
-
-		if ($_POST['Representante_Trabaja'] == "No") {
-			$representante->setEmpleo("Desempleado");
-			$representante->setLugar_Trabajo(NULL);
-			$representante->setTeléfono_Trabajo(NULL);
-			$representante->setRemuneración(NULL);
-			$representante->setTipo_Remuneración(NULL);
-		}
-		else {
-			$representante->setEmpleo($_POST['Cargo_R']);
-			$representante->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-			$representante->setTeléfono_Trabajo($_POST['Telefono_Trabajo_R']);
-			$representante->setRemuneración($_POST['Remuneración']);
-			$representante->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
-		}
-
-		if (!empty($_POST['Contraseña']) and $_POST['Contraseña'] == $_POST['RepetirContraseña']) {
-			$representante->setClave($_POST['Contraseña']);
-		}
-		else {
-			$representante->setClave($_SESSION['usuario'][1]);
-		}
-
-		$representante->setPrivilegios(1);
-		#Esto establese la autoridad 1: usuario, 2: administrador
-
-		$auxiliar->setRelación($_POST['Relación_Auxiliar']);
-		$auxiliar->setNombre_Aux($_POST['Nombre_Contacto_Emergencia']);
-		$auxiliar->setTfl_P_Contacto_Aux($_POST['Tfl_P_Contacto_Aux']);
-		$auxiliar->setTfl_S_Contacto_Aux($_POST['Tfl_S_Contacto_Aux']);
-
-		#Permite que un usuario edite su propio perfil o que un administrador edite otro usuario
-		if (isset($_POST['editar-perfil'])) {
-			$representante->editarPersona($_SESSION['persona'][0]);
-			$representante->editarRepresentante($_SESSION['representante'][0]);
-			$representante->editarUsuario($_SESSION['usuario'][0]);
-		}
-		else {
-			$representante->editarPersona($representante->getId());
-			$representante->editarRepresentante($representante->getidRepresentantes());
-			$representante->editarUsuario($representante->getId_usuario());
-		}
-
-		#Hace los cambios en la tabla contacto auxiliar
-		$auxiliar->editarContactoAuxiliar($representante->getidRepresentantes());
-
-		if (isset($_POST['editar-perfil'])) {
-			$_SESSION['persona'][1] = $representante->getNombres();
-			$_SESSION['persona'][2] = $representante->getApellidos();
-			$_SESSION['persona'][3] = $representante->getCedula();
-			$_SESSION['persona'][4] = $representante->getFecha_Nacimiento();
-			$_SESSION['persona'][5] = $representante->getLugar_Nacimiento();
-			$_SESSION['persona'][6] = $representante->getGenero();
-			$_SESSION['persona'][7] = $representante->getCorreo();
-			$_SESSION['persona'][8] = $representante->getDireccion();
-			$_SESSION['persona'][9] = $representante->getTeléfono_Principal();
-			$_SESSION['persona'][10] = $representante->getTeléfono_Auxiliar();
-			$_SESSION['persona'][11] = $representante->getEstado_Civil();
-
-			$_SESSION['representante'][1] = $representante->getVinculo();
-			$_SESSION['representante'][2] = $representante->getBanco();
-			$_SESSION['representante'][3] = $representante->getTipo_Cuenta();
-			$_SESSION['representante'][4] = $representante->getNro_Cuenta();
-			$_SESSION['representante'][5] = $representante->getGrado_Inst();
-			$_SESSION['representante'][6] = $representante->getEmpleo();
-			$_SESSION['representante'][7] = $representante->getLugar_Trabajo();
-			$_SESSION['representante'][8] = $representante->getTeléfono_Trabajo();
-			$_SESSION['representante'][9] = $representante->getRemuneración();
-			$_SESSION['representante'][10] = $representante->getTipo_Remuneración();
-
-			#Relación, Nombre, telefonos principal y auxiliar.
-			$_SESSION['auxiliar'][2] = $auxiliar->getRelación();
-			$_SESSION['auxiliar'][3] = $auxiliar->getNombre_Aux();
-			$_SESSION['auxiliar'][4] = $auxiliar->getTfl_P_Contacto_Aux();
-			$_SESSION['auxiliar'][5] = $auxiliar->getTfl_S_Contacto_Aux();
-
-			#Clave
-			$_SESSION['usuario'][1] = $representante->getClave();
-
-		}
 		header('Location: ../lobby/index.php');
 	}
 	elseif ($orden == "Eliminar") {
 
 		if (isset($_POST['DarseDeBaja'])) {
-			$crud->eliminarUsuario($_SESSION['usuario'][0]);
+			$usuario->eliminarUsuario($_SESSION['usuario'][0]);
 			header('Location: ../lobby/logout.php');
 		}
 		elseif (isset($_POST['id'])) {
-			$crud->eliminarUsuario($_POST['id']);
+			$usuario->eliminarUsuario($_POST['id']);
 			header('Location: ../lobby/index.php');
 		}
 	}

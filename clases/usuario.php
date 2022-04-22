@@ -60,6 +60,18 @@ class Usuarios {
 
 		desconectarBD($conexion);
 	}
+	public function consultarUsuario($Cedula_Persona) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
+
+		$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$usuario = $consulta_usuario->fetch_assoc();
+
+		desconectarBD($conexion);
+
+		return $usuario;
+	}
 
 	public function setidUsuarios($idUsuarios) {
 		$this->idUsuarios = $idUsuarios;

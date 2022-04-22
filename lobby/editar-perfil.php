@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -24,24 +24,27 @@ if (!$_SESSION['login']) {
 			<h4>Editar perfi</h4>
 		</div>
 		<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
-			</li>
-			<li class="nav-item">
-				<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de representante</a>
-			</li>
-			<li class="nav-item">
-				<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos socio-economicos</a>
-			</li>
-			<li class="nav-item">
-				<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Contacto auxiliar</a>
-			</li>
-			<li class="nav-item">
-				<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Datos de usuario</a>
-			</li>
-			
-		</ul>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
+				</li>
+				<li class="nav-item">
+					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de representante</a>
+				</li>
+				</li>
+				<li class="nav-item">
+					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de vivienda</a>
+				</li>
+				<li class="nav-item">
+					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y economicos</a>
+				</li>
+				<li class="nav-item">
+					<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Contacto auxiliar</a>
+				</li>
+				<li class="nav-item">
+					<a id="link6" class="nav-link" href="#" onclick="seccion('seccion6')">Datos de usuario</a>
+				</li>
+			</ul>
 		<?php else: ?>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
@@ -55,17 +58,17 @@ if (!$_SESSION['login']) {
 				<h5>Datos personales.</h5>
 
 				<div>
-					
+
 					<!--Nombres del representante-->
 					<div>
 						<label>Nombres:</label>
-					
+
 						<div class="input-group">
 							<input class="form-control mb-2" type="text" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $_SESSION['persona']['Primer_Nombre'];?>">
 							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $_SESSION['persona']['Segundo_Nombre'];?>">
 						</div>
 					</div>
-					
+
 					<!--Apellidos del representante-->
 					<div>
 						<label>Apellidos:</label>
@@ -82,14 +85,14 @@ if (!$_SESSION['login']) {
 					</div>
 
 					<!--Genero del representante-->
-					<div>	
+					<div>
 						<p>Genero:</p>
-						
+
 						<div class="form-check">
 							<label>F </label>
 							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "F"){ echo "checked";} ?>>
 						</div>
-						
+
 						<div class="form-check">
 							<label>M </label>
 							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "M"){ echo "checked";} ?>>
@@ -124,29 +127,29 @@ if (!$_SESSION['login']) {
 							<option value="Viudo(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Viudo(a)"){ echo "selected";} ?>>Viudo(a)</option>
 						</select>
 					</div>
-					
+
 					<!--Dirección de residencia-->
 					<div>
 						<label>Dirección de residencia:</label>
 						<textarea class="form-control mb-2" name="Direccion_Representante" required><?php echo $_SESSION['persona']['Dirección'];?></textarea>
 					</div>
-					
-					
-				</div>	
+
+
+				</div>
 			</section>
 			<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 			<section id="seccion2" style="display: none;">
 				<!--Teléfonos del representante-->
 				<div>
 					<label>Teléfonos:</label>
-					
+
 					<datalist id="prefijos">
 						<!--Moviles-->
 						<option value="0416">
 						<option value="0426">
 						<option value="0414">
 						<option value="0412">
-						
+
 						<!--Fijos-->
 						<option value="0212">
 						<option value="0234">
@@ -205,30 +208,30 @@ if (!$_SESSION['login']) {
 						<option value="0294">
 						<option value="0295">
 					</datalist>
-					
+
 					<!--Teléfono principal-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
 						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][0]['Prefijo'] ?>">
-						
+
 						<!--Número-->
 						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['telefonos'][0]['Número_Telefónico'];?>">
 					</div>
-					
+
 					<!--Teléfono secundario-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
 						<input class="form-control col-1" type="text" name="Prefijo_Secundario_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][1]['Prefijo'] ?>">
-						
+
 						<!--Número-->
 						<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['telefonos'][1]['Número_Telefónico'];?>">
 					</div>
-					
+
 					<!--Teléfono auxiliar-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
 						<input class="form-control col-1" type="text" name="Prefijo_Auxiliar_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][2]['Prefijo'] ?>">
-						
+
 						<!--Número-->
 						<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['telefonos'][2]['Número_Telefónico'];?>">
 					</div>
@@ -236,7 +239,7 @@ if (!$_SESSION['login']) {
 				<!--Vinculo del representante con el estudiante-->
 				<div>
 					<label>Vinculo con el estudiante:</label>
-				
+
 					<div class="input-group">
 						<select class="form-select" name="Vinculo_Representante" required>
 							<option value="Madre" <?php if(isset($_SESSION['representante']['Vinculo']) and $_SESSION['representante']['Vinculo'] == "Madre"){ echo "selected";} ?>>Madre</option>
@@ -324,8 +327,8 @@ if (!$_SESSION['login']) {
 				</div>
 				<!--Datos Económicos-->
 				<h5>Datos económicos.</h5>
-				
-				
+
+
 				<!--Trabaja el representante-->
 				<div>
 					<span>Trabaja:</span>
@@ -344,7 +347,7 @@ if (!$_SESSION['login']) {
 					<div class="input-group mb-2">
 						<!--Prefijo-->
 						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][3]['Prefijo'] ?>">
-						
+
 						<!--Número-->
 						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['telefonos'][3]['Número_Telefónico'];?>">
 					</div>
@@ -367,7 +370,7 @@ if (!$_SESSION['login']) {
 					<label class="form-label">Remuneración:</label>
 					<div class="input-group">
 						<input class="form-control text-end" type="number" name="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo (int)$_SESSION['representante'][9];?>">
-						
+
 						<span class="input-group-text">Salarios mínimos</span>
 
 						<!--Tipo de remuneracion del representante-->
@@ -386,13 +389,13 @@ if (!$_SESSION['login']) {
 
 				<p>Nombres:</p>
 				<div class="input-group">
-					
+
 					<input class="form-control mb-2" type="text" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['ContactoAuxiliar'][0]['Primer_Nombre'];?>">
 					<input class="form-control mb-2" type="text" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['ContactoAuxiliar'][0]['Segundo_Nombre'];?>">
 				</div>
 				<p>Apellidos:</p>
 				<div class="input-group">
-					
+
 					<input class="form-control mb-2" type="text" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['ContactoAuxiliar'][0]['Primer_Apellido'];?>">
 					<input class="form-control mb-2" type="text" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['ContactoAuxiliar'][0]['Segundo_Apellido'];?>">
 				</div>
@@ -405,7 +408,7 @@ if (!$_SESSION['login']) {
 					<div class="input-group mb-2">
 						<!--Prefijo-->
 						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['ContactoAuxiliar'][2][0]['Prefijo']?>">
-						
+
 						<!--Número-->
 						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico']?>">
 					</div>
@@ -426,7 +429,7 @@ if (!$_SESSION['login']) {
 
 				<div>
 					<span>Contraseña:</span>
-					<?php //Si las claves no coinciden, muestra un recuadro con un mensaje de error 
+					<?php //Si las claves no coinciden, muestra un recuadro con un mensaje de error
 					if (isset($check)) { echo '<font color="red">Las contraseñas no coinciden</font>';}?>
 					<div class="input-group">
 						<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña">
@@ -435,7 +438,7 @@ if (!$_SESSION['login']) {
 					<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y número</small>
 				</div>
 			</section>
-			
+
 			<?php endif ?>
 		</div>
 		<div class="card-footer">
@@ -444,7 +447,7 @@ if (!$_SESSION['login']) {
 			<input type="hidden" name="editar-perfil" value="editar-perfil">
 			<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 		</div>
-		
+
 	</form>
 <script>
 	function seccion(seccion) {
@@ -455,7 +458,7 @@ if (!$_SESSION['login']) {
 		var c = document.getElementById("seccion3");
 		var d = document.getElementById("seccion4");
 		var e = document.getElementById("seccion5");
-		
+
 		//botones en la navegación
 		var link_a = document.getElementById("link1");
 		var link_b = document.getElementById("link2");

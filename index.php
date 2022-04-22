@@ -27,12 +27,19 @@
 							<td class="text-end">Clave:</td>
 							<td><input class="block" type="password" name="clave" required></td>
 						</tr>
+						</tr>
+						<tr>
+							<td colspan="2">
+									<small><a class="" href="recuperar-clave.php">No recuerdo mi contraseña</a></small
+							</td>
+						</tr>
 					</table>
 				</p>
 			</div>
 			<div class="card-footer">
 				<input class="btn btn-primary" type="submit" name="Ingresar" value="Ingresar">
-				<a class="btn btn-primary" href="registrarse/paso-1.php">Registrarse</a>
+				<a class="btn btn-primary" href="registrarse/registrarse.php">Registrarse</a>
+
 			</div>
 		</div>
 	</form>

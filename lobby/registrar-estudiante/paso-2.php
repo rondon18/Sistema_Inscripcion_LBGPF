@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -7,12 +7,12 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-if (isset($_POST['Es_el_representante']) and !empty($_POST['Es_el_representante'])) {
-	if ($_POST['Es_el_representante'] == "Si") {
-		$Es_el_representante = True;
-	}
-	elseif ($_POST['Es_el_representante'] == "No") {
+if (isset($_POST['Vinculo']) and !empty($_POST['Vinculo'])) {
+	if ($_POST['Vinculo'] == "Madre" OR "Padre") {
 		$Es_el_representante = False;
+	}
+	elseif ($_POST['Vinculo'] == "Representante") {
+		$Es_el_representante = True;
 	}
 }
 else {
@@ -49,7 +49,7 @@ else {
 						<div class="input-group">
 							<input class="form-control mb-2" type="text" name="Primer_Nombre_Estudiante" placeholder="Primer nombre"  required>
 							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Estudiante" placeholder="Segundo nombre"  required>
-						</div>	
+						</div>
 					</div>
 					<div>
 						<label class="form-label">Apellidos:</label>
@@ -57,7 +57,7 @@ else {
 							<input class="form-control mb-2" type="text" name="Primer_Apellido_Estudiante" placeholder="Primer apellido">
 							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Estudiante" placeholder="Segundo apellido">
 						</div>
-					</div>					
+					</div>
 					<div>
 						<label class="form-label">Cédula:</label>
 						<input class="form-control mb-2" type="text" name="Cedula_Estudiante" placeholder="Cédula de identidad">
@@ -69,7 +69,7 @@ else {
 							<label class="form-label">F</label>
 						</div>
 						<div class="form-check">
-							
+
 							<input  class="form-check-input" class="form-check-input" type="radio" name="Genero_Estudiante" value="M" required>
 							<label class="form-label">M</label>
 						</div>
@@ -150,7 +150,7 @@ else {
 
 				<!--Datos sociales-->
 				<h5>Datos sociales.</h5>
-				
+
 				<div>
 					<!--Dirección de residencia-->
 					<div>
@@ -193,7 +193,7 @@ else {
 							</div>
 							<span class="form-label">Código:</span>
 							<input class="form-control mb-2" type="text" name="Codigo_Carnet_Patria" >
-							
+
 							<span class="form-label">Serial:</span>
 							<input class="form-control mb-2" type="text" name="Serial_Carnet_Patria" >
 						</div>
@@ -213,7 +213,7 @@ else {
 						</div>
 					</div>
 				</div>
-				
+
 				<!--Datos de salud-->
 				<h5>Datos de salud.</h5>
 
@@ -256,7 +256,7 @@ else {
 					<div>
 						<span class="form-label">Tipo de sangre:</span>
 						<div class="input-group">
-							
+
 							<select class="form-select" name="Grupo_Sanguineo" >
 								<option value="O">O</option>
 								<option value="A">A</option>
@@ -430,7 +430,7 @@ else {
 								<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
 								<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
 							</div>
-							
+
 						</div>
 
 						<!--Apellidos del familiar-->
@@ -444,7 +444,7 @@ else {
 
 						<!--Genero del familiar-->
 						<div>
-									
+
 							<p>Genero:</p>
 							<div class="form-check">
 								<label class="form-label">F </label>
@@ -501,7 +501,7 @@ else {
 								<input class="form-control" type="tel" name="Teléfono_Principal_Familiar" placeholder="Movil">
 								<input class="form-control" type="tel" name="Teléfono_Auxiliar_Familiar" placeholder="Fijo">
 							</div>
-							
+
 						</div>
 
 						<!--Estado civil del familiar-->
@@ -514,13 +514,13 @@ else {
 								<option value="Viudo(a)">Viudo(a)</option>
 							</select>
 						</div>
-						
+
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
 							<textarea class="form-control mb-2"name="Direccion_Familiar"></textarea>
 						</div>
-						
+
 						<!--Se encuentra el familiar en el país-->
 						<div>
 							<span class="form-label">Se encuentra en el país:</span>
@@ -539,7 +539,7 @@ else {
 					</div>
 				</div>
 				<?php else: ?>
-				
+
 				<input type="hidden" name="Es_el_representante" value="Es_el_representante">
 				<input type="hidden" name="Vinculo_Familiar" value="<?php echo $_POST['Vinculo_Familiar'] ;?>">
 				<?php endif ?>

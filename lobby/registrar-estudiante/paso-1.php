@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -14,7 +14,7 @@ if (!$_SESSION['login']) {
 <head>
 	<meta charset="utf-8">
 	<title>Registrar nuevo estudiante</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 </head>
 <body>
@@ -30,39 +30,30 @@ if (!$_SESSION['login']) {
 				<h5>Datos personales.</h5>
 
 				<div>
-					<span class="form-label">¿Es usted la madre o el padre del estudiante?:</span>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="Es_el_representante" value="Si" required>
-						<span>Si</span>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="Es_el_representante" value="No" required>
-						<span>No </span>
-					</div>
-				</div>
-				
-				<div>
-					<span>Vinculo con el estudiante:</span>
-
+					<span class="form-label">¿Es usted la madre, el padre o el representante del estudiante?:</span>
 					<div class="form-check">
 						<label>Madre </label>
-						<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required>
+						<input class="form-check-input" type="radio" name="Vinculo" value="Madre" required>
 					</div>
 					<div class="form-check">
 						<label>Padre </label>
-						<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required>
-					</div>							
+						<input class="form-check-input" type="radio" name="Vinculo" value="Padre" required>
+					</div>
+					</div>
+					<div class="form-check">
+						<label>Representante </label>
+						<input class="form-check-input" type="radio" name="Vinculo" value="Representante" required>
+					</div>
 				</div>
-				
+
 			</div>
-		
+
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<a class="btn btn-primary" href="../index.php">Volver al menú</a>
 				<button class="btn btn-primary" type="submit">Ingresar</button>
 			</div>
-		
+
 		</form>
 
 </body>
