@@ -1,9 +1,8 @@
-<?php 
+<?php
 
 require_once("personas.php");
 
 class Usuarios {
-	
 	private $idUsuarios;
 	private $Clave;
 	private $Privilegios;
@@ -40,19 +39,16 @@ class Usuarios {
 		}
 		desconectarBD($conexion);
 	}
-
 	public function editarUsuario($Cedula_Persona) {
-
 		$conexion = conectarBD();
-		
+
 		$Clave = $this->getClave();
 
-		$sql = "UPDATE `usuarios` SET 
+		$sql = "UPDATE `usuarios` SET
 			`Clave`='$Clave'
 		WHERE `Cedula_Persona`='$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		
 		desconectarBD($conexion);
 	}
 	public function eliminarUsuario($Cedula_Persona) {
@@ -61,14 +57,8 @@ class Usuarios {
 		$sql = "DELETE FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		
+
 		desconectarBD($conexion);
-	}
-	public function consultarUsuario() {
-
-	}
-	public function mostrarUsuarios() {
-
 	}
 
 	public function setidUsuarios($idUsuarios) {

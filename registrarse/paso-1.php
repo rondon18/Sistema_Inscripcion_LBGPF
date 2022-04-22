@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
-	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;">
+	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" novalidate>
 		<div class="card">
 			<!--Datos del representante-->
 			<div class="card-header py-3">
