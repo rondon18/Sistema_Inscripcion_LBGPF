@@ -1,7 +1,7 @@
-<?php  
+<?php
 
 class Telefonos {
-	
+
 	private $idTeléfonos;
 	private $Prefijo;
 	private $Número_Telefónico;
@@ -9,8 +9,8 @@ class Telefonos {
 	private $Cedula_Persona;
 
 	public function __construct(){}
-	
-	public function insertarTelefono($Cedula_Persona) {
+
+	public function insertarTelefono() {
 		$conexion = conectarBD();
 
 		$Prefijo = $this->getPrefijo();
@@ -45,12 +45,12 @@ class Telefonos {
 		$Prefijo = $this->getPrefijo();
 		$Número_Telefónico = $this->getNúmero_Telefónico();
 		$Relación_Teléfono = $this->getRelación_Teléfono();
-		
-		$sql = "UPDATE `teléfonos` SET 
+
+		$sql = "UPDATE `teléfonos` SET
 				`Prefijo`='$Prefijo',
 				`Número_Telefónico`='$Número_Telefónico',
 			WHERE `Cedula_Persona`='$Cedula_Persona' AND `Relación_Teléfono`='$Relación_Teléfono'";
-		
+
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
@@ -82,8 +82,8 @@ class Telefonos {
 	}
 	public function setCedula_Persona($Cedula_Persona) {
 		$this->Cedula_Persona = $Cedula_Persona;
-	}	
-	
+	}
+
 	public function getidTeléfonos() {
 		return $this->idTeléfonos;
 	}

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (!$_SESSION['login']) {
@@ -17,6 +17,15 @@ function calculaedad($fechanacimiento){
   return $año_diferencia;
 }
 
+function telefonos($prefijo,$telefono) {
+	if (!empty($prefijo) and !empty($telefono)) {
+		echo $prefijo."-".$telefono;
+	}
+	else {
+		echo "N/A";
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +34,7 @@ function calculaedad($fechanacimiento){
 	<meta charset="utf-8">
 	<title>Perfil del usuario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
@@ -94,15 +103,15 @@ function calculaedad($fechanacimiento){
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono principal:</b>
-						<span><?php echo $_SESSION['telefonos'][0]['Prefijo']."-".$_SESSION['telefonos'][0]['Número_Telefónico'];?></span>
+						<span><?php telefonos($_SESSION['telefonos'][0]['Prefijo'],$_SESSION['telefonos'][0]['Número_Telefónico']);?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono secundario:</b>
-						<span><?php echo $_SESSION['telefonos'][1]['Prefijo']."-".$_SESSION['telefonos'][1]['Número_Telefónico'];?></span>
+						<span><?php telefonos($_SESSION['telefonos'][1]['Prefijo'],$_SESSION['telefonos'][1]['Número_Telefónico']);?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono auxiliar:</b>
-						<span><?php echo $_SESSION['telefonos'][2]['Prefijo']."-".$_SESSION['telefonos'][2]['Número_Telefónico'] ?></span>
+						<span><?php telefonos($_SESSION['telefonos'][2]['Prefijo'],$_SESSION['telefonos'][2]['Número_Telefónico']);?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Privilegios:</b>
@@ -150,7 +159,7 @@ function calculaedad($fechanacimiento){
 						<span><?php echo $_SESSION['datos_economicos']['Cta_Bancaria']?></span>
 					</li>
 				</ul>
-				Datos laborales	
+				Datos laborales
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<b>Empleo actual:</b>
@@ -167,6 +176,11 @@ function calculaedad($fechanacimiento){
 					<li class="list-group-item">
 						<b>Tipo de remuneración:</b>
 						<span><?php if(!empty($_SESSION['datos_laborales']['Tipo_Remuneración'])){ echo $_SESSION['datos_laborales']['Tipo_Remuneración'];} else { echo "N/A";}?></span>
+					</li>
+					</li>
+					<li class="list-group-item">
+						<b>Teléfono del trabajo:</b>
+						<span><?php if(isset($_SESSION['telefonos'][3])){telefonos($_SESSION['telefonos'][3]['Prefijo'],$_SESSION['telefonos'][3]['Número_Telefónico']);}?></span>
 					</li>
 				</ul>
 			</section>
@@ -203,15 +217,23 @@ function calculaedad($fechanacimiento){
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono principal:</b>
-						<span><?php echo $_SESSION['ContactoAuxiliar'][2][0]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico'];?></span>
+						<?php /*foreach ($_SESSION['ContactoAuxiliar'][2] as $value): ?>
+							<p><?php var_dump($value); ?></p>
+						<?php endforeach;*/ ?>
+
+
+
+
+
+						<span><?php if(isset($_SESSION['ContactoAuxiliar'][2][0])){telefonos($_SESSION['ContactoAuxiliar'][2][0]['Prefijo'],$_SESSION['ContactoAuxiliar'][2][0]['Número_Telefónico']);} ?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono secundario:</b>
-						<span><?php echo $_SESSION['ContactoAuxiliar'][2][1]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][1]['Número_Telefónico'];?></span>
+						<span><?php if(isset($_SESSION['ContactoAuxiliar'][2][1])){telefonos($_SESSION['ContactoAuxiliar'][2][1]['Prefijo'],$_SESSION['ContactoAuxiliar'][2][1]['Número_Telefónico']);} ?></span>
 					</li>
 					<li class="list-group-item">
 						<b>Teléfono auxiliar:</b>
-						<span><?php echo $_SESSION['ContactoAuxiliar'][2][2]['Prefijo']."-".$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico'] ?></span>
+						<span><?php if(isset($_SESSION['ContactoAuxiliar'][2][2])){telefonos($_SESSION['ContactoAuxiliar'][2][2]['Prefijo'],$_SESSION['ContactoAuxiliar'][2][2]['Número_Telefónico']);} ?></span>
 					</li>
 				</ul>
 			</section>
@@ -233,7 +255,7 @@ function calculaedad($fechanacimiento){
 		var a = document.getElementById("seccion1");
 		var b = document.getElementById("seccion2");
 		var c = document.getElementById("seccion3");
-		
+
 		//botones en la navegación
 		var link_a = document.getElementById("link1");
 		var link_b = document.getElementById("link2");

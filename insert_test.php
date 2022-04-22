@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require('clases/personas.php');
 require('clases/telefonos.php');
@@ -85,7 +85,6 @@ $representante->insertarRepresentante();
 #Datos laborales
 $datos_laborales->setEmpleo('Directivo');
 $datos_laborales->setLugar_Trabajo('Liceo....');
-$datos_laborales->setTeléfono_Trabajo('');
 $datos_laborales->setRemuneración('');
 $datos_laborales->setTipo_Remuneración('');
 
@@ -173,10 +172,10 @@ $usuario->insertarUsuario();
 
 	#cuando entra al lobby
 	$_SESSION['registro'][] = "visita menú principal";
-	
+
 	#cuando entra al lobby
 	$_SESSION['registro'][] = "visita su perfil";
-	
+
 	#cuando entra al lobby
 	$_SESSION['registro'][] = "edita su perfil";
 
@@ -193,7 +192,7 @@ $usuario->insertarUsuario();
 		else {
 			$registro_usuario .= $registro.", ";
 		}
-		
+
 	}
 	echo $registro_usuario;
 
@@ -248,224 +247,13 @@ $usuario->insertarUsuario();
 			<td><?php echo $telefonoA->getPrefijo()."-".$telefonoA->getNúmero_Telefónico();?></td>
 		</tr>
 	</table>
-	<?php  ?>
-<?php 
+ <form>
+ 	<label class="form-label">Número de cuenta:</label>
+ 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" pattern="[0-9]{20}" title="Una cuenta bancaria consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" required>
+	<input type="submit" name="" value="">
+</form>
 
 
-function prefijo($id) {
-	echo '
-	<select name="" id="'.$id.'">
-		<option disabled selected>Seleccione un prefijo</option>
-		<optgroup label="MOVILES">
-			<option value="0416">0416</option>
-			<option value="0426">0426</option>
-			<option value="0414">0414</option>
-			<option value="0412">0412</option>
-		</optgroup>
-		<optgroup label="FIJOS">
-			<optgroup label="Amazonas">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Anzoátegui">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Apure">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Aragua">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Barinas">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Bolívar">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Carabobo">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Cojedes">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Delta Amacuro">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Distrito Capital">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Falcón">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Guárico">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Lara">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Mérida">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Miranda">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Monagas">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Nueva Esparta">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Portuguesa">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			></optgroup>
-			<optgroup label="Sucre">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Táchira">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Trujillo">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="La Guaira">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Yaracuy">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-			<optgroup label="Zulia">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</optgroup>
-		</optgroup>
-	</select>
-	';
-}
-
-prefijo("select1");
-prefijo("select2");
-prefijo("select3");
-
-
- ?>
 
  <input type="text" name="" list="prefijos">
  <input type="text" name="" list="prefijos">
@@ -484,6 +272,6 @@ prefijo("select3");
  	<option value="11">
  	<option value="12">
  </datalist>
-	
+
 </body>
 </html>

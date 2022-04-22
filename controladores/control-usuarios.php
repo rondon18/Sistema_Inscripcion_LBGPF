@@ -4,13 +4,14 @@ session_start();
 
 require("conexion.php");
 
-require('clases/personas.php');
-require('clases/telefonos.php');
-require('clases/representantes.php');
-require('clases/contactos-auxiliares.php');
-require('clases/usuario.php');
-require('clases/laborales-representantes.php');
-require('clases/economicos-representantes.php');
+require('../clases/personas.php');
+require('../clases/telefonos.php');
+require('../clases/representantes.php');
+require('../clases/contactos-auxiliares.php');
+require('../clases/usuario.php');
+require('../clases/laborales-representantes.php');
+require('../clases/economicos-representantes.php');
+require('../clases/vivienda-representantes.php');
 
 $conexion = conectarBD();
 
@@ -165,7 +166,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		#Telefono principal
 		$telefonoP->setPrefijo($_POST['Prefijo_Principal_Aux']);
 		$telefonoP->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		$telefonoP->setRelación_Teléfono($_POST['Principal']);
+		$telefonoP->setRelación_Teléfono('Principal');
 		$telefonoP->setCedula_Persona($persona_auxiliar->getCédula());
 
 		$telefonoP->insertarTelefono();
@@ -173,7 +174,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		#Telefono secundario
 		$telefonoS->setPrefijo($_POST['Prefijo_Secundario_Aux']);
 		$telefonoS->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
-		$telefonoS->setRelación_Teléfono($_POST['Secundario']);
+		$telefonoS->setRelación_Teléfono('Secundario');
 		$telefonoS->setCedula_Persona($persona_auxiliar->getCédula());
 
 		$telefonoS->insertarTelefono();
@@ -181,7 +182,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		#Telefono auxiliar
 		$telefonoA->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
 		$telefonoA->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
-		$telefonoA->setRelación_Teléfono($_POST['Auxiliar']);
+		$telefonoA->setRelación_Teléfono('Auxiliar');
 		$telefonoA->setCedula_Persona($persona_auxiliar->getCédula());
 
 		$telefonoA->insertarTelefono();
@@ -384,8 +385,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			Cambia las variables de sesion para no redireccionar al usuario a iniciar sesión
 
 		*/
-
-
 		$_SESSION['persona']['Primer_Nombre'] = $persona->getPrimer_Nombre();
 		$_SESSION['persona']['Segundo_Nombre'] = $persona->getSegundo_Nombre();
 		$_SESSION['persona']['Primer_Apellido'] = $persona->getPrimer_Apellido();
@@ -555,12 +554,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['usuario'][1] = $representante->getClave();
 
 		}
-
 		header('Location: ../lobby/index.php');
-	}
-	elseif ($orden == "Consultar") {
-		$representante->setidRepresentantes($_POST['idRepresentantes']);
-		$representante->consultarRepresentante($representante->getidRepresentantes());
 	}
 	elseif ($orden == "Eliminar") {
 
@@ -580,7 +574,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 }
 else {
-	//header('Location: ../index.php');
+	header('Location: ../index.php');
 }
 
 

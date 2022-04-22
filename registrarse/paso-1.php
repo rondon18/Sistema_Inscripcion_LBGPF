@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
-	<form action="paso-1.php" method="POST" style="max-width: 600px; margin: 75px auto;">
+	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;">
 		<div class="card">
 			<!--Datos del representante-->
 			<div class="card-header py-3">
@@ -43,16 +43,16 @@
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control" name="Primer_Nombre_R" placeholder="Primer nombre" required>
-							<input type="text" class="form-control" name="Segundo_Nombre_R" placeholder="Segundo nombre" required>
+							<input type="text" class="form-control mb-2" name="Primer_Nombre_R" placeholder="Primer nombre" required>
+							<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" placeholder="Segundo nombre" required>
 						</div>
 					</div>
 					<!--Apellidos del representante-->
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control" name="Primer_Apellido_R" placeholder="Primer apellido" required>
-							<input type="text" class="form-control" name="Segundo_Apellido_R" placeholder="Segundo apellido" required>
+							<input type="text" class="form-control mb-2" name="Primer_Apellido_R" placeholder="Primer apellido" required>
+							<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" placeholder="Segundo apellido" required>
 						</div>
 					</div>
 					<!--Genero del representante-->
@@ -71,22 +71,22 @@
 					<!--Cédula del representante-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control" name="Cédula_R" required>
+						<input type="text" class="form-control mb-2" name="Cédula_R" required>
 					</div>
 					<!--Fecha de nacimiento del representante-->
 					<div>
 						<label class="form-label">Fecha de nacimiento:</label>
-						<input type="date" class="form-control" name="Fecha_Nacimiento_R" required>
+						<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_R" required>
 					</div>
 					<!--Lugar de nacimiento del representante-->
 					<div>
 						<label class="form-label">Lugar de nacimiento:</label>
-						<input type="text" class="form-control" name="Lugar_Nacimiento_R" required>
+						<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" required>
 					</div>
 					<!--Correo electronico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control" name="Correo_electrónico_R" required>
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_R" required>
 					</div>
 					<!--Estado civil del representante-->
 					<div>
@@ -101,7 +101,7 @@
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control" name="Direccion_R" rows="4" required></textarea>
+						<textarea class="form-control mb-2" name="Direccion_R" rows="4" required></textarea>
 					</div>
 				</section>
 				<section id="seccion2" style="display: none;">
@@ -177,7 +177,7 @@
 						<!--Teléfono principal-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+							<input class="form-control" type="text" name="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 							<!--Número-->
 							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+" required>
 						</div>
@@ -185,7 +185,7 @@
 						<!--Teléfono secundario-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+							<input class="form-control" type="text" name="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 							<!--Número-->
 							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+" required>
 						</div>
@@ -195,7 +195,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Auxiliar_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0,9]+" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0,9]+">
 						</div>
 					</div>
 					<!--Vinculo del representante con el estudiante-->
@@ -266,33 +266,26 @@
 								<label>Quinta </label>
 								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Quinta" required>
 							</div>
-							</div>
 							<div class="form-check mb-2">
 								<label>Habitación </label>
 								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" required>
 							</div>
 						</div>
 						<span>Tenencia de la vivienda:</span>
-						<div class="mb-3">
-							<div class="form-check mb-2">
-								<label>Primaria </label>
-								<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required>
-							</div>
-							<div class="form-check mb-2">
-								<label>Bachillerato </label>
-								<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required>
-							</div>
-							<div class="form-check mb-2">
-								<label>Universitario </label>
-								<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
-							</div>
+						<div class="input-group mb-3">
+							<select class="form-select" name="Tenencia_vivienda">
+								<option value="Propia">Propia</option>
+								<option value="Alquilada">Alquilada</option>
+								<option value="Prestada">Prestada</option>
+								<option value="Otro">Otro</option>
+							</select>
+							<input class="form-control" type="text" name="Tenencia_vivienda_Otro" placeholder="En Caso de ser otro, especifique">
 						</div>
 					</div>
 				</section>
 				<section id="seccion4" style="display: none;">
 					<!--Datos Económicos-->
 					<h5>Datos económicos.</h5>
-
 					<div>
 						<!--Datos bancarios del representante-->
 						<div>
@@ -328,10 +321,8 @@
 								<option value="Banco Nacional de Crédito, C.A.">Banco Nacional de Crédito, C.A.</option>
 								<option value="Instituto Municipal de Crédito Popular">Instituto Municipal de Crédito Popular</option>
 							</select>
-
 							<div>
 								<p>Tipo de cuenta:</p>
-
 								<div class="form-check">
 									<label class="form-label">Ahorro </label>
 									<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Ahorro" required>
@@ -342,14 +333,12 @@
 								</div>
 								<div>
 									<label class="form-label">Número de cuenta:</label>
-									<input type="text" class="form-control mb-2" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required>
+								 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" required>
 								</div>
 						</div>
 					</div>
-
 					<!--Datos laborales-->
 					<h5>Datos laborales.</h5>
-
 					<!--Trabaja el representante-->
 					<div>
 						<span>Trabaja:</span>
@@ -362,13 +351,11 @@
 							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="No" required>
 						</div>
 					</div>
-
 					<!--Cargo que ocupa el representante-->
 					<div>
 						<label>Cargo que ocupa:</label>
 						<input class="form-control mb-2" type="text" name="Empleo_R">
 					</div>
-
 					<!--Teléfono del trabajo de representante-->
 					<div>
 						<label>Teléfono del trabajo:</label>
@@ -377,23 +364,21 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Trabajo_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0,9]+" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0,9]+">
 						</div>
 					</div>
-
 					<!--Lugar en el que trabaja el representante-->
 					<div>
 						<label>Lugar del trabajo:</label>
 						<textarea class="form-control mb-2" name="Lugar_Trabajo_R"></textarea>
 					</div>
-
+					<!--Remuneración del trabajo del representante-->
 					<div>
 						<label class="form-label">Remuneración:</label>
 						<div class="input-group mb-2">
+							<!--Remuneracion en base a sueldos minimos del representante-->
 							<input class="form-control text-end" type="number" name="Remuneración" placeholder="Ingrese un numero..." min="0" step="1">
-
 							<span class="input-group-text mb-2-text">Salarios mínimos</span>
-
 							<!--Tipo de remuneracion del representante-->
 							<select class="form-select" name="Tipo_Remuneracion">
 								<option value="Diaria">Remuneración diaria</option>
@@ -405,121 +390,102 @@
 					</div>
 				</section>
 				<section id="seccion5" style="display: none;">
-					<!--Nombres del representante-->
+					<!--Nombres del contacto auxiliar-->
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control" name="Primer_Nombre_Representante" placeholder="Primer nombre" required value="<?php echo $_SESSION['Primer_Nombre_Representante'] ?? NULL;?>">
-							<input type="text" class="form-control" name="Segundo_Nombre_Representante" placeholder="Segundo nombre" required value="<?php echo $_SESSION['Segundo_Nombre_Representante'] ?? NULL;?>">
+							<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" placeholder="Primer nombre" required>
+							<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" placeholder="Segundo nombre" required>
 						</div>
 
 					</div>
 
-					<!--Apellidos del representante-->
+					<!--Apellidos del contacto auxiliar-->
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control" name="Primer_Apellido_Representante" placeholder="Primer apellido" required value="<?php echo $_SESSION['Primer_Apellido_Representante'] ?? NULL;?>">
-							<input type="text" class="form-control" name="Segundo_Apellido_Representante" placeholder="Segundo apellido" required value="<?php echo $_SESSION['Segundo_Apellido_Representante'] ?? NULL;?>">
+							<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" placeholder="Primer apellido" required>
+							<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" placeholder="Segundo apellido" required>
 						</div>
 					</div>
-
-					<!--Genero del representante-->
+					<!--Genero del contacto auxiliar-->
 					<div>
 						<p>Genero:</p>
 						<div class="form-check">
 							<label class="form-label">F </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "F"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Genero_Aux" value="F" required>
 						</div>
-
 						<div class="form-check">
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['Genero_Representante']) and $_SESSION['Genero_Representante'] == "M"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Genero_Aux" value="M" required>
 						</div>
-
 					</div>
-					<!--Cédula del representante-->
+					<!--Cédula del contacto auxiliar-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['Cédula_Representante'] ?? NULL;?>">
+						<input type="text" class="form-control mb-2" name="Cédula_Aux" placeholder="Cédula de identidad" required>
 					</div>
-
-					<!--Correo electronico del representante-->
+					<!--Correo electronico del contacto auxiliar-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control" name="Correo_electrónico" required value="<?php echo $_SESSION['Correo_electrónico'] ?? NULL;?>">
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" required>
 					</div>
-
-					<!--Teléfonos-->
+					<!--Teléfonos del contacto auxiliar-->
 					<div>
 						<label>Teléfonos:</label>
 						<!--Teléfono principal-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+							<input class="form-control" type="text" name="Prefijo_Principal_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" placeholder="Principal" required>
 						</div>
 
 						<!--Teléfono secundario-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Secundario_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+							<input class="form-control" type="text" name="Prefijo_Secundario_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" placeholder="Auxiliar" required>
 						</div>
 
 						<!--Teléfono auxiliar-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Auxiliar_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+							<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" placeholder="Auxiliar">
 						</div>
 					</div>
-
-					<!--Dirección de residencia-->
+					<!--Dirección de residencia del contacto auxiliar-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control" name="Direccion_Representante" required><?php echo $_SESSION['Direccion_Representante'] ?? NULL;?></textarea>
+						<textarea class="form-control mb-2" name="Direccion_Aux" required></textarea>
 					</div>
-
-
-					<!--Persona de contacto en caso de emergencia-->
+					<!--Relación del contacto auxiliar-->
 					<div>
-						<label class="form-label">Otro contacto de emergencia:</label>
-						<input type="text" class="form-control" name="Nombre_Contacto_Emergencia" placeholder="Nombre de la persona" required value="<?php echo $_SESSION['Nombre_Contacto_Emergencia'] ?? NULL;?>">
-
-						<!--Relacion de la persona con el representante-->
-						<span class="form-label">Relación:</span>
-						<input type="text" class="form-control" name="Relación_Auxiliar" placeholder="Ingrese texto aquí..." required value="<?php echo $_SESSION['Relación_Auxiliar'] ?? NULL;?>">
-
-						<span class="form-label">Teléfonos:</span>
-						<div class="input-group mb-2">
-							<!--Telefono de la persona auxiliar-->
-							<input type="tel" class="form-control" name="Tfl_P_Contacto_Aux" placeholder="Telefono" placeholder="Principal" required value="<?php echo $_SESSION['Tfl_P_Contacto_Aux'] ?? NULL;?>">
-
-							<!--Telefono de la persona auxiliar-->
-							<input type="tel" class="form-control" name="Tfl_S_Contacto_Aux" placeholder="Telefono" placeholder="Auxiliar" required value="<?php echo $_SESSION['Tfl_S_Contacto_Aux'] ?? NULL;?>">
-						</div>
+						<label class="form-label">Relación con la persona:</label>
+						<input type="text" class="form-control mb-2" name="Relación_Auxiliar" required>
 					</div>
 				</section>
 				<section id="seccion6" style="display: none;">
 					<!--Contraseña y validación-->
 					<div>
 						<span>Contraseña:</span>
-						<?php //Si las claves no coinciden, muestra un recuadro con un mensaje de error
-						if (isset($check)) { echo '<font color="red">Las contraseñas no coinciden</font>';}?>
 						<div class="input-group mb-2">
-							<input class="form-control" type="password" name="Contraseña" placeholder="Contraseña">
-							<input class="form-control" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña">
+							<?php
+							$requisitos = "La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números";
+							$patron = '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$';
+							?>
+							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
+							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
 						</div>
-						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y número</small>
+						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números</small>
 					</div>
 				</section>
 			</div>
 			<div class="card-footer">
-				<input type="hidden" name="Paso_1" value="Paso_1">
+				<input type="hidden" name="orden" value="Insertar">
 				<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
 				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
