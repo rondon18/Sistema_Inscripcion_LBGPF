@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -12,6 +12,8 @@ require("../clases/representantes.php");
 require("../clases/padres.php");
 require("../controladores/conexion.php");
 
+require("../clases/usuario.php");
+
 $conexion = conectarBD();
 $estudiante = new Estudiantes();
 $representante = new Representantes();
@@ -20,6 +22,11 @@ $padres = new Padres();
 $listaEstudiantes = $estudiante->mostrarEstudiantes();
 $listaRepresentantes = $representante->mostrarRepresentantes();
 $listaPadres = $padres->mostrarPadres();
+
+if ($_SESSION['usuario']['Privilegios'] == 1) {
+	$usuario = new Usuarios();
+	$lista_usuarios = $usuario->mostrarUsuarios();
+}
 
 desconectarBD($conexion);
 ?>
@@ -32,199 +39,214 @@ desconectarBD($conexion);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 </head>
+<style media="screen">
+	.dataTables_paginate a {
+		color: #fff !important;
+		background-color: #0d6efd !important;
+		border-color: #0d6efd !important;
+		display: inline-block !important;
+		font-weight: 400 !important;
+		line-height: 1.5 !important;
+		text-align: center !important;
+		text-decoration: none !important;
+		vertical-align: middle !important;
+		cursor: pointer !important;
+		-webkit-user-select: none !important;
+		-moz-user-select: none !important;
+		user-select: none !important;
+		border: 1px solid transparent !important;
+		padding: 0.375rem 0.75rem !important;
+		font-size: 1rem !important;
+		border-radius: 0.25rem !important;
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+		margin: .25rem;
+	}
+</style>
 <body>
 	<div style="width: 90%; margin: auto;">
-		<div class="card">
-			<div class="card-header">
-				Estudiantes registrados
-			</div>
-			<div class="card-body">
-				<table id="estudiantes" class="table table-striped table-bordered" style="max-width: 100%;">
-					<thead>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Cédula</th>
-						<th>Fecha de nacimiento</th>
-						<th>Lugar de nacimiento</th>
-						<th>Genero</th>
-						<th>Dirección</th>
-						<th>Plantel de procedencia</th>
-						<th>Acciones</th>
-					</thead>
-					<tbody style="min-width: 100%;">
-				<?php foreach ($listaEstudiantes as $estudiante): ?>	
-					<?php if (($estudiante[15] == $_SESSION['representante'][0]) or ($_SESSION['usuario'][2] == 2)): 
-					#si el id del representante coincide con el vinculado al estudiante se muestra. 
-					#Se muestran todos si el usuario es un administrador?>			
-						<tr>
-							<td><?php echo $estudiante[1]; ?></td>
-							<td><?php echo $estudiante[2]; ?></td>
-							<td><?php echo $estudiante[3]; ?></td>
-							<td><?php echo $estudiante[4]; ?></td>
-							<td><?php echo $estudiante[5]; ?></td>
-							<td><?php echo $estudiante[6]; ?></td>
-							<td><?php echo $estudiante[8]; ?></td>
-							<td><?php echo $estudiante[13]; ?></td>
-							<td>
-								<form action="consultar-estudiante.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
-									<input type="submit" name="Consultar" value="Consultar">
-								</form>
-								
-								<?php if ($_SESSION['representante'][0] == $estudiante[15]): 
-								#el representante del estudiante es quien debe realizar esta acción?>
-								<!--Editar estudiante-->
-								<form action="editar-estudiante.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
-									<input type="submit" name="orden" value="Editar">
-								</form>
-								<?php endif ?>
-								
-								
-								<form action="../controladores/control-estudiantes.php" method="POST" style="display: inline-block;">
-									<input type="hidden" name="cedula_estudiante" value="<?php echo $estudiante[3]; ?>">
-									<input type="submit" name="orden" value="Eliminar">
-								</form>
-
-								<!--Generar planilla de inscripción-->
-								<form action="" method="POST" style="display: inline-block;">
-									<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-									<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-									<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
-									<input type="submit" name="Generar planilla" value="Generar planilla">
-								</form>
-								
-							</td>
-						</tr>
-					<?php endif ?>
-				<?php endforeach ?>
-					</tbody>
-				</table>	
-			</div>
-		</div>
-		<?php if ($_SESSION['usuario'][2] == "2"): ?>
-		<hr>
-
-		<div class="card">
-		
-			<div class="card-header">
-				Representantes registrados
-			</div>
-			<div class="card-body">
-				<table id="representantes" class="table table-striped table-bordered" style="max-width: 100%;">
-					<thead>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Cédula</th>
-						<th>Fecha de nacimiento</th>
-						<th>Lugar de nacimiento</th>
-						<th>Genero</th>
-						<th>Correo electronico</th>
-						<th>Dirección</th>
-						<th>Teléfono principal</th>
-						<th>Teléfono auxiliar</th>
-						<th>Estado civil</th>	
-						<th>Relación</th>
-						<th>Banco</th>
-						<th>Tipo de cuenta</th>
-						<th>Número de cuenta</th>
-						<th>Grado de instrucción</th>
-						<th>Empleo</th>
-						<th>Dirección del trabajo</th>
-						<th>Teléfono del trabajo</th>
-						<th>Remuneración</th>
-						<th>Tipo de remuneración</th>	
-					</thead>
-					<tbody style="min-width: 100%;">
-				<?php foreach ($listaRepresentantes as $representante): ?>	
-						<tr>			
-							<td><?php echo $representante[1]?></td>
-							<td><?php echo $representante[2]?></td>
-							<td><?php echo $representante[3]?></td>
-							<td><?php echo $representante[4]?></td>
-							<td><?php echo $representante[5]?></td>
-							<td><?php echo $representante[6]?></td>
-							<td><?php echo $representante[7]?></td>
-							<td><?php echo $representante[8]?></td>
-							<td><?php echo $representante[9]?></td>
-							<td><?php echo $representante[10]?></td>
-							<td><?php echo $representante[11]?></td>
-							<td><?php echo $representante[13]?></td>
-							<td><?php echo $representante[14]?></td>
-							<td><?php echo $representante[15]?></td>
-							<td><?php echo $representante[16]?></td>
-							<td><?php echo $representante[17]?></td>
-							<td><?php echo $representante[18]?></td>
-							<td><?php echo $representante[19]?></td>
-							<td><?php echo $representante[20]?></td>
-							<td><?php if ($representante[21] != 0) {echo $representante[21];}?></td>
-							<td><?php echo $representante[22]?></td>	
-						</tr>
-				<?php endforeach ?>
-					</tbody>
-				</table>	
-			</div>
-		</div>
-				
-		<hr>
-
-		<div class="card">
-		
-			<div class="card-header">
-				Padres registrados
-			</div>
-			<div class="card-body">
-				<table id="padres" class="table table-striped table-bordered" style="max-width: 100%;">
-					<thead>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Cédula</th>
-						<th>Fecha de nacimiento</th>
-						<th>Lugar de nacimiento</th>
-						<th>Genero</th>
-						<th>Correo electronico</th>
-						<th>Dirección</th>
-						<th>Teléfono principal</th>
-						<th>Teléfono auxiliar</th>
-						<th>Estado civil</th>	
-						<th>Parentezco con</th>	
-					</thead>
-					<tbody style="min-width: 100%;">
-				<?php foreach ($listaPadres as $padre): ?>	
-						<tr>			
-							<td><?php echo $padre[1]?></td>
-							<td><?php echo $padre[2]?></td>
-							<td><?php echo $padre[3]?></td>
-							<td><?php echo $padre[4]?></td>
-							<td><?php echo $padre[5]?></td>
-							<td><?php echo $padre[6]?></td>
-							<td><?php echo $padre[7]?></td>
-							<td><?php echo $padre[8]?></td>
-							<td><?php echo $padre[9]?></td>
-							<td><?php echo $padre[10]?></td>
-							<td><?php echo $padre[11]?></td>
-							<?php 
-							$hijo = "";
-							foreach ($listaEstudiantes as $estudiante) {
-								if ($estudiante[16] == $padre[12]) {
-									$hijo .= $estudiante[1];
-								}
-							} 
-							?>
-							<td><?php echo $hijo.". ".$representante[13]; ?></td>
-						</tr>
-				<?php endforeach ?>
-					</tbody>
-				</table>	
-			</div>
-		</div>
+		<div class="card my-2">
+			<section class="card-header">Consulta de registros</section>
+			<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Consultar estudiantes</a>
+				</li>
+				<li class="nav-item">
+					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Consultar usuarios</a>
+				</li>
+				<li class="nav-item">
+					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar representantes</a>
+				</li>
+			</ul>
 		<?php endif; ?>
+			<section class="card-body">
+				<div id="seccion1" class="card my-2">
+					<div class="card-header">
+						Estudiantes registrados
+					</div>
+					<div class="card-body">
+						<table id="estudiantes" class="table table-striped table-bordered table-sm w-100">
+							<thead>
+								<th>Nombres</th>
+								<th>Apellidos</th>
+								<th>Cédula</th>
+								<th>Fecha de nacimiento</th>
+								<th>Lugar de nacimiento</th>
+								<th>Genero</th>
+								<th>Dirección</th>
+								<th>Plantel de procedencia</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody>
+						<?php foreach ($listaEstudiantes as $estudiante): ?>
+							<?php if (($estudiante[15] == $_SESSION['representante'][0]) or ($_SESSION['usuario'][2] == 2)):
+							#si el id del representante coincide con el vinculado al estudiante se muestra.
+							#Se muestran todos si el usuario es un administrador?>
+								<tr>
+									<td><?php echo $estudiante[1]; ?></td>
+									<td><?php echo $estudiante[2]; ?></td>
+									<td><?php echo $estudiante[3]; ?></td>
+									<td><?php echo $estudiante[4]; ?></td>
+									<td><?php echo $estudiante[5]; ?></td>
+									<td><?php echo $estudiante[6]; ?></td>
+									<td><?php echo $estudiante[8]; ?></td>
+									<td><?php echo $estudiante[13]; ?></td>
+									<td>
+										<form action="consultar-estudiante.php" method="POST" style="display: inline-block;">
+											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
+											<input type="submit" name="Consultar" value="Consultar">
+										</form>
 
+										<?php if ($_SESSION['representante'][0] == $estudiante[15]):
+										#el representante del estudiante es quien debe realizar esta acción?>
+										<!--Editar estudiante-->
+										<form action="editar-estudiante.php" method="POST" style="display: inline-block;">
+											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
+											<input type="submit" name="orden" value="Editar">
+										</form>
+										<?php endif ?>
+
+
+										<form action="../controladores/control-estudiantes.php" method="POST" style="display: inline-block;">
+											<input type="hidden" name="cedula_estudiante" value="<?php echo $estudiante[3]; ?>">
+											<input type="submit" name="orden" value="Eliminar">
+										</form>
+
+										<!--Generar planilla de inscripción-->
+										<form action="" method="POST" style="display: inline-block;">
+											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
+											<input type="submit" name="Generar planilla" value="Generar planilla">
+										</form>
+
+									</td>
+								</tr>
+							<?php endif ?>
+						<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+				<div id="seccion2" class="card my-2" style="display:none;">
+
+					<div class="card-header">
+						Usuarios registrados
+					</div>
+					<div class="card-body">
+							<table id="usuarios" class="table table-striped table-bordered table-sm w-100">
+								<thead>
+									<th>ID del usuario</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Cédula del usuario</th>
+									<th>Privilegios</th>
+								</thead>
+								<tbody>
+									<?php foreach ($lista_usuarios as $usuario): ?>
+									<tr>
+										<td><?php echo $usuario['idUsuarios'];?></td>
+										<td><?php echo $usuario['Primer_Nombre']?></td>
+										<td><?php echo $usuario['Primer_Apellido']?></td>
+										<td><?php echo $usuario['Cedula_Persona'];?></td>
+										<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
+									</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+					</div>
+				</div>
+				<div id="seccion3" class="card my-2" style="display:none;">
+					<div class="card-header">
+						Representantes registrados
+					</div>
+					<div class="card-body">
+							<table id="representantes" class="table table-striped table-bordered table-sm w-100">
+								<thead>
+									<th>Nro. Registro</th>
+									<th>Nombres</th>
+									<th>Apellidos</th>
+									<th>Cédula</th>
+									<th>Fecha de nacimiento</th>
+									<th>Lugar de nacimiento</th>
+									<th>Genero</th>
+									<th>Correo electronico</th>
+									<th>Dirección</th>
+									<th>Estado civil</th>
+									<th>Relación</th>
+									<th>Grado de instrucción</th>
+								</thead>
+								<tbody>
+								<?php foreach ($listaRepresentantes as $representante): ?>
+									<tr>
+										<td><?php echo $representante['idPersonas']?></td>
+										<td><?php echo $representante['Primer_Nombre'].' '.$representante['Segundo_Nombre']?></td>
+										<td><?php echo $representante['Primer_Apellido'].' '.$representante['Segundo_Apellido']?></td>
+										<td><?php echo $representante['Cédula']?></td>
+										<td><?php echo $representante['Fecha_Nacimiento']?></td>
+										<td><?php echo $representante['Lugar_Nacimiento']?></td>
+										<td><?php echo $representante['Género']?></td>
+										<td><?php echo $representante['Correo_Electrónico']?></td>
+										<td><?php echo $representante['Dirección']?></td>
+										<td><?php echo $representante['Estado_Civil']?></td>
+										<td><?php echo $representante['Vinculo']?></td>
+										<td><?php echo $representante['Grado_Academico']?></td>
+
+									</tr>
+								<?php endforeach; ?>
+								<?php for ($i=0; $i < 100; $i++):?>
+									<tr>
+										<td>item 1</td>
+										<td>item 2</td>
+										<td>item 3</td>
+										<td>item 4</td>
+										<td>item 5</td>
+										<td>item 6</td>
+										<td>item 7</td>
+										<td>item 8</td>
+										<td>item 9</td>
+										<td>item 10</td>
+										<td>item 11</td>
+										<td>item 12</td>
+									</tr
+
+								<?php endfor; ?>
+								</tbody>
+							</table>
+					</div>
+				</div>
+			<?php endif; ?>
+			</section>
+		</div>
+
+		<hr>
 
 		<div class="card text-center" style="width: 100%; margin-top: 20px;">
 			<a class="btn btn-primary" href="index.php">Volver al menú</a>
@@ -236,21 +258,19 @@ desconectarBD($conexion);
 <script type="text/javascript" src="../js/pdfmake.min.js"></script>
 <script type="text/javascript" src="../js/vfs_fonts.js"></script>
 <script type="text/javascript" src="../js/datatables1.min.js"></script>
-
-
 <script type="text/javascript">
 	$(document).ready( function () {
 		$('#estudiantes').DataTable({
 			responsive: true,
 			"language": {
-					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+					"url": "../js/datatables-español.json"
 			  },
-		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de estudiantes',
 	            sheetName: 'Reporte de estudiantes',
@@ -263,17 +283,40 @@ desconectarBD($conexion);
 		});
 	} );
 	$(document).ready( function () {
-		$('#representantes').DataTable({
+		$('#usuarios').DataTable({
 			responsive: true,
 			"language": {
-					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
+					"url": "../js/datatables-español.json"
 			  },
-		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
+		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            autoFilter: true,
+	            filename: 'Reporte de usuarios',
+	            sheetName: 'Reporte de usuarios',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de usuarios'
+	        	}
+		  	],
+		  	"pagingType": "numbers"
+		  	<?php endif; ?>
+		});
+	} );
+	$(document).ready( function () {
+		$('#representantes').DataTable({
+			responsive: true,
+			"language": {
+					"url": "../js/datatables-español.json"
+			  },
+		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+			dom: 'Bfrtip',
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de representantes',
 	            sheetName: 'Reporte de representantes',
@@ -284,28 +327,44 @@ desconectarBD($conexion);
 		  	<?php endif; ?>
 		});
 	} );
-	$(document).ready( function () {
-		$('#padres').DataTable({
-			responsive: true,
-			"language": {
-					"url": "//cdn.datatables.net/plug-ins/1.10.7/i18n/Spanish.json"
-			  },
-		  	<?php if ($_SESSION['usuario'][2] == "2"): ?>
-			dom: 'Bfrtip',
-			buttons: [
-				{
-	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel',
-	            autoFilter: true,
-	            filename: 'Reporte de padres',
-	            sheetName: 'Reporte de padres',
-	            className: 'btn btn-success',
-	            messageTop: 'Reporte de padres'
-	        }
-		  	]
-		  	<?php endif; ?>
-		});
-	} );
+</script>
+<script>
+	function seccion(seccion) {
+
+		//secciones
+		var a = document.getElementById("seccion1");
+		var b = document.getElementById("seccion2");
+		var c = document.getElementById("seccion3");
+
+		//botones en la navegación
+		var link_a = document.getElementById("link1");
+		var link_b = document.getElementById("link2");
+		var link_c = document.getElementById("link3");
+
+		//seccion seleccionada como activa(seccion 1 por defecto)
+		var seccion = document.getElementById(seccion);
+
+		a.style.display = "none";
+		b.style.display = "none";
+		c.style.display = "none";
+
+		link_a.classList.remove("active");
+		link_b.classList.remove("active");
+		link_c.classList.remove("active");
+
+		if (seccion == a) {
+			a.style.display = "block";
+			link_a.classList.add("active");
+		}
+		else if (seccion == b) {
+			b.style.display = "block";
+			link_b.classList.add("active");
+		}
+		else if (seccion == c) {
+			c.style.display = "block";
+			link_c.classList.add("active");
+		}
+	}
 </script>
 </body>
 </html>

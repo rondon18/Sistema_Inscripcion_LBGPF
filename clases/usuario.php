@@ -65,14 +65,31 @@ class Usuarios {
 
 		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
 
-		$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
 		$usuario = $consulta_usuario->fetch_assoc();
 
 		desconectarBD($conexion);
 
 		return $usuario;
 	}
+	public function mostrarUsuarios() {
+		$conexion = conectarBD();
 
+		$sql = "SELECT * FROM `personas`,`usuarios` WHERE `usuarios`.`Cedula_Persona` = `personas`.`Cédula`";
+
+		$consulta_usuarios = $conexion->query($sql) or die("error: ".$conexion->error);
+		$usuarios = $consulta_usuarios->fetch_all(MYSQLI_ASSOC);
+
+		#Hace un arreglo de arreglos para contener los campos de la persona
+		$lista_usuarios = [];
+		foreach ($usuarios as $usuario) {
+			$lista_usuarios[]= $usuario;
+		}
+
+		desconectarBD($conexion);
+
+		return $lista_usuarios;
+	}
 	public function setidUsuarios($idUsuarios) {
 		$this->idUsuarios = $idUsuarios;
 	}

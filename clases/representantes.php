@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class Representantes {
-	
+
 	private $idRepresentantes;
 	private $Vinculo;
 	private $Grado_Academico;
@@ -45,7 +45,7 @@ class Representantes {
 		$Vinculo = $this->getVinculo();
 		$Grado_Academico = $this->getGrado_Academico();
 
-		$sql = "UPDATE `representantes` SET 
+		$sql = "UPDATE `representantes` SET
 			`Vinculo`='$Vinculo',
 			`Grado_Academico`='$Grado_Academico',
 		 WHERE `Cedula_Persona`='$Cedula_Persona'";
@@ -64,14 +64,14 @@ class Representantes {
 	}
 	public function consultarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
-		
+
 		$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
 
-		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_assoc();
 
 		desconectarBD($conexion);
-		
+
 		return $representantes;
 	}
 	public function mostrarRepresentantes() {
@@ -80,8 +80,8 @@ class Representantes {
 
 		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
 
-		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);			
-		$representantes = $consulta_representantes->fetch_all();
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
+		$representantes = $consulta_representantes->fetch_all(MYSQLI_ASSOC);
 
 		#Hace un arreglo de arreglos para contener los campos de la representantes
 		$Lista_Representantes = [];
@@ -93,7 +93,7 @@ class Representantes {
 
 		return $Lista_Representantes;
 	}
-	
+
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;
 	}
