@@ -30,19 +30,20 @@ if (!$_SESSION['login']) {
 				<h5>Datos personales.</h5>
 
 				<div>
-					<span class="form-label">¿Es usted la madre, el padre o el representante del estudiante?:</span>
-					<div class="form-check">
-						<label>Madre </label>
-						<input class="form-check-input" type="radio" name="Vinculo" value="Madre" required>
-					</div>
-					<div class="form-check">
-						<label>Padre </label>
-						<input class="form-check-input" type="radio" name="Vinculo" value="Padre" required>
-					</div>
-					</div>
-					<div class="form-check">
-						<label>Representante </label>
-						<input class="form-check-input" type="radio" name="Vinculo" value="Representante" required>
+					<p class="form-label">¿Cuál es su relación con el estudiante?:</p>
+					<div class="pt-2 px-2 pb-0 bg-light border rounded">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="Vinculo" value="Madre" required>
+							<label class="form-label">Madre</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="Vinculo" value="Padre" required>
+							<label class="form-label">Padre</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="Vinculo" value="Representante" required>
+							<label class="form-label">Representante</label>
+						</div>
 					</div>
 				</div>
 

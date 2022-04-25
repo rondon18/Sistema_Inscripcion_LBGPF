@@ -11,9 +11,15 @@
 	<link rel="stylesheet" type="text/css" href="css/all.min.css"/>
 </head>
 <body>
-	<header class="">
-
+	<!--Banner-->
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0">
+		<div>
+			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+		</div>
+		<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
+
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
 		<div class="card text-center m-auto" style="max-width:400px; margin:auto;">
 			<div class="card-header">
@@ -56,5 +62,12 @@
 			</div>
 		</div>
 	</form>
+
+	<!--Footer-->
+	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
+		<span class="text-white">Sistema de inscripción L.B. GPF</span>
+	</footer>
+	<?php include 'ayuda.php'; ?>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
