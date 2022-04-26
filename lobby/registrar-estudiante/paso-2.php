@@ -417,11 +417,11 @@ else {
 							<p class="form-label">Parentezco:</p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo" value="Madre" required <?php if($_POST['Vinculo'] == "Madre"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required <?php if($_POST['Vinculo'] == "Madre"){echo "checked";} ?>>
 									<label class="form-label">Madre</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo" value="Padre" required <?php if($_POST['Vinculo'] == "Padre"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required <?php if($_POST['Vinculo'] == "Padre"){echo "checked";} ?>>
 									<label class="form-label">Padre</label>
 								</div>
 							</div>

@@ -43,7 +43,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	if ($orden == "Insertar") {
 
 		#Persona -> padre
-<<<<<<< HEAD
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
 		$padre->setPrimer_Apellido($_POST['Primer_Apellido_Familiar']);
@@ -59,27 +58,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$padre->insertarPersona();
 
 		$padre->insertarPadres($padre->getCedula());
-
 		$padre->setParentezco($_POST['Vinculo_Familiar']);
-		$padre->insertarPadres($_SESSION['persona'][3]);
-
-		Primer_Nombre_Familiar
-		Segundo_Nombre_Familiar
-		Primer_Apellido_Familiar
-		Segundo_Apellido_Familiar
-		Genero_Familiar
-		Genero_Familiar
-		Cédula_Familiar
-		Fecha_Nacimiento_Familiar
-		Lugar_Nacimiento_Familiar
-		Correo_electrónico_Familiar
-		Prefijo_Principal_Familiar
-		Teléfono_Principal_Familiar
-		Prefijo_Secundario_Familiar
-		Teléfono_Secundario_Familiar
-		Estado_Civil_Familiar
-		Direccion_Familiar
-
+		$padre->insertarPadres();
 		#Persona -> estudiante -> datos sociales, medicos y tallas
 
 		Primer_Nombre_Est
@@ -143,34 +123,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-=======
-		if (!isset($_POST['Es_el_representante'])) {
-			$padre->setNombres($_POST['Primer_Nombre_Familiar']." ".$_POST['Segundo_Nombre_Familiar']);
-			$padre->setApellidos($_POST['Primer_Apellido_Familiar']." ".$_POST['Segundo_Apellido_Familiar']);
-			$padre->setCedula($_POST['Cédula_Familiar']);
-			$padre->setCorreo($_POST['Correo_electrónico_Familiar']);
-			$padre->setGenero($_POST['Genero_Familiar']);
-			$padre->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
-			$padre->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Familiar']);
-			$padre->setDireccion($_POST['Direccion_Estudiante']);
-			$padre->setTeléfono_Principal($_POST['Teléfono_Principal_Familiar']);
-			$padre->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Familiar']);
-			$padre->setEstado_Civil("Soltero(a)");
-
-			$padre->insertarPersona();
-
-			$padre->setParentezco($_POST['Vinculo_Familiar']);
-
-			$padre->insertarPadres($padre->getCedula());
-		}
-		elseif (isset($_POST['Es_el_representante'])){
-			$padre->setParentezco($_POST['Vinculo_Familiar']);
-			$padre->insertarPadres($_SESSION['persona'][3]);
-		}
-
-		#Persona -> estudiante -> datos sociales, medicos y tallas
-
->>>>>>> 2424f37a54f15c0732a1e23bec1798ae9a5daf2c
 		#datos basicos del estudiante
 		$estudiante->setPrimer_Nombre($_POST['Primer_Nombre_Est']);
 		$estudiante->setSegundo_Nombre($_POST['Segundo_Nombre_Est']);
@@ -184,12 +136,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$estudiante->setDirección($_POST['Direccion_Est']);
 		$estudiante->setEstado_Civil("Soltero(a)");
 
-		$estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
-		$estudiante->setidRepresentante($_SESSION['representante'][0]);
+		$estudiante->insertarPersona();
+
 		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
 		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive']);
 		$datos_estudiante->setidRepresentante($_SESSION['representante'][0]);
-		$datos_estudiante->setidPadre();
+		$datos_estudiante->setidPadre($padre->getidPadres());
+
+		$datos_estudiante->insertarEstudiante();
 
 		#datos medicos
 		$ficha_medica->setEstatura($_POST['Talla']);
@@ -198,9 +152,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$ficha_medica->setCirc_Braquial($_POST['C_Braquial']);
 		$ficha_medica->setLateralidad($_POST['Lateralidad']);
 		$ficha_medica->setTipo_Sangre($_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus']);
-
 		$ficha_medica->setMedicación($_POST['Medicacion']);
-
 		$ficha_medica->setDieta_Especial($_POST['Dieta_Especial']);
 
 		$impedimentos = "";
@@ -217,14 +169,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		}
 
 		$ficha_medica->setAlergias($_POST['Alergias']);
-
 		$ficha_medica->setCond_Vista($_POST['Condicion_Vista']);
 		$ficha_medica->setCond_Dental($_POST['Condicion_Dentadura']);
-
 		$ficha_medica->setInstitucion_Medica($_POST['Institucion_Medica']);
-
 		$ficha_medica->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
 
+		$ficha_medica->insertarFicha_Medica($estudiante->getidEstudiantes());
 
 		#datos sociales del estudiante
 		$datos_sociales->setPosee_Canaima($_POST['Tiene_Canaima']);
@@ -234,34 +184,26 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_sociales->setSerial_Carnet_Patria($_POST['Serial_Carnet_Patria']);
 		$datos_sociales->setAcceso_Internet($_POST['Internet_Vivienda']);
 
+		$datos_sociales->insertarDatosSociales($estudiante->getidEstudiantes());
+
 		#Tallas del estudiante
 		$tallas_estudiantes->setTalla_Camisa($_POST['Talla_Camisa']);
 		$tallas_estudiantes->setTalla_Pantalón($_POST['Talla_Pantalon']);
 		$tallas_estudiantes->setTalla_Zapatos($_POST['Talla_Zapatos']);
 
+		$tallas_estudiantes->insertarTallasEstudiante($estudiante->getidEstudiantes());
+
 		#estudiante -> grado -> año-escolar
 		#datos academicos
 		$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
+		$grado->insertarGrado($estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
 
 		#EStudiante_Repitente
 		if ($_POST['EStudiante_Repitente'] == 'Si') {
 			#Si tiene materias pendientes se asigna un valor, de lo contrario pasa como NULL por defecto
 			$estudiante_repitente->setMaterias_Pendientes($_POST['Materias_Pendientes']);
 		}
-
-		#Insersiones
-
-		$estudiante->insertarPersona();
-		$estudiante->insertarEstudiante($_SESSION['representante'][0],$padre->getidPadres());
-
-		$ficha_medica->insertarFicha_Medica($estudiante->getidEstudiantes());
-		$datos_sociales->insertarDatosSociales($estudiante->getidEstudiantes());
-		$tallas_estudiantes->insertarTallasEstudiante($estudiante->getidEstudiantes());
-
-
-		$grado->insertarGrado($estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
 		$estudiante_repitente->insertarEstudiantesRepitentes($estudiante->getidEstudiantes());
-
 		header('Location: ../lobby/index.php');
 	}
 
