@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require("personas.php");
 
@@ -19,7 +19,7 @@ class Estudiantes extends Personas {
 		$Con_Quien_Vive = $this->getCon_Quien_Vive();
 		$Cedula_Estudiante = $this->getCédula();
 		$idRepresentante = $this->getidRepresentante();
-		$idPadre = $this->getidPadre(); 
+		$idPadre = $this->getidPadre();
 
 		$sql = "SELECT * FROM `estudiantes` WHERE `Cédula` = '$Cédula'";
 
@@ -41,27 +41,27 @@ class Estudiantes extends Personas {
 		}
 		elseif ($resultado != NULL) {
 			$this->setidEstudiantes($resultado['idEstudiantes']);
-		}		
+		}
 		desconectarBD($conexion);
 	}
 
 	public function editarEstudiante() {
 		$conexion = conectarBD();
-		
+
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
 
-		$sql = "UPDATE `estudiantes` SET 
+		$sql = "UPDATE `estudiantes` SET
 				`Plantel_Procedencia`='$Plantel_Procedencia',
 			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		
+
 		desconectarBD($conexion);
 	}
 
 	public function eliminarEstudiante($cedula_Estudiante) {
 		$conexion = conectarBD();
-		
+
 		$sql = "DELETE FROM `personas` WHERE `Cédula` = '$cedula_Estudiante'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
@@ -71,11 +71,11 @@ class Estudiantes extends Personas {
 	public function consultarEstudiante($id_Estudiante) {
 
 		$conexion = conectarBD();
-		
+
 		#Consulta los datos de las tablas personas y estudiantes del estudiante solicitado
 		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`idEstudiantes` = '$id_Estudiante' AND `personas`.`Cédula` = `estudiantes`.`Cedula_Persona`";
 
-		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$estudiantes = $consulta_estudiantes->fetch_assoc();
 
 		desconectarBD($conexion);
@@ -90,9 +90,8 @@ class Estudiantes extends Personas {
 		#consulta solo las personas que tengan presencia en la tabla estudiantes
 		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = `estudiantes`.`Cedula_Persona`";
 
-		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);			
-		$estudiantes = $consulta_estudiantes->fetch_all();
-
+		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
+		$estudiantes = $consulta_estudiantes->fetch_all(MYSQLI_ASSOC);
 
 		#Hace un arreglo de arreglos para contener los campos de la estudiante
 		$Lista_Estudiantes = [];

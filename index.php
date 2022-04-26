@@ -23,7 +23,6 @@
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
 		<div class="card text-center m-auto" style="max-width:400px; margin:auto;">
 			<div class="card-header">
-				<img src="https://picsum.photos/24" class="float-start d-inline">
 				<b>Ingresar al sistema</b>
 			</div>
 			<div class="card-body pt-2 pb-0">
@@ -65,7 +64,7 @@
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF</span>
+		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
 	</footer>
 	<?php include 'ayuda.php'; ?>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>

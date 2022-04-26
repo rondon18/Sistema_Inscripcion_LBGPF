@@ -32,12 +32,11 @@ if (!$_SESSION['login']) {
 			<div class="card-body">
 				<!--Datos sociales-->
 				<h5>Datos sociales.</h5>
-
 				<div>
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2"name="Direccion_Estudiante"></textarea>
+						<textarea class="form-control mb-2" name="Direccion_Estudiante"></textarea>
 					</div>
 					<div>
 						<label class="form-label">¿Con quién vive?:</label>

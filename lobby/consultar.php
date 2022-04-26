@@ -92,52 +92,35 @@ desconectarBD($conexion);
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Cédula</th>
-								<th>Fecha de nacimiento</th>
-								<th>Lugar de nacimiento</th>
-								<th>Genero</th>
+								<th>Fecha_Nacimiento</th>
+								<th>Lugar_Nacimiento</th>
+								<th>Género</th>
+								<th>Correo_Electrónico</th>
 								<th>Dirección</th>
-								<th>Plantel de procedencia</th>
+								<th>Estado_Civil</th>
+								<th>idEstudiantes</th>
+								<th>Plantel_Procedencia</th>
+								<th>Con_Quien_Vive</th>
+								<th>Cedula_Persona</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
 						<?php foreach ($listaEstudiantes as $estudiante): ?>
-							<?php if (($estudiante[15] == $_SESSION['representante'][0]) or ($_SESSION['usuario'][2] == 2)):
-							#si el id del representante coincide con el vinculado al estudiante se muestra.
-							#Se muestran todos si el usuario es un administrador?>
 								<tr>
-									<td><?php echo $estudiante[1]; ?></td>
-									<td><?php echo $estudiante[2]; ?></td>
-									<td><?php echo $estudiante[3]; ?></td>
-									<td><?php echo $estudiante[4]; ?></td>
-									<td><?php echo $estudiante[5]; ?></td>
-									<td><?php echo $estudiante[6]; ?></td>
-									<td><?php echo $estudiante[8]; ?></td>
-									<td><?php echo $estudiante[13]; ?></td>
+									<td><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
+									<td><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
+									<td><?php echo $estudiante['Cédula']; ?></td>
+									<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
+									<td><?php echo $estudiante['Lugar_Nacimiento']; ?></td>
+									<td><?php echo $estudiante['Género']; ?></td>
+									<td><?php echo $estudiante['Correo_Electrónico']; ?></td>
+									<td><?php echo $estudiante['Dirección']; ?></td>
+									<td><?php echo $estudiante['Estado_Civil']; ?></td>
+									<td><?php echo $estudiante['idEstudiantes']; ?></td>
+									<td><?php echo $estudiante['Plantel_Procedencia']; ?></td>
+									<td><?php echo $estudiante['Con_Quien_Vive']; ?></td>
+									<td><?php echo $estudiante['Cedula_Persona']; ?></td>
 									<td>
-										<form action="consultar-estudiante.php" method="POST" style="display: inline-block;">
-											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
-											<input type="submit" name="Consultar" value="Consultar">
-										</form>
-
-										<?php if ($_SESSION['representante'][0] == $estudiante[15]):
-										#el representante del estudiante es quien debe realizar esta acción?>
-										<!--Editar estudiante-->
-										<form action="editar-estudiante.php" method="POST" style="display: inline-block;">
-											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
-											<input type="submit" name="orden" value="Editar">
-										</form>
-										<?php endif ?>
-
-
-										<form action="../controladores/control-estudiantes.php" method="POST" style="display: inline-block;">
-											<input type="hidden" name="cedula_estudiante" value="<?php echo $estudiante[3]; ?>">
-											<input type="submit" name="orden" value="Eliminar">
-										</form>
-
 										<!--Generar planilla de inscripción-->
 										<form action="" method="POST" style="display: inline-block;">
 											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
@@ -145,10 +128,8 @@ desconectarBD($conexion);
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
 											<input type="submit" name="Generar planilla" value="Generar planilla">
 										</form>
-
 									</td>
 								</tr>
-							<?php endif ?>
 						<?php endforeach ?>
 							</tbody>
 						</table>

@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
 	function validacion() {
-		var = todo_correcto;
+		var todo_correcto;
 		todo_correcto = true;
 		var expresion = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
@@ -292,7 +292,15 @@
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
-	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" novalidate onsubmit='return validacion()'>
+	<!--Banner-->
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0">
+		<div>
+			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+		</div>
+		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+	</header>
+	<form action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='return validacion()'>
 		<div class="card">
 			<!--Datos del representante-->
 			<div class="card-header py-3">
@@ -325,16 +333,16 @@
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Nombre_R" id="Primer_Nombre_R" placeholder="Primer nombre" required>
-							<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" id="Segundo_Nombre_R" placeholder="Segundo nombre" required>
+							<input type="text" class="form-control mb-2" name="Primer_Nombre_R" id="Primer_Nombre_R" placeholder="Primer nombre" >
+							<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" id="Segundo_Nombre_R" placeholder="Segundo nombre" >
 						</div>
 					</div>
 					<!--Apellidos del representante-->
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Apellido_R" id="Primer_Apellido_R" placeholder="Primer apellido" required>
-							<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" required>
+							<input type="text" class="form-control mb-2" name="Primer_Apellido_R" id="Primer_Apellido_R" placeholder="Primer apellido" >
+							<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" >
 						</div>
 					</div>
 					<!--Genero del representante-->
@@ -342,38 +350,38 @@
 						<p>Genero:</p>
 						<div class="form-check">
 							<label class="form-label">F </label>
-							<input class="form-check-input" type="radio" name="Genero_R" value="F" required>
+							<input class="form-check-input" type="radio" name="Genero_R" value="F" >
 						</div>
 
 						<div class="form-check">
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Genero_R" value="M" required>
+							<input class="form-check-input" type="radio" name="Genero_R" value="M" >
 						</div>
 					</div>
 					<!--Cédula del representante-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control mb-2" name="Cédula_R" id="Cédula_R" required>
+						<input type="text" class="form-control mb-2" name="Cédula_R" id="Cédula_R" >
 					</div>
 					<!--Fecha de nacimiento del representante-->
 					<div>
 						<label class="form-label">Fecha de nacimiento:</label>
-						<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_R" id="Fecha_Nacimiento_R" required>
+						<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_R" id="Fecha_Nacimiento_R" >
 					</div>
 					<!--Lugar de nacimiento del representante-->
 					<div>
 						<label class="form-label">Lugar de nacimiento:</label>
-						<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" required>
+						<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" >
 					</div>
 					<!--Correo electronico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" required>
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" >
 					</div>
 					<!--Estado civil del representante-->
 					<div>
 						<label class="form-label">Estado civil:</label>
-						<select class="form-select mb-2" name="Estado_Civil_R" required>
+						<select class="form-select mb-2" name="Estado_Civil_R" >
 							<option value="Soltero(a)">Soltero(a)</option>
 							<option value="Casado(a)">Casado(a)</option>
 							<option value="Divorsiado(a)">Divorsiado(a)</option>
@@ -383,7 +391,7 @@
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" required></textarea>
+						<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" ></textarea>
 					</div>
 				</section>
 				<section id="seccion2" style="display: none;">
@@ -459,17 +467,17 @@
 						<!--Teléfono principal-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+							<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+" >
 						</div>
 
 						<!--Teléfono secundario-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+							<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+" >
 						</div>
 
 						<!--Teléfono auxiliar-->
@@ -484,7 +492,7 @@
 					<div>
 						<label class="form-label">Vinculo con el estudiante:</label>
 						<div class="input-group mb-2">
-							<select class="form-select" name="Vinculo_R" required>
+							<select class="form-select" name="Vinculo_R" >
 								<option value="Madre">Madre</option>
 								<option value="Padre">Padre</option>
 								<option value="Abuelo(a)">Abuelo(a)</option>
@@ -498,15 +506,15 @@
 						<span>Grado de instrucción:</span>
 						<div class="form-check mb-2">
 							<label>Primaria </label>
-							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" >
 						</div>
 						<div class="form-check mb-2">
 							<label>Bachillerato </label>
-							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" >
 						</div>
 						<div class="form-check mb-2">
 							<label>Universitario </label>
-							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
+							<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" >
 						</div>
 					</div>
 				</section>
@@ -519,38 +527,38 @@
 						<div class="mb-3">
 							<div class="form-check mb-2">
 								<label>Buena </label>
-								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Buena" required>
+								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Buena" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Regular </label>
-								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Regular" required>
+								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Regular" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Mala </label>
-								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Mala" required>
+								<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Mala" >
 							</div>
 						</div>
 						<span>Tipo de vivienda:</span>
 						<div class="mb-3">
 							<div class="form-check mb-2">
 								<label>Casa </label>
-								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Casa" required>
+								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Casa" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Apartamento </label>
-								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Apartamento" required>
+								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Apartamento" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Rancho </label>
-								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Rancho" required>
+								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Rancho" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Quinta </label>
-								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Quinta" required>
+								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Quinta" >
 							</div>
 							<div class="form-check mb-2">
 								<label>Habitación </label>
-								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" required>
+								<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" >
 							</div>
 						</div>
 						<span>Tenencia de la vivienda:</span>
@@ -607,15 +615,15 @@
 								<p>Tipo de cuenta:</p>
 								<div class="form-check">
 									<label class="form-label">Ahorro </label>
-									<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Ahorro" required>
+									<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Ahorro" >
 								</div>
 								<div class="form-check">
 									<label class="form-label">Corriente </label>
-									<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Corriente" required>
+									<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Corriente" >
 								</div>
 								<div>
 									<label class="form-label">Número de cuenta:</label>
-								 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" required>
+								 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" >
 								</div>
 						</div>
 					</div>
@@ -626,11 +634,11 @@
 						<span>Trabaja:</span>
 						<div class="form-check">
 							<label>Si </label>
-							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="Si" required>
+							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="Si" >
 						</div>
 						<div class="form-check">
 							<label>No </label>
-							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="No" required>
+							<input class="form-check-input" type="radio" name="Representante_Trabaja" value="No" >
 						</div>
 					</div>
 					<!--Cargo que ocupa el representante-->
@@ -676,8 +684,8 @@
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" required>
-							<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" required>
+							<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" >
+							<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" >
 						</div>
 
 					</div>
@@ -686,8 +694,8 @@
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" required>
-							<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" required>
+							<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" >
+							<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" >
 						</div>
 					</div>
 					<!--Genero del contacto auxiliar-->
@@ -695,22 +703,22 @@
 						<p>Genero:</p>
 						<div class="form-check">
 							<label class="form-label">F </label>
-							<input class="form-check-input" type="radio" name="Genero_Aux" value="F" required>
+							<input class="form-check-input" type="radio" name="Genero_Aux" value="F" >
 						</div>
 						<div class="form-check">
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Genero_Aux" value="M" required>
+							<input class="form-check-input" type="radio" name="Genero_Aux" value="M" >
 						</div>
 					</div>
 					<!--Cédula del contacto auxiliar-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control mb-2" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" required>
+						<input type="text" class="form-control mb-2" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" >
 					</div>
 					<!--Correo electronico del contacto auxiliar-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" required>
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" >
 					</div>
 					<!--Teléfonos del contacto auxiliar-->
 					<div>
@@ -718,17 +726,17 @@
 						<!--Teléfono principal-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+							<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" >
 						</div>
 
 						<!--Teléfono secundario-->
 						<div class="input-group mb-2">
 							<!--Prefijo-->
-							<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+							<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" required>
+							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" >
 						</div>
 
 						<!--Teléfono auxiliar-->
@@ -742,12 +750,12 @@
 					<!--Dirección de residencia del contacto auxiliar-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" required></textarea>
+						<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" ></textarea>
 					</div>
 					<!--Relación del contacto auxiliar-->
 					<div>
 						<label class="form-label">Relación con la persona:</label>
-						<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" required>
+						<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" >
 					</div>
 				</section>
 				<section id="seccion6" style="display: none;">

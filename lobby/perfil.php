@@ -98,10 +98,6 @@ function telefonos($prefijo,$telefono) {
 					</li>
 					<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 					<li class="list-group-item">
-						<b>Vinculo con los representados:</b>
-						<span><?php echo $_SESSION['representante']['Vinculo']?></span>
-					</li>
-					<li class="list-group-item">
 						<b>Teléfono principal:</b>
 						<span><?php telefonos($_SESSION['telefonos'][0]['Prefijo'],$_SESSION['telefonos'][0]['Número_Telefónico']);?></span>
 					</li>

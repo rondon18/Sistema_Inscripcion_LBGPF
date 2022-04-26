@@ -15,26 +15,38 @@
 				<p>Bienvenido a la sección de ayuda, ¿Qué desea consultar?.</p>
 				<div class="accordion" id="accordionExample">
 				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				        Iniciar sesión
+				    <h2 class="accordion-header" id="headingLogin">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
+				       <i class="fas fa-key fa-lg me-2"></i> Iniciar sesión
 				      </button>
 				    </h2>
-				    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				    <div id="collapseLogin" class="accordion-collapse collapse" aria-labelledby="headingLogin" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				        <strong>Iniciar Sesión.</strong> Si eres un usuario ya registrado solo debes ingresar tu número de cédula, la clave que hayas colocado al momento del registro y hacer click en el botón "Ingresar". Por otro lado si eres un nuevo usuario debes hacer click en el botón "Registrarse", al hacerlo será enviado a una página donde debe llenar los datos solicicitados en cada pestaña, al completarlos debe hacer click al botón "Guardar y Continuar" de ahí será dirigido a la página para Ingresar al Sistema nuevamente donde podrá ingresar con sus datos.
 				      </div>
 				    </div>
 				  </div>
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingTwo">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				        Registrar estudiante
+				        <i class="fa-solid fa-user-plus fa-lg me-2"></i> Registrar estudiante
 				      </button>
 				    </h2>
 				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				        <strong>Registrar Estudiante.</strong> Para poder registrar un estudiante primero debe hacer click en el botón "Registrar Estudiante" de ahí será llevado al formulario donde primero deberá escoger su vínculo con el estudiante a inscribir, continuamente debe llenar todos los datos solicitados sobre el estudiante. Al finalizar haga click en el botón "Registrar Estudiante" y tendrá ya registrado a un estudiante. Importante recordar que debe ingresar todos los datos solicitado.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingProfile">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProfile" aria-expanded="false" aria-controls="collapseProfile">
+				        <i class="fa-solid fa-address-card fa-lg me-2"></i>Ver Perfil
+				      </button>
+				    </h2>
+				    <div id="collapseProfile" class="accordion-collapse collapse" aria-labelledby="headingProfile" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <strong>Ver Perfil.</strong> Esta sección le permite al usuario del sistema visualizar los datos de su perfil de usuario. Asímismo en esta sección se encuentra el botón "Editar perfil" el cual le da la opción de modificar los datos en su perfil.
 				      </div>
 				    </div>
 				  </div>
@@ -46,19 +58,31 @@
 				    </h2>
 				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				        <strong>Gestionar Estudiante.</strong> La sección de gestionar estudiantes le permitirá consultar a los estudiantes que ha registrado bajo su usuario.
 				      </div>
 						</div>
 				  </div>
 				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingFour">
-				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				    <h2 class="accordion-header" id="headingRegistry">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistry" aria-expanded="false" aria-controls="collapseRegistry">
+				        Gestionar Registros
+				      </button>
+				    </h2>
+				    <div id="collapseRegistry" class="accordion-collapse collapse" aria-labelledby="headingRegistry" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <strong>Gestionar Registros.</strong> Esta sección le permite al administrador consultar todos los registros en la base de datos.
+				      </div>
+				    </div>
+				  </div>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingMaintenance">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaintenance" aria-expanded="false" aria-controls="collapseMaintenance">
 				        Funciones de mantenimiento
 				      </button>
 				    </h2>
-				    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+				    <div id="collapseMaintenance" class="accordion-collapse collapse" aria-labelledby="headingMaintenance" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+				        <strong>Funciones de mantenimiento.</strong> Las funciones de mantenimiento son exclusivas de los administradores del sistema. Estas son "Generar respaldo" y "Restaurar base de datos". La opción "Generar respaldo" le permite descargar un repaldo de todos los registros que se encuentran en la base de datos. por otro lado la opción "Restaurar base de datos" le permite restaurar la base de datos a un punto anterior.
 				      </div>
 						</div>
 				  </div>

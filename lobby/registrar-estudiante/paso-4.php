@@ -202,7 +202,6 @@ if (!$_SESSION['login']) {
 			</div>
 			<!--Botón para guardar-->
 			<div class="card-footer">
-				<input type="hidden" name="orden" value="Insertar">
 				<a href="" class="btn btn-sm btn-primary"><i class="fas fa-home fa-lg"></i> Volver al menú</a>
 				<a href="" class="btn btn-sm btn-primary"><i class="fas fa-arrow-alt-circle-left fa-lg"></i> Volver al paso anterior</a>
 				<button class="btn btn-sm btn-primary" type="submit"><i class="fas fa-save fa-lg"></i> Guardar y continuar</button>
