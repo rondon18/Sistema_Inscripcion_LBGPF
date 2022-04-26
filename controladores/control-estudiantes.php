@@ -43,6 +43,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	if ($orden == "Insertar") {
 
 		#Persona -> padre
+<<<<<<< HEAD
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
 		$padre->setPrimer_Apellido($_POST['Primer_Apellido_Familiar']);
@@ -142,6 +143,34 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
+=======
+		if (!isset($_POST['Es_el_representante'])) {
+			$padre->setNombres($_POST['Primer_Nombre_Familiar']." ".$_POST['Segundo_Nombre_Familiar']);
+			$padre->setApellidos($_POST['Primer_Apellido_Familiar']." ".$_POST['Segundo_Apellido_Familiar']);
+			$padre->setCedula($_POST['Cédula_Familiar']);
+			$padre->setCorreo($_POST['Correo_electrónico_Familiar']);
+			$padre->setGenero($_POST['Genero_Familiar']);
+			$padre->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
+			$padre->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Familiar']);
+			$padre->setDireccion($_POST['Direccion_Estudiante']);
+			$padre->setTeléfono_Principal($_POST['Teléfono_Principal_Familiar']);
+			$padre->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Familiar']);
+			$padre->setEstado_Civil("Soltero(a)");
+
+			$padre->insertarPersona();
+
+			$padre->setParentezco($_POST['Vinculo_Familiar']);
+
+			$padre->insertarPadres($padre->getCedula());
+		}
+		elseif (isset($_POST['Es_el_representante'])){
+			$padre->setParentezco($_POST['Vinculo_Familiar']);
+			$padre->insertarPadres($_SESSION['persona'][3]);
+		}
+
+		#Persona -> estudiante -> datos sociales, medicos y tallas
+
+>>>>>>> 2424f37a54f15c0732a1e23bec1798ae9a5daf2c
 		#datos basicos del estudiante
 		$estudiante->setPrimer_Nombre($_POST['Primer_Nombre_Est']);
 		$estudiante->setSegundo_Nombre($_POST['Segundo_Nombre_Est']);
@@ -157,10 +186,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
 		$estudiante->setidRepresentante($_SESSION['representante'][0]);
-		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia'])
-		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive'])
-		$datos_estudiante->setidRepresentante($_SESSION['representante'][0])
-		$datos_estudiante->setidPadre()
+		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
+		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive']);
+		$datos_estudiante->setidRepresentante($_SESSION['representante'][0]);
+		$datos_estudiante->setidPadre();
 
 		#datos medicos
 		$ficha_medica->setEstatura($_POST['Talla']);
