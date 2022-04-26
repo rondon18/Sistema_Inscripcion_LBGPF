@@ -113,17 +113,17 @@ else {
 								<!--Teléfono principal-->
 								<div class="input-group mb-2">
 									<!--Prefijo-->
-									<input class="form-control" type="text" name="Prefijo_Principal_Est" list="prefijos-estudiante" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+									<input class="form-control" type="text" name="Prefijo_Principal_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 									<!--Número-->
-									<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Est" placeholder="Teléfono principal" pattern="[0,9]+" required>
+									<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Est" placeholder="Teléfono principal" required>
 								</div>
 
 								<!--Teléfono secundario-->
 								<div class="input-group mb-2">
 									<!--Prefijo-->
-									<input class="form-control" type="text" name="Prefijo_Secundario_Est" list="prefijos-estudiante" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+									<input class="form-control" type="text" name="Prefijo_Secundario_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 									<!--Número-->
-									<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Est" placeholder="Teléfono secundario" pattern="[0,9]+" required>
+									<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Est" placeholder="Teléfono secundario" required>
 								</div>
 							</div>
 						</div>
@@ -162,7 +162,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Materias_Pendientes" list="grados" placeholder="¿Cuáles?">
+								<input class="form-control w-auto" type="text" name="Materias_Pendientes" placeholder="¿Cuáles?">
 							</div>
 						</div>
 						<div>
@@ -178,7 +178,7 @@ else {
 						<!--Dirección de residencia-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2" name="Direccion_Estudiante"></textarea>
+							<textarea class="form-control mb-2" name="Direccion_Est"></textarea>
 						</div>
 						<div>
 							<label class="form-label">¿Con quién vive?:</label>
@@ -552,16 +552,16 @@ else {
 							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" pattern="[0,9]+" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Número_Telefónico'];} ?>">
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" pattern="[0,9]+" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Número_Telefónico'];} ?>">
 							</div>
 						</div>
 

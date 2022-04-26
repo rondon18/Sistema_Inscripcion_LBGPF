@@ -7,6 +7,7 @@ class Estudiantes extends Personas {
 	private $idEstudiantes;
 	private $Plantel_Procedencia;
 	private $Con_Quien_Vive;
+	private $Cedula_Estudiante;
 	private $idRepresentante;
 	private $idPadre;
 
@@ -17,14 +18,14 @@ class Estudiantes extends Personas {
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
 		$Con_Quien_Vive = $this->getCon_Quien_Vive();
-		$Cedula_Estudiante = $this->getCédula();
+		$Cedula_Estudiante = $this->getCedula_Estudiante();
 		$idRepresentante = $this->getidRepresentante();
 		$idPadre = $this->getidPadre();
 
-		$sql = "SELECT * FROM `estudiantes` WHERE `Cédula` = '$Cédula'";
+		$sql = "SELECT * FROM `estudiantes` WHERE `Cedula_Persona` = '$Cedula_Estudiante'";
 
-			$registro_existe = $conexion->query($sql);
-			$resultado = $registro_existe->fetch_assoc();
+		$registro_existe = $conexion->query($sql);
+		$resultado = $registro_existe->fetch_assoc();
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
@@ -113,6 +114,9 @@ class Estudiantes extends Personas {
 	public function setCon_Quien_Vive($Con_Quien_Vive) {
 		$this->Con_Quien_Vive = $Con_Quien_Vive;
 	}
+	public function setCedula_Estudiante($Cedula_Estudiante) {
+		$this->Cedula_Estudiante = $Cedula_Estudiante;
+	}
 	public function setidRepresentante($idRepresentante) {
 		$this->idRepresentante = $idRepresentante;
 	}
@@ -134,6 +138,9 @@ class Estudiantes extends Personas {
 	}
 	public function getidPadre() {
 		return $this->idPadre;
+	}
+	public function getCedula_Estudiante() {
+		return $this->Cedula_Estudiante;
 	}
 }
 

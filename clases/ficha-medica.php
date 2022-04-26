@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	class FichaMedica {
 
@@ -39,7 +39,7 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-medicos`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
 					NULL,
 					'$Estatura',
 					'$Peso',
@@ -57,8 +57,6 @@
 					'$Carnet_Discapacidad',
 					'$id_Estudiante'
 				)";
-
-			echo $sql;
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidDatos_Medicos($conexion->insert_id);
@@ -83,8 +81,8 @@
 			$Cond_Dental = $this->getCond_Dental();
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
-			
-			$sql = "UPDATE `datos-medicos` SET 
+
+			$sql = "UPDATE `datos-medicos` SET
 			`Estatura`='$Estatura',
 			`Peso`='$Peso',
 			`Indice`='$Indice',
@@ -111,7 +109,7 @@
 
 			$sql = "SELECT * FROM `datos-medicos` WHERE `idEstudiantes` = '$id_Estudiante'";
 
-			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);
 			$datos_medicos = $consulta_sociales->fetch_assoc();
 
 			desconectarBD($conexion);

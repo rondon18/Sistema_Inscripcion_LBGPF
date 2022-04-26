@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 	class DatosSociales {
-		
+
 		private $idDatos_Sociales;
 		private $Posee_Canaima;
 		private $Condicion_Canaima;
@@ -18,16 +18,14 @@
 
 			$Posee_Canaima = $this->getPosee_Canaima();
 			$Condicion_Canaima = $this->getCondicion_Canaima();
-			$Posee_Carnet_Patria = $this->getPosee_Carnet_Patria();
 			$Codigo_Carnet_Patria = $this->getCodigo_Carnet_Patria();
 			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
-			$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Posee_Carnet_Patria`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
+			$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
 				NULL,
 				'$Posee_Canaima',
 				'$Condicion_Canaima',
-				'$Posee_Carnet_Patria',
 				'$Codigo_Carnet_Patria',
 				'$Serial_Carnet_Patria',
 				'$Acceso_Internet',
@@ -50,7 +48,7 @@
 			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
-			$sql = "UPDATE `datos-sociales` SET 
+			$sql = "UPDATE `datos-sociales` SET
 				`Posee_Canaima`='$Posee_Canaima',
 				`Condicion_Canaima`='$Condicion_Canaima',
 				`Posee_Carnet_Patria`='$Posee_Carnet_Patria',
@@ -69,7 +67,7 @@
 
 			$sql = "SELECT * FROM `datos-sociales` WHERE `idEstudiantes` = '$id_Estudiante'";
 
-			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);
 			$sociales = $consulta_sociales->fetch_assoc();
 
 			desconectarBD($conexion);
