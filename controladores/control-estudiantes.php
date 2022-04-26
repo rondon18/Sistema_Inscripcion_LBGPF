@@ -84,10 +84,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
 		$estudiante->setidRepresentante($_SESSION['representante'][0]);
-		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia'])
-		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive'])
-		$datos_estudiante->setidRepresentante($_SESSION['representante'][0])
-		$datos_estudiante->setidPadre()
+		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
+		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive']);
+		$datos_estudiante->setidRepresentante($_SESSION['representante'][0]);
+		$datos_estudiante->setidPadre();
 
 		#datos medicos
 		$ficha_medica->setEstatura($_POST['Talla']);
