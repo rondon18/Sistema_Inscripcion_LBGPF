@@ -67,67 +67,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$padre->insertarPadres($_SESSION['persona'][3]);
 		}
 
-
 		#Persona -> estudiante -> datos sociales, medicos y tallas
-
-		Primer_Nombre_Est
-		Segundo_Nombre_Est
-		Primer_Apellido_Est
-		Segundo_Apellido_Est
-		Cedula_Est
-		Genero_Est
-		Fecha_Nacimiento_Est
-		Lugar_Nacimiento_Est
-		Correo_electrónico_Est
-		Prefijo_Principal_Est
-		Teléfono_Principal_Est
-		Prefijo_Secundario_Est
-		Teléfono_Secundario_Est
-		Teléfono_Principal_Est
-		Teléfono_Auxiliar_Est
-		Grado_A_Cursar
-		Estudiante_Repitente
-		Año_Repitente
-		Tiene_Materias_Pendientes
-		Materias_Pendientes
-		Plantel_Procedencia
-		Direccion_Estudiante
-
-		Tiene_Canaima
-		Condiciones_Canaima
-		Tiene_Carnet_Patria
-		Codigo_Carnet_Patria
-		Serial_Carnet_Patria
-		Internet_Vivienda
-		Indice
-		Talla
-		Peso
-		C_Braquial
-		Talla_Pantalon
-		Talla_Camisa
-		Talla_Zapatos
-		Padece_Enfermedad
-		Cual_Enfermedad
-		Alergias
-		Grupo_Sanguineo
-		Factor_Rhesus
-		Lateralidad
-		Condicion_Dentadura
-		Condicion_Vista
-		Condiciones_Salud
-		Recibe_Atención_Inst
-		Institucion_Medica
-		Recibe_Medicacion
-		Medicacion
-		Tiene_Dieta_Especial
-		Dieta_Especial
-		Tiene_Carnet_Discapacidad
-		Nro_Carnet_Discapacidad
-
-
-
-
-
 
 		#datos basicos del estudiante
 		$estudiante->setPrimer_Nombre($_POST['Primer_Nombre_Est']);
