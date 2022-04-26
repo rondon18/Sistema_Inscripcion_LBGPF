@@ -7,14 +7,23 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
+
+
+
+
 require("../clases/estudiante.php");
 require("../clases/representantes.php");
 require("../clases/padres.php");
 require("../controladores/conexion.php");
-
 require("../clases/usuario.php");
 
-$conexion = conectarBD();
+require('../clases/bitacora.php');
+$bitacora = new bitacora();
+$_SESSION['acciones'] .= ', Consulta estudiantes';
+$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+
+$registros_bitacora = $bitacora->mostrar_bitacora();
+
 $estudiante = new Estudiantes();
 $representante = new Representantes();
 $padres = new Padres();
@@ -27,8 +36,6 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	$usuario = new Usuarios();
 	$lista_usuarios = $usuario->mostrarUsuarios();
 }
-
-desconectarBD($conexion);
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +85,9 @@ desconectarBD($conexion);
 				</li>
 				<li class="nav-item">
 					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar representantes</a>
+				</li>
+				<li class="nav-item">
+					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitacora</a>
 				</li>
 			</ul>
 		<?php endif; ?>
@@ -164,7 +174,7 @@ desconectarBD($conexion);
 							</table>
 					</div>
 				</div>
-				<div id="seccion3" class="card my-2" style="display:none;">
+				<div id="seccion3" class="card my-2">
 					<div class="card-header">
 						Representantes registrados
 					</div>
@@ -181,7 +191,6 @@ desconectarBD($conexion);
 									<th>Correo electronico</th>
 									<th>Dirección</th>
 									<th>Estado civil</th>
-									<th>Relación</th>
 									<th>Grado de instrucción</th>
 								</thead>
 								<tbody>
@@ -197,28 +206,42 @@ desconectarBD($conexion);
 										<td><?php echo $representante['Correo_Electrónico']?></td>
 										<td><?php echo $representante['Dirección']?></td>
 										<td><?php echo $representante['Estado_Civil']?></td>
-										<td><?php echo $representante['Vinculo']?></td>
 										<td><?php echo $representante['Grado_Academico']?></td>
-
 									</tr>
 								<?php endforeach; ?>
-								<?php for ($i=0; $i < 100; $i++):?>
-									<tr>
-										<td>item 1</td>
-										<td>item 2</td>
-										<td>item 3</td>
-										<td>item 4</td>
-										<td>item 5</td>
-										<td>item 6</td>
-										<td>item 7</td>
-										<td>item 8</td>
-										<td>item 9</td>
-										<td>item 10</td>
-										<td>item 11</td>
-										<td>item 12</td>
-									</tr
-
-								<?php endfor; ?>
+								</tbody>
+							</table>
+					</div>
+				</div>
+				<div id="seccion4" class="card my-2" style="display:none;">
+					<div class="card-header">
+						Representantes registrados
+					</div>
+					<div class="card-body">
+							<table id="bitacora" class="table table-striped table-bordered table-sm w-100">
+								<thead>
+									<th>Nro. Registro</th>
+									<th>Id de usuario</th>
+									<th>Fecha entrada</th>
+									<th>Hora entrada</th>
+									<th>Acciones realizadas</th>
+									<th>Fecha de cierre</th>
+									<th>Hora de cierre</th>
+								</thead>
+								<tbody>
+								<?php foreach ($registros_bitacora as $registro): ?>
+									<?php if ($registro['idBitacora'] != $_SESSION['idBitacora']): #No muestra el ultimo registro por ser el actial?>
+										<tr>
+											<td><?php echo $registro['idBitacora']?></td>
+											<td><?php echo $registro['idUsuarios']?></td>
+											<td><?php echo $registro['fechaInicioSesion']?></td>
+											<td><?php echo $registro['horaInicioSesion']?></td>
+											<td style="max-width:350px"><small><?php echo $registro['linksVisitados']?></small></td>
+											<td><?php if(!empty($registro['fechaFinalSesion'])) { echo $registro['fechaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+											<td><?php if(!empty($registro['horaFinalSesion'])) { echo $registro['horaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+										</tr>
+									<?php endif;?>
+								<?php endforeach; ?>
 								</tbody>
 							</table>
 					</div>
@@ -263,13 +286,13 @@ desconectarBD($conexion);
 		  	<?php endif; ?>
 		});
 	} );
+	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 	$(document).ready( function () {
 		$('#usuarios').DataTable({
 			responsive: true,
 			"language": {
 					"url": "../js/datatables-español.json"
 			  },
-		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
@@ -283,7 +306,7 @@ desconectarBD($conexion);
 	        	}
 		  	],
 		  	"pagingType": "numbers"
-		  	<?php endif; ?>
+
 		});
 	} );
 	$(document).ready( function () {
@@ -292,7 +315,6 @@ desconectarBD($conexion);
 			"language": {
 					"url": "../js/datatables-español.json"
 			  },
-		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
@@ -305,9 +327,30 @@ desconectarBD($conexion);
 	            messageTop: 'Reporte de representantes'
 	        }
 		  	]
-		  	<?php endif; ?>
 		});
 	} );
+	$(document).ready( function () {
+		$('#bitacora').DataTable({
+			responsive: true,
+			"language": {
+					"url": "../js/datatables-español.json"
+			  },
+			dom: 'Bfrtip',
+			"order": [[ 0, "desc" ]],
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            autoFilter: true,
+	            filename: 'Reporte de bitacora',
+	            sheetName: 'Reporte de bitacora',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de bitacora'
+	        }
+		  	]
+		});
+	} );
+	<?php endif; ?>
 </script>
 <script>
 	function seccion(seccion) {
@@ -316,11 +359,13 @@ desconectarBD($conexion);
 		var a = document.getElementById("seccion1");
 		var b = document.getElementById("seccion2");
 		var c = document.getElementById("seccion3");
+		var d = document.getElementById("seccion4");
 
 		//botones en la navegación
 		var link_a = document.getElementById("link1");
 		var link_b = document.getElementById("link2");
 		var link_c = document.getElementById("link3");
+		var link_d = document.getElementById("link4");
 
 		//seccion seleccionada como activa(seccion 1 por defecto)
 		var seccion = document.getElementById(seccion);
@@ -328,10 +373,12 @@ desconectarBD($conexion);
 		a.style.display = "none";
 		b.style.display = "none";
 		c.style.display = "none";
+		d.style.display = "none";
 
 		link_a.classList.remove("active");
 		link_b.classList.remove("active");
 		link_c.classList.remove("active");
+		link_d.classList.remove("active");
 
 		if (seccion == a) {
 			a.style.display = "block";
@@ -344,6 +391,10 @@ desconectarBD($conexion);
 		else if (seccion == c) {
 			c.style.display = "block";
 			link_c.classList.add("active");
+		}
+		else if (seccion == d) {
+			d.style.display = "block";
+			link_d.classList.add("active");
 		}
 	}
 </script>

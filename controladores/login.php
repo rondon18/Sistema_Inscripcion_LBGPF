@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require("conexion.php");
 require("../clases/personas.php");
@@ -8,9 +8,10 @@ require("../clases/economicos-representantes.php");
 require("../clases/laborales-representantes.php");
 require("../clases/vivienda-representantes.php");
 require("../clases/telefonos.php");
+require("../clases/bitacora.php");
 
 if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $clave = $_POST['clave'] != "")) {
-	
+
 
 	$cedula = $_POST['cedula'];
 	$clave = $_POST['clave'];
@@ -19,7 +20,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 
 	//Consulto si la cedula existe en la BD
 	$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$cedula'";
-	
+
 	if ($consulta_persona = $conexion->query($sql)) {
 
 		$resultado_persona = $consulta_persona->fetch_assoc();
@@ -39,15 +40,20 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 			#se crea variable de sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
+			$bitacora = new bitacora();
+
+			$_SESSION['idBitacora'] = $bitacora->guardar_bitacora($_SESSION['usuario']['idUsuarios']);
+			$_SESSION['acciones'] = "Inicia Sesión";
+
 			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante
 			$persona = new Personas();
 			$datos_persona = $persona->consultarPersona($cedula);
 
 			$_SESSION['persona'] = $datos_persona;
-			
-			#Solo si el usuario es un represenante
+
+			#Solo si el usuario es un representante
 			if ($_SESSION['usuario']['Privilegios'] == 2) {
-				
+
 				#Datos del representante
 				$representante = new Representantes();
 
@@ -62,7 +68,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 				#la variable telefonos_representante es una matriz asociativa
 
 				$_SESSION['telefonos'] = $telefonos_representante;
-			
+
 				#Datos economicos
 				$economicos = new DatosEconomicos();
 
@@ -75,7 +81,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 				$laborales 	= new DatosLaborales();
 
 				$datos_laborales = $laborales->consultarDatosLaborales($_SESSION['representante']['idRepresentantes']);
-				
+
 
 				$_SESSION['datos_laborales'] = $datos_laborales;
 
@@ -83,7 +89,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 				$vivienda 	= new DatosVivienda();
 
 				$datos_vivienda = $vivienda->consultarDatosVivienda($_SESSION['representante']['idRepresentantes']);
-				
+
 
 				$_SESSION['datos_vivienda'] = $datos_vivienda;
 
@@ -110,14 +116,14 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 
 			$_SESSION['login'] = "Sessión valida";
 
-			header('Location: ../lobby/index.php');	
+			header('Location: ../lobby/index.php');
 		}
 	}
 	else {
 		header("Location: ../index.php");
 	}
 
-	desconectarBD($conexion);	
+	desconectarBD($conexion);
 }
 
 ?>

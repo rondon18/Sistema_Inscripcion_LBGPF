@@ -43,30 +43,41 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	if ($orden == "Insertar") {
 
 		#Persona -> padre
-		if (!isset($_POST['Es_el_representante'])) {
-			$padre->setNombres($_POST['Primer_Nombre_Familiar']." ".$_POST['Segundo_Nombre_Familiar']);
-			$padre->setApellidos($_POST['Primer_Apellido_Familiar']." ".$_POST['Segundo_Apellido_Familiar']);
-			$padre->setCedula($_POST['Cédula_Familiar']);
-			$padre->setCorreo($_POST['Correo_electrónico_Familiar']);
-			$padre->setGenero($_POST['Genero_Familiar']);
-			$padre->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
-			$padre->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Familiar']);
-			$padre->setDireccion($_POST['Direccion_Estudiante']);
-			$padre->setTeléfono_Principal($_POST['Teléfono_Principal_Familiar']);
-			$padre->setTeléfono_Auxiliar($_POST['Teléfono_Auxiliar_Familiar']);
-			$padre->setEstado_Civil("Soltero(a)");
+		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
+		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
+		$padre->setPrimer_Apellido($_POST['Primer_Apellido_Familiar']);
+		$padre->setSegundo_Apellido($_POST['Segundo_Apellido_Familiar']);
+		$padre->setCédula($_POST['Cédula_Familiar']);
+		$padre->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
+		$padre->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Familiar']);
+		$padre->setGénero($_POST['Genero_Familiar']);
+		$padre->setCorreo_Electrónico($_POST['Correo_electrónico_Familiar']);
+		$padre->setDirección($_POST['Direccion_Familiar']);
+		$padre->setEstado_Civil($_POST['Estado_Civil_Familiar']);
 
-			$padre->insertarPersona();
+		$padre->insertarPersona();
 
-			$padre->setParentezco($_POST['Vinculo_Familiar']);
+		$padre->insertarPadres($padre->getCedula());
 
-			$padre->insertarPadres($padre->getCedula());
-		}
-		elseif (isset($_POST['Es_el_representante'])){
-			$padre->setParentezco($_POST['Vinculo_Familiar']);
-			$padre->insertarPadres($_SESSION['persona'][3]);
-		}
+		$padre->setParentezco($_POST['Vinculo_Familiar']);
+		$padre->insertarPadres($_SESSION['persona'][3]);
 
+		Primer_Nombre_Familiar
+		Segundo_Nombre_Familiar
+		Primer_Apellido_Familiar
+		Segundo_Apellido_Familiar
+		Genero_Familiar
+		Genero_Familiar
+		Cédula_Familiar
+		Fecha_Nacimiento_Familiar
+		Lugar_Nacimiento_Familiar
+		Correo_electrónico_Familiar
+		Prefijo_Principal_Familiar
+		Teléfono_Principal_Familiar
+		Prefijo_Secundario_Familiar
+		Teléfono_Secundario_Familiar
+		Estado_Civil_Familiar
+		Direccion_Familiar
 
 		#Persona -> estudiante -> datos sociales, medicos y tallas
 
@@ -123,6 +134,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		Dieta_Especial
 		Tiene_Carnet_Discapacidad
 		Nro_Carnet_Discapacidad
+
+
 
 
 

@@ -450,8 +450,16 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	elseif ($orden == "Eliminar") {
 
 		if (isset($_POST['DarseDeBaja'])) {
-			$usuario->eliminarUsuario($_SESSION['usuario'][0]);
-			header('Location: ../lobby/logout.php');
+
+			$usuario->eliminarUsuario($_SESSION['persona']['Cédula']);
+
+			require('../clases/bitacora.php');
+
+			$bitacora = new bitacora();
+			$_SESSION['acciones'] .= ',Se da de baja';
+			$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+
+			header('Location: logout.php');
 		}
 		elseif (isset($_POST['id'])) {
 			$usuario->eliminarUsuario($_POST['id']);

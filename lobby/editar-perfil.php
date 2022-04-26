@@ -7,6 +7,13 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
+require('../clases/bitacora.php');
+require('../controladores/conexion.php');
+$bitacora = new bitacora();
+$_SESSION['acciones'] .= ', Edita perfil';
+$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+
+
 ?>
 
 <!DOCTYPE html>

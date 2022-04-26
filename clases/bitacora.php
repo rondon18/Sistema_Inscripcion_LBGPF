@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class bitacora {
 
@@ -10,7 +10,7 @@ class bitacora {
 		$fechaActual = date("Y-m-d");
 		$horaActual = date("H:i:s");
 
-		$links = $_SERVER['PHP_SELF'];
+		$links = "Inicia sesión";
 
 		$sql = "INSERT INTO `bitacora`(`idBitacora`, `idUsuarios`, `fechaInicioSesion`, `horaInicioSesion`, `linksVisitados`, `fechaFinalSesion`, `horaFinalSesion`) VALUES (
 			NULL,
@@ -19,16 +19,22 @@ class bitacora {
 			'$horaActual',
 			'$links',
 			NULL,
-			NULL)";
+			NULL
+		)";
+
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		$idBitacora = $conexion->insert_id;
+
 		desconectarBD($conexion);
+
 		return $idBitacora;
 	}
 
-	public function actualizar_Bitacora($acciones){
+	public function actualizar_Bitacora($acciones,$idBitacora){
+
 		$conexion = conectarBD();
-		$sql = "UPDATE `bitacora` SET 
+
+		$sql = "UPDATE `bitacora` SET
 		`linksVisitados`='$acciones'
 		WHERE `idBitacora`='$idBitacora'";
 
@@ -39,15 +45,31 @@ class bitacora {
 	public function cerrar_Bitacora($idBitacora){
 		$conexion = conectarBD();
 
-		$sql = "UPDATE `bitacora` SET 
+		date_default_timezone_set("America/Caracas");
+		$fechaFinal = date("Y-m-d");
+		$horaFinal = date("H:i:s");
+
+		$sql = "UPDATE `bitacora` SET
 		`fechaFinalSesion`='$fechaFinal',
-		`horaFinalSesion`='$horaFinal' 
+		`horaFinalSesion`='$horaFinal'
 		WHERE `idBitacora`='$idBitacora'";
-		
+
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		desconectarBD($conexion);	
+		desconectarBD($conexion);
 	}
 
+	public function mostrar_bitacora() {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `bitacora` ORDER BY `idBitacora` DESC";
+
+			$consulta_registros = $conexion->query($sql) or die("error: ".$conexion->error);
+			$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
+
+			desconectarBD($conexion);
+
+			return $registros;
+	}
 }
 
  ?>

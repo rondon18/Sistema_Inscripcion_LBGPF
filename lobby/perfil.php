@@ -6,16 +6,11 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-
-function calculaedad($fechanacimiento){
-  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-  $año_diferencia  = date("Y") - $ano;
-  $mes_diferencia = date("m") - $mes;
-  $dia_diferencia   = date("d") - $dia;
-  if ($dia_diferencia < 0 || $mes_diferencia < 0)
-    $año_diferencia--;
-  return $año_diferencia;
-}
+require('../clases/bitacora.php');
+require('../controladores/conexion.php');
+$bitacora = new bitacora();
+$_SESSION['acciones'] .= ', Visita perfil';
+$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 
 function telefonos($prefijo,$telefono) {
 	if (!empty($prefijo) and !empty($telefono)) {
@@ -25,7 +20,6 @@ function telefonos($prefijo,$telefono) {
 		echo "N/A";
 	}
 }
-
 ?>
 
 <!DOCTYPE html>

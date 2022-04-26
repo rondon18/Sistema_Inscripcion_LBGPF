@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	class Personas {
 		private $idPersonas;
@@ -18,7 +18,7 @@
 
 		public function insertarPersona() {
 			$conexion = conectarBD();
-			
+
 			$Primer_Nombre = $this->getPrimer_Nombre();
 			$Segundo_Nombre = $this->getSegundo_Nombre();
 			$Primer_Apellido = $this->getPrimer_Apellido();
@@ -35,7 +35,7 @@
 
 			$registro_existe = $conexion->query($sql);
 			$resultado = $registro_existe->fetch_assoc();
-			
+
 			#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 			if ($resultado == NULL) {
 				$sql = "INSERT INTO `personas`(`idPersonas`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Cédula`, `Fecha_Nacimiento`, `Lugar_Nacimiento`, `Género`, `Correo_Electrónico`, `Dirección`, `Estado_Civil`) VALUES (
@@ -77,7 +77,7 @@
 			$Teléfono_Principal = $this->getTeléfono_Principal();
 			$Teléfono_Auxiliar = $this->getTeléfono_Auxiliar();
 			$Estado_Civil = $this->getEstado_Civil();
-			
+
 			$sql = "UPDATE `personas` SET
 				`Nombres`='$Nombres',
 				`Apellidos`='$Apellidos',
@@ -89,7 +89,7 @@
 				`Dirección`='$Direccion',
 				`Teléfono_Principal`='$Teléfono_Principal',
 				`Teléfono_Auxiliar`='$Teléfono_Auxiliar',
-				`Estado_Civil`='$Estado_Civil' 
+				`Estado_Civil`='$Estado_Civil'
 			WHERE `idPersonas`='$id'";
 
 
@@ -112,7 +112,7 @@
 
 			$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$cedula'";
 
-			$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);
 			$persona = $consulta_persona->fetch_assoc();
 
 			desconectarBD($conexion);
@@ -126,18 +126,13 @@
 
 			$sql = "SELECT * FROM `personas`";
 
-			$consulta_personas = $conexion->query($sql) or die("error: ".$conexion->error);			
+			$consulta_personas = $conexion->query($sql) or die("error: ".$conexion->error);
 			$personas = $consulta_personas->fetch_all(MYSQLI_ASSOC);
 
-			#Hace un arreglo de arreglos para contener los campos de la persona
-			$Lista_Personas = [];
-			foreach ($personas as $persona) {
-				$Lista_Personas[]= $persona;
-			}
 
 			desconectarBD($conexion);
 
-			return $Lista_Personas;
+			return $personas;
 		}
 
 		public function setidPersonas($idPersonas) {

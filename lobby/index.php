@@ -5,6 +5,12 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
+
+require('../clases/bitacora.php');
+require('../controladores/conexion.php');
+$bitacora = new bitacora();
+$_SESSION['acciones'] .= ', Visita menú principal';
+$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +37,7 @@ if (!$_SESSION['login']) {
 
 	<div class="card text-center m-auto" style="max-width:620px; margin:auto;">
 		<div class="card-header">
-			
+
 			<b>Menú principal</b>
 		</div>
 		<div class="card-body">

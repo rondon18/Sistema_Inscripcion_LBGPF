@@ -18,7 +18,6 @@ if (isset($_POST['Vinculo']) and !empty($_POST['Vinculo'])) {
 else {
 	header('Location: paso-1.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +33,6 @@ else {
 </head>
 <body>
 	<form class="card" action="../../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 74px auto;">
-
 			<div class="card-header">
 				<h4>Formulario de registro de estudiantes</h4>
 			</div>
@@ -412,70 +410,80 @@ else {
 				</section>
 				<section id="seccion4" style="display:none;">
 					<!--Datos del padre o la madre-->
-					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos familiares.</h5>
+					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos familiares (Madre/Padre).</h5>
 
 					<div>
-						<!--Nombres del familiar-->
 						<div>
-							<label class="form-label">Nombres:</label>
-							<div class="input-group">
-								<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
-								<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
-							</div>
-
-						</div>
-
-						<!--Apellidos del familiar-->
-						<div>
-							<label class="form-label">Apellidos:</label>
-							<div class="input-group">
-								<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido">
-								<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
-							</div>
-						</div>
-
-						<!--Genero del familiar-->
-						<div>
-							<p class="form-label">Genero:</p>
+							<p class="form-label">Parentezco:</p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
-									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Genero_Familiar" value="F">
+									<input class="form-check-input" type="radio" name="Vinculo" value="Madre" required <?php if($_POST['Vinculo'] == "Madre"){echo "checked";} ?>>
+									<label class="form-label">Madre</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Genero_Familiar" value="M">
+									<input class="form-check-input" type="radio" name="Vinculo" value="Padre" required <?php if($_POST['Vinculo'] == "Padre"){echo "checked";} ?>>
+									<label class="form-label">Padre</label>
 								</div>
 							</div>
-						</div>
-						<!--Cédula del familiar-->
-						<div>
-							<label class="form-label">Cédula:</label>
-							<input class="form-control mb-2" type="text" name="Cédula_Familiar" placeholder="Cédula de identidad">
-						</div>
+							<!--Nombres del familiar-->
+							<div>
+								<label class="form-label">Nombres:</label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Primer_Nombre'];} ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Segundo_Nombre'];} ?>">
+								</div>
 
-						<!--Fecha de nacimiento del familiar-->
-						<div>
-							<label class="form-label">Fecha de nacimiento:</label>
-							<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar">
-						</div>
+							</div>
 
-						<!--Lugar de nacimiento del familiar-->
-						<div>
-							<label class="form-label">Lugar de nacimiento:</label>
-							<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar">
-						</div>
+							<!--Apellidos del familiar-->
+							<div>
+								<label class="form-label">Apellidos:</label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Primer_Apellido'];} ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Segundo_Apellido'];} ?>">
+								</div>
+							</div>
 
-						<!--Correo electrónico del familiar-->
-						<div>
-							<label class="form-label">Correo electrónico:</label>
-							<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar">
-						</div>
+							<!--Genero del familiar-->
+							<div>
+								<p class="form-label">Genero:</p>
+								<div class="pt-2 px-2 pb-0 bg-light border rounded">
+									<div class="form-check form-check-inline">
+										<label class="form-label">F </label>
+										<input class="form-check-input" type="radio" name="Genero_Familiar" value="F" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Género'] == "F")echo "checked";} ?>>
+									</div>
+									<div class="form-check form-check-inline">
+										<label class="form-label">M </label>
+										<input class="form-check-input" type="radio" name="Genero_Familiar" value="M" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Género'] == "M")echo "checked";} ?>>
+									</div>
+								</div>
+							</div>
+							<!--Cédula del familiar-->
+							<div>
+								<label class="form-label">Cédula:</label>
+								<input class="form-control mb-2" type="text" name="Cédula_Familiar" placeholder="Cédula de identidad" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Cédula'];} ?>">
+							</div>
 
+							<!--Fecha de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Fecha de nacimiento:</label>
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Fecha_Nacimiento'];} ?>">
+							</div>
 
+							<!--Lugar de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Lugar de nacimiento:</label>
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Lugar_Nacimiento'];} ?>">
+							</div>
+
+							<!--Correo electrónico del familiar-->
+							<div>
+								<label class="form-label">Correo electrónico:</label>
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Correo_Electrónico'];} ?>">
+							</div>
 						</div>
 						<!--Teléfono principal-->
-						<div class="">
+						<div>
 							<datalist id="prefijos">
 								<!--Moviles-->
 								<option value="0416">
@@ -544,33 +552,34 @@ else {
 							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" pattern="[0,9]+" required>
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" pattern="[0,9]+" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Número_Telefónico'];} ?>">
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" pattern="[0,9]+" required>
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" pattern="[0,9]+" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Número_Telefónico'];} ?>">
 							</div>
 						</div>
+
 						<!--Estado civil del familiar-->
 						<div>
 							<label class="form-label">Estado civil:</label>
 							<select class="form-select" name="Estado_Civil_Familiar">
-								<option value="Soltero(a)">Soltero(a)</option>
-								<option value="Casado(a)">Casado(a)</option>
-								<option value="Divorsiado(a)">Divorsiado(a)</option>
-								<option value="Viudo(a)">Viudo(a)</option>
+								<option value="Soltero(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Soltero(a)")echo "selected";} ?>>Soltero(a)</option>
+								<option value="Casado(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Casado(a)")echo "selected";} ?>>Casado(a)</option>
+								<option value="Divorsiado(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Divorsiado(a)")echo "selected";} ?>>Divorsiado(a)</option>
+								<option value="Viudo(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Viudo(a)")echo "selected";} ?>>Viudo(a)</option>
 							</select>
 						</div>
 
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2"name="Direccion_Familiar"></textarea>
+							<textarea class="form-control mb-2"name="Direccion_Familiar"><?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Dirección'];} ?></textarea>
 						</div>
 
 						<!--Se encuentra el familiar en el país-->
