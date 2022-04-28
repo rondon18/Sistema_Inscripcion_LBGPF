@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/colores.css"/>
 	<link rel="stylesheet" type="text/css" href="css/all.min.css"/>
+
 </head>
 
 <body style="min-height: 100vh;">
@@ -93,7 +94,9 @@
 	<img src="img/banner-LGPF.png" alt=""  height="48" class="d-inline-block align-text-top">
 </header>
 
-<div style="height:100vh;"></div>
+<div style="height:100vh;">
+	<button type="button" name="button" onclick="alerta();">Boton</button>
+</div>
 
 
 <!--Footer-->
@@ -105,7 +108,7 @@
 <div class="flex justify-content-center align-items-center" style="min-height: 100vh;">
 	<div class="card m-auto" style="max-width: 600px; margin: 16px auto;">
 		<div class="card-header">
-			
+
 			<b>Lorem ipsum dolor sit amet consectetur adipisicing elit.</b>
 		</div>
 
@@ -253,6 +256,29 @@
 -->
 
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+	function alerta() {
+		const alert = Swal.mixin({
+			customClass: {
+				confirmButton: 'btn btn-primary mx-2',
+				closeButton: 'btn btn-primary mx-2',
+				cancelButton: 'btn btn-primary mx-2'
+			},
+			buttonsStyling: false
+		})
+
+			alert.fire({
+				title: 'Error',
+				text: "Se han ingresado datos incorrectos, por favor, corregirlos",
+				icon: 'error',
+				showConfirmButton: true,
+				confirmButtonText: 'De acuerdo'
+			})
+			
+		}
+</script>
 <script>
 	function seccion(seccion) {
 
