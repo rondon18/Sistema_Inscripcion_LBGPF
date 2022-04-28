@@ -69,12 +69,12 @@ class Estudiantes extends Personas {
 		desconectarBD($conexion);
 	}
 
-	public function consultarEstudiante($id_Estudiante) {
+	public function consultarEstudiante($cedula_Estudiante) {
 
 		$conexion = conectarBD();
 
 		#Consulta los datos de las tablas personas y estudiantes del estudiante solicitado
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`idEstudiantes` = '$id_Estudiante' AND `personas`.`Cédula` = `estudiantes`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = '$cedula_Estudiante' AND `personas`.`Cédula` = `estudiantes`.`$cedula_Estudiante`";
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$estudiantes = $consulta_estudiantes->fetch_assoc();

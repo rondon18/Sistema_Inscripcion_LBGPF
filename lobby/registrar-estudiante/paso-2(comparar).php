@@ -20,254 +20,6 @@ else {
 }
 ?>
 
-<script type="text/javascript">
-	
-	function validacion() {
-		var todo_correcto;
-		todo_correcto = true;
-		var expresion = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-
-		if(document.getElementById('Primer_Nombre_Est').value.length < 2){
-    		todo_correcto = false;
-
-		}
-		else if (typeof(document.getElementById('Primer_Nombre_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Segundo_Nombre_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Segundo_Nombre_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Primer_Apellido_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Primer_Apellido_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Segundo_Apellido_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Segundo_Apellido_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Cedula_Est').value.length < 7 || document.getElementById('Cedula_Est').value.length > 8){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Cedula_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Fecha_Nacimiento_Est').value.length > 10){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Lugar_Nacimiento_Est').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Lugar_Nacimiento_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Correo_electrónico_Est').value.length < 15){
-    		todo_correcto = false;
-		}
-		else if (!expresion.exec(document.getElementById('Correo_electrónico_Est').value)) {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Prefijo_Principal_Est').value.length < 4){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Prefijo_Principal_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Teléfono_Principal_Est').value.length < 7){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Teléfono_Principal_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Prefijo_Secundario_Est').value.length < 4){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Prefijo_Secundario_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Teléfono_Secundario_Est').value.length < 7){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Teléfono_Secundario_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Materias_Pendientes').value.length < 6 || document.getElementById('Materias_Pendientes').value.length > 62){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Materias_Pendientes').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Materias_Pendientes')==null) {
-		}
-
-		if(document.getElementById('Plantel_Procedencia').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Plantel_Procedencia').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Direccion_Est').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Direccion_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Con_Quien_Vive').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Con_Quien_Vive').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Codigo_Carnet_Patria').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Codigo_Carnet_Patria').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Codigo_Carnet_Patria')==null) {
-		}
-
-		if(document.getElementById('Serial_Carnet_Patria').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Serial_Carnet_Patria').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Serial_Carnet_Patria')==null) {
-		}
-
-		if(document.getElementById('Indice').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Indice').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Talla').value)=='string') {
-			todo_correcto = false;
-		}	
-		
-		if(document.getElementById('Peso').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Peso').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('C_Braquial').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('C_Braquial').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Pantalon').value.length < 1){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Camisa').value.length < 1){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Zapatos').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Talla_Zapatos').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Cual_Enfermedad').value.length < 5){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Cual_Enfermedad').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Cual_Enfermedad')==null) {
-		}
-
-		if(document.getElementById('Alergias').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Alergias').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Alergias')==null) {
-		}
-
-		if(document.getElementById('Institucion_Medica').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Institucion_Medica').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Institucion_Medica')==null) {
-		}
-
-		if(document.getElementById('Medicacion').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Medicacion').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Medicacion')==null) {
-		}
-
-		if(document.getElementById('Dieta_Especial').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Dieta_Especial').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Dieta_Especial')==null) {
-		}
-
-		if(document.getElementById('Nro_Carnet_Discapacidad').value.length < 5){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Nro_Carnet_Discapacidad').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Nro_Carnet_Discapacidad')==null) {
-		}
-
-		if(document.getElementById('País').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('País').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if (todo_correcto=false) {
-			alert('Hay errores en el formulario, por favor corríjalos')
-		}	
-
-</script>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,7 +32,7 @@ else {
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 </head>
 <body>
-	<form class="card" action="../../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()'>
+	<form class="card" action="../../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 74px auto;">
 			<div class="card-header">
 				<h4>Formulario de registro de estudiantes</h4>
 			</div>
@@ -306,20 +58,20 @@ else {
 						<div>
 							<label class="form-label">Nombres:</label>
 							<div class="input-group">
-								<input class="form-control mb-2" type="text" name="Primer_Nombre_Est" id="Primer_Nombre_Est" placeholder="Primer nombre"  required>
-								<input class="form-control mb-2" type="text" name="Segundo_Nombre_Est" id="Segundo_Nombre_Est" placeholder="Segundo nombre"  required>
+								<input class="form-control mb-2" type="text" name="Primer_Nombre_Est" placeholder="Primer nombre"  required>
+								<input class="form-control mb-2" type="text" name="Segundo_Nombre_Est" placeholder="Segundo nombre"  required>
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Apellidos:</label>
 							<div class="input-group">
-								<input class="form-control mb-2" type="text" name="Primer_Apellido_Est" id="Primer_Apellido_Est" placeholder="Primer apellido">
-								<input class="form-control mb-2" type="text" name="Segundo_Apellido_Est" id="Segundo_Apellido_Est" placeholder="Segundo apellido">
+								<input class="form-control mb-2" type="text" name="Primer_Apellido_Est" placeholder="Primer apellido">
+								<input class="form-control mb-2" type="text" name="Segundo_Apellido_Est" placeholder="Segundo apellido">
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Cédula:</label>
-							<input class="form-control mb-2" type="text" name="Cedula_Est" id="Cedula_Est" placeholder="Cédula de identidad">
+							<input class="form-control mb-2" type="text" name="Cedula_Est" placeholder="Cédula de identidad">
 						</div>
 						<div>
 							<p class="form-label">Género:</p>
@@ -336,15 +88,15 @@ else {
 						</div>
 						<div>
 							<label class="form-label">Fecha de nacimiento:</label>
-							<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Est" id="Fecha_Nacimiento_Est" required>
+							<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Est" >
 						</div>
 						<div>
 							<label class="form-label">Lugar de nacimiento:</label>
-							<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Est" id="Lugar_Nacimiento_Est" required>
+							<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Est" >
 						</div>
 						<div>
 							<label class="form-label">Correo electrónico:</label>
-							<input class="form-control mb-2" type="text" name="Correo_electrónico_Est" id="Correo_electrónico_Est" required>
+							<input class="form-control mb-2" type="text" name="Correo_electrónico_Est" >
 						</div>
 						<div>
 							<div>
@@ -361,23 +113,23 @@ else {
 								<!--Teléfono principal-->
 								<div class="input-group mb-2">
 									<!--Prefijo-->
-									<input class="form-control" type="text" name="Prefijo_Principal_Est" id="Prefijo_Principal_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+									<input class="form-control" type="text" name="Prefijo_Principal_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 									<!--Número-->
-									<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Est" id="Teléfono_Principal_Est" placeholder="Teléfono principal" required>
+									<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Est" placeholder="Teléfono principal" required>
 								</div>
 
 								<!--Teléfono secundario-->
 								<div class="input-group mb-2">
 									<!--Prefijo-->
-									<input class="form-control" type="text" name="Prefijo_Secundario_Est" id="Prefijo_Secundario_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+									<input class="form-control" type="text" name="Prefijo_Secundario_Est" list="prefijos-estudiante" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 									<!--Número-->
-									<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Est" id="Teléfono_Secundario_Est" placeholder="Teléfono secundario" required>
+									<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Est" placeholder="Teléfono secundario" required>
 								</div>
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Grado a cursar:</label>
-							<select class="form-select mb-2" name="Grado_A_Cursar" required>
+							<select class="form-select mb-2" name="Grado_A_Cursar" >
 								<option value="Primer año">Primer año</option>
 								<option value="Segundo año">Segundo año</option>
 								<option value="Tercer año">Tercer año</option>
@@ -393,7 +145,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Año_Repitente" id="Año_Repitente" list="grados" placeholder="¿Qué año repite?">
+								<input class="form-control w-auto" type="text" name="Año_Repitente" list="grados" placeholder="¿Qué año repite?">
 								<datalist id="grados">
 								  <option value="Primer año"></option>
 								  <option value="Segundo año"></option>
@@ -410,12 +162,12 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Materias_Pendientes" id="Materias_Pendientes" placeholder="¿Cuáles?">
+								<input class="form-control w-auto" type="text" name="Materias_Pendientes" placeholder="¿Cuáles?">
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Plantel de procedencia:</label>
-							<textarea class="form-control mb-2"name="Plantel_Procedencia" id="Plantel_Procedencia" required></textarea>
+							<textarea class="form-control mb-2"name="Plantel_Procedencia"></textarea>
 						</div>
 					</div>
 				</section>
@@ -426,11 +178,11 @@ else {
 						<!--Dirección de residencia-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2" name="Direccion_Est" id="Direccion_Est" required></textarea>
+							<textarea class="form-control mb-2" name="Direccion_Est"></textarea>
 						</div>
 						<div>
 							<label class="form-label">¿Con quién vive?:</label>
-							<input class="form-control mb-2" type="text" name="Con_Quien_Vive" id="Con_Quien_Vive" required>
+							<input class="form-control mb-2" type="text" name="Con_Quien_Vive">
 						</div>
 						<div>
 							<span class="form-label">¿Tiene canaima?</span>
@@ -463,8 +215,8 @@ else {
 									<option value="Si">Si tiene</option>
 									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código">
-								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial">
+								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" placeholder="Código">
+								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" placeholder="Serial">
 							</div>
 						</div>
 						<!--Conexión a internet-->
@@ -490,18 +242,18 @@ else {
 						<div>
 							<label class="form-label">Datos antropométricos:</label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Indice" id="Indice" placeholder="Índice" required>
-								<input class="form-control mb-2" type="text" name="Talla" id="Talla" placeholder="Talla" required>
-								<input class="form-control mb-2" type="text" name="Peso" id="Peso" placeholder="Peso" required>
-								<input class="form-control mb-2" type="text" name="C_Braquial" id="C_Braquial" placeholder="C.brazo" required>
+								<input class="form-control mb-2" type="text" name="Indice" placeholder="Índice" required>
+								<input class="form-control mb-2" type="text" name="Talla" placeholder="Talla" required>
+								<input class="form-control mb-2" type="text" name="Peso" placeholder="Peso" required>
+								<input class="form-control mb-2" type="text" name="C_Braquial" placeholder="C.brazo" required>
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Tallas:</label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Talla_Pantalon" id="Talla_Pantalon" placeholder="Pantalón" required>
-								<input class="form-control mb-2" type="text" name="Talla_Camisa" id="Talla_Camisa" placeholder="Camisa" required>
-								<input class="form-control mb-2" type="text" name="Talla_Zapatos" id="Talla_Zapatos" placeholder="Zapatos" required>
+								<input class="form-control mb-2" type="text" name="Talla_Pantalon" placeholder="Pantalón" required>
+								<input class="form-control mb-2" type="text" name="Talla_Camisa" placeholder="Camisa" required>
+								<input class="form-control mb-2" type="text" name="Talla_Zapatos" placeholder="Zapatos" required>
 							</div>
 						</div>
 						<div>
@@ -511,12 +263,12 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Cual_Enfermedad" id="Cual_Enfermedad" placeholder="¿Cuál enfermedad?">
+								<input class="form-control w-auto" type="text" name="Cual_Enfermedad" placeholder="¿Cuál enfermedad?">
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Alergias:</label>
-							<input class="form-control mb-2" type="text" name="Alergias" id="Alergias">
+							<input class="form-control mb-2" type="text" name="Alergias">
 						</div>
 						<div>
 							<span class="form-label">Tipo de sangre:</span>
@@ -621,7 +373,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Institucion_Medica" id="Institucion_Medica" placeholder="¿Cuál institución?">
+								<input class="form-control w-auto" type="text" name="Institucion_Medica" placeholder="¿Cuál institución?">
 							</div>
 						</div>
 						<div>
@@ -631,7 +383,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Medicacion" id="Medicacion" placeholder="¿Cuál medicación?">
+								<input class="form-control w-auto" type="text" name="Medicacion" placeholder="¿Cuál medicación?">
 							</div>
 						</div>
 						<div>
@@ -641,7 +393,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Dieta_Especial" id="Dieta_Especial" placeholder="¿Qué dieta?">
+								<input class="form-control w-auto" type="text" name="Dieta_Especial" placeholder="¿Qué dieta?">
 							</div>
 						</div>
 						<div>
@@ -651,7 +403,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Nro_Carnet_Discapacidad" id="Nro_Carnet_Discapacidad" placeholder="Nro. de carnet">
+								<input class="form-control w-auto" type="text" name="Nro_Carnet_Discapacidad" placeholder="Nro. de carnet">
 							</div>
 						</div>
 					</div>
@@ -838,7 +590,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?" required>
+								<input class="form-control w-auto" type="text" name="País" placeholder="¿Donde?">
 							</div>
 						</div>
 					</div>
