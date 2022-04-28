@@ -361,7 +361,7 @@
 					<!--Cédula del representante-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control mb-2" name="Cédula_R" id="Cédula_R" >
+						<input type="text" class="form-control mb-2" name="Cédula_R" id="Cédula_R" maxlength="8" minlength="7" >
 					</div>
 					<!--Fecha de nacimiento del representante-->
 					<div>
@@ -371,12 +371,12 @@
 					<!--Lugar de nacimiento del representante-->
 					<div>
 						<label class="form-label">Lugar de nacimiento:</label>
-						<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" >
+						<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" maxlength="20" minlength="3" >
 					</div>
 					<!--Correo electronico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" >
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" minlength="15" >
 					</div>
 					<!--Estado civil del representante-->
 					<div>
@@ -391,7 +391,7 @@
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" ></textarea>
+						<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" minlength="10" ></textarea>
 					</div>
 				</section>
 				<section id="seccion2" style="display: none;">
@@ -469,7 +469,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+" >
+							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+" maxlength="7" minlength="7">
 						</div>
 
 						<!--Teléfono secundario-->
@@ -477,7 +477,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+" >
+							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+" maxlength="7" minlength="7" >
 						</div>
 
 						<!--Teléfono auxiliar-->
@@ -485,7 +485,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Auxiliar_R" id="Prefijo_Auxiliar_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0,9]+">
+							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0,9]+" maxlength="7" minlength="7">
 						</div>
 					</div>
 					<!--Vinculo del representante con el estudiante-->
@@ -498,7 +498,7 @@
 								<option value="Abuelo(a)">Abuelo(a)</option>
 								<option value="Otro">Otro</option>
 							</select>
-							<input type="text" class="form-control" name="Otro_Vinculo" placeholder="Si es otro, ¿Cual?">
+							<input type="text" class="form-control" name="Otro_Vinculo" maxlength="10" minlength="3" placeholder="Si es otro, ¿Cual?">
 						</div>
 					</div>
 					<!--Grado de instruccion del representante-->
@@ -569,7 +569,7 @@
 								<option value="Prestada">Prestada</option>
 								<option value="Otro">Otro</option>
 							</select>
-							<input class="form-control" type="text" name="Tenencia_vivienda_Otro" placeholder="En Caso de ser otro, especifique">
+							<input class="form-control" type="text" name="Tenencia_vivienda_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
 						</div>
 					</div>
 				</section>
@@ -644,7 +644,7 @@
 					<!--Cargo que ocupa el representante-->
 					<div>
 						<label>Cargo que ocupa:</label>
-						<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R">
+						<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="15" minlength="3">
 					</div>
 					<!--Teléfono del trabajo de representante-->
 					<div>
@@ -654,13 +654,13 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Trabajo_R" id="Prefijo_Trabajo_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" id="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0,9]+">
+							<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" id="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0,9]+" maxlength="7" minlength="7">
 						</div>
 					</div>
 					<!--Lugar en el que trabaja el representante-->
 					<div>
 						<label>Lugar del trabajo:</label>
-						<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R"></textarea>
+						<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="15" minlength="3"></textarea>
 					</div>
 					<!--Remuneración del trabajo del representante-->
 					<div>
@@ -684,8 +684,8 @@
 					<div>
 						<label class="form-label">Nombres:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" >
-							<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" >
+							<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" maxlength="20" minlength="3">
+							<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" maxlength="20" minlength="3" >
 						</div>
 
 					</div>
@@ -694,8 +694,8 @@
 					<div>
 						<label class="form-label">Apellidos:</label>
 						<div class="input-group mb-2">
-							<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" >
-							<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" >
+							<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" maxlength="20" minlength="3" >
+							<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" maxlength="20" minlength="3" >
 						</div>
 					</div>
 					<!--Genero del contacto auxiliar-->
@@ -713,12 +713,12 @@
 					<!--Cédula del contacto auxiliar-->
 					<div>
 						<label class="form-label">Cédula:</label>
-						<input type="text" class="form-control mb-2" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" >
+						<input type="text" class="form-control mb-2" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" maxlength="8" minlength="7" >
 					</div>
 					<!--Correo electronico del contacto auxiliar-->
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" >
+						<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="15">
 					</div>
 					<!--Teléfonos del contacto auxiliar-->
 					<div>
@@ -728,7 +728,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" >
+							<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" >
 						</div>
 
 						<!--Teléfono secundario-->
@@ -736,7 +736,7 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" >
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" >
+							<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" >
 						</div>
 
 						<!--Teléfono auxiliar-->
@@ -744,18 +744,18 @@
 							<!--Prefijo-->
 							<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 							<!--Número-->
-							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar">
+							<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" >
 						</div>
 					</div>
 					<!--Dirección de residencia del contacto auxiliar-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" ></textarea>
+						<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" minlength="10" ></textarea>
 					</div>
 					<!--Relación del contacto auxiliar-->
 					<div>
 						<label class="form-label">Relación con la persona:</label>
-						<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" >
+						<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" maxlength="12" minlength="3" >
 					</div>
 				</section>
 				<section id="seccion6" style="display: none;">
