@@ -6,6 +6,10 @@ class Usuarios {
 	private $idUsuarios;
 	private $Clave;
 	private $Privilegios;
+	private $Pregunta_Seg_1;
+	private $Pregunta_Seg_2;
+	private $Respuesta_1;
+	private $Respuesta_2;
 	private $Cedula_Persona;
 
 	public function __construct() {}
@@ -15,6 +19,10 @@ class Usuarios {
 
 		$Clave = $this->getClave();
 		$Privilegios = $this->getPrivilegios();
+		$Pregunta_Seg_1 = $this->getPregunta_Seg_1();
+		$Pregunta_Seg_2 = $this->getPregunta_Seg_2();
+		$Respuesta_1 = $this->getRespuesta_1();
+		$Respuesta_2 = $this->getRespuesta_2();
 		$Cedula_Persona = $this->getCedula_Persona();
 
 		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$Cedula_Persona'";
@@ -24,12 +32,18 @@ class Usuarios {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Cedula_Persona`) VALUES (
+			#INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cedula_Persona`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]')
+			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`,`Cedula_Persona`) VALUES (
 				NULL,
 				'$Clave',
 				'$Privilegios',
+				'$Pregunta_Seg_1',
+				'$Pregunta_Seg_2',
+				'$Respuesta_1',
+				'$Respuesta_2',
 				'$Cedula_Persona'
 			)";
+			echo $sql;
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidUsuarios($conexion->insert_id);
@@ -99,6 +113,18 @@ class Usuarios {
 	public function setPrivilegios($Privilegios) {
 		$this->Privilegios = $Privilegios;
 	}
+	public function setPregunta_Seg_1($Pregunta_Seg_1) {
+		$this->Pregunta_Seg_1 = $Pregunta_Seg_1;
+	}
+	public function setPregunta_Seg_2($Pregunta_Seg_2) {
+		$this->Pregunta_Seg_2 = $Pregunta_Seg_2;
+	}
+	public function setRespuesta_1($Respuesta_1) {
+		$this->Respuesta_1 = $Respuesta_1;
+	}
+	public function setRespuesta_2($Respuesta_2) {
+		$this->Respuesta_2 = $Respuesta_2;
+	}
 	public function setCedula_Persona($Cedula_Persona) {
 		$this->Cedula_Persona = $Cedula_Persona;
 	}
@@ -111,6 +137,18 @@ class Usuarios {
 	}
 	public function getPrivilegios() {
 		return $this->Privilegios;
+	}
+	public function getPregunta_Seg_1() {
+		return $this->Pregunta_Seg_1;
+	}
+	public function getPregunta_Seg_2() {
+		return $this->Pregunta_Seg_2;
+	}
+	public function getRespuesta_1() {
+		return $this->Respuesta_1;
+	}
+	public function getRespuesta_2() {
+		return $this->Respuesta_2;
 	}
 	public function getCedula_Persona() {
 		return $this->Cedula_Persona;

@@ -50,7 +50,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 			$datos_persona = $persona->consultarPersona($cedula);
 
 			$_SESSION['persona'] = $datos_persona;
-
+/*
 			#Solo si el usuario es un representante
 			if ($_SESSION['usuario']['Privilegios'] == 2) {
 
@@ -113,7 +113,7 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 				#Une todo esto en una sola matriz
 				$_SESSION['ContactoAuxiliar'] = $ContactoAuxiliar = [$datos_persona_aux,$datos_contacto_aux,$telefonos_contacto_aux];
 			}
-
+*/
 			$_SESSION['login'] = "Sessión valida";
 
 			header('Location: ../lobby/index.php');

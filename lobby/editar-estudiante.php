@@ -157,7 +157,7 @@ var_dump($Año);
 							<label class="form-label">No </label>
 							<input class="form-check-input" type="radio" name="Tiene_Materias_Pendientes" value="No" required <?php if (empty($estudiante['Lugar_Nacimiento'])) {	echo "checked";} ?>>
 						</div>
-						<span>¿Cuales?</span>
+						<span>¿Cuáles?</span>
 						<input class="form-control mb-2" type="text" name="Materias_Pendientes" required value="<?php echo $estudiante_repitente["Materias_Pendientes"] ?>">
 					</div>
 					
@@ -409,7 +409,7 @@ var_dump($Año);
 							<label class="form-label">No </label>
 							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required <?php if (empty($datos_medicos['Institucion_Medica'])) { echo "checked";} ?>>
 						</div>
-						<span>¿Cual institución?</span>
+						<span>¿Cuál institución?</span>
 						<input class="form-control mb-2" type="text" name="Institucion_Medica" required value="<?php echo $datos_medicos['Institucion_Medica'] ?>">
 					</div>
 				</div>
@@ -424,7 +424,7 @@ var_dump($Año);
 							<label class="form-label">No </label>
 							<input class="form-check-input" type="radio" name="Recibe_Medicacion" value="No" required <?php if (empty($datos_medicos['Medicación'])) { echo "checked";} ?>>
 						</div>
-						<span>¿Cual?</span>
+						<span>¿Cuál?</span>
 						<input class="form-control mb-2" type="text" name="Medicacion" required value="<?php echo $datos_medicos['Medicación'] ?>">
 					</div>
 				</div>
@@ -439,7 +439,7 @@ var_dump($Año);
 							<label class="form-label">No </label>
 							<input class="form-check-input" type="radio" name="Tiene_Dieta_Especial" value="No" required>
 						</div>
-						<span>¿Cual?</span>
+						<span>¿Cuál?</span>
 						<input class="form-control mb-2" type="text" name="Dieta_Especial">
 					</div>
 				</div>

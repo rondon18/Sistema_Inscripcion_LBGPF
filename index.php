@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0">
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
 			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -64,7 +64,7 @@
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include 'ayuda.php'; ?>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>

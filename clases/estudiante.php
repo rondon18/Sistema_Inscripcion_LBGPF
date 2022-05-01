@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 require("personas.php");
 
@@ -46,7 +46,7 @@ class Estudiantes extends Personas {
 		desconectarBD($conexion);
 	}
 
-	public function editarEstudiante() {
+	public function editarEstudiante($cedula_Estudiante) {
 		$conexion = conectarBD();
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
@@ -54,6 +54,8 @@ class Estudiantes extends Personas {
 		$sql = "UPDATE `estudiantes` SET
 				`Plantel_Procedencia`='$Plantel_Procedencia',
 			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
+
+		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quien_Vive`='[value-3]',`Cedula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 

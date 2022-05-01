@@ -102,16 +102,13 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Cédula</th>
-								<th>Fecha_Nacimiento</th>
-								<th>Lugar_Nacimiento</th>
+								<th>Fecha de nacimiento</th>
+								<th>Lugar de nacimiento</th>
 								<th>Género</th>
-								<th>Correo_Electrónico</th>
-								<th>Dirección</th>
-								<th>Estado_Civil</th>
-								<th>idEstudiantes</th>
-								<th>Plantel_Procedencia</th>
-								<th>Con_Quien_Vive</th>
-								<th>Cedula_Persona</th>
+								<th>Correo electrónico</th>
+								<th>Dirección de residencia</th>
+								<th>Plantel de procedencia</th>
+								<th>Con quien vive</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -125,17 +122,14 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Género']; ?></td>
 									<td><?php echo $estudiante['Correo_Electrónico']; ?></td>
 									<td><?php echo $estudiante['Dirección']; ?></td>
-									<td><?php echo $estudiante['Estado_Civil']; ?></td>
-									<td><?php echo $estudiante['idEstudiantes']; ?></td>
 									<td><?php echo $estudiante['Plantel_Procedencia']; ?></td>
 									<td><?php echo $estudiante['Con_Quien_Vive']; ?></td>
-									<td><?php echo $estudiante['Cedula_Persona']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="" method="POST" style="display: inline-block;">
-											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
+											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante['Cédula'] ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante'] ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre'] ?>">
 											<input type="submit" name="Generar planilla" value="Generar planilla">
 										</form>
 									</td>
@@ -269,7 +263,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			"language": {
 					"url": "../js/datatables-español.json"
 			  },
-		  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+	  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
@@ -283,7 +277,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	        	}
 		  	],
 		  	"pagingType": "numbers"
-		  	<?php endif; ?>
+	  	<?php endif; ?>
 		});
 	} );
 	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>

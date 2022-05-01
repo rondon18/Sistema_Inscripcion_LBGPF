@@ -29,7 +29,7 @@ elseif (!isset($_POST['cedula'])) {
 </head>
 <body>
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0">
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
 			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">

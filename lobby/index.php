@@ -27,7 +27,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 
 <body class="d-flex justify-content-center align-items-center light-primary-color" style="min-height: 100vh;">
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0">
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">

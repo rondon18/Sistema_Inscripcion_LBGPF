@@ -21,7 +21,7 @@ else {
 ?>
 
 <script type="text/javascript">
-	
+
 	function validacion() {
 		var todo_correcto;
 		todo_correcto = true;
@@ -169,8 +169,8 @@ else {
 		}
 		else if (typeof(document.getElementById('Talla').value)=='string') {
 			todo_correcto = false;
-		}	
-		
+		}
+
 		if(document.getElementById('Peso').value.length < 2){
     		todo_correcto = false;
 		}
@@ -263,7 +263,7 @@ else {
 
 		if (todo_correcto=false) {
 			alert('Hay errores en el formulario, por favor corríjalos')
-		}	
+		}
 
 </script>
 

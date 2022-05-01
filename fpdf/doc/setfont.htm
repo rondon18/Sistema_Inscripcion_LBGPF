@@ -8,17 +8,17 @@
 <body>
 <h1>SetFont</h1>
 <code>SetFont(<b>string</b> family [, <b>string</b> style [, <b>float</b> size]])</code>
-<h2>Descripción</h2>
-Establece la fuente usada para imprimir cadenas de carácteres. Es obligatorio invocar este método por lo menos una vez antes de imprimir texto.<br>
-La fuente puede ser una estándar o una adicionada via el método AddFont(). La fuentes estándar usan codificación cp1252 (Western Europe) de Windows.<br>
-El método puede ser invocado antes que la primera página sea creada y es mantenido de página a página.<br>
-Si sólo desea cambiar el tamaño de la fuente actual, es más simple invocar SetFontSize().<br>
+<h2>Descripciï¿½n</h2>
+Establece la fuente usada para imprimir cadenas de carï¿½cteres. Es obligatorio invocar este mï¿½todo por lo menos una vez antes de imprimir texto.<br>
+La fuente puede ser una estï¿½ndar o una adicionada via el mï¿½todo AddFont(). La fuentes estï¿½ndar usan codificaciï¿½n cp1252 (Western Europe) de Windows.<br>
+El mï¿½todo puede ser invocado antes que la primera pï¿½gina sea creada y es mantenido de pï¿½gina a pï¿½gina.<br>
+Si sï¿½lo desea cambiar el tamaï¿½o de la fuente actual, es mï¿½s simple invocar SetFontSize().<br>
 <br>
-<strong>Nota:</strong> los archivos de definición de fuente deben ser accesibles. Se buscan en este orden:
+<strong>Nota:</strong> los archivos de definiciï¿½n de fuente deben ser accesibles. Se buscan en este orden:
 <ul>
 <li>El directorio especificado por la constante <code>FPDF_FONTPATH</code> (si es que ha sido definida)
 <li>El directorio de fuentes incluido en el directorio que contiene fpdf.php (si es que existe)
-<li>Cualquier directorio accesible mediante <code>include()</code>
+<li>CuÃ¡lquier directorio accesible mediante <code>include()</code>
 </ul>
 Ejemplo del primer casa:
 <div class="doc-source">
@@ -27,14 +27,14 @@ require('fpdf.php');</code></pre>
 </div>
 Si el archivo correspondiente a la fuente requerida no es encuentra, se genera el error "Could not include
 font definition file".
-<h2>Parámetros</h2>
+<h2>Parï¿½metros</h2>
 <dl class="param">
 <dt><code>family</code></dt>
 <dd>
-Familia de fuente. Puede ser un nombre definido por AddFont() o una de las familias estándar (no sensible a mayúsculas o minúsculas):
+Familia de fuente. Puede ser un nombre definido por AddFont() o una de las familias estï¿½ndar (no sensible a mayï¿½sculas o minï¿½sculas):
 <ul>
 <li><code>Courier</code> (fixed-width)
-<li><code>Helvetica</code> o <code>Arial</code> (sinónimo; sans serif)
+<li><code>Helvetica</code> o <code>Arial</code> (sinï¿½nimo; sans serif)
 <li><code>Times</code> (serif)
 <li><code>Symbol</code> (symbolic)
 <li><code>ZapfDingbats</code> (symbolic)
@@ -43,21 +43,21 @@ Tambien es posible pasar un cadena vacia. En este caso, se mantiene la familia a
 </dd>
 <dt><code>style</code></dt>
 <dd>
-Estilo de fuente. Los valores posibles son (no sensible a mayúsculas o minúsculas):
+Estilo de fuente. Los valores posibles son (no sensible a mayï¿½sculas o minï¿½sculas):
 <ul>
 <li>cadena vacia: regular
 <li><code>B</code>: bold
 <li><code>I</code>: italic
 <li><code>U</code>: underline
 </ul>
-o cualquier combinación. El valor por defecto es regular.
+o cualquier combinaciï¿½n. El valor por defecto es regular.
 Los estilos Bold e italic no aplican para <code>Symbol</code> y <code>ZapfDingbats</code>.
 </dd>
 <dt><code>size</code></dt>
 <dd>
-Tamaño de fuente en puntos.
+Tamaï¿½o de fuente en puntos.
 <br>
-El valor por defecto es el tamaño actual. Si ningún tamaño ha sido especificado desde el comienzo del documento, toma el valor de 12.
+El valor por defecto es el tamaï¿½o actual. Si ningï¿½n tamaï¿½o ha sido especificado desde el comienzo del documento, toma el valor de 12.
 </dd>
 </dl>
 <h2>Ejemplo</h2>
@@ -71,7 +71,7 @@ $pdf-&gt;SetFont('');
 // Times bold, italic y underlined 14
 $pdf-&gt;SetFont('Times','BIU');</code></pre>
 </div>
-<h2>Vea además</h2>
+<h2>Vea ademï¿½s</h2>
 <a href="addfont.htm">AddFont</a>,
 <a href="setfontsize.htm">SetFontSize</a>,
 <a href="cell.htm">Cell</a>,
