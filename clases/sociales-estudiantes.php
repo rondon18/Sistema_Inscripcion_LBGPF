@@ -22,18 +22,28 @@
 			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
-			$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
-				NULL,
-				'$Posee_Canaima',
-				'$Condicion_Canaima',
-				'$Codigo_Carnet_Patria',
-				'$Serial_Carnet_Patria',
-				'$Acceso_Internet',
-				'$id_Estudiante'
-			)";
+			$registro_existe = $conexion->query($sql);
+			$resultado = $registro_existe->fetch_assoc();
 
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			$this->setidDatos_Sociales($conexion->insert_id);
+			if ($resultado == NULL) {
+
+
+				$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
+					NULL,
+					'$Posee_Canaima',
+					'$Condicion_Canaima',
+					'$Codigo_Carnet_Patria',
+					'$Serial_Carnet_Patria',
+					'$Acceso_Internet',
+					'$id_Estudiante'
+				)";
+
+				$conexion->query($sql) or die("error: ".$conexion->error);
+				$this->setidDatos_Sociales($conexion->insert_id);
+			}
+			elseif ($resultado != NULL) {
+				$this->setidDatos_Sociales($resultado['idDatos-Sociales']);
+			}
 
 			desconectarBD($conexion);
 		}

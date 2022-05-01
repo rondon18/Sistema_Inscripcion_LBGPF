@@ -82,7 +82,7 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "UPDATE `datos-medicos` SET
+			$sql = "UPDATE `datos-salud` SET
 			`Estatura`='$Estatura',
 			`Peso`='$Peso',
 			`Indice`='$Indice',
@@ -107,14 +107,14 @@
 		public function consultarFicha_Medica($id_Estudiante) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `datos-medicos` WHERE `idEstudiantes` = '$id_Estudiante'";
+			$sql = "SELECT * FROM `datos-salud` WHERE `idEstudiantes` = '$id_Estudiante'";
 
 			$consulta_sociales = $conexion->query($sql) or die("error: ".$conexion->error);
-			$datos_medicos = $consulta_sociales->fetch_assoc();
+			$datos_salud = $consulta_sociales->fetch_assoc();
 
 			desconectarBD($conexion);
 
-			return $datos_medicos;
+			return $datos_salud;
 		}
 
 		public function setidDatos_Medicos($idDatos_Medicos) {

@@ -126,18 +126,11 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Con_Quien_Vive']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
-<<<<<<< HEAD
-										<form action="" method="POST" style="display: inline-block;">
-											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante['Cédula'] ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante'] ?>">
-											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre'] ?>">
-=======
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;">
 											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">	
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
->>>>>>> a6514deb2403da68c1ba9d0bbc1689431821486d
 											<input type="submit" name="Generar planilla" value="Generar planilla">
 										</form>
 									</td>

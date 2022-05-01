@@ -76,7 +76,7 @@ class Estudiantes extends Personas {
 		$conexion = conectarBD();
 
 		#Consulta los datos de las tablas personas y estudiantes del estudiante solicitado
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = '$cedula_Estudiante' AND `personas`.`Cédula` = `estudiantes`.`$cedula_Estudiante`";
+		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = '$cedula_Estudiante' AND `estudiantes`.`Cedula_Persona` = '$cedula_Estudiante'";
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$estudiantes = $consulta_estudiantes->fetch_assoc();

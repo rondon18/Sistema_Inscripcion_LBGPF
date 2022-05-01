@@ -1,7 +1,7 @@
-<?php  
+<?php
 
 class GradoAcademico {
-	
+
 	private $idGrado;
 	private $Grado_A_Cursar;
 	private $idEstudiantes;
@@ -11,7 +11,7 @@ class GradoAcademico {
 
 	public function insertarGrado($idEstudiante,$año_Inicio,$año_Fin) {
 		$conexion = conectarBD();
-		
+
 		$Grado_A_Cursar = $this->getGrado_A_Cursar();
 
 		$sql = "SELECT * FROM `año-escolar` WHERE `Inicio_Año_Escolar` = '$año_Inicio' AND `Fin_Año_Escolar` = '$año_Fin'";
@@ -21,18 +21,26 @@ class GradoAcademico {
 		$idAño_Escolar = $resultado = $busqueda->fetch_assoc()['idAño-Escolar'];
 
 		if ($idAño_Escolar != NULL) {
-			$sql = "INSERT INTO `grado`(`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escolar`) VALUES (
-				NULL,
-				'$Grado_A_Cursar',
-				'$idEstudiante',
-				'$idAño_Escolar'
-			)";
-			
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			$this->setidGrado($conexion->insert_id);
-		}
-		else {
-			echo "Error";
+			#verifica si el registro del padre existe para evitar error por entrada duplicada
+			$sql = "SELECT * FROM `grado` WHERE `idEstudiantes`='$idEstudiante'";
+
+			$registro_existe = $conexion->query($sql);
+			$resultado = $registro_existe->fetch_assoc();
+
+			if ($resultado == NULL) {
+				$sql = "INSERT INTO `grado`(`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escolar`) VALUES (
+					NULL,
+					'$Grado_A_Cursar',
+					'$idEstudiante',
+					'$idAño_Escolar'
+				)";
+
+				$conexion->query($sql) or die("error: ".$conexion->error);
+				$this->setidGrado($conexion->insert_id);
+			}
+			elseif ($resultado != NULL) {
+				$this->setidGrado($resultado['idGrado']);
+			}
 		}
 
 		desconectarBD($conexion);
@@ -43,7 +51,7 @@ class GradoAcademico {
 
 		$Grado_A_Cursar = $this->getGrado_A_Cursar();
 
-		$sql = "UPDATE `grado` SET 
+		$sql = "UPDATE `grado` SET
 					`Grado_A_Cursar`='$Grado_A_Cursar',
 				WHERE `idEstudiantes`='$id_Estudiante'";
 
@@ -55,10 +63,10 @@ class GradoAcademico {
 		$conexion = conectarBD();
 
 		$sql = "SELECT * FROM `grado` WHERE `idEstudiantes` = '$id_Estudiante'";
-		  
+
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$grado = $resultado = $busqueda->fetch_assoc();
-		
+
 		desconectarBD($conexion);
 
 		return $grado;
