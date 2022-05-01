@@ -132,10 +132,11 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Cedula_Persona']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
-										<form action="" method="POST" style="display: inline-block;">
-											<input type="hidden" name="id_estudiante" value="<?php echo $estudiante[12] ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante[15] ?>">
-											<input type="hidden" name="id_padre" value="<?php echo $estudiante[16] ?>">
+										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;">
+											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">	
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<input type="submit" name="Generar planilla" value="Generar planilla">
 										</form>
 									</td>
