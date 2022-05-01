@@ -74,6 +74,18 @@ class Representantes {
 
 		return $representantes;
 	}
+	public function consultarRepresentanteID($id_Representante) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `representantes`,`personas` WHERE  `representantes`.`idRepresentantes` = '$id_Representante' AND `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
+
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
+		$representantes = $consulta_representantes->fetch_assoc();
+
+		desconectarBD($conexion);
+
+		return $representantes;
+	}
 	public function mostrarRepresentantes() {
 		#Muestra todas las representantes en la tabla
 		$conexion = conectarBD();
