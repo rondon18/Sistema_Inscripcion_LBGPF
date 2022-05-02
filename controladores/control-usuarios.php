@@ -37,7 +37,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$persona->setCédula($_POST['Cédula_U']);
+		$cedula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$persona->setCédula($cedula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
 		$persona->setGénero($_POST['Genero_U']);
@@ -80,7 +81,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$persona->setCédula($_POST['Cédula_U']);
+		$cedula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$persona->setCédula($cedula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
 		$persona->setGénero($_POST['Genero_U']);

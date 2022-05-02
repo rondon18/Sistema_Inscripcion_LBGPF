@@ -12,8 +12,7 @@ require("../clases/bitacora.php");
 
 if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $clave = $_POST['clave'] != "")) {
 
-
-	$cedula = $_POST['cedula'];
+	$cedula = $_POST['Tipo_Cédula'].$_POST['cedula'];
 	$clave = $_POST['clave'];
 
 	$conexion = conectarBD();
@@ -50,70 +49,6 @@ if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $cla
 			$datos_persona = $persona->consultarPersona($cedula);
 
 			$_SESSION['persona'] = $datos_persona;
-/*
-			#Solo si el usuario es un representante
-			if ($_SESSION['usuario']['Privilegios'] == 2) {
-
-				#Datos del representante
-				$representante = new Representantes();
-
-				$datos_representante = $representante->consultarRepresentante($cedula);
-
-				$_SESSION['representante'] = $datos_representante;
-
-				#Telefonos del representante
-				$telefonos = new Telefonos();
-
-				$telefonos_representante = $telefonos->consultarTelefonos($cedula);
-				#la variable telefonos_representante es una matriz asociativa
-
-				$_SESSION['telefonos'] = $telefonos_representante;
-
-				#Datos economicos
-				$economicos = new DatosEconomicos();
-
-				$datos_economicos = $economicos->consultarDatosEconomicos($_SESSION['representante']['idRepresentantes']);
-
-
-				$_SESSION['datos_economicos'] = $datos_economicos;
-
-				#Datos laborales
-				$laborales 	= new DatosLaborales();
-
-				$datos_laborales = $laborales->consultarDatosLaborales($_SESSION['representante']['idRepresentantes']);
-
-
-				$_SESSION['datos_laborales'] = $datos_laborales;
-
-				#Datos de vivienda
-				$vivienda 	= new DatosVivienda();
-
-				$datos_vivienda = $vivienda->consultarDatosVivienda($_SESSION['representante']['idRepresentantes']);
-
-
-				$_SESSION['datos_vivienda'] = $datos_vivienda;
-
-				#Contacto auxiliar
-
-
-				$contacto_aux = new ContactoAuxiliar();
-
-				$datos_contacto_aux = $contacto_aux->consultarContactoAuxiliar($_SESSION['representante']['idRepresentantes']);
-
-				$persona_aux = new Personas();
-
-				$datos_persona_aux = $persona_aux->consultarPersona($datos_contacto_aux['Cédula_Persona']);
-
-				#Telefonos del representante
-				$telefonos_aux = new Telefonos();
-
-				$telefonos_contacto_aux = $telefonos_aux->consultarTelefonos($datos_contacto_aux['Cédula_Persona']);
-				#la variable telefonos_representante es una matriz asociativa
-
-				#Une todo esto en una sola matriz
-				$_SESSION['ContactoAuxiliar'] = $ContactoAuxiliar = [$datos_persona_aux,$datos_contacto_aux,$telefonos_contacto_aux];
-			}
-*/
 			$_SESSION['login'] = "Sessión valida";
 
 			header('Location: ../lobby/index.php');

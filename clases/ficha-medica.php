@@ -11,6 +11,7 @@
 		private $Tipo_Sangre;
 		private $Medicación;
 		private $Dieta_Especial;
+		private $Enfermedad;
 		private $Impedimento_Físico;
 		private $Alergias;
 		private $Cond_Vista;
@@ -32,6 +33,7 @@
 			$Tipo_Sangre = $this->getTipo_Sangre();
 			$Medicación = $this->getMedicación();
 			$Dieta_Especial = $this->getDieta_Especial();
+			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
 			$Alergias = $this->getAlergias();
 			$Cond_Vista = $this->getCond_Vista();
@@ -39,7 +41,7 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
 					NULL,
 					'$Estatura',
 					'$Peso',
@@ -49,6 +51,7 @@
 					'$Tipo_Sangre',
 					'$Medicación',
 					'$Dieta_Especial',
+					'$Enfermedad',
 					'$Impedimento_Físico',
 					'$Alergias',
 					'$Cond_Vista',
@@ -75,6 +78,7 @@
 			$Tipo_Sangre = $this->getTipo_Sangre();
 			$Medicación = $this->getMedicación();
 			$Dieta_Especial = $this->getDieta_Especial();
+			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
 			$Alergias = $this->getAlergias();
 			$Cond_Vista = $this->getCond_Vista();
@@ -91,6 +95,7 @@
 			`Tipo_Sangre`='$Tipo_Sangre',
 			`Medicación`='$Medicación',
 			`Dieta_Especial`='$Dieta_Especial',
+			`Enfermedad`='$Enfermedad',
 			`Impedimento_Físico`='$Impedimento_Físico',
 			`Alergias`='$Alergias',
 			`Cond_Vista`='$Cond_Vista',
@@ -144,6 +149,9 @@
 		public function setDieta_Especial($Dieta_Especial) {
 			$this->Dieta_Especial = $Dieta_Especial;
 		}
+		public function setEnfermedad($Enfermedad) {
+			$this->Enfermedad = $Enfermedad;
+		}
 		public function setImpedimento_Físico($Impedimento_Físico) {
 			$this->Impedimento_Físico = $Impedimento_Físico;
 		}
@@ -192,6 +200,9 @@
 		}
 		public function getDieta_Especial() {
 			return $this->Dieta_Especial;
+		}
+		public function getEnfermedad() {
+			return $this->Enfermedad;
 		}
 		public function getImpedimento_Físico() {
 			return $this->Impedimento_Físico;

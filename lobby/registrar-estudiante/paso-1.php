@@ -98,7 +98,6 @@ if (!$_SESSION['login']) {
 								</select>
 								<input type="text" class="form-control w-auto" name="Cédula_R" id="Cédula_R" maxlength="8" minlength="7" required>
 							</div>
-
 						</div>
 						<!--Fecha de nacimiento del representante-->
 						<div>

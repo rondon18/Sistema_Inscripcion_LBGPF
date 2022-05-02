@@ -37,7 +37,11 @@
 								<span class="input-group-text text-center" title="Cédula de usuario">
 									<i class="fa-solid fa-circle-user fa-lg"></i>
 								</span>
-								<input class="form-control" type="text" name="cedula" placeholder="Cédula de usuario" required>
+								<select class="form-select w-auto" name="Tipo_Cédula" required>
+									<option value="V">V</option>
+									<option value="E">E</option>
+								</select>
+								<input class="form-control w-auto" type="text" name="cedula" placeholder="Cédula de usuario" maxlength="15" required>
 							</td>
 						</tr>
 						<tr>

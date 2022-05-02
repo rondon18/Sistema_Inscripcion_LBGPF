@@ -357,9 +357,22 @@ if (!$_SESSION['login']) {
 						</div>
 					</div>
 					<!--Cédula del representante-->
+					<?php
+					#Separa la cédula del caracter que indica si es venezolana o extranjera
+					$tipo_cedula = substr($_SESSION['persona']['Cédula'],0,1);
+					$cedula			= substr($_SESSION['persona']['Cédula'],1,strlen($_SESSION['persona']['Cédula'])-1);
+				 	?>
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<span class="text-danger">*</span></label>
-						<input type="text" class="form-control mb-2" name="Cédula_U" id="Cédula_U" pattern="[0-	9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required value="<?php echo $_SESSION['persona']['Cédula'] ?? NULL ?>">
+						<div class="input-group mb-2">
+							<select class="form-select" name="Tipo_Cédula_U">
+								<option selected disabled>Tipo de cédula</option>
+								<option value="V" <?php if($tipo_cedula == "V") {echo "selected";}?>>V</option>
+								<option value="E" <?php if($tipo_cedula == "E") {echo "selected";}?>>E</option>
+							</select>
+							<input type="text" class="form-control w-auto" name="Cédula_U" id="Cédula_U" pattern="[0-9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required value="<?php echo $cedula ?? NULL ?>">
+						</div>
+
 					</div>
 					<!--Fecha de nacimiento del representante-->
 					<div>

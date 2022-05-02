@@ -352,7 +352,14 @@
 					<!--Cédula del representante-->
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<span class="text-danger">*</span></label>
-						<input type="text" class="form-control mb-2" name="Cédula_U" id="Cédula_U" pattern="[0-	9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required>
+						<div class="input-group mb-2" required>
+							<select class="form-select" name="Tipo_Cédula_U">
+								<option selected disabled>Tipo de cédula</option>
+								<option value="V">V</option>
+								<option value="E">E</option>
+							</select>
+							<input type="text" class="form-control" name="Cédula_U" id="Cédula_U" pattern="[0-	9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required>
+						</div>
 					</div>
 					<!--Fecha de nacimiento del representante-->
 					<div>

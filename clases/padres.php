@@ -3,14 +3,14 @@
 class Padres extends Personas {
 	private $idPadres;
 	private $Cedula_Persona;
-	private $Parentezco;
+	private $País_Residencia;
 
 	public function __construct() {}
 
 	public function insertarPadres() {
 		$conexion = conectarBD();
 
-		$Parentezco = $this->getParentezco();
+		$País_Residencia = $this->getPaís_Residencia();
 		$Cedula_Persona = $this->getCedula_Persona();
 
 		#verifica si el registro del padre existe para evitar error por entrada duplicada
@@ -21,9 +21,9 @@ class Padres extends Personas {
 
 		if ($resultado == NULL) {
 			#Si el registro no existe se crea con esta orden
-			$sql = "INSERT INTO `padres`(`idPadres`, `Parentezco`, `Cedula_Persona`) VALUES (
+			$sql = "INSERT INTO `padres`(`idPadres`, `País_Residencia`, `Cedula_Persona`) VALUES (
 				NULL,
-				'$Parentezco',
+				'$País_Residencia',
 				'$Cedula_Persona'
 			)";
 
@@ -40,11 +40,11 @@ class Padres extends Personas {
 	public function editarPadres($id_padres){
 		$conexion = conectarBD();
 
-		$Parentezco = $this->getParentezco();
+		$País_Residencia = $this->getPaís_Residencia();
 
-		#para los padres solo se puede ajustar el parentezco con el estudiante, sea padre o madre
+		#para los padres solo se puede ajustar el País_Residencia con el estudiante, sea padre o madre
 		$sql = "UPDATE `padres` SET
-		`Parentezco`='$Parentezco'
+		`País_Residencia`='$País_Residencia'
 		WHERE `idPadres`='$id_padres'";
 
 		$conexion->query($sql);
@@ -94,8 +94,8 @@ class Padres extends Personas {
 	public function setidPadres($idPadres) {
 		$this->idPadres = $idPadres;
 	}
-	public function setParentezco($Parentezco) {
-		$this->Parentezco = $Parentezco;
+	public function setPaís_Residencia($País_Residencia) {
+		$this->País_Residencia = $País_Residencia;
 	}
 	public function setCedula_Persona($Cedula_Persona) {
 		$this->Cedula_Persona = $Cedula_Persona;
@@ -104,8 +104,8 @@ class Padres extends Personas {
 	public function getidPadres() {
 		return $this->idPadres;
 	}
-	public function getParentezco() {
-		return $this->Parentezco;
+	public function getPaís_Residencia() {
+		return $this->País_Residencia;
 	}
 	public function getCedula_Persona() {
 		return $this->Cedula_Persona;
