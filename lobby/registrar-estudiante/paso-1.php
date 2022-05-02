@@ -59,16 +59,16 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Nombres:<span class="text-danger">*</span></label>
 							<div class="input-group mb-2" required>
-								<input type="text" class="form-control mb-2" name="Primer_Nombre_R" id="Primer_Nombre_R" placeholder="Primer nombre" required>
-								<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" id="Segundo_Nombre_R" placeholder="Segundo nombre" required>
+								<input type="text" class="form-control mb-2" name="Primer_Nombre_R" id="Primer_Nombre_R" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
+								<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" id="Segundo_Nombre_R" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 						<!--Apellidos del representante-->
 						<div>
 							<label class="form-label">Apellidos:<span class="text-danger">*</span></label>
 							<div class="input-group mb-2" required>
-								<input type="text" class="form-control mb-2" name="Primer_Apellido_R" id="Primer_Apellido_R" placeholder="Primer apellido" required>
-								<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" required>
+								<input type="text" class="form-control mb-2" name="Primer_Apellido_R" id="Primer_Apellido_R" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
+								<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 						<!--Genero del representante-->
@@ -203,30 +203,30 @@ if (!$_SESSION['login']) {
 							<!--Teléfono principal-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0,9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0,9]+ required" maxlength="7" minlength="7">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0,9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0,9]+ required" maxlength="7" minlength="7">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 
 							<!--Teléfono auxiliar-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_R" id="Prefijo_Auxiliar_R" list="prefijos" pattern="[0,9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Auxiliar_R" id="Prefijo_Auxiliar_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0,9]+ required" maxlength="7" minlength="7">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
 						<!--Vinculo del representante con el estudiante-->
 						<div>
-							<p class="form-label">¿Cuál es su relación con el estudiante?:<span class="text-danger">*</span></p>
+							<p class="form-label">Relación con el estudiante:<span class="text-danger">*</span></p>
 							<datalist id="vinculos">
 								<option value="Madre">
 								<option value="Padre">
@@ -255,12 +255,12 @@ if (!$_SESSION['login']) {
 						<div>
 							<span class="form-label">Carnet de la patria:</span>
 							<div class="input-group mb-2">
-								<select class="form-select w-auto" name="Tiene_Carnet_Patria">
+								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
 									<option value="Si">Si tiene</option>
 									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código">
-								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial">
+								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
 							</div>
 						</div>
 					</section>
@@ -402,9 +402,9 @@ if (!$_SESSION['login']) {
 							<!--Teléfono principal-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Trabajo_R" id="Prefijo_Trabajo_R" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefij requiredo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Trabajo_R" id="Prefijo_Trabajo_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefij requiredo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" id="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0,9]+ required" maxlength="7" minlength="7">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" id="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
 						<!--Lugar en el que trabaja el representante-->
@@ -434,8 +434,8 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Nombres:<span class="text-danger">*</span></label>
 							<div class="input-group mb-2" required>
-								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" maxlength="20" minlength="3" required>
-								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" maxlength="20" minlength="3" required>
+								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
+								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 
@@ -443,8 +443,8 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Apellidos:<span class="text-danger">*</span></label>
 							<div class="input-group mb-2" required>
-								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" maxlength="20" minlength="3" required>
-								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" maxlength="20 required" minlength="3">
+								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
+								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras"nlength="3">
 							</div>
 						</div>
 						<!--Genero del contacto auxiliar-->
@@ -470,12 +470,12 @@ if (!$_SESSION['login']) {
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
-								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" maxlength="8" minlength="7" required>
+								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required>
 						</div>
 						<!--Correo electronico del contacto auxiliar-->
 						<div>
 							<label class="form-label">Correo electrónico:<span class="text-danger">*</span></label>
-							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="15" required>
+							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required>
 						</div>
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
@@ -483,7 +483,7 @@ if (!$_SESSION['login']) {
 							<!--Teléfono principal-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required>
 							</div>
@@ -491,7 +491,7 @@ if (!$_SESSION['login']) {
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
 							</div>
@@ -499,7 +499,7 @@ if (!$_SESSION['login']) {
 							<!--Teléfono auxiliar-->
 							<div class="input-group mb-2" required>
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
 							</div>
