@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class ContactoAuxiliar {
 
@@ -11,7 +11,7 @@ class ContactoAuxiliar {
 
 	public function insertarContactoAuxiliar($idRepresentante) {
 		$conexion = conectarBD();
-		
+
 		$Relación = $this->getRelación();
 		$Cédula_Persona = $this->getCédula_Persona();
 
@@ -19,7 +19,7 @@ class ContactoAuxiliar {
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
-		
+
 		if ($resultado == NULL) {
 			$sql = "INSERT INTO `contactos_auxiliares`(`idContactoAuxiliar`, `Relación`, `Cédula_Persona`, `idRepresentante`) VALUES (
 				NULL,
@@ -37,7 +37,7 @@ class ContactoAuxiliar {
 		desconectarBD($conexion);
 	}
 	public function editarContactoAuxiliar() {
-		
+
 		if ($id == NULL) {
 			$id = $this->getidContactoAuxiliar();
 		}
@@ -49,27 +49,27 @@ class ContactoAuxiliar {
 
 		$conexion = conectarBD();
 
-		$sql = "UPDATE `contactos_auxiliares` SET 
+		$sql = "UPDATE `contactos_auxiliares` SET
 				`Relación`='$Relación',
 				`Nombre_Aux`='$Nombre_Aux',
 				`Tfl_P_Contacto_Aux`='$Tfl_P_Contacto_Aux',
-				`Tfl_S_Contacto_Aux`='$Tfl_S_Contacto_Aux' 
+				`Tfl_S_Contacto_Aux`='$Tfl_S_Contacto_Aux'
 			WHERE `idContactoAuxiliar`='$id'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		
+
 		desconectarBD($conexion);
 
 	}
 	public function consultarContactoAuxiliar($idRepresentante) {
 		$conexion = conectarBD();
-			
+
 		$Relación = $this->getRelación();
 		$Cédula_Persona = $this->getCédula_Persona();
 
 		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `idRepresentante` = '$idRepresentante'";
 
-		$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);
 		$persona = $consulta_persona->fetch_assoc();
 
 		return $persona;

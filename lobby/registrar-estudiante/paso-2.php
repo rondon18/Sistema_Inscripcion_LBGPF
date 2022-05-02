@@ -20,7 +20,7 @@ else {
 }
 ?>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	function validacion() {
 		var todo_correcto;
@@ -265,7 +265,7 @@ else {
 			alert('Hay errores en el formulario, por favor corríjalos')
 		}
 
-</script>
+</script> -->
 
 
 <!DOCTYPE html>

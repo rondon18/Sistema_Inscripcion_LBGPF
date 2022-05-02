@@ -27,7 +27,7 @@ CREATE TABLE `año-escolar` (
   `Inicio_Año_Escolar` varchar(4) COLLATE utf8_bin NOT NULL,
   `Fin_Año_Escolar` varchar(4) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idAño-Escolar`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `año-escolar` (
 
 LOCK TABLES `año-escolar` WRITE;
 /*!40000 ALTER TABLE `año-escolar` DISABLE KEYS */;
+INSERT INTO `año-escolar` VALUES (12,'2022','2023');
 /*!40000 ALTER TABLE `año-escolar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +57,7 @@ CREATE TABLE `bitacora` (
   `horaFinalSesion` time DEFAULT NULL,
   PRIMARY KEY (`idBitacora`),
   KEY `fk_usuarios_bitacora` (`idUsuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +66,7 @@ CREATE TABLE `bitacora` (
 
 LOCK TABLES `bitacora` WRITE;
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
-INSERT INTO `bitacora` VALUES (1,2,'2022-04-22','17:34:06','Muchos,ajshdvjasgdvjashdvjh','2022-04-22','19:34:06'),(2,2,'2022-04-26','01:51:36','/proyecto_pst/controladores/login.php','0000-00-00','00:00:00'),(3,2,'2022-04-26','01:52:40','Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil',NULL,NULL),(4,2,'2022-04-26','02:18:26','Inicia Sesión,Visita menú principal',NULL,NULL),(5,4,'2022-04-26','02:19:36','Inicia Sesión,Visita menú principal',NULL,NULL);
+INSERT INTO `bitacora` VALUES (1,2,'2022-04-22','17:34:06','Muchos,ajshdvjasgdvjashdvjh','2022-04-22','19:34:06'),(2,2,'2022-04-26','01:51:36','/proyecto_pst/controladores/login.php','0000-00-00','00:00:00'),(3,2,'2022-04-26','01:52:40','Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil',NULL,NULL),(4,2,'2022-04-26','02:18:26','Inicia Sesión,Visita menú principal',NULL,NULL),(5,4,'2022-04-26','02:19:36','Inicia Sesión,Visita menú principal',NULL,NULL),(6,2,'2022-04-26','04:26:27','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Cierra sesión.','2022-04-26','04:34:54'),(7,2,'2022-04-26','04:34:59','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-04-26','09:08:52'),(8,4,'2022-04-26','09:08:59','Inicia Sesión, Visita menú principal',NULL,NULL),(9,2,'2022-04-28','22:22:54','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(10,2,'2022-04-30','13:41:12','Inicia Sesión, Visita menú principal, Visita menú principal, Cierra sesión.','2022-04-30','13:42:21'),(11,11,'2022-04-30','14:51:41','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','14:57:15'),(12,11,'2022-04-30','14:57:22','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Edita perfil',NULL,NULL),(13,2,'2022-04-30','15:27:52','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(14,2,'2022-04-30','15:52:39','Inicia Sesión, Visita menú principal, Visita menú principal',NULL,NULL),(15,11,'2022-04-30','15:52:50','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-04-30','16:04:32'),(16,11,'2022-04-30','21:26:16','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(17,2,'2022-04-30','21:26:49','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(18,2,'2022-04-30','21:27:17','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','21:33:23'),(19,2,'2022-04-30','21:33:26','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','22:35:59'),(20,2,'2022-04-30','23:27:04','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','01:50:43'),(21,4,'2022-05-01','01:50:47','Inicia Sesión, Visita menú principal',NULL,NULL),(22,2,'2022-05-01','02:38:49','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','02:48:25'),(23,4,'2022-05-01','02:48:29','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-01','05:09:23'),(24,4,'2022-05-01','05:09:28','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(25,2,'2022-05-01','13:32:14','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','15:18:11'),(26,4,'2022-05-01','15:18:15','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(27,4,'2022-05-01','19:44:49','Inicia Sesión, Visita menú principal, Visita menú principal',NULL,NULL),(28,11,'2022-05-02','01:42:01','Inicia Sesión, Visita menú principal',NULL,NULL);
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,6 +176,7 @@ CREATE TABLE `datos-salud` (
   `Tipo_Sangre` varchar(45) COLLATE utf8_bin NOT NULL,
   `Medicación` varchar(50) COLLATE utf8_bin NOT NULL,
   `Dieta_Especial` varchar(50) COLLATE utf8_bin NOT NULL,
+  `Enfermedad` varchar(50) COLLATE utf8_bin NOT NULL,
   `Impedimento_Físico` varchar(60) COLLATE utf8_bin NOT NULL,
   `Alergias` varchar(50) COLLATE utf8_bin NOT NULL,
   `Cond_Vista` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -185,7 +187,7 @@ CREATE TABLE `datos-salud` (
   PRIMARY KEY (`idDatos-Medicos`,`idEstudiantes`),
   KEY `idUsuarios_idx` (`idEstudiantes`),
   CONSTRAINT `fk_Estudiantes_Datos-Medicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +196,7 @@ CREATE TABLE `datos-salud` (
 
 LOCK TABLES `datos-salud` WRITE;
 /*!40000 ALTER TABLE `datos-salud` DISABLE KEYS */;
+INSERT INTO `datos-salud` VALUES (1,1,1,'1',1,'Diestro','AB-','hjgchjgch','hgchjgch','','Motora, Escritura, Embarazo','cxhchgc','Regular','Mala','vjgcvjgcv','hgchgc',6),(10,1,1,'1',1,'Diestro','AB-','hjgchjgch','hgchjgch','','Motora, Escritura, Embarazo','cxhchgc','Regular','Mala','vjgcvjgcv','hgchgc',1);
 /*!40000 ALTER TABLE `datos-salud` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +219,7 @@ CREATE TABLE `datos-sociales` (
   PRIMARY KEY (`idDatos-Sociales`,`idEstudiantes`),
   KEY `idEstudiantes_idx` (`idEstudiantes`),
   CONSTRAINT `fk_Estudiantes_Datos-Sociales` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,6 +228,7 @@ CREATE TABLE `datos-sociales` (
 
 LOCK TABLES `datos-sociales` WRITE;
 /*!40000 ALTER TABLE `datos-sociales` DISABLE KEYS */;
+INSERT INTO `datos-sociales` VALUES (1,'Si','Muy buenas condiciones','fsdfsdf','asdasdasdasd','Si','',6),(9,'Si','Muy buenas condiciones','fsdfsdf','asdasdasdasd','Si','',1);
 /*!40000 ALTER TABLE `datos-sociales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +248,7 @@ CREATE TABLE `datos-tallas` (
   PRIMARY KEY (`idDatos-Tallas`,`idEstudiantes`),
   KEY `idEstudiantes_idx` (`idEstudiantes`),
   CONSTRAINT `fk_Estudiantes_Datos-Tallas` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,6 +257,7 @@ CREATE TABLE `datos-tallas` (
 
 LOCK TABLES `datos-tallas` WRITE;
 /*!40000 ALTER TABLE `datos-tallas` DISABLE KEYS */;
+INSERT INTO `datos-tallas` VALUES (1,'1','1','11',6),(5,'1','1','11',1);
 /*!40000 ALTER TABLE `datos-tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +303,9 @@ CREATE TABLE `estudiantes` (
   `Con_Quien_Vive` varchar(25) COLLATE utf8_bin NOT NULL,
   `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   `idRepresentante` int(11) NOT NULL,
+  `Relación_Representante` varchar(20) COLLATE utf8_bin NOT NULL,
   `idPadre` int(11) NOT NULL,
+  `Relación_Padre` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idEstudiantes`,`Cedula_Persona`,`idRepresentante`,`idPadre`),
   KEY `Cedula_Persona_idx` (`Cedula_Persona`),
   KEY `id_Representante_idx` (`idRepresentante`),
@@ -306,7 +313,7 @@ CREATE TABLE `estudiantes` (
   CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Representantes_Estudiantes` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_estudiantes_padres1` FOREIGN KEY (`idPadre`) REFERENCES `padres` (`idPadres`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,7 +322,7 @@ CREATE TABLE `estudiantes` (
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-INSERT INTO `estudiantes` VALUES (1,'asjbfkajsdbf','Solo','2666666',3,1);
+INSERT INTO `estudiantes` VALUES (1,'asjbfkajsdbf','Solo','2666666',3,'',1,''),(6,'ahbsjdhavda','vjahsfdhavd','514351',3,'',2,'');
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,11 +367,12 @@ DROP TABLE IF EXISTS `estudiantes-repitentes`;
 CREATE TABLE `estudiantes-repitentes` (
   `idEstudiante-Repitente` int(11) NOT NULL AUTO_INCREMENT,
   `Materias_Pendientes` varchar(50) COLLATE utf8_bin NOT NULL,
+  `Año_Repetido` varchar(20) COLLATE utf8_bin NOT NULL,
   `idEstudiante` int(11) NOT NULL,
   PRIMARY KEY (`idEstudiante-Repitente`,`idEstudiante`),
   KEY `idEstudiantes_idx` (`idEstudiante`),
   CONSTRAINT `fk_Estudiantes_Materias-Pendientes` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,6 +381,7 @@ CREATE TABLE `estudiantes-repitentes` (
 
 LOCK TABLES `estudiantes-repitentes` WRITE;
 /*!40000 ALTER TABLE `estudiantes-repitentes` DISABLE KEYS */;
+INSERT INTO `estudiantes-repitentes` VALUES (1,'Muchas','',6);
 /*!40000 ALTER TABLE `estudiantes-repitentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,7 +402,7 @@ CREATE TABLE `grado` (
   KEY `fk_Año-Escolar_Grado` (`idAño-Escolar`),
   CONSTRAINT `fk_Año-Escolar_Grado` FOREIGN KEY (`idAño-Escolar`) REFERENCES `año-escolar` (`idAño-Escolar`),
   CONSTRAINT `fk_Estudiantes_Grado` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -402,6 +411,7 @@ CREATE TABLE `grado` (
 
 LOCK TABLES `grado` WRITE;
 /*!40000 ALTER TABLE `grado` DISABLE KEYS */;
+INSERT INTO `grado` VALUES (1,'Primer año',6,12);
 /*!40000 ALTER TABLE `grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,7 +460,7 @@ CREATE TABLE `padres` (
   UNIQUE KEY `Cedula_Persona_UNIQUE` (`Cedula_Persona`),
   KEY `Cedula_Persona_idx` (`Cedula_Persona`),
   CONSTRAINT `Cedula_Persona` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -459,7 +469,7 @@ CREATE TABLE `padres` (
 
 LOCK TABLES `padres` WRITE;
 /*!40000 ALTER TABLE `padres` DISABLE KEYS */;
-INSERT INTO `padres` VALUES (1,'Padre','25555555');
+INSERT INTO `padres` VALUES (1,'Padre','25555555'),(2,'Padre','27919566');
 /*!40000 ALTER TABLE `padres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,6 +487,7 @@ CREATE TABLE `personas` (
   `Primer_Apellido` varchar(45) COLLATE utf8_bin NOT NULL,
   `Segundo_Apellido` varchar(45) COLLATE utf8_bin NOT NULL,
   `Cédula` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Tipo_Cédula` char(1) COLLATE utf8_bin NOT NULL,
   `Fecha_Nacimiento` date NOT NULL,
   `Lugar_Nacimiento` varchar(100) COLLATE utf8_bin NOT NULL,
   `Género` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -485,7 +496,7 @@ CREATE TABLE `personas` (
   `Estado_Civil` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idPersonas`),
   UNIQUE KEY `Cédula_UNIQUE` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,7 +505,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','27919566','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(10,'Elber','Alonso','Rondón','Hernández','27919567','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(12,'María','Gabriela','Ballestero','Rodríguez','28636530','2002-05-09','Caja Seca','F','mgbrodriguez952@gmail.com','Caja Seca','S'),(13,'Elber','Alonso','Rondón','Hernándes','27555555','2001-05-05','Mérida','M','earh_2001@outlook.com','La pedregosa','Soltero(a)'),(14,'Elber','Alonso','Rondón','Hernández','25555555','0000-00-00','','M','ashjfd@sdbf','asjdhvadj',''),(17,'Elber','Alonso','Rondón','Hernández','2666666','0000-00-00','Mérida','M','ashjfd@sdbf','asjdhvadj','Soltero(a)');
+INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','27919566','','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','Casado(a)'),(10,'Elber','Alonso','Rondón','Hernández','27919567','','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(12,'María','Gabriela','Ballestero','Rodríguez','28636530','','2002-05-09','Caja Seca','F','mgbrodriguez952@gmail.com','Caja Seca','S'),(13,'Elber','Alonso','Rondón','Hernándes','27555555','','2001-05-05','Mérida','M','earh_2001@outlook.com','La pedregosa','Soltero(a)'),(14,'Elber','Alonso','Rondón','Hernández','25555555','','0000-00-00','','M','ashjfd@sdbf','asjdhvadj',''),(17,'Elber','Alonso','Rondón','Hernández','2666666','','0000-00-00','Mérida','M','ashjfd@sdbf','asjdhvadj','Soltero(a)'),(18,'Hermenegildo','hgcajshgdcjh','gcjhgchjgchjgchj','gcjhgchjgc','514351','','1111-11-11','hgfvchgcjgfcx','M','jcjhg@sajhdfvsj','En su casa','Soltero(a)'),(20,'Elber','Alonso','Rondón','Hernández','27919569','','2001-05-05','','M','earh2001@outlook.com','','');
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -541,7 +552,7 @@ CREATE TABLE `teléfonos` (
   PRIMARY KEY (`idTeléfonos`),
   KEY `fk_personas_teléfonos` (`Cedula_Persona`),
   CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -550,7 +561,7 @@ CREATE TABLE `teléfonos` (
 
 LOCK TABLES `teléfonos` WRITE;
 /*!40000 ALTER TABLE `teléfonos` DISABLE KEYS */;
-INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','27919566'),(20,'0412','87654321','Secundario','27919566'),(21,'0274','12349587','Auxiliar','27919566'),(22,'0274','12349587','Trabajo','27919566'),(23,'0416','12345678','Principal','27919567'),(24,'0412','87654321','Secundario','27919567'),(25,'0274','12349587','Auxiliar','27919567'),(30,'0426','8994472','Principal','28636530'),(31,'0412','0763135','Secundario','28636530'),(32,'0274','12349587','Auxiliar','28636530'),(33,'0274','12349587','Trabajo','28636530'),(34,'0412','3569252','Principal','27555555'),(35,'0416','3569245','Secundario','27555555'),(36,'','','Auxiliar','27555555'),(37,'','','Trabajo','27555555'),(38,'0416','12345678','Principal','25555555'),(39,'','','Secundario','25555555'),(40,'0414','51351123','Auxiliar','25555555');
+INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','27919566'),(20,'0412','87654321','Secundario','27919566'),(21,'0274','12349587','Auxiliar','27919566'),(22,'0274','12349587','Trabajo','27919566'),(23,'0416','12345678','Principal','27919567'),(24,'0412','87654321','Secundario','27919567'),(25,'0274','12349587','Auxiliar','27919567'),(30,'0426','8994472','Principal','28636530'),(31,'0412','0763135','Secundario','28636530'),(32,'0274','12349587','Auxiliar','28636530'),(33,'0274','12349587','Trabajo','28636530'),(34,'0412','3569252','Principal','27555555'),(35,'0416','3569245','Secundario','27555555'),(36,'','','Auxiliar','27555555'),(37,'','','Trabajo','27555555'),(38,'0416','12345678','Principal','25555555'),(39,'','','Secundario','25555555'),(40,'0414','51351123','Auxiliar','25555555'),(53,'0416','12345678','Principal','514351'),(54,'0412','3569252','Secundario','514351'),(55,'0416','12345678','Principal','2666666'),(56,'0412','3569252','Secundario','2666666');
 /*!40000 ALTER TABLE `teléfonos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,7 +584,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`idUsuarios`),
   KEY `Cedula_Persona_idx` (`Cedula_Persona`),
   CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -582,7 +593,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'12345',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','27919566'),(4,'12345',1,'','','','','28636530'),(5,'1234',2,'','','','','27555555');
+INSERT INTO `usuarios` VALUES (2,'12345',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','27919566'),(4,'12345',1,'Ciudad donde naciste','Color que más te gusta','Caja Seca','Azul','28636530'),(5,'1234',2,'','','','','27555555'),(11,'Clave_01',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','27919569');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -595,4 +606,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-26  1:49:39
+-- Dump completed on 2022-05-02  3:35:51

@@ -9,7 +9,9 @@ class Estudiantes extends Personas {
 	private $Con_Quien_Vive;
 	private $Cedula_Estudiante;
 	private $idRepresentante;
+	private $Relación_Representante;
 	private $idPadre;
+	private $Relación_Padre;
 
 	public function __construct() {}
 
@@ -29,13 +31,15 @@ class Estudiantes extends Personas {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cedula_Persona`, `idRepresentante`, `idPadre`) VALUES (
+			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cedula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`Relación_Padre`) VALUES (
 				NULL,
 				'$Plantel_Procedencia',
 				'$Con_Quien_Vive',
 				'$Cedula_Estudiante',
 				'$idRepresentante',
-				'$idPadre'
+				'$Relación_Representante',
+				'$idPadre',
+				'$Relación_Padre'
 			)";
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidEstudiantes($conexion->insert_id);

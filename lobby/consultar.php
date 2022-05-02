@@ -47,6 +47,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <style media="screen">
 	.dataTables_paginate a {
@@ -72,25 +73,33 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	}
 </style>
 <body>
-	<div style="width: 90%; margin: auto;">
+	<!--Banner-->
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<div>
+			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+		</div>
+		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+	</header>
+	<div style="width: 90%; margin: 60px auto;">
 		<div class="card my-2">
 			<section class="card-header">Consulta de registros</section>
-			<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Consultar estudiantes</a>
 				</li>
 				<li class="nav-item">
-					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Consultar usuarios</a>
+					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Consultar representantes</a>
 				</li>
+				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 				<li class="nav-item">
-					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar representantes</a>
+					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar usuarios</a>
 				</li>
 				<li class="nav-item">
 					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitacora</a>
 				</li>
+				<?php endif; ?>
 			</ul>
-		<?php endif; ?>
 			<section class="card-body">
 				<div id="seccion1" class="card my-2">
 					<div class="card-header">
@@ -126,10 +135,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Con_Quien_Vive']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
-										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;">
+										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
 											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
-											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">	
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<input type="submit" name="Generar planilla" value="Generar planilla">
 										</form>
@@ -140,36 +149,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						</table>
 					</div>
 				</div>
-				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-				<div id="seccion2" class="card my-2" style="display:none;">
-
-					<div class="card-header">
-						Usuarios registrados
-					</div>
-					<div class="card-body">
-							<table id="usuarios" class="table table-striped table-bordered table-sm w-100">
-								<thead>
-									<th>ID del usuario</th>
-									<th>Nombre</th>
-									<th>Apellido</th>
-									<th>Cédula del usuario</th>
-									<th>Privilegios</th>
-								</thead>
-								<tbody>
-									<?php foreach ($lista_usuarios as $usuario): ?>
-									<tr>
-										<td><?php echo $usuario['idUsuarios'];?></td>
-										<td><?php echo $usuario['Primer_Nombre']?></td>
-										<td><?php echo $usuario['Primer_Apellido']?></td>
-										<td><?php echo $usuario['Cedula_Persona'];?></td>
-										<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-					</div>
-				</div>
-				<div id="seccion3" class="card my-2">
+				<div id="seccion2" class="card my-2">
 					<div class="card-header">
 						Representantes registrados
 					</div>
@@ -208,49 +188,82 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 							</table>
 					</div>
 				</div>
-				<div id="seccion4" class="card my-2" style="display:none;">
-					<div class="card-header">
-						Representantes registrados
-					</div>
-					<div class="card-body">
-							<table id="bitacora" class="table table-striped table-bordered table-sm w-100">
-								<thead>
-									<th>Nro. Registro</th>
-									<th>Id de usuario</th>
-									<th>Fecha entrada</th>
-									<th>Hora entrada</th>
-									<th>Acciones realizadas</th>
-									<th>Fecha de cierre</th>
-									<th>Hora de cierre</th>
-								</thead>
-								<tbody>
-								<?php foreach ($registros_bitacora as $registro): ?>
-									<?php if ($registro['idBitacora'] != $_SESSION['idBitacora']): #No muestra el ultimo registro por ser el actial?>
+				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+				<div id="seccion3" class="card my-2">
+
+						<div class="card-header">
+							Usuarios registrados
+						</div>
+						<div class="card-body">
+								<table id="usuarios" class="table table-striped table-bordered table-sm w-100">
+									<thead>
+										<th>ID del usuario</th>
+										<th>Nombre</th>
+										<th>Apellido</th>
+										<th>Cédula del usuario</th>
+										<th>Privilegios</th>
+									</thead>
+									<tbody>
+										<?php foreach ($lista_usuarios as $usuario): ?>
 										<tr>
-											<td><?php echo $registro['idBitacora']?></td>
-											<td><?php echo $registro['idUsuarios']?></td>
-											<td><?php echo $registro['fechaInicioSesion']?></td>
-											<td><?php echo $registro['horaInicioSesion']?></td>
-											<td style="max-width:350px"><small><?php echo $registro['linksVisitados']?></small></td>
-											<td><?php if(!empty($registro['fechaFinalSesion'])) { echo $registro['fechaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
-											<td><?php if(!empty($registro['horaFinalSesion'])) { echo $registro['horaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+											<td><?php echo $usuario['idUsuarios'];?></td>
+											<td><?php echo $usuario['Primer_Nombre']?></td>
+											<td><?php echo $usuario['Primer_Apellido']?></td>
+											<td><?php echo $usuario['Cedula_Persona'];?></td>
+											<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
 										</tr>
-									<?php endif;?>
-								<?php endforeach; ?>
-								</tbody>
-							</table>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+						</div>
 					</div>
-				</div>
-			<?php endif; ?>
+				<div id="seccion4" class="card my-2">
+						<div class="card-header">
+							Registro de bitacora
+						</div>
+						<div class="card-body">
+								<table id="bitacora" class="table table-striped table-bordered table-sm w-100">
+									<thead>
+										<th>Nro. Registro</th>
+										<th>Id de usuario</th>
+										<th>Fecha entrada</th>
+										<th>Hora entrada</th>
+										<th>Acciones realizadas</th>
+										<th>Fecha de cierre</th>
+										<th>Hora de cierre</th>
+									</thead>
+									<tbody>
+									<?php foreach ($registros_bitacora as $registro): ?>
+										<?php if ($registro['idBitacora'] != $_SESSION['idBitacora']): #No muestra el ultimo registro por ser el actial?>
+											<tr>
+												<td><?php echo $registro['idBitacora']?></td>
+												<td><?php echo $registro['idUsuarios']?></td>
+												<td><?php echo $registro['fechaInicioSesion']?></td>
+												<td><?php echo $registro['horaInicioSesion']?></td>
+												<td style="min-width:400px; max-width: 800px;"><small><?php echo $registro['linksVisitados']?></small></td>
+												<td><?php if(!empty($registro['fechaFinalSesion'])) { echo $registro['fechaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td><?php if(!empty($registro['horaFinalSesion'])) { echo $registro['horaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+											</tr>
+										<?php endif;?>
+									<?php endforeach; ?>
+									</tbody>
+								</table>
+						</div>
+					</div>
+				<?php endif; ?>
 			</section>
 		</div>
-
-		<hr>
 
 		<div class="card text-center" style="width: 100%; margin-top: 20px;">
 			<a class="btn btn-primary" href="index.php">Volver al menú</a>
 		</div>
 	</div>
+	<!--Footer-->
+	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
+		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
+	</footer>
+	<?php include '../ayuda.php'; ?>
+
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 
@@ -258,6 +271,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 <script type="text/javascript" src="../js/vfs_fonts.js"></script>
 <script type="text/javascript" src="../js/datatables1.min.js"></script>
 <script type="text/javascript">
+	//Datatables estudiantes
 	$(document).ready( function () {
 		$('#estudiantes').DataTable({
 			responsive: true,
@@ -281,7 +295,31 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	  	<?php endif; ?>
 		});
 	} );
+	//Datatables representantes
+	$(document).ready( function () {
+		$('#representantes').DataTable({
+			responsive: true,
+			"language": {
+					"url": "../js/datatables-español.json"
+			  },
+			<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+			dom: 'Bfrtip',
+			buttons: [
+				{
+	            extend: 'excelHtml5',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            autoFilter: true,
+	            filename: 'Reporte de representantes',
+	            sheetName: 'Reporte de representantes',
+	            className: 'btn btn-success',
+	            messageTop: 'Reporte de representantes'
+	        }
+		  	]
+				<?php endif; ?>
+		});
+	} );
 	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+	//Datatables usuarios
 	$(document).ready( function () {
 		$('#usuarios').DataTable({
 			responsive: true,
@@ -304,26 +342,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 
 		});
 	} );
-	$(document).ready( function () {
-		$('#representantes').DataTable({
-			responsive: true,
-			"language": {
-					"url": "../js/datatables-español.json"
-			  },
-			dom: 'Bfrtip',
-			buttons: [
-				{
-	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
-	            autoFilter: true,
-	            filename: 'Reporte de representantes',
-	            sheetName: 'Reporte de representantes',
-	            className: 'btn btn-success',
-	            messageTop: 'Reporte de representantes'
-	        }
-		  	]
-		});
-	} );
+
+	//Datatables bitacora
 	$(document).ready( function () {
 		$('#bitacora').DataTable({
 			responsive: true,
@@ -347,33 +367,68 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	} );
 	<?php endif; ?>
 </script>
-<script>
+<script type="text/javascript" defer>
+	//secciones
+	var a = document.getElementById("seccion1");
+	var b = document.getElementById("seccion2");
+	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+	var c = document.getElementById("seccion3");
+	var d = document.getElementById("seccion4");
+	<?php endif; ?>
+	a.style.display = "block";
+	b.style.display = "block";
+	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+	c.style.display = "block";
+	d.style.display = "block";
+	<?php endif; ?>
+
+	setTimeout(function(){
+		b.style.display = "none";
+
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+		c.style.display = "none";
+		d.style.display = "none";
+		<?php endif; ?>
+	}, 2000);
+
 	function seccion(seccion) {
 
 		//secciones
 		var a = document.getElementById("seccion1");
 		var b = document.getElementById("seccion2");
+
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 		var c = document.getElementById("seccion3");
 		var d = document.getElementById("seccion4");
+		<?php endif; ?>
 
 		//botones en la navegación
 		var link_a = document.getElementById("link1");
 		var link_b = document.getElementById("link2");
+
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 		var link_c = document.getElementById("link3");
 		var link_d = document.getElementById("link4");
+		<?php endif; ?>
 
 		//seccion seleccionada como activa(seccion 1 por defecto)
 		var seccion = document.getElementById(seccion);
 
 		a.style.display = "none";
 		b.style.display = "none";
+
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 		c.style.display = "none";
 		d.style.display = "none";
+		<?php endif; ?>
 
 		link_a.classList.remove("active");
 		link_b.classList.remove("active");
+
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 		link_c.classList.remove("active");
 		link_d.classList.remove("active");
+		<?php endif; ?>
 
 		if (seccion == a) {
 			a.style.display = "block";
@@ -383,6 +438,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			b.style.display = "block";
 			link_b.classList.add("active");
 		}
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 		else if (seccion == c) {
 			c.style.display = "block";
 			link_c.classList.add("active");
@@ -391,6 +447,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			d.style.display = "block";
 			link_d.classList.add("active");
 		}
+		<?php endif; ?>
 	}
 </script>
 </body>

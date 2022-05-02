@@ -375,7 +375,8 @@ if (!$_SESSION['login']) {
 				<section id="seccion2" style="display: none;">
 					<!--Contraseña y validación-->
 					<div>
-						<span>Contraseña:<span class="text-danger">*</span></span>
+						<h5>Cambiar contraseña:</h5>
+						<span>Contraseña:</span>
 						<div class="input-group mb-2">
 							<?php
 							$requisitos = "La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números";
@@ -392,8 +393,6 @@ if (!$_SESSION['login']) {
 					<label for="" class="form-label">Pregunta 1:<span class="text-danger">*</span></label>
 					<select name="Pregunta_Seg_1" class="form-select mb-2" required>
 						<option selected disabled>Seleccione una opción</option>
-						<?php if($_SESSION['usuario']['Pregunta_Seg_1'] == ""){echo "selected";}?>
-						<?php if($_SESSION['usuario']['Pregunta_Seg_2'] == ""){echo "selected";}?>
 						<option value="Ciudad de tu luna de miel" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
@@ -402,34 +401,34 @@ if (!$_SESSION['login']) {
 						<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
 						<option value="¿Cuál fue tu primer número de telefono?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál fue tu primer número de telefono?"){echo "selected";}?>>¿Cuál fue tu primer número de telefono?</option>
 						<option value="Equipo deportivo preferido" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
-						<option value="Fecha de aniversario de bodas" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == ""){echo "selected";}?>>Fecha de aniversario de bodas</option>
-						<option value="Fecha de nacimiento de tu padre" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == ""){echo "selected";}?>>Fecha de nacimiento de tu padre</option>
-						<option value="Fecha de tu graduación" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == ""){echo "selected";}?>>Fecha de tu graduación</option>
-						<option value="Fruta favorita" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == ""){echo "selected";}?>>Fruta favorita</option>
+						<option value="Fecha de aniversario de bodas" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
+						<option value="Fecha de nacimiento de tu padre" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fecha de nacimiento de tu padre"){echo "selected";}?>>Fecha de nacimiento de tu padre</option>
+						<option value="Fecha de tu graduación" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fecha de tu graduación"){echo "selected";}?>>Fecha de tu graduación</option>
+						<option value="Fruta favorita" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fruta favorita"){echo "selected";}?>>Fruta favorita</option>
 					</select>
 					<input name="Respuesta_1" type="text" placeholder="Respuesta a la pregunta" class="form-control mb-2" minlength="3" maxlength="50" required value="<?php echo $_SESSION['usuario']['Respuesta_1'] ?? NULL ?>">
 
 					<label for="" class="form-label">Pregunta 2:<span class="text-danger">*</span></label>
 					<select name="Pregunta_Seg_2" class="form-select mb-2" required>
 						<option selected disabled>Seleccione una opción</option>
-						<option value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
-						<option value="Ciudad donde naciste">Ciudad donde naciste</option>
-						<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
-						<option value="Color que más te gusta">Color que más te gusta</option>
-						<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
-						<option value="¿Cuál fue tu primer número de telefono?">¿Cuál fue tu primer número de telefono?</option>
-						<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
-						<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
-						<option value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
-						<option value="Fecha de tu graduación">Fecha de tu graduación</option>
-						<option value="Fruta favorita">Fruta favorita</option>
+						<option value="Ciudad de tu luna de miel" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
+						<option value="Ciudad donde naciste" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
+						<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
+						<option value="Color que más te gusta" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Color que más te gusta"){echo "selected";}?>>Color que más te gusta</option>
+						<option value="¿Cuál es tu comida favorita?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál es tu comida favorita?"){echo "selected";}?>>¿Cuál es tu comida favorita?</option>
+						<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
+						<option value="¿Cuál fue tu primer número de telefono?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál fue tu primer número de telefono?"){echo "selected";}?>>¿Cuál fue tu primer número de telefono?</option>
+						<option value="Equipo deportivo preferido" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
+						<option value="Fecha de aniversario de bodas" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
+						<option value="Fecha de nacimiento de tu padre" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fecha de nacimiento de tu padre"){echo "selected";}?>>Fecha de nacimiento de tu padre</option>
+						<option value="Fecha de tu graduación" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fecha de tu graduación"){echo "selected";}?>>Fecha de tu graduación</option>
+						<option value="Fruta favorita" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fruta favorita"){echo "selected";}?>>Fruta favorita</option>
 					</select>
 					<input name="Respuesta_2" type="text" placeholder="Respuesta a la pregunta" class="form-control mb-2" minlength="3" maxlength="50" required value="<?php echo $_SESSION['usuario']['Respuesta_2'] ?? NULL ?>">
 				</section>
 			</div>
 			<div class="card-footer">
-				<input type="hidden" name="orden" value="Insertar">
+				<input type="hidden" name="orden" value="Editar">
 				<a class="btn btn-primary" href="index.php">Volver al inicio</a>
 				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
