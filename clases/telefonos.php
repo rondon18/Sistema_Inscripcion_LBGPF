@@ -67,7 +67,30 @@ class Telefonos {
 
 		return $resultado;
 	}
+	public function consultarTelefonosRepresentanteID($ID_Representante) {
+		$conexion = conectarBD();
 
+		$sql = "SELECT * FROM `representantes`,`teléfonos` WHERE  `representantes`.`idRepresentantes` = '$ID_Representante' AND `teléfonos`.`Cedula_Persona` = `representantes`.`Cedula_Persona`";
+
+		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
+
+		desconectarBD($conexion);
+
+		return $resultado;
+	}
+	public function consultarTelefonosPadreID($ID_Padre) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `padres`,`teléfonos` WHERE  `padres`.`idPadres` = '$ID_Padre' AND `teléfonos`.`Cedula_Persona` = `padres`.`Cedula_Persona`";
+
+		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
+
+		desconectarBD($conexion);
+
+		return $resultado;
+	}
 	public function setidTeléfonos($idTeléfonos) {
 		$this->idTeléfonos = $idTeléfonos;
 	}
