@@ -11,6 +11,7 @@ require('../fpdf/fpdf.php');
 
 require('../clases/estudiante.php');
 require('../clases/representantes.php');
+require('../clases/carnet-patria.php');
 require('../clases/economicos-representantes.php');
 require('../clases/laborales-representantes.php');
 require('../clases/padres.php');
@@ -31,6 +32,7 @@ require('../clases/bitacora.php');
 $conexion = conectarBD();
 
 $Estudiante = new Estudiantes();
+$CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconomicos();
 $Laborales = new DatosLaborales();
@@ -48,7 +50,8 @@ $Datos_Auxiliar = new ContactoAuxiliar();
 
 #Hacer algo parecido para llamar numeros de representantes y padres
 $Estudiante = $Estudiante->consultarEstudiante($_POST['cedula_Estudiante']);
-
+$carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['cedula_Estudiante']);
+$carnetpatria_pa = $CarnetPatria->consultarCarnetPadreID($_POST['id_padre']);
 
 $Estudiantes_repitente = $Estudiantes_repitente->consultarEstudiantesRepitentes($_POST['id_Estudiante']);
 $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
@@ -78,12 +81,19 @@ $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
 
 #Para rellenar el campo de si tiene carnet de la patria
-$carnet = "";
-if (empty($datos_sociales['Codigo_Carnet_Patria']) AND empty($datos_sociales['Serial_Carnet_Patria'])) {
-  $carnet = "No";
+$carnet_Est = "";
+if (empty($carnetpatria_Est['Código_Carnet']) AND empty($carnetpatria_Est['Serial_Carnet'])) {
+  $carnet_Est = "No";
 }
 else {
-  $carnet = "Si";
+  $carnet_Est = "Si";
+}
+
+if (empty($carnetpatria_pa['Código_Carnet']) AND empty($carnetpatria_pa['Serial_Carnet'])) {
+  $carnet_pa = "No";
+}
+else {
+  $carnet_pa = "Si";
 }
 
 if (empty($datos_medicos['Institucion_Medica'])) {
@@ -182,10 +192,10 @@ $pdf->Cell(0,6,utf8_decode('LUGAR DE DOMICILIO: ' . $Estudiante['Dirección']),1
 $pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $datos_sociales['Con_Quien_Vive']),1,0);
 $pdf->Cell(35,6,utf8_decode('TIENE CANAIMA: ' . $datos_sociales['Posee_Canaima']),1,0,);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN DE LA CANAIMA: ' . $datos_sociales['Condicion_Canaima']),1,1,);
-$pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet),1,0,);
+$pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_Est),1,0,);
 $pdf->SetFont('Arial','',7);
-$pdf->Cell(66,6,utf8_decode('CODIGO CARNET DE LA PATRIA: ' . $datos_sociales['Codigo_Carnet_Patria']),1,0,);
-$pdf->Cell(0,6,utf8_decode('SERIAL CARNET DE LA PATRIA: ' . $datos_sociales['Serial_Carnet_Patria']),1,1,);
+$pdf->Cell(66,6,utf8_decode('CODIGO CARNET DE LA PATRIA: ' . $carnetpatria_Est['Código_Carnet']),1,0,);
+$pdf->Cell(0,6,utf8_decode('SERIAL CARNET DE LA PATRIA: ' . $carnetpatria_Est['Serial_Carnet']),1,1,);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('CUENTA CON ACCESO A INTERNET: ' . $datos_sociales['Acceso_Internet']),1,1,);
 $pdf->Ln(6);
@@ -250,7 +260,7 @@ $pdf->SetFont('Arial','',9);
 #DATOS DE MADRE O PADRE
 
 $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS: ' . $padre['Primer_Nombre'] . ' ' . $padre['Segundo_Nombre'] . ' ' . $padre['Primer_Apellido'] . ' ' . $padre['Segundo_Apellido']),1,1,);
-$pdf->Cell(0,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $padre['Parentezco']),1,1,);
+$pdf->Cell(0,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relación_Padre']),1,1,);
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $padre['Cédula']),1,0);
 $pdf->Cell(17,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')),1,0);
 #CAMBIAR VARIABLE PARA LOS PADRES
@@ -285,6 +295,9 @@ $pdf->SetFont('Arial','',9);
 $pdf->Cell(65,6,utf8_decode('CONDICIONES DE LA VIVIENDA: ' . $datos_vivienda['Condiciones_Vivienda']),1,0,);
 $pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_vivienda['Tipo_Vivienda']),1,0,);
 $pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_vivienda['Tenencia_Vivienda']),1,1,);
+$pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_pa),1,0,);
+#$pdf->Cell(55,6,utf8_decode('CÓDIGO: ' . $carnetpatria_pa['Código_Carnet']),1,0,);
+#$pdf->Cell(55,6,utf8_decode('SERIAL: ' . $carnetpatria_pa['Serial_Carnet']),1,1,);
 $pdf->Cell(0,6,utf8_decode('ESTÁ DISPUESTO A PARTICIPAR EN EL CONSEJO EDUCATIVO DEL AÑO ' . $Inicio_Año_Escolar . '-' . $Fin_Año_Escolar . '                          SI______ NO_______'),1,1,);
 $pdf->Cell(0,6,utf8_decode('ESTÁ DISPUESTO A PARTICIPAR EN EL MOVIMIENTO BOLIVARIANO DE FAMILIA                               SI______ NO_______'),1,1,);
 $pdf->Cell(0,6,utf8_decode('SE COMPROMETE A PARTICIPAR EN TODAS LAS CONVOCATORIAS DEL PLANTEL                            SI______ NO_______'),1,1,);
