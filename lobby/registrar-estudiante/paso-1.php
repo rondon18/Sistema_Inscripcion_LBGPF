@@ -34,7 +34,7 @@ if (!$_SESSION['login']) {
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">
-					<h2>Formulario de registro de representantes.</h2>
+					<h3>Formulario de registro.</h3>
 				</div>
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
@@ -249,6 +249,18 @@ if (!$_SESSION['login']) {
 									<label class="form-label">Universitario </label>
 									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
 								</div>
+							</div>
+						</div>
+						<!--Carnet de la patria-->
+						<div>
+							<span class="form-label">Carnet de la patria:</span>
+							<div class="input-group mb-2">
+								<select class="form-select w-auto" name="Tiene_Carnet_Patria">
+									<option value="Si">Si tiene</option>
+									<option value="No">No tiene</option>
+								</select>
+								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código">
+								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial">
 							</div>
 						</div>
 					</section>

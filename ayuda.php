@@ -53,7 +53,7 @@
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingThree">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				        Gestionar estudiante
+				        <i class="fa-solid fa-magnifying-glass fa-lg me-2"></i>Gestionar estudiante
 				      </button>
 				    </h2>
 				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -65,7 +65,7 @@
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingRegistry">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistry" aria-expanded="false" aria-controls="collapseRegistry">
-				        Gestionar Registros
+				        <i class="fa-solid fa-magnifying-glass fa-lg me-2"></i>Gestionar Registros
 				      </button>
 				    </h2>
 				    <div id="collapseRegistry" class="accordion-collapse collapse" aria-labelledby="headingRegistry" data-bs-parent="#accordionExample">
@@ -77,7 +77,7 @@
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingMaintenance">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaintenance" aria-expanded="false" aria-controls="collapseMaintenance">
-				        Funciones de mantenimiento
+				        <i class="fa-solid fa-database fa-lg me-2"></i>Funciones de mantenimiento
 				      </button>
 				    </h2>
 				    <div id="collapseMaintenance" class="accordion-collapse collapse" aria-labelledby="headingMaintenance" data-bs-parent="#accordionExample">

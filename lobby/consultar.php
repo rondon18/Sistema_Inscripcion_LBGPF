@@ -140,7 +140,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<input type="submit" name="Generar planilla" value="Generar planilla">
+											<button class="btn btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 										</form>
 									</td>
 								</tr>

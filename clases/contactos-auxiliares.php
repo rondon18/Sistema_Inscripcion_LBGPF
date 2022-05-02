@@ -38,44 +38,47 @@ class ContactoAuxiliar {
 	}
 	public function editarContactoAuxiliar() {
 
-		if ($id == NULL) {
-			$id = $this->getidContactoAuxiliar();
-		}
-
 		$Relación = $this->getRelación();
-		$Nombre_Aux = $this->getNombre_Aux();
-		$Tfl_P_Contacto_Aux = $this->getTfl_P_Contacto_Aux();
-		$Tfl_S_Contacto_Aux = $this->getTfl_S_Contacto_Aux();
+		$Cédula_Persona = $this->getCédula_Persona();
 
 		$conexion = conectarBD();
 
 		$sql = "UPDATE `contactos_auxiliares` SET
 				`Relación`='$Relación',
-				`Nombre_Aux`='$Nombre_Aux',
-				`Tfl_P_Contacto_Aux`='$Tfl_P_Contacto_Aux',
-				`Tfl_S_Contacto_Aux`='$Tfl_S_Contacto_Aux'
-			WHERE `idContactoAuxiliar`='$id'";
+			WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-
 		desconectarBD($conexion);
-
 	}
-	public function consultarContactoAuxiliar($idRepresentante) {
+	public function consultarContactoAuxiliar() {
 		$conexion = conectarBD();
 
-		$Relación = $this->getRelación();
 		$Cédula_Persona = $this->getCédula_Persona();
 
-		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `idRepresentante` = '$idRepresentante'";
+		$sql = "SELECT * FROM `personas`,`contactos_auxiliares` WHERE `Cédula_Persona` = '$Cédula_Persona'";
 
 		$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);
 		$persona = $consulta_persona->fetch_assoc();
 
+		desconectarBD($conexion);
 		return $persona;
 	}
 	public function mostrarContactosAuxiliares() {
+		$conexion = conectarBD();
 
+		$sql = "SELECT * FROM `personas`,`contactos_auxiliares` WHERE `personas`.`Cédula` = `contactos_auxiliares`.`Cédula_Persona`";
+
+		$consulta = $conexion->query($sql) or die("error: ".$conexion->error);
+		$personas = $consulta->fetch_all(MYSQLI_ASSOC);
+
+		#Hace un arreglo de arreglos para contener los campos
+		$lista_personas = [];
+		foreach ($personas as $persona) {
+			$lista_personas[]= $persona;
+		}
+
+		desconectarBD($conexion);
+		return $lista_personas;
 	}
 
 	public function setidContactoAuxiliar($idContactoAuxiliar) {
