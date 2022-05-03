@@ -41,7 +41,7 @@
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="cedula" placeholder="Cédula de usuario" maxlength="15" required>
+								<input class="form-control w-auto" type="text" id="cedula" name="cedula" placeholder="Cédula de usuario" maxlength="15" required>
 							</td>
 						</tr>
 						<tr>
@@ -49,7 +49,7 @@
 								<span class="input-group-text text-center" title="Clave">
 									<i class="fa-solid fa-lock fa-lg"></i>
 								</span>
-								<input class="form-control" type="password" name="clave" placeholder="Clave" required>
+								<input class="form-control" type="password" id="clave" name="clave" placeholder="Clave" required>
 							</td>
 						</tr>
 						<tr>
@@ -71,6 +71,9 @@
 		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include 'ayuda.php'; ?>
+<script type="text/javascript" src="js/sweetalert2.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/validaciones.js"></script>
 </body>
 </html>
