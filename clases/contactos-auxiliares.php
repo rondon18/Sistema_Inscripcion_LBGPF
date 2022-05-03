@@ -50,12 +50,10 @@ class ContactoAuxiliar {
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
-	public function consultarContactoAuxiliar() {
+	public function consultarContactoAuxiliar($idRepresentante) {
 		$conexion = conectarBD();
 
-		$Cédula_Persona = $this->getCédula_Persona();
-
-		$sql = "SELECT * FROM `personas`,`contactos_auxiliares` WHERE `Cédula_Persona` = '$Cédula_Persona'";
+		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `idRepresentante` = '$idRepresentante'";
 
 		$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);
 		$persona = $consulta_persona->fetch_assoc();

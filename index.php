@@ -75,5 +75,14 @@
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/validaciones.js"></script>
+<?php if (isset($_GET['error'])): ?>
+<script type="text/javascript" defer>
+	Swal.fire(
+      'Error',
+      'Cédula o clave incorrecta',
+      'warning'
+    );
+</script>
+<?php endif ?>
 </body>
 </html>

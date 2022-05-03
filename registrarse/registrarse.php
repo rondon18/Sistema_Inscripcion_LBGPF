@@ -156,9 +156,11 @@
 		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
-<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
-<script>
 
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../js/validaciones.js"></script>
+<script>
 	function enviar() {
 		var a = document.getElementById("seccion1");
 		var b = document.getElementById("seccion2");

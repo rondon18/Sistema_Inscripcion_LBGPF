@@ -125,7 +125,7 @@ function privilegios($privilegios) {
 			<a class="btn btn-primary" href="index.php">Volver <i class="fas fa-home"></i></a>
 			<a class="btn btn-primary" href="editar-perfil.php">Editar perfil <i class="fas fa-user-edit"></i></a>
 			<form class="d-inline" action="../controladores/control-usuarios.php" method="POST">
-				<button class="btn btn-primary" type="button" name="DarseDeBaja">Darse de baja <i class="fas fa-user-minus"></i></button>
+				<button class="btn btn-primary" type="submit" name="DarseDeBaja">Darse de baja <i class="fas fa-user-minus"></i></button>
 				<input type="hidden" name="orden" value="Eliminar">
 			</form>
 		</div>

@@ -59,12 +59,11 @@ class CarnetPatria {
     $conexion->query($sql) or die("error: ".$conexion->error);
     desconectarBD($conexion);
   }
-  public function consultarCarnetPatria() {
+  public function consultarCarnetPatria($Cedula_Persona) {
   	$conexion = conectarBD();
 
-    $Cedula_Persona = $this->getCedula_Persona();
-
     $sql = "SELECT * FROM `carnet-patria` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+
 
     $consulta = $conexion->query($sql) or die("error: ".$conexion->error);
 		$carnet = $consulta->fetch_assoc();

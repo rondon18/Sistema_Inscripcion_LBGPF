@@ -55,7 +55,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<a class="btn btn-sm bg-primary text-white mb-2" href="registrar-estudiante/paso-1.php">
 						Registrar estudiante <i class="fas fa-user-plus fa-lg"></i>
 					</a>
-					<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
+					<?php if ($_SESSION['usuario']['Privilegios'] >= 2): ?>
 					<a class="btn btn-sm bg-primary text-white mb-2" href="consultar.php">
 						Consultar estudiantes <i class="fas fa-search fa-lg"></i>
 					</a>

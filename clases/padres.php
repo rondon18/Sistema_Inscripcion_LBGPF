@@ -71,6 +71,19 @@ class Padres extends Personas {
 		desconectarBD($conexion);
 		return $resultado;
 	}
+	public function consultarHijos($id_padres){
+
+		$conexion = conectarBD();
+
+		$sql = "SELECT `idPadre` FROM `estudiantes` WHERE `idPadre`='$id_padres'";
+
+
+		$padre = $conexion->query($sql);
+		$resultado = $padre->fetch_all();
+
+		desconectarBD($conexion);
+		return sizeof($resultado);
+	}
 	public function mostrarPadres(){
 		#Retorna todos los registros de padres
 		$conexion = conectarBD();

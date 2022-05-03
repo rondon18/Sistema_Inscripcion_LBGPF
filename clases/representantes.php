@@ -105,6 +105,27 @@ class Representantes {
 
 		return $Lista_Representantes;
 	}
+	public function mostrarRepresentados($id_Representante) {
+		#Muestra todos las estudiantes en la tabla
+		$conexion = conectarBD();
+
+		#consulta solo las personas que tengan presencia en la tabla estudiantes
+		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`Cedula_Persona`= `personas`.`Cédula`AND `estudiantes`.`idRepresentante` = '$id_Representante'";
+
+
+		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
+		$estudiantes = $consulta_estudiantes->fetch_all(MYSQLI_ASSOC);
+
+		#Hace un arreglo de arreglos para contener los campos de la estudiante
+		$Lista_Estudiantes = [];
+		foreach ($estudiantes as $estudiante) {
+			$Lista_Estudiantes[]= $estudiante;
+		}
+
+		desconectarBD($conexion);
+
+		return $Lista_Estudiantes;
+	}
 
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;

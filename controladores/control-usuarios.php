@@ -147,11 +147,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['acciones'] .= ',Se da de baja';
 			$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 
-			#header('Location: logout.php');
+			header('Location: logout.php');
 		}
 		elseif (isset($_POST['id'])) {
 			$usuario->eliminarUsuario($_POST['id']);
-			#header('Location: ../lobby/index.php');
+			header('Location: ../lobby/index.php');
 		}
 	}
 	else {
@@ -161,7 +161,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 }
 else {
-	#header('Location: ../index.php');
+	header('Location: ../index.php');
 }
 
 

@@ -88,16 +88,18 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 				<li class="nav-item">
 					<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Consultar estudiantes</a>
 				</li>
+				<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>
 				<li class="nav-item">
 					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Consultar representantes</a>
 				</li>
-				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-				<li class="nav-item">
-					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar usuarios</a>
-				</li>
-				<li class="nav-item">
-					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitacora</a>
-				</li>
+					<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+					<li class="nav-item">
+						<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar usuarios</a>
+					</li>
+					<li class="nav-item">
+						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitacora</a>
+					</li>
+					<?php endif ?>
 				<?php endif; ?>
 			</ul>
 			<section class="card-body">
@@ -106,6 +108,9 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						Estudiantes registrados
 					</div>
 					<div class="card-body">
+
+							
+						
 						<table id="estudiantes" class="table table-striped table-bordered table-sm w-100">
 							<thead>
 								<th>Nombres</th>
@@ -121,7 +126,20 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Acciones</th>
 							</thead>
 							<tbody>
+						
+						<?php
+							if ($_SESSION['usuario']['Privilegios'] == 3){
+								$rep_usuario = $representante->consultarRepresentante($_SESSION['persona']['Cédula']);
+
+								$listaEstudiantes = $representante->mostrarRepresentados($rep_usuario['idRepresentantes']);
+							}
+						?>
+
 						<?php foreach ($listaEstudiantes as $estudiante): ?>
+
+
+
+
 								<tr>
 									<td><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
 									<td><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
@@ -149,6 +167,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						</table>
 					</div>
 				</div>
+				<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>
 				<div id="seccion2" class="card my-2">
 					<div class="card-header">
 						Representantes registrados
@@ -252,6 +271,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 					</div>
 				<?php endif; ?>
 			</section>
+
+			<?php endif ?>
 		</div>
 
 		<div class="card text-center" style="width: 100%; margin-top: 20px;">
@@ -370,24 +391,29 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 <script type="text/javascript" defer>
 	//secciones
 	var a = document.getElementById("seccion1");
+	<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>
 	var b = document.getElementById("seccion2");
-	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-	var c = document.getElementById("seccion3");
-	var d = document.getElementById("seccion4");
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+		var c = document.getElementById("seccion3");
+		var d = document.getElementById("seccion4");
+		<?php endif; ?>
 	<?php endif; ?>
 	a.style.display = "block";
+	<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>
 	b.style.display = "block";
-	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-	c.style.display = "block";
-	d.style.display = "block";
+		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+		c.style.display = "block";
+		d.style.display = "block";
+		<?php endif; ?>
 	<?php endif; ?>
 
 	setTimeout(function(){
+		<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>
 		b.style.display = "none";
-
-		<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-		c.style.display = "none";
-		d.style.display = "none";
+			<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+			c.style.display = "none";
+			d.style.display = "none";
+			<?php endif; ?>
 		<?php endif; ?>
 	}, 2000);
 
