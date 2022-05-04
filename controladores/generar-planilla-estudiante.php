@@ -165,7 +165,7 @@ $pdf->Cell(22,12,utf8_decode('2do año fecha'),1,0);
 $pdf->Cell(22,12,utf8_decode('3er año fecha'),1,0);
 $pdf->Cell(22,12,utf8_decode('4to año fecha'),1,0);
 $pdf->Cell(22,12,utf8_decode('5to año fecha'),1,1);
-$pdf->Multicell(40,6,utf8_decode("INDIQUE CON UNA X\nEL AÑO DE ESTUDIO"),1,0); 
+$pdf->Multicell(40,6,utf8_decode("INDIQUE CON UNA X\nEL AÑO DE ESTUDIO"),1,0);
 $pdf->SetXY(50.1,56);
 $pdf->Cell(22,12,utf8_decode(' '),1,0);
 $pdf->Cell(22,12,utf8_decode(' '),1,0);
@@ -186,7 +186,7 @@ $pdf->Cell(0,6,utf8_decode('DATOS PERSONALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL Estudiantes: ' . $Estudiante['Primer_Nombre'] . ' ' . $Estudiante['Segundo_Nombre'] . ' ' . $Estudiante['Primer_Apellido'] . ' ' . $Estudiante['Segundo_Apellido']),1,1);
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $Estudiante['Cédula']),1,0);
-$pdf->Cell(17,6,utf8_decode('EDAD: ' . $edad_diff_est->format('%y')),1,0);
+$pdf->Cell(26,6,utf8_decode('EDAD: ' . $edad_diff_est->format('%y')." Años"),1,0);
 #                                                         OJO: LA CANTIDAD DEL ARREGLO VARIA
 $pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . $telefonos_Est[0]['Prefijo'] . "-" . $telefonos_Est[0]['Número_Telefónico'] . ' / ' . $telefonos_Est[1]['Prefijo'] . "-" . $telefonos_Est[1]['Número_Telefónico']),1,1);
 $pdf->Cell(57,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $Estudiante['Fecha_Nacimiento']),1,0);
@@ -220,10 +220,6 @@ $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('LUGAR DE DOMICILIO: ' . $Estudiante['Dirección']),1,1);
-var_dump($datos_sociales);
-if (condition) {
-    // code...
-}
 $pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $datos_sociales['Con_Quien_Vive']),1,0);
 $pdf->Cell(35,6,utf8_decode('TIENE CANAIMA: ' . $datos_sociales['Posee_Canaima']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN DE LA CANAIMA: ' . $datos_sociales['Condicion_Canaima']),1,1);
@@ -337,7 +333,7 @@ $pdf->Cell(62,6,utf8_decode('REMUNERACIÓN (Sueldos mínimos): ' . $datos_labora
 $pdf->Cell(0,6,utf8_decode('TIPO DE REMUNERACIÓN: ' . $datos_laborales['Tipo_Remuneración']),1,1);
 $pdf->Cell(0,6,utf8_decode('TIPO DE COLABORACIÓN QUE ESTA ENTREGANDO A LA INSTITUCIÓN (Dejar en blanco):'),'L,T,R',1,'C');
 $pdf->SetFont('Arial','',8);
-$pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0); 
+$pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0);
 
 $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);

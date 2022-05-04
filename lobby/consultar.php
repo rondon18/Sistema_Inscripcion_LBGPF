@@ -8,9 +8,25 @@ if (!$_SESSION['login']) {
 }
 
 
+function calculaedad($fechanacimiento){
+  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+  $ano_diferencia  = date("Y") - $ano;
+  $mes_diferencia = date("m") - $mes;
+  $dia_diferencia   = date("d") - $dia;
+  if ($dia_diferencia < 0 || $mes_diferencia < 0)
+    $ano_diferencia--;
+  return $ano_diferencia;
+}
 
-
-
+function genero($genero){
+	if ($genero == "F") {
+		$genero = "Femenino";
+	}
+	elseif ($genero == "M") {
+		$genero = "Masculino";
+	}
+	return $genero;
+}
 require("../clases/estudiante.php");
 require("../clases/representantes.php");
 require("../clases/padres.php");
@@ -109,24 +125,31 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 					</div>
 					<div class="card-body">
 
-							
-						
+
+
 						<table id="estudiantes" class="table table-striped table-bordered table-sm w-100">
 							<thead>
+								<th>Cédula</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
-								<th>Cédula</th>
 								<th>Fecha de nacimiento</th>
+								<th>Edad</th>
 								<th>Lugar de nacimiento</th>
 								<th>Género</th>
 								<th>Correo electrónico</th>
 								<th>Dirección de residencia</th>
-								<th>Plantel de procedencia</th>
-								<th>Con quien vive</th>
+								<th>Talla_Camisa</th>
+								<th>Talla_Pantalón</th>
+								<th>Talla_Zapatos</th>
+								<th>Estatura</th>
+								<th>Peso</th>
+								<th>Indice</th>
+								<th>Circ_Braquial</th>
+								<th>Grado_A_Cursar</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
-						
+
 						<?php
 							if ($_SESSION['usuario']['Privilegios'] == 3){
 								$rep_usuario = $representante->consultarRepresentante($_SESSION['persona']['Cédula']);
@@ -141,16 +164,23 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 
 
 								<tr>
-									<td><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
-									<td><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
 									<td><?php echo $estudiante['Cédula']; ?></td>
+									<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
+									<td style="min-width:210px;"><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
 									<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
-									<td><?php echo $estudiante['Lugar_Nacimiento']; ?></td>
-									<td><?php echo $estudiante['Género']; ?></td>
-									<td><?php echo $estudiante['Correo_Electrónico']; ?></td>
-									<td><?php echo $estudiante['Dirección']; ?></td>
-									<td><?php echo $estudiante['Plantel_Procedencia']; ?></td>
-									<td><?php echo $estudiante['Con_Quien_Vive']; ?></td>
+									<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
+									<td style="min-width:170px;"><?php echo $estudiante['Lugar_Nacimiento']; ?></td>
+									<td><?php echo genero($estudiante['Género']); ?></td>
+									<td style="min-width:160px;"><?php echo $estudiante['Correo_Electrónico']; ?></td>
+									<td style="min-width:190px;"><?php echo $estudiante['Dirección']; ?></td>
+									<td><?php echo $estudiante['Talla_Camisa']; ?></td>
+									<td><?php echo $estudiante['Talla_Pantalón']; ?></td>
+									<td><?php echo $estudiante['Talla_Zapatos']; ?></td>
+									<td><?php echo $estudiante['Estatura']."cm"; ?></td>
+									<td><?php echo $estudiante['Peso']."kg"; ?></td>
+									<td><?php echo $estudiante['Indice']; ?></td>
+									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
+									<td><?php echo $estudiante['Grado_A_Cursar']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
@@ -158,7 +188,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<button class="btn btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 										</form>
 									</td>
 								</tr>
@@ -196,7 +226,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<td><?php echo $representante['Cédula']?></td>
 										<td><?php echo $representante['Fecha_Nacimiento']?></td>
 										<td><?php echo $representante['Lugar_Nacimiento']?></td>
-										<td><?php echo $representante['Género']?></td>
+										<td><?php echo genero($representante['Género']); ?></td>
 										<td><?php echo $representante['Correo_Electrónico']?></td>
 										<td><?php echo $representante['Dirección']?></td>
 										<td><?php echo $representante['Estado_Civil']?></td>
@@ -221,6 +251,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<th>Apellido</th>
 										<th>Cédula del usuario</th>
 										<th>Privilegios</th>
+										<th>Acciones</th>
 									</thead>
 									<tbody>
 										<?php foreach ($lista_usuarios as $usuario): ?>
@@ -230,6 +261,15 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<td><?php echo $usuario['Primer_Apellido']?></td>
 											<td><?php echo $usuario['Cedula_Persona'];?></td>
 											<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
+											<td>
+												<?php if ($usuario['Privilegios'] == 1): ?>
+												<button class="btn btn-sm btn-danger" type="buttom" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
+												<?php else: ?>
+												<form class="" action="#" method="post">
+													<button class="btn btn-sm btn-danger" type="sumbit" name="orden" value="Eliminar" onclick="return confirmacion();">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
+												</form>
+												<?php endif; ?>
+											</td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -287,7 +327,6 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../js/datatables.min.js"></script>
-
 <script type="text/javascript" src="../js/pdfmake.min.js"></script>
 <script type="text/javascript" src="../js/vfs_fonts.js"></script>
 <script type="text/javascript" src="../js/datatables1.min.js"></script>
@@ -304,7 +343,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de estudiantes',
 	            sheetName: 'Reporte de estudiantes',
@@ -328,7 +367,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de representantes',
 	            sheetName: 'Reporte de representantes',
@@ -351,7 +390,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de usuarios',
 	            sheetName: 'Reporte de usuarios',
@@ -376,7 +415,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			buttons: [
 				{
 	            extend: 'excelHtml5',
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg"></i>',
+	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de bitacora',
 	            sheetName: 'Reporte de bitacora',
@@ -388,7 +427,18 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	} );
 	<?php endif; ?>
 </script>
-<script type="text/javascript" defer>
+<script type="text/javascript">
+	function confirmacion() {
+		//Pregunta si desea realizar la acción la cancela si selecciona NO
+    if(confirm("¿Desea realizar esta accion?")) {
+			alert("Acción ejecutada");
+			return true;
+		}
+		else {
+			alert("Acción cancelada");
+			return false;
+		}
+	}
 	//secciones
 	var a = document.getElementById("seccion1");
 	<?php if ($_SESSION['usuario']['Privilegios'] < 3): ?>

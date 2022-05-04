@@ -95,7 +95,8 @@ class Estudiantes extends Personas {
 		$conexion = conectarBD();
 
 		#consulta solo las personas que tengan presencia en la tabla estudiantes
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = `estudiantes`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `personas`,`estudiantes`,`datos-tallas`,`datos-salud`,`grado` WHERE `personas`.`Cédula` = `estudiantes`.`Cedula_Persona` AND `estudiantes`.`idEstudiantes` = `datos-tallas`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `datos-salud`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `grado`.`idEstudiantes`;
+		";
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$estudiantes = $consulta_estudiantes->fetch_all(MYSQLI_ASSOC);
