@@ -63,6 +63,9 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<a class="btn btn-sm bg-primary text-white mb-2" href="consultar.php">
 						Gestionar registros <i class="fas fa-search fa-lg"></i>
 					</a>
+					<a class="btn btn-sm bg-primary text-white mb-2" href="registrar(docentes).php">
+						Registrar usuarios <i class="fas fa-user-plus fa-lg"></i>
+					</a>
 					<?php endif;?>
 					<a class="btn btn-sm bg-primary text-white mb-2" href="../controladores/logout.php">
 						Cerrar sesión <i class="fas fa-door-open fa-lg"></i>
