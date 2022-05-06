@@ -125,7 +125,7 @@ function privilegios($privilegios) {
 			<a class="btn btn-primary" href="index.php">Volver <i class="fas fa-home"></i></a>
 			<a class="btn btn-primary" href="editar-perfil.php">Editar perfil <i class="fas fa-user-edit"></i></a>
 			<form class="d-inline" action="../controladores/control-usuarios.php" method="POST">
-				<button class="btn btn-primary" type="submit" name="DarseDeBaja">Darse de baja <i class="fas fa-user-minus"></i></button>
+				<button class="btn btn-primary" type="submit" name="DarseDeBaja" onclick="return confirmacion();">Darse de baja <i class="fas fa-user-minus"></i></button>
 				<input type="hidden" name="orden" value="Eliminar">
 			</form>
 		</div>
@@ -137,7 +137,18 @@ function privilegios($privilegios) {
 	<?php include '../ayuda.php'; ?>
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 <script>
-	function seccion(seccion) {
+function confirmacion() {
+	//Pregunta si desea realizar la acción la cancela si selecciona NO
+	if(confirm("¿Desea realizar esta accion?")) {
+		alert("Acción ejecutada");
+		return true;
+	}
+	else {
+		alert("Acción cancelada");
+		return false;
+	}
+}
+function seccion(seccion) {
 
 		//secciones
 		var a = document.getElementById("seccion1");

@@ -6,9 +6,6 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
-#var_dump($_POST);
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +27,7 @@ if (!$_SESSION['login']) {
 			</div>
 			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
-		<form action="paso-1.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='return validacion()'>
+		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;">
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">
@@ -57,23 +54,23 @@ if (!$_SESSION['login']) {
 					<section id="seccion1">
 						<!--Nombres del representante-->
 						<div>
-							<label class="form-label">Nombres:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
 								<input type="text" class="form-control mb-2" name="Primer_Nombre_R" id="Primer_Nombre_R" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 								<input type="text" class="form-control mb-2" name="Segundo_Nombre_R" id="Segundo_Nombre_R" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 						<!--Apellidos del representante-->
 						<div>
-							<label class="form-label">Apellidos:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Apellidos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
 								<input type="text" class="form-control mb-2" name="Primer_Apellido_R" id="Primer_Apellido_R" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 								<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 						<!--Genero del representante-->
 						<div>
-							<p>Genero:<span class="text-danger">*</span></p>
+							<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">F </label>
@@ -89,9 +86,9 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Cédula del representante-->
 						<div>
-							<label class="form-label">Cédula:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
-								<select class="form-select" name="Tipo_Cédula_R">
+							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
+								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R">
 									<option selected disabled>Tipo de cédula</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
@@ -101,22 +98,22 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Fecha de nacimiento del representante-->
 						<div>
-							<label class="form-label">Fecha de nacimiento:<span class="text-danger">*</span></label>
+							<label class="form-label">Fecha de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_R" id="Fecha_Nacimiento_R" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
 						</div>
 						<!--Lugar de nacimiento del representante-->
 						<div>
-							<label class="form-label">Lugar de nacimiento:<span class="text-danger">*</span></label>
+							<label class="form-label">Lugar de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" maxlength="20" minlength="3" required>
 						</div>
 						<!--Correo electronico del representante-->
 						<div>
-							<label class="form-label">Correo electrónico:<span class="text-danger">*</span></label>
+							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" minlength="15" required>
 						</div>
 						<!--Estado civil del representante-->
 						<div>
-							<label class="form-label">Estado civil:<span class="text-danger">*</span></label>
+							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select mb-2" name="Estado_Civil_R">
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
@@ -126,7 +123,7 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Dirección de residencia-->
 						<div>
-							<label class="form-label">Dirección de residencia:<span class="text-danger">*</span></label>
+							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" minlength="10"></textarea>
 						</div>
 					</section>
@@ -141,101 +138,49 @@ if (!$_SESSION['login']) {
 								<option value="0412">
 
 								<!--Fijos-->
-								<option value="0212">
-								<option value="0234">
-								<option value="0235">
-								<option value="0238">
-								<option value="0239">
-								<option value="0240">
-								<option value="0241">
-								<option value="0242">
-								<option value="0243">
-								<option value="0244">
-								<option value="0245">
-								<option value="0246">
-								<option value="0247">
-								<option value="0248">
-								<option value="0249">
-								<option value="0251">
-								<option value="0252">
-								<option value="0253">
-								<option value="0254">
-								<option value="0255">
-								<option value="0256">
-								<option value="0257">
-								<option value="0258">
-								<option value="0259">
-								<option value="0261">
-								<option value="0262">
-								<option value="0263">
-								<option value="0264">
-								<option value="0265">
-								<option value="0266">
-								<option value="0267">
-								<option value="0268">
-								<option value="0269">
 								<option value="0271">
-								<option value="0272">
-								<option value="0273">
 								<option value="0274">
 								<option value="0275">
-								<option value="0276">
-								<option value="0277">
-								<option value="0278">
-								<option value="0279">
-								<option value="0281">
-								<option value="0282">
-								<option value="0283">
-								<option value="0284">
-								<option value="0285">
-								<option value="0286">
-								<option value="0287">
-								<option value="0288">
-								<option value="0289">
-								<option value="0291">
-								<option value="0292">
-								<option value="0293">
-								<option value="0294">
-								<option value="0295">
+
 							</datalist>
-							<label class="form-label">Teléfonos:<span class="text-danger">*</span></label>
+							<label class="form-label">Teléfonos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 
 							<!--Teléfono principal-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Principal_R" id="Prefijo_Principal_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_R" id="Teléfono_Principal_R" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" required>
 							</div>
 
 							<!--Teléfono secundario-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Secundario_R" id="Prefijo_Secundario_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_R" id="Teléfono_Secundario_R" placeholder="Teléfono secundario" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 
 							<!--Teléfono auxiliar-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_R" id="Prefijo_Auxiliar_R" list="prefijos" pattern="[0-9]+" maxlength="4 required" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Auxiliar_R" id="Prefijo_Auxiliar_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
 						<!--Vinculo del representante con el estudiante-->
-						<div>
-							<p class="form-label">Relación con el estudiante:<span class="text-danger">*</span></p>
+						<!-- <div>
+							<p class="form-label">Relación con el estudiante:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<datalist id="vinculos">
 								<option value="Madre">
 								<option value="Padre">
 							</datalist>
 							<input class="form-control mb-2" type="text" name="Vinculo" list="vinculos" minlength="3" maxlength="30" required>
-						</div>
+						</div> -->
 						<!--Grado de instruccion del representante-->
 						<div>
-							<span>Grado de instrucción:<span class="text-danger">*</span></span>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
@@ -257,7 +202,7 @@ if (!$_SESSION['login']) {
 							<div class="input-group mb-2">
 								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
 									<option value="Si">Si tiene</option>
-									<option value="No">No tiene</option>
+									<option value="No" selected>No tiene</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
 								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
@@ -269,7 +214,7 @@ if (!$_SESSION['login']) {
 						<div>
 							<h5>Datos de vivienda.</h5>
 
-							<span>Condiciones de la vivienda:<span class="text-danger">*</span></span>
+							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
@@ -284,7 +229,7 @@ if (!$_SESSION['login']) {
 									<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Mala" required>
 								</div>
 							</div>
-							<span>Tipo de vivienda:<span class="text-danger">*</span></span>
+							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Casa </label>
@@ -307,7 +252,7 @@ if (!$_SESSION['login']) {
 									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" required>
 								</div>
 							</div>
-							<span>Tenencia de la vivienda:<span class="text-danger">*</span></span>
+							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-3" required>
 								<select class="form-select" name="Tenencia_vivienda">
 									<option value="Propia">Propia</option>
@@ -325,7 +270,7 @@ if (!$_SESSION['login']) {
 						<div>
 							<!--Datos bancarios del representante-->
 							<div>
-								<label class="form-label">Banco:<span class="text-danger">*</span></label>
+								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<select class="form-select" name="Banco">
 									<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
@@ -358,7 +303,7 @@ if (!$_SESSION['login']) {
 									<option value="Instituto Municipal de Crédito Popular">Instituto Municipal de Crédito Popular</option>
 								</select>
 								<div>
-									<p>Tipo de cuenta:<span class="text-danger">*</span></p>
+									<p>Tipo de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 									<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 										<div class="form-check form-check-inline">
 											<label class="form-label">Ahorro </label>
@@ -370,8 +315,8 @@ if (!$_SESSION['login']) {
 										</div>
 									</div>
 									<div>
-										<label class="form-label">Número de cuenta:<span class="text-danger">*</span></label>
-									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valid requireda consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX">
+										<label class="form-label">Número de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX">
 									</div>
 							</div>
 						</div>
@@ -379,7 +324,7 @@ if (!$_SESSION['login']) {
 						<h5>Datos laborales.</h5>
 						<!--Trabaja el representante-->
 						<div>
-							<span>Trabaja:<span class="text-danger">*</span></span>
+							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Si </label>
@@ -393,29 +338,29 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Cargo que ocupa el representante-->
 						<div>
-							<label class="form-label">Cargo que ocupa:<span class="text-danger">*</span></label>
+							<label class="form-label">Cargo que ocupa:</label>
 							<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="15" minlength="3" required>
 						</div>
 						<!--Teléfono del trabajo de representante-->
 						<div>
-							<label class="form-label">Teléfono del trabajo:<span class="text-danger">*</span></label>
+							<label class="form-label">Teléfono del trabajo:</label>
 							<!--Teléfono principal-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Trabajo_R" id="Prefijo_Trabajo_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefij requiredo telefónico" title="Solo ingresar caracteres numericos">
+								<input class="form-control" type="text" name="Prefijo_Trabajo_R" id="Prefijo_Trabajo_R" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_R" id="Teléfono_Trabajo_R" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
 						<!--Lugar en el que trabaja el representante-->
 						<div>
-							<label class="form-label">Lugar del trabajo:<span class="text-danger">*</span></label>
+							<label class="form-label">Lugar del trabajo:</label>
 							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="15" minlength="3"></textarea>
 						</div>
 						<!--Remuneración del trabajo del representante-->
 						<div>
-							<label class="form-label">Remuneración:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Remuneración:</label>
+							<div class="input-group mb-2">
 								<!--Remuneracion en base a sueldos minimos del representante-->
 								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" required>
 								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
@@ -432,8 +377,8 @@ if (!$_SESSION['login']) {
 					<section id="seccion5" style="display: none;">
 						<!--Nombres del contacto auxiliar-->
 						<div>
-							<label class="form-label">Nombres:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
 								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
@@ -441,15 +386,15 @@ if (!$_SESSION['login']) {
 
 						<!--Apellidos del contacto auxiliar-->
 						<div>
-							<label class="form-label">Apellidos:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Apellidos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
 								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras"nlength="3">
 							</div>
 						</div>
 						<!--Genero del contacto auxiliar-->
 						<div>
-							<p>Genero:<span class="text-danger">*</span></p>
+							<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">F </label>
@@ -463,8 +408,8 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Cédula del contacto auxiliar-->
 						<div>
-							<label class="form-label">Cédula:<span class="text-danger">*</span></label>
-							<div class="input-group mb-2" required>
+							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
 								<select class="form-select" name="Tipo_Cédula_Aux">
 									<option selected disabled>Tipo de cédula</option>
 									<option value="V">V</option>
@@ -474,14 +419,14 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Correo electronico del contacto auxiliar-->
 						<div>
-							<label class="form-label">Correo electrónico:<span class="text-danger">*</span></label>
+							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required>
 						</div>
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
-							<label class="form-label">Teléfonos:<span class="text-danger">*</span></label>
+							<label class="form-label">Teléfonos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<!--Teléfono principal-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
 								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
@@ -489,7 +434,7 @@ if (!$_SESSION['login']) {
 							</div>
 
 							<!--Teléfono secundario-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
 								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
@@ -497,7 +442,7 @@ if (!$_SESSION['login']) {
 							</div>
 
 							<!--Teléfono auxiliar-->
-							<div class="input-group mb-2" required>
+							<div class="input-group mb-2">
 								<!--Prefijo-->
 								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
@@ -506,12 +451,12 @@ if (!$_SESSION['login']) {
 						</div>
 						<!--Dirección de residencia del contacto auxiliar-->
 						<div>
-							<label class="form-label">Dirección de residencia:<span class="text-danger">*</span></label>
+							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" minlength="10"></textarea>
 						</div>
 						<!--Relación del contacto auxiliar-->
 						<div>
-							<label class="form-label">Relación con la persona:<span class="text-danger">*</span></label>
+							<label class="form-label">Relación con la persona:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" maxlength="12" minlength="3" required>
 						</div>
 					</section>
@@ -519,7 +464,7 @@ if (!$_SESSION['login']) {
 				<div class="card-footer">
 					<input type="hidden" name="orden" value="Insertar" required>
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
-					<input class="btn btn-primary" type="submit" value="Guardar y continuar" required>
+					<input class="btn btn-primary" type="submit" onclick="enviar();" value="Guardar y continuar">
 				</div>
 			</div>
 		</form>
@@ -528,8 +473,41 @@ if (!$_SESSION['login']) {
 			<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php';?>
+<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
-	function seccion(seccion) {
+
+function enviar() {
+	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
+	var a = document.getElementById("seccion1");
+	var b = document.getElementById("seccion2");
+	var c = document.getElementById("seccion3");
+	var d = document.getElementById("seccion4");
+	var e = document.getElementById("seccion5");
+
+
+	b.style.display = "block";
+	c.style.display = "block";
+	d.style.display = "block";
+	e.style.display = "block";
+
+	if (FormularioRepresentante.checkValidity()) {
+		FormularioRepresentante.submit();
+	}
+	else {
+		alert("Faltan campos por llenar");
+	}
+
+	a.style.display = "block";
+	b.style.display = "none";
+	c.style.display = "none";
+	d.style.display = "none";
+	e.style.display = "none";
+
+}
+
+function seccion(seccion) {
 
 		//secciones
 		var a = document.getElementById("seccion1");
@@ -582,6 +560,6 @@ if (!$_SESSION['login']) {
 		}
 	}
 </script>
-<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -6,268 +6,7 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
-if (isset($_POST['Vinculo']) and !empty($_POST['Vinculo'])) {
-	if ($_POST['Vinculo'] == "Madre" OR "Padre") {
-		$Es_el_representante = False;
-	}
-	elseif ($_POST['Vinculo'] == "Representante") {
-		$Es_el_representante = True;
-	}
-}
-else {
-	header('Location: paso-1.php');
-}
 ?>
-
-<!-- <script type="text/javascript">
-
-	function validacion() {
-		var todo_correcto;
-		todo_correcto = true;
-		var expresion = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-
-		if(document.getElementById('Primer_Nombre_Est').value.length < 2){
-    		todo_correcto = false;
-
-		}
-		else if (typeof(document.getElementById('Primer_Nombre_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Segundo_Nombre_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Segundo_Nombre_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Primer_Apellido_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Primer_Apellido_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Segundo_Apellido_Est').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Segundo_Apellido_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Cedula_Est').value.length < 7 || document.getElementById('Cedula_Est').value.length > 8){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Cedula_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Fecha_Nacimiento_Est').value.length > 10){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Lugar_Nacimiento_Est').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Lugar_Nacimiento_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Correo_electrónico_Est').value.length < 15){
-    		todo_correcto = false;
-		}
-		else if (!expresion.exec(document.getElementById('Correo_electrónico_Est').value)) {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Prefijo_Principal_Est').value.length < 4){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Prefijo_Principal_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Teléfono_Principal_Est').value.length < 7){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Teléfono_Principal_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Prefijo_Secundario_Est').value.length < 4){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Prefijo_Secundario_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Teléfono_Secundario_Est').value.length < 7){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Teléfono_Secundario_Est').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Materias_Pendientes').value.length < 6 || document.getElementById('Materias_Pendientes').value.length > 62){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Materias_Pendientes').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Materias_Pendientes')==null) {
-		}
-
-		if(document.getElementById('Plantel_Procedencia').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Plantel_Procedencia').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Direccion_Est').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Direccion_Est').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Con_Quien_Vive').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Con_Quien_Vive').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Codigo_Carnet_Patria').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Codigo_Carnet_Patria').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Codigo_Carnet_Patria')==null) {
-		}
-
-		if(document.getElementById('Serial_Carnet_Patria').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Serial_Carnet_Patria').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Serial_Carnet_Patria')==null) {
-		}
-
-		if(document.getElementById('Indice').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Indice').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Talla').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Peso').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Peso').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('C_Braquial').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('C_Braquial').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Pantalon').value.length < 1){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Camisa').value.length < 1){
-    		todo_correcto = false;
-		}
-
-		if(document.getElementById('Talla_Zapatos').value.length < 2){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Talla_Zapatos').value)=='string') {
-			todo_correcto = false;
-		}
-
-		if(document.getElementById('Cual_Enfermedad').value.length < 5){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Cual_Enfermedad').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Cual_Enfermedad')==null) {
-		}
-
-		if(document.getElementById('Alergias').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Alergias').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Alergias')==null) {
-		}
-
-		if(document.getElementById('Institucion_Medica').value.length < 10){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Institucion_Medica').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Institucion_Medica')==null) {
-		}
-
-		if(document.getElementById('Medicacion').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Medicacion').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Medicacion')==null) {
-		}
-
-		if(document.getElementById('Dieta_Especial').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Dieta_Especial').value)=='number') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Dieta_Especial')==null) {
-		}
-
-		if(document.getElementById('Nro_Carnet_Discapacidad').value.length < 5){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('Nro_Carnet_Discapacidad').value)=='string') {
-			todo_correcto = false;
-		}
-		else if (document.getElementById('Nro_Carnet_Discapacidad')==null) {
-		}
-
-		if(document.getElementById('País').value.length < 3){
-    		todo_correcto = false;
-		}
-		else if (typeof(document.getElementById('País').value)=='number') {
-			todo_correcto = false;
-		}
-
-		if (todo_correcto=false) {
-			alert('Hay errores en el formulario, por favor corríjalos')
-		}
-
-</script> -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,7 +19,7 @@ else {
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 </head>
 <body>
-	<form class="card" action="../../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()'>
+	<form id="FormularioEstudiante" class="card" action="../../controladores/control-estudiantes.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()'>
 			<div class="card-header">
 				<h4>Formulario de registro de estudiantes</h4>
 			</div>
@@ -410,7 +149,7 @@ else {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Materias_Pendientes" id="Materias_Pendientes" placeholder="¿Cuáles?">
+								<input id="Materias_Pendientes" class="form-control w-auto" type="text" name="Materias_Pendientes"  placeholder="¿Cuáles?">
 							</div>
 						</div>
 						<div>
@@ -800,14 +539,14 @@ else {
 							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php #if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Número_Telefónico'];} ?>">
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php #if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Número_Telefónico'];} ?>">
 							</div>
@@ -847,12 +586,42 @@ else {
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">
-				<button class="btn btn-primary" type="submit">Registrar estudiante</button>
+				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
 		</form>
 		<?php include '../../ayuda.php'; ?>
-	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
+function enviar() {
+	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
+	var a = document.getElementById("seccion1");
+	var b = document.getElementById("seccion2");
+	var c = document.getElementById("seccion3");
+	var d = document.getElementById("seccion4");
+	var e = document.getElementById("seccion5");
+
+
+	b.style.display = "block";
+	c.style.display = "block";
+	d.style.display = "block";
+	e.style.display = "block";
+
+	if (FormularioRepresentante.checkValidity()) {
+		FormularioRepresentante.submit();
+	}
+	else {
+		alert("Faltan campos por llenar");
+	}
+
+	a.style.display = "block";
+	b.style.display = "none";
+	c.style.display = "none";
+	d.style.display = "none";
+	e.style.display = "none";
+
+}
 	function seccion(seccion) {
 
 		//secciones
