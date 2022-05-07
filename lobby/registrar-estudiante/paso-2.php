@@ -6,6 +6,11 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
+
+if (!isset($_POST['Datos_Representante'])) {
+	header('Location: paso-1.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -404,11 +409,11 @@ if (!$_SESSION['login']) {
 							<p class="form-label">Parentezco:</p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required <?php if($_POST['Vinculo'] == "Madre"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required>
 									<label class="form-label">Madre</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required <?php if($_POST['Vinculo'] == "Padre"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required>
 									<label class="form-label">Padre</label>
 								</div>
 							</div>
@@ -416,8 +421,8 @@ if (!$_SESSION['login']) {
 							<div>
 								<label class="form-label">Nombres:</label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Primer_Nombre'];} ?>">
-									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Segundo_Nombre'];} ?>">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
 								</div>
 
 							</div>
@@ -426,8 +431,8 @@ if (!$_SESSION['login']) {
 							<div>
 								<label class="form-label">Apellidos:</label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Primer_Apellido'];} ?>">
-									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Segundo_Apellido'];} ?>">
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
 								</div>
 							</div>
 
@@ -437,36 +442,36 @@ if (!$_SESSION['login']) {
 								<div class="pt-2 px-2 pb-0 bg-light border rounded">
 									<div class="form-check form-check-inline">
 										<label class="form-label">F </label>
-										<input class="form-check-input" type="radio" name="Genero_Familiar" value="F" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Género'] == "F")echo "checked";} ?>>
+										<input class="form-check-input" type="radio" name="Genero_Familiar" value="F">
 									</div>
 									<div class="form-check form-check-inline">
 										<label class="form-label">M </label>
-										<input class="form-check-input" type="radio" name="Genero_Familiar" value="M" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Género'] == "M")echo "checked";} ?>>
+										<input class="form-check-input" type="radio" name="Genero_Familiar" value="M">
 									</div>
 								</div>
 							</div>
 							<!--Cédula del familiar-->
 							<div>
 								<label class="form-label">Cédula:</label>
-								<input class="form-control mb-2" type="text" name="Cédula_Familiar" placeholder="Cédula de identidad" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Cédula'];} ?>">
+								<input class="form-control mb-2" type="text" name="Cédula_Familiar" placeholder="Cédula de identidad">
 							</div>
 
 							<!--Fecha de nacimiento del familiar-->
 							<div>
 								<label class="form-label">Fecha de nacimiento:</label>
-								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Fecha_Nacimiento'];} ?>">
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar">
 							</div>
 
 							<!--Lugar de nacimiento del familiar-->
 							<div>
 								<label class="form-label">Lugar de nacimiento:</label>
-								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Lugar_Nacimiento'];} ?>">
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar">
 							</div>
 
 							<!--Correo electrónico del familiar-->
 							<div>
 								<label class="form-label">Correo electrónico:</label>
-								<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar" value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Correo_Electrónico'];} ?>">
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar">
 							</div>
 						</div>
 						<!--Teléfono principal-->
@@ -539,16 +544,16 @@ if (!$_SESSION['login']) {
 							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php #if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][0]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" placeholder="Teléfono principal" required>
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php #if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" required value="<?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['telefonos'][1]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" placeholder="Teléfono secundario" required>
 							</div>
 						</div>
 
@@ -556,17 +561,17 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Estado civil:</label>
 							<select class="form-select" name="Estado_Civil_Familiar">
-								<option value="Soltero(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Soltero(a)")echo "selected";} ?>>Soltero(a)</option>
-								<option value="Casado(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Casado(a)")echo "selected";} ?>>Casado(a)</option>
-								<option value="Divorsiado(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Divorsiado(a)")echo "selected";} ?>>Divorsiado(a)</option>
-								<option value="Viudo(a)" <?php if($_POST['Vinculo'] == "Padre" OR "Madre"){if($_SESSION['persona']['Estado_Civil'] == "Viudo(a)")echo "selected";} ?>>Viudo(a)</option>
+								<option value="Soltero(a)">Soltero(a)</option>
+								<option value="Casado(a)">Casado(a)</option>
+								<option value="Divorsiado(a)">Divorsiado(a)</option>
+								<option value="Viudo(a)">Viudo(a)</option>
 							</select>
 						</div>
 
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2"name="Direccion_Familiar"><?php if($_POST['Vinculo'] == "Padre" OR "Madre"){echo $_SESSION['persona']['Dirección'];} ?></textarea>
+							<textarea class="form-control mb-2"name="Direccion_Familiar"></textarea>
 						</div>
 
 						<!--Se encuentra el familiar en el país-->
@@ -583,6 +588,60 @@ if (!$_SESSION['login']) {
 					</div>
 				</section>
 			</div>
+			<!-- datos del representante -->
+			<input type="hidden" name="Primer_Nombre_R" value="<?php echo $_POST['Primer_Nombre_R']?>">
+			<input type="hidden" name="Segundo_Nombre_R" value="<?php echo $_POST['Segundo_Nombre_R']?>">
+			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
+			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
+			<input type="hidden" name="Genero_R" value="<?php echo $_POST['Genero_R']?>">
+			<input type="hidden" name="Tipo_Cédula_R" value="<?php echo $_POST['Tipo_Cédula_R']?>">
+			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
+			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
+			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
+			<input type="hidden" name="Correo_electrónico_R" value="<?php echo $_POST['Correo_electrónico_R']?>">
+			<input type="hidden" name="Estado_Civil_R" value="<?php echo $_POST['Estado_Civil_R']?>">
+			<input type="hidden" name="Direccion_R" value="<?php echo $_POST['Direccion_R']?>">
+			<input type="hidden" name="Prefijo_Principal_R" value="<?php echo $_POST['Prefijo_Principal_R']?>">
+			<input type="hidden" name="Teléfono_Principal_R" value="<?php echo $_POST['Teléfono_Principal_R']?>">
+			<input type="hidden" name="Prefijo_Secundario_R" value="<?php echo $_POST['Prefijo_Secundario_R']?>">
+			<input type="hidden" name="Teléfono_Secundario_R" value="<?php echo $_POST['Teléfono_Secundario_R']?>">
+			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
+			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
+			<input type="hidden" name="Grado_Instrucción" value="<?php echo $_POST['Grado_Instrucción']?>">
+			<input type="hidden" name="Tiene_Carnet_Patria" value="<?php echo $_POST['Tiene_Carnet_Patria']?>">
+			<input type="hidden" name="Codigo_Carnet_Patria" value="<?php echo $_POST['Codigo_Carnet_Patria']?>">
+			<input type="hidden" name="Serial_Carnet_Patria" value="<?php echo $_POST['Serial_Carnet_Patria']?>">
+			<input type="hidden" name="Condicion_vivienda" value="<?php echo $_POST['Condicion_vivienda']?>">
+			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
+			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
+			<input type="hidden" name="Tenencia_vivienda_Otro" value="<?php echo $_POST['Tenencia_vivienda_Otro']?>">
+			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
+			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">
+			<input type="hidden" name="Nro_Cuenta" value="<?php echo $_POST['Nro_Cuenta']?>">
+			<input type="hidden" name="Representante_Trabaja" value="<?php echo $_POST['Representante_Trabaja']?>">
+			<input type="hidden" name="Empleo_R" value="<?php echo $_POST['Empleo_R']?>">
+			<input type="hidden" name="Prefijo_Trabajo_R" value="<?php echo $_POST['Prefijo_Trabajo_R']?>">
+			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
+			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
+			<input type="hidden" name="Remuneración" value="<?php echo $_POST['Remuneración']?>">
+			<input type="hidden" name="Tipo_Remuneracion" value="<?php echo $_POST['Tipo_Remuneracion']?>">
+			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
+			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
+			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
+			<input type="hidden" name="Segundo_Apellido_Aux" value="<?php echo $_POST['Segundo_Apellido_Aux']?>">
+			<input type="hidden" name="Genero_Aux" value="<?php echo $_POST['Genero_Aux']?>">
+			<input type="hidden" name="Tipo_Cédula_Aux" value="<?php echo $_POST['Tipo_Cédula_Aux']?>">
+			<input type="hidden" name="Cédula_Aux" value="<?php echo $_POST['Cédula_Aux']?>">
+			<input type="hidden" name="Correo_electrónico_Aux" value="<?php echo $_POST['Correo_electrónico_Aux']?>">
+			<input type="hidden" name="Prefijo_Principal_Aux" value="<?php echo $_POST['Prefijo_Principal_Aux']?>">
+			<input type="hidden" name="Teléfono_Principal_Aux" value="<?php echo $_POST['Teléfono_Principal_Aux']?>">
+			<input type="hidden" name="Prefijo_Secundario_Aux" value="<?php echo $_POST['Prefijo_Secundario_Aux']?>">
+			<input type="hidden" name="Teléfono_Secundario_Aux" value="<?php echo $_POST['Teléfono_Secundario_Aux']?>">
+			<input type="hidden" name="Prefijo_Auxiliar_Aux" value="<?php echo $_POST['Prefijo_Auxiliar_Aux']?>">
+			<input type="hidden" name="Teléfono_Auxiliar_Aux" value="<?php echo $_POST['Teléfono_Auxiliar_Aux']?>">
+			<input type="hidden" name="Direccion_Aux" value="<?php echo $_POST['Direccion_Aux']?>">
+			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
+
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">

@@ -41,24 +41,25 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES (
-					NULL,
-					'$Estatura',
-					'$Peso',
-					'$Indice',
-					'$Circ_Braquial',
-					'$Lateralidad',
-					'$Tipo_Sangre',
-					'$Medicación',
-					'$Dieta_Especial',
-					'$Enfermedad',
-					'$Impedimento_Físico',
-					'$Alergias',
-					'$Cond_Vista',
-					'$Cond_Dental',
-					'$Institucion_Medica',
-					'$Carnet_Discapacidad',
-					'$id_Estudiante'
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`)
+			VALUES (
+				NULL,
+				'$Estatura',
+				'$Peso',
+				'$Indice',
+				'$Circ_Braquial',
+				'$Lateralidad',
+				'$Tipo_Sangre',
+				'$Medicación',
+				'$Dieta_Especial',
+				'$Enfermedad',
+				'$Impedimento_Físico',
+				'$Alergias',
+				'$Cond_Vista',
+				'$Cond_Dental',
+				'$Institucion_Medica',
+				'$Carnet_Discapacidad',
+				'$id_Estudiante'
 				)";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);

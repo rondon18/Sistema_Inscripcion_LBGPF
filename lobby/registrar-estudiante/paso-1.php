@@ -6,7 +6,9 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -88,7 +90,7 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R">
+								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R" required>
 									<option selected disabled>Tipo de cédula</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
@@ -260,7 +262,7 @@ if (!$_SESSION['login']) {
 									<option value="Prestada">Prestada</option>
 									<option value="Otro">Otro</option>
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" required>
+								<input class="form-control" type="text" name="Tenencia_vivienda_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
 							</div>
 						</div>
 					</section>
@@ -410,7 +412,7 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tipo_Cédula_Aux">
+								<select class="form-select" name="Tipo_Cédula_Aux" required>
 									<option selected disabled>Tipo de cédula</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
@@ -462,7 +464,7 @@ if (!$_SESSION['login']) {
 					</section>
 				</div>
 				<div class="card-footer">
-					<input type="hidden" name="orden" value="Insertar" required>
+					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
 					<input class="btn btn-primary" type="submit" onclick="enviar();" value="Guardar y continuar">
 				</div>

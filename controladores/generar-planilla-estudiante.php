@@ -133,6 +133,18 @@ $Año_actual = date("Y");
 $Inicio_Año_Escolar = $Año_actual;
 $Fin_Año_Escolar = $Año_actual+1;
 
+function telefono($prefijo,$numero) {
+  if (empty($prefijo) and empty($numero)) {
+    $telefono = "";
+  }
+  else {
+    $telefono = "$prefijo-$numero";
+  }
+  return $telefono;
+}
+
+
+
 class PDF extends FPDF
 {
 
@@ -156,7 +168,7 @@ $pdf->SetFont('Arial','',14);
 
 #PARTE DEL ESTUDIANTE
 
-$pdf->Image('../img/foto.jpg',165,40,23,0);
+$pdf->Image('../img/foto.jpg',170,44,32,0);
 $pdf->Cell(0,20,utf8_decode('PLANILLA DEL ESTUDIANTE'),0,1,'C');
 $pdf->SetFont('Arial','',8);
 $pdf->SetXY(50.1,44);
@@ -188,7 +200,8 @@ $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL Estudiantes: ' . $Estudiante
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $Estudiante['Cédula']),1,0);
 $pdf->Cell(26,6,utf8_decode('EDAD: ' . $edad_diff_est->format('%y')." Años"),1,0);
 #                                                         OJO: LA CANTIDAD DEL ARREGLO VARIA
-$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . $telefonos_Est[0]['Prefijo'] . "-" . $telefonos_Est[0]['Número_Telefónico'] . ' / ' . $telefonos_Est[1]['Prefijo'] . "-" . $telefonos_Est[1]['Número_Telefónico']),1,1);
+
+$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . telefono($telefonos_Est[0]['Prefijo'],$telefonos_Est[0]['Número_Telefónico']) ." / ". telefono($telefonos_Est[0]['Prefijo'],$telefonos_Est[0]['Número_Telefónico'])),1,1);
 $pdf->Cell(57,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $Estudiante['Fecha_Nacimiento']),1,0);
 $pdf->SetFont('Arial','',7);
 $pdf->Cell(60,6,utf8_decode('LUGAR DE NACIMIENTO: ' . $Estudiante['Lugar_Nacimiento']),1,0);
@@ -220,7 +233,7 @@ $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('LUGAR DE DOMICILIO: ' . $Estudiante['Dirección']),1,1);
-$pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $datos_sociales['Con_Quien_Vive']),1,0);
+$pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $Estudiante['Con_Quien_Vive']),1,0);
 $pdf->Cell(35,6,utf8_decode('TIENE CANAIMA: ' . $datos_sociales['Posee_Canaima']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN DE LA CANAIMA: ' . $datos_sociales['Condicion_Canaima']),1,1);
 $pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_Est),1,0);
@@ -254,7 +267,7 @@ $pdf->Cell(38,6,utf8_decode('TIPO DE SANGRE: ' . $datos_medicos['Tipo_Sangre']),
 $pdf->Cell(0,6,utf8_decode('LATERALIDAD: ' . $datos_medicos['Lateralidad']),1,1);
 $pdf->Cell(68,6,utf8_decode('CONDICIÓN DE LA DENTADURA: ' . $datos_medicos['Cond_Dental']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN OFTALMOLÓGICA: ' . $datos_medicos['Cond_Vista']),1,1);
-$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS CONDICIONES: ' . $datos_medicos['Impedimento_Físico'] ),1,1);
+$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS CONDICIONES: ' . rtrim($datos_medicos['Impedimento_Físico'],",") ),1,1);
 $pdf->Cell(70,6,utf8_decode('ES ATENDIDO POR OTRA INSTITUCIÓN: ' . $Institucion ),1,0);
 $pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_medicos['Institucion_Medica']),1,1);
 $pdf->Cell(65,6,utf8_decode('POSEE CARNET DE DISCAPACIDAD: ' . $carnet_dis ),1,0);
@@ -275,7 +288,7 @@ $pdf->Cell(90,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relaci
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $datos_representante['Cédula']),1,0);
 $pdf->Cell(0,6,utf8_decode('EDAD: ' . $edad_diff_re->format('%y')),1,1);
 #CAMBIAR VARIABLE PARA LOS REPRESENTANTES
-$pdf->Cell(0,6,utf8_decode('TELÉFONOS (Indique al menos tres números de tlf): ' . $telefonos_re[0]['Prefijo'] . '-' . $telefonos_re[0]['Número_Telefónico'] . ' / ' . $telefonos_re[1]['Prefijo'] . '-' . $telefonos_re[1]['Número_Telefónico'] . ' / ' . $telefonos_re[2]['Prefijo'] . '-' . $telefonos_re[2]['Número_Telefónico']),1,1);
+$pdf->Cell(0,6,utf8_decode('TELÉFONOS (Indique al menos tres números de tlf): ' . telefono($telefonos_re[0]['Prefijo'],$telefonos_re[0]['Número_Telefónico']) . ' / ' . telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico']) . ' / ' . telefono($telefonos_re[2]['Prefijo'],$telefonos_re[2]['Número_Telefónico'])),1,1);
 $pdf->Cell(57,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $datos_representante['Fecha_Nacimiento']),1,0);
 $pdf->SetFont('Arial','',7);
 $pdf->Cell(60,6,utf8_decode('LUGAR DE NACIMIENTO: ' . $datos_representante['Lugar_Nacimiento']),1,0);
@@ -299,10 +312,9 @@ $pdf->SetFont('Arial','',9);
 #DATOS DE MADRE O PADRE
 
 $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS: ' . $padre['Primer_Nombre'] . ' ' . $padre['Segundo_Nombre'] . ' ' . $padre['Primer_Apellido'] . ' ' . $padre['Segundo_Apellido']),1,1);
-$pdf->Cell(56,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relación_Padre']),1,0);
+$pdf->Cell(64,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relación_Padre']),1,0);
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $padre['Cédula']),1,0);
-$pdf->Cell(17,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')),1,0);
-#CAMBIAR VARIABLE PARA LOS PADRES
+$pdf->Cell(25,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')." Años"),1,0);
 $pdf->SetFont('Arial','',8);
 $pdf->Cell(0,6,utf8_decode('TELÉFONO PRINCIPAL: ' . $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']),1,1);
 $pdf->Cell(64,6,utf8_decode('TELÉFONO SECUNDARIO: ' . $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']),1,0);
@@ -313,6 +325,7 @@ $pdf->Cell(50,6,utf8_decode('ESTADO CIVIL: ' . $padre['Estado_Civil']),1,0);
 $pdf->Cell(80,6,utf8_decode('CORREO ELECTRÓNICO: ' . $padre['Correo_Electrónico']),1,0);
 $pdf->Cell(0,6,utf8_decode('DIRECCIÓN: ' . $padre['Dirección']),1,1);
 $pdf->Cell(50,6,utf8_decode('SE ENCUENTRA EN EL PAÍS: ' . $SeEncuentraEnElPais),1,0);
+
 if ($padre['País_Residencia'] == "Venezuela") {
     $pdf->Cell(0,6,utf8_decode('DÓNDE: '),1,1);
 }
@@ -325,7 +338,9 @@ $pdf->Cell(0,6,utf8_decode('DATOS ECONÓMICOS'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(50,6,utf8_decode('TRABAJA: ' . $tiene_empleo),1,0);
 $pdf->Cell(0,6,utf8_decode('EN QUÉ SE DESEMPEÑA: ' . $datos_laborales['Empleo']),1,1);
-$pdf->Cell(58.5,6,utf8_decode('TELÉFONO TRABAJO: ' . $telefonos_re[3]['Prefijo'] . '-' . $telefonos_re[3]['Número_Telefónico']),1,0);
+
+
+$pdf->Cell(58.5,6,utf8_decode('TELÉFONO TRABAJO: ' . telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])),1,0);
 $pdf->Cell(0,6,utf8_decode('LUGAR TRABAJO: ' . $datos_laborales['Lugar_Trabajo']),1,1);
 $pdf->Cell(63,6,utf8_decode('GRADO DE INSTRUCCIÓN: ' . $datos_representante['Grado_Academico']),1,0);
 #AJUSTAR INDICE DEL TELEFONO Y VARIABLE PARA EL REPRESENTANTE
@@ -350,7 +365,7 @@ else {
 }
 $pdf->Cell(55,6,utf8_decode('CÓDIGO: ' . $carnetpatria_pa['Código_Carnet']),1,0);
 $pdf->Cell(0,6,utf8_decode('SERIAL: ' . $carnetpatria_pa['Serial_Carnet']),1,1);
-$pdf->Cell(100.9,6,utf8_decode('TIENE MÁS HIJOS ESTUDIANTDO DENTRO DEL PLANTEL: ' . $TieneMasHijos),1,0);
+$pdf->Cell(100.9,6,utf8_decode('TIENE MÁS HIJOS ESTUDIANDO DENTRO DEL PLANTEL: ' . $TieneMasHijos),1,0);
 $pdf->Cell(19,6,utf8_decode('1ERO: '),1,0);
 $pdf->Cell(19,6,utf8_decode('2DO: '),1,0);
 $pdf->Cell(19,6,utf8_decode('3ERO: '),1,0);

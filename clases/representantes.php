@@ -62,10 +62,10 @@ class Representantes {
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
-	public function consultarRepresentante($Cedula_Persona) {
+	public function consultarRepresentante($idRepresentantes) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cedula_Persona` AND `idRepresentantes` = '$idRepresentantes'";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_assoc();

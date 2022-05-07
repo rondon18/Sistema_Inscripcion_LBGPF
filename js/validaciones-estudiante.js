@@ -28,7 +28,7 @@ $('#Con_Quien_Vive').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Codigo_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
 
-$('#Indice').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Indice').validarIngreso('0123456789');
 $('#Talla').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Peso').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#C_Braquial').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');

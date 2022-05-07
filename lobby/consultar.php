@@ -134,14 +134,14 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Género</th>
 								<th>Correo electrónico</th>
 								<th>Dirección de residencia</th>
-								<th>Talla_Camisa</th>
-								<th>Talla_Pantalón</th>
-								<th>Talla_Zapatos</th>
+								<th>Talla de camisa</th>
+								<th>Talla de pantalón</th>
+								<th>Talla de zapatos</th>
 								<th>Estatura</th>
 								<th>Peso</th>
-								<th>Indice</th>
-								<th>Circ_Braquial</th>
-								<th>Grado_A_Cursar</th>
+								<th>Índice</th>
+								<th>Circ. Braquial</th>
+								<th>Grado a cursar</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -173,6 +173,20 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+										</form>
+										<form action="consultar-estudiante.php" method="post" style="display: inline-block;" target="_blank">
+											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
+										</form>
+										<form action="index.html" method="post" style="display: inline-block;" target="_blank">
+											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
+											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 										</form>
 									</td>
 								</tr>
@@ -243,9 +257,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
 											<td>
 												<?php if ($usuario['Privilegios'] == 1): ?>
-												<button class="btn btn-sm btn-danger" type="buttom" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
+												<button class="btn btn-sm btn-danger disabled" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
 												<?php else: ?>
-												<form class="" action="#" method="post">
+												<form action="../controladores/control-usuarios.php" method="post">
+													<input type="hidden" name="idUsuario" value="<?php echo $usuario['Cedula_Persona'];?>">
 													<button class="btn btn-sm btn-danger" type="sumbit" name="orden" value="Eliminar" onclick="return confirmacion();">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
 												</form>
 												<?php endif; ?>

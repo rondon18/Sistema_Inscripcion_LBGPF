@@ -149,8 +149,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 			header('Location: logout.php');
 		}
-		elseif (isset($_POST['id'])) {
-			$usuario->eliminarUsuario($_POST['id']);
+		elseif (isset($_POST['idUsuario'])) {
+			$usuario->eliminarUsuario($_POST['idUsuario']);
 
 			require('../clases/bitacora.php');
 
@@ -158,7 +158,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['acciones'] .= ', Elimina un usuario';
 			$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 
-			header('Location: ../lobby/index.php');
+			header('Location: ../lobby/consultar.php');
 		}
 	}
 	else {
@@ -168,7 +168,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 }
 else {
-	#header('Location: ../index.php');
+	header('Location: ../index.php');
 }
 
 
