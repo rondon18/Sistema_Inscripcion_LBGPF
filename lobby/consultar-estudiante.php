@@ -21,7 +21,7 @@ require('../clases/vivienda-representantes.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
-require('../clases/Teléfonos.php');
+require('../clases/teléfonos.php');
 
 require('../controladores/conexion.php');
 
@@ -32,30 +32,31 @@ $conexion = conectarBD();
 $Estudiante = new Estudiantes();
 $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
-$económicos = new Datoseconómicos();
+$Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
 $Padre = new Padres();
 $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
-$Teléfonos = new Teléfonos();
+$Telefonos = new Teléfonos();
 
-$datos_Médicos = new Fichamédica();
+$datos_Medicos = new FichaMédica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
+#Hacer algo parecido para llamar numeros de representantes y padres
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 $carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
 $Estudiantes_repitente = $Estudiantes_repitente->consultarEstudiantesRepitentes($_POST['id_Estudiante']);
 $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
-$Teléfonos_Est = $Teléfonos->consultarTeléfonos($_POST['Cédula_Estudiante']);
-$Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
-$Teléfonos_pa = $Teléfonos->consultarTeléfonosPadreID($_POST['id_padre']);
+$telefonos_Est = $Telefonos->consultarTeléfonos($_POST['Cédula_Estudiante']);
+$telefonos_re = $Telefonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
+$telefonos_pa = $Telefonos->consultarTeléfonosPadreID($_POST['id_padre']);
 
-$datos_Médicos = $datos_Médicos->consultarFicha_médica($_POST['id_Estudiante']);
+$datos_medicos = $datos_Medicos->consultarFicha_Médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
 $datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
@@ -66,7 +67,7 @@ $datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_represen
 $contacto_aux = new Personas();
 $dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
 
-$datos_económicos = $económicos->consultarDatoseconómicos($_POST['id_representante']);
+$datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
 
@@ -74,14 +75,14 @@ $padre = $Padre->consultarPadres($_POST['id_padre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($padre['Cédula']);
 $hijos = $Padre->consultarHijos($_POST['id_padre']);
 
-function Teléfono($prefijo,$numero) {
+function telefono($prefijo,$numero) {
   if (empty($prefijo) and empty($numero)) {
-    $Teléfono = "";
+    $telefono = "";
   }
   else {
-    $Teléfono = "$prefijo-$numero";
+    $telefono = "$prefijo-$numero";
   }
-  return $Teléfono;
+  return $telefono;
 }
 
 if (empty($carnetpatria_Est['Código_Carnet']) AND empty($carnetpatria_Est['Serial_Carnet'])) {
@@ -98,18 +99,6 @@ else {
   $carnet_pa = "Si";
 }
 
-
-function calculaedad($fechanacimiento){
-  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-  $ano_diferencia  = date("Y") - $ano;
-  $mes_diferencia = date("m") - $mes;
-  $dia_diferencia   = date("d") - $dia;
-  if ($dia_diferencia < 0 || $mes_diferencia < 0)
-    $ano_diferencia--;
-  return $ano_diferencia;
-}
-
-
 desconectarBD($conexion);
 ?>
 
@@ -117,92 +106,18 @@ desconectarBD($conexion);
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Consultar registros</title>
+	<title>Consultar estudiante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 </head>
 <body>
 
-	<div class="card" style="max-width: 90%; margin: 60px auto;">
+	<div class="card" style="width: 80%; margin: auto;">
 		<div class="card-header">
 			<h3>Datos de inscripción del Estudiante</h3>
 		</div>
 		<div class="card-body">
-<<<<<<< HEAD
-			<table id="estudiante" class="table table-bordered w-100" style="max-width:100%;">
-				<tr>
-					<th colspan="4">Datos del estudiante</th>
-				</tr>
-				<tr>
-					<td colspan="2">Nombres: <?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']?></td>
-					<td colspan="2">Apellidos: <?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']?></td>
-				</tr>
-				<tr>
-					<td>Cédula: <?php echo $estudiante['Cédula']?></td>
-					<td>Edad: <?php echo calculaedad($estudiante['Fecha_Nacimiento'])." Años"; ?></td>
-					<td>Teléfonos: <?php echo "";?></td>
-				</tr>
-				<tr>
-					<td>Género: <?php echo $estudiante['Género']?></td>
-				</tr>
-			</table>
-			<table id="estudiante" class="table table-bordered w-100" style="max-width:100%;">
-
-				<tr>
-					<td>Fecha_Nacimiento: <?php echo $estudiante['Fecha_Nacimiento']?></td>
-					<td>Lugar_Nacimiento: <?php echo $estudiante['Lugar_Nacimiento']?></td>
-				</tr>
-				<tr>
-					<td>Dirección: <?php echo $estudiante['Dirección']?></td>
-				</tr>
-				<tr>
-					<td>Correo_Electronico: <?php echo $estudiante['Correo_Electrónico']?></td>
-					<td>Estado_Civil: <?php echo $estudiante['Estado_Civil']?></td>
-				</tr>
-				<tr>
-					<td>Teléfono_Principal: <?php #echo $estudiante['Teléfono_Principal']?></td>
-					<td>Teléfono_Auxiliar: <?php #echo $estudiante['Teléfono_Auxiliar']?></td>
-				</tr>
-				<tr>
-					<td>Plantel_Procedencia: <?php echo $estudiante['Plantel_Procedencia']?></td>
-					<td>Año a cursar: <?php #echo $grado['Grado_A_Cursar']?></td>
-					<td>Periodo academico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
-				</tr>
-				<tr>
-					<th>Datos médicos</th>
-				</tr>
-				<tr>
-					<td>Estatura: <?php echo $datos_salud['Estatura'] ?> </td>
-					<td>Peso: <?php echo $datos_salud['Peso'] ?> </td>
-					<td>Indice: <?php echo $datos_salud['Indice'] ?> </td>
-					<td>Circ_Braquial: <?php echo $datos_salud['Circ_Braquial'] ?> </td>
-				</tr>
-				<tr>
-					<td>Lateralidad: <?php echo $datos_salud['Lateralidad'] ?> </td>
-					<td>Tipo_Sangre: <?php echo $datos_salud['Tipo_Sangre']?></td>
-				</tr>
-				<tr>
-					<td>Medicación: <?php echo $datos_salud['Medicación']?></td>
-				</tr>
-				<tr>
-					<td>Dieta_Especial: <?php echo $datos_salud['Dieta_Especial']?></td>
-				</tr>
-				<tr>
-					<td>Impedimento_Físico: <?php echo $datos_salud['Impedimento_Físico']?></td>
-				</tr>
-				<tr>
-					<td>Alergias: <?php echo $datos_salud['Alergias']?></td>
-				</tr>
-				<tr>
-					<td>Cond_Vista: <?php echo $datos_salud['Cond_Vista']?></td>
-					<td>Cond_Dental: <?php echo $datos_salud['Cond_Dental']?></td>
-					<td>Carnet_Discapacidad: <?php echo $datos_salud['Carnet_Discapacidad']?></td>
-				</tr>
-				<tr>
-					<td>Institucion_Medica: <?php echo $datos_salud['Institucion_Medica']?></td>
-				</tr>
-=======
 			<table id="Estudiante" class="table table-bordered" style="max-width:100%;">
 				<tbody>
 					<tr>
@@ -232,39 +147,39 @@ desconectarBD($conexion);
 					<tr>
 						<td>Plantel Procedencia: <?php echo $Estudiante['Plantel_Procedencia']?></td>
 						<td>Año a cursar: <?php echo $grado['Grado_A_Cursar']?></td>
-						<td colspan="2">Período Académico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
+						<td colspan="2">Periodo academico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
 					</tr>
 					<tr>
 						<th colspan="4">Datos médicos</th>
 					</tr>
 					<tr>
-						<td>Estatura: <?php echo $datos_Médicos['Estatura'] ?> </td>
-						<td>Peso: <?php echo $datos_Médicos['Peso'] ?> </td>
-						<td>Índice: <?php echo $datos_Médicos['Índice'] ?> </td>
-						<td>Circ Braquial: <?php echo $datos_Médicos['Circ_Braquial'] ?> </td>
+						<td>Estatura: <?php echo $datos_medicos['Estatura'] ?> </td>
+						<td>Peso: <?php echo $datos_medicos['Peso'] ?> </td>
+						<td>Indice: <?php echo $datos_medicos['Índice'] ?> </td>
+						<td>Circ Braquial: <?php echo $datos_medicos['Circ_Braquial'] ?> </td>
 					</tr>
 					<tr>
-						<td>Lateralidad: <?php echo $datos_Médicos['Lateralidad'] ?> </td>
-						<td>Tipo Sangre: <?php echo $datos_Médicos['Tipo_Sangre']?></td>
+						<td>Lateralidad: <?php echo $datos_medicos['Lateralidad'] ?> </td>
+						<td>Tipo Sangre: <?php echo $datos_medicos['Tipo_Sangre']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">médicación: <?php echo $datos_Médicos['médicación']?></td>
+						<td colspan="4">Medicación: <?php echo $datos_medicos['Medicación']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Dieta Especial: <?php echo $datos_Médicos['Dieta_Especial']?></td>
+						<td colspan="4">Dieta Especial: <?php echo $datos_medicos['Dieta_Especial']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Impedimento Físico: <?php echo $datos_Médicos['Impedimento_Físico']?></td>
+						<td colspan="4">Impedimento Físico: <?php echo $datos_medicos['Impedimento_Físico']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Alergias: <?php echo $datos_Médicos['Alergias']?></td>
+						<td colspan="4">Alergias: <?php echo $datos_medicos['Alergias']?></td>
 					</tr>
-						<td>Cond Vista: <?php echo $datos_Médicos['Cond_Vista']?></td>
-						<td>Cond Dental: <?php echo $datos_Médicos['Cond_Dental']?></td>
-						<td colspan="2">Carnet Discapacidad: <?php echo $datos_Médicos['Carnet_Discapacidad']?></td>
+						<td>Cond Vista: <?php echo $datos_medicos['Cond_Vista']?></td>
+						<td>Cond Dental: <?php echo $datos_medicos['Cond_Dental']?></td>
+						<td colspan="2">Carnet Discapacidad: <?php echo $datos_medicos['Carnet_Discapacidad']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Institución médica: <?php echo $datos_Médicos['Institución_médica']?></td>
+						<td colspan="4">Institución Médica: <?php echo $datos_medicos['Institución_Médica']?></td>
 					</tr>
 
 					<tr>
@@ -311,23 +226,23 @@ desconectarBD($conexion);
 						<td colspan="2">Estado Civil: <?php echo $datos_representante['Estado_Civil']?></td>
 					</tr>
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo Teléfono($Teléfonos_re[0]['Prefijo'],$Teléfonos_re[0]['Número_Telefónico'])?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo Teléfono($Teléfonos_re[1]['Prefijo'],$Teléfonos_re[1]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Principal: <?php echo telefono($telefonos_re[0]['Prefijo'],$telefonos_re[0]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Auxiliar: <?php echo telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico'])?></td>
 					</tr>
 					<tr>
-						<th colspan="4">Datos económicos</th>
+						<th colspan="4">Datos economicos</th>
 					</tr>
 					<tr>
-						<td>Banco: <?php echo $datos_económicos['Banco']?></td>
-						<td>Tipo Cuenta: <?php echo $datos_económicos['Tipo_Cuenta']?></td>
-						<td colspan="2">Cta Bancaria: <?php echo $datos_económicos['Cta_Bancaria']?></td>
+						<td>Banco: <?php echo $datos_economicos['Banco']?></td>
+						<td>Tipo Cuenta: <?php echo $datos_economicos['Tipo_Cuenta']?></td>
+						<td colspan="2">Cta Bancaria: <?php echo $datos_economicos['Cta_Bancaria']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Grado Inst: <?php echo $datos_representante['Grado_Académico']?></td>
+						<td colspan="4">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
 					</tr>
 					<tr>
 						<td colspan="2">Empleo: <?php echo $datos_laborales['Empleo']?></td>
-						<td colspan="2">Teléfono Trabajo: <?php echo Teléfono($Teléfonos_re[3]['Prefijo'],$Teléfonos_re[3]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
 					</tr>
 					<tr>
 						<td colspan="2">Remuneración (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración']?></td>
@@ -358,116 +273,20 @@ desconectarBD($conexion);
 						<td colspan="2">Estado Civil: <?php echo $padre['Estado_Civil']?></td>
 					</tr>
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo $Teléfonos_pa[0]['Prefijo'] . '-' . $Teléfonos_pa[0]['Número_Telefónico']?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo $Teléfonos_pa[1]['Prefijo'] . '-' . $Teléfonos_pa[1]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Auxiliar: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="card-footer">
-			<div class="card text-center" style="width: 100%; margin-top: 20px;">
+
+		<div class="card text-center" style="width: 100%; margin-top: 20px;">
 			<a class="btn btn-primary" href="consultar.php">Volver a consultar</a>
 		</div>
-		</div>
->>>>>>> 87807ec40e922f63ad2a26eddf23958b08baddff
-
-				<tr>
-					<th>Datos sociales</th>
-				</tr>
-				<tr>
-					<td>Posee_Canaima: <?php echo $datos_sociales['Posee_Canaima']?> </td>
-					<td>Condicion_Canaima: <?php echo $datos_sociales['Condicion_Canaima']?> </td>
-				</tr>
-				<tr>
-					<td>Posee_Carnet_Patria: <?php echo $datos_sociales['Posee_Carnet_Patria']?> </td>
-					<td>Codigo_Carnet_Patria: <?php echo $datos_sociales['Codigo_Carnet_Patria']?> </td>
-					<td>Serial_Carnet_Patria: <?php echo $datos_sociales['Serial_Carnet_Patria']?> </td>
-				</tr>
-				<tr>
-					<td>Acceso_Internet: <?php echo $datos_sociales['Acceso_Internet']?> </td>
-				</tr>
-				<tr>
-					<th>Tallas</th>
-				</tr>
-				<tr>
-					<td>Talla_Camisa: <?php echo $datos_tallas['Talla_Camisa']?> </td>
-					<td>Talla_Pantalón: <?php echo $datos_tallas['Talla_Pantalón']?> </td>
-					<td>Talla_Zapatos: <?php echo $datos_tallas['Talla_Zapatos']?> </td>
-				</tr>
-				<tr>
-					<th>Datos del representante</th>
-				</tr>
-				<tr>
-					<td>Nombres: <?php echo $representante['Primer_Nombre']?></td>
-					<td>Apellidos: <?php echo $representante['Apellidos']?></td>
-					<td>Cédula: <?php echo $representante['Cédula']?></td>
-					<td>Género: <?php echo $representante['Género']?></td>
-				</tr>
-				<tr>
-					<td>Fecha_Nacimiento: <?php echo $representante['Fecha_Nacimiento']?></td>
-					<td>Lugar_Nacimiento: <?php echo $representante['Lugar_Nacimiento']?></td>
-				</tr>
-				<tr>
-					<td>Dirección: <?php echo $representante['Dirección']?></td>
-				</tr>
-				<tr>
-					<td>Correo_Electronico: <?php echo $representante['Correo_Electronico']?></td>
-					<td>Estado_Civil: <?php echo $representante['Estado_Civil']?></td>
-				</tr>
-				<tr>
-					<td>Teléfono_Principal: <?php echo $representante['Teléfono_Principal']?></td>
-					<td>Teléfono_Auxiliar: <?php echo $representante['Teléfono_Auxiliar']?></td>
-				</tr>
-				<tr>
-					<th>Datos economicos</th>
-				</tr>
-				<tr>
-					<td>Banco: <?php echo $representante['Banco']?></td>
-					<td>Tipo_Cuenta: <?php echo $representante['Tipo_Cuenta']?></td>
-					<td>Cta_Bancaria: <?php echo $representante['Cta_Bancaria']?></td>
-				</tr>
-				<tr>
-					<td>Grado_Inst: <?php echo $representante['Grado_Inst']?></td>
-				</tr>
-				<tr>
-					<td>Empleo: <?php echo $representante['Empleo']?></td>
-					<td>Teléfono_Trabajo: <?php echo $representante['Teléfono_Trabajo']?></td>
-				</tr>
-				<tr>
-					<td>Remuneracion: <?php echo $representante['Remuneracion']?> Bs. (Aprox.)</td>
-					<td>Tipo_Remuneración: <?php echo $representante['Tipo_Remuneración']?></td>
-				</tr>
-				<tr>
-					<td>Lugar_Trabajo: <?php echo $representante['Lugar_Trabajo']?></td>
-				</tr>
-				<tr>
-					<th>Datos del padre o madre</th>
-				</tr>
-				<tr>
-					<td>Nombres: <?php echo $padre['Primer_Nombre']?></td>
-					<td>Apellidos: <?php echo $padre['Apellidos']?></td>
-					<td>Cédula: <?php echo $padre['Cédula']?></td>
-					<td>Género: <?php echo $padre['Género']?></td>
-				</tr>
-				<tr>
-					<td>Fecha_Nacimiento: <?php echo $padre['Fecha_Nacimiento']?></td>
-					<td>Lugar_Nacimiento: <?php echo $padre['Lugar_Nacimiento']?></td>
-					<td>Parentezco: <?php echo $padre['Parentezco']?></td>
-				</tr>
-				<tr>
-					<td>Dirección: <?php echo $padre['Dirección']?></td>
-				</tr>
-				<tr>
-					<td>Correo_Electronico: <?php echo $padre['Correo_Electronico']?></td>
-					<td>Estado_Civil: <?php echo $padre['Estado_Civil']?></td>
-				</tr>
-				<tr>
-					<td>Teléfono_Principal: <?php echo $padre['Teléfono_Principal']?></td>
-					<td>Teléfono_Auxiliar: <?php echo $padre['Teléfono_Auxiliar']?></td>
-				</tr>
-			</table>
-		</div>
 		<div class="card-footer">
+
+		</div>
+
 
 		</div>
 	</div>

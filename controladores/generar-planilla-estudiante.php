@@ -269,7 +269,7 @@ $pdf->Cell(68,6,utf8_decode('CONDICIÓN DE LA DENTADURA: ' . $datos_Médicos['Co
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN OFTALMOLÓGICA: ' . $datos_Médicos['Cond_Vista']),1,1);
 $pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS Condiciones: ' . rtrim($datos_Médicos['Impedimento_Físico'],",") ),1,1);
 $pdf->Cell(70,6,utf8_decode('ES ATENDIDO POR OTRA INSTITUCIÓN: ' . $Institución ),1,0);
-$pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_Médicos['Institución_médica']),1,1);
+$pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_Médicos['Institución_Médica']),1,1);
 $pdf->Cell(65,6,utf8_decode('POSEE CARNET DE DISCAPACIDAD: ' . $carnet_dis ),1,0);
 $pdf->Cell(0,6,utf8_decode('NÚMERO DE CARNET: ' . $datos_Médicos['Carnet_Discapacidad']),1,1);
 
