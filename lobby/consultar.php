@@ -179,14 +179,14 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" name="Generar planilla">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 										</form>
 										<form action="index.html" method="post" style="display: inline-block;" target="_blank">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" name="Generar planilla">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 										</form>
 									</td>
 								</tr>
