@@ -17,7 +17,7 @@
 			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
@@ -41,7 +41,7 @@
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
-								<input class="form-control w-auto" type="text" id="cedula" name="cedula" placeholder="Cédula de usuario" maxlength="15" required>
+								<input class="form-control w-auto" type="text" id="Cédula" name="Cédula" placeholder="Cédula de usuario" maxlength="15" required>
 							</td>
 						</tr>
 						<tr>
@@ -68,7 +68,7 @@
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include 'ayuda.php'; ?>
 <script type="text/javascript" src="js/sweetalert2.js"></script>

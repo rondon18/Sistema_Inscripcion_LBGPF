@@ -91,6 +91,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$telefonos->insertarTelefono();
 
+		//
+		// DATOS DEL REPRESENTANTE
+		//
+
 		$datos_representante->setCedula_Persona($persona->getCédula());
 		$datos_representante->setGrado_Academico($_POST['Grado_Instrucción']);
 
@@ -162,6 +166,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$cedula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
 		$persona->setCédula($cedula_auxiliar);
+
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
 		$persona->setGénero($_POST['Genero_Aux']);
@@ -171,6 +176,33 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona_auxiliar->insertarPersona();
 
+		//
+		// telefonos
+		//
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Principal_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
+		$telefonos->setRelación_Teléfono('Principal');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Secundario_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
+		$telefonos->setRelación_Teléfono('Secundario');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
+		$telefonos->setRelación_Teléfono('Auxiliar');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
 
 
 
@@ -178,7 +210,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-		Correo_electrónico_Aux
+
+
 		Prefijo_Principal_Aux
 		Teléfono_Principal_Aux
 		Prefijo_Secundario_Aux

@@ -18,7 +18,7 @@
 //
 
 $(document).ready(function(){
-  $("#cedula").on('paste', function(e){
+  $("#Cédula").on('paste', function(e){
     e.preventDefault();
     Swal.fire(
       'Error',
@@ -27,7 +27,7 @@ $(document).ready(function(){
     )
   })
 
-  $("#cedula").on('copy', function(e){
+  $("#Cédula").on('copy', function(e){
     e.preventDefault();
     Swal.fire(
       'Error',
@@ -35,7 +35,7 @@ $(document).ready(function(){
       'warning'
     )
   })
-  $('#cedula').validarIngreso('0123456789');
+  $('#Cédula').validarIngreso('0123456789');
 });
 $(document).ready(function(){
   $("#clave").on('paste', function(e){
@@ -85,7 +85,7 @@ $('#Teléfono_Auxiliar_R').validarIngreso('0123456789');
 
 
 
-$('#Codigo_Carnet_Patria').validarIngreso('0123456789');
+$('#Código_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
 $('#Nro_Cuenta').validarIngreso('0123456789');
 //$('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
@@ -110,16 +110,16 @@ Prefijo_Secundario_Aux
 Télefono_Secundario_Aux
 Prefijo_Auxiliar_Aux
 Teléfono_Auxiliar_Aux
-Direccion_Aux
+Dirección_Aux
 Relación_Auxiliar
 */
 
 
 $(function(){
   //Para escribir solo letras
-  //$('#cedula').validarIngreso('0123456789');
+  //$('#Cédula').validarIngreso('0123456789');
 
-  //$('#cedula').validarIngreso(' abcdefghijklmnñopqrstuvwxyzáéiou');
+  //$('#Cédula').validarIngreso(' abcdefghijklmnñopqrstuvwxyzáéiou');
   //Para escribir solo numeros
 //
 });

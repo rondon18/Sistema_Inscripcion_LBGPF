@@ -16,7 +16,7 @@ $('#Primer_Nombre_Est').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Segundo_Nombre_Est').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Primer_Apellido_Est').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Segundo_Apellido_Est').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Cedula_Est').validarIngreso('0123456789');
+$('#Cédula_Est').validarIngreso('0123456789');
 $('#Prefijo_Principal_Est').validarIngreso('0123456789');
 $('#Teléfono_Principal_Est').validarIngreso('0123456789');
 $('#Prefijo_Secundario_Est').validarIngreso('0123456789');
@@ -25,21 +25,21 @@ $('#Año_Repitente').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Materias_Pendientes').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Con_Quien_Vive').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 
-$('#Codigo_Carnet_Patria').validarIngreso('0123456789');
+$('#Código_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
 
-$('#Indice').validarIngreso('0123456789');
+$('#Índice').validarIngreso('0123456789');
 $('#Talla').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Peso').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#C_Braquial').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Talla_Pantalon').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Talla_Pantalón').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Talla_Camisa').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Talla_Zapatos').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 
 $('#Cual_Enfermedad').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Alergias').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 
-$('#Medicacion').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Medicación').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Dieta_Especial').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Nro_Carnet_Discapacidad').validarIngreso('0123456789');
 $('#País').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');

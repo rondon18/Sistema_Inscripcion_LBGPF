@@ -27,16 +27,16 @@ $Estudiante = new Estudiantes();
 $Representante = new Representantes();
 $Padre = new Padres();
 
-$Datos_medicos = new FichaMedica();
+$Datos_Médicos = new FichaMedica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Estudiante_repitente = new EstudiantesRepitentes();
-$Grado = new GradoAcademico();
+$Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
 
 $estudiante = $Estudiante->consultarEstudiante($_POST['id_estudiante']);
 
-$datos_medicos = $Datos_medicos->consultarFicha_Medica($_POST['id_estudiante']);
+$datos_Médicos = $Datos_Médicos->consultarFicha_Medica($_POST['id_estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_estudiante']);
 
@@ -74,7 +74,7 @@ var_dump($Año);
 	<form class="card" action="../controladores/control-estudiantes.php" method="POST" style="max-width: 600px; margin: 75px auto;">
 		<div class="card-header">
 			<h4>Formulario de registro de estudiantes</h4>
-			<h6><?php echo "Año academico: (".$Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar().")"; ?></h6>
+			<h6><?php echo "Año Académico: (".$Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar().")"; ?></h6>
 		</div>
 		<div class="card-body">
 			
@@ -102,18 +102,18 @@ var_dump($Año);
 					
 					<div>
 						<label >Cédula:</label>
-						<input class="form-control mb-2" type="text" name="Cedula_Estudiante" placeholder="Cédula de identidad" required value="<?php echo $estudiante['Cédula'] ?>">
+						<input class="form-control mb-2" type="text" name="Cédula_Estudiante" placeholder="Cédula de identidad" required value="<?php echo $estudiante['Cédula'] ?>">
 					</div>
 					<div>
-						<span>Genero:</span>
+						<span>Género:</span>
 						
 						<div class="form-check">
 							<label class="form-label">F </label>
-							<input class="form-check-input" type="radio" name="Genero_Estudiante" value="F" required <?php if ($estudiante['Género'] == "F") { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Género_Estudiante" value="F" required <?php if ($estudiante['Género'] == "F") { echo "checked";} ?>>
 						</div>
 						<div class="form-check">
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Genero_Estudiante" value="M" required <?php if ($estudiante['Género'] == "M") { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Género_Estudiante" value="M" required <?php if ($estudiante['Género'] == "M") { echo "checked";} ?>>
 						</div>
 						
 						
@@ -128,7 +128,7 @@ var_dump($Año);
 					</div>
 					<div>
 						<label class="form-label">Correo electrónico:</label>
-						<input class="form-control mb-2" type="text" name="Correo_electrónico_Estudiante" required value="<?php echo $estudiante['Correo_Electronico'] ?>">
+						<input class="form-control mb-2" type="text" name="Correo_electrónico_Estudiante" required value="<?php echo $estudiante['Correo_Electrónico'] ?>">
 					</div>
 					<div>
 						<label >Teléfono principal:</label>
@@ -174,7 +174,7 @@ var_dump($Año);
 					<!--Dirección de residencia-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_Estudiante"><?php echo $estudiante['Dirección'] ?></textarea class="form-control mb-2">
+						<textarea class="form-control mb-2" name="Dirección_Estudiante"><?php echo $estudiante['Dirección'] ?></textarea class="form-control mb-2">
 					</div>
 					<div>
 						<span >¿Tiene canaima?</span>
@@ -187,12 +187,12 @@ var_dump($Año);
 								<label class="form-label">No </label>
 								<input class="form-check-input" type="radio" name="Tiene_Canaima" value="No" required <?php if ($datos_sociales['Posee_Canaima'] == "No") { echo "checked";} ?>>
 							</div>
-							<label required value="<?php echo $datos_sociales['Condicion_Canaima'] ?>">¿En que condiciones?</label>
+							<label required value="<?php echo $datos_sociales['Condición_Canaima'] ?>">¿En que Condiciones?</label>
 							<select class="form-select" name="Condiciones_Canaima" required>
-								<option value="Muy buenas condiciones" <?php if($datos_sociales['Condicion_Canaima'] == "Muy buenas condiciones") {echo "selected";} ?>>Muy buenas condiciones</option>
-								<option value="Buenas condiciones" <?php if($datos_sociales['Condicion_Canaima'] == "Buenas condiciones") {echo "selected";} ?>>Buenas condiciones</option>
-								<option value="Malas condiciones" <?php if($datos_sociales['Condicion_Canaima'] == "Malas condiciones") {echo "selected";} ?>>Malas condiciones</option>
-								<option value="Muy malas condiciones" <?php if($datos_sociales['Condicion_Canaima'] == "Muy malas condiciones") {echo "selected";} ?>>Muy malas condiciones</option>
+								<option value="Muy buenas Condiciones" <?php if($datos_sociales['Condición_Canaima'] == "Muy buenas Condiciones") {echo "selected";} ?>>Muy buenas Condiciones</option>
+								<option value="Buenas Condiciones" <?php if($datos_sociales['Condición_Canaima'] == "Buenas Condiciones") {echo "selected";} ?>>Buenas Condiciones</option>
+								<option value="Malas Condiciones" <?php if($datos_sociales['Condición_Canaima'] == "Malas Condiciones") {echo "selected";} ?>>Malas Condiciones</option>
+								<option value="Muy malas Condiciones" <?php if($datos_sociales['Condición_Canaima'] == "Muy malas Condiciones") {echo "selected";} ?>>Muy malas Condiciones</option>
 							</select>
 						</div>
 					</div>
@@ -209,7 +209,7 @@ var_dump($Año);
 								<input class="form-check-input" type="radio" name="Tiene_Carnet_Patria" value="No" required <?php if($datos_sociales['Posee_Carnet_Patria'] == "No") {echo "checked";}?>>
 							</div>
 							<span>Código:</span>
-							<input class="form-control mb-2" type="text" name="Codigo_Carnet_Patria" required value="<?php echo $datos_sociales['Codigo_Carnet_Patria'] ?>">
+							<input class="form-control mb-2" type="text" name="Código_Carnet_Patria" required value="<?php echo $datos_sociales['Código_Carnet_Patria'] ?>">
 							
 							<span>Serial:</span>
 							<input class="form-control mb-2" type="text" name="Serial_Carnet_Patria" required value="<?php echo $datos_sociales['Serial_Carnet_Patria'] ?>">
@@ -240,22 +240,22 @@ var_dump($Año);
 					<label class="form-label">Antropométricos:</label>
 					<div>
 						<span>Índice</span>
-						<input class="form-control mb-2" type="text" name="Indice" placeholder="Índice" required value="<?php echo $datos_medicos['Indice'] ?>">
+						<input class="form-control mb-2" type="text" name="Índice" placeholder="Índice" required value="<?php echo $datos_Médicos['Índice'] ?>">
 						
 						<span>Talla</span>
-						<input class="form-control mb-2" type="text" name="Talla" placeholder="Talla" required value="<?php echo $datos_medicos['Estatura'] ?>">
+						<input class="form-control mb-2" type="text" name="Talla" placeholder="Talla" required value="<?php echo $datos_Médicos['Estatura'] ?>">
 						<span>Peso</span>
-						<input class="form-control mb-2" type="text" name="Peso" placeholder="Peso" required value="<?php echo $datos_medicos['Peso'] ?>">
+						<input class="form-control mb-2" type="text" name="Peso" placeholder="Peso" required value="<?php echo $datos_Médicos['Peso'] ?>">
 						
 						<span>C.Brazo</span>
-						<input class="form-control mb-2" type="text" name="C_Braquial" placeholder="C.brazo" required value="<?php echo $datos_medicos['Circ_Braquial'] ?>">
+						<input class="form-control mb-2" type="text" name="C_Braquial" placeholder="C.brazo" required value="<?php echo $datos_Médicos['Circ_Braquial'] ?>">
 					</div>
 				</div>
 				<div>
 					<label class="form-label">Tallas</label>
 					<div>
 						<span>Pantalón</span>
-						<input class="form-control mb-2" type="text" name="Talla_Pantalon" placeholder="Pantalón" required value="<?php echo $datos_tallas['Talla_Pantalón'] ?>">
+						<input class="form-control mb-2" type="text" name="Talla_Pantalón" placeholder="Pantalón" required value="<?php echo $datos_tallas['Talla_Pantalón'] ?>">
 					
 						<span>Camisa</span>
 						<input class="form-control mb-2" type="text" name="Talla_Camisa" placeholder="Camisa" required value="<?php echo $datos_tallas['Talla_Camisa'] ?>">
@@ -267,12 +267,12 @@ var_dump($Año);
 				<!--Teléfono del familiar-->
 					<div>
 						<label class="form-label">Alergias:</label>
-						<input class="form-control mb-2" type="text" name="Alergias" value="<?php echo $datos_medicos['Alergias'] ?>">
+						<input class="form-control mb-2" type="text" name="Alergias" value="<?php echo $datos_Médicos['Alergias'] ?>">
 					</div>
 				<div>
 					<span>Tipo de sangre:</span>
 					<div class="input-group">
-						<?php $sangre = str_split($datos_medicos['Tipo_Sangre']);?>
+						<?php $sangre = str_split($datos_Médicos['Tipo_Sangre']);?>
 						<select class="form-select" name="Grupo_Sanguineo">
 							<option value="O" <?php if($sangre[0] == "O") { echo "selected";} ?>>O</option>
 							<option value="A" <?php if($sangre[0] == "A") { echo "selected";} ?>>A</option>
@@ -293,13 +293,13 @@ var_dump($Año);
 						<div>
 							<div>
 								<label class="form-label">Ambidextro </label>
-								<input class="form-check-input" type="radio" name="Lateralidad" value="Ambidextro" required <?php if($datos_medicos['Lateralidad'] == "Ambidextro") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Ambidextro" required <?php if($datos_Médicos['Lateralidad'] == "Ambidextro") {echo "checked";} ?>>
 
 								<label class="form-label">Diestro </label>
-								<input class="form-check-input" type="radio" name="Lateralidad" value="Diestro" required <?php if($datos_medicos['Lateralidad'] == "Diestro") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Diestro" required <?php if($datos_Médicos['Lateralidad'] == "Diestro") {echo "checked";} ?>>
 
 								<label class="form-label">Zurdo </label>
-								<input class="form-check-input" type="radio" name="Lateralidad" value="Zurdo" required <?php if($datos_medicos['Lateralidad'] == "Zurdo") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Lateralidad" value="Zurdo" required <?php if($datos_Médicos['Lateralidad'] == "Zurdo") {echo "checked";} ?>>
 							</div>
 						</div>
 				</div>
@@ -308,13 +308,13 @@ var_dump($Año);
 						<div>
 							<div>
 								<label class="form-label">Buena </label>
-								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Buena" required <?php if($datos_medicos['Cond_Dental'] == "Buena") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Buena" required <?php if($datos_Médicos['Cond_Dental'] == "Buena") {echo "checked";} ?>>
 
 								<label class="form-label">Regular </label>
-								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Regular" required <?php if($datos_medicos['Cond_Dental'] == "Regular") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Regular" required <?php if($datos_Médicos['Cond_Dental'] == "Regular") {echo "checked";} ?>>
 
 								<label class="form-label">Mala </label>
-								<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Mala" required <?php if($datos_medicos['Cond_Dental'] == "Mala") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Mala" required <?php if($datos_Médicos['Cond_Dental'] == "Mala") {echo "checked";} ?>>
 							</div>
 						</div>
 				</div>
@@ -323,78 +323,78 @@ var_dump($Año);
 						<div>
 							<div>
 								<label class="form-label">Buena </label>
-								<input class="form-check-input" type="radio" name="Condicion_Vista" value="Buena" required <?php if($datos_medicos['Cond_Vista'] == "Buena") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Vista" value="Buena" required <?php if($datos_Médicos['Cond_Vista'] == "Buena") {echo "checked";} ?>>
 
 								<label class="form-label">Regular </label>
-								<input class="form-check-input" type="radio" name="Condicion_Vista" value="Regular" required <?php if($datos_medicos['Cond_Vista'] == "Regular") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Vista" value="Regular" required <?php if($datos_Médicos['Cond_Vista'] == "Regular") {echo "checked";} ?>>
 
 								<label class="form-label">Mala </label>
-								<input class="form-check-input" type="radio" name="Condicion_Vista" value="Mala" required <?php if($datos_medicos['Cond_Vista'] == "Mala") {echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Condición_Vista" value="Mala" required <?php if($datos_Médicos['Cond_Vista'] == "Mala") {echo "checked";} ?>>
 							</div>
 						</div>
 				</div>
 				<div>
-					<span>Presenta alguna de estas condiciones:</span>
+					<span>Presenta alguna de estas Condiciones:</span>
 
 					<?php  
 
-						$condiciones = str_replace(',', ' ', $datos_medicos['Impedimento_Físico']);
-						$condiciones = explode(' ', $condiciones);
+						$Condiciones = str_replace(',', ' ', $datos_Médicos['Impedimento_Físico']);
+						$Condiciones = explode(' ', $Condiciones);
 
-						function condicionesSalud($condiciones) {
+						function CondicionesSalud($Condiciones) {
 							$Visual = false;
 							$Motora = false;
 							$Auditiva = false;
 							$Escritura = false;
 							$Lectura = false;
 							$Embarazo = false;
-							foreach ($condiciones as $condicion) {
-								if ($condicion == 'Visual') {
+							foreach ($Condiciones as $Condición) {
+								if ($Condición == 'Visual') {
 									$Visual = true;
 								} 
-								elseif ($condicion == 'Motora') {
+								elseif ($Condición == 'Motora') {
 									$Motora = true;
 								}
-								elseif ($condicion == 'Auditiva') {
+								elseif ($Condición == 'Auditiva') {
 									$Auditiva = true;
 								}
-								elseif ($condicion == 'Escritura') {
+								elseif ($Condición == 'Escritura') {
 									$Escritura = true;
 								}
-								elseif ($condicion == 'Lectura') {
+								elseif ($Condición == 'Lectura') {
 									$Lectura = true;
 								}
-								elseif ($condicion == 'Embarazo') {
+								elseif ($Condición == 'Embarazo') {
 									$Embarazo = true;
 								}
 							}
 
-							$condiciones_medicas = [$Visual,$Motora,$Auditiva,$Escritura,$Lectura,$Embarazo];
-							return $condiciones_medicas;
+							$Condiciones_medicas = [$Visual,$Motora,$Auditiva,$Escritura,$Lectura,$Embarazo];
+							return $Condiciones_medicas;
 							
 						}
-						$condiciones_medicas = condicionesSalud($condiciones);
+						$Condiciones_medicas = CondicionesSalud($Condiciones);
 
 					?>
 					<div>
 						<div>
 							<label class="form-label">Visual </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual" <?php if($condiciones_medicas[0] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual" <?php if($Condiciones_medicas[0] == true){echo "checked";} ?>>
 
 							<label class="form-label">Motora </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora" <?php if($condiciones_medicas[1] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora" <?php if($Condiciones_medicas[1] == true){echo "checked";} ?>>
 
 							<label class="form-label">Auditiva </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva" <?php if($condiciones_medicas[2] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva" <?php if($Condiciones_medicas[2] == true){echo "checked";} ?>>
 
 							<label class="form-label">Escritura </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura" <?php if($condiciones_medicas[3] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura" <?php if($Condiciones_medicas[3] == true){echo "checked";} ?>>
 
 							<label class="form-label">Lectura </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php if($condiciones_medicas[4] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php if($Condiciones_medicas[4] == true){echo "checked";} ?>>
 
 							<label class="form-label">Embarazo </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php if($condiciones_medicas[5] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php if($Condiciones_medicas[5] == true){echo "checked";} ?>>
 						</div>
 					</div>
 				</div>
@@ -404,28 +404,28 @@ var_dump($Año);
 					<div>
 						<div>
 							<label class="form-label">Si </label>
-							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="Si" required <?php if (!empty($datos_medicos['Institucion_Medica'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="Si" required <?php if (!empty($datos_Médicos['Institucion_Medica'])) { echo "checked";} ?>>
 
 							<label class="form-label">No </label>
-							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required <?php if (empty($datos_medicos['Institucion_Medica'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required <?php if (empty($datos_Médicos['Institucion_Medica'])) { echo "checked";} ?>>
 						</div>
 						<span>¿Cuál institución?</span>
-						<input class="form-control mb-2" type="text" name="Institucion_Medica" required value="<?php echo $datos_medicos['Institucion_Medica'] ?>">
+						<input class="form-control mb-2" type="text" name="Institucion_Medica" required value="<?php echo $datos_Médicos['Institucion_Medica'] ?>">
 					</div>
 				</div>
 				<div>
-					<span>¿Recibe alguna medicacion especial?:</span>
+					<span>¿Recibe alguna Medicación especial?:</span>
 
 					<div>
 						<div>
 							<label class="form-label">Si </label>
-							<input class="form-check-input" type="radio" name="Recibe_Medicacion" value="Si" required <?php if (!empty($datos_medicos['Medicación'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Medicación" value="Si" required <?php if (!empty($datos_Médicos['Medicación'])) { echo "checked";} ?>>
 
 							<label class="form-label">No </label>
-							<input class="form-check-input" type="radio" name="Recibe_Medicacion" value="No" required <?php if (empty($datos_medicos['Medicación'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Medicación" value="No" required <?php if (empty($datos_Médicos['Medicación'])) { echo "checked";} ?>>
 						</div>
 						<span>¿Cuál?</span>
-						<input class="form-control mb-2" type="text" name="Medicacion" required value="<?php echo $datos_medicos['Medicación'] ?>">
+						<input class="form-control mb-2" type="text" name="Medicación" required value="<?php echo $datos_Médicos['Medicación'] ?>">
 					</div>
 				</div>
 				<div>
@@ -482,16 +482,16 @@ var_dump($Año);
 						<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
 					</div>
 
-					<!--Genero del familiar-->
+					<!--Género del familiar-->
 					<div>
 								
-							<p>Genero:</p>
+							<p>Género:</p>
 							
 							<label class="form-label">F </label>
-							<input class="form-check-input" type="radio" name="Genero_Familiar" value="F">
+							<input class="form-check-input" type="radio" name="Género_Familiar" value="F">
 
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Genero_Familiar" value="M">
+							<input class="form-check-input" type="radio" name="Género_Familiar" value="M">
 
 					</div>
 
@@ -551,7 +551,7 @@ var_dump($Año);
 					<!--Dirección de residencia del Familiar-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_Familiar"></textarea class="form-control mb-2">
+						<textarea class="form-control mb-2" name="Dirección_Familiar"></textarea class="form-control mb-2">
 					</div>
 					
 					<!--Se encuentra el familiar en el país-->

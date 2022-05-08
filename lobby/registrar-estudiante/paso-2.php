@@ -63,17 +63,17 @@ if (!isset($_POST['Datos_Representante'])) {
 						</div>
 						<div>
 							<label class="form-label">Cédula:</label>
-							<input class="form-control mb-2" type="text" name="Cedula_Est" id="Cedula_Est" placeholder="Cédula de identidad">
+							<input class="form-control mb-2" type="text" name="Cédula_Est" id="Cédula_Est" placeholder="Cédula de identidad">
 						</div>
 						<div>
 							<p class="form-label">Género:</p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-1">
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" class="form-check-input" type="radio" name="Genero_Est" value="F" required>
+									<input class="form-check-input" class="form-check-input" type="radio" name="Género_Est" value="F" required>
 									<label class="form-label">F</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" class="form-check-input" type="radio" name="Genero_Est" value="M" required>
+									<input class="form-check-input" class="form-check-input" type="radio" name="Género_Est" value="M" required>
 									<label class="form-label">M</label>
 								</div>
 							</div>
@@ -170,7 +170,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<!--Dirección de residencia-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2" name="Direccion_Est" id="Direccion_Est" required></textarea>
+							<textarea class="form-control mb-2" name="Dirección_Est" id="Dirección_Est" required></textarea>
 						</div>
 						<div>
 							<label class="form-label">¿Con quién vive?:</label>
@@ -190,12 +190,12 @@ if (!isset($_POST['Datos_Representante'])) {
 								</div>
 							</div>
 							<div>
-								<label class="form-label">¿En que condiciones?</label>
+								<label class="form-label">¿En que Condiciones?</label>
 								<select class="form-select mb-2" name="Condiciones_Canaima" >
-									<option value="Muy buenas condiciones">Muy buenas condiciones</option>
-									<option value="Buenas condiciones">Buenas condiciones</option>
-									<option value="Malas condiciones">Malas condiciones</option>
-									<option value="Muy malas condiciones">Muy malas condiciones</option>
+									<option value="Muy buenas Condiciones">Muy buenas Condiciones</option>
+									<option value="Buenas Condiciones">Buenas Condiciones</option>
+									<option value="Malas Condiciones">Malas Condiciones</option>
+									<option value="Muy malas Condiciones">Muy malas Condiciones</option>
 								</select>
 							</div>
 						</div>
@@ -207,7 +207,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si tiene</option>
 									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código">
+								<input class="form-control w-auto" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código">
 								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial">
 							</div>
 						</div>
@@ -234,7 +234,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<label class="form-label">Datos antropométricos:</label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Indice" id="Indice" placeholder="Índice" required>
+								<input class="form-control mb-2" type="text" name="Índice" id="Índice" placeholder="Índice" required>
 								<input class="form-control mb-2" type="text" name="Talla" id="Talla" placeholder="Talla" required>
 								<input class="form-control mb-2" type="text" name="Peso" id="Peso" placeholder="Peso" required>
 								<input class="form-control mb-2" type="text" name="C_Braquial" id="C_Braquial" placeholder="C.brazo" required>
@@ -243,7 +243,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<label class="form-label">Tallas:</label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Talla_Pantalon" id="Talla_Pantalon" placeholder="Pantalón" required>
+								<input class="form-control mb-2" type="text" name="Talla_Pantalón" id="Talla_Pantalón" placeholder="Pantalón" required>
 								<input class="form-control mb-2" type="text" name="Talla_Camisa" id="Talla_Camisa" placeholder="Camisa" required>
 								<input class="form-control mb-2" type="text" name="Talla_Zapatos" id="Talla_Zapatos" placeholder="Zapatos" required>
 							</div>
@@ -300,15 +300,15 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
-									<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Buena" required>
+									<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Buena" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Regular </label>
-									<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Regular" required>
+									<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Regular" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Mala </label>
-									<input class="form-check-input" type="radio" name="Condicion_Dentadura" value="Mala" required>
+									<input class="form-check-input" type="radio" name="Condición_Dentadura" value="Mala" required>
 								</div>
 							</div>
 						</div>
@@ -317,20 +317,20 @@ if (!isset($_POST['Datos_Representante'])) {
 								<div class="pt-2 px-2 pb-0 bg-light border rounded">
 									<div class="form-check form-check-inline">
 										<label class="form-label">Buena </label>
-										<input class="form-check-input" type="radio" name="Condicion_Vista" value="Buena" required>
+										<input class="form-check-input" type="radio" name="Condición_Vista" value="Buena" required>
 									</div>
 									<div class="form-check form-check-inline">
 										<label class="form-label">Regular </label>
-										<input class="form-check-input" type="radio" name="Condicion_Vista" value="Regular" required>
+										<input class="form-check-input" type="radio" name="Condición_Vista" value="Regular" required>
 									</div>
 									<div class="form-check form-check-inline">
 										<label class="form-label">Mala </label>
-										<input class="form-check-input" type="radio" name="Condicion_Vista" value="Mala" required>
+										<input class="form-check-input" type="radio" name="Condición_Vista" value="Mala" required>
 									</div>
 								</div>
 						</div>
 						<div>
-							<span class="form-label">Presenta alguna de estas condiciones:</span>
+							<span class="form-label">Presenta alguna de estas Condiciones:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Visual </label>
@@ -369,13 +369,13 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<span class="form-label">¿Recibe alguna medicacion especial?:</span>
+							<span class="form-label">¿Recibe alguna Medicación especial?:</span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Recibe_Medicacion" required>
+								<select class="form-select" name="Recibe_Medicación" required>
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Medicacion" id="Medicacion" placeholder="¿Cuál medicación?">
+								<input class="form-control w-auto" type="text" name="Medicación" id="Medicación" placeholder="¿Cuál medicación?">
 							</div>
 						</div>
 						<div>
@@ -436,17 +436,17 @@ if (!isset($_POST['Datos_Representante'])) {
 								</div>
 							</div>
 
-							<!--Genero del familiar-->
+							<!--Género del familiar-->
 							<div>
-								<p class="form-label">Genero:</p>
+								<p class="form-label">Género:</p>
 								<div class="pt-2 px-2 pb-0 bg-light border rounded">
 									<div class="form-check form-check-inline">
 										<label class="form-label">F </label>
-										<input class="form-check-input" type="radio" name="Genero_Familiar" value="F">
+										<input class="form-check-input" type="radio" name="Género_Familiar" value="F">
 									</div>
 									<div class="form-check form-check-inline">
 										<label class="form-label">M </label>
-										<input class="form-check-input" type="radio" name="Genero_Familiar" value="M">
+										<input class="form-check-input" type="radio" name="Género_Familiar" value="M">
 									</div>
 								</div>
 							</div>
@@ -571,7 +571,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia:</label>
-							<textarea class="form-control mb-2"name="Direccion_Familiar"></textarea>
+							<textarea class="form-control mb-2"name="Dirección_Familiar"></textarea>
 						</div>
 
 						<!--Se encuentra el familiar en el país-->
@@ -593,14 +593,14 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Segundo_Nombre_R" value="<?php echo $_POST['Segundo_Nombre_R']?>">
 			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
 			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
-			<input type="hidden" name="Genero_R" value="<?php echo $_POST['Genero_R']?>">
+			<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R']?>">
 			<input type="hidden" name="Tipo_Cédula_R" value="<?php echo $_POST['Tipo_Cédula_R']?>">
 			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
 			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
 			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
 			<input type="hidden" name="Correo_electrónico_R" value="<?php echo $_POST['Correo_electrónico_R']?>">
 			<input type="hidden" name="Estado_Civil_R" value="<?php echo $_POST['Estado_Civil_R']?>">
-			<input type="hidden" name="Direccion_R" value="<?php echo $_POST['Direccion_R']?>">
+			<input type="hidden" name="Dirección_R" value="<?php echo $_POST['Dirección_R']?>">
 			<input type="hidden" name="Prefijo_Principal_R" value="<?php echo $_POST['Prefijo_Principal_R']?>">
 			<input type="hidden" name="Teléfono_Principal_R" value="<?php echo $_POST['Teléfono_Principal_R']?>">
 			<input type="hidden" name="Prefijo_Secundario_R" value="<?php echo $_POST['Prefijo_Secundario_R']?>">
@@ -609,9 +609,9 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
 			<input type="hidden" name="Grado_Instrucción" value="<?php echo $_POST['Grado_Instrucción']?>">
 			<input type="hidden" name="Tiene_Carnet_Patria" value="<?php echo $_POST['Tiene_Carnet_Patria']?>">
-			<input type="hidden" name="Codigo_Carnet_Patria" value="<?php echo $_POST['Codigo_Carnet_Patria']?>">
+			<input type="hidden" name="Código_Carnet_Patria" value="<?php echo $_POST['Código_Carnet_Patria']?>">
 			<input type="hidden" name="Serial_Carnet_Patria" value="<?php echo $_POST['Serial_Carnet_Patria']?>">
-			<input type="hidden" name="Condicion_vivienda" value="<?php echo $_POST['Condicion_vivienda']?>">
+			<input type="hidden" name="Condición_vivienda" value="<?php echo $_POST['Condición_vivienda']?>">
 			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
 			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
 			<input type="hidden" name="Tenencia_vivienda_Otro" value="<?php echo $_POST['Tenencia_vivienda_Otro']?>">
@@ -624,12 +624,12 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
 			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
 			<input type="hidden" name="Remuneración" value="<?php echo $_POST['Remuneración']?>">
-			<input type="hidden" name="Tipo_Remuneracion" value="<?php echo $_POST['Tipo_Remuneracion']?>">
+			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración']?>">
 			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
 			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
 			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
 			<input type="hidden" name="Segundo_Apellido_Aux" value="<?php echo $_POST['Segundo_Apellido_Aux']?>">
-			<input type="hidden" name="Genero_Aux" value="<?php echo $_POST['Genero_Aux']?>">
+			<input type="hidden" name="Género_Aux" value="<?php echo $_POST['Género_Aux']?>">
 			<input type="hidden" name="Tipo_Cédula_Aux" value="<?php echo $_POST['Tipo_Cédula_Aux']?>">
 			<input type="hidden" name="Cédula_Aux" value="<?php echo $_POST['Cédula_Aux']?>">
 			<input type="hidden" name="Correo_electrónico_Aux" value="<?php echo $_POST['Correo_electrónico_Aux']?>">
@@ -639,7 +639,7 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Teléfono_Secundario_Aux" value="<?php echo $_POST['Teléfono_Secundario_Aux']?>">
 			<input type="hidden" name="Prefijo_Auxiliar_Aux" value="<?php echo $_POST['Prefijo_Auxiliar_Aux']?>">
 			<input type="hidden" name="Teléfono_Auxiliar_Aux" value="<?php echo $_POST['Teléfono_Auxiliar_Aux']?>">
-			<input type="hidden" name="Direccion_Aux" value="<?php echo $_POST['Direccion_Aux']?>">
+			<input type="hidden" name="Dirección_Aux" value="<?php echo $_POST['Dirección_Aux']?>">
 			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
 
 			<!--Botón para guardar-->

@@ -107,10 +107,10 @@
 			desconectarBD($conexion);
 		}
 
-		public function consultarPersona($cedula) {
+		public function consultarPersona($Cédula) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$cedula'";
+			$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$Cédula'";
 
 			$consulta_persona = $conexion->query($sql) or die("error: ".$conexion->error);
 			$persona = $consulta_persona->fetch_assoc();

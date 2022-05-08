@@ -81,10 +81,10 @@ CREATE TABLE `carnet-patria` (
   `idCarnet` int(11) NOT NULL AUTO_INCREMENT,
   `Código_Carnet` varchar(10) NOT NULL,
   `Serial_Carnet` varchar(10) NOT NULL,
-  `Cedula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idCarnet`),
-  KEY `fk_personas_carnet` (`Cedula_Persona`),
-  CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`)
+  KEY `fk_personas_carnet` (`Cédula_Persona`),
+  CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,32 +129,32 @@ INSERT INTO `contactos_auxiliares` VALUES (7,'Vecino','V27919567',3),(10,'ajshdv
 UNLOCK TABLES;
 
 --
--- Table structure for table `datos-economicos`
+-- Table structure for table `datos-económicos`
 --
 
-DROP TABLE IF EXISTS `datos-economicos`;
+DROP TABLE IF EXISTS `datos-económicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `datos-economicos` (
-  `idDatos-economicos` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `datos-económicos` (
+  `idDatos-económicos` int(11) NOT NULL AUTO_INCREMENT,
   `Banco` varchar(45) NOT NULL,
   `Tipo_Cuenta` varchar(45) NOT NULL,
   `Cta_Bancaria` varchar(45) NOT NULL,
   `idRepresentantes` int(11) NOT NULL,
-  PRIMARY KEY (`idDatos-economicos`,`idRepresentantes`),
-  KEY `fk_datos-economicos_representantes1_idx` (`idRepresentantes`),
-  CONSTRAINT `fk_datos-economicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idDatos-económicos`,`idRepresentantes`),
+  KEY `fk_datos-económicos_representantes1_idx` (`idRepresentantes`),
+  CONSTRAINT `fk_datos-económicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `datos-economicos`
+-- Dumping data for table `datos-económicos`
 --
 
-LOCK TABLES `datos-economicos` WRITE;
-/*!40000 ALTER TABLE `datos-economicos` DISABLE KEYS */;
-INSERT INTO `datos-economicos` VALUES (1,'Banco Provincial, S.A.','Corriente','1351351351384135',3),(4,'Banco Provincial, S.A.','Corriente','11111111111111111111',7),(5,'Banco Provincial, S.A.','Corriente','11111111111111111111',8);
-/*!40000 ALTER TABLE `datos-economicos` ENABLE KEYS */;
+LOCK TABLES `datos-económicos` WRITE;
+/*!40000 ALTER TABLE `datos-económicos` DISABLE KEYS */;
+INSERT INTO `datos-económicos` VALUES (1,'Banco Provincial, S.A.','Corriente','1351351351384135',3),(4,'Banco Provincial, S.A.','Corriente','11111111111111111111',7),(5,'Banco Provincial, S.A.','Corriente','11111111111111111111',8);
+/*!40000 ALTER TABLE `datos-económicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -195,10 +195,10 @@ DROP TABLE IF EXISTS `datos-salud`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `datos-salud` (
-  `idDatos-Medicos` int(11) NOT NULL AUTO_INCREMENT,
+  `idDatos-Médicos` int(11) NOT NULL AUTO_INCREMENT,
   `Estatura` int(11) NOT NULL,
   `Peso` int(11) NOT NULL,
-  `Indice` varchar(45) COLLATE utf8_bin NOT NULL,
+  `Índice` varchar(45) COLLATE utf8_bin NOT NULL,
   `Circ_Braquial` int(11) NOT NULL,
   `Lateralidad` varchar(45) COLLATE utf8_bin NOT NULL,
   `Tipo_Sangre` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -212,10 +212,10 @@ CREATE TABLE `datos-salud` (
   `Institucion_Medica` varchar(50) COLLATE utf8_bin NOT NULL,
   `Carnet_Discapacidad` varchar(20) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL,
-  PRIMARY KEY (`idDatos-Medicos`,`idEstudiantes`),
+  PRIMARY KEY (`idDatos-Médicos`,`idEstudiantes`),
   UNIQUE KEY `idEstudiantes` (`idEstudiantes`),
   KEY `idUsuarios_idx` (`idEstudiantes`),
-  CONSTRAINT `fk_Estudiantes_Datos-Medicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_Estudiantes_Datos-Médicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -239,7 +239,7 @@ DROP TABLE IF EXISTS `datos-sociales`;
 CREATE TABLE `datos-sociales` (
   `idDatos-Sociales` int(11) NOT NULL AUTO_INCREMENT,
   `Posee_Canaima` char(2) COLLATE utf8_bin NOT NULL,
-  `Condicion_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
+  `Condición_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
   `Acceso_Internet` varchar(45) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-Sociales`,`idEstudiantes`),
@@ -255,7 +255,7 @@ CREATE TABLE `datos-sociales` (
 
 LOCK TABLES `datos-sociales` WRITE;
 /*!40000 ALTER TABLE `datos-sociales` DISABLE KEYS */;
-INSERT INTO `datos-sociales` VALUES (1,'Si','Muy buenas condiciones','Si',6),(9,'Si','Muy buenas condiciones','Si',1),(10,'Si','Muy buenas condiciones','No',7);
+INSERT INTO `datos-sociales` VALUES (1,'Si','Muy buenas Condiciones','Si',6),(9,'Si','Muy buenas Condiciones','Si',1),(10,'Si','Muy buenas Condiciones','No',7);
 /*!40000 ALTER TABLE `datos-sociales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,16 +330,16 @@ CREATE TABLE `estudiantes` (
   `idEstudiantes` int(11) NOT NULL AUTO_INCREMENT,
   `Plantel_Procedencia` text COLLATE utf8_bin NOT NULL,
   `Con_Quien_Vive` varchar(25) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   `idRepresentante` int(11) NOT NULL,
   `Relación_Representante` varchar(20) COLLATE utf8_bin NOT NULL,
   `idPadre` int(11) NOT NULL,
   `Relación_Padre` varchar(20) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`idEstudiantes`,`Cedula_Persona`,`idRepresentante`,`idPadre`),
-  KEY `Cedula_Persona_idx` (`Cedula_Persona`),
+  PRIMARY KEY (`idEstudiantes`,`Cédula_Persona`,`idRepresentante`,`idPadre`),
+  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
   KEY `id_Representante_idx` (`idRepresentante`),
   KEY `fk_estudiantes_padres1_idx` (`idPadre`),
-  CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Representantes_Estudiantes` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_estudiantes_padres1` FOREIGN KEY (`idPadre`) REFERENCES `padres` (`idPadres`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -368,7 +368,7 @@ CREATE TABLE `estudiantes-observaciones` (
   `Físico` text DEFAULT NULL,
   `Personal` text DEFAULT NULL,
   `Familiar` text DEFAULT NULL,
-  `Academico` text DEFAULT NULL,
+  `Académico` text DEFAULT NULL,
   `Otra` text DEFAULT NULL,
   `idEstudiantes` int(11) NOT NULL,
   PRIMARY KEY (`idObservaciones`),
@@ -446,33 +446,33 @@ INSERT INTO `grado` VALUES (1,'Primer año',6,12),(5,'Segundo Año',1,12),(6,'Se
 UNLOCK TABLES;
 
 --
--- Table structure for table `inscripciones`
+-- Table structure for table `Inscripciónes`
 --
 
-DROP TABLE IF EXISTS `inscripciones`;
+DROP TABLE IF EXISTS `Inscripciónes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inscripciones` (
-  `idInscripciones` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha_Inscripcion` varchar(12) COLLATE utf8_bin NOT NULL,
+CREATE TABLE `Inscripciónes` (
+  `idInscripciónes` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `Hora_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `idEstudiante` int(11) NOT NULL,
-  PRIMARY KEY (`idInscripciones`,`idUsuario`,`idEstudiante`),
+  PRIMARY KEY (`idInscripciónes`,`idUsuario`,`idEstudiante`),
   KEY `idEstudiante_idx` (`idEstudiante`),
   KEY `idUsuarios_idx` (`idUsuario`),
-  CONSTRAINT `fk_Estudiantes_Inscripciones` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_Usuarios_Inscripciones` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_Estudiantes_Inscripciónes` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Usuarios_Inscripciónes` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `inscripciones`
+-- Dumping data for table `Inscripciónes`
 --
 
-LOCK TABLES `inscripciones` WRITE;
-/*!40000 ALTER TABLE `inscripciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `inscripciones` ENABLE KEYS */;
+LOCK TABLES `Inscripciónes` WRITE;
+/*!40000 ALTER TABLE `Inscripciónes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Inscripciónes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -485,11 +485,11 @@ DROP TABLE IF EXISTS `padres`;
 CREATE TABLE `padres` (
   `idPadres` int(11) NOT NULL AUTO_INCREMENT,
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`idPadres`,`Cedula_Persona`),
-  UNIQUE KEY `Cedula_Persona_UNIQUE` (`Cedula_Persona`),
-  KEY `Cedula_Persona_idx` (`Cedula_Persona`),
-  CONSTRAINT `Cedula_Persona` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idPadres`,`Cédula_Persona`),
+  UNIQUE KEY `Cédula_Persona_UNIQUE` (`Cédula_Persona`),
+  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
+  CONSTRAINT `Cédula_Persona` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -547,11 +547,11 @@ DROP TABLE IF EXISTS `representantes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `representantes` (
   `idRepresentantes` int(11) NOT NULL AUTO_INCREMENT,
-  `Grado_Academico` varchar(15) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Grado_Académico` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idRepresentantes`),
-  KEY `fk_personas_representantes` (`Cedula_Persona`),
-  CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_personas_representantes` (`Cédula_Persona`),
+  CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -577,10 +577,10 @@ CREATE TABLE `teléfonos` (
   `Prefijo` varchar(4) DEFAULT NULL,
   `Número_Telefónico` varchar(10) DEFAULT NULL,
   `Relación_Teléfono` varchar(20) NOT NULL,
-  `Cedula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idTeléfonos`),
-  KEY `fk_personas_teléfonos` (`Cedula_Persona`),
-  CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE
+  KEY `fk_personas_teléfonos` (`Cédula_Persona`),
+  CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -609,11 +609,11 @@ CREATE TABLE `usuarios` (
   `Pregunta_Seg_2` text COLLATE utf8_bin NOT NULL,
   `Respuesta_1` text COLLATE utf8_bin NOT NULL,
   `Respuesta_2` text COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idUsuarios`),
-  UNIQUE KEY `Cedula_Persona` (`Cedula_Persona`),
-  KEY `Cedula_Persona_idx` (`Cedula_Persona`),
-  CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `Cédula_Persona` (`Cédula_Persona`),
+  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
+  CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

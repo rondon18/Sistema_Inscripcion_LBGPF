@@ -27,7 +27,7 @@ if (!$_SESSION['login']) {
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 			</div>
-			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
 		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;" autocomplete="off">
 			<div class="card">
@@ -46,7 +46,7 @@ if (!$_SESSION['login']) {
 						<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de vivienda</a>
 					</li>
 					<li class="nav-item">
-						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y economicos</a>
+						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y económicos</a>
 					</li>
 					<li class="nav-item">
 						<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Contacto auxiliar</a>
@@ -70,18 +70,18 @@ if (!$_SESSION['login']) {
 								<input type="text" class="form-control mb-2" name="Segundo_Apellido_R" id="Segundo_Apellido_R" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
-						<!--Genero del representante-->
+						<!--Género del representante-->
 						<div>
-							<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
+							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Genero_R" value="F" required>
+									<input class="form-check-input" type="radio" name="Género_R" value="F" required>
 								</div>
 
 								<div class="form-check form-check-inline">
 									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Genero_R" value="M" required>
+									<input class="form-check-input" type="radio" name="Género_R" value="M" required>
 								</div>
 							</div>
 
@@ -108,7 +108,7 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Lugar de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" maxlength="20" minlength="3" required>
 						</div>
-						<!--Correo electronico del representante-->
+						<!--Correo Electrónico del representante-->
 						<div>
 							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" minlength="15" required>
@@ -126,7 +126,7 @@ if (!$_SESSION['login']) {
 						<!--Dirección de residencia-->
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Direccion_R" id="Direccion_R" rows="4" minlength="10"></textarea>
+							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"></textarea>
 						</div>
 					</section>
 					<section id="seccion2" style="display: none;">
@@ -206,7 +206,7 @@ if (!$_SESSION['login']) {
 									<option value="Si">Si tiene</option>
 									<option value="No" selected>No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Codigo_Carnet_Patria" id="Codigo_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control w-auto" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
 								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
 							</div>
 						</div>
@@ -220,15 +220,15 @@ if (!$_SESSION['login']) {
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
-									<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Buena" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Buena" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Regular </label>
-									<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Regular" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Regular" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Mala </label>
-									<input class="form-check-input" type="radio" name="Condicion_vivienda" value="Mala" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Mala" required>
 								</div>
 							</div>
 							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
@@ -363,11 +363,11 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Remuneración:</label>
 							<div class="input-group mb-2">
-								<!--Remuneracion en base a sueldos minimos del representante-->
+								<!--Remuneración en base a sueldos minimos del representante-->
 								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" required>
 								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
-								<!--Tipo de remuneracion del representante-->
-								<select class="form-select" name="Tipo_Remuneracion">
+								<!--Tipo de Remuneración del representante-->
+								<select class="form-select" name="Tipo_Remuneración">
 									<option value="Diaria">Remuneración diaria</option>
 									<option value="Semanal">Remuneración semanal</option>
 									<option value="Quincenal">Remuneración quincenal</option>
@@ -394,17 +394,17 @@ if (!$_SESSION['login']) {
 								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras"nlength="3">
 							</div>
 						</div>
-						<!--Genero del contacto auxiliar-->
+						<!--Género del contacto auxiliar-->
 						<div>
-							<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
+							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Genero_Aux" value="F" required>
+									<input class="form-check-input" type="radio" name="Género_Aux" value="F" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Genero_Aux" value="M" required>
+									<input class="form-check-input" type="radio" name="Género_Aux" value="M" required>
 								</div>
 							</div>
 						</div>
@@ -419,7 +419,7 @@ if (!$_SESSION['login']) {
 								</select>
 								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required>
 						</div>
-						<!--Correo electronico del contacto auxiliar-->
+						<!--Correo Electrónico del contacto auxiliar-->
 						<div>
 							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required>
@@ -454,7 +454,7 @@ if (!$_SESSION['login']) {
 						<!--Dirección de residencia del contacto auxiliar-->
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Direccion_Aux" id="Direccion_Aux" minlength="10"></textarea>
+							<textarea class="form-control mb-2" name="Dirección_Aux" id="Dirección_Aux" minlength="10"></textarea>
 						</div>
 						<!--Relación del contacto auxiliar-->
 						<div>
@@ -472,11 +472,11 @@ if (!$_SESSION['login']) {
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-			<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
+<script type="text/javascript" src="../../js/validaciones-Inscripción.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 

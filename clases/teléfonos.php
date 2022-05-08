@@ -1,36 +1,36 @@
 <?php
 
-class Telefonos {
+class Teléfonos {
 
 	private $idTeléfonos;
 	private $Prefijo;
 	private $Número_Telefónico;
 	private $Relación_Teléfono;
-	private $Cedula_Persona;
+	private $Cédula_Persona;
 
 	public function __construct(){}
 
-	public function insertarTelefono() {
+	public function insertarTeléfono() {
 		$conexion = conectarBD();
 
 		$Prefijo = $this->getPrefijo();
 		$Número_Telefónico = $this->getNúmero_Telefónico();
 		$Relación_Teléfono = $this->getRelación_Teléfono();
-		$Cedula_Persona = $this->getCedula_Persona();
+		$Cédula_Persona = $this->getCédula_Persona();
 
-		$sql = "SELECT * FROM `teléfonos` WHERE `Relación_Teléfono` = '$Relación_Teléfono' AND `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `teléfonos` WHERE `Relación_Teléfono` = '$Relación_Teléfono' AND `Cédula_Persona` = '$Cédula_Persona'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `teléfonos`(`idTeléfonos`, `Prefijo`, `Número_Telefónico`, `Relación_Teléfono`, `Cedula_Persona`) VALUES (
+			$sql = "INSERT INTO `teléfonos`(`idTeléfonos`, `Prefijo`, `Número_Telefónico`, `Relación_Teléfono`, `Cédula_Persona`) VALUES (
 				NULL,
 				'$Prefijo',
 				'$Número_Telefónico',
 				'$Relación_Teléfono',
-				'$Cedula_Persona'
+				'$Cédula_Persona'
 			)";
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidTeléfonos($conexion->insert_id);
@@ -40,7 +40,7 @@ class Telefonos {
 		}
 		desconectarBD($conexion);
 	}
-	public function editarTelefono($Cedula_Persona) {
+	public function editarTeléfono($Cédula_Persona) {
 		$conexion = conectarBD();
 		$Prefijo = $this->getPrefijo();
 		$Número_Telefónico = $this->getNúmero_Telefónico();
@@ -49,16 +49,16 @@ class Telefonos {
 		$sql = "UPDATE `teléfonos` SET
 				`Prefijo`='$Prefijo',
 				`Número_Telefónico`='$Número_Telefónico',
-			WHERE `Cedula_Persona`='$Cedula_Persona' AND `Relación_Teléfono`='$Relación_Teléfono'";
+			WHERE `Cédula_Persona`='$Cédula_Persona' AND `Relación_Teléfono`='$Relación_Teléfono'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}
-	public function consultarTelefonos($Cedula_Persona) {
+	public function consultarTeléfonos($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `teléfonos` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `teléfonos` WHERE `Cédula_Persona` = '$Cédula_Persona'";
 
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
@@ -67,10 +67,10 @@ class Telefonos {
 
 		return $resultado;
 	}
-	public function consultarTelefonosRepresentanteID($ID_Representante) {
+	public function consultarTeléfonosRepresentanteID($ID_Representante) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `representantes`,`teléfonos` WHERE  `representantes`.`idRepresentantes` = '$ID_Representante' AND `teléfonos`.`Cedula_Persona` = `representantes`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `representantes`,`teléfonos` WHERE  `representantes`.`idRepresentantes` = '$ID_Representante' AND `teléfonos`.`Cédula_Persona` = `representantes`.`Cédula_Persona`";
 
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
@@ -79,10 +79,10 @@ class Telefonos {
 
 		return $resultado;
 	}
-	public function consultarTelefonosPadreID($ID_Padre) {
+	public function consultarTeléfonosPadreID($ID_Padre) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `padres`,`teléfonos` WHERE  `padres`.`idPadres` = '$ID_Padre' AND `teléfonos`.`Cedula_Persona` = `padres`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `padres`,`teléfonos` WHERE  `padres`.`idPadres` = '$ID_Padre' AND `teléfonos`.`Cédula_Persona` = `padres`.`Cédula_Persona`";
 
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
@@ -103,8 +103,8 @@ class Telefonos {
 	public function setRelación_Teléfono($Relación_Teléfono) {
 		$this->Relación_Teléfono = $Relación_Teléfono;
 	}
-	public function setCedula_Persona($Cedula_Persona) {
-		$this->Cedula_Persona = $Cedula_Persona;
+	public function setCédula_Persona($Cédula_Persona) {
+		$this->Cédula_Persona = $Cédula_Persona;
 	}
 
 	public function getidTeléfonos() {
@@ -119,8 +119,8 @@ class Telefonos {
 	public function getRelación_Teléfono() {
 		return $this->Relación_Teléfono;
 	}
-	public function getCedula_Persona() {
-		return $this->Cedula_Persona;
+	public function getCédula_Persona() {
+		return $this->Cédula_Persona;
 	}
 }
 

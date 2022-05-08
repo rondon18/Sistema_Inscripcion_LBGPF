@@ -2,10 +2,10 @@
 
 	class FichaMedica {
 
-		private $idDatos_Medicos;
+		private $idDatos_Médicos;
 		private $Estatura;
 		private $Peso;
-		private $Indice;
+		private $Índice;
 		private $Circ_Braquial;
 		private $Lateralidad;
 		private $Tipo_Sangre;
@@ -27,7 +27,7 @@
 
 			$Estatura = $this->getEstatura();
 			$Peso = $this->getPeso();
-			$Indice = $this->getIndice();
+			$Índice = $this->getÍndice();
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
@@ -41,12 +41,12 @@
 			$Institucion_Medica = $this->getInstitucion_Medica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`)
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`)
 			VALUES (
 				NULL,
 				'$Estatura',
 				'$Peso',
-				'$Indice',
+				'$Índice',
 				'$Circ_Braquial',
 				'$Lateralidad',
 				'$Tipo_Sangre',
@@ -63,7 +63,7 @@
 				)";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
-			$this->setidDatos_Medicos($conexion->insert_id);
+			$this->setidDatos_Médicos($conexion->insert_id);
 
 			desconectarBD($conexion);
 		}
@@ -73,7 +73,7 @@
 
 			$Estatura = $this->getEstatura();
 			$Peso = $this->getPeso();
-			$Indice = $this->getIndice();
+			$Índice = $this->getÍndice();
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
@@ -90,7 +90,7 @@
 			$sql = "UPDATE `datos-salud` SET
 			`Estatura`='$Estatura',
 			`Peso`='$Peso',
-			`Indice`='$Indice',
+			`Índice`='$Índice',
 			`Circ_Braquial`='$Circ_Braquial',
 			`Lateralidad`='$Lateralidad',
 			`Tipo_Sangre`='$Tipo_Sangre',
@@ -123,8 +123,8 @@
 			return $datos_salud;
 		}
 
-		public function setidDatos_Medicos($idDatos_Medicos) {
-			$this->idDatos_Medicos = $idDatos_Medicos;
+		public function setidDatos_Médicos($idDatos_Médicos) {
+			$this->idDatos_Médicos = $idDatos_Médicos;
 		}
 		public function setEstatura($Estatura) {
 			$this->Estatura = $Estatura;
@@ -132,8 +132,8 @@
 		public function setPeso($Peso) {
 			$this->Peso = $Peso;
 		}
-		public function setIndice($Indice) {
-			$this->Indice = $Indice;
+		public function setÍndice($Índice) {
+			$this->Índice = $Índice;
 		}
 		public function setCirc_Braquial($Circ_Braquial) {
 			$this->Circ_Braquial = $Circ_Braquial;
@@ -175,8 +175,8 @@
 			$this->idEstudiantes = $idEstudiantes;
 		}
 
-		public function getidDatos_Medicos() {
-			return $this->idDatos_Medicos;
+		public function getidDatos_Médicos() {
+			return $this->idDatos_Médicos;
 		}
 		public function getEstatura() {
 			return $this->Estatura;
@@ -184,8 +184,8 @@
 		public function getPeso() {
 			return $this->Peso;
 		}
-		public function getIndice() {
-			return $this->Indice;
+		public function getÍndice() {
+			return $this->Índice;
 		}
 		public function getCirc_Braquial() {
 			return $this->Circ_Braquial;

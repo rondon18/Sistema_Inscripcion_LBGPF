@@ -4,9 +4,9 @@
 
 		private $idDatos_Sociales;
 		private $Posee_Canaima;
-		private $Condicion_Canaima;
+		private $Condición_Canaima;
 		private $Posee_Carnet_Patria;
-		private $Codigo_Carnet_Patria;
+		private $Código_Carnet_Patria;
 		private $Serial_Carnet_Patria;
 		private $Acceso_Internet;
 		private $idEstudiantes;
@@ -17,8 +17,8 @@
 			$conexion = conectarBD();
 
 			$Posee_Canaima = $this->getPosee_Canaima();
-			$Condicion_Canaima = $this->getCondicion_Canaima();
-			$Codigo_Carnet_Patria = $this->getCodigo_Carnet_Patria();
+			$Condición_Canaima = $this->getCondición_Canaima();
+			$Código_Carnet_Patria = $this->getCódigo_Carnet_Patria();
 			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
@@ -28,11 +28,11 @@
 			if ($resultado == NULL) {
 
 
-				$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Codigo_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
+				$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Código_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
 					NULL,
 					'$Posee_Canaima',
-					'$Condicion_Canaima',
-					'$Codigo_Carnet_Patria',
+					'$Condición_Canaima',
+					'$Código_Carnet_Patria',
 					'$Serial_Carnet_Patria',
 					'$Acceso_Internet',
 					'$id_Estudiante'
@@ -52,17 +52,17 @@
 			$conexion = conectarBD();
 
 			$Posee_Canaima = $this->getPosee_Canaima();
-			$Condicion_Canaima = $this->getCondicion_Canaima();
+			$Condición_Canaima = $this->getCondición_Canaima();
 			$Posee_Carnet_Patria = $this->getPosee_Carnet_Patria();
-			$Codigo_Carnet_Patria = $this->getCodigo_Carnet_Patria();
+			$Código_Carnet_Patria = $this->getCódigo_Carnet_Patria();
 			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
 			$sql = "UPDATE `datos-sociales` SET
 				`Posee_Canaima`='$Posee_Canaima',
-				`Condicion_Canaima`='$Condicion_Canaima',
+				`Condición_Canaima`='$Condición_Canaima',
 				`Posee_Carnet_Patria`='$Posee_Carnet_Patria',
-				`Codigo_Carnet_Patria`='$Codigo_Carnet_Patria',
+				`Código_Carnet_Patria`='$Código_Carnet_Patria',
 				`Serial_Carnet_Patria`='$Serial_Carnet_Patria',
 				`Acceso_Internet`='$Acceso_Internet',
 			WHERE `idEstudiantes`='$id_Estudiante'";
@@ -94,14 +94,14 @@
 		public function setPosee_Canaima($Posee_Canaima){
 			$this->Posee_Canaima = $Posee_Canaima;
 		}
-		public function setCondicion_Canaima($Condicion_Canaima){
-			$this->Condicion_Canaima = $Condicion_Canaima;
+		public function setCondición_Canaima($Condición_Canaima){
+			$this->Condición_Canaima = $Condición_Canaima;
 		}
 		public function setPosee_Carnet_Patria($Posee_Carnet_Patria){
 			$this->Posee_Carnet_Patria = $Posee_Carnet_Patria;
 		}
-		public function setCodigo_Carnet_Patria($Codigo_Carnet_Patria){
-			$this->Codigo_Carnet_Patria = $Codigo_Carnet_Patria;
+		public function setCódigo_Carnet_Patria($Código_Carnet_Patria){
+			$this->Código_Carnet_Patria = $Código_Carnet_Patria;
 		}
 		public function setSerial_Carnet_Patria($Serial_Carnet_Patria){
 			$this->Serial_Carnet_Patria = $Serial_Carnet_Patria;
@@ -120,14 +120,14 @@
 		public function getPosee_Canaima() {
 			return $this->Posee_Canaima;
 		}
-		public function getCondicion_Canaima() {
-			return $this->Condicion_Canaima;
+		public function getCondición_Canaima() {
+			return $this->Condición_Canaima;
 		}
 		public function getPosee_Carnet_Patria() {
 			return $this->Posee_Carnet_Patria;
 		}
-		public function getCodigo_Carnet_Patria() {
-			return $this->Codigo_Carnet_Patria;
+		public function getCódigo_Carnet_Patria() {
+			return $this->Código_Carnet_Patria;
 		}
 		public function getSerial_Carnet_Patria() {
 			return $this->Serial_Carnet_Patria;
