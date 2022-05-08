@@ -29,7 +29,7 @@ if (!$_SESSION['login']) {
 			</div>
 			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
-		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;">
+		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;" autocomplete="off">
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">

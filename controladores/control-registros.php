@@ -44,6 +44,307 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	if ($orden == "Insertar") {
 
+		//
+		// REPRESENTANTE
+		//
+
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
+
+		$cedula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
+		$persona->setCédula($cedula_representante);
+
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
+		$persona->setGénero($_POST['Genero_R']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
+		$persona->setDirección($_POST['Direccion_R']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
+
+		//
+		// telefonos
+		//
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Principal_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
+		$telefonos->setRelación_Teléfono('Principal');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Secundario_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
+		$telefonos->setRelación_Teléfono('Secundario');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
+
+		#Telefono principal
+		$telefonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
+		$telefonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
+		$telefonos->setRelación_Teléfono('Auxiliar');
+		$telefonos->setCedula_Persona($persona->getCédula());
+
+		$telefonos->insertarTelefono();
+
+		$datos_representante->setCedula_Persona($persona->getCédula());
+		$datos_representante->setGrado_Academico($_POST['Grado_Instrucción']);
+
+		$datos_representante->insertarRepresentante();
+
+		//
+		// CARNET DE LA PATRIA
+		//
+
+		if ($_POST['Tiene_Carnet_Patria'] == "Si") {
+			// code...
+		}
+
+		$carnet->getCódigo_Carnet($_POST['Codigo_Carnet_Patria']);
+		$carnet->getSerial_Carnet($_POST['Serial_Carnet_Patria']);
+		$carnet->getCedula_Persona($persona->getCédula())
+
+		$carnet->insertarCarnetPatria();
+
+
+		//
+		// DATOS LABORALES
+		//
+
+		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
+		if ($_POST['Representante_Trabaja'] == "No") {
+			$datos_laborales->setEmpleo("Desempleado");
+		}
+		else {
+			$datos_laborales->setEmpleo($_POST['Empleo_R']);
+			$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
+			$datos_laborales->setRemuneración($_POST['Remuneración']);
+			$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneracion']);
+		}
+
+		$datos_laborales->setidRepresentantes($persona->getidRepresentantes());
+		$datos_laborales->insertarDatosLaborales();
+
+		#Datos economicos
+		$datos_economicos->setBanco($_POST['Banco']);
+		$datos_economicos->setTipo_Cuenta($_POST['Tipo_Cuenta']);
+		$datos_economicos->setCta_Bancaria($_POST['Nro_Cuenta']);
+		$datos_economicos->setidRepresentantes($persona->getidRepresentantes());
+		$datos_economicos->insertarDatosEconomicos();
+
+		#Datos vivienda
+		$datos_vivienda->setCondiciones_Vivienda($_POST['Condicion_vivienda']);
+		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
+
+		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
+		if ($_POST['Tenencia_vivienda'] == "Otro") {
+			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda_Otro']);
+		}
+		else{
+			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda']);
+		}
+
+		$datos_vivienda->setidRepresentante($persona->getidRepresentantes());
+		$datos_vivienda->insertarDatosVivienda();
+
+		//
+		// DATOS DEL CONTACTO AUXILIAR
+		//
+
+		$persona_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
+		$persona_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
+		$persona_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
+		$persona_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
+		$persona_auxiliar->setCédula($_POST['Cédula_Aux']);
+		$persona_auxiliar->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
+		$persona_auxiliar->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
+		$persona_auxiliar->setGénero($_POST['Genero_Aux']);
+		$persona_auxiliar->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
+		$persona_auxiliar->setDirección($_POST['Direccion_Aux']);
+		$persona_auxiliar->setEstado_Civil($_POST['Estado_Civil_Aux']);
+
+		$persona_auxiliar->insertarPersona();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		Banco
+		Tipo_Cuenta
+		Nro_Cuenta
+		Representante_Trabaja
+		Empleo_R
+
+
+		Lugar_Trabajo_R
+		Remuneración
+		Tipo_Remuneracion
+		Primer_Nombre_Aux
+		Segundo_Nombre_Aux
+		Primer_Apellido_Aux
+		Segundo_Apellido_Aux
+		Genero_Aux
+		Tipo_Cédula_Aux
+		Cédula_Aux
+		Correo_electrónico_Aux
+		Prefijo_Principal_Aux
+		Teléfono_Principal_Aux
+		Prefijo_Secundario_Aux
+		Teléfono_Secundario_Aux
+		Prefijo_Auxiliar_Aux
+		Teléfono_Auxiliar_Aux
+		Direccion_Aux
+		Relación_Auxiliar
+
+		Primer_Nombre_Est
+		Segundo_Nombre_Est
+		Primer_Apellido_Est
+		Segundo_Apellido_Est
+		Cedula_Est
+		Genero_Est
+		Genero_Est
+		Fecha_Nacimiento_Est
+		Lugar_Nacimiento_Est
+		Correo_electrónico_Est
+		Prefijo_Principal_Est
+		Teléfono_Principal_Est
+		Prefijo_Secundario_Est
+		Teléfono_Secundario_Est
+		Grado_A_Cursar
+		Estudiante_Repitente
+		Año_Repitente
+		Tiene_Materias_Pendientes
+		Materias_Pendientes
+		Plantel_Procedencia
+		Direccion_Est
+		Con_Quien_Vive
+		Tiene_Canaima
+		Tiene_Canaima
+		Condiciones_Canaima
+		Tiene_Carnet_Patria
+		Codigo_Carnet_Patria
+		Serial_Carnet_Patria
+		Internet_Vivienda
+		Internet_Vivienda
+		Indice
+		Talla
+		Peso
+		C_Braquial
+		Talla_Pantalon
+		Talla_Camisa
+		Talla_Zapatos
+		Padece_Enfermedad
+		Cual_Enfermedad
+		Alergias
+		Grupo_Sanguineo
+		Factor_Rhesus
+		Lateralidad
+		Lateralidad
+		Lateralidad
+		Condicion_Dentadura
+		Condicion_Dentadura
+		Condicion_Dentadura
+		Condicion_Vista
+		Condicion_Vista
+		Condicion_Vista
+		Condiciones_Salud
+		Condiciones_Salud
+		Condiciones_Salud
+		Condiciones_Salud
+		Condiciones_Salud
+		Condiciones_Salud
+		Recibe_Atención_Inst
+		Institucion_Medica
+		Recibe_Medicacion
+		Medicacion
+		Tiene_Dieta_Especial
+		Dieta_Especial
+		Tiene_Carnet_Discapacidad
+		Nro_Carnet_Discapacidad
+		Vinculo_Familiar
+		Vinculo_Familiar
+		Primer_Nombre_Familiar
+		Segundo_Nombre_Familiar
+		Primer_Apellido_Familiar
+		Segundo_Apellido_Familiar
+		Genero_Familiar
+		Genero_Familiar
+		Cédula_Familiar
+		Fecha_Nacimiento_Familiar
+		Lugar_Nacimiento_Familiar
+		Correo_electrónico_Familiar
+		Prefijo_Principal_Familiar
+		Teléfono_Principal_Familiar
+		Prefijo_Secundario_Familiar
+		Teléfono_Secundario_Familiar
+		Estado_Civil_Familiar
+		Direccion_Familiar
+		Reside_En_El_País
+		País
+
+		orden
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		#Persona -> padre
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);

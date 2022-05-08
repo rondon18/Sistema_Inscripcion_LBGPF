@@ -3,7 +3,6 @@
 class Representantes {
 
 	private $idRepresentantes;
-	private $Vinculo;
 	private $Grado_Academico;
 	private $Cedula_Persona;
 
@@ -12,10 +11,8 @@ class Representantes {
 	public function insertarRepresentante() {
 		$conexion = conectarBD();
 
-		$Vinculo = $this->getVinculo();
-		$Cedula_Persona = $this->getCedula_Persona();
 		$Grado_Academico = $this->getGrado_Academico();
-
+		$Cedula_Persona = $this->getCedula_Persona();
 
 		$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
 
@@ -24,9 +21,8 @@ class Representantes {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Vinculo`, `Grado_Academico`, `Cedula_Persona`) VALUES (
+			$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Grado_Academico`, `Cedula_Persona`) VALUES (
 				NULL,
-				'$Vinculo',
 				'$Grado_Academico',
 				'$Cedula_Persona'
 			)";
@@ -42,11 +38,9 @@ class Representantes {
 	public function editarRepresentante($Cedula_Persona) {
 		$conexion = conectarBD();
 
-		$Vinculo = $this->getVinculo();
 		$Grado_Academico = $this->getGrado_Academico();
 
 		$sql = "UPDATE `representantes` SET
-			`Vinculo`='$Vinculo',
 			`Grado_Academico`='$Grado_Academico',
 		 WHERE `Cedula_Persona`='$Cedula_Persona'";
 
@@ -130,9 +124,6 @@ class Representantes {
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;
 	}
-	public function setVinculo($Vinculo) {
-		$this->Vinculo = $Vinculo;
-	}
 	public function setCedula_Persona($Cedula_Persona) {
 		$this->Cedula_Persona = $Cedula_Persona;
 	}
@@ -142,9 +133,6 @@ class Representantes {
 
 	public function getidRepresentantes() {
 		return $this->idRepresentantes;
-	}
-	public function getVinculo() {
-		return $this->Vinculo;
 	}
 	public function getCedula_Persona() {
 		return $this->Cedula_Persona;

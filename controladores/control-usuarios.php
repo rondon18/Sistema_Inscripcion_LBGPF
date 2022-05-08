@@ -5,7 +5,6 @@ session_start();
 require("conexion.php");
 
 require('../clases/personas.php');
-require('../clases/telefonos.php');
 require('../clases/representantes.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/usuario.php');

@@ -24,7 +24,7 @@ if (!isset($_POST['Datos_Representante'])) {
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 </head>
 <body>
-	<form id="FormularioEstudiante" class="card" action="../../controladores/control-estudiantes.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()'>
+	<form id="FormularioEstudiante" class="card" action="../../controladores/control-estudiantes.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()' autocomplete="off">
 			<div class="card-header">
 				<h4>Formulario de registro de estudiantes</h4>
 			</div>
@@ -654,21 +654,20 @@ if (!isset($_POST['Datos_Representante'])) {
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 function enviar() {
-	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
+	var FormularioEstudiante = document.getElementById("FormularioEstudiante");
 	var a = document.getElementById("seccion1");
 	var b = document.getElementById("seccion2");
 	var c = document.getElementById("seccion3");
 	var d = document.getElementById("seccion4");
-	var e = document.getElementById("seccion5");
 
 
+	a.style.display = "block";
 	b.style.display = "block";
 	c.style.display = "block";
 	d.style.display = "block";
-	e.style.display = "block";
 
-	if (FormularioRepresentante.checkValidity()) {
-		FormularioRepresentante.submit();
+	if (FormularioEstudiante.checkValidity()) {
+		FormularioEstudiante.submit();
 	}
 	else {
 		alert("Faltan campos por llenar");
@@ -678,7 +677,6 @@ function enviar() {
 	b.style.display = "none";
 	c.style.display = "none";
 	d.style.display = "none";
-	e.style.display = "none";
 
 }
 	function seccion(seccion) {
