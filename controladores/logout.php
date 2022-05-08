@@ -1,12 +1,12 @@
 <?php
 require("conexion.php");
-require("../clases/bitacora.php");
+require("../clases/bitácora.php");
 session_start();
 
-$bitacora = new bitacora();
+$bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Cierra sesión.';
-$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
-$bitacora->cerrar_bitacora($_SESSION['idBitacora']);
+$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+$bitácora->cerrar_bitácora($_SESSION['idbitácora']);
 
 session_destroy();
 

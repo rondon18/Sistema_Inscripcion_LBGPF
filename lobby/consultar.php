@@ -33,12 +33,12 @@ require("../clases/padres.php");
 require("../controladores/conexion.php");
 require("../clases/usuario.php");
 
-require('../clases/bitacora.php');
-$bitacora = new bitacora();
+require('../clases/bitácora.php');
+$bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Consulta estudiantes';
-$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
-$registros_bitacora = $bitacora->mostrar_bitacora();
+$registros_bitácora = $bitácora->mostrar_bitácora();
 
 $estudiante = new Estudiantes();
 $representante = new Representantes();
@@ -113,7 +113,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Consultar usuarios</a>
 					</li>
 					<li class="nav-item">
-						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitacora</a>
+						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Consultar bitácora</a>
 					</li>
 					<?php endif ?>
 			</ul>
@@ -273,10 +273,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 					</div>
 				<div id="seccion4" class="card my-2">
 						<div class="card-header">
-							Registro de bitacora
+							Registro de bitácora
 						</div>
 						<div class="card-body">
-								<table id="bitacora" class="table table-striped table-bordered table-sm w-100">
+								<table id="bitácora" class="table table-striped table-bordered table-sm w-100">
 									<thead>
 										<th>Nro. Registro</th>
 										<th>Id de usuario</th>
@@ -287,16 +287,16 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<th>Hora de cierre</th>
 									</thead>
 									<tbody>
-									<?php foreach ($registros_bitacora as $registro): ?>
-										<?php if ($registro['idBitacora'] != $_SESSION['idBitacora']): #No muestra el ultimo registro por ser el actial?>
+									<?php foreach ($registros_bitácora as $registro): ?>
+										<?php if ($registro['idbitácora'] != $_SESSION['idbitácora']): #No muestra el ultimo registro por ser el actial?>
 											<tr>
-												<td><?php echo $registro['idBitacora']?></td>
+												<td><?php echo $registro['idbitácora']?></td>
 												<td><?php echo $registro['idUsuarios']?></td>
-												<td><?php echo $registro['fechaInicioSesion']?></td>
-												<td><?php echo $registro['horaInicioSesion']?></td>
+												<td><?php echo $registro['fechaIniciosesión']?></td>
+												<td><?php echo $registro['horaIniciosesión']?></td>
 												<td style="min-width:400px; max-width: 800px;"><small><?php echo $registro['linksVisitados']?></small></td>
-												<td><?php if(!empty($registro['fechaFinalSesion'])) { echo $registro['fechaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
-												<td><?php if(!empty($registro['horaFinalSesion'])) { echo $registro['horaFinalSesion'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td><?php if(!empty($registro['fechaFinalsesión'])) { echo $registro['fechaFinalsesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td><?php if(!empty($registro['horaFinalsesión'])) { echo $registro['horaFinalsesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
 											</tr>
 										<?php endif;?>
 									<?php endforeach; ?>
@@ -396,9 +396,9 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 		});
 	} );
 
-	//Datatables bitacora
+	//Datatables bitácora
 	$(document).ready( function () {
-		$('#bitacora').DataTable({
+		$('#bitácora').DataTable({
 			responsive: true,
 			"language": {
 					"url": "../js/datatables-español.json"
@@ -410,10 +410,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	            extend: 'excelHtml5',
 	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
-	            filename: 'Reporte de bitacora',
-	            sheetName: 'Reporte de bitacora',
+	            filename: 'Reporte de bitácora',
+	            sheetName: 'Reporte de bitácora',
 	            className: 'btn btn-success',
-	            messageTop: 'Reporte de bitacora'
+	            messageTop: 'Reporte de bitácora'
 	        }
 		  	]
 		});

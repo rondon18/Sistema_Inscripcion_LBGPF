@@ -117,7 +117,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		/*
 
-			Cambia las variables de sesion para no reDirecciónar al usuario a iniciar sesión
+			Cambia las variables de sesión para no reDirecciónar al usuario a iniciar sesión
 
 		*/
 		$_SESSION['persona']['Primer_Nombre'] = $persona->getPrimer_Nombre();
@@ -140,22 +140,22 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 			$usuario->eliminarUsuario($_SESSION['persona']['Cédula']);
 
-			require('../clases/bitacora.php');
+			require('../clases/bitácora.php');
 
-			$bitacora = new bitacora();
+			$bitácora = new bitácora();
 			$_SESSION['acciones'] .= ',Se da de baja';
-			$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+			$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
 			header('Location: logout.php');
 		}
 		elseif (isset($_POST['idUsuario'])) {
 			$usuario->eliminarUsuario($_POST['idUsuario']);
 
-			require('../clases/bitacora.php');
+			require('../clases/bitácora.php');
 
-			$bitacora = new bitacora();
+			$bitácora = new bitácora();
 			$_SESSION['acciones'] .= ', Elimina un usuario';
-			$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+			$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
 			header('Location: ../lobby/consultar.php');
 		}

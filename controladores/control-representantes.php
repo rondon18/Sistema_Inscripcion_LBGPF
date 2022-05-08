@@ -220,7 +220,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$datos_estudiante->setCédula_Estudiante($_POST['Cédula_Est']);
 		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
-		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive']);
+		$datos_estudiante->setCon_Quién_Vive($_POST['Con_Quién_Vive']);
 		$datos_estudiante->setidRepresentante($_SESSION['representante']['idRepresentantes']);
 		$datos_estudiante->setidPadre($datos_padre->getidPadres());
 
@@ -233,7 +233,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setCirc_Braquial($_POST['C_Braquial']);
 		$datos_salud->setLateralidad($_POST['Lateralidad']);
 		$datos_salud->setTipo_Sangre($_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus']);
-		$datos_salud->setMedicación($_POST['Medicación']);
+		$datos_salud->setmédicación($_POST['médicación']);
 		$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
 
 		$impedimentos = "";
@@ -252,10 +252,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setAlergias($_POST['Alergias']);
 		$datos_salud->setCond_Vista($_POST['Condición_Vista']);
 		$datos_salud->setCond_Dental($_POST['Condición_Dentadura']);
-		$datos_salud->setInstitucion_Medica($_POST['Institucion_Medica']);
+		$datos_salud->setInstitución_médica($_POST['Institución_médica']);
 		$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
 
-		$datos_salud->insertarFicha_Medica($datos_estudiante->getidEstudiantes());
+		$datos_salud->insertarFicha_médica($datos_estudiante->getidEstudiantes());
 
 		#datos sociales del estudiante
 		$datos_sociales->setPosee_Canaima($_POST['Tiene_Canaima']);
@@ -315,7 +315,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$estudiante->setEstatura($_POST['Estatura']);
 		$estudiante->setPeso($_POST['Peso']);
 		$estudiante->setGrupoSanguineo($_POST['GrupoSanguineo']);
-		$estudiante->setMedicación($_POST['Medicación']);
+		$estudiante->setmédicación($_POST['médicación']);
 		$estudiante->setDietaEspecial($_POST['DietaEspecial']);
 		$estudiante->setImpedimentoFisico($_POST['ImpedimentoFisico']);
 		$estudiante->setAlergias($_POST['Alergias']);

@@ -6,11 +6,11 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-require('../clases/bitacora.php');
+require('../clases/bitácora.php');
 require('../controladores/conexion.php');
-$bitacora = new bitacora();
+$bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Visita perfil';
-$bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
+$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
 function Teléfonos($prefijo,$Teléfono) {
 	if (!empty($prefijo) and !empty($Teléfono)) {

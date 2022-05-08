@@ -13,7 +13,7 @@ require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
 require('../clases/laborales-representantes.php');
 require('../clases/padres.php');
-require('../clases/ficha-medica.php');
+require('../clases/ficha-médica.php');
 require('../clases/sociales-Estudiantes.php');
 require('../clases/tallas-Estudiantes.php');
 require('../clases/grado.php');
@@ -25,7 +25,7 @@ require('../clases/Teléfonos.php');
 
 require('../controladores/conexion.php');
 
-require('../clases/bitacora.php');
+require('../clases/bitácora.php');
 
 $conexion = conectarBD();
 
@@ -40,7 +40,7 @@ $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
 $Teléfonos = new Teléfonos();
 
-$datos_Médicos = new FichaMedica();
+$datos_Médicos = new Fichamédica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
@@ -55,7 +55,7 @@ $Teléfonos_Est = $Teléfonos->consultarTeléfonos($_POST['Cédula_Estudiante'])
 $Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
 $Teléfonos_pa = $Teléfonos->consultarTeléfonosPadreID($_POST['id_padre']);
 
-$datos_Médicos = $datos_Médicos->consultarFicha_Medica($_POST['id_Estudiante']);
+$datos_Médicos = $datos_Médicos->consultarFicha_médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
 $datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
@@ -162,7 +162,7 @@ desconectarBD($conexion);
 						<td>Tipo Sangre: <?php echo $datos_Médicos['Tipo_Sangre']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Medicación: <?php echo $datos_Médicos['Medicación']?></td>
+						<td colspan="4">médicación: <?php echo $datos_Médicos['médicación']?></td>
 					</tr>
 					<tr>
 						<td colspan="4">Dieta Especial: <?php echo $datos_Médicos['Dieta_Especial']?></td>
@@ -178,7 +178,7 @@ desconectarBD($conexion);
 						<td colspan="2">Carnet Discapacidad: <?php echo $datos_Médicos['Carnet_Discapacidad']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Institución Medica: <?php echo $datos_Médicos['Institucion_Medica']?></td>
+						<td colspan="4">Institución médica: <?php echo $datos_Médicos['Institución_médica']?></td>
 					</tr>
 
 					<tr>

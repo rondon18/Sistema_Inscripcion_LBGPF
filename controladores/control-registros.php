@@ -8,7 +8,7 @@ if (!$_SESSION['login']) {
 }
 
 require_once('../clases/estudiante.php');
-require_once('../clases/ficha-medica.php');
+require_once('../clases/ficha-médica.php');
 require_once('../clases/sociales-estudiantes.php');
 require_once('../clases/tallas-estudiantes.php');
 
@@ -26,7 +26,7 @@ $datos_estudiante	= new Estudiantes();
 $padre = new Personas();
 $datos_padre = new Padres();
 
-$datos_salud	= new FichaMedica();
+$datos_salud	= new Fichamédica();
 $datos_sociales = new DatosSociales();
 $datos_tallas = new TallasEstudiante();
 
@@ -34,7 +34,7 @@ $año_escolar = new Año_Escolar();
 $grado = new GradoAcadémico();
 $estudiante_repitente = new EstudiantesRepitentes();
 
-$datos_salud = new FichaMedica();
+$datos_salud = new Fichamédica();
 
 
 
@@ -235,7 +235,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		Materias_Pendientes
 		Plantel_Procedencia
 		Dirección_Est
-		Con_Quien_Vive
+		Con_Quién_Vive
 		Tiene_Canaima
 		Tiene_Canaima
 		Condiciones_Canaima
@@ -272,9 +272,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		Condiciones_Salud
 		Condiciones_Salud
 		Recibe_Atención_Inst
-		Institucion_Medica
-		Recibe_Medicación
-		Medicación
+		Institución_médica
+		Recibe_médicación
+		médicación
 		Tiene_Dieta_Especial
 		Dieta_Especial
 		Tiene_Carnet_Discapacidad
@@ -381,7 +381,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$datos_estudiante->setCédula_Estudiante($_POST['Cédula_Est']);
 		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
-		$datos_estudiante->setCon_Quien_Vive($_POST['Con_Quien_Vive']);
+		$datos_estudiante->setCon_Quién_Vive($_POST['Con_Quién_Vive']);
 		$datos_estudiante->setidRepresentante($_SESSION['representante']['idRepresentantes']);
 		$datos_estudiante->setidPadre($datos_padre->getidPadres());
 
@@ -394,7 +394,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setCirc_Braquial($_POST['C_Braquial']);
 		$datos_salud->setLateralidad($_POST['Lateralidad']);
 		$datos_salud->setTipo_Sangre($_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus']);
-		$datos_salud->setMedicación($_POST['Medicación']);
+		$datos_salud->setmédicación($_POST['médicación']);
 		$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
 
 		$impedimentos = "";
@@ -413,10 +413,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setAlergias($_POST['Alergias']);
 		$datos_salud->setCond_Vista($_POST['Condición_Vista']);
 		$datos_salud->setCond_Dental($_POST['Condición_Dentadura']);
-		$datos_salud->setInstitucion_Medica($_POST['Institucion_Medica']);
+		$datos_salud->setInstitución_médica($_POST['Institución_médica']);
 		$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
 
-		$datos_salud->insertarFicha_Medica($datos_estudiante->getidEstudiantes());
+		$datos_salud->insertarFicha_médica($datos_estudiante->getidEstudiantes());
 
 		#datos sociales del estudiante
 		$datos_sociales->setPosee_Canaima($_POST['Tiene_Canaima']);
@@ -476,7 +476,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$estudiante->setEstatura($_POST['Estatura']);
 		$estudiante->setPeso($_POST['Peso']);
 		$estudiante->setGrupoSanguineo($_POST['GrupoSanguineo']);
-		$estudiante->setMedicación($_POST['Medicación']);
+		$estudiante->setmédicación($_POST['médicación']);
 		$estudiante->setDietaEspecial($_POST['DietaEspecial']);
 		$estudiante->setImpedimentoFisico($_POST['ImpedimentoFisico']);
 		$estudiante->setAlergias($_POST['Alergias']);

@@ -8,7 +8,7 @@ require("../clases/económicos-representantes.php");
 require("../clases/laborales-representantes.php");
 require("../clases/vivienda-representantes.php");
 require("../clases/Teléfonos.php");
-require("../clases/bitacora.php");
+require("../clases/bitácora.php");
 
 if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $clave = $_POST['clave'] != "")) {
 
@@ -39,9 +39,9 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 			#se crea variable de sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
-			$bitacora = new bitacora();
+			$bitácora = new bitácora();
 
-			$_SESSION['idBitacora'] = $bitacora->guardar_bitacora($_SESSION['usuario']['idUsuarios']);
+			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
 			$_SESSION['acciones'] = "Inicia Sesión";
 
 			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante

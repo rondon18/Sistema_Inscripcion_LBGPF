@@ -1,6 +1,6 @@
 <?php
 
-	class FichaMedica {
+	class Fichamédica {
 
 		private $idDatos_Médicos;
 		private $Estatura;
@@ -9,20 +9,20 @@
 		private $Circ_Braquial;
 		private $Lateralidad;
 		private $Tipo_Sangre;
-		private $Medicación;
+		private $médicación;
 		private $Dieta_Especial;
 		private $Enfermedad;
 		private $Impedimento_Físico;
 		private $Alergias;
 		private $Cond_Vista;
 		private $Cond_Dental;
-		private $Institucion_Medica;
+		private $Institución_médica;
 		private $Carnet_Discapacidad;
 		private $idEstudiantes;
 
 		public function __construct(){}
 
-		public function insertarFicha_Medica($id_Estudiante) {
+		public function insertarFicha_médica($id_Estudiante) {
 			$conexion = conectarBD();
 
 			$Estatura = $this->getEstatura();
@@ -31,17 +31,17 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$Medicación = $this->getMedicación();
+			$médicación = $this->getmédicación();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
 			$Alergias = $this->getAlergias();
 			$Cond_Vista = $this->getCond_Vista();
 			$Cond_Dental = $this->getCond_Dental();
-			$Institucion_Medica = $this->getInstitucion_Medica();
+			$Institución_médica = $this->getInstitución_médica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`)
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `médicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
 			VALUES (
 				NULL,
 				'$Estatura',
@@ -50,14 +50,14 @@
 				'$Circ_Braquial',
 				'$Lateralidad',
 				'$Tipo_Sangre',
-				'$Medicación',
+				'$médicación',
 				'$Dieta_Especial',
 				'$Enfermedad',
 				'$Impedimento_Físico',
 				'$Alergias',
 				'$Cond_Vista',
 				'$Cond_Dental',
-				'$Institucion_Medica',
+				'$Institución_médica',
 				'$Carnet_Discapacidad',
 				'$id_Estudiante'
 				)";
@@ -68,7 +68,7 @@
 			desconectarBD($conexion);
 		}
 
-		public function editarFicha_Medica($id_Estudiante) {
+		public function editarFicha_médica($id_Estudiante) {
 			$conexion = conectarBD();
 
 			$Estatura = $this->getEstatura();
@@ -77,14 +77,14 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$Medicación = $this->getMedicación();
+			$médicación = $this->getmédicación();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
 			$Alergias = $this->getAlergias();
 			$Cond_Vista = $this->getCond_Vista();
 			$Cond_Dental = $this->getCond_Dental();
-			$Institucion_Medica = $this->getInstitucion_Medica();
+			$Institución_médica = $this->getInstitución_médica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
 			$sql = "UPDATE `datos-salud` SET
@@ -94,14 +94,14 @@
 			`Circ_Braquial`='$Circ_Braquial',
 			`Lateralidad`='$Lateralidad',
 			`Tipo_Sangre`='$Tipo_Sangre',
-			`Medicación`='$Medicación',
+			`médicación`='$médicación',
 			`Dieta_Especial`='$Dieta_Especial',
 			`Enfermedad`='$Enfermedad',
 			`Impedimento_Físico`='$Impedimento_Físico',
 			`Alergias`='$Alergias',
 			`Cond_Vista`='$Cond_Vista',
 			`Cond_Dental`='$Cond_Dental',
-			`Institucion_Medica`='$Institucion_Medica',
+			`Institución_médica`='$Institución_médica',
 			`Carnet_Discapacidad`='$Carnet_Discapacidad'
 			 WHERE `idEstudiantes`='$id_Estudiante'";
 
@@ -110,7 +110,7 @@
 			desconectarBD($conexion);
 		}
 
-		public function consultarFicha_Medica($id_Estudiante) {
+		public function consultarFicha_médica($id_Estudiante) {
 			$conexion = conectarBD();
 
 			$sql = "SELECT * FROM `datos-salud` WHERE `idEstudiantes` = '$id_Estudiante'";
@@ -144,8 +144,8 @@
 		public function setTipo_Sangre($Tipo_Sangre) {
 			$this->Tipo_Sangre = $Tipo_Sangre;
 		}
-		public function setMedicación($Medicación) {
-			$this->Medicación = $Medicación;
+		public function setmédicación($médicación) {
+			$this->médicación = $médicación;
 		}
 		public function setDieta_Especial($Dieta_Especial) {
 			$this->Dieta_Especial = $Dieta_Especial;
@@ -165,8 +165,8 @@
 		public function setCond_Dental($Cond_Dental) {
 			$this->Cond_Dental = $Cond_Dental;
 		}
-		public function setInstitucion_Medica($Institucion_Medica) {
-			$this->Institucion_Medica = $Institucion_Medica;
+		public function setInstitución_médica($Institución_médica) {
+			$this->Institución_médica = $Institución_médica;
 		}
 		public function setCarnet_Discapacidad($Carnet_Discapacidad) {
 			$this->Carnet_Discapacidad = $Carnet_Discapacidad;
@@ -196,8 +196,8 @@
 		public function getTipo_Sangre() {
 			return $this->Tipo_Sangre;
 		}
-		public function getMedicación() {
-			return $this->Medicación;
+		public function getmédicación() {
+			return $this->médicación;
 		}
 		public function getDieta_Especial() {
 			return $this->Dieta_Especial;
@@ -217,8 +217,8 @@
 		public function getCond_Dental() {
 			return $this->Cond_Dental;
 		}
-		public function getInstitucion_Medica() {
-			return $this->Institucion_Medica;
+		public function getInstitución_médica() {
+			return $this->Institución_médica;
 		}
 		public function getCarnet_Discapacidad() {
 			return $this->Carnet_Discapacidad;

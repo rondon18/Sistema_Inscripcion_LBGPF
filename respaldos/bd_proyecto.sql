@@ -43,24 +43,24 @@ INSERT INTO `año-escolar` (`idAño-Escolar`, `Inicio_Año_Escolar`, `Fin_Año_E
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `bitacora`
+-- Estructura de tabla para la tabla `bitácora`
 --
 
-CREATE TABLE `bitacora` (
-  `idBitacora` int(11) NOT NULL,
+CREATE TABLE `bitácora` (
+  `idbitácora` int(11) NOT NULL,
   `idUsuarios` int(11) NOT NULL,
-  `fechaInicioSesion` date NOT NULL,
-  `horaInicioSesion` time NOT NULL,
+  `fechaIniciosesión` date NOT NULL,
+  `horaIniciosesión` time NOT NULL,
   `linksVisitados` text NOT NULL,
-  `fechaFinalSesion` date DEFAULT NULL,
-  `horaFinalSesion` time DEFAULT NULL
+  `fechaFinalsesión` date DEFAULT NULL,
+  `horaFinalsesión` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `bitacora`
+-- Volcado de datos para la tabla `bitácora`
 --
 
-INSERT INTO `bitacora` (`idBitacora`, `idUsuarios`, `fechaInicioSesion`, `horaInicioSesion`, `linksVisitados`, `fechaFinalSesion`, `horaFinalSesion`) VALUES
+INSERT INTO `bitácora` (`idbitácora`, `idUsuarios`, `fechaIniciosesión`, `horaIniciosesión`, `linksVisitados`, `fechaFinalsesión`, `horaFinalsesión`) VALUES
 (1, 2, '2022-04-22', '17:34:06', 'Muchos,ajshdvjasgdvjashdvjh', '2022-04-22', '19:34:06'),
 (2, 2, '2022-04-26', '01:51:36', '/proyecto_pst/controladores/login.php', '0000-00-00', '00:00:00'),
 (3, 2, '2022-04-26', '01:52:40', 'Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil', NULL, NULL),
@@ -220,14 +220,14 @@ CREATE TABLE `datos-salud` (
   `Circ_Braquial` int(11) NOT NULL,
   `Lateralidad` varchar(45) COLLATE utf8_bin NOT NULL,
   `Tipo_Sangre` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Medicación` varchar(50) COLLATE utf8_bin NOT NULL,
+  `médicación` varchar(50) COLLATE utf8_bin NOT NULL,
   `Dieta_Especial` varchar(50) COLLATE utf8_bin NOT NULL,
   `Enfermedad` varchar(50) COLLATE utf8_bin NOT NULL,
   `Impedimento_Físico` varchar(60) COLLATE utf8_bin NOT NULL,
   `Alergias` varchar(50) COLLATE utf8_bin NOT NULL,
   `Cond_Vista` varchar(45) COLLATE utf8_bin NOT NULL,
   `Cond_Dental` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Institucion_Medica` varchar(50) COLLATE utf8_bin NOT NULL,
+  `Institución_médica` varchar(50) COLLATE utf8_bin NOT NULL,
   `Carnet_Discapacidad` varchar(20) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -236,7 +236,7 @@ CREATE TABLE `datos-salud` (
 -- Volcado de datos para la tabla `datos-salud`
 --
 
-INSERT INTO `datos-salud` (`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES
+INSERT INTO `datos-salud` (`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `médicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES
 (1, 1, 1, '1', 1, 'Diestro', 'AB-', 'hjgchjgch', 'hgchjgch', '', 'Motora, Escritura, Embarazo', 'cxhchgc', 'Regular', 'Mala', 'vjgcvjgcv', 'hgchgc', 6),
 (10, 1, 1, '1', 1, 'Diestro', 'AB-', 'hjgchjgch', 'hgchjgch', '', 'Motora, Escritura, Embarazo', 'cxhchgc', 'Regular', 'Mala', 'vjgcvjgcv', 'hgchgc', 1);
 
@@ -251,7 +251,7 @@ CREATE TABLE `datos-sociales` (
   `Posee_Canaima` char(2) COLLATE utf8_bin NOT NULL,
   `Condición_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
   `Acceso_Internet` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Con_Quien_Vive` varchar(45) COLLATE utf8_bin NOT NULL,
+  `Con_Quién_Vive` varchar(45) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -259,7 +259,7 @@ CREATE TABLE `datos-sociales` (
 -- Volcado de datos para la tabla `datos-sociales`
 --
 
-INSERT INTO `datos-sociales` (`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Acceso_Internet`, `Con_Quien_Vive`, `idEstudiantes`) VALUES
+INSERT INTO `datos-sociales` (`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Acceso_Internet`, `Con_Quién_Vive`, `idEstudiantes`) VALUES
 (1, 'Si', 'Muy buenas Condiciones', 'Si', '', 6),
 (9, 'Si', 'Muy buenas Condiciones', 'Si', '', 1);
 
@@ -316,7 +316,7 @@ INSERT INTO `datos-vivienda` (`idDatos-vivienda`, `Condiciones_Vivienda`, `Tipo_
 CREATE TABLE `estudiantes` (
   `idEstudiantes` int(11) NOT NULL,
   `Plantel_Procedencia` text COLLATE utf8_bin NOT NULL,
-  `Con_Quien_Vive` varchar(25) COLLATE utf8_bin NOT NULL,
+  `Con_Quién_Vive` varchar(25) COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   `idRepresentante` int(11) NOT NULL,
   `Relación_Representante` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -328,7 +328,7 @@ CREATE TABLE `estudiantes` (
 -- Volcado de datos para la tabla `estudiantes`
 --
 
-INSERT INTO `estudiantes` (`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`, `idPadre`, `Relación_Padre`) VALUES
+INSERT INTO `estudiantes` (`idEstudiantes`, `Plantel_Procedencia`, `Con_Quién_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`, `idPadre`, `Relación_Padre`) VALUES
 (1, 'asjbfkajsdbf', 'Solo', 'V26666666', 3, '', 1, ''),
 (6, 'ahbsjdhavda', 'vjahsfdhavd', 'V11111111', 3, '', 2, '');
 
@@ -393,11 +393,11 @@ INSERT INTO `grado` (`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escol
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Inscripciónes`
+-- Estructura de tabla para la tabla `Inscripciones`
 --
 
-CREATE TABLE `Inscripciónes` (
-  `idInscripciónes` int(11) NOT NULL,
+CREATE TABLE `Inscripciones` (
+  `idInscripciones` int(11) NOT NULL,
   `Fecha_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `Hora_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `idUsuario` int(11) NOT NULL,
@@ -560,11 +560,11 @@ ALTER TABLE `año-escolar`
   ADD PRIMARY KEY (`idAño-Escolar`);
 
 --
--- Índices de la tabla `bitacora`
+-- Índices de la tabla `bitácora`
 --
-ALTER TABLE `bitacora`
-  ADD PRIMARY KEY (`idBitacora`),
-  ADD KEY `fk_usuarios_bitacora` (`idUsuarios`);
+ALTER TABLE `bitácora`
+  ADD PRIMARY KEY (`idbitácora`),
+  ADD KEY `fk_usuarios_bitácora` (`idUsuarios`);
 
 --
 -- Índices de la tabla `carnet-patria`
@@ -655,10 +655,10 @@ ALTER TABLE `grado`
   ADD KEY `fk_Año-Escolar_Grado` (`idAño-Escolar`);
 
 --
--- Índices de la tabla `Inscripciónes`
+-- Índices de la tabla `Inscripciones`
 --
-ALTER TABLE `Inscripciónes`
-  ADD PRIMARY KEY (`idInscripciónes`,`idUsuario`,`idEstudiante`),
+ALTER TABLE `Inscripciones`
+  ADD PRIMARY KEY (`idInscripciones`,`idUsuario`,`idEstudiante`),
   ADD KEY `idEstudiante_idx` (`idEstudiante`),
   ADD KEY `idUsuarios_idx` (`idUsuario`);
 
@@ -709,10 +709,10 @@ ALTER TABLE `año-escolar`
   MODIFY `idAño-Escolar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `bitacora`
+-- AUTO_INCREMENT de la tabla `bitácora`
 --
-ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+ALTER TABLE `bitácora`
+  MODIFY `idbitácora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `carnet-patria`
@@ -787,10 +787,10 @@ ALTER TABLE `grado`
   MODIFY `idGrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `Inscripciónes`
+-- AUTO_INCREMENT de la tabla `Inscripciones`
 --
-ALTER TABLE `Inscripciónes`
-  MODIFY `idInscripciónes` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Inscripciones`
+  MODIFY `idInscripciones` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `padres`
@@ -903,11 +903,11 @@ ALTER TABLE `grado`
   ADD CONSTRAINT `fk_Estudiantes_Grado` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Inscripciónes`
+-- Filtros para la tabla `Inscripciones`
 --
-ALTER TABLE `Inscripciónes`
-  ADD CONSTRAINT `fk_Estudiantes_Inscripciónes` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Usuarios_Inscripciónes` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Inscripciones`
+  ADD CONSTRAINT `fk_Estudiantes_Inscripciones` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Usuarios_Inscripciones` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `padres`

@@ -11,7 +11,7 @@ require('../clases/estudiante.php');
 require('../clases/representantes.php');
 require('../clases/padres.php');
 
-require('../clases/ficha-medica.php');
+require('../clases/ficha-médica.php');
 require('../clases/sociales-estudiantes.php');
 require('../clases/tallas-estudiantes.php');
 
@@ -27,7 +27,7 @@ $Estudiante = new Estudiantes();
 $Representante = new Representantes();
 $Padre = new Padres();
 
-$Datos_Médicos = new FichaMedica();
+$Datos_Médicos = new Fichamédica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Estudiante_repitente = new EstudiantesRepitentes();
@@ -36,7 +36,7 @@ $Año = new Año_Escolar();
 
 $estudiante = $Estudiante->consultarEstudiante($_POST['id_estudiante']);
 
-$datos_Médicos = $Datos_Médicos->consultarFicha_Medica($_POST['id_estudiante']);
+$datos_Médicos = $Datos_Médicos->consultarFicha_médica($_POST['id_estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_estudiante']);
 
@@ -369,32 +369,32 @@ var_dump($Año);
 								}
 							}
 
-							$Condiciones_medicas = [$Visual,$Motora,$Auditiva,$Escritura,$Lectura,$Embarazo];
-							return $Condiciones_medicas;
+							$Condiciones_médicas = [$Visual,$Motora,$Auditiva,$Escritura,$Lectura,$Embarazo];
+							return $Condiciones_médicas;
 							
 						}
-						$Condiciones_medicas = CondicionesSalud($Condiciones);
+						$Condiciones_médicas = CondicionesSalud($Condiciones);
 
 					?>
 					<div>
 						<div>
 							<label class="form-label">Visual </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual" <?php if($Condiciones_medicas[0] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual" <?php if($Condiciones_médicas[0] == true){echo "checked";} ?>>
 
 							<label class="form-label">Motora </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora" <?php if($Condiciones_medicas[1] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora" <?php if($Condiciones_médicas[1] == true){echo "checked";} ?>>
 
 							<label class="form-label">Auditiva </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva" <?php if($Condiciones_medicas[2] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva" <?php if($Condiciones_médicas[2] == true){echo "checked";} ?>>
 
 							<label class="form-label">Escritura </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura" <?php if($Condiciones_medicas[3] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura" <?php if($Condiciones_médicas[3] == true){echo "checked";} ?>>
 
 							<label class="form-label">Lectura </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php if($Condiciones_medicas[4] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php if($Condiciones_médicas[4] == true){echo "checked";} ?>>
 
 							<label class="form-label">Embarazo </label>
-							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php if($Condiciones_medicas[5] == true){echo "checked";} ?>>
+							<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php if($Condiciones_médicas[5] == true){echo "checked";} ?>>
 						</div>
 					</div>
 				</div>
@@ -404,28 +404,28 @@ var_dump($Año);
 					<div>
 						<div>
 							<label class="form-label">Si </label>
-							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="Si" required <?php if (!empty($datos_Médicos['Institucion_Medica'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="Si" required <?php if (!empty($datos_Médicos['Institución_médica'])) { echo "checked";} ?>>
 
 							<label class="form-label">No </label>
-							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required <?php if (empty($datos_Médicos['Institucion_Medica'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_Atención_Inst" value="No" required <?php if (empty($datos_Médicos['Institución_médica'])) { echo "checked";} ?>>
 						</div>
 						<span>¿Cuál institución?</span>
-						<input class="form-control mb-2" type="text" name="Institucion_Medica" required value="<?php echo $datos_Médicos['Institucion_Medica'] ?>">
+						<input class="form-control mb-2" type="text" name="Institución_médica" required value="<?php echo $datos_Médicos['Institución_médica'] ?>">
 					</div>
 				</div>
 				<div>
-					<span>¿Recibe alguna Medicación especial?:</span>
+					<span>¿Recibe alguna médicación especial?:</span>
 
 					<div>
 						<div>
 							<label class="form-label">Si </label>
-							<input class="form-check-input" type="radio" name="Recibe_Medicación" value="Si" required <?php if (!empty($datos_Médicos['Medicación'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_médicación" value="Si" required <?php if (!empty($datos_Médicos['médicación'])) { echo "checked";} ?>>
 
 							<label class="form-label">No </label>
-							<input class="form-check-input" type="radio" name="Recibe_Medicación" value="No" required <?php if (empty($datos_Médicos['Medicación'])) { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Recibe_médicación" value="No" required <?php if (empty($datos_Médicos['médicación'])) { echo "checked";} ?>>
 						</div>
 						<span>¿Cuál?</span>
-						<input class="form-control mb-2" type="text" name="Medicación" required value="<?php echo $datos_Médicos['Medicación'] ?>">
+						<input class="form-control mb-2" type="text" name="médicación" required value="<?php echo $datos_Médicos['médicación'] ?>">
 					</div>
 				</div>
 				<div>

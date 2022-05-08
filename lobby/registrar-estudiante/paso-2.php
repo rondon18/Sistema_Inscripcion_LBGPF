@@ -174,7 +174,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						</div>
 						<div>
 							<label class="form-label">¿Con quién vive?:</label>
-							<input class="form-control mb-2" type="text" name="Con_Quien_Vive" id="Con_Quien_Vive" required>
+							<input class="form-control mb-2" type="text" name="Con_Quién_Vive" id="Con_Quién_Vive" required>
 						</div>
 						<div>
 							<span class="form-label">¿Tiene canaima?</span>
@@ -365,17 +365,17 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Institucion_Medica" id="Institucion_Medica" placeholder="¿Cuál institución?">
+								<input class="form-control w-auto" type="text" name="Institución_médica" id="Institución_médica" placeholder="¿Cuál institución?">
 							</div>
 						</div>
 						<div>
-							<span class="form-label">¿Recibe alguna Medicación especial?:</span>
+							<span class="form-label">¿Recibe alguna médicación especial?:</span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Recibe_Medicación" required>
+								<select class="form-select" name="Recibe_médicación" required>
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Medicación" id="Medicación" placeholder="¿Cuál medicación?">
+								<input class="form-control w-auto" type="text" name="médicación" id="médicación" placeholder="¿Cuál médicación?">
 							</div>
 						</div>
 						<div>

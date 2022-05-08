@@ -6,7 +6,7 @@ class Estudiantes extends Personas {
 
 	private $idEstudiantes;
 	private $Plantel_Procedencia;
-	private $Con_Quien_Vive;
+	private $Con_Quién_Vive;
 	private $Cédula_Estudiante;
 	private $idRepresentante;
 	private $Relación_Representante;
@@ -19,7 +19,7 @@ class Estudiantes extends Personas {
 		$conexion = conectarBD();
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
-		$Con_Quien_Vive = $this->getCon_Quien_Vive();
+		$Con_Quién_Vive = $this->getCon_Quién_Vive();
 		$Cédula_Estudiante = $this->getCédula_Estudiante();
 		$idRepresentante = $this->getidRepresentante();
 		$idPadre = $this->getidPadre();
@@ -31,10 +31,10 @@ class Estudiantes extends Personas {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`Relación_Padre`) VALUES (
+			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quién_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`Relación_Padre`) VALUES (
 				NULL,
 				'$Plantel_Procedencia',
-				'$Con_Quien_Vive',
+				'$Con_Quién_Vive',
 				'$Cédula_Estudiante',
 				'$idRepresentante',
 				'$Relación_Representante',
@@ -59,7 +59,7 @@ class Estudiantes extends Personas {
 				`Plantel_Procedencia`='$Plantel_Procedencia',
 			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
 
-		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quien_Vive`='[value-3]',`Cédula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
+		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quién_Vive`='[value-3]',`Cédula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
@@ -118,8 +118,8 @@ class Estudiantes extends Personas {
 	public function setPlantel_Procedencia($Plantel_Procedencia) {
 		$this->Plantel_Procedencia = $Plantel_Procedencia;
 	}
-	public function setCon_Quien_Vive($Con_Quien_Vive) {
-		$this->Con_Quien_Vive = $Con_Quien_Vive;
+	public function setCon_Quién_Vive($Con_Quién_Vive) {
+		$this->Con_Quién_Vive = $Con_Quién_Vive;
 	}
 	public function setCédula_Estudiante($Cédula_Estudiante) {
 		$this->Cédula_Estudiante = $Cédula_Estudiante;
@@ -137,8 +137,8 @@ class Estudiantes extends Personas {
 	public function getPlantel_Procedencia() {
 		return $this->Plantel_Procedencia;
 	}
-	public function getCon_Quien_Vive() {
-		return $this->Con_Quien_Vive;
+	public function getCon_Quién_Vive() {
+		return $this->Con_Quién_Vive;
 	}
 	public function getidRepresentante() {
 		return $this->idRepresentante;

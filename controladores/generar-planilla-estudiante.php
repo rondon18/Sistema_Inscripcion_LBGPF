@@ -15,7 +15,7 @@ require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
 require('../clases/laborales-representantes.php');
 require('../clases/padres.php');
-require('../clases/ficha-medica.php');
+require('../clases/ficha-médica.php');
 require('../clases/sociales-estudiantes.php');
 require('../clases/tallas-estudiantes.php');
 require('../clases/grado.php');
@@ -27,7 +27,7 @@ require('../clases/Teléfonos.php');
 
 require('../controladores/conexion.php');
 
-require('../clases/bitacora.php');
+require('../clases/bitácora.php');
 
 $conexion = conectarBD();
 
@@ -42,7 +42,7 @@ $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
 $Teléfonos = new Teléfonos();
 
-$datos_Médicos = new FichaMedica();
+$datos_Médicos = new Fichamédica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
@@ -58,7 +58,7 @@ $Teléfonos_Est = $Teléfonos->consultarTeléfonos($_POST['Cédula_Estudiante'])
 $Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
 $Teléfonos_pa = $Teléfonos->consultarTeléfonosPadreID($_POST['id_padre']);
 
-$datos_Médicos = $datos_Médicos->consultarFicha_Medica($_POST['id_Estudiante']);
+$datos_Médicos = $datos_Médicos->consultarFicha_médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
 $datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
@@ -101,11 +101,11 @@ else {
   $carnet_pa = "Si";
 }
 
-if (empty($datos_Médicos['Institucion_Medica'])) {
-    $Institucion = "No";
+if (empty($datos_Médicos['Institución_médica'])) {
+    $Institución = "No";
 }
 else {
-    $Institucion = "Si";
+    $Institución = "Si";
 }
 
 if (empty($datos_Médicos['Carnet_Discapacidad'])) {
@@ -233,7 +233,7 @@ $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('LUGAR DE DOMICILIO: ' . $Estudiante['Dirección']),1,1);
-$pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $Estudiante['Con_Quien_Vive']),1,0);
+$pdf->Cell(65,6,utf8_decode('CON QUIÉN VIVE: ' . $Estudiante['Con_Quién_Vive']),1,0);
 $pdf->Cell(35,6,utf8_decode('TIENE CANAIMA: ' . $datos_sociales['Posee_Canaima']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN DE LA CANAIMA: ' . $datos_sociales['Condición_Canaima']),1,1);
 $pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_Est),1,0);
@@ -268,8 +268,8 @@ $pdf->Cell(0,6,utf8_decode('LATERALIDAD: ' . $datos_Médicos['Lateralidad']),1,1
 $pdf->Cell(68,6,utf8_decode('CONDICIÓN DE LA DENTADURA: ' . $datos_Médicos['Cond_Dental']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN OFTALMOLÓGICA: ' . $datos_Médicos['Cond_Vista']),1,1);
 $pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS Condiciones: ' . rtrim($datos_Médicos['Impedimento_Físico'],",") ),1,1);
-$pdf->Cell(70,6,utf8_decode('ES ATENDIDO POR OTRA INSTITUCIÓN: ' . $Institucion ),1,0);
-$pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_Médicos['Institucion_Medica']),1,1);
+$pdf->Cell(70,6,utf8_decode('ES ATENDIDO POR OTRA INSTITUCIÓN: ' . $Institución ),1,0);
+$pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_Médicos['Institución_médica']),1,1);
 $pdf->Cell(65,6,utf8_decode('POSEE CARNET DE DISCAPACIDAD: ' . $carnet_dis ),1,0);
 $pdf->Cell(0,6,utf8_decode('NÚMERO DE CARNET: ' . $datos_Médicos['Carnet_Discapacidad']),1,1);
 

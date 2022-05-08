@@ -23,7 +23,7 @@ $('#Prefijo_Secundario_Est').validarIngreso('0123456789');
 $('#Teléfono_Secundario_Est').validarIngreso('0123456789');
 $('#Año_Repitente').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Materias_Pendientes').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Con_Quien_Vive').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Con_Quién_Vive').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 
 $('#Código_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
@@ -39,7 +39,7 @@ $('#Talla_Zapatos').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Cual_Enfermedad').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Alergias').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 
-$('#Medicación').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#médicación').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Dieta_Especial').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Nro_Carnet_Discapacidad').validarIngreso('0123456789');
 $('#País').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
