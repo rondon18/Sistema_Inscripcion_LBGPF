@@ -155,17 +155,19 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		// DATOS DEL CONTACTO AUXILIAR
 		//
 
-		$persona_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
-		$persona_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
-		$persona_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
-		$persona_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
-		$persona_auxiliar->setCédula($_POST['Cédula_Aux']);
-		$persona_auxiliar->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
-		$persona_auxiliar->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
-		$persona_auxiliar->setGénero($_POST['Genero_Aux']);
-		$persona_auxiliar->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
-		$persona_auxiliar->setDirección($_POST['Direccion_Aux']);
-		$persona_auxiliar->setEstado_Civil($_POST['Estado_Civil_Aux']);
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
+
+		$cedula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		$persona->setCédula($cedula_auxiliar);
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
+		$persona->setGénero($_POST['Genero_Aux']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
+		$persona->setDirección($_POST['Direccion_Aux']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Aux']);
 
 		$persona_auxiliar->insertarPersona();
 
@@ -176,34 +178,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-		Banco
-		Tipo_Cuenta
-		Nro_Cuenta
-		Representante_Trabaja
-		Empleo_R
-
-
-		Lugar_Trabajo_R
-		Remuneración
-		Tipo_Remuneracion
-		Primer_Nombre_Aux
-		Segundo_Nombre_Aux
-		Primer_Apellido_Aux
-		Segundo_Apellido_Aux
-		Genero_Aux
-		Tipo_Cédula_Aux
-		Cédula_Aux
 		Correo_electrónico_Aux
 		Prefijo_Principal_Aux
 		Teléfono_Principal_Aux
