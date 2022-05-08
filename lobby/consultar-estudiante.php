@@ -110,17 +110,25 @@ desconectarBD($conexion);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 </head>
 <body>
-
-	<div class="card" style="width: 80%; margin: auto;">
+	<!--Banner-->
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<div>
+			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+		</div>
+		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
+	</header>
+	<div class="card" style="width: 80%; margin: 60px auto;">
 		<div class="card-header">
 			<h3>Datos de inscripción del Estudiante</h3>
 		</div>
 		<div class="card-body">
-			<table id="Estudiante" class="table table-bordered" style="max-width:100%;">
+			<table id="Estudiante" class="table table-bordered table-striped table-hover" style="max-width:100%;">
 				<tbody>
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos del Estudiante</th>
 					</tr>
 
@@ -156,7 +164,7 @@ desconectarBD($conexion);
 						<td colspan="2">Periodo academico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
 					</tr>
 
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos médicos</th>
 					</tr>
 
@@ -198,7 +206,7 @@ desconectarBD($conexion);
 						<td colspan="4">Institución Médica: <?php echo $datos_medicos['Institución_Médica']?></td>
 					</tr>
 
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos sociales</th>
 					</tr>
 
@@ -227,7 +235,7 @@ desconectarBD($conexion);
 						<td>Talla Zapatos: <?php echo $datos_tallas['Talla_Zapatos']?> </td>
 					</tr>
 
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos del representante</th>
 					</tr>
 
@@ -257,7 +265,7 @@ desconectarBD($conexion);
 						<td colspan="2">Teléfono Auxiliar: <?php echo telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico'])?></td>
 					</tr>
 
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos economicos</th>
 					</tr>
 
@@ -285,7 +293,7 @@ desconectarBD($conexion);
 						<td colspan="4">Lugar Trabajo: <?php echo $datos_laborales['Lugar_Trabajo']?></td>
 					</tr>
 
-					<tr>
+					<tr class="table-primary">
 						<th colspan="4">Datos del padre o madre</th>
 					</tr>
 
@@ -322,8 +330,12 @@ desconectarBD($conexion);
 		<div class="card-footer">
 			<a class="btn btn-primary" href="consultar.php">Volver a consultar</a>
 		</div>
-		</div>
 	</div>
-<script type="text/javascript" src="../js/bootstrap.bundle.min"></script>
+	<!--Footer-->
+	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
+	</footer>
+	<?php include '../ayuda.php'; ?>
+<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

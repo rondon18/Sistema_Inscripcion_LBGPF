@@ -83,6 +83,14 @@
       'warning'
     );
 </script>
+<?php elseif(isset($_GET['error_pregunta'])): ?>
+<script type="text/javascript" defer>
+	Swal.fire(
+      'Error',
+      'Las respuestas ingresadas no coinciden',
+      'warning'
+    );
+</script>
 <?php endif ?>
 </body>
 </html>

@@ -31,7 +31,7 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 		$resultado_usuario = $registro_existe->fetch_assoc();
 
 		if ($resultado_usuario == NULL) {
-			header("Location: ../index.php");
+			header("Location: ../index.php?error");
 		}
 		else{
 			session_start();
@@ -60,5 +60,53 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 
 	desconectarBD($conexion);
 }
+elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST['Recuperar_Clave'])) {
 
+	$Cédula = $_POST['Cédula'];
+
+	$Respuesta1 = $_POST['Respuesta1'];
+	$Respuesta2 = $_POST['Respuesta2'];
+
+
+
+	$conexion = conectarBD();
+
+	//Consulto si la Cédula existe en la BD
+	$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$Cédula'";
+
+	if ($consulta_persona = $conexion->query($sql)) {
+
+		$resultado_persona = $consulta_persona->fetch_assoc();
+
+		//consulto si al menos una de las dos preguntas es correcta
+		$sql = "SELECT * FROM `usuarios` WHERE (`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') AND `Cédula_Persona` = 'V27919566';";
+
+		$registro_existe = $conexion->query($sql);
+		$resultado_usuario = $registro_existe->fetch_assoc();
+
+		if ($resultado_usuario == NULL) {
+			header("Location: ../index.php?error_pregunta");
+		}
+		else{
+			session_start();
+
+			#se crea variable de Sesión con los datos del usuario
+			$_SESSION['usuario'] = $resultado_usuario;
+
+			$bitácora = new bitácora();
+
+			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
+			$_SESSION['acciones'] = "Inicia Sesión";
+
+			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante
+			$persona = new Personas();
+			$datos_persona = $persona->consultarPersona($Cédula);
+
+			$_SESSION['persona'] = $datos_persona;
+			$_SESSION['login'] = "Sessión valida";
+
+			header('Location: ../lobby/index.php');
+		}
+	}
+}
 ?>

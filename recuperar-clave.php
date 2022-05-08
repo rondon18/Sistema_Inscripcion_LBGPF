@@ -7,14 +7,12 @@ $usuario = new Usuarios();
 
 $datos_usuario = NULL;
 
-if (isset($_POST['Cédula'])) {
-	if ($datos_usuario = $usuario->consultarUsuario($_POST['Cédula'])) {
+if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
+	$Cédula = $_POST['Tipo_Cédula'].$_POST['Cédula'];
+	if ($datos_usuario = $usuario->consultarUsuario($Cédula)) {
 		$Pregunta1 = $datos_usuario['Pregunta_Seg_1'];
 		$Pregunta2 = $datos_usuario['Pregunta_Seg_2'];
 	}
-}
-elseif (!isset($_POST['Cédula'])) {
-	// code...
 }
 
 ?>
@@ -26,6 +24,7 @@ elseif (!isset($_POST['Cédula'])) {
 	<title>Ingresar al sistema</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/colores.css"/>
+	<link rel="stylesheet" type="text/css" href="css/all.min.css"/>
 </head>
 <body>
 	<!--Banner-->
@@ -37,10 +36,20 @@ elseif (!isset($_POST['Cédula'])) {
 		<img src="img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 
-	<form class="w-100 h-100 d-flex" action="recuperar-clave.php" method="POST" style="min-height: 100vh;">
+	<?php
+
+	if (isset($_POST['Tipo_Cédula'],$_POST['Cédula']) AND $datos_usuario != NULL) {
+		$accion = "controladores/login.php";
+	} else {
+		$accion = "recuperar-clave.php";
+	}
+
+	 ?>
+
+	<form class="w-100 h-100 d-flex" action="<?php echo $accion; ?>" method="POST" style="min-height: 100vh;">
 		<div class="card text-center m-auto" style="max-width:500px; min-width: 300px; margin:auto;">
 			<div class="card-header">
-				
+
 				<b>Ingresar al sistema</b>
 			</div>
 			<div class="card-body">
@@ -49,30 +58,44 @@ elseif (!isset($_POST['Cédula'])) {
 
 						<?php if ($datos_usuario == NULL): ?>
 						<tr>
-							<td class="text-end">Cédula:</td>
-							<td><input class="block" type="text" name="Cédula" required></td>
+							<td class="text-start">Cédula:</td>
 						</tr>
-						<?php if(isset($_POST['Cédula']) AND $datos_usuario == NULL): ?>
 						<tr>
-							<td colspan="2"><small>Usuario inexistente</small></td>
+							<td class="input-group">
+								<select class="form-select w-auto" name="Tipo_Cédula" required>
+									<option value="V">V</option>
+									<option value="E">E</option>
+								</select>
+								<input class="form-control w-auto" type="text" id="Cédula" name="Cédula" placeholder="Cédula de usuario" maxlength="15" required>
+							</td>
 						</tr>
-						<?php endif; ?>
+						<tr class="text-start">
+							<td>
+								<small class="text-muted">Ingrese su numero de cédula para continuar</small>
+							</td>
+						</tr>
 						<?php elseif($datos_usuario != NULL): ?>
 						<tr>
-								<td>Preguntas de seguridad del usuario con CI:<?php echo $datos_usuario['Cédula_Persona'];?></td>
+								<td>
+									Preguntas de seguridad del usuario con
+									<u>CI:<?php echo $datos_usuario['Cédula_Persona'];?></u>
+								</td>
 						</tr>
 						<tr>
 							<td class="text-start">
 								<label class="form-input mb-1"><b>Pregunta 1:</b></label>
 								<u><?php echo $Pregunta1; ?></u>
-								<input class="form-control mb-2" type="text" name="clave" required>
+								<input class="form-control mb-2" type="text" name="Respuesta1">
 							</td>
 						</tr>
 						<tr>
 							<td class="text-start">
 								<label class="form-input mb-1"><b>Pregunta 2:</b></label>
 								<u><?php echo $Pregunta2; ?></u>
-								<input class="form-control mb-2" type="text" name="clave" required>
+								<input class="form-control mb-2" type="text" name="Respuesta2">
+
+								<input type="hidden" name="Cédula" value="<?php echo $Cédula;?>">
+								<input type="hidden" name="Recuperar_Clave" value="Recuperar_Clave">
 							</td>
 						</tr>
 						<?php endif; ?>
@@ -85,11 +108,27 @@ elseif (!isset($_POST['Cédula'])) {
 			</div>
 		</div>
 	</form>
-	<?php #include("ayuda.php"); ?>
-
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
 		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
+	<?php include("ayuda.php"); ?>
+
+<script type="text/javascript" src="js/sweetalert2.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/validaciones.js"></script>
+<?php if(isset($_POST['Cédula']) AND $datos_usuario == NULL): ?>
+<script type="text/javascript">
+	Swal.fire(
+		'Atención',
+		'La cédula ingresada no pertenece a ningún usuario.',
+		'info'
+	)
+</script>
+<tr>
+	<td colspan="2"><small>Usuario inexistente</small></td>
+</tr>
+<?php endif; ?>
 </body>
 </html>

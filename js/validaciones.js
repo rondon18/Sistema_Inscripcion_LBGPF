@@ -22,7 +22,7 @@ $(document).ready(function(){
     e.preventDefault();
     Swal.fire(
       'Error',
-      'Esa acción esta prohibida',
+      'Esa acción no esta permitida',
       'warning'
     )
   })
@@ -31,7 +31,7 @@ $(document).ready(function(){
     e.preventDefault();
     Swal.fire(
       'Error',
-      'Esa acción esta prohibida',
+      'Esa acción no esta permitida',
       'warning'
     )
   })
@@ -42,7 +42,7 @@ $(document).ready(function(){
     e.preventDefault();
     Swal.fire(
       'Error',
-      'Esa acción esta prohibida',
+      'Esa acción no esta permitida',
       'warning'
     )
   })
@@ -51,7 +51,7 @@ $(document).ready(function(){
     e.preventDefault();
     Swal.fire(
       'Error',
-      'Esa acción esta prohibida',
+      'Esa acción no esta permitida',
       'warning'
     )
   })
@@ -68,58 +68,3 @@ $('#Segundo_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Primer_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Cédula_U').validarIngreso('0123456789');
-
-$('#Primer_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Primer_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Cédula_R').validarIngreso('0123456789');
-
-
-$('#Prefijo_Principal_R').validarIngreso('0123456789');
-$('#Teléfono_Principal_R').validarIngreso('0123456789');
-$('#Prefijo_Secundario_R').validarIngreso('0123456789');
-$('#Teléfono_Secundario_R').validarIngreso('0123456789');
-$('#Prefijo_Auxiliar_R').validarIngreso('0123456789');
-$('#Teléfono_Auxiliar_R').validarIngreso('0123456789');
-
-
-
-$('#Código_Carnet_Patria').validarIngreso('0123456789');
-$('#Serial_Carnet_Patria').validarIngreso('0123456789');
-$('#Nro_Cuenta').validarIngreso('0123456789');
-//$('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-
-/*
-Nro_Cuenta
-Empleo_R
-Prefijo_Trabajo_R
-Teléfono_Trabajo_R
-Lugar_Trabajo_R
-Remuneración
-seccion5
-Primer_Nombre_Aux
-Segundo_Nombre_Aux
-Primer_Apellido_Aux
-Segundo_Apellido_Aux
-Cédula_Aux
-Correo_electrónico_Aux
-Prefijo_Principal_Aux
-Télefono_Principal_Aux
-Prefijo_Secundario_Aux
-Télefono_Secundario_Aux
-Prefijo_Auxiliar_Aux
-Teléfono_Auxiliar_Aux
-Dirección_Aux
-Relación_Auxiliar
-*/
-
-
-$(function(){
-  //Para escribir solo letras
-  //$('#Cédula').validarIngreso('0123456789');
-
-  //$('#Cédula').validarIngreso(' abcdefghijklmnñopqrstuvwxyzáéiou');
-  //Para escribir solo numeros
-//
-});
