@@ -292,11 +292,11 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<tr>
 												<td><?php echo $registro['idbitácora']?></td>
 												<td><?php echo $registro['idUsuarios']?></td>
-												<td><?php echo $registro['fechaIniciosesión']?></td>
-												<td><?php echo $registro['horaIniciosesión']?></td>
+												<td><?php echo $registro['fechaInicioSesión']?></td>
+												<td><?php echo $registro['horaInicioSesión']?></td>
 												<td style="min-width:400px; max-width: 800px;"><small><?php echo $registro['linksVisitados']?></small></td>
-												<td><?php if(!empty($registro['fechaFinalsesión'])) { echo $registro['fechaFinalsesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
-												<td><?php if(!empty($registro['horaFinalsesión'])) { echo $registro['horaFinalsesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td><?php if(!empty($registro['fechaFinalSesión'])) { echo $registro['fechaFinalSesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td><?php if(!empty($registro['horaFinalSesión'])) { echo $registro['horaFinalSesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
 											</tr>
 										<?php endif;?>
 									<?php endforeach; ?>

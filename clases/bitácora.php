@@ -10,9 +10,9 @@ class bitácora {
 		$fechaActual = date("Y-m-d");
 		$horaActual = date("H:i:s");
 
-		$links = "Inicia sesión";
+		$links = "Inicia Sesión";
 
-		$sql = "INSERT INTO `bitácora`(`idbitácora`, `idUsuarios`, `fechaIniciosesión`, `horaIniciosesión`, `linksVisitados`, `fechaFinalsesión`, `horaFinalsesión`) VALUES (
+		$sql = "INSERT INTO `bitácora`(`idbitácora`, `idUsuarios`, `fechaInicioSesión`, `horaInicioSesión`, `linksVisitados`, `fechaFinalSesión`, `horaFinalSesión`) VALUES (
 			NULL,
 			'$idUsuarios',
 			'$fechaActual',
@@ -50,8 +50,8 @@ class bitácora {
 		$horaFinal = date("H:i:s");
 
 		$sql = "UPDATE `bitácora` SET
-		`fechaFinalsesión`='$fechaFinal',
-		`horaFinalsesión`='$horaFinal'
+		`fechaFinalSesión`='$fechaFinal',
+		`horaFinalSesión`='$horaFinal'
 		WHERE `idbitácora`='$idbitácora'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);

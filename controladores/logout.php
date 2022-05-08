@@ -4,7 +4,7 @@ require("../clases/bitácora.php");
 session_start();
 
 $bitácora = new bitácora();
-$_SESSION['acciones'] .= ', Cierra sesión.';
+$_SESSION['acciones'] .= ', Cierra Sesión.';
 $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 $bitácora->cerrar_bitácora($_SESSION['idbitácora']);
 

@@ -36,7 +36,7 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 		else{
 			session_start();
 
-			#se crea variable de sesión con los datos del usuario
+			#se crea variable de Sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
 			$bitácora = new bitácora();

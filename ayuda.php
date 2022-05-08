@@ -17,7 +17,7 @@
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingLogin">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
-				       <i class="fas fa-key fa-lg me-2"></i> Iniciar sesión
+				       <i class="fas fa-key fa-lg me-2"></i> Iniciar Sesión
 				      </button>
 				    </h2>
 				    <div id="collapseLogin" class="accordion-collapse collapse" aria-labelledby="headingLogin" data-bs-parent="#accordionExample">

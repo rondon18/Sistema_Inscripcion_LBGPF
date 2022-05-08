@@ -117,7 +117,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		/*
 
-			Cambia las variables de sesión para no reDirecciónar al usuario a iniciar sesión
+			Cambia las variables de Sesión para no reDirecciónar al usuario a iniciar Sesión
 
 		*/
 		$_SESSION['persona']['Primer_Nombre'] = $persona->getPrimer_Nombre();

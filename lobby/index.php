@@ -65,7 +65,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 					</a>
 					<?php endif;?>
 					<a class="btn btn-sm bg-primary text-white mb-2" href="../controladores/logout.php">
-						Cerrar sesión <i class="fas fa-door-open fa-lg"></i>
+						Cerrar Sesión <i class="fas fa-door-open fa-lg"></i>
 					</a>
 				</li>
 
