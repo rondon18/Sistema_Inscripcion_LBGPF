@@ -10,7 +10,7 @@ if (!$_SESSION['login']) {
 require('../clases/Estudiante.php');
 require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
-require('../clases/economicos-representantes.php');
+require('../clases/económicos-representantes.php');
 require('../clases/laborales-representantes.php');
 require('../clases/padres.php');
 require('../clases/ficha-medica.php');
@@ -21,7 +21,7 @@ require('../clases/vivienda-representantes.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
-require('../clases/telefonos.php');
+require('../clases/Teléfonos.php');
 
 require('../controladores/conexion.php');
 
@@ -32,31 +32,30 @@ $conexion = conectarBD();
 $Estudiante = new Estudiantes();
 $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
-$Economicos = new DatosEconomicos();
+$económicos = new Datoseconómicos();
 $Laborales = new DatosLaborales();
 $Padre = new Padres();
 $Estudiantes_repitente = new EstudiantesRepitentes();
-$Grado = new GradoAcademico();
+$Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
-$Telefonos = new Telefonos();
+$Teléfonos = new Teléfonos();
 
-$datos_Medicos = new FichaMedica();
+$datos_Médicos = new FichaMedica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
-#Hacer algo parecido para llamar numeros de representantes y padres
-$Estudiante = $Estudiante->consultarEstudiante($_POST['cedula_Estudiante']);
-$carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['cedula_Estudiante']);
+$Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
+$carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
 $Estudiantes_repitente = $Estudiantes_repitente->consultarEstudiantesRepitentes($_POST['id_Estudiante']);
 $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
-$telefonos_Est = $Telefonos->consultarTelefonos($_POST['cedula_Estudiante']);
-$telefonos_re = $Telefonos->consultarTelefonosRepresentanteID($_POST['id_representante']);
-$telefonos_pa = $Telefonos->consultarTelefonosPadreID($_POST['id_padre']);
+$Teléfonos_Est = $Teléfonos->consultarTeléfonos($_POST['Cédula_Estudiante']);
+$Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
+$Teléfonos_pa = $Teléfonos->consultarTeléfonosPadreID($_POST['id_padre']);
 
-$datos_medicos = $datos_Medicos->consultarFicha_Medica($_POST['id_Estudiante']);
+$datos_Médicos = $datos_Médicos->consultarFicha_Medica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
 $datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
@@ -67,7 +66,7 @@ $datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_represen
 $contacto_aux = new Personas();
 $dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
 
-$datos_economicos = $Economicos->consultarDatosEconomicos($_POST['id_representante']);
+$datos_económicos = $económicos->consultarDatoseconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
 
@@ -75,14 +74,14 @@ $padre = $Padre->consultarPadres($_POST['id_padre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($padre['Cédula']);
 $hijos = $Padre->consultarHijos($_POST['id_padre']);
 
-function telefono($prefijo,$numero) {
+function Teléfono($prefijo,$numero) {
   if (empty($prefijo) and empty($numero)) {
-    $telefono = "";
+    $Teléfono = "";
   }
   else {
-    $telefono = "$prefijo-$numero";
+    $Teléfono = "$prefijo-$numero";
   }
-  return $telefono;
+  return $Teléfono;
 }
 
 if (empty($carnetpatria_Est['Código_Carnet']) AND empty($carnetpatria_Est['Serial_Carnet'])) {
@@ -147,39 +146,39 @@ desconectarBD($conexion);
 					<tr>
 						<td>Plantel Procedencia: <?php echo $Estudiante['Plantel_Procedencia']?></td>
 						<td>Año a cursar: <?php echo $grado['Grado_A_Cursar']?></td>
-						<td colspan="2">Periodo academico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
+						<td colspan="2">Período Académico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
 					</tr>
 					<tr>
 						<th colspan="4">Datos médicos</th>
 					</tr>
 					<tr>
-						<td>Estatura: <?php echo $datos_medicos['Estatura'] ?> </td>
-						<td>Peso: <?php echo $datos_medicos['Peso'] ?> </td>
-						<td>Indice: <?php echo $datos_medicos['Indice'] ?> </td>
-						<td>Circ Braquial: <?php echo $datos_medicos['Circ_Braquial'] ?> </td>
+						<td>Estatura: <?php echo $datos_Médicos['Estatura'] ?> </td>
+						<td>Peso: <?php echo $datos_Médicos['Peso'] ?> </td>
+						<td>Índice: <?php echo $datos_Médicos['Índice'] ?> </td>
+						<td>Circ Braquial: <?php echo $datos_Médicos['Circ_Braquial'] ?> </td>
 					</tr>
 					<tr>
-						<td>Lateralidad: <?php echo $datos_medicos['Lateralidad'] ?> </td>
-						<td>Tipo Sangre: <?php echo $datos_medicos['Tipo_Sangre']?></td>
+						<td>Lateralidad: <?php echo $datos_Médicos['Lateralidad'] ?> </td>
+						<td>Tipo Sangre: <?php echo $datos_Médicos['Tipo_Sangre']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Medicación: <?php echo $datos_medicos['Medicación']?></td>
+						<td colspan="4">Medicación: <?php echo $datos_Médicos['Medicación']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Dieta Especial: <?php echo $datos_medicos['Dieta_Especial']?></td>
+						<td colspan="4">Dieta Especial: <?php echo $datos_Médicos['Dieta_Especial']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Impedimento Físico: <?php echo $datos_medicos['Impedimento_Físico']?></td>
+						<td colspan="4">Impedimento Físico: <?php echo $datos_Médicos['Impedimento_Físico']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Alergias: <?php echo $datos_medicos['Alergias']?></td>
+						<td colspan="4">Alergias: <?php echo $datos_Médicos['Alergias']?></td>
 					</tr>
-						<td>Cond Vista: <?php echo $datos_medicos['Cond_Vista']?></td>
-						<td>Cond Dental: <?php echo $datos_medicos['Cond_Dental']?></td>
-						<td colspan="2">Carnet Discapacidad: <?php echo $datos_medicos['Carnet_Discapacidad']?></td>
+						<td>Cond Vista: <?php echo $datos_Médicos['Cond_Vista']?></td>
+						<td>Cond Dental: <?php echo $datos_Médicos['Cond_Dental']?></td>
+						<td colspan="2">Carnet Discapacidad: <?php echo $datos_Médicos['Carnet_Discapacidad']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Institución Medica: <?php echo $datos_medicos['Institucion_Medica']?></td>
+						<td colspan="4">Institución Medica: <?php echo $datos_Médicos['Institucion_Medica']?></td>
 					</tr>
 
 					<tr>
@@ -187,7 +186,7 @@ desconectarBD($conexion);
 					</tr>
 					<tr>
 						<td>Posee Canaima: <?php echo $datos_sociales['Posee_Canaima']?> </td>
-						<td colspan="3">Condición Canaima: <?php echo $datos_sociales['Condicion_Canaima']?> </td>
+						<td colspan="3">Condición Canaima: <?php echo $datos_sociales['Condición_Canaima']?> </td>
 					</tr>
 					<tr>
 						<td>Posee Carnet Patria: <?php echo $carnet_Est?> </td>
@@ -226,23 +225,23 @@ desconectarBD($conexion);
 						<td colspan="2">Estado Civil: <?php echo $datos_representante['Estado_Civil']?></td>
 					</tr>
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo telefono($telefonos_re[0]['Prefijo'],$telefonos_re[0]['Número_Telefónico'])?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Principal: <?php echo Teléfono($Teléfonos_re[0]['Prefijo'],$Teléfonos_re[0]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Auxiliar: <?php echo Teléfono($Teléfonos_re[1]['Prefijo'],$Teléfonos_re[1]['Número_Telefónico'])?></td>
 					</tr>
 					<tr>
-						<th colspan="4">Datos economicos</th>
+						<th colspan="4">Datos económicos</th>
 					</tr>
 					<tr>
-						<td>Banco: <?php echo $datos_economicos['Banco']?></td>
-						<td>Tipo Cuenta: <?php echo $datos_economicos['Tipo_Cuenta']?></td>
-						<td colspan="2">Cta Bancaria: <?php echo $datos_economicos['Cta_Bancaria']?></td>
+						<td>Banco: <?php echo $datos_económicos['Banco']?></td>
+						<td>Tipo Cuenta: <?php echo $datos_económicos['Tipo_Cuenta']?></td>
+						<td colspan="2">Cta Bancaria: <?php echo $datos_económicos['Cta_Bancaria']?></td>
 					</tr>
 					<tr>
-						<td colspan="4">Grado Inst: <?php echo $datos_representante['Grado_Academico']?></td>
+						<td colspan="4">Grado Inst: <?php echo $datos_representante['Grado_Académico']?></td>
 					</tr>
 					<tr>
 						<td colspan="2">Empleo: <?php echo $datos_laborales['Empleo']?></td>
-						<td colspan="2">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Trabajo: <?php echo Teléfono($Teléfonos_re[3]['Prefijo'],$Teléfonos_re[3]['Número_Telefónico'])?></td>
 					</tr>
 					<tr>
 						<td colspan="2">Remuneración (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración']?></td>
@@ -273,14 +272,16 @@ desconectarBD($conexion);
 						<td colspan="2">Estado Civil: <?php echo $padre['Estado_Civil']?></td>
 					</tr>
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Principal: <?php echo $Teléfonos_pa[0]['Prefijo'] . '-' . $Teléfonos_pa[0]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Auxiliar: <?php echo $Teléfonos_pa[1]['Prefijo'] . '-' . $Teléfonos_pa[1]['Número_Telefónico']?></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="card-footer">
-
+			<div class="card text-center" style="width: 100%; margin-top: 20px;">
+			<a class="btn btn-primary" href="consultar.php">Volver a consultar</a>
+		</div>
 		</div>
 
 

@@ -24,7 +24,7 @@ if (!$_SESSION['login']) {
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<form id="registro" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='enviar();'>
 		<div class="card">
@@ -59,36 +59,36 @@ if (!$_SESSION['login']) {
 							<input type="text" class="form-control mb-2" name="Segundo_Apellido_U" id="Segundo_Apellido_U" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $_SESSION['persona']['Segundo_Apellido'] ?? NULL ?>">
 						</div>
 					</div>
-					<!--Genero del representante-->
+					<!--Género del representante-->
 					<div>
-						<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
+						<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 						<div class="pt-2 px-2 pb-0 bg-light border rounded">
 							<div class="form-check form-check-inline">
 								<label class="form-label">F </label>
-								<input class="form-check-input" type="radio" name="Genero_U" value="F" required <?php if($_SESSION['persona']['Género'] == "F"){echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Género_U" value="F" required <?php if($_SESSION['persona']['Género'] == "F"){echo "checked";} ?>>
 							</div>
 
 							<div class="form-check form-check-inline">
 								<label class="form-label">M </label>
-								<input class="form-check-input" type="radio" name="Genero_U" value="M" required <?php if($_SESSION['persona']['Género'] == "M"){echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Género_U" value="M" required <?php if($_SESSION['persona']['Género'] == "M"){echo "checked";} ?>>
 							</div>
 						</div>
 					</div>
 					<!--Cédula del representante-->
 					<?php
 					#Separa la cédula del caracter que indica si es venezolana o extranjera
-					$tipo_cedula = substr($_SESSION['persona']['Cédula'],0,1);
-					$cedula			= substr($_SESSION['persona']['Cédula'],1,strlen($_SESSION['persona']['Cédula'])-1);
+					$tipo_Cédula = substr($_SESSION['persona']['Cédula'],0,1);
+					$Cédula			= substr($_SESSION['persona']['Cédula'],1,strlen($_SESSION['persona']['Cédula'])-1);
 				 	?>
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<div class="input-group mb-2">
 							<select class="form-select" name="Tipo_Cédula_U">
 								<option selected disabled>Tipo de cédula</option>
-								<option value="V" <?php if($tipo_cedula == "V") {echo "selected";}?>>V</option>
-								<option value="E" <?php if($tipo_cedula == "E") {echo "selected";}?>>E</option>
+								<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";}?>>V</option>
+								<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";}?>>E</option>
 							</select>
-							<input type="text" class="form-control w-auto" name="Cédula_U" id="Cédula_U" pattern="[0-9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required value="<?php echo $cedula ?? NULL ?>">
+							<input type="text" class="form-control w-auto" name="Cédula_U" id="Cédula_U" pattern="[0-9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required value="<?php echo $Cédula ?? NULL ?>">
 						</div>
 
 					</div>
@@ -97,7 +97,7 @@ if (!$_SESSION['login']) {
 						<label class="form-label">Fecha de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_U" id="Fecha_Nacimiento_U" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $_SESSION['persona']['Fecha_Nacimiento'] ?? NULL ?>">
 					</div>
-					<!--Correo electronico del representante-->
+					<!--Correo Electrónico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<input type="email" class="form-control mb-2" name="Correo_electrónico_U" id="Correo_electrónico_U" minlength="15" required value="<?php echo $_SESSION['persona']['Correo_Electrónico'] ?? NULL ?>">
@@ -130,7 +130,7 @@ if (!$_SESSION['login']) {
 						<option value="Color que más te gusta" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Color que más te gusta"){echo "selected";}?>>Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál es tu comida favorita?"){echo "selected";}?>>¿Cuál es tu comida favorita?</option>
 						<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
-						<option value="¿Cuál fue tu primer número de telefono?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál fue tu primer número de telefono?"){echo "selected";}?>>¿Cuál fue tu primer número de telefono?</option>
+						<option value="¿Cuál fue tu primer número de Teléfono?" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "¿Cuál fue tu primer número de Teléfono?"){echo "selected";}?>>¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
 						<option value="Fecha de nacimiento de tu padre" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Fecha de nacimiento de tu padre"){echo "selected";}?>>Fecha de nacimiento de tu padre</option>
@@ -148,7 +148,7 @@ if (!$_SESSION['login']) {
 						<option value="Color que más te gusta" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Color que más te gusta"){echo "selected";}?>>Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál es tu comida favorita?"){echo "selected";}?>>¿Cuál es tu comida favorita?</option>
 						<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
-						<option value="¿Cuál fue tu primer número de telefono?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál fue tu primer número de telefono?"){echo "selected";}?>>¿Cuál fue tu primer número de telefono?</option>
+						<option value="¿Cuál fue tu primer número de Teléfono?" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "¿Cuál fue tu primer número de Teléfono?"){echo "selected";}?>>¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
 						<option value="Fecha de nacimiento de tu padre" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Fecha de nacimiento de tu padre"){echo "selected";}?>>Fecha de nacimiento de tu padre</option>
@@ -168,7 +168,7 @@ if (!$_SESSION['login']) {
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 
 	<?php include '../ayuda.php';?>

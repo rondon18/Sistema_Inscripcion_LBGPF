@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-				<p>Bienvenido a la sección de ayuda, ¿Qué desea consultar?.</p>
+				<p>Bienvenido(a) a la sección de ayuda, ¿Qué desea consultar?.</p>
 				<div class="accordion" id="accordionExample">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingLogin">
@@ -34,7 +34,7 @@
 				    </h2>
 				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				        <strong>Registrar Estudiante.</strong> Para poder registrar un estudiante primero debe hacer click en el botón "Registrar Estudiante" de ahí será llevado al formulario donde primero deberá escoger su vínculo con el estudiante a inscribir, continuamente debe llenar todos los datos solicitados sobre el estudiante. Al finalizar haga click en el botón "Registrar Estudiante" y tendrá ya registrado a un estudiante. Importante recordar que debe ingresar todos los datos solicitado.
+				        <strong>Registrar Estudiante.</strong> Para poder registrar un estudiante primero debe hacer click en el botón "Registrar Estudiante" de ahí será llevado al formulario donde primero deberá escoger su vínculo con el estudiante a inscribir, continuamente debe llenar todos los datos solicitados sobre el estudiante. Al finalizar haga click en el botón "Registrar Estudiante" y tendrá ya registrado a un estudiante. Importante recordar que debe ingresar todos los datos solicitados.
 				      </div>
 				    </div>
 				  </div>

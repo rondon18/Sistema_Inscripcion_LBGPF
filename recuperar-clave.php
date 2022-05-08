@@ -7,13 +7,13 @@ $usuario = new Usuarios();
 
 $datos_usuario = NULL;
 
-if (isset($_POST['cedula'])) {
-	if ($datos_usuario = $usuario->consultarUsuario($_POST['cedula'])) {
+if (isset($_POST['Cédula'])) {
+	if ($datos_usuario = $usuario->consultarUsuario($_POST['Cédula'])) {
 		$Pregunta1 = $datos_usuario['Pregunta_Seg_1'];
 		$Pregunta2 = $datos_usuario['Pregunta_Seg_2'];
 	}
 }
-elseif (!isset($_POST['cedula'])) {
+elseif (!isset($_POST['Cédula'])) {
 	// code...
 }
 
@@ -34,7 +34,7 @@ elseif (!isset($_POST['cedula'])) {
 			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 
 	<form class="w-100 h-100 d-flex" action="recuperar-clave.php" method="POST" style="min-height: 100vh;">
@@ -49,17 +49,17 @@ elseif (!isset($_POST['cedula'])) {
 
 						<?php if ($datos_usuario == NULL): ?>
 						<tr>
-							<td class="text-end">Cedula:</td>
-							<td><input class="block" type="text" name="cedula" required></td>
+							<td class="text-end">Cédula:</td>
+							<td><input class="block" type="text" name="Cédula" required></td>
 						</tr>
-						<?php if(isset($_POST['cedula']) AND $datos_usuario == NULL): ?>
+						<?php if(isset($_POST['Cédula']) AND $datos_usuario == NULL): ?>
 						<tr>
 							<td colspan="2"><small>Usuario inexistente</small></td>
 						</tr>
 						<?php endif; ?>
 						<?php elseif($datos_usuario != NULL): ?>
 						<tr>
-								<td>Preguntas de seguridad del usuario con CI:<?php echo $datos_usuario['Cedula_Persona'];?></td>
+								<td>Preguntas de seguridad del usuario con CI:<?php echo $datos_usuario['Cédula_Persona'];?></td>
 						</tr>
 						<tr>
 							<td class="text-start">
@@ -89,7 +89,7 @@ elseif (!isset($_POST['cedula'])) {
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
 </body>
 </html>

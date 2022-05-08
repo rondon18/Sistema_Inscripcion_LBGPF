@@ -3,28 +3,28 @@
 class Representantes {
 
 	private $idRepresentantes;
-	private $Grado_Academico;
-	private $Cedula_Persona;
+	private $Grado_Académico;
+	private $Cédula_Persona;
 
 	public function __construct(){}
 
 	public function insertarRepresentante() {
 		$conexion = conectarBD();
 
-		$Grado_Academico = $this->getGrado_Academico();
-		$Cedula_Persona = $this->getCedula_Persona();
+		$Grado_Académico = $this->getGrado_Académico();
+		$Cédula_Persona = $this->getCédula_Persona();
 
-		$sql = "SELECT * FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `representantes` WHERE `Cédula_Persona` = '$Cédula_Persona'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Grado_Academico`, `Cedula_Persona`) VALUES (
+			$sql = "INSERT INTO `representantes`(`idRepresentantes`, `Grado_Académico`, `Cédula_Persona`) VALUES (
 				NULL,
-				'$Grado_Academico',
-				'$Cedula_Persona'
+				'$Grado_Académico',
+				'$Cédula_Persona'
 			)";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
@@ -35,23 +35,23 @@ class Representantes {
 		}
 		desconectarBD($conexion);
 	}
-	public function editarRepresentante($Cedula_Persona) {
+	public function editarRepresentante($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$Grado_Academico = $this->getGrado_Academico();
+		$Grado_Académico = $this->getGrado_Académico();
 
 		$sql = "UPDATE `representantes` SET
-			`Grado_Academico`='$Grado_Academico',
-		 WHERE `Cedula_Persona`='$Cedula_Persona'";
+			`Grado_Académico`='$Grado_Académico',
+		 WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}
-	public function eliminarRepresentante($Cedula_Persona) {
+	public function eliminarRepresentante($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "DELETE FROM `representantes` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "DELETE FROM `representantes` WHERE `Cédula_Persona` = '$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
@@ -59,7 +59,7 @@ class Representantes {
 	public function consultarRepresentante($idRepresentantes) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cedula_Persona` AND `idRepresentantes` = '$idRepresentantes'";
+		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cédula_Persona` AND `idRepresentantes` = '$idRepresentantes'";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_assoc();
@@ -71,7 +71,7 @@ class Representantes {
 	public function consultarRepresentanteID($id_Representante) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `representantes`,`personas` WHERE  `representantes`.`idRepresentantes` = '$id_Representante' AND `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `representantes`,`personas` WHERE  `representantes`.`idRepresentantes` = '$id_Representante' AND `personas`.`Cédula` = `representantes`.`Cédula_Persona`";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_assoc();
@@ -84,7 +84,7 @@ class Representantes {
 		#Muestra todas las representantes en la tabla
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cédula_Persona`";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_all(MYSQLI_ASSOC);
@@ -104,7 +104,7 @@ class Representantes {
 		$conexion = conectarBD();
 
 		#consulta solo las personas que tengan presencia en la tabla estudiantes
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`Cedula_Persona`= `personas`.`Cédula`AND `estudiantes`.`idRepresentante` = '$id_Representante'";
+		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`Cédula_Persona`= `personas`.`Cédula`AND `estudiantes`.`idRepresentante` = '$id_Representante'";
 
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
@@ -124,21 +124,21 @@ class Representantes {
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;
 	}
-	public function setCedula_Persona($Cedula_Persona) {
-		$this->Cedula_Persona = $Cedula_Persona;
+	public function setCédula_Persona($Cédula_Persona) {
+		$this->Cédula_Persona = $Cédula_Persona;
 	}
-	public function setGrado_Academico($Grado_Academico) {
-		$this->Grado_Academico = $Grado_Academico;
+	public function setGrado_Académico($Grado_Académico) {
+		$this->Grado_Académico = $Grado_Académico;
 	}
 
 	public function getidRepresentantes() {
 		return $this->idRepresentantes;
 	}
-	public function getCedula_Persona() {
-		return $this->Cedula_Persona;
+	public function getCédula_Persona() {
+		return $this->Cédula_Persona;
 	}
-	public function getGrado_Academico() {
-		return $this->Grado_Academico;
+	public function getGrado_Académico() {
+		return $this->Grado_Académico;
 	}
 }
 

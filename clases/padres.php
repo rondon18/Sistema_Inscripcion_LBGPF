@@ -2,7 +2,7 @@
 
 class Padres extends Personas {
 	private $idPadres;
-	private $Cedula_Persona;
+	private $Cédula_Persona;
 	private $País_Residencia;
 
 	public function __construct() {}
@@ -11,20 +11,20 @@ class Padres extends Personas {
 		$conexion = conectarBD();
 
 		$País_Residencia = $this->getPaís_Residencia();
-		$Cedula_Persona = $this->getCedula_Persona();
+		$Cédula_Persona = $this->getCédula_Persona();
 
 		#verifica si el registro del padre existe para evitar error por entrada duplicada
-		$sql = "SELECT * FROM `padres` WHERE `Cedula_Persona`='$Cedula_Persona'";
+		$sql = "SELECT * FROM `padres` WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
 
 		if ($resultado == NULL) {
 			#Si el registro no existe se crea con esta orden
-			$sql = "INSERT INTO `padres`(`idPadres`, `País_Residencia`, `Cedula_Persona`) VALUES (
+			$sql = "INSERT INTO `padres`(`idPadres`, `País_Residencia`, `Cédula_Persona`) VALUES (
 				NULL,
 				'$País_Residencia',
-				'$Cedula_Persona'
+				'$Cédula_Persona'
 			)";
 
 			$conexion->query($sql);
@@ -60,10 +60,10 @@ class Padres extends Personas {
 		desconectarBD($conexion);
 	}
 	public function consultarPadres($id_padres){
-		#consulta los datos de personas y de padres donde las cedulas en ambos registros coincidan
+		#consulta los datos de personas y de padres donde las Cédulas en ambos registros coincidan
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`padres` WHERE `padres`.`idPadres`='$id_padres' AND `personas`.`Cédula` = `padres`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `personas`,`padres` WHERE `padres`.`idPadres`='$id_padres' AND `personas`.`Cédula` = `padres`.`Cédula_Persona`";
 
 		$padre = $conexion->query($sql);
 		$resultado = $padre->fetch_assoc();
@@ -88,7 +88,7 @@ class Padres extends Personas {
 		#Retorna todos los registros de padres
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`padres` WHERE `personas`.`Cédula` = `padres`.`Cedula_Persona`";
+		$sql = "SELECT * FROM `personas`,`padres` WHERE `personas`.`Cédula` = `padres`.`Cédula_Persona`";
 
 		$consulta_padres = $conexion->query($sql) or die("error: ".$conexion->error);
 		$padres = $consulta_padres->fetch_all();
@@ -110,8 +110,8 @@ class Padres extends Personas {
 	public function setPaís_Residencia($País_Residencia) {
 		$this->País_Residencia = $País_Residencia;
 	}
-	public function setCedula_Persona($Cedula_Persona) {
-		$this->Cedula_Persona = $Cedula_Persona;
+	public function setCédula_Persona($Cédula_Persona) {
+		$this->Cédula_Persona = $Cédula_Persona;
 	}
 
 	public function getidPadres() {
@@ -120,8 +120,8 @@ class Padres extends Personas {
 	public function getPaís_Residencia() {
 		return $this->País_Residencia;
 	}
-	public function getCedula_Persona() {
-		return $this->Cedula_Persona;
+	public function getCédula_Persona() {
+		return $this->Cédula_Persona;
 	}
 }
 

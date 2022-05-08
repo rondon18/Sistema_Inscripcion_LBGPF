@@ -7,7 +7,7 @@ class Estudiantes extends Personas {
 	private $idEstudiantes;
 	private $Plantel_Procedencia;
 	private $Con_Quien_Vive;
-	private $Cedula_Estudiante;
+	private $Cédula_Estudiante;
 	private $idRepresentante;
 	private $Relación_Representante;
 	private $idPadre;
@@ -20,22 +20,22 @@ class Estudiantes extends Personas {
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
 		$Con_Quien_Vive = $this->getCon_Quien_Vive();
-		$Cedula_Estudiante = $this->getCedula_Estudiante();
+		$Cédula_Estudiante = $this->getCédula_Estudiante();
 		$idRepresentante = $this->getidRepresentante();
 		$idPadre = $this->getidPadre();
 
-		$sql = "SELECT * FROM `estudiantes` WHERE `Cedula_Persona` = '$Cedula_Estudiante'";
+		$sql = "SELECT * FROM `estudiantes` WHERE `Cédula_Persona` = '$Cédula_Estudiante'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cedula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`Relación_Padre`) VALUES (
+			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`Relación_Padre`) VALUES (
 				NULL,
 				'$Plantel_Procedencia',
 				'$Con_Quien_Vive',
-				'$Cedula_Estudiante',
+				'$Cédula_Estudiante',
 				'$idRepresentante',
 				'$Relación_Representante',
 				'$idPadre',
@@ -50,7 +50,7 @@ class Estudiantes extends Personas {
 		desconectarBD($conexion);
 	}
 
-	public function editarEstudiante($cedula_Estudiante) {
+	public function editarEstudiante($Cédula_Estudiante) {
 		$conexion = conectarBD();
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
@@ -59,28 +59,28 @@ class Estudiantes extends Personas {
 				`Plantel_Procedencia`='$Plantel_Procedencia',
 			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
 
-		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quien_Vive`='[value-3]',`Cedula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
+		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quien_Vive`='[value-3]',`Cédula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}
 
-	public function eliminarEstudiante($cedula_Estudiante) {
+	public function eliminarEstudiante($Cédula_Estudiante) {
 		$conexion = conectarBD();
 
-		$sql = "DELETE FROM `personas` WHERE `Cédula` = '$cedula_Estudiante'";
+		$sql = "DELETE FROM `personas` WHERE `Cédula` = '$Cédula_Estudiante'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
 
-	public function consultarEstudiante($cedula_Estudiante) {
+	public function consultarEstudiante($Cédula_Estudiante) {
 
 		$conexion = conectarBD();
 
 		#Consulta los datos de las tablas personas y estudiantes del estudiante solicitado
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = '$cedula_Estudiante' AND `estudiantes`.`Cedula_Persona` = '$cedula_Estudiante'";
+		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `personas`.`Cédula` = '$Cédula_Estudiante' AND `estudiantes`.`Cédula_Persona` = '$Cédula_Estudiante'";
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$estudiantes = $consulta_estudiantes->fetch_assoc();
@@ -95,7 +95,7 @@ class Estudiantes extends Personas {
 		$conexion = conectarBD();
 
 		#consulta solo las personas que tengan presencia en la tabla estudiantes
-		$sql = "SELECT * FROM `personas`,`estudiantes`,`datos-tallas`,`datos-salud`,`grado` WHERE `personas`.`Cédula` = `estudiantes`.`Cedula_Persona` AND `estudiantes`.`idEstudiantes` = `datos-tallas`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `datos-salud`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `grado`.`idEstudiantes`;
+		$sql = "SELECT * FROM `personas`,`estudiantes`,`datos-tallas`,`datos-salud`,`grado` WHERE `personas`.`Cédula` = `estudiantes`.`Cédula_Persona` AND `estudiantes`.`idEstudiantes` = `datos-tallas`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `datos-salud`.`idEstudiantes` AND `estudiantes`.`idEstudiantes` = `grado`.`idEstudiantes`;
 		";
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
@@ -121,8 +121,8 @@ class Estudiantes extends Personas {
 	public function setCon_Quien_Vive($Con_Quien_Vive) {
 		$this->Con_Quien_Vive = $Con_Quien_Vive;
 	}
-	public function setCedula_Estudiante($Cedula_Estudiante) {
-		$this->Cedula_Estudiante = $Cedula_Estudiante;
+	public function setCédula_Estudiante($Cédula_Estudiante) {
+		$this->Cédula_Estudiante = $Cédula_Estudiante;
 	}
 	public function setidRepresentante($idRepresentante) {
 		$this->idRepresentante = $idRepresentante;
@@ -146,8 +146,8 @@ class Estudiantes extends Personas {
 	public function getidPadre() {
 		return $this->idPadre;
 	}
-	public function getCedula_Estudiante() {
-		return $this->Cedula_Estudiante;
+	public function getCédula_Estudiante() {
+		return $this->Cédula_Estudiante;
 	}
 }
 

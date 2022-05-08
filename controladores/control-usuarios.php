@@ -9,7 +9,7 @@ require('../clases/representantes.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/usuario.php');
 require('../clases/laborales-representantes.php');
-require('../clases/economicos-representantes.php');
+require('../clases/económicos-representantes.php');
 require('../clases/vivienda-representantes.php');
 
 $conexion = conectarBD();
@@ -36,13 +36,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$cedula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
-		$persona->setCédula($cedula);
+		$Cédula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
-		$persona->setGénero($_POST['Genero_U']);
+		$persona->setGénero($_POST['Género_U']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_U']);
-		#$persona->setDirección($_POST['Direccion_U']);
+		#$persona->setDirección($_POST['Dirección_U']);
 		#$persona->setEstado_Civil($_POST['Estado_Civil_U']);
 
 		$persona->insertarPersona();
@@ -61,7 +61,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$usuario->setRespuesta_2($_POST['Respuesta_2']);
 
 		$usuario->setPrivilegios(2);#Se establese como 2 para todos los representantes
-		$usuario->setCedula_Persona($persona->getCédula());
+		$usuario->setCédula_Persona($persona->getCédula());
 
 		$usuario->insertarUsuario();
 
@@ -80,13 +80,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$cedula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
-		$persona->setCédula($cedula);
+		$Cédula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
-		$persona->setGénero($_POST['Genero_U']);
+		$persona->setGénero($_POST['Género_U']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_U']);
-		#$persona->setDirección($_POST['Direccion_U']);
+		#$persona->setDirección($_POST['Dirección_U']);
 		#$persona->setEstado_Civil($_POST['Estado_Civil_U']);
 
 		$persona->editarPersona($_SESSION['persona']['idPersonas']);
@@ -111,13 +111,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$usuario->setRespuesta_2($_POST['Respuesta_2']);
 
 		$usuario->setPrivilegios(2);#Se establese como 2 para todos los usuarios nuevos
-		$usuario->setCedula_Persona($persona->getCédula());
+		$usuario->setCédula_Persona($persona->getCédula());
 
-		$usuario->editarUsuario($cedula);
+		$usuario->editarUsuario($Cédula);
 
 		/*
 
-			Cambia las variables de sesion para no redireccionar al usuario a iniciar sesión
+			Cambia las variables de sesion para no reDirecciónar al usuario a iniciar sesión
 
 		*/
 		$_SESSION['persona']['Primer_Nombre'] = $persona->getPrimer_Nombre();

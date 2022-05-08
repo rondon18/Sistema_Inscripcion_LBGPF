@@ -43,7 +43,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de vivienda</a>
 				</li>
 				<li class="nav-item">
-					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y economicos</a>
+					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y económicos</a>
 				</li>
 				<li class="nav-item">
 					<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Contacto auxiliar</a>
@@ -91,18 +91,18 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 						<input class="form-control mb-2" type="text" name="Cédula_Representante" placeholder="Cédula de identidad" required value="<?php echo $_SESSION['persona']['Cédula'];?>">
 					</div>
 
-					<!--Genero del representante-->
+					<!--Género del representante-->
 					<div>
-						<p>Genero:</p>
+						<p>Género:</p>
 
 						<div class="form-check">
 							<label>F </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="F" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "F"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Género_Representante" value="F" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "F"){ echo "checked";} ?>>
 						</div>
 
 						<div class="form-check">
 							<label>M </label>
-							<input class="form-check-input" type="radio" name="Genero_Representante" value="M" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "M"){ echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Género_Representante" value="M" required <?php if(isset($_SESSION['persona']['Género']) and $_SESSION['persona']['Género'] == "M"){ echo "checked";} ?>>
 						</div>
 					</div>
 
@@ -118,7 +118,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 						<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Representante" required value="<?php echo $_SESSION['persona']['Lugar_Nacimiento'];?>">
 					</div>
 
-					<!--Correo electronico del representante-->
+					<!--Correo Electrónico del representante-->
 					<div>
 						<label>Correo electrónico:</label>
 						<input class="form-control mb-2" type="email" name="Correo_electrónico" required value="<?php echo $_SESSION['persona']['Correo_Electrónico'];?>">
@@ -138,7 +138,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<!--Dirección de residencia-->
 					<div>
 						<label>Dirección de residencia:</label>
-						<textarea class="form-control mb-2" name="Direccion_Representante" required><?php echo $_SESSION['persona']['Dirección'];?></textarea>
+						<textarea class="form-control mb-2" name="Dirección_Representante" required><?php echo $_SESSION['persona']['Dirección'];?></textarea>
 					</div>
 
 
@@ -219,28 +219,28 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<!--Teléfono principal-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
-						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][0]['Prefijo'] ?>">
+						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['Teléfonos'][0]['Prefijo'] ?>">
 
 						<!--Número-->
-						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['telefonos'][0]['Número_Telefónico'];?>">
+						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['Teléfonos'][0]['Número_Telefónico'];?>">
 					</div>
 
 					<!--Teléfono secundario-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
-						<input class="form-control col-1" type="text" name="Prefijo_Secundario_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][1]['Prefijo'] ?>">
+						<input class="form-control col-1" type="text" name="Prefijo_Secundario_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['Teléfonos'][1]['Prefijo'] ?>">
 
 						<!--Número-->
-						<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['telefonos'][1]['Número_Telefónico'];?>">
+						<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['Teléfonos'][1]['Número_Telefónico'];?>">
 					</div>
 
 					<!--Teléfono auxiliar-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
-						<input class="form-control col-1" type="text" name="Prefijo_Auxiliar_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][2]['Prefijo'] ?>">
+						<input class="form-control col-1" type="text" name="Prefijo_Auxiliar_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['Teléfonos'][2]['Prefijo'] ?>">
 
 						<!--Número-->
-						<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['telefonos'][2]['Número_Telefónico'];?>">
+						<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Representante" placeholder="Auxiliar" required value="<?php echo $_SESSION['Teléfonos'][2]['Número_Telefónico'];?>">
 					</div>
 				</div>
 				<!--Vinculo del representante con el estudiante-->
@@ -284,51 +284,51 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 						<label>Banco:</label>
 
 						<select class="form-select" name="Banco">
-							<option value="Banco de Venezuela S.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco de Venezuela S.A."){ echo "selected";} ?>>Banco de Venezuela S.A.</option>
-							<option value="Venezolano de Crédito S.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Venezolano de Crédito S.A."){ echo "selected";} ?>>Venezolano de Crédito S.A.</option>
-							<option value="Banco Mercantil, C.A" <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Mercantil, C.A"){ echo "selected";} ?>>Banco Mercantil, C.A</option>
-							<option value="Banco Provincial, S.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Provincial, S.A."){ echo "selected";} ?>>Banco Provincial, S.A.</option>
-							<option value="Bancaribe C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Bancaribe C.A."){ echo "selected";} ?>>Bancaribe C.A.</option>
-							<option value="Banco Exterior C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Exterior C.A."){ echo "selected";} ?>>Banco Exterior C.A.</option>
-							<option value="Banco Occidental de Descuento, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Occidental de Descuento, C.A."){ echo "selected";} ?>>Banco Occidental de Descuento, C.A.</option>
-							<option value="Banco Caroní C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Caroní C.A."){ echo "selected";} ?>>Banco Caroní C.A.</option>
-							<option value="Banesco S.A.C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banesco S.A.C.A."){ echo "selected";} ?>>Banesco S.A.C.A.</option>
-							<option value="Banco Sofitasa C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Sofitasa C.A."){ echo "selected";} ?>>Banco Sofitasa C.A.</option>
-							<option value="Banco Plaza C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Plaza C.A."){ echo "selected";} ?>>Banco Plaza C.A.</option>
-							<option value="Banco de la Gente Emprendedora C.A. - Bangente" <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco de la Gente Emprendedora C.A. - Bangente"){ echo "selected";} ?>>Banco de la Gente Emprendedora C.A. - Bangente</option>
-							<option value="Banco del Pueblo Soberano, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco del Pueblo Soberano, C.A."){ echo "selected";} ?>>Banco del Pueblo Soberano, C.A.</option>
-							<option value="Banco Fondo Común C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Fondo Común C.A."){ echo "selected";} ?>>Banco Fondo Común C.A.</option>
-							<option value="100% Banco, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "100% Banco, C.A."){ echo "selected";} ?>>100% Banco, C.A.</option>
-							<option value="DelSur, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "DelSur, C.A."){ echo "selected";} ?>>DelSur, C.A.</option>
-							<option value="Banco del Tesoro, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco del Tesoro, C.A."){ echo "selected";} ?>>Banco del Tesoro, C.A.</option>
-							<option value="Banco Agrícola de Venezuela, C.A" <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Agrícola de Venezuela, C.A"){ echo "selected";} ?>>Banco Agrícola de Venezuela, C.A</option>
-							<option value="Bancrecer, S.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Bancrecer, S.A."){ echo "selected";} ?>>Bancrecer, S.A.</option>
-							<option value="Mi Banco C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Mi Banco C.A."){ echo "selected";} ?>>Mi Banco C.A.</option>
-							<option value="Banco Activo, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Activo, C.A."){ echo "selected";} ?>>Banco Activo, C.A.</option>
-							<option value="Bancamiga, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Bancamiga, C.A."){ echo "selected";} ?>>Bancamiga, C.A.</option>
-							<option value="Banco Internacional de Desarrollo, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Internacional de Desarrollo, C.A."){ echo "selected";} ?>>Banco Internacional de Desarrollo, C.A.</option>
-							<option value="Banplus, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banplus, C.A."){ echo "selected";} ?>>Banplus, C.A.</option>
-							<option value="Banco Bicentenario C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Bicentenario C.A."){ echo "selected";} ?>>Banco Bicentenario C.A.</option>
-							<option value="Banco de la Fuerza Armada Nacional Bolivariana - BANFANB" <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco de la Fuerza Armada Nacional Bolivariana - BANFANB"){ echo "selected";} ?>>Banco de la Fuerza Armada Nacional Bolivariana - BANFANB</option>
-							<option value="Citibank N.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Citibank N.A."){ echo "selected";} ?>>Citibank N.A.</option>
-							<option value="Banco Nacional de Crédito, C.A." <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Banco Nacional de Crédito, C.A."){ echo "selected";} ?>>Banco Nacional de Crédito, C.A.</option>
-							<option value="Instituto Municipal de Crédito Popular" <?php if(isset($_SESSION['datos_economicos']['Banco']) and $_SESSION['datos_economicos']['Banco'] == "Instituto Municipal de Crédito Popular"){ echo "selected";} ?>>Instituto Municipal de Crédito Popular</option>
+							<option value="Banco de Venezuela S.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco de Venezuela S.A."){ echo "selected";} ?>>Banco de Venezuela S.A.</option>
+							<option value="Venezolano de Crédito S.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Venezolano de Crédito S.A."){ echo "selected";} ?>>Venezolano de Crédito S.A.</option>
+							<option value="Banco Mercantil, C.A" <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Mercantil, C.A"){ echo "selected";} ?>>Banco Mercantil, C.A</option>
+							<option value="Banco Provincial, S.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Provincial, S.A."){ echo "selected";} ?>>Banco Provincial, S.A.</option>
+							<option value="Bancaribe C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Bancaribe C.A."){ echo "selected";} ?>>Bancaribe C.A.</option>
+							<option value="Banco Exterior C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Exterior C.A."){ echo "selected";} ?>>Banco Exterior C.A.</option>
+							<option value="Banco Occidental de Descuento, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Occidental de Descuento, C.A."){ echo "selected";} ?>>Banco Occidental de Descuento, C.A.</option>
+							<option value="Banco Caroní C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Caroní C.A."){ echo "selected";} ?>>Banco Caroní C.A.</option>
+							<option value="Banesco S.A.C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banesco S.A.C.A."){ echo "selected";} ?>>Banesco S.A.C.A.</option>
+							<option value="Banco Sofitasa C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Sofitasa C.A."){ echo "selected";} ?>>Banco Sofitasa C.A.</option>
+							<option value="Banco Plaza C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Plaza C.A."){ echo "selected";} ?>>Banco Plaza C.A.</option>
+							<option value="Banco de la Gente Emprendedora C.A. - Bangente" <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco de la Gente Emprendedora C.A. - Bangente"){ echo "selected";} ?>>Banco de la Gente Emprendedora C.A. - Bangente</option>
+							<option value="Banco del Pueblo Soberano, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco del Pueblo Soberano, C.A."){ echo "selected";} ?>>Banco del Pueblo Soberano, C.A.</option>
+							<option value="Banco Fondo Común C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Fondo Común C.A."){ echo "selected";} ?>>Banco Fondo Común C.A.</option>
+							<option value="100% Banco, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "100% Banco, C.A."){ echo "selected";} ?>>100% Banco, C.A.</option>
+							<option value="DelSur, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "DelSur, C.A."){ echo "selected";} ?>>DelSur, C.A.</option>
+							<option value="Banco del Tesoro, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco del Tesoro, C.A."){ echo "selected";} ?>>Banco del Tesoro, C.A.</option>
+							<option value="Banco Agrícola de Venezuela, C.A" <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Agrícola de Venezuela, C.A"){ echo "selected";} ?>>Banco Agrícola de Venezuela, C.A</option>
+							<option value="Bancrecer, S.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Bancrecer, S.A."){ echo "selected";} ?>>Bancrecer, S.A.</option>
+							<option value="Mi Banco C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Mi Banco C.A."){ echo "selected";} ?>>Mi Banco C.A.</option>
+							<option value="Banco Activo, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Activo, C.A."){ echo "selected";} ?>>Banco Activo, C.A.</option>
+							<option value="Bancamiga, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Bancamiga, C.A."){ echo "selected";} ?>>Bancamiga, C.A.</option>
+							<option value="Banco Internacional de Desarrollo, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Internacional de Desarrollo, C.A."){ echo "selected";} ?>>Banco Internacional de Desarrollo, C.A.</option>
+							<option value="Banplus, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banplus, C.A."){ echo "selected";} ?>>Banplus, C.A.</option>
+							<option value="Banco Bicentenario C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Bicentenario C.A."){ echo "selected";} ?>>Banco Bicentenario C.A.</option>
+							<option value="Banco de la Fuerza Armada Nacional Bolivariana - BANFANB" <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco de la Fuerza Armada Nacional Bolivariana - BANFANB"){ echo "selected";} ?>>Banco de la Fuerza Armada Nacional Bolivariana - BANFANB</option>
+							<option value="Citibank N.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Citibank N.A."){ echo "selected";} ?>>Citibank N.A.</option>
+							<option value="Banco Nacional de Crédito, C.A." <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Banco Nacional de Crédito, C.A."){ echo "selected";} ?>>Banco Nacional de Crédito, C.A.</option>
+							<option value="Instituto Municipal de Crédito Popular" <?php if(isset($_SESSION['datos_económicos']['Banco']) and $_SESSION['datos_económicos']['Banco'] == "Instituto Municipal de Crédito Popular"){ echo "selected";} ?>>Instituto Municipal de Crédito Popular</option>
 						</select>
 
 						<div>
 							<p>Tipo de cuenta:</p>
 							<div class="form-check">
 								<label>Ahorro </label>
-								<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Ahorro" required <?php if(isset($_SESSION['datos_economicos']['Tipo_Cuenta']) and $_SESSION['datos_economicos']['Tipo_Cuenta'] == "Ahorro"){ echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Ahorro" required <?php if(isset($_SESSION['datos_económicos']['Tipo_Cuenta']) and $_SESSION['datos_económicos']['Tipo_Cuenta'] == "Ahorro"){ echo "checked";} ?>>
 							</div>
 							<div class="form-check">
 								<label>Corriente </label>
-								<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Corriente" required <?php if(isset($_SESSION['datos_economicos']['Tipo_Cuenta']) and $_SESSION['datos_economicos']['Tipo_Cuenta'] == "Corriente"){ echo "checked";} ?>>
+								<input class="form-check-input" type="radio" name="Tipo_Cuenta" value="Corriente" required <?php if(isset($_SESSION['datos_económicos']['Tipo_Cuenta']) and $_SESSION['datos_económicos']['Tipo_Cuenta'] == "Corriente"){ echo "checked";} ?>>
 							</div>
 						</div>
 						<div>
 							<label>Nro. de cuenta:</label>
-							<input class="form-control mb-2" type="text" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required value="<?php echo $_SESSION['datos_economicos']['Cta_Bancaria'];?>">
+							<input class="form-control mb-2" type="text" name="Nro_Cuenta" placeholder="0000-XXXXXXXXXXXXXX" required value="<?php echo $_SESSION['datos_económicos']['Cta_Bancaria'];?>">
 						</div>
 					</div>
 				</div>
@@ -353,10 +353,10 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 					<!--Teléfono principal-->
 					<div class="input-group mb-2">
 						<!--Prefijo-->
-						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['telefonos'][3]['Prefijo'] ?>">
+						<input class="form-control col-1" type="text" name="Prefijo_Principal_Representante" list="prefijos" pattern="[0,9]+" maxlength="4" placeholder="Prefijo telefónico" type="Solo ingresar caracteres numericos" value="<?php echo $_SESSION['Teléfonos'][3]['Prefijo'] ?>">
 
 						<!--Número-->
-						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['telefonos'][3]['Número_Telefónico'];?>">
+						<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Representante" placeholder="Principal" required value="<?php echo $_SESSION['Teléfonos'][3]['Número_Telefónico'];?>">
 					</div>
 				</div>
 
@@ -380,8 +380,8 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 
 						<span class="input-group-text">Salarios mínimos</span>
 
-						<!--Tipo de remuneracion del representante-->
-						<select class="form-select" name="Tipo_Remuneracion">
+						<!--Tipo de Remuneración del representante-->
+						<select class="form-select" name="Tipo_Remuneración">
 							<option value="Diaria" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Diaria"){ echo "selected";} ?>>Remuneración diaria</option>
 							<option value="Semanal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Semanal"){ echo "selected";} ?>>Remuneración semanal</option>
 							<option value="Quincenal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Quincenal"){ echo "selected";} ?>>Remuneración quincenal</option>
@@ -422,12 +422,12 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 				<div>
 					<!--Teléfono de la persona auxiliar-->
 					<span>Teléfono principal:</span>
-					<input class="form-control mb-2" type="tel" name="Tfl_P_Contacto_Aux" placeholder="Telefono" required value="<?php echo $_SESSION['auxiliar'][4];?>">
+					<input class="form-control mb-2" type="tel" name="Tfl_P_Contacto_Aux" placeholder="Teléfono" required value="<?php echo $_SESSION['auxiliar'][4];?>">
 				</div>
 				<div>
 					<!--Teléfono de la persona auxiliar-->
 					<span>Teléfono auxiliar:</span>
-					<input class="form-control mb-2" type="tel" name="Tfl_S_Contacto_Aux" placeholder="Telefono" required value="<?php echo $_SESSION['auxiliar'][5];?>">
+					<input class="form-control mb-2" type="tel" name="Tfl_S_Contacto_Aux" placeholder="Teléfono" required value="<?php echo $_SESSION['auxiliar'][5];?>">
 				</div>
 			</section>
 			<section id="seccion5" style="display: none;">

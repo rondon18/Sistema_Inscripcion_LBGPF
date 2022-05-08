@@ -28,7 +28,7 @@ $('#Teléfono_Auxiliar_R').validarIngreso('0123456789');
 
 
 
-$('#Codigo_Carnet_Patria').validarIngreso('0123456789');
+$('#Código_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
 
 $('#Nro_Cuenta').validarIngreso('0123456789');

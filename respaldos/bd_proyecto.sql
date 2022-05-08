@@ -127,14 +127,14 @@ CREATE TABLE `carnet-patria` (
   `idCarnet` int(11) NOT NULL,
   `Código_Carnet` varchar(10) NOT NULL,
   `Serial_Carnet` varchar(10) NOT NULL,
-  `Cedula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+  `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `carnet-patria`
 --
 
-INSERT INTO `carnet-patria` (`idCarnet`, `Código_Carnet`, `Serial_Carnet`, `Cedula_Persona`) VALUES
+INSERT INTO `carnet-patria` (`idCarnet`, `Código_Carnet`, `Serial_Carnet`, `Cédula_Persona`) VALUES
 (1, '1234567890', '1234567890', 'V26666666'),
 (2, '1234567890', '1234567890', 'V11111111'),
 (3, '1111111111', '2222222222', 'V27919566'),
@@ -164,11 +164,11 @@ INSERT INTO `contactos_auxiliares` (`idContactoAuxiliar`, `Relación`, `Cédula_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `datos-economicos`
+-- Estructura de tabla para la tabla `datos-económicos`
 --
 
-CREATE TABLE `datos-economicos` (
-  `idDatos-economicos` int(11) NOT NULL,
+CREATE TABLE `datos-económicos` (
+  `idDatos-económicos` int(11) NOT NULL,
   `Banco` varchar(45) NOT NULL,
   `Tipo_Cuenta` varchar(45) NOT NULL,
   `Cta_Bancaria` varchar(45) NOT NULL,
@@ -176,10 +176,10 @@ CREATE TABLE `datos-economicos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `datos-economicos`
+-- Volcado de datos para la tabla `datos-económicos`
 --
 
-INSERT INTO `datos-economicos` (`idDatos-economicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES
+INSERT INTO `datos-económicos` (`idDatos-económicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES
 (1, 'Banco Provincial, S.A.', 'Corriente', '1351351351384135', 3),
 (4, 'Banco Provincial, S.A.', 'Corriente', '11111111111111111111', 7);
 
@@ -213,10 +213,10 @@ INSERT INTO `datos-laborales` (`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `
 --
 
 CREATE TABLE `datos-salud` (
-  `idDatos-Medicos` int(11) NOT NULL,
+  `idDatos-Médicos` int(11) NOT NULL,
   `Estatura` int(11) NOT NULL,
   `Peso` int(11) NOT NULL,
-  `Indice` varchar(45) COLLATE utf8_bin NOT NULL,
+  `Índice` varchar(45) COLLATE utf8_bin NOT NULL,
   `Circ_Braquial` int(11) NOT NULL,
   `Lateralidad` varchar(45) COLLATE utf8_bin NOT NULL,
   `Tipo_Sangre` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -236,7 +236,7 @@ CREATE TABLE `datos-salud` (
 -- Volcado de datos para la tabla `datos-salud`
 --
 
-INSERT INTO `datos-salud` (`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES
+INSERT INTO `datos-salud` (`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institucion_Medica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES
 (1, 1, 1, '1', 1, 'Diestro', 'AB-', 'hjgchjgch', 'hgchjgch', '', 'Motora, Escritura, Embarazo', 'cxhchgc', 'Regular', 'Mala', 'vjgcvjgcv', 'hgchgc', 6),
 (10, 1, 1, '1', 1, 'Diestro', 'AB-', 'hjgchjgch', 'hgchjgch', '', 'Motora, Escritura, Embarazo', 'cxhchgc', 'Regular', 'Mala', 'vjgcvjgcv', 'hgchgc', 1);
 
@@ -249,7 +249,7 @@ INSERT INTO `datos-salud` (`idDatos-Medicos`, `Estatura`, `Peso`, `Indice`, `Cir
 CREATE TABLE `datos-sociales` (
   `idDatos-Sociales` int(11) NOT NULL,
   `Posee_Canaima` char(2) COLLATE utf8_bin NOT NULL,
-  `Condicion_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
+  `Condición_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
   `Acceso_Internet` varchar(45) COLLATE utf8_bin NOT NULL,
   `Con_Quien_Vive` varchar(45) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL
@@ -259,9 +259,9 @@ CREATE TABLE `datos-sociales` (
 -- Volcado de datos para la tabla `datos-sociales`
 --
 
-INSERT INTO `datos-sociales` (`idDatos-Sociales`, `Posee_Canaima`, `Condicion_Canaima`, `Acceso_Internet`, `Con_Quien_Vive`, `idEstudiantes`) VALUES
-(1, 'Si', 'Muy buenas condiciones', 'Si', '', 6),
-(9, 'Si', 'Muy buenas condiciones', 'Si', '', 1);
+INSERT INTO `datos-sociales` (`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Acceso_Internet`, `Con_Quien_Vive`, `idEstudiantes`) VALUES
+(1, 'Si', 'Muy buenas Condiciones', 'Si', '', 6),
+(9, 'Si', 'Muy buenas Condiciones', 'Si', '', 1);
 
 -- --------------------------------------------------------
 
@@ -317,7 +317,7 @@ CREATE TABLE `estudiantes` (
   `idEstudiantes` int(11) NOT NULL,
   `Plantel_Procedencia` text COLLATE utf8_bin NOT NULL,
   `Con_Quien_Vive` varchar(25) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   `idRepresentante` int(11) NOT NULL,
   `Relación_Representante` varchar(20) COLLATE utf8_bin NOT NULL,
   `idPadre` int(11) NOT NULL,
@@ -328,7 +328,7 @@ CREATE TABLE `estudiantes` (
 -- Volcado de datos para la tabla `estudiantes`
 --
 
-INSERT INTO `estudiantes` (`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cedula_Persona`, `idRepresentante`, `Relación_Representante`, `idPadre`, `Relación_Padre`) VALUES
+INSERT INTO `estudiantes` (`idEstudiantes`, `Plantel_Procedencia`, `Con_Quien_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`, `idPadre`, `Relación_Padre`) VALUES
 (1, 'asjbfkajsdbf', 'Solo', 'V26666666', 3, '', 1, ''),
 (6, 'ahbsjdhavda', 'vjahsfdhavd', 'V11111111', 3, '', 2, '');
 
@@ -344,7 +344,7 @@ CREATE TABLE `estudiantes-observaciones` (
   `Físico` text DEFAULT NULL,
   `Personal` text DEFAULT NULL,
   `Familiar` text DEFAULT NULL,
-  `Academico` text DEFAULT NULL,
+  `Académico` text DEFAULT NULL,
   `Otra` text DEFAULT NULL,
   `idEstudiantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -393,12 +393,12 @@ INSERT INTO `grado` (`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escol
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `inscripciones`
+-- Estructura de tabla para la tabla `Inscripciónes`
 --
 
-CREATE TABLE `inscripciones` (
-  `idInscripciones` int(11) NOT NULL,
-  `Fecha_Inscripcion` varchar(12) COLLATE utf8_bin NOT NULL,
+CREATE TABLE `Inscripciónes` (
+  `idInscripciónes` int(11) NOT NULL,
+  `Fecha_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `Hora_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `idEstudiante` int(11) NOT NULL
@@ -413,14 +413,14 @@ CREATE TABLE `inscripciones` (
 CREATE TABLE `padres` (
   `idPadres` int(11) NOT NULL,
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `padres`
 --
 
-INSERT INTO `padres` (`idPadres`, `País_Residencia`, `Cedula_Persona`) VALUES
+INSERT INTO `padres` (`idPadres`, `País_Residencia`, `Cédula_Persona`) VALUES
 (1, 'Venezuela', 'V25555555'),
 (2, 'España', 'V27919566');
 
@@ -468,15 +468,15 @@ INSERT INTO `personas` (`idPersonas`, `Primer_Nombre`, `Segundo_Nombre`, `Primer
 
 CREATE TABLE `representantes` (
   `idRepresentantes` int(11) NOT NULL,
-  `Grado_Academico` varchar(15) COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
+  `Grado_Académico` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `representantes`
 --
 
-INSERT INTO `representantes` (`idRepresentantes`, `Grado_Academico`, `Cedula_Persona`) VALUES
+INSERT INTO `representantes` (`idRepresentantes`, `Grado_Académico`, `Cédula_Persona`) VALUES
 (3, 'Bachillerato', 'V27919566'),
 (7, 'Bachillerato', 'V27555555');
 
@@ -491,14 +491,14 @@ CREATE TABLE `teléfonos` (
   `Prefijo` varchar(4) DEFAULT NULL,
   `Número_Telefónico` varchar(10) DEFAULT NULL,
   `Relación_Teléfono` varchar(20) NOT NULL,
-  `Cedula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+  `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `teléfonos`
 --
 
-INSERT INTO `teléfonos` (`idTeléfonos`, `Prefijo`, `Número_Telefónico`, `Relación_Teléfono`, `Cedula_Persona`) VALUES
+INSERT INTO `teléfonos` (`idTeléfonos`, `Prefijo`, `Número_Telefónico`, `Relación_Teléfono`, `Cédula_Persona`) VALUES
 (19, '0416', '12345678', 'Principal', 'V27919566'),
 (20, '0412', '87654321', 'Secundario', 'V27919566'),
 (21, '0274', '12349587', 'Auxiliar', 'V27919566'),
@@ -536,45 +536,45 @@ CREATE TABLE `usuarios` (
   `Pregunta_Seg_2` text COLLATE utf8_bin NOT NULL,
   `Respuesta_1` text COLLATE utf8_bin NOT NULL,
   `Respuesta_2` text COLLATE utf8_bin NOT NULL,
-  `Cedula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
+  `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cedula_Persona`) VALUES
+INSERT INTO `usuarios` (`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cédula_Persona`) VALUES
 (1, '12345', 1, '1111111111', '11111111111', '11111111111111', '111111111111111111111', 'V28636530'),
 (2, '12345', 2, 'Ciudad donde naciste', 'Color que más te gusta', 'Mérida', 'Azul', 'V27919566'),
 (11, 'Clave_01', 2, 'Ciudad donde naciste', 'Color que más te gusta', 'Mérida', 'Azul', 'V27919569'),
-(12, 'Clave_02', 2, 'Color que más te gusta', 'Azul', '¿Cuál fue tu primer número de telefono?', '04163569245', 'E12345678');
+(12, 'Clave_02', 2, 'Color que más te gusta', 'Azul', '¿Cuál fue tu primer número de Teléfono?', '04163569245', 'E12345678');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `año-escolar`
+-- Índices de la tabla `año-escolar`
 --
 ALTER TABLE `año-escolar`
   ADD PRIMARY KEY (`idAño-Escolar`);
 
 --
--- Indices de la tabla `bitacora`
+-- Índices de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`idBitacora`),
   ADD KEY `fk_usuarios_bitacora` (`idUsuarios`);
 
 --
--- Indices de la tabla `carnet-patria`
+-- Índices de la tabla `carnet-patria`
 --
 ALTER TABLE `carnet-patria`
   ADD PRIMARY KEY (`idCarnet`),
-  ADD KEY `fk_personas_carnet` (`Cedula_Persona`);
+  ADD KEY `fk_personas_carnet` (`Cédula_Persona`);
 
 --
--- Indices de la tabla `contactos_auxiliares`
+-- Índices de la tabla `contactos_auxiliares`
 --
 ALTER TABLE `contactos_auxiliares`
   ADD PRIMARY KEY (`idContactoAuxiliar`,`idRepresentante`),
@@ -582,72 +582,72 @@ ALTER TABLE `contactos_auxiliares`
   ADD KEY `fk_personas_auxiliares` (`Cédula_Persona`);
 
 --
--- Indices de la tabla `datos-economicos`
+-- Índices de la tabla `datos-económicos`
 --
-ALTER TABLE `datos-economicos`
-  ADD PRIMARY KEY (`idDatos-economicos`,`idRepresentantes`),
-  ADD KEY `fk_datos-economicos_representantes1_idx` (`idRepresentantes`);
+ALTER TABLE `datos-económicos`
+  ADD PRIMARY KEY (`idDatos-económicos`,`idRepresentantes`),
+  ADD KEY `fk_datos-económicos_representantes1_idx` (`idRepresentantes`);
 
 --
--- Indices de la tabla `datos-laborales`
+-- Índices de la tabla `datos-laborales`
 --
 ALTER TABLE `datos-laborales`
   ADD PRIMARY KEY (`idDatos-laborales`,`idRepresentantes`),
   ADD KEY `fk_datos-laborales_representantes1_idx` (`idRepresentantes`);
 
 --
--- Indices de la tabla `datos-salud`
+-- Índices de la tabla `datos-salud`
 --
 ALTER TABLE `datos-salud`
-  ADD PRIMARY KEY (`idDatos-Medicos`,`idEstudiantes`),
+  ADD PRIMARY KEY (`idDatos-Médicos`,`idEstudiantes`),
   ADD KEY `idUsuarios_idx` (`idEstudiantes`);
 
 --
--- Indices de la tabla `datos-sociales`
+-- Índices de la tabla `datos-sociales`
 --
 ALTER TABLE `datos-sociales`
   ADD PRIMARY KEY (`idDatos-Sociales`,`idEstudiantes`),
   ADD KEY `idEstudiantes_idx` (`idEstudiantes`);
 
 --
--- Indices de la tabla `datos-tallas`
+-- Índices de la tabla `datos-tallas`
 --
 ALTER TABLE `datos-tallas`
   ADD PRIMARY KEY (`idDatos-Tallas`,`idEstudiantes`),
   ADD KEY `idEstudiantes_idx` (`idEstudiantes`);
 
 --
--- Indices de la tabla `datos-vivienda`
+-- Índices de la tabla `datos-vivienda`
 --
 ALTER TABLE `datos-vivienda`
   ADD PRIMARY KEY (`idDatos-vivienda`),
   ADD KEY `fk_representantes_vivienda` (`idRepresentante`);
 
 --
--- Indices de la tabla `estudiantes`
+-- Índices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`idEstudiantes`,`Cedula_Persona`,`idRepresentante`,`idPadre`),
-  ADD KEY `Cedula_Persona_idx` (`Cedula_Persona`),
+  ADD PRIMARY KEY (`idEstudiantes`,`Cédula_Persona`,`idRepresentante`,`idPadre`),
+  ADD KEY `Cédula_Persona_idx` (`Cédula_Persona`),
   ADD KEY `id_Representante_idx` (`idRepresentante`),
   ADD KEY `fk_estudiantes_padres1_idx` (`idPadre`);
 
 --
--- Indices de la tabla `estudiantes-observaciones`
+-- Índices de la tabla `estudiantes-observaciones`
 --
 ALTER TABLE `estudiantes-observaciones`
   ADD PRIMARY KEY (`idObservaciones`),
   ADD KEY `fk_estudiantes_observaciones` (`idEstudiantes`);
 
 --
--- Indices de la tabla `estudiantes-repitentes`
+-- Índices de la tabla `estudiantes-repitentes`
 --
 ALTER TABLE `estudiantes-repitentes`
   ADD PRIMARY KEY (`idEstudiante-Repitente`,`idEstudiante`),
   ADD KEY `idEstudiantes_idx` (`idEstudiante`);
 
 --
--- Indices de la tabla `grado`
+-- Índices de la tabla `grado`
 --
 ALTER TABLE `grado`
   ADD PRIMARY KEY (`idGrado`,`idEstudiantes`,`idAño-Escolar`),
@@ -655,48 +655,48 @@ ALTER TABLE `grado`
   ADD KEY `fk_Año-Escolar_Grado` (`idAño-Escolar`);
 
 --
--- Indices de la tabla `inscripciones`
+-- Índices de la tabla `Inscripciónes`
 --
-ALTER TABLE `inscripciones`
-  ADD PRIMARY KEY (`idInscripciones`,`idUsuario`,`idEstudiante`),
+ALTER TABLE `Inscripciónes`
+  ADD PRIMARY KEY (`idInscripciónes`,`idUsuario`,`idEstudiante`),
   ADD KEY `idEstudiante_idx` (`idEstudiante`),
   ADD KEY `idUsuarios_idx` (`idUsuario`);
 
 --
--- Indices de la tabla `padres`
+-- Índices de la tabla `padres`
 --
 ALTER TABLE `padres`
-  ADD PRIMARY KEY (`idPadres`,`Cedula_Persona`),
-  ADD UNIQUE KEY `Cedula_Persona_UNIQUE` (`Cedula_Persona`),
-  ADD KEY `Cedula_Persona_idx` (`Cedula_Persona`);
+  ADD PRIMARY KEY (`idPadres`,`Cédula_Persona`),
+  ADD UNIQUE KEY `Cédula_Persona_UNIQUE` (`Cédula_Persona`),
+  ADD KEY `Cédula_Persona_idx` (`Cédula_Persona`);
 
 --
--- Indices de la tabla `personas`
+-- Índices de la tabla `personas`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`idPersonas`),
   ADD UNIQUE KEY `Cédula_UNIQUE` (`Cédula`);
 
 --
--- Indices de la tabla `representantes`
+-- Índices de la tabla `representantes`
 --
 ALTER TABLE `representantes`
   ADD PRIMARY KEY (`idRepresentantes`),
-  ADD KEY `fk_personas_representantes` (`Cedula_Persona`);
+  ADD KEY `fk_personas_representantes` (`Cédula_Persona`);
 
 --
--- Indices de la tabla `teléfonos`
+-- Índices de la tabla `teléfonos`
 --
 ALTER TABLE `teléfonos`
   ADD PRIMARY KEY (`idTeléfonos`),
-  ADD KEY `fk_personas_teléfonos` (`Cedula_Persona`);
+  ADD KEY `fk_personas_teléfonos` (`Cédula_Persona`);
 
 --
--- Indices de la tabla `usuarios`
+-- Índices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuarios`),
-  ADD KEY `Cedula_Persona_idx` (`Cedula_Persona`);
+  ADD KEY `Cédula_Persona_idx` (`Cédula_Persona`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -727,10 +727,10 @@ ALTER TABLE `contactos_auxiliares`
   MODIFY `idContactoAuxiliar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `datos-economicos`
+-- AUTO_INCREMENT de la tabla `datos-económicos`
 --
-ALTER TABLE `datos-economicos`
-  MODIFY `idDatos-economicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `datos-económicos`
+  MODIFY `idDatos-económicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-laborales`
@@ -742,7 +742,7 @@ ALTER TABLE `datos-laborales`
 -- AUTO_INCREMENT de la tabla `datos-salud`
 --
 ALTER TABLE `datos-salud`
-  MODIFY `idDatos-Medicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idDatos-Médicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-sociales`
@@ -787,10 +787,10 @@ ALTER TABLE `grado`
   MODIFY `idGrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `inscripciones`
+-- AUTO_INCREMENT de la tabla `Inscripciónes`
 --
-ALTER TABLE `inscripciones`
-  MODIFY `idInscripciones` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Inscripciónes`
+  MODIFY `idInscripciónes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `padres`
@@ -830,7 +830,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `carnet-patria`
 --
 ALTER TABLE `carnet-patria`
-  ADD CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`);
+  ADD CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`);
 
 --
 -- Filtros para la tabla `contactos_auxiliares`
@@ -840,10 +840,10 @@ ALTER TABLE `contactos_auxiliares`
   ADD CONSTRAINT `fk_representantes_auxiliares` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `datos-economicos`
+-- Filtros para la tabla `datos-económicos`
 --
-ALTER TABLE `datos-economicos`
-  ADD CONSTRAINT `fk_datos-economicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `datos-económicos`
+  ADD CONSTRAINT `fk_datos-económicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `datos-laborales`
@@ -855,7 +855,7 @@ ALTER TABLE `datos-laborales`
 -- Filtros para la tabla `datos-salud`
 --
 ALTER TABLE `datos-salud`
-  ADD CONSTRAINT `fk_Estudiantes_Datos-Medicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Estudiantes_Datos-Médicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `datos-sociales`
@@ -879,7 +879,7 @@ ALTER TABLE `datos-vivienda`
 -- Filtros para la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Representantes_Estudiantes` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_estudiantes_padres1` FOREIGN KEY (`idPadre`) REFERENCES `padres` (`idPadres`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
@@ -903,35 +903,35 @@ ALTER TABLE `grado`
   ADD CONSTRAINT `fk_Estudiantes_Grado` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `inscripciones`
+-- Filtros para la tabla `Inscripciónes`
 --
-ALTER TABLE `inscripciones`
-  ADD CONSTRAINT `fk_Estudiantes_Inscripciones` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Usuarios_Inscripciones` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Inscripciónes`
+  ADD CONSTRAINT `fk_Estudiantes_Inscripciónes` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Usuarios_Inscripciónes` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `padres`
 --
 ALTER TABLE `padres`
-  ADD CONSTRAINT `Cedula_Persona` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Cédula_Persona` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `representantes`
 --
 ALTER TABLE `representantes`
-  ADD CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `teléfonos`
 --
 ALTER TABLE `teléfonos`
-  ADD CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cedula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

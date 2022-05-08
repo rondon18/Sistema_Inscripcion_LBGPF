@@ -17,7 +17,7 @@
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<form id="registro" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='enviar();'>
 		<div class="card">
@@ -52,18 +52,18 @@
 							<input type="text" class="form-control mb-2" name="Segundo_Apellido_U" id="Segundo_Apellido_U" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 						</div>
 					</div>
-					<!--Genero del representante-->
+					<!--Género del representante-->
 					<div>
-						<p>Genero:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
+						<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 						<div class="pt-2 px-2 pb-0 bg-light border rounded">
 							<div class="form-check form-check-inline">
 								<label class="form-label">F </label>
-								<input class="form-check-input" type="radio" name="Genero_U" value="F" required>
+								<input class="form-check-input" type="radio" name="Género_U" value="F" required>
 							</div>
 
 							<div class="form-check form-check-inline">
 								<label class="form-label">M </label>
-								<input class="form-check-input" type="radio" name="Genero_U" value="M" required>
+								<input class="form-check-input" type="radio" name="Género_U" value="M" required>
 							</div>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 						<label class="form-label">Fecha de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<input type="date" class="form-control mb-2" name="Fecha_Nacimiento_U" id="Fecha_Nacimiento_U" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
 					</div>
-					<!--Correo electronico del representante-->
+					<!--Correo Electrónico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<input type="email" class="form-control mb-2" name="Correo_electrónico_U" id="Correo_electrónico_U" minlength="15" required>
@@ -116,7 +116,7 @@
 						<option value="Color que más te gusta">Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
 						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
-						<option value="¿Cuál fue tu primer número de telefono?">¿Cuál fue tu primer número de telefono?</option>
+						<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
 						<option value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
@@ -134,7 +134,7 @@
 						<option value="Color que más te gusta">Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
 						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
-						<option value="¿Cuál fue tu primer número de telefono?">¿Cuál fue tu primer número de telefono?</option>
+						<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
 						<option value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
@@ -153,7 +153,7 @@
 	</form>
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>

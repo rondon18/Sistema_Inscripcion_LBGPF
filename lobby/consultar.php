@@ -18,14 +18,14 @@ function calculaedad($fechanacimiento){
   return $ano_diferencia;
 }
 
-function genero($genero){
-	if ($genero == "F") {
-		$genero = "Femenino";
+function Género($Género){
+	if ($Género == "F") {
+		$Género = "Femenino";
 	}
-	elseif ($genero == "M") {
-		$genero = "Masculino";
+	elseif ($Género == "M") {
+		$Género = "Masculino";
 	}
-	return $genero;
+	return $Género;
 }
 require("../clases/estudiante.php");
 require("../clases/representantes.php");
@@ -95,7 +95,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<div style="width: 90%; margin: 60px auto;">
 		<div class="card my-2">
@@ -154,7 +154,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
 									<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
 									<td style="min-width:170px;"><?php echo $estudiante['Lugar_Nacimiento']; ?></td>
-									<td><?php echo genero($estudiante['Género']); ?></td>
+									<td><?php echo Género($estudiante['Género']); ?></td>
 									<td style="min-width:160px;"><?php echo $estudiante['Correo_Electrónico']; ?></td>
 									<td style="min-width:190px;"><?php echo $estudiante['Dirección']; ?></td>
 									<td><?php echo $estudiante['Talla_Camisa']; ?></td>
@@ -162,27 +162,27 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Talla_Zapatos']; ?></td>
 									<td><?php echo $estudiante['Estatura']."cm"; ?></td>
 									<td><?php echo $estudiante['Peso']."kg"; ?></td>
-									<td><?php echo $estudiante['Indice']; ?></td>
+									<td><?php echo $estudiante['Índice']; ?></td>
 									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
 									<td><?php echo $estudiante['Grado_A_Cursar']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
-											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 										</form>
 										<form action="consultar-estudiante.php" method="post" style="display: inline-block;" target="_blank">
-											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 										</form>
 										<form action="index.html" method="post" style="display: inline-block;" target="_blank">
-											<input type="hidden" name="cedula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
@@ -208,8 +208,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<th>Apellidos</th>
 									<th>Fecha de nacimiento</th>
 									<th>Lugar de nacimiento</th>
-									<th>Genero</th>
-									<th>Correo electronico</th>
+									<th>Género</th>
+									<th>Correo Electrónico</th>
 									<th>Dirección</th>
 									<th>Estado civil</th>
 									<th>Grado de instrucción</th>
@@ -222,11 +222,11 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<td><?php echo $representante['Primer_Apellido'].' '.$representante['Segundo_Apellido']?></td>
 										<td><?php echo $representante['Fecha_Nacimiento']?></td>
 										<td><?php echo $representante['Lugar_Nacimiento']?></td>
-										<td><?php echo genero($representante['Género']); ?></td>
+										<td><?php echo Género($representante['Género']); ?></td>
 										<td><?php echo $representante['Correo_Electrónico']?></td>
 										<td><?php echo $representante['Dirección']?></td>
 										<td><?php echo $representante['Estado_Civil']?></td>
-										<td><?php echo $representante['Grado_Academico']?></td>
+										<td><?php echo $representante['Grado_Académico']?></td>
 									</tr>
 								<?php endforeach; ?>
 								</tbody>
@@ -251,7 +251,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<tbody>
 										<?php foreach ($lista_usuarios as $usuario): ?>
 										<tr>
-											<td><?php echo $usuario['Cedula_Persona'];?></td>
+											<td><?php echo $usuario['Cédula_Persona'];?></td>
 											<td><?php echo $usuario['Primer_Nombre']. " " .$usuario['Segundo_Nombre']?></td>
 											<td><?php echo $usuario['Primer_Apellido']. " " .$usuario['Segundo_Apellido']?></td>
 											<td><?php if ($usuario['Privilegios'] == 1) { echo "Administrador";} else { echo "Usuario";} ;?></td>
@@ -260,7 +260,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 												<button class="btn btn-sm btn-danger disabled" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
 												<?php else: ?>
 												<form action="../controladores/control-usuarios.php" method="post">
-													<input type="hidden" name="idUsuario" value="<?php echo $usuario['Cedula_Persona'];?>">
+													<input type="hidden" name="idUsuario" value="<?php echo $usuario['Cédula_Persona'];?>">
 													<button class="btn btn-sm btn-danger" type="sumbit" name="orden" value="Eliminar" onclick="return confirmacion();">Eliminar Usuario <i class="fa-solid fa-user-minus fa-lg ms-2"></i></button>
 												</form>
 												<?php endif; ?>
@@ -314,7 +314,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	</div>
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 

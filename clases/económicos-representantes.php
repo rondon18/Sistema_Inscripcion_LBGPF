@@ -1,7 +1,7 @@
 <?php 
 
-class DatosEconomicos {
-	private $idDatos_economicos;
+class Datoseconómicos {
+	private $idDatos_económicos;
 	private $Banco;
 	private $Tipo_Cuenta;
 	private $Cta_Bancaria;
@@ -9,7 +9,7 @@ class DatosEconomicos {
 
 	public function __construct(){}
 
-	public function insertarDatosEconomicos() {
+	public function insertarDatoseconómicos() {
 		$conexion = conectarBD();
 
 
@@ -19,7 +19,7 @@ class DatosEconomicos {
 
 		$idRepresentantes = $this->getidRepresentantes();
 
-		$sql = "SELECT * FROM `datos-economicos` WHERE `idRepresentantes` = '$idRepresentantes'";
+		$sql = "SELECT * FROM `datos-económicos` WHERE `idRepresentantes` = '$idRepresentantes'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
@@ -27,17 +27,17 @@ class DatosEconomicos {
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
 		
-			$sql = "INSERT INTO `datos-economicos`(`idDatos-economicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES (
+			$sql = "INSERT INTO `datos-económicos`(`idDatos-económicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES (
 				NULL,
 				'$Banco',
 				'$Tipo_Cuenta',
 				'$Cta_Bancaria',
 				'$idRepresentantes'
 			)";
-			$this->setidDatos_economicos($conexion->insert_id);
+			$this->setidDatos_económicos($conexion->insert_id);
 		}
 		elseif ($resultado != NULL) {
-			$this->setidDatos_economicos($resultado['idDatos-economicos']);
+			$this->setidDatos_económicos($resultado['idDatos-económicos']);
 		}
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
@@ -45,21 +45,21 @@ class DatosEconomicos {
 		desconectarBD($conexion);
 	}
 
-	public function consultarDatosEconomicos($idRepresentantes) {
+	public function consultarDatoseconómicos($idRepresentantes) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `datos-economicos` WHERE `idRepresentantes` = '$idRepresentantes'";
+		$sql = "SELECT * FROM `datos-económicos` WHERE `idRepresentantes` = '$idRepresentantes'";
 
-		$consulta_economicos = $conexion->query($sql) or die("error: ".$conexion->error);			
-		$datos_economicos = $consulta_economicos->fetch_assoc();
+		$consulta_económicos = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$datos_económicos = $consulta_económicos->fetch_assoc();
 		
 		desconectarBD($conexion);
 
-		return $datos_economicos;
+		return $datos_económicos;
 	}
 
-	public function setidDatos_economicos($idDatos_economicos) {
-		$this->idDatos_economicos = $idDatos_economicos;
+	public function setidDatos_económicos($idDatos_económicos) {
+		$this->idDatos_económicos = $idDatos_económicos;
 	}
 	public function setBanco($Banco) {
 		$this->Banco = $Banco;
@@ -74,8 +74,8 @@ class DatosEconomicos {
 		$this->idRepresentantes = $idRepresentantes;
 	}
 
-	public function getidDatos_economicos() {
-		return $this->idDatos_economicos;
+	public function getidDatos_económicos() {
+		return $this->idDatos_económicos;
 	}
 	public function getBanco() {
 		return $this->Banco;

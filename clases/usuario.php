@@ -10,7 +10,7 @@ class Usuarios {
 	private $Pregunta_Seg_2;
 	private $Respuesta_1;
 	private $Respuesta_2;
-	private $Cedula_Persona;
+	private $Cédula_Persona;
 
 	public function __construct() {}
 
@@ -23,17 +23,17 @@ class Usuarios {
 		$Pregunta_Seg_2 = $this->getPregunta_Seg_2();
 		$Respuesta_1 = $this->getRespuesta_1();
 		$Respuesta_2 = $this->getRespuesta_2();
-		$Cedula_Persona = $this->getCedula_Persona();
+		$Cédula_Persona = $this->getCédula_Persona();
 
-		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona` = '$Cedula_Persona'";
+		$sql = "SELECT * FROM `usuarios` WHERE `Cédula_Persona` = '$Cédula_Persona'";
 
 		$registro_existe = $conexion->query($sql);
 		$resultado = $registro_existe->fetch_assoc();
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			#INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cedula_Persona`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]')
-			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`,`Cedula_Persona`) VALUES (
+			#INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cédula_Persona`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]')
+			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`,`Cédula_Persona`) VALUES (
 				NULL,
 				'$Clave',
 				'$Privilegios',
@@ -41,7 +41,7 @@ class Usuarios {
 				'$Pregunta_Seg_2',
 				'$Respuesta_1',
 				'$Respuesta_2',
-				'$Cedula_Persona'
+				'$Cédula_Persona'
 			)";
 			echo $sql;
 
@@ -53,31 +53,31 @@ class Usuarios {
 		}
 		desconectarBD($conexion);
 	}
-	public function editarUsuario($Cedula_Persona) {
+	public function editarUsuario($Cédula_Persona) {
 		$conexion = conectarBD();
 
 		$Clave = $this->getClave();
 
 		$sql = "UPDATE `usuarios` SET
 			`Clave`='$Clave'
-		WHERE `Cedula_Persona`='$Cedula_Persona'";
+		WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
-	public function eliminarUsuario($Cedula_Persona) {
+	public function eliminarUsuario($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "DELETE FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
+		$sql = "DELETE FROM `usuarios` WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 
 		desconectarBD($conexion);
 	}
-	public function consultarUsuario($Cedula_Persona) {
+	public function consultarUsuario($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `usuarios` WHERE `Cedula_Persona`='$Cedula_Persona'";
+		$sql = "SELECT * FROM `usuarios` WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
 		$usuario = $consulta_usuario->fetch_assoc();
@@ -89,7 +89,7 @@ class Usuarios {
 	public function mostrarUsuarios() {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`usuarios` WHERE `usuarios`.`Cedula_Persona` = `personas`.`Cédula`";
+		$sql = "SELECT * FROM `personas`,`usuarios` WHERE `usuarios`.`Cédula_Persona` = `personas`.`Cédula`";
 
 		$consulta_usuarios = $conexion->query($sql) or die("error: ".$conexion->error);
 		$usuarios = $consulta_usuarios->fetch_all(MYSQLI_ASSOC);
@@ -125,8 +125,8 @@ class Usuarios {
 	public function setRespuesta_2($Respuesta_2) {
 		$this->Respuesta_2 = $Respuesta_2;
 	}
-	public function setCedula_Persona($Cedula_Persona) {
-		$this->Cedula_Persona = $Cedula_Persona;
+	public function setCédula_Persona($Cédula_Persona) {
+		$this->Cédula_Persona = $Cédula_Persona;
 	}
 
 	public function getidUsuarios() {
@@ -150,8 +150,8 @@ class Usuarios {
 	public function getRespuesta_2() {
 		return $this->Respuesta_2;
 	}
-	public function getCedula_Persona() {
-		return $this->Cedula_Persona;
+	public function getCédula_Persona() {
+		return $this->Cédula_Persona;
 	}
 
 }

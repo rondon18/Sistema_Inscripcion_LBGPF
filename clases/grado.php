@@ -1,6 +1,6 @@
 <?php
 
-class GradoAcademico {
+class GradoAcadémico {
 
 	private $idGrado;
 	private $Grado_A_Cursar;

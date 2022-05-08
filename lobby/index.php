@@ -32,7 +32,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 
 	<div class="card text-center m-auto" style="max-width:620px; margin:auto;">
@@ -43,7 +43,7 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 		<div class="card-body">
 
 			<p class="card-text">
-				<span>Bienvenido, <?php echo $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Primer_Apellido']; ?>.</span>
+				<span>Bienvenido(a), <?php echo $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Primer_Apellido']; ?>.</span>
 			</p>
 
 			<ul class="list-group list-group-flush">
@@ -89,14 +89,14 @@ $bitacora->actualizar_Bitacora($_SESSION['acciones'],$_SESSION['idBitacora']);
 		</div>
 
 		<div class="card-footer">
-			<span class="text-muted">Sistema de inscripción L.B. GPF</span>
+			<span class="text-muted">Sistema de inscripción L.B. G.P.F</span>
 		</div>
 
 	</div>
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. GPF - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 </body>
