@@ -259,7 +259,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-
 		//
 		//
 		// PARTE DEL ESTUDIANTE
