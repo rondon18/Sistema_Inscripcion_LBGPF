@@ -27,9 +27,9 @@ if (!$_SESSION['login']) {
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 			</div>
-			<img src="../../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
-		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;" autocomplete="off">
+		<form id="FormularioRepresentante" action="paso-2.php" onsubmit="enviar();" method="POST" style="max-width: 600px; margin: 75px auto;">
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">
@@ -91,7 +91,7 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R" required>
-									<option selected disabled>Tipo de cédula</option>
+									<option selected disabled value="">Tipo de cédula</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
@@ -117,6 +117,7 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select mb-2" name="Estado_Civil_R">
+								<option selected disabled value="">Seleccione una opción</option>
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
 								<option value="Divorsiado(a)">Divorsiado(a)</option>
@@ -203,11 +204,12 @@ if (!$_SESSION['login']) {
 							<span class="form-label">Carnet de la patria:</span>
 							<div class="input-group mb-2">
 								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
+									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si tiene</option>
-									<option value="No" selected>No tiene</option>
+									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
-								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
 							</div>
 						</div>
 					</section>
@@ -257,6 +259,7 @@ if (!$_SESSION['login']) {
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-3" required>
 								<select class="form-select" name="Tenencia_vivienda">
+									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
 									<option value="Prestada">Prestada</option>
@@ -274,6 +277,7 @@ if (!$_SESSION['login']) {
 							<div>
 								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<select class="form-select" name="Banco">
+									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
 									<option value="Banco Mercantil, C.A">Banco Mercantil, C.A</option>
@@ -391,7 +395,7 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Apellidos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
-								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras"nlength="3">
+								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
 						<!--Género del contacto auxiliar-->
@@ -413,7 +417,7 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Tipo_Cédula_Aux" required>
-									<option selected disabled>Tipo de cédula</option>
+									<option selected disabled value="">Tipo de cédula</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
@@ -466,7 +470,7 @@ if (!$_SESSION['login']) {
 				<div class="card-footer">
 					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
-					<input class="btn btn-primary" type="submit" onclick="enviar();" value="Guardar y continuar">
+					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
 		</form>
@@ -475,20 +479,23 @@ if (!$_SESSION['login']) {
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php';?>
+<script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-Inscripción.js"></script>
+<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 
 function enviar() {
+
 	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
+
 	var a = document.getElementById("seccion1");
 	var b = document.getElementById("seccion2");
 	var c = document.getElementById("seccion3");
 	var d = document.getElementById("seccion4");
 	var e = document.getElementById("seccion5");
 
-
+	a.style.display = "block";
 	b.style.display = "block";
 	c.style.display = "block";
 	d.style.display = "block";
@@ -498,14 +505,20 @@ function enviar() {
 		FormularioRepresentante.submit();
 	}
 	else {
-		alert("Faltan campos por llenar");
+		Swal.fire(
+	      'Atención',
+	      'Faltan campos por llenar',
+	      'info'
+	    );
 	}
+	setTimeout(function(){
+		a.style.display = "block";
+		b.style.display = "none";
+		c.style.display = "none";
+		d.style.display = "none";
+		e.style.display = "none";
+	}, 1000);
 
-	a.style.display = "block";
-	b.style.display = "none";
-	c.style.display = "none";
-	d.style.display = "none";
-	e.style.display = "none";
 
 }
 

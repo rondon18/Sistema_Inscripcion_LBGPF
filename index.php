@@ -17,7 +17,7 @@
 			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">

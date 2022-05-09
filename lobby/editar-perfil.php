@@ -24,7 +24,7 @@ if (!$_SESSION['login']) {
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LG.P.F.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<form id="registro" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='enviar();'>
 		<div class="card">
