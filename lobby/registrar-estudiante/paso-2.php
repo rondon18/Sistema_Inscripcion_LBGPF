@@ -127,7 +127,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<label class="form-label">Grado a cursar: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Año a cursar: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select mb-2" name="Grado_A_Cursar" required>
 								<option value="Primer año">Primer año</option>
 								<option value="Segundo año">Segundo año</option>
@@ -144,6 +144,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
+							<input class="form-control w-auto" type="text" name="Materias_Repitente" id="Materias_Repitente" placeholder="¿Cuáles materias?">
 								<input class="form-control w-auto" type="text" name="Año_Repitente" id="Año_Repitente" list="grados" placeholder="¿Qué año repite?">
 								<datalist id="grados">
 								  <option value="Primer año"></option>
@@ -155,7 +156,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<p class="form-label">¿Tiene materias pendientes?</p>
+							<p class="form-label">¿Tiene materias pendientes? <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Tiene_Materias_Pendientes" required>
 									<option value="Si">Si</option>
@@ -176,7 +177,7 @@ if (!isset($_POST['Datos_Representante'])) {
 					<div>
 						<!--Dirección de residencia-->
 						<div>
-							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Lugar de domicilio: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2" name="Dirección_Est" id="Dirección_Est" required></textarea>
 						</div>
 						<div>
@@ -184,7 +185,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<input class="form-control mb-2" type="text" name="Con_Quién_Vive" id="Con_Quién_Vive" required>
 						</div>
 						<div>
-							<span class="form-label">¿Tiene canaima?</span>
+							<span class="form-label">¿Tiene canaima? <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-2">
 								<div class="form-check form-check-inline">
@@ -199,6 +200,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<label class="form-label">¿En que Condiciones?</label>
 								<select class="form-select mb-2" name="Condiciones_Canaima" >
+									<option value=" "> </option>
 									<option value="Muy buenas Condiciones">Muy buenas Condiciones</option>
 									<option value="Buenas Condiciones">Buenas Condiciones</option>
 									<option value="Malas Condiciones">Malas Condiciones</option>
@@ -337,7 +339,7 @@ if (!isset($_POST['Datos_Representante'])) {
 								</div>
 						</div>
 						<div>
-							<span class="form-label">Presenta alguna de estas Condiciones: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span class="form-label">Presenta alguna de estas Condiciones: </span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Visual </label>

@@ -221,8 +221,8 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php #echo $Estudiante['Teléfono_Principal']?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php #echo $Estudiante['Teléfono_Auxiliar']?></td>
+						<td colspan="2">Teléfono Principal: <?php echo telefono($telefonos_Est[0]['Prefijo'],$telefonos_Est[0]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Secundario: <?php echo telefono($telefonos_Est[1]['Prefijo'],$telefonos_Est[1]['Número_Telefónico'])?></td>
 					</tr>
 
 					<tr>
@@ -338,7 +338,7 @@ desconectarBD($conexion);
 					<tr>
 						<td>Vínculo con el estudiante: <?php echo $Estudiante['Relación_Representante'] ?></td>
 						<td colspan="1">Teléfono Principal: <?php echo telefono($telefonos_re[0]['Prefijo'],$telefonos_re[0]['Número_Telefónico'])?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico'])?></td>
+						<td colspan="2">Teléfono Secundario: <?php echo telefono($telefonos_re[1]['Prefijo'],$telefonos_re[1]['Número_Telefónico'])?></td>
 					</tr>
 
 
@@ -386,7 +386,7 @@ desconectarBD($conexion);
 					<tr>
 						<td>Vínculo con el estudiante: <?php echo $Estudiante['Relación_Padre'] ?> </td>
 						<td>Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
-						<td colspan="2">Teléfono Auxiliar: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
 					</tr>
 
 					<tr>
@@ -417,7 +417,7 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Trabaja: <?php echo $tiene_empleo?></td>
-						<td colspan="3">En Qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
 					</tr>
 
 					<tr>
