@@ -7,25 +7,42 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
+require_once('../controladores/conexion.php');
+
+require_once('../clases/personas.php');
+require_once('../clases/teléfonos.php');
+
+require_once('../clases/representantes.php');
+require_once('../clases/laborales-representantes.php');
+require_once('../clases/económicos-representantes.php');
+require_once('../clases/vivienda-representantes.php');
+
 require_once('../clases/estudiante.php');
 require_once('../clases/ficha-médica.php');
 require_once('../clases/sociales-estudiantes.php');
 require_once('../clases/tallas-estudiantes.php');
 
-require_once('../clases/grado.php');
-require_once('../clases/año-escolar.php');
 require_once('../clases/padres.php');
 
+require_once('../clases/carnet-patria.php');
+require_once('../clases/grado.php');
+require_once('../clases/año-escolar.php');
 require_once('../clases/estudiantes-repitentes.php');
 
-require_once('../controladores/conexion.php');
 
-$estudiante	= new Personas();
-$datos_estudiante	= new Estudiantes();
 
-$padre = new Personas();
+$persona = new Personas();
+$Teléfonos = new Teléfonos();
+$carnet = New CarnetPatria();
+
+$datos_representante = New Representantes();
+$datos_vivienda = New DatosVivienda();
+$datos_económicos = New Datoseconómicos();
+$datos_laborales = New DatosLaborales();
+
 $datos_padre = new Padres();
 
+$datos_estudiante	= new Estudiantes();
 $datos_salud	= new Fichamédica();
 $datos_sociales = new DatosSociales();
 $datos_tallas = new TallasEstudiante();
@@ -33,9 +50,6 @@ $datos_tallas = new TallasEstudiante();
 $año_escolar = new Año_Escolar();
 $grado = new GradoAcadémico();
 $estudiante_repitente = new EstudiantesRepitentes();
-
-$datos_salud = new Fichamédica();
-
 
 
 if (isset($_POST['orden']) and $_POST['orden']) {
@@ -64,7 +78,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
 
 		//
-		// Teléfonos
+		// Teléfonos representante
 		//
 
 		#Teléfono principal
@@ -75,7 +89,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-		#Teléfono principal
+		#Teléfono secundario
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_R']);
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
 		$Teléfonos->setRelación_Teléfono('Secundario');
@@ -83,7 +97,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-		#Teléfono principal
+		#Teléfono auxiliar
 		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
 		$Teléfonos->setRelación_Teléfono('Auxiliar');
@@ -159,7 +173,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
 		$persona_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
 		$persona_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
-		$persona_auxiliar->setCédula($_POST['Cédula_Aux']);
+		$Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		$persona_auxiliar->setCédula($Cédula_auxiliar);
 		$persona_auxiliar->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Aux']);
 		$persona_auxiliar->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Aux']);
 		$persona_auxiliar->setGénero($_POST['Género_Aux']);
@@ -169,65 +184,154 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona_auxiliar->insertarPersona();
 
+		//
+		// Teléfonos del auxiliar
+		//
+
+		#Teléfono principal
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
+		$Teléfonos->setRelación_Teléfono('Principal');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
+
+		#Teléfono secundario
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
+		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
+
+		#Teléfono auxiliar
+		$Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
+		$Teléfonos->setRelación_Teléfono('Auxiliar');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		//
+		//	Datos del auxiliar
+		//
+
+		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
+		$datos_auxiliar->setCédula_Persona($persona->getCédula());
+		$datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
+
+		//
+		//
+		// PARTE DEL PADRE/MADRE
+		//
+		//
+
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
+
+		$Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
+		$persona->setCédula($Cédula_representante);
+
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
+		$persona->setGénero($_POST['Género_R']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
+		$persona->setDirección($_POST['Dirección_R']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
+
+		//
+		// Teléfonos del auxiliar
+		//
+
+		#Teléfono principal
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
+		$Teléfonos->setRelación_Teléfono('Principal');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
+
+		#Teléfono secundario
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
+		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
 
 
+		//
+		//
+		// PARTE DEL ESTUDIANTE
+		//
+		//
 
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Est']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Est']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Est']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Est']);
 
+		$Cédula_estudiante = $_POST['Tipo_Cédula_Est'].$_POST['Cédula_Est'];
+		$persona->setCédula($Cédula_estudiante);
 
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Est']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Est']);
+		$persona->setGénero($_POST['Género_Est']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Est']);
+		$persona->setDirección($_POST['Dirección_Est']);
+		$persona->setEstado_Civil('Soltero(a)');
 
+		//
+		// Teléfonos del estudiante
+		//
 
+		#Teléfono principal
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Est']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Est']);
+		$Teléfonos->setRelación_Teléfono('Principal');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
+		$Teléfonos->insertarTeléfono();
 
+		#Teléfono secundario
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Est']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Est']);
+		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
+		$Teléfonos->insertarTeléfono();
 
+		//
+		//	Datos de salud
+		//
 
+		$datos_salud->setEstatura();
+		$datos_salud->setPeso();
+		$datos_salud->setÍndice();
+		$datos_salud->setCirc_Braquial();
+		$datos_salud->setLateralidad();
+		$datos_salud->setTipo_Sangre();
+		$datos_salud->setmédicación();
+		$datos_salud->setDieta_Especial();
+		$datos_salud->setEnfermedad();
+		$datos_salud->setImpedimento_Físico();
+		$datos_salud->setAlergias();
+		$datos_salud->setCond_Vista();
+		$datos_salud->setCond_Dental();
+		$datos_salud->setInstitución_médica();
+		$datos_salud->setCarnet_Discapacidad();
+		$datos_salud->setidEstudiantes();
 
-
-
-
-
-
-		Banco
-		Tipo_Cuenta
-		Nro_Cuenta
-		Representante_Trabaja
-		Empleo_R
-
-
-		Lugar_Trabajo_R
-		Remuneración
-		Tipo_Remuneración
-		Primer_Nombre_Aux
-		Segundo_Nombre_Aux
-		Primer_Apellido_Aux
-		Segundo_Apellido_Aux
-		Género_Aux
-		Tipo_Cédula_Aux
-		Cédula_Aux
-		Correo_electrónico_Aux
-		Prefijo_Principal_Aux
-		Teléfono_Principal_Aux
-		Prefijo_Secundario_Aux
-		Teléfono_Secundario_Aux
-		Prefijo_Auxiliar_Aux
-		Teléfono_Auxiliar_Aux
-		Dirección_Aux
-		Relación_Auxiliar
-
-		Primer_Nombre_Est
-		Segundo_Nombre_Est
-		Primer_Apellido_Est
-		Segundo_Apellido_Est
 		Cédula_Est
 		Género_Est
 		Género_Est
 		Fecha_Nacimiento_Est
 		Lugar_Nacimiento_Est
 		Correo_electrónico_Est
-		Prefijo_Principal_Est
-		Teléfono_Principal_Est
-		Prefijo_Secundario_Est
-		Teléfono_Secundario_Est
+
+
+
+
 		Grado_A_Cursar
 		Estudiante_Repitente
 		Año_Repitente

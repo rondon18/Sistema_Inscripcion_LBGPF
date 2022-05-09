@@ -1,8 +1,5 @@
 	<?php
-
-require("personas.php");
-
-class Estudiantes extends Personas {
+class Estudiantes {
 
 	private $idEstudiantes;
 	private $Plantel_Procedencia;

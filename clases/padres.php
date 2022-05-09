@@ -1,6 +1,6 @@
 <?php
 
-class Padres extends Personas {
+class Padres {
 	private $idPadres;
 	private $Cédula_Persona;
 	private $País_Residencia;

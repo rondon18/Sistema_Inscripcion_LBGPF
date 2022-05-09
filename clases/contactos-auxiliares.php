@@ -9,11 +9,13 @@ class ContactoAuxiliar {
 
 	public function __construct(){}
 
-	public function insertarContactoAuxiliar($idRepresentante) {
+	public function insertarContactoAuxiliar() {
 		$conexion = conectarBD();
 
 		$Relación = $this->getRelación();
 		$Cédula_Persona = $this->getCédula_Persona();
+		$idRepresentante = $this->getidRepresentante();
+
 
 		$sql = "SELECT * FROM `contactos_auxiliares` WHERE `Cédula_Persona` = '$Cédula_Persona' AND`idRepresentante` = '$idRepresentante'";
 
