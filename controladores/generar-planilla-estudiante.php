@@ -9,6 +9,7 @@ if (!$_SESSION['login']) {
 
 require('../fpdf/fpdf.php');
 
+require('../clases/personas.php');
 require('../clases/estudiante.php');
 require('../clases/representantes.php');
 require('../clases/carnet-patria.php');

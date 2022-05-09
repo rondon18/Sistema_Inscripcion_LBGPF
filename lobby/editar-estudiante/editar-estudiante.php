@@ -7,26 +7,26 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-require('../clases/personas.php');
-require('../clases/Estudiante.php');
-require('../clases/representantes.php');
-require('../clases/carnet-patria.php');
-require('../clases/económicos-representantes.php');
-require('../clases/laborales-representantes.php');
-require('../clases/padres.php');
-require('../clases/ficha-médica.php');
-require('../clases/sociales-Estudiantes.php');
-require('../clases/tallas-Estudiantes.php');
-require('../clases/grado.php');
-require('../clases/vivienda-representantes.php');
-require('../clases/contactos-auxiliares.php');
-require('../clases/año-escolar.php');
-require('../clases/Estudiantes-repitentes.php');
-require('../clases/teléfonos.php');
+require('../../clases/personas.php');
+require('../../clases/Estudiante.php');
+require('../../clases/representantes.php');
+require('../../clases/carnet-patria.php');
+require('../../clases/económicos-representantes.php');
+require('../../clases/laborales-representantes.php');
+require('../../clases/padres.php');
+require('../../clases/ficha-médica.php');
+require('../../clases/sociales-Estudiantes.php');
+require('../../clases/tallas-Estudiantes.php');
+require('../../clases/grado.php');
+require('../../clases/vivienda-representantes.php');
+require('../../clases/contactos-auxiliares.php');
+require('../../clases/año-escolar.php');
+require('../../clases/Estudiantes-repitentes.php');
+require('../../clases/teléfonos.php');
 
-require('../controladores/conexion.php');
+require('../../controladores/conexion.php');
 
-require('../clases/bitácora.php');
+require('../../clases/bitácora.php');
 
 $conexion = conectarBD();
 
@@ -176,53 +176,105 @@ desconectarBD($conexion);
 	<meta charset="utf-8">
 	<title>Consultar estudiante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 </head>
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
-			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
-			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<div class="card" style="width: 80%; margin: 60px auto;">
 		<div class="card-header">
 			<h3>Datos de inscripción del Estudiante</h3>
 		</div>
-		<div class="card-body">
-			<table id="Estudiante" class="table table-bordered table-striped table-hover" style="max-width:100%;">
+		<div class="card-body p-0">
+			<table id="Estudiante" class="table table-borderless table-hover" style="max-width:100%;">
 				<tbody>
 					<tr class="table-primary">
 						<th colspan="4">Datos del Estudiante</th>
 					</tr>
 
 					<tr>
-						<td>Nombres: <?php echo $Estudiante['Primer_Nombre']." ".$Estudiante['Segundo_Nombre']?></td>
-						<td>Apellidos: <?php echo $Estudiante['Primer_Apellido']." ".$Estudiante['Segundo_Apellido']?></td>
-						<td>Cédula: <?php echo $Estudiante['Cédula']?></td>
-						<td>Edad: <?php echo $edad_diff_est->format('%y')?> años</td>
+						<td colspan="2">
+							Nombres:
+							<div class="input-group w-auto">
+								<input class="form-control" type="text" value="<?php echo $Estudiante['Primer_Nombre'];?>">
+								<input class="form-control" type="text" value="<?php echo $Estudiante['Segundo_Nombre'];?>">
+							</div> 
+						</td>
+						<td colspan="2">
+							Apellidos: 
+							<div class="input-group w-auto">
+								<input class="form-control" type="text" value="<?php echo $Estudiante['Primer_Apellido'];?>">
+								<input class="form-control" type="text" value="<?php echo $Estudiante['Segundo_Apellido'];?>">
+							</div>
+						</td>
 					</tr>
 
 					<tr>
-						<td colspan="2">Fecha Nacimiento: <?php echo $Estudiante['Fecha_Nacimiento']?></td>
-						<td colspan="2">Lugar Nacimiento: <?php echo $Estudiante['Lugar_Nacimiento']?></td>
+						<?php
+						#Separa la cédula del caracter que indica si es venezolana o extranjera
+						$tipo_Cédula = substr($Estudiante['Cédula'],0,1);
+						$Cédula			= substr($Estudiante['Cédula'],1,strlen($Estudiante['Cédula'])-1);
+					 	?>
+						<td>
+							Cédula: 
+							<div class="input-group mb-2">
+								<select class="form-select" name="Tipo_Cédula_U">
+									<option selected disabled>Tipo de cédula</option>
+									<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";}?>>V</option>
+									<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";}?>>E</option>
+								</select>
+								<input type="text" class="form-control w-auto" name="Cédula_U" id="Cédula_U" pattern="[0-9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required value="<?php echo $Cédula ?? NULL ?>">
+							</div>
+						</td>
+						<td>
+							Fecha Nacimiento: 
+							<input class="form-control" type="date" value="<?php echo $Estudiante['Fecha_Nacimiento']?>">
+						</td>
+						<td colspan="2">
+							Lugar Nacimiento: 
+							<textarea class="form-control"><?php echo $Estudiante['Lugar_Nacimiento']?></textarea>
+						</td>
 					</tr>
 
 					<tr>
-						<td colspan="4">Dirección: <?php echo $Estudiante['Dirección']?></td>
+						<td colspan="4">
+							Dirección: 
+							<textarea class="form-control"><?php echo $Estudiante['Dirección']?></textarea>
+						</td>
 					</tr>
 
 					<tr>
-						<td colspan="4">Correo Electrónico: <?php echo $Estudiante['Correo_Electrónico']?></td>
+						<td colspan="4">
+							Correo Electrónico: 
+							<input class="form-control" type="email" value="<?php echo $Estudiante['Correo_Electrónico']?>"></td>
 					</tr>
 
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo telefono($telefonos_Est[0]['Prefijo'],$telefonos_Est[0]['Número_Telefónico'])?></td>
-						<td colspan="2">Teléfono Secundario: <?php echo telefono($telefonos_Est[1]['Prefijo'],$telefonos_Est[1]['Número_Telefónico'])?></td>
+						<td colspan="2">
+							Teléfono Principal: 
+							
+							<div class="input-group mb-2">
+								<input type="text" class="form-control" value="<?php echo $telefonos_Est[0]['Prefijo']; ?>">
+								<input type="text" class="form-control" value="<?php echo $telefonos_Est[0]['Número_Telefónico']; ?>">
+							</div>
+
+						</td>
+						<td colspan="2">
+							Teléfono Secundario: 
+
+							<div class="input-group mb-2">
+								<input type="text" class="form-control" value="<?php echo $telefonos_Est[1]['Prefijo']; ?>">
+								<input type="text" class="form-control" value="<?php echo $telefonos_Est[1]['Número_Telefónico']; ?>">
+							</div>
+						</td>
 					</tr>
 
 					<tr>
@@ -459,7 +511,7 @@ desconectarBD($conexion);
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
 		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
-	<?php include '../ayuda.php'; ?>
+	<?php include '../../ayuda.php'; ?>
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

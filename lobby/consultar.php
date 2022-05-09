@@ -64,6 +64,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	<link rel="stylesheet" type="text/css" href="../css/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
 </head>
 <style media="screen">
 	.dataTables_paginate a {
@@ -130,7 +131,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Apellidos</th>
 								<th>Fecha de nacimiento</th>
 								<th>Edad</th>
-								<th>Lugar de nacimiento</th>
+								<th>Año a cursar</th>
 								<th>Género</th>
 								<th>Correo electrónico</th>
 								<th>Dirección de residencia</th>
@@ -141,7 +142,6 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Peso</th>
 								<th>Índice</th>
 								<th>Circ. Braquial</th>
-								<th>Grado a cursar</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -153,7 +153,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td style="min-width:210px;"><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
 									<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
 									<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
-									<td style="min-width:170px;"><?php echo $estudiante['Lugar_Nacimiento']; ?></td>
+									<td style="min-width:120px;"><?php echo $estudiante['Grado_A_Cursar']; ?></td>
 									<td><?php echo Género($estudiante['Género']); ?></td>
 									<td style="min-width:160px;"><?php echo $estudiante['Correo_Electrónico']; ?></td>
 									<td style="min-width:190px;"><?php echo $estudiante['Dirección']; ?></td>
@@ -164,7 +164,6 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Peso']."kg"; ?></td>
 									<td><?php echo $estudiante['Índice']; ?></td>
 									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
-									<td><?php echo $estudiante['Grado_A_Cursar']; ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
@@ -179,14 +178,17 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<button class="btn btn-sm btn-primary" type="submit" name="Generar planilla">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 										</form>
-										<form action="index.html" method="post" style="display: inline-block;" target="_blank">
+										<form action="editar-estudiante/editar-estudiante.php" method="post" style="display: inline-block;" target="_blank">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
-											<button class="btn btn-sm btn-primary" type="submit" name="Generar planilla">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+										</form>
+										<form action="../controladores/control-registros.php" method="post" style="display: inline-block;">
+											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 										</form>
 									</td>
 								</tr>
