@@ -421,15 +421,15 @@ if (!isset($_POST['Datos_Representante'])) {
 								</small>
 							</label>
 							<label class="form-label"> Social: </label>
-							<textarea name="observaciones_Social" id="observaciones_Social" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<textarea name="observaciones_Social" id="observaciones_Social" cols="30" rows="3" class="form-control mb-2" maxlength="150"></textarea>
 							<label class="form-label"> Físico: </label>
-							<textarea name="observaciones_Fisico" id="observaciones_Fisico" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<textarea name="observaciones_Fisico" id="observaciones_Fisico" cols="30" rows="3" class="form-control mb-2" maxlength="150"></textarea>
 							<label class="form-label"> Personal: </label>
-							<textarea name="observaciones_Personal" id="observaciones_Personal" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<textarea name="observaciones_Personal" id="observaciones_Personal" cols="30" rows="3" class="form-control mb-2" maxlength="150"></textarea>
 							<label class="form-label"> Familiar: </label>
-							<textarea name="observaciones_Familiar" id="observaciones_Familiar" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<textarea name="observaciones_Familiar" id="observaciones_Familiar" cols="30" rows="3" class="form-control mb-2" maxlength="150"></textarea>
 							<label class="form-label"> Académico: </label>
-							<textarea name="observaciones_Academico" id="observaciones_Academico" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<textarea name="observaciones_Academico" id="observaciones_Academico" cols="30" rows="3" class="form-control mb-2" maxlength="150"></textarea>
 						</div>
 				</section>
 				<section id="seccion4" style="display:none;">
