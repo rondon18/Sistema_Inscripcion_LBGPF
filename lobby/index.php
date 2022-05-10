@@ -23,6 +23,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
+	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
 </head>
 
 <body class="d-flex justify-content-center align-items-center light-primary-color" style="min-height: 100vh;">

@@ -304,32 +304,23 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//	Datos de salud
 		//
 
-		$datos_salud->setEstatura();
-		$datos_salud->setPeso();
-		$datos_salud->setÍndice();
-		$datos_salud->setCirc_Braquial();
-		$datos_salud->setLateralidad();
-		$datos_salud->setTipo_Sangre();
-		$datos_salud->setmédicación();
-		$datos_salud->setDieta_Especial();
-		$datos_salud->setEnfermedad();
-		$datos_salud->setImpedimento_Físico();
-		$datos_salud->setAlergias();
-		$datos_salud->setCond_Vista();
-		$datos_salud->setCond_Dental();
-		$datos_salud->setInstitución_médica();
-		$datos_salud->setCarnet_Discapacidad();
-		$datos_salud->setidEstudiantes();
-
-		Cédula_Est
-		Género_Est
-		Género_Est
-		Fecha_Nacimiento_Est
-		Lugar_Nacimiento_Est
-		Correo_electrónico_Est
-
-
-
+		$datos_salud->setEstatura($_POST['Talla']);
+		$datos_salud->setPeso($_POST['Peso']);
+		$datos_salud->setÍndice($_POST['Índice']);
+		$datos_salud->setCirc_Braquial($_POST['C_Braquial']);
+		$datos_salud->setLateralidad($_POST['Lateralidad']);
+		$tipo_sangre = $_POST['Lateralidad'].$_POST['Lateralidad'];
+		$datos_salud->setTipo_Sangre($_POST['']);
+		$datos_salud->setmédicación($_POST['']);
+		$datos_salud->setDieta_Especial($_POST['']);
+		$datos_salud->setEnfermedad($_POST['']);
+		$datos_salud->setImpedimento_Físico($_POST['']);
+		$datos_salud->setAlergias($_POST['']);
+		$datos_salud->setCond_Vista($_POST['']);
+		$datos_salud->setCond_Dental($_POST['']);
+		$datos_salud->setInstitución_médica($_POST['']);
+		$datos_salud->setCarnet_Discapacidad($_POST['']);
+		$datos_salud->setidEstudiantes($_POST['']);
 
 		Grado_A_Cursar
 		Estudiante_Repitente
@@ -347,10 +338,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		Serial_Carnet_Patria
 		Internet_Vivienda
 		Internet_Vivienda
-		Índice
-		Talla
-		Peso
-		C_Braquial
+
+
+
+
 		Talla_Pantalón
 		Talla_Camisa
 		Talla_Zapatos
@@ -359,7 +350,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		Alergias
 		Grupo_Sanguineo
 		Factor_Rhesus
-		Lateralidad
+
 		Lateralidad
 		Lateralidad
 		Condición_Dentadura

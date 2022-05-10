@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -68,6 +68,7 @@ var_dump($Año);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
 </head>
 <body>
 
@@ -77,36 +78,36 @@ var_dump($Año);
 			<h6><?php echo "Año Académico: (".$Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar().")"; ?></h6>
 		</div>
 		<div class="card-body">
-			
+
 			<div>
 
 				<h5>Datos personales.</h5>
 
 				<div>
-					
+
 					<div>
 						<label >Nombres:</label>
 						<div class="input-group">
 							<input class="form-control mb-2" type="text" name="Primer_Nombre_Estudiante" placeholder="Primer nombre" required value="<?php echo $nombres_estudiante[0] ?>">
 							<input class="form-control mb-2" type="text" name="Segundo_Nombre_Estudiante" placeholder="Segundo nombre" required value="<?php echo $nombres_estudiante[1] ?>">
 						</div>
-						
+
 					</div>
 					<div>
 						<label >Apellidos:</label>
-						<div class="input-group">			
+						<div class="input-group">
 							<input class="form-control mb-2" type="text" name="Primer_Apellido_Estudiante" placeholder="Primer apellido" required value="<?php echo $apellidos_estudiante[0] ?>">
 							<input class="form-control mb-2" type="text" name="Segundo_Apellido_Estudiante" placeholder="Segundo apellido" required value="<?php echo $apellidos_estudiante[1] ?>">
-						</div>			
+						</div>
 					</div>
-					
+
 					<div>
 						<label >Cédula:</label>
 						<input class="form-control mb-2" type="text" name="Cédula_Estudiante" placeholder="Cédula de identidad" required value="<?php echo $estudiante['Cédula'] ?>">
 					</div>
 					<div>
 						<span>Género:</span>
-						
+
 						<div class="form-check">
 							<label class="form-label">F </label>
 							<input class="form-check-input" type="radio" name="Género_Estudiante" value="F" required <?php if ($estudiante['Género'] == "F") { echo "checked";} ?>>
@@ -115,8 +116,8 @@ var_dump($Año);
 							<label class="form-label">M </label>
 							<input class="form-check-input" type="radio" name="Género_Estudiante" value="M" required <?php if ($estudiante['Género'] == "M") { echo "checked";} ?>>
 						</div>
-						
-						
+
+
 					</div>
 					<div>
 						<label class="form-label">Fecha de nacimiento:</label>
@@ -160,7 +161,7 @@ var_dump($Año);
 						<span>¿Cuáles?</span>
 						<input class="form-control mb-2" type="text" name="Materias_Pendientes" required value="<?php echo $estudiante_repitente["Materias_Pendientes"] ?>">
 					</div>
-					
+
 					<div>
 						<label class="form-label">Plantel de procedencia:</label>
 						<textarea class="form-control mb-2" name="Plantel_Procedencia"><?php echo $estudiante['Plantel_Procedencia'] ?></textarea class="form-control mb-2">
@@ -210,7 +211,7 @@ var_dump($Año);
 							</div>
 							<span>Código:</span>
 							<input class="form-control mb-2" type="text" name="Código_Carnet_Patria" required value="<?php echo $datos_sociales['Código_Carnet_Patria'] ?>">
-							
+
 							<span>Serial:</span>
 							<input class="form-control mb-2" type="text" name="Serial_Carnet_Patria" required value="<?php echo $datos_sociales['Serial_Carnet_Patria'] ?>">
 						</div>
@@ -228,10 +229,10 @@ var_dump($Año);
 								<input class="form-check-input" type="radio" name="Internet_Vivienda" value="No" required <?php if($datos_sociales['Acceso_Internet'] == "No") {echo "checked";}?>>
 							</div>
 						</div>
-						
+
 				</div>
 			</div>
-		
+
 			<!--Datos de salud-->
 			<h5>Datos de salud.</h5>
 
@@ -241,12 +242,12 @@ var_dump($Año);
 					<div>
 						<span>Índice</span>
 						<input class="form-control mb-2" type="text" name="Índice" placeholder="Índice" required value="<?php echo $datos_Médicos['Índice'] ?>">
-						
+
 						<span>Talla</span>
 						<input class="form-control mb-2" type="text" name="Talla" placeholder="Talla" required value="<?php echo $datos_Médicos['Estatura'] ?>">
 						<span>Peso</span>
 						<input class="form-control mb-2" type="text" name="Peso" placeholder="Peso" required value="<?php echo $datos_Médicos['Peso'] ?>">
-						
+
 						<span>C.Brazo</span>
 						<input class="form-control mb-2" type="text" name="C_Braquial" placeholder="C.brazo" required value="<?php echo $datos_Médicos['Circ_Braquial'] ?>">
 					</div>
@@ -256,10 +257,10 @@ var_dump($Año);
 					<div>
 						<span>Pantalón</span>
 						<input class="form-control mb-2" type="text" name="Talla_Pantalón" placeholder="Pantalón" required value="<?php echo $datos_tallas['Talla_Pantalón'] ?>">
-					
+
 						<span>Camisa</span>
 						<input class="form-control mb-2" type="text" name="Talla_Camisa" placeholder="Camisa" required value="<?php echo $datos_tallas['Talla_Camisa'] ?>">
-					
+
 						<span>Zapatos</span>
 						<input class="form-control mb-2" type="text" name="Talla_Zapatos" placeholder="Zapatos" required value="<?php echo $datos_tallas['Talla_Zapatos'] ?>">
 					</div>
@@ -285,8 +286,8 @@ var_dump($Año);
 							<option value="-" <?php if($sangre[1] == "-") { echo "selected";} ?>>-</option>
 						</select>
 					</div>
-						
-						
+
+
 				</div>
 				<div>
 						<span>Lateralidad:</span>
@@ -336,7 +337,7 @@ var_dump($Año);
 				<div>
 					<span>Presenta alguna de estas Condiciones:</span>
 
-					<?php  
+					<?php
 
 						$Condiciones = str_replace(',', ' ', $datos_Médicos['Impedimento_Físico']);
 						$Condiciones = explode(' ', $Condiciones);
@@ -351,7 +352,7 @@ var_dump($Año);
 							foreach ($Condiciones as $Condición) {
 								if ($Condición == 'Visual') {
 									$Visual = true;
-								} 
+								}
 								elseif ($Condición == 'Motora') {
 									$Motora = true;
 								}
@@ -371,7 +372,7 @@ var_dump($Año);
 
 							$Condiciones_médicas = [$Visual,$Motora,$Auditiva,$Escritura,$Lectura,$Embarazo];
 							return $Condiciones_médicas;
-							
+
 						}
 						$Condiciones_médicas = CondicionesSalud($Condiciones);
 
@@ -458,9 +459,9 @@ var_dump($Año);
 						<input class="form-control mb-2" type="text" name="Nro_Carnet_Discapacidad">
 					</div>
 
-					
+
 				</div>
-				
+
 			</div>
 
 			<div>
@@ -484,9 +485,9 @@ var_dump($Año);
 
 					<!--Género del familiar-->
 					<div>
-								
+
 							<p>Género:</p>
-							
+
 							<label class="form-label">F </label>
 							<input class="form-check-input" type="radio" name="Género_Familiar" value="F">
 
@@ -547,13 +548,13 @@ var_dump($Año);
 							<option value="Viudo(a)">Viudo(a)</option>
 						</select>
 					</div>
-					
+
 					<!--Dirección de residencia del Familiar-->
 					<div>
 						<label class="form-label">Dirección de residencia:</label>
 						<textarea class="form-control mb-2" name="Dirección_Familiar"></textarea class="form-control mb-2">
 					</div>
-					
+
 					<!--Se encuentra el familiar en el país-->
 					<div>
 						<span>Se encuentra en el país:</span>
@@ -569,11 +570,11 @@ var_dump($Año);
 					</div>
 				</div>
 			</div>
-		
+
 		</form>
-		
+
 		</div>
-		
+
 		<table style="width: 100%; text-align: center;" border="1" cellpadding="6">
 			<tr>
 				<td></td>

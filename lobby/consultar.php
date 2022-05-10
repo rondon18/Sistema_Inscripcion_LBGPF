@@ -173,7 +173,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 										</form>
-										<form action="consultar-estudiante.php" method="post" style="display: inline-block;" target="_blank">
+										<form action="consultar-estudiante.php" method="post" style="display: inline-block;">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
@@ -187,9 +187,12 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 										</form>
+										<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 										<form action="../controladores/control-registros.php" method="post" style="display: inline-block;">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
 										</form>
+										<?php endif; ?>
 									</td>
 								</tr>
 						<?php endforeach ?>
