@@ -58,6 +58,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	if ($orden == "Insertar") {
 
+		foreach ($_POST as $key => $value) {
+			echo $key.">>";
+			var_dump($value);
+			echo "<br>";
+		}
+/*
 		//
 		// REPRESENTANTE
 		//
@@ -321,7 +327,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setInstitución_médica($_POST['']);
 		$datos_salud->setCarnet_Discapacidad($_POST['']);
 		$datos_salud->setidEstudiantes($_POST['']);
-		/*
+*/		/*
 		Grado_A_Cursar
 		Estudiante_Repitente
 		Año_Repitente
@@ -399,7 +405,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-		*/
+		
 		#Persona -> padre
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
@@ -502,8 +508,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			#Si tiene materias pendientes se asigna un valor, de lo contrario pasa como NULL por defecto
 			$estudiante_repitente->setMaterias_Pendientes($_POST['Materias_Pendientes']);
 		}
+<<<<<<< HEAD
 		// $estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
 		// header('Location: ../lobby/index.php');
+=======
+		$estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
+		header('Location: ../lobby/index.php');
+		*/
+>>>>>>> bd2c0ba1a8919d8bf05728877571282141fd85c8
 	}
 
 	elseif ($orden == "Editar") {

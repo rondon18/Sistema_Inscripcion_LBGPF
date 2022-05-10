@@ -29,12 +29,9 @@ $('#Código_Carnet_Patria').validarIngreso('0123456789');
 $('#Serial_Carnet_Patria').validarIngreso('0123456789');
 
 $('#Índice').validarIngreso('0123456789');
-$('#Talla').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Peso').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#C_Braquial').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Talla_Pantalón').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Talla_Camisa').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Talla_Zapatos').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Talla').validarIngreso('0123456789');
+$('#Peso').validarIngreso('0123456789');
+$('#C_Braquial').validarIngreso('0123456789');
 
 $('#Cual_Enfermedad').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
 $('#Alergias').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');

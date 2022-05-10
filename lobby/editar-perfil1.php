@@ -130,7 +130,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 						<select class="form-select" name="Estado_Civil_Representante">
 							<option value="Soltero(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Soltero(a)"){ echo "selected";} ?>>Soltero(a)</option>
 							<option value="Casado(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Casado(a)"){ echo "selected";} ?>>Casado(a)</option>
-							<option value="Divorsiado(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Divorsiado(a)"){ echo "selected";} ?>>Divorsiado(a)</option>
+							<option value="Divorciado(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Divorciado(a)"){ echo "selected";} ?>>Divorciado(a)</option>
 							<option value="Viudo(a)" <?php if(isset($_SESSION['persona'][11]) and $_SESSION['persona'][11] == "Viudo(a)"){ echo "selected";} ?>>Viudo(a)</option>
 						</select>
 					</div>
