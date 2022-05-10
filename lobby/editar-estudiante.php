@@ -544,7 +544,7 @@ var_dump($Año);
 						<select class="form-select" name="Estado_Civil_Familiar">
 							<option value="Soltero(a)">Soltero(a)</option>
 							<option value="Casado(a)">Casado(a)</option>
-							<option value="Divorsiado(a)">Divorsiado(a)</option>
+							<option value="Divorciado(a)">Divorciado(a)</option>
 							<option value="Viudo(a)">Viudo(a)</option>
 						</select>
 					</div>

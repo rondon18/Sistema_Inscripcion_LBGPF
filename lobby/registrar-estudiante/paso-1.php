@@ -57,6 +57,19 @@ if (!$_SESSION['login']) {
 					<section id="seccion1">
 						<!--Nombres del representante-->
 						<h5>Datos personales.</h5>
+						<!--Vinculo del representante con el estudiante-->
+						<div>
+							<label class="form-label">Vinculo con el estudiante:</label>
+							<datalist id="vinculos">
+								<option value="Madre">
+								<option value="Padre">
+								<option value="Tía">
+								<option value="Tío">
+								<option value="Abuela">
+								<option value="Abuelo">
+							</datalist>
+							<input type="text" class="form-control mb-2" id="Vinculo_R" minlength="3" maxlength="15" list="vinculos" required>
+						</div>
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
@@ -122,7 +135,7 @@ if (!$_SESSION['login']) {
 								<option selected disabled value="">Seleccione una opción</option>
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
-								<option value="Divorsiado(a)">Divorsiado(a)</option>
+								<option value="Divorciado(a)">Divorciado(a)</option>
 								<option value="Viudo(a)">Viudo(a)</option>
 							</select>
 						</div>
@@ -338,7 +351,7 @@ if (!$_SESSION['login']) {
 						<!--Cargo que ocupa el representante-->
 						<div>
 							<label class="form-label">Cargo que ocupa:</label>
-							<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="15" minlength="3" required>
+							<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="60" minlength="3" required>
 						</div>
 						<!--Teléfono del trabajo de representante-->
 						<div>
@@ -354,7 +367,7 @@ if (!$_SESSION['login']) {
 						<!--Lugar en el que trabaja el representante-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="15" minlength="3"></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"></textarea>
 						</div>
 						<!--Remuneración del trabajo del representante-->
 						<div>
@@ -517,6 +530,7 @@ function enviar() {
 }
 
 function seccion(seccion) {
+
 
 		//secciones
 		var a = document.getElementById("seccion1");

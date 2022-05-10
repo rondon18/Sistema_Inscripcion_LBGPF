@@ -57,7 +57,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	$orden = $_POST['orden'];
 
 	if ($orden == "Insertar") {
-
+/*
 		//
 		// REPRESENTANTE
 		//
@@ -321,7 +321,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setInstitución_médica($_POST['']);
 		$datos_salud->setCarnet_Discapacidad($_POST['']);
 		$datos_salud->setidEstudiantes($_POST['']);
-		/*
+*/		/*
 		Grado_A_Cursar
 		Estudiante_Repitente
 		Año_Repitente
@@ -399,7 +399,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-		*/
+		
 		#Persona -> padre
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
@@ -504,6 +504,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		}
 		$estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
 		header('Location: ../lobby/index.php');
+		*/
 	}
 
 	elseif ($orden == "Editar") {
