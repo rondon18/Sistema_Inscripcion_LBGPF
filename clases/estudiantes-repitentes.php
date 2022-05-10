@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 class EstudiantesRepitentes {
 
@@ -13,9 +13,10 @@ class EstudiantesRepitentes {
 
 	public function insertarEstudiantesRepitentes($idEstudiante) {
 		$conexion = conectarBD();
-		
-		$Materias_Pendientes = $this->getMaterias_Pendientes();
 
+		$Materias_Pendientes = $this->getMaterias_Pendientes();
+		$Año_Repetido = $this->getAño_Repetido();
+		$Que_Materias_Repite = $this->getQue_Materias_Repite();
 		$sql = "INSERT INTO `estudiantes-repitentes`(`idEstudiante-Repitente`, `Materias_Pendientes`, `Año_Repetido`, `Que_Materias_Repite`, `idEstudiante`) VALUES (
 			NULL,
 			'$Materias_Pendientes',
@@ -41,7 +42,7 @@ class EstudiantesRepitentes {
 		return $repitente;
 	}
 
-	
+
 	public function setidEstudiante_Repitente($idEstudiante_Repitente) {
 		$this->idEstudiante_Repitente = $idEstudiante_Repitente;
 	}

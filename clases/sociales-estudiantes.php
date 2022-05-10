@@ -5,9 +5,6 @@
 		private $idDatos_Sociales;
 		private $Posee_Canaima;
 		private $Condición_Canaima;
-		private $Posee_Carnet_Patria;
-		private $Código_Carnet_Patria;
-		private $Serial_Carnet_Patria;
 		private $Acceso_Internet;
 		private $idEstudiantes;
 
@@ -18,9 +15,9 @@
 
 			$Posee_Canaima = $this->getPosee_Canaima();
 			$Condición_Canaima = $this->getCondición_Canaima();
-			$Código_Carnet_Patria = $this->getCódigo_Carnet_Patria();
-			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
+
+			$sql = "SELECT * FROM `datos-sociales` WHERE `idEstudiantes` = '$id_Estudiante'";
 
 			$registro_existe = $conexion->query($sql);
 			$resultado = $registro_existe->fetch_assoc();
@@ -28,12 +25,10 @@
 			if ($resultado == NULL) {
 
 
-				$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Código_Carnet_Patria`, `Serial_Carnet_Patria`, `Acceso_Internet`, `idEstudiantes`) VALUES (
+				$sql = "INSERT INTO `datos-sociales`(`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Acceso_Internet`, `idEstudiantes`) VALUES (
 					NULL,
 					'$Posee_Canaima',
 					'$Condición_Canaima',
-					'$Código_Carnet_Patria',
-					'$Serial_Carnet_Patria',
 					'$Acceso_Internet',
 					'$id_Estudiante'
 				)";
@@ -53,17 +48,11 @@
 
 			$Posee_Canaima = $this->getPosee_Canaima();
 			$Condición_Canaima = $this->getCondición_Canaima();
-			$Posee_Carnet_Patria = $this->getPosee_Carnet_Patria();
-			$Código_Carnet_Patria = $this->getCódigo_Carnet_Patria();
-			$Serial_Carnet_Patria = $this->getSerial_Carnet_Patria();
 			$Acceso_Internet = $this->getAcceso_Internet();
 
 			$sql = "UPDATE `datos-sociales` SET
 				`Posee_Canaima`='$Posee_Canaima',
 				`Condición_Canaima`='$Condición_Canaima',
-				`Posee_Carnet_Patria`='$Posee_Carnet_Patria',
-				`Código_Carnet_Patria`='$Código_Carnet_Patria',
-				`Serial_Carnet_Patria`='$Serial_Carnet_Patria',
 				`Acceso_Internet`='$Acceso_Internet',
 			WHERE `idEstudiantes`='$id_Estudiante'";
 

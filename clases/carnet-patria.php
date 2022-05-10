@@ -89,7 +89,7 @@ class CarnetPatria {
     desconectarBD($conexion);
     return $lista_carnet;
   }
-  
+
   public function setidCarnet($idCarnet) {
     $this->idCarnet = $idCarnet;
   }

@@ -22,6 +22,7 @@ if (!isset($_POST['Datos_Representante'])) {
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
+		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
 	<form id="FormularioEstudiante" class="card" action="../../controladores/control-estudiantes.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()' autocomplete="off">

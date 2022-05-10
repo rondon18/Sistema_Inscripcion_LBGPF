@@ -19,7 +19,9 @@ class Estudiantes {
 		$Con_Quién_Vive = $this->getCon_Quién_Vive();
 		$Cédula_Estudiante = $this->getCédula_Estudiante();
 		$idRepresentante = $this->getidRepresentante();
+		$Relación_Representante = $this->getRelación_Representante();
 		$idPadre = $this->getidPadre();
+		$Relación_Padre = $this->getRelación_Padre();
 
 		$sql = "SELECT * FROM `estudiantes` WHERE `Cédula_Persona` = '$Cédula_Estudiante'";
 
@@ -127,6 +129,12 @@ class Estudiantes {
 	public function setidPadre($idPadre) {
 		$this->idPadre = $idPadre;
 	}
+	public function setRelación_Representante($Relación_Representante) {
+		$this->Relación_Representante = $Relación_Representante;
+	}
+	public function setRelación_Padre($Relación_Padre) {
+		$this->Relación_Padre = $Relación_Padre;
+	}
 
 	public function getidEstudiantes() {
 		return $this->idEstudiantes;
@@ -146,6 +154,13 @@ class Estudiantes {
 	public function getCédula_Estudiante() {
 		return $this->Cédula_Estudiante;
 	}
+	public function getRelación_Padre() {
+		return $this->Relación_Padre;
+	}
+	public function getRelación_Representante() {
+		return $this->Relación_Representante;
+	}
+
 }
 
 ?>

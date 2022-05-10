@@ -9,7 +9,7 @@
 		private $Circ_Braquial;
 		private $Lateralidad;
 		private $Tipo_Sangre;
-		private $médicación;
+		private $Medicación;
 		private $Dieta_Especial;
 		private $Enfermedad;
 		private $Impedimento_Físico;
@@ -31,7 +31,7 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$médicación = $this->getmédicación();
+			$Medicación = $this->getMedicación();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
@@ -41,7 +41,7 @@
 			$Institución_médica = $this->getInstitución_médica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `médicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
+			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
 			VALUES (
 				NULL,
 				'$Estatura',
@@ -50,7 +50,7 @@
 				'$Circ_Braquial',
 				'$Lateralidad',
 				'$Tipo_Sangre',
-				'$médicación',
+				'$Medicación',
 				'$Dieta_Especial',
 				'$Enfermedad',
 				'$Impedimento_Físico',
@@ -77,7 +77,7 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$médicación = $this->getmédicación();
+			$Medicación = $this->getMedicación();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
@@ -94,7 +94,7 @@
 			`Circ_Braquial`='$Circ_Braquial',
 			`Lateralidad`='$Lateralidad',
 			`Tipo_Sangre`='$Tipo_Sangre',
-			`médicación`='$médicación',
+			`Medicación`='$Medicación',
 			`Dieta_Especial`='$Dieta_Especial',
 			`Enfermedad`='$Enfermedad',
 			`Impedimento_Físico`='$Impedimento_Físico',
@@ -144,8 +144,8 @@
 		public function setTipo_Sangre($Tipo_Sangre) {
 			$this->Tipo_Sangre = $Tipo_Sangre;
 		}
-		public function setmédicación($médicación) {
-			$this->médicación = $médicación;
+		public function setMedicación($Medicación) {
+			$this->Medicación = $Medicación;
 		}
 		public function setDieta_Especial($Dieta_Especial) {
 			$this->Dieta_Especial = $Dieta_Especial;
@@ -196,8 +196,8 @@
 		public function getTipo_Sangre() {
 			return $this->Tipo_Sangre;
 		}
-		public function getmédicación() {
-			return $this->médicación;
+		public function getMedicación() {
+			return $this->Medicación;
 		}
 		public function getDieta_Especial() {
 			return $this->Dieta_Especial;

@@ -19,6 +19,7 @@ if (!$_SESSION['login']) {
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
+	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
 		<!--Banner-->
@@ -55,6 +56,7 @@ if (!$_SESSION['login']) {
 				<div class="card-body">
 					<section id="seccion1">
 						<!--Nombres del representante-->
+						<h5>Datos personales.</h5>
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
@@ -131,6 +133,7 @@ if (!$_SESSION['login']) {
 						</div>
 					</section>
 					<section id="seccion2" style="display: none;">
+						<h5>Datos de representante.</h5>
 						<!--Teléfonos del representante-->
 						<div>
 							<datalist id="prefijos">
@@ -172,16 +175,6 @@ if (!$_SESSION['login']) {
 								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
-						<!--Vinculo del representante con el estudiante-->
-						<!-- <div>
-							<p class="form-label">Relación con el estudiante:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<datalist id="vinculos">
-								<option value="Madre">
-								<option value="Padre">
-							</datalist>
-							<input class="form-control mb-2" type="text" name="Vinculo" list="vinculos" minlength="3" maxlength="30" required>
-						</div> -->
-						<!--Grado de instruccion del representante-->
 						<div>
 							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
@@ -381,6 +374,7 @@ if (!$_SESSION['login']) {
 						</div>
 					</section>
 					<section id="seccion5" style="display: none;">
+						<h5>Datos del contacto auxiliar.</h5>
 						<!--Nombres del contacto auxiliar-->
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
