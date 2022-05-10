@@ -29,13 +29,6 @@ if (!isset($_POST['Datos_Representante'])) {
 			<div class="card-header">
 				<h4>Formulario de registro de estudiantes</h4>
 			</div>
-			<?php
-
-			// foreach ($_POST as $key => $value) {
-			// 	echo var_dump($value)."<br>";
-			// }
-
-			 ?>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos del estudiante</a>
@@ -284,7 +277,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<label class="form-label">Alergias: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Alergias:</label>
 							<input class="form-control mb-2" type="text" name="Alergias" id="Alergias">
 						</div>
 						<div>
@@ -588,7 +581,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?" required>
+								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?">
 
 							</div>
 						</div>

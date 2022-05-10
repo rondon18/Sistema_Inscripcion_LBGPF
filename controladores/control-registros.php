@@ -57,6 +57,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	$orden = $_POST['orden'];
 
 	if ($orden == "Insertar") {
+
+		foreach ($_POST as $key => $value) {
+			echo $key.">>";
+			var_dump($value);
+			echo "<br>";
+		}
 /*
 		//
 		// REPRESENTANTE
