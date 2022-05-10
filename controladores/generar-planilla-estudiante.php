@@ -25,6 +25,7 @@ require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
 require('../clases/Teléfonos.php');
+require('../clases/observaciones-estudiantes.php');
 
 require('../controladores/conexion.php');
 
@@ -42,6 +43,7 @@ $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
 $Teléfonos = new Teléfonos();
+$Observaciones = new Observaciones();
 
 $datos_Médicos = new Fichamédica();
 $Datos_sociales = new DatosSociales();
@@ -61,6 +63,7 @@ $Teléfonos_pa = $Teléfonos->consultarTeléfonosPadreID($_POST['id_padre']);
 
 $datos_Médicos = $datos_Médicos->consultarFicha_médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
+$observaciones_Est = $Observaciones->consultarObservaciones($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
 $datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
 
@@ -382,8 +385,8 @@ $pdf->SetFont('Arial','',14);
 $pdf->Ln(6);
 $pdf->Cell(0,6,utf8_decode('OBSERVACIONES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
-$pdf->Multicell(0,6,utf8_decode("Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. \nSocial:\n\n\n\n\n\nFísico:\n\n\n\n\n\nPersonal:\n\n\n\n\n\nFamiliar:\n\n\n\n\n\nAcadémico:\n\n\n\n\n\n"),1,0);
-$pdf->MultiCell(0,23,utf8_decode("OTRA OBSERVACIÓN:"),1,1);
+$pdf->Multicell(0,6,utf8_decode("Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. \nSocial: \n" . $observaciones_Est['Social'] . "\nFísico: \n " . $observaciones_Est['Físico'] .  "\nPersonal: \n " . $observaciones_Est['Personal'] . "\nFamiliar: \n" . $observaciones_Est['Familiar'] . "\nAcadémico: \n" . $observaciones_Est['Académico']),1,0);
+$pdf->MultiCell(0,10,utf8_decode("OTRA OBSERVACIÓN: \n" . $observaciones_Est['Otra']),1,1);
 
 
 

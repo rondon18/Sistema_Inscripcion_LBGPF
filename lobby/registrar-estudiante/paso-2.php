@@ -43,9 +43,11 @@ if (!isset($_POST['Datos_Representante'])) {
 				<li class="nav-item">
 					<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos Sociales</a>
 				</li>
-				</li>
 				<li class="nav-item">
 					<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de salud</a>
+				</li>
+				<li class="nav-item">
+					<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Observaciones</a>
 				</li>
 				<li class="nav-item">
 					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')"> Datos familiares</a>
@@ -410,6 +412,26 @@ if (!isset($_POST['Datos_Representante'])) {
 						</div>
 					</div>
 				</section>
+				<section id="seccion5" style="display:none;">
+						<div>
+							<h5 class="mb-3"><i class="fa-solid fa-eye fa-xl"></i> Observaciones: </h5>
+							<label class="form-label text-muted"> 
+								<small>
+									Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución.
+								</small>
+							</label>
+							<label class="form-label"> Social: </label>
+							<textarea name="observaciones_Social" id="observaciones_Social" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<label class="form-label"> Físico: </label>
+							<textarea name="observaciones_Fisico" id="observaciones_Fisico" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<label class="form-label"> Personal: </label>
+							<textarea name="observaciones_Personal" id="observaciones_Personal" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<label class="form-label"> Familiar: </label>
+							<textarea name="observaciones_Familiar" id="observaciones_Familiar" cols="30" rows="3" class="form-control mb-2"></textarea>
+							<label class="form-label"> Académico: </label>
+							<textarea name="observaciones_Academico" id="observaciones_Academico" cols="30" rows="3" class="form-control mb-2"></textarea>
+						</div>
+				</section>
 				<section id="seccion4" style="display:none;">
 					<!--Datos del padre o la madre-->
 					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos familiares (Madre/Padre).</h5>
@@ -593,6 +615,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="No">No</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?" required>
+
 							</div>
 						</div>
 					</div>
@@ -651,7 +674,6 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Teléfono_Auxiliar_Aux" value="<?php echo $_POST['Teléfono_Auxiliar_Aux']?>">
 			<input type="hidden" name="Dirección_Aux" value="<?php echo $_POST['Dirección_Aux']?>">
 			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
-
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">
@@ -669,12 +691,14 @@ function enviar() {
 	var b = document.getElementById("seccion2");
 	var c = document.getElementById("seccion3");
 	var d = document.getElementById("seccion4");
+	var e = document.getElementById("seccion5");
 
 
 	a.style.display = "block";
 	b.style.display = "block";
 	c.style.display = "block";
 	d.style.display = "block";
+	e.style.display = "block";
 
 	if (FormularioEstudiante.checkValidity()) {
 		FormularioEstudiante.submit();
@@ -687,6 +711,7 @@ function enviar() {
 	b.style.display = "none";
 	c.style.display = "none";
 	d.style.display = "none";
+	e.style.display = "none";
 
 }
 	function seccion(seccion) {
@@ -696,6 +721,7 @@ function enviar() {
 		var b = document.getElementById("seccion2");
 		var c = document.getElementById("seccion3");
 		var d = document.getElementById("seccion4");
+		var e = document.getElementById("seccion5");
 
 
 		//botones en la navegación
@@ -703,6 +729,7 @@ function enviar() {
 		var link_b = document.getElementById("link2");
 		var link_c = document.getElementById("link3");
 		var link_d = document.getElementById("link4");
+		var link_e = document.getElementById("link5");
 
 
 		//seccion seleccionada como activa(seccion 1 por defecto)
@@ -712,12 +739,13 @@ function enviar() {
 		b.style.display = "none";
 		c.style.display = "none";
 		d.style.display = "none";
-
+		e.style.display = "none";
 
 		link_a.classList.remove("active");
 		link_b.classList.remove("active");
 		link_c.classList.remove("active");
 		link_d.classList.remove("active");
+		link_e.classList.remove("active");
 
 
 		if (seccion == a) {
@@ -735,6 +763,10 @@ function enviar() {
 		else if (seccion == d) {
 			d.style.display = "block";
 			link_d.classList.add("active");
+		}
+		else if (seccion == e) {
+			e.style.display = "block";
+			link_e.classList.add("active");
 		}
 	}
 </script>

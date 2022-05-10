@@ -1,7 +1,6 @@
 <?php
 
 class Observaciones  {
-  private
   private $idObservaciones;
   private $Social;
   private $Físico;
@@ -77,7 +76,7 @@ class Observaciones  {
     desconectarBD($conexion);
   }
 
-  public function consultarObservaciones() {
+  public function consultarObservaciones($idEstudiantes) {
     $conexion = conectarBD();
 
     $sql = "SELECT * FROM `estudiantes-observaciones` WHERE `idEstudiantes` = '$idEstudiantes'";
