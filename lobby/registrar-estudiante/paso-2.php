@@ -417,7 +417,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<h5 class="mb-3"><i class="fa-solid fa-eye fa-xl"></i> Observaciones: </h5>
 							<label class="form-label text-muted"> 
 								<small>
-									Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución.
+									Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. La misma no puede exceder los 150 carácteres 
 								</small>
 							</label>
 							<label class="form-label"> Social: </label>
