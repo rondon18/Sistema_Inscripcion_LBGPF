@@ -69,7 +69,7 @@ class Estudiantes {
 		$conexion = conectarBD();
 
 		$sql = "DELETE FROM `personas` WHERE `Cédula` = '$Cédula_Estudiante'";
-
+		echo $sql;
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}

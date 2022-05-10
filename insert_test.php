@@ -97,6 +97,14 @@ $Teléfonos->setCédula_Persona($persona->getCédula());
 
 $Teléfonos->insertarTeléfono();
 
+#Teléfono trabajo
+$Teléfonos->setPrefijo('Prefijo_Trabajo_R');
+$Teléfonos->setNúmero_Telefónico('Teléfono_Trabajo_R');
+$Teléfonos->setRelación_Teléfono('Trabajo');
+$Teléfonos->setCédula_Persona($persona->getCédula());
+
+$Teléfonos->insertarTeléfono();
+
 $datos_representante->setCédula_Persona($persona->getCédula());
 $datos_representante->setGrado_Académico('Grado_Instrucción');
 
@@ -362,5 +370,10 @@ $carnet->insertarCarnetPatria();
 
 $grado->setGrado_A_Cursar("Segundo año");
 $grado->insertarGrado($datos_estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
+
+$estudiante_repitente->getMaterias_Pendientes
+$estudiante_repitente->getAño_Repetido
+$estudiante_repitente->getQue_Materias_Repite
+$estudiante_repitente->insertar
 
  ?>

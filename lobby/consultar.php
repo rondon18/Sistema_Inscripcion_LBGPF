@@ -190,7 +190,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 										<form action="../controladores/control-registros.php" method="post" style="display: inline-block;">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
-											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="Eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
 										</form>
 										<?php endif; ?>
 									</td>

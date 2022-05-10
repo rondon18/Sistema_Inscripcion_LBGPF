@@ -315,7 +315,7 @@ $pdf->SetFont('Arial','',9);
 $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS: ' . $padre['Primer_Nombre'] . ' ' . $padre['Segundo_Nombre'] . ' ' . $padre['Primer_Apellido'] . ' ' . $padre['Segundo_Apellido']),1,1);
 $pdf->Cell(64,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relación_Padre']),1,0);
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $padre['Cédula']),1,0);
-$pdf->Cell(25,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')." Años"),1,0);
+$pdf->Cell(24,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')." Años"),1,0);
 $pdf->SetFont('Arial','',8);
 $pdf->Cell(0,6,utf8_decode('TELÉFONO PRINCIPAL: ' . $Teléfonos_pa[0]['Prefijo'] . '-' . $Teléfonos_pa[0]['Número_Telefónico']),1,1);
 $pdf->Cell(64,6,utf8_decode('TELÉFONO SECUNDARIO: ' . $Teléfonos_pa[1]['Prefijo'] . '-' . $Teléfonos_pa[1]['Número_Telefónico']),1,0);

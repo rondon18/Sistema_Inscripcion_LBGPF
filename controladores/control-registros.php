@@ -120,7 +120,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$carnet->getCódigo_Carnet($_POST['Código_Carnet_Patria']);
 		$carnet->getSerial_Carnet($_POST['Serial_Carnet_Patria']);
-		$carnet->getCédula_Persona($persona->getCédula())
+		$carnet->getCédula_Persona($persona->getCédula())<
 
 		$carnet->insertarCarnetPatria();
 
@@ -321,7 +321,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setInstitución_médica($_POST['']);
 		$datos_salud->setCarnet_Discapacidad($_POST['']);
 		$datos_salud->setidEstudiantes($_POST['']);
-
+		/*
 		Grado_A_Cursar
 		Estudiante_Repitente
 		Año_Repitente
@@ -399,46 +399,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		*/
 		#Persona -> padre
 		$padre->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
 		$padre->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
@@ -583,7 +544,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 
 	elseif ($orden == "Eliminar") {
-		$estudiante->eliminarEstudiante($_POST['Cédula_estudiante']);
+		$datos_estudiante->eliminarEstudiante($_POST['Cédula_Estudiante']);
 		header('Location: ../lobby/consultar.php');
 	}
 	else {

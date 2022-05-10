@@ -114,7 +114,7 @@ var_dump($Año);
 						</div>
 						<div class="form-check">
 							<label class="form-label">M </label>
-							<input class="form-check-input" type="radio" name="Género_Estudiante" value="M" required <?php if ($estudiante['Género'] == "M") { echo "checked";} ?>>
+							<input class="form-check-input" type="radio" name="Género_Estudiante" value="M" required <?php if ($estudiante['Géneroa'] == "M") { echo "checked";} ?>>
 						</div>
 
 
