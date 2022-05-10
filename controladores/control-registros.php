@@ -87,7 +87,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_R']);
@@ -95,7 +95,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono auxiliar
 		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
@@ -103,12 +103,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Auxiliar');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		$datos_representante->setCédula_Persona($persona->getCédula());
 		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción']);
 
-		$datos_representante->insertarRepresentante();
+		// $datos_representante->insertarRepresentante();
 
 		//
 		// CARNET DE LA PATRIA
@@ -122,7 +122,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$carnet->getSerial_Carnet($_POST['Serial_Carnet_Patria']);
 		$carnet->getCédula_Persona($persona->getCédula())<
 
-		$carnet->insertarCarnetPatria();
+		// $carnet->insertarCarnetPatria();
 
 
 		//
@@ -141,14 +141,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		}
 
 		$datos_laborales->setidRepresentantes($persona->getidRepresentantes());
-		$datos_laborales->insertarDatosLaborales();
+		// $datos_laborales->insertarDatosLaborales();
 
 		#Datos económicos
 		$datos_económicos->setBanco($_POST['Banco']);
 		$datos_económicos->setTipo_Cuenta($_POST['Tipo_Cuenta']);
 		$datos_económicos->setCta_Bancaria($_POST['Nro_Cuenta']);
 		$datos_económicos->setidRepresentantes($persona->getidRepresentantes());
-		$datos_económicos->insertarDatoseconómicos();
+		// $datos_económicos->insertarDatoseconómicos();
 
 		#Datos vivienda
 		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda']);
@@ -163,7 +163,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		}
 
 		$datos_vivienda->setidRepresentante($persona->getidRepresentantes());
-		$datos_vivienda->insertarDatosVivienda();
+		// $datos_vivienda->insertarDatosVivienda();
 
 		//
 		// DATOS DEL CONTACTO AUXILIAR
@@ -182,7 +182,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona_auxiliar->setDirección($_POST['Dirección_Aux']);
 		$persona_auxiliar->setEstado_Civil($_POST['Estado_Civil_Aux']);
 
-		$persona_auxiliar->insertarPersona();
+		// $persona_auxiliar->insertarPersona();
 
 		//
 		// Teléfonos del auxiliar
@@ -194,7 +194,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
@@ -202,7 +202,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono auxiliar
 		$Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
@@ -249,7 +249,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
@@ -257,7 +257,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		//
 		//
@@ -290,7 +290,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Est']);
@@ -298,7 +298,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		//
 		//	Datos de salud
@@ -413,12 +413,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$padre->setDirección($_POST['Dirección_Familiar']);
 		$padre->setEstado_Civil($_POST['Estado_Civil_Familiar']);
 
-		$padre->insertarPersona();
+		// $padre->insertarPersona();
 
 		$datos_padre->setCédula_Persona($padre->getCédula());
 		$datos_padre->setParentezco($_POST['Vinculo_Familiar']);
-		$datos_padre->insertarPadres();
-		#Persona -> estudiante -> datos sociales, Médicos y tallas
+		// $datos_padre->insertarPadres();
+		// #Persona -> estudiante -> datos sociales, Médicos y tallas
 		#datos basicos del estudiante
 		$estudiante->setPrimer_Nombre($_POST['Primer_Nombre_Est']);
 		$estudiante->setSegundo_Nombre($_POST['Segundo_Nombre_Est']);
@@ -432,7 +432,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$estudiante->setDirección($_POST['Dirección_Est']);
 		$estudiante->setEstado_Civil("Soltero(a)");
 
-		$estudiante->insertarPersona();
+		// $estudiante->insertarPersona();
 
 		$datos_estudiante->setCédula_Estudiante($_POST['Cédula_Est']);
 		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
@@ -440,7 +440,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setidRepresentante($_SESSION['representante']['idRepresentantes']);
 		$datos_estudiante->setidPadre($datos_padre->getidPadres());
 
-		$datos_estudiante->insertarEstudiante();
+		// $datos_estudiante->insertarEstudiante();
 
 		#datos Médicos
 		$datos_salud->setEstatura($_POST['Talla']);
@@ -471,7 +471,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setInstitución_médica($_POST['Institución_médica']);
 		$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
 
-		$datos_salud->insertarFicha_médica($datos_estudiante->getidEstudiantes());
+		// $datos_salud->insertarFicha_médica($datos_estudiante->getidEstudiantes());
 
 		#datos sociales del estudiante
 		$datos_sociales->setPosee_Canaima($_POST['Tiene_Canaima']);
@@ -483,27 +483,27 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		}
 		$datos_sociales->setAcceso_Internet($_POST['Internet_Vivienda']);
 
-		$datos_sociales->insertarDatosSociales($datos_estudiante->getidEstudiantes());
+		// $datos_sociales->insertarDatosSociales($datos_estudiante->getidEstudiantes());
 
 		#Tallas del estudiante
 		$datos_tallas->setTalla_Camisa($_POST['Talla_Camisa']);
 		$datos_tallas->setTalla_Pantalón($_POST['Talla_Pantalón']);
 		$datos_tallas->setTalla_Zapatos($_POST['Talla_Zapatos']);
 
-		$datos_tallas->insertarTallasEstudiante($datos_estudiante->getidEstudiantes());
+		// $datos_tallas->insertarTallasEstudiante($datos_estudiante->getidEstudiantes());
 
 		#estudiante -> grado -> año-escolar
 		#datos Académicos
 		$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
-		$grado->insertarGrado($datos_estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
+		// $grado->insertarGrado($datos_estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
 
 		#Estudiante_Repitente
 		if ($_POST['Estudiante_Repitente'] == 'Si') {
 			#Si tiene materias pendientes se asigna un valor, de lo contrario pasa como NULL por defecto
 			$estudiante_repitente->setMaterias_Pendientes($_POST['Materias_Pendientes']);
 		}
-		$estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
-		header('Location: ../lobby/index.php');
+		// $estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
+		// header('Location: ../lobby/index.php');
 	}
 
 	elseif ($orden == "Editar") {

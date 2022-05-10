@@ -17,13 +17,15 @@ require_once('clases/estudiante.php');
 require_once('clases/ficha-médica.php');
 require_once('clases/sociales-estudiantes.php');
 require_once('clases/tallas-estudiantes.php');
+require_once('clases/tallas-estudiantes.php');
+require_once('clases/estudiantes-repitentes.php');
+require_once('clases/observaciones-estudiantes.php');
 
 require_once('clases/padres.php');
 
 require_once('clases/carnet-patria.php');
 require_once('clases/grado.php');
 require_once('clases/año-escolar.php');
-require_once('clases/estudiantes-repitentes.php');
 
 
 $persona = new Personas();
@@ -34,6 +36,8 @@ $datos_representante = New Representantes();
 $datos_vivienda = New DatosVivienda();
 $datos_económicos = New Datoseconómicos();
 $datos_laborales = New DatosLaborales();
+$estudiante_repitente = new EstudiantesRepitentes();
+$observaciones = New Observaciones();
 
 $datos_auxiliar = New ContactoAuxiliar();
 
@@ -46,7 +50,6 @@ $datos_tallas = new TallasEstudiante();
 
 $año_escolar = new Año_Escolar();
 $grado = new GradoAcadémico();
-$estudiante_repitente = new EstudiantesRepitentes();
 
 //
 // REPRESENTANTE
@@ -371,9 +374,23 @@ $carnet->insertarCarnetPatria();
 $grado->setGrado_A_Cursar("Segundo año");
 $grado->insertarGrado($datos_estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
 
-$estudiante_repitente->getMaterias_Pendientes
-$estudiante_repitente->getAño_Repetido
-$estudiante_repitente->getQue_Materias_Repite
-$estudiante_repitente->insertar
+$estudiante_repitente->getMaterias_Pendientes('');
+$estudiante_repitente->getAño_Repetido('');
+$estudiante_repitente->getQue_Materias_Repite('');
 
+$estudiante_repitente->insertarEstudiantesRepitentes($datos_estudiante->getidEstudiantes());
+
+//
+//	Observaciones sobre el estudiante
+//
+
+$observaciones->setSocial('');
+$observaciones->setFísico('');
+$observaciones->setPersonal('');
+$observaciones->setFamiliar('');
+$observaciones->setAcadémico('');
+$observaciones->setOtra('');
+$observaciones->setidEstudiantes($datos_estudiante->getidEstudiantes());
+
+$observaciones->insertarObservaciones();
  ?>

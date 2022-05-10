@@ -42,7 +42,7 @@ class Observaciones  {
       )";
 
     	$conexion->query($sql) or die("error: ".$conexion->error);
-      $this->setidEstudiantes($resultado['idEstudiantes']);
+      $this->setidEstudiantes($conexion->insert_id);
     }
     elseif ($resultado != NULL) {
       $this->setidEstudiantes($resultado['idEstudiantes']);
@@ -83,7 +83,7 @@ class Observaciones  {
 
     $busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$observaciones = $resultado = $busqueda->fetch_assoc();
-    
+
     desconectarBD($conexion);
 
     return $observaciones;

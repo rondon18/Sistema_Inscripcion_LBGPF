@@ -21,6 +21,7 @@ class EstudiantesRepitentes {
 			NULL,
 			'$Materias_Pendientes',
 			'$Año_Repetido',
+			'$Que_Materias_Repite',
 			'$idEstudiante'
 		)";
 

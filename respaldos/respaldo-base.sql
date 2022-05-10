@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.4.22-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.21-MariaDB, for Win64 (AMD64)
 --
 -- Host: Localhost    Database: bd_proyecto
 -- ------------------------------------------------------
--- Server version	10.4.22-MariaDB
+-- Server version	10.4.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,8 +56,8 @@ CREATE TABLE `bitácora` (
   `fechaFinalSesión` date DEFAULT NULL,
   `horaFinalSesión` time DEFAULT NULL,
   PRIMARY KEY (`idbitácora`),
-  KEY `fk_usuarios_bitácora` (`idUsuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+  KEY `fk_usuarios_bitacora` (`idUsuarios`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `bitácora` (
 
 LOCK TABLES `bitácora` WRITE;
 /*!40000 ALTER TABLE `bitácora` DISABLE KEYS */;
-INSERT INTO `bitácora` VALUES (1,2,'2022-04-22','17:34:06','Muchos,ajshdvjasgdvjashdvjh','2022-04-22','19:34:06'),(2,2,'2022-04-26','01:51:36','/proyecto_pst/controladores/login.php','0000-00-00','00:00:00'),(3,2,'2022-04-26','01:52:40','Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil',NULL,NULL),(4,2,'2022-04-26','02:18:26','Inicia Sesión,Visita menú principal',NULL,NULL),(5,4,'2022-04-26','02:19:36','Inicia Sesión,Visita menú principal',NULL,NULL),(6,2,'2022-04-26','04:26:27','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Cierra Sesión.','2022-04-26','04:34:54'),(7,2,'2022-04-26','04:34:59','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra Sesión.','2022-04-26','09:08:52'),(8,4,'2022-04-26','09:08:59','Inicia Sesión, Visita menú principal',NULL,NULL),(9,2,'2022-04-28','22:22:54','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(10,2,'2022-04-30','13:41:12','Inicia Sesión, Visita menú principal, Visita menú principal, Cierra Sesión.','2022-04-30','13:42:21'),(11,11,'2022-04-30','14:51:41','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Cierra Sesión.','2022-04-30','14:57:15'),(12,11,'2022-04-30','14:57:22','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Edita perfil',NULL,NULL),(13,2,'2022-04-30','15:27:52','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(14,2,'2022-04-30','15:52:39','Inicia Sesión, Visita menú principal, Visita menú principal',NULL,NULL),(15,11,'2022-04-30','15:52:50','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra Sesión.','2022-04-30','16:04:32'),(16,11,'2022-04-30','21:26:16','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(17,2,'2022-04-30','21:26:49','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(18,2,'2022-04-30','21:27:17','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-04-30','21:33:23'),(19,2,'2022-04-30','21:33:26','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-04-30','22:35:59'),(20,2,'2022-04-30','23:27:04','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra Sesión.','2022-05-01','01:50:43'),(21,4,'2022-05-01','01:50:47','Inicia Sesión, Visita menú principal',NULL,NULL),(22,2,'2022-05-01','02:38:49','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra Sesión.','2022-05-01','02:48:25'),(23,4,'2022-05-01','02:48:29','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-01','05:09:23'),(24,4,'2022-05-01','05:09:28','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(25,2,'2022-05-01','13:32:14','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra Sesión.','2022-05-01','15:18:11'),(26,4,'2022-05-01','15:18:15','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(27,4,'2022-05-01','19:44:49','Inicia Sesión, Visita menú principal, Visita menú principal, Visita menú principal, Cierra Sesión.','2022-05-02','04:33:24'),(28,11,'2022-05-02','01:42:01','Inicia Sesión, Visita menú principal',NULL,NULL),(29,2,'2022-05-02','04:34:31','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-02','04:38:50'),(30,12,'2022-05-02','04:40:10','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(31,2,'2022-05-02','04:42:32','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-02','05:24:55'),(32,12,'2022-05-02','05:25:21','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-02','06:50:03'),(33,4,'2022-05-02','06:50:22','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal',NULL,NULL);
+INSERT INTO `bitácora` VALUES (1,2,'2022-04-22','17:34:06','Muchos,ajshdvjasgdvjashdvjh','2022-04-22','19:34:06'),(2,2,'2022-04-26','01:51:36','/proyecto_pst/controladores/login.php','0000-00-00','00:00:00'),(3,2,'2022-04-26','01:52:40','Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil',NULL,NULL),(4,2,'2022-04-26','02:18:26','Inicia Sesión,Visita menú principal',NULL,NULL),(5,4,'2022-04-26','02:19:36','Inicia Sesión,Visita menú principal',NULL,NULL),(6,2,'2022-04-26','04:26:27','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Cierra sesión.','2022-04-26','04:34:54'),(7,2,'2022-04-26','04:34:59','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-04-26','09:08:52'),(8,4,'2022-04-26','09:08:59','Inicia Sesión, Visita menú principal',NULL,NULL),(9,2,'2022-04-28','22:22:54','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(10,2,'2022-04-30','13:41:12','Inicia Sesión, Visita menú principal, Visita menú principal, Cierra sesión.','2022-04-30','13:42:21'),(11,11,'2022-04-30','14:51:41','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','14:57:15'),(12,11,'2022-04-30','14:57:22','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Edita perfil, Edita perfil',NULL,NULL),(13,2,'2022-04-30','15:27:52','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(14,2,'2022-04-30','15:52:39','Inicia Sesión, Visita menú principal, Visita menú principal',NULL,NULL),(15,11,'2022-04-30','15:52:50','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-04-30','16:04:32'),(16,11,'2022-04-30','21:26:16','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(17,2,'2022-04-30','21:26:49','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(18,2,'2022-04-30','21:27:17','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','21:33:23'),(19,2,'2022-04-30','21:33:26','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-04-30','22:35:59'),(20,2,'2022-04-30','23:27:04','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','01:50:43'),(21,4,'2022-05-01','01:50:47','Inicia Sesión, Visita menú principal',NULL,NULL),(22,2,'2022-05-01','02:38:49','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','02:48:25'),(23,4,'2022-05-01','02:48:29','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-01','05:09:23'),(24,4,'2022-05-01','05:09:28','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(25,2,'2022-05-01','13:32:14','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-01','15:18:11'),(26,4,'2022-05-01','15:18:15','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(27,4,'2022-05-01','19:44:49','Inicia Sesión, Visita menú principal, Visita menú principal, Visita menú principal, Cierra sesión.','2022-05-02','04:33:24'),(28,11,'2022-05-02','01:42:01','Inicia Sesión, Visita menú principal',NULL,NULL),(29,2,'2022-05-02','04:34:31','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-02','16:14:13'),(30,12,'2022-05-02','04:40:10','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(31,2,'2022-05-02','04:42:32','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-02','05:24:55'),(32,12,'2022-05-02','05:25:21','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-02','06:50:03'),(33,4,'2022-05-02','06:50:22','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal',NULL,NULL),(34,4,'2022-05-02','13:56:51','Inicia Sesión, Visita menú principal, Consulta estudiantes',NULL,NULL),(35,4,'2022-05-02','16:14:55','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-04','01:20:02'),(36,2,'2022-05-03','11:56:17','Inicia Sesión, Visita menú principal, Visita perfil',NULL,NULL),(37,4,'2022-05-03','12:02:53','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-03','12:14:09'),(38,4,'2022-05-03','13:03:19','Inicia Sesión, Visita menú principal, Consulta estudiantes',NULL,NULL),(39,2,'2022-05-03','13:48:26','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-03','14:06:22'),(40,5,'2022-05-03','14:06:39','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-03','14:58:41'),(41,2,'2022-05-03','14:58:46','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-03','15:03:36'),(42,2,'2022-05-03','15:03:42','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-03','15:06:12'),(43,5,'2022-05-03','15:06:29','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita perfil,Se da de baja, Cierra sesión.','2022-05-03','15:11:16'),(44,2,'2022-05-03','15:13:04','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Cierra sesión.','2022-05-03','15:43:35'),(45,4,'2022-05-03','16:24:51','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal',NULL,NULL),(46,4,'2022-05-03','16:28:32','Inicia Sesión, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal',NULL,NULL),(47,4,'2022-05-03','16:43:16','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-03','22:04:02'),(48,2,'2022-05-03','22:17:23','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-03','22:17:26'),(49,4,'2022-05-03','22:17:32','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-03','22:17:35'),(50,4,'2022-05-03','22:17:54','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-03','22:22:30'),(51,4,'2022-05-03','22:22:44','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-03','22:22:52'),(52,4,'2022-05-03','22:23:20','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-03','22:23:30'),(53,2,'2022-05-03','22:23:41','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-03','22:46:27'),(54,4,'2022-05-03','22:46:48','Inicia Sesión, Visita menú principal, Visita perfil,Se da de baja, Cierra sesión.','2022-05-03','22:47:01'),(55,1,'2022-05-03','22:50:37','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-08','00:59:26'),(56,2,'2022-05-04','01:20:06','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-04','01:34:51'),(57,1,'2022-05-04','01:34:55','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes',NULL,NULL),(58,1,'2022-05-04','07:10:27','Inicia Sesión, Visita menú principal',NULL,NULL),(59,2,'2022-05-04','08:57:23','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Consulta estudiantes',NULL,NULL),(60,1,'2022-05-04','15:46:06','Inicia Sesión, Visita menú principal',NULL,NULL),(61,1,'2022-05-05','07:31:24','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Cierra sesión.','2022-05-05','08:37:41'),(62,12,'2022-05-05','08:38:20','Inicia Sesión, Visita menú principal, Visita perfil, Visita perfil, Visita menú principal, Visita perfil,Se da de baja, Visita perfil, Visita perfil,Se da de baja, Visita perfil, Visita perfil, Visita perfil, Visita perfil, Visita perfil,Se da de baja,Se da de baja, Cierra sesión.','2022-05-05','08:43:06'),(63,1,'2022-05-05','08:43:16','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil',NULL,NULL),(64,13,'2022-05-05','18:30:54','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Cierra sesión.','2022-05-05','18:50:07'),(65,13,'2022-05-05','18:52:19','Inicia Sesión, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil',NULL,NULL),(66,1,'2022-05-06','05:53:57','Inicia Sesión, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal, Visita menú principal',NULL,NULL),(67,2,'2022-05-06','20:47:35','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-06','21:57:21'),(68,1,'2022-05-06','21:57:30','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Elimina un usuario, Elimina un usuario, Elimina un usuario, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes',NULL,NULL),(69,1,'2022-05-07','17:50:54','Inicia Sesión, Visita menú principal, Visita menú principal',NULL,NULL),(70,1,'2022-05-08','01:08:34','Inicia Sesión, Visita menú principal, Consulta estudiantes',NULL,NULL),(71,1,'2022-05-08','01:59:41','Inicia Sesión, Visita menú principal, Cierra sesión.','2022-05-08','02:00:26'),(72,1,'2022-05-08','02:00:31','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-08','02:43:35'),(73,1,'2022-05-08','02:43:40','Inicia Sesión, Visita menú principal, Cierra Sesión.','2022-05-08','02:46:55'),(74,1,'2022-05-08','19:47:13','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Visita menú principal, Consulta estudiantes',NULL,NULL),(75,1,'2022-05-09','12:40:06','Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita perfil, Visita perfil',NULL,NULL),(76,1,'2022-05-09','13:03:38','Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita perfil, Visita perfil, Visita menú principal, Cierra Sesión.','2022-05-10','08:36:42'),(77,1,'2022-05-10','08:36:48','Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal',NULL,NULL);
 /*!40000 ALTER TABLE `bitácora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,8 +84,8 @@ CREATE TABLE `carnet-patria` (
   `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idCarnet`),
   KEY `fk_personas_carnet` (`Cédula_Persona`),
-  CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `fk_personas_carnet` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `carnet-patria` (
 
 LOCK TABLES `carnet-patria` WRITE;
 /*!40000 ALTER TABLE `carnet-patria` DISABLE KEYS */;
-INSERT INTO `carnet-patria` VALUES (1,'1234567890','1234567890','V26666666'),(2,'1234567890','1234567890','V11111111');
+INSERT INTO `carnet-patria` VALUES (2,'1234567890','1234567890','V11111111'),(3,'1111111111','2222222222','V27919566'),(4,'3333333333','4444444444','V25555555'),(5,'1234567890','1234567890','V30016821'),(6,'1234567890','1234567890','V17312460');
 /*!40000 ALTER TABLE `carnet-patria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `contactos_auxiliares` (
   KEY `fk_personas_auxiliares` (`Cédula_Persona`),
   CONSTRAINT `fk_personas_auxiliares` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_representantes_auxiliares` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `contactos_auxiliares` (
 
 LOCK TABLES `contactos_auxiliares` WRITE;
 /*!40000 ALTER TABLE `contactos_auxiliares` DISABLE KEYS */;
-INSERT INTO `contactos_auxiliares` VALUES (7,'Vecino','V27919567',3),(10,'ajshdvjasd','V25555555',7);
+INSERT INTO `contactos_auxiliares` VALUES (7,'Vecino','V27919567',3),(10,'ajshdvjasd','V25555555',7),(11,'ajshdvjasd','E16855747',8);
 /*!40000 ALTER TABLE `contactos_auxiliares` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,9 +142,9 @@ CREATE TABLE `datos-económicos` (
   `Cta_Bancaria` varchar(45) NOT NULL,
   `idRepresentantes` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-económicos`,`idRepresentantes`),
-  KEY `fk_datos-económicos_representantes1_idx` (`idRepresentantes`),
-  CONSTRAINT `fk_datos-económicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  KEY `fk_datos-economicos_representantes1_idx` (`idRepresentantes`),
+  CONSTRAINT `fk_datos-economicos_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +153,7 @@ CREATE TABLE `datos-económicos` (
 
 LOCK TABLES `datos-económicos` WRITE;
 /*!40000 ALTER TABLE `datos-económicos` DISABLE KEYS */;
-INSERT INTO `datos-económicos` VALUES (1,'Banco Provincial, S.A.','Corriente','1351351351384135',3),(4,'Banco Provincial, S.A.','Corriente','11111111111111111111',7);
+INSERT INTO `datos-económicos` VALUES (1,'Banco Provincial, S.A.','Corriente','1351351351384135',3),(4,'Banco Provincial, S.A.','Corriente','11111111111111111111',7),(5,'Banco Provincial, S.A.','Corriente','11111111111111111111',8);
 /*!40000 ALTER TABLE `datos-económicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `datos-laborales` (
   PRIMARY KEY (`idDatos-laborales`,`idRepresentantes`),
   KEY `fk_datos-laborales_representantes1_idx` (`idRepresentantes`),
   CONSTRAINT `fk_datos-laborales_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `datos-laborales` (
 
 LOCK TABLES `datos-laborales` WRITE;
 /*!40000 ALTER TABLE `datos-laborales` DISABLE KEYS */;
-INSERT INTO `datos-laborales` VALUES (4,'Desempleado','','','',3),(7,'Desempleado','','','',7);
+INSERT INTO `datos-laborales` VALUES (4,'Desempleado','','','',3),(7,'Desempleado','','','',7),(8,'Desktop Support Technician','Fisher-Konopelski','2','Semanal',8);
 /*!40000 ALTER TABLE `datos-laborales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,20 +202,21 @@ CREATE TABLE `datos-salud` (
   `Circ_Braquial` int(11) NOT NULL,
   `Lateralidad` varchar(45) COLLATE utf8_bin NOT NULL,
   `Tipo_Sangre` varchar(45) COLLATE utf8_bin NOT NULL,
-  `médicación` varchar(50) COLLATE utf8_bin NOT NULL,
+  `Medicación` varchar(50) COLLATE utf8_bin NOT NULL,
   `Dieta_Especial` varchar(50) COLLATE utf8_bin NOT NULL,
   `Enfermedad` varchar(50) COLLATE utf8_bin NOT NULL,
   `Impedimento_Físico` varchar(60) COLLATE utf8_bin NOT NULL,
   `Alergias` varchar(50) COLLATE utf8_bin NOT NULL,
   `Cond_Vista` varchar(45) COLLATE utf8_bin NOT NULL,
   `Cond_Dental` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Institución_médica` varchar(50) COLLATE utf8_bin NOT NULL,
+  `Institución_Médica` varchar(50) COLLATE utf8_bin NOT NULL,
   `Carnet_Discapacidad` varchar(20) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-Médicos`,`idEstudiantes`),
+  UNIQUE KEY `idEstudiantes` (`idEstudiantes`),
   KEY `idUsuarios_idx` (`idEstudiantes`),
-  CONSTRAINT `fk_Estudiantes_Datos-Médicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  CONSTRAINT `fk_Estudiantes_Datos-Medicos` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +225,7 @@ CREATE TABLE `datos-salud` (
 
 LOCK TABLES `datos-salud` WRITE;
 /*!40000 ALTER TABLE `datos-salud` DISABLE KEYS */;
-INSERT INTO `datos-salud` VALUES (1,1,1,'1',1,'Diestro','AB-','hjgchjgch','hgchjgch','','Motora, Escritura, Embarazo','cxhchgc','Regular','Mala','vjgcvjgcv','hgchgc',6),(10,1,1,'1',1,'Diestro','AB-','hjgchjgch','hgchjgch','','Motora, Escritura, Embarazo','cxhchgc','Regular','Mala','vjgcvjgcv','hgchgc',1);
+INSERT INTO `datos-salud` VALUES (1,180,35,'1',12,'Diestro','AB-','hjgchjgch','hgchjgch','','Motora, Escritura, Embarazo','cxhchgc','Regular','Mala','vjgcvjgcv','hgchgc',6),(13,175,40,'100',100,'Zurdo','AB+','','','','Motora, Escritura,','','Regular','Buena','morbi non lectus aliquam sit amet diam in magna bi','123456789',7);
 /*!40000 ALTER TABLE `datos-salud` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,12 +241,12 @@ CREATE TABLE `datos-sociales` (
   `Posee_Canaima` char(2) COLLATE utf8_bin NOT NULL,
   `Condición_Canaima` varchar(45) COLLATE utf8_bin NOT NULL,
   `Acceso_Internet` varchar(45) COLLATE utf8_bin NOT NULL,
-  `Con_Quién_Vive` varchar(45) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-Sociales`,`idEstudiantes`),
+  UNIQUE KEY `idEstudiantes` (`idEstudiantes`),
   KEY `idEstudiantes_idx` (`idEstudiantes`),
   CONSTRAINT `fk_Estudiantes_Datos-Sociales` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +255,7 @@ CREATE TABLE `datos-sociales` (
 
 LOCK TABLES `datos-sociales` WRITE;
 /*!40000 ALTER TABLE `datos-sociales` DISABLE KEYS */;
-INSERT INTO `datos-sociales` VALUES (1,'Si','Muy buenas Condiciones','Si','',6),(9,'Si','Muy buenas Condiciones','Si','',1);
+INSERT INTO `datos-sociales` VALUES (1,'Si','Muy buenas condiciones','Si',6),(10,'Si','Muy buenas condiciones','No',7);
 /*!40000 ALTER TABLE `datos-sociales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,9 +273,10 @@ CREATE TABLE `datos-tallas` (
   `Talla_Zapatos` varchar(45) COLLATE utf8_bin NOT NULL,
   `idEstudiantes` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-Tallas`,`idEstudiantes`),
+  UNIQUE KEY `idEstudiantes` (`idEstudiantes`),
   KEY `idEstudiantes_idx` (`idEstudiantes`),
   CONSTRAINT `fk_Estudiantes_Datos-Tallas` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +285,7 @@ CREATE TABLE `datos-tallas` (
 
 LOCK TABLES `datos-tallas` WRITE;
 /*!40000 ALTER TABLE `datos-tallas` DISABLE KEYS */;
-INSERT INTO `datos-tallas` VALUES (1,'1','1','11',6),(5,'1','1','11',1);
+INSERT INTO `datos-tallas` VALUES (1,'S','32','36',6),(6,'M','32','37',7);
 /*!40000 ALTER TABLE `datos-tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,9 +303,10 @@ CREATE TABLE `datos-vivienda` (
   `Tenencia_Vivienda` varchar(25) NOT NULL,
   `idRepresentante` int(11) NOT NULL,
   PRIMARY KEY (`idDatos-vivienda`),
+  UNIQUE KEY `idRepresentante` (`idRepresentante`),
   KEY `fk_representantes_vivienda` (`idRepresentante`),
   CONSTRAINT `fk_representantes_vivienda` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +315,7 @@ CREATE TABLE `datos-vivienda` (
 
 LOCK TABLES `datos-vivienda` WRITE;
 /*!40000 ALTER TABLE `datos-vivienda` DISABLE KEYS */;
-INSERT INTO `datos-vivienda` VALUES (1,'Buena','Casa','Propia',3),(2,'Buena','Casa','Propia',7);
+INSERT INTO `datos-vivienda` VALUES (1,'Buena','Casa','Propia',3),(2,'Buena','Casa','Propia',7),(3,'Buena','Casa','Alquilada',8);
 /*!40000 ALTER TABLE `datos-vivienda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,13 +336,13 @@ CREATE TABLE `estudiantes` (
   `idPadre` int(11) NOT NULL,
   `Relación_Padre` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idEstudiantes`,`Cédula_Persona`,`idRepresentante`,`idPadre`),
-  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
+  KEY `Cedula_Persona_idx` (`Cédula_Persona`),
   KEY `id_Representante_idx` (`idRepresentante`),
   KEY `fk_estudiantes_padres1_idx` (`idPadre`),
   CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Representantes_Estudiantes` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_estudiantes_padres1` FOREIGN KEY (`idPadre`) REFERENCES `padres` (`idPadres`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +351,7 @@ CREATE TABLE `estudiantes` (
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-INSERT INTO `estudiantes` VALUES (1,'asjbfkajsdbf','Solo','V26666666',3,'',1,''),(6,'ahbsjdhavda','vjahsfdhavd','V11111111',3,'',2,'');
+INSERT INTO `estudiantes` VALUES (6,'ahbsjdhavda','vjahsfdhavd','V11111111',3,'Abuelo',2,'Padre'),(7,'morbi non lectus aliquam sit amet diam in magna bibendum imperdiet','Padre','V30016821',8,'Padre',3,'Padre');
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,11 +397,12 @@ CREATE TABLE `estudiantes-repitentes` (
   `idEstudiante-Repitente` int(11) NOT NULL AUTO_INCREMENT,
   `Materias_Pendientes` varchar(50) COLLATE utf8_bin NOT NULL,
   `Año_Repetido` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Que_Materias_Repite` varchar(75) COLLATE utf8_bin NOT NULL,
   `idEstudiante` int(11) NOT NULL,
   PRIMARY KEY (`idEstudiante-Repitente`,`idEstudiante`),
   KEY `idEstudiantes_idx` (`idEstudiante`),
   CONSTRAINT `fk_Estudiantes_Materias-Pendientes` FOREIGN KEY (`idEstudiante`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,7 +411,7 @@ CREATE TABLE `estudiantes-repitentes` (
 
 LOCK TABLES `estudiantes-repitentes` WRITE;
 /*!40000 ALTER TABLE `estudiantes-repitentes` DISABLE KEYS */;
-INSERT INTO `estudiantes-repitentes` VALUES (1,'Muchas','',6);
+INSERT INTO `estudiantes-repitentes` VALUES (1,'Muchas','','',6),(3,'','','',7);
 /*!40000 ALTER TABLE `estudiantes-repitentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,7 +432,7 @@ CREATE TABLE `grado` (
   KEY `fk_Año-Escolar_Grado` (`idAño-Escolar`),
   CONSTRAINT `fk_Año-Escolar_Grado` FOREIGN KEY (`idAño-Escolar`) REFERENCES `año-escolar` (`idAño-Escolar`),
   CONSTRAINT `fk_Estudiantes_Grado` FOREIGN KEY (`idEstudiantes`) REFERENCES `estudiantes` (`idEstudiantes`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -437,18 +441,18 @@ CREATE TABLE `grado` (
 
 LOCK TABLES `grado` WRITE;
 /*!40000 ALTER TABLE `grado` DISABLE KEYS */;
-INSERT INTO `grado` VALUES (1,'Primer año',6,12);
+INSERT INTO `grado` VALUES (1,'Primer año',6,12),(6,'Segundo Año',7,12);
 /*!40000 ALTER TABLE `grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Inscripciones`
+-- Table structure for table `inscripciones`
 --
 
-DROP TABLE IF EXISTS `Inscripciones`;
+DROP TABLE IF EXISTS `inscripciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Inscripciones` (
+CREATE TABLE `inscripciones` (
   `idInscripciones` int(11) NOT NULL AUTO_INCREMENT,
   `Fecha_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
   `Hora_Inscripción` varchar(12) COLLATE utf8_bin NOT NULL,
@@ -463,12 +467,12 @@ CREATE TABLE `Inscripciones` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Inscripciones`
+-- Dumping data for table `inscripciones`
 --
 
-LOCK TABLES `Inscripciones` WRITE;
-/*!40000 ALTER TABLE `Inscripciones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Inscripciones` ENABLE KEYS */;
+LOCK TABLES `inscripciones` WRITE;
+/*!40000 ALTER TABLE `inscripciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inscripciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -483,10 +487,10 @@ CREATE TABLE `padres` (
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idPadres`,`Cédula_Persona`),
-  UNIQUE KEY `Cédula_Persona_UNIQUE` (`Cédula_Persona`),
-  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
-  CONSTRAINT `Cédula_Persona` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  UNIQUE KEY `Cedula_Persona_UNIQUE` (`Cédula_Persona`),
+  KEY `Cedula_Persona_idx` (`Cédula_Persona`),
+  CONSTRAINT `Cedula_Persona` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -495,7 +499,7 @@ CREATE TABLE `padres` (
 
 LOCK TABLES `padres` WRITE;
 /*!40000 ALTER TABLE `padres` DISABLE KEYS */;
-INSERT INTO `padres` VALUES (1,'Venezuela','V25555555'),(2,'España','V27919566');
+INSERT INTO `padres` VALUES (1,'Venezuela','V25555555'),(2,'España','V27919566'),(3,'Venezuela','V17312460'),(4,'Guatemala','V30016821');
 /*!40000 ALTER TABLE `padres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,7 +525,7 @@ CREATE TABLE `personas` (
   `Estado_Civil` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idPersonas`),
   UNIQUE KEY `Cédula_UNIQUE` (`Cédula`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -530,7 +534,7 @@ CREATE TABLE `personas` (
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
-INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','V27919566','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','Casado(a)'),(10,'Elber','Alonso','Rondón','Hernández','V27919567','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(12,'María','Gabriela','Ballestero','Rodríguez','V28636530','2002-05-09','Caja Seca','F','mgbrodriguez952@gmail.com','Caja Seca','S'),(13,'Elber','Alonso','Rondón','Hernándes','V27555555','2001-05-05','Mérida','M','earh_2001@outlook.com','La pedregosa','Soltero(a)'),(14,'Elber','Alonso','Rondón','Hernández','V25555555','0000-00-00','','M','ashjfd@sdbf','asjdhvadj',''),(17,'Elber','Alonso','Rondón','Hernández','V26666666','0000-00-00','Mérida','M','ashjfd@sdbf','asjdhvadj','Soltero(a)'),(18,'Hermenegildo','hgcajshgdcjh','gcjhgchjgchjgchj','gcjhgchjgc','V11111111','1111-11-11','hgfvchgcjgfcx','M','jcjhg@sajhdfvsj','En su casa','Soltero(a)'),(20,'Elber','Alonso','Rondón','Hernández','V27919569','2001-05-05','','M','earh2001@outlook.com','',''),(21,'Elber','Alonso','Rondón','Hernández','E12345678','2001-05-05','','M','elber.alonso16@gmail.com','','');
+INSERT INTO `personas` VALUES (5,'Elber','Alonso','Rondón','Hernández','V27919566','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','Casado(a)'),(10,'Elber','Alonso','Rondón','Hernández','V27919567','2001-05-05','Mérida','M','earh_2001@outlook.com','La Pedregosa Alta','S'),(12,'María','Gabriela','Ballestero','Rodríguez','V28636530','2002-05-09','Caja Seca','F','mgbrodriguez952@gmail.com','Caja Seca','S'),(13,'Elber','Alonso','Rondón','Hernándes','V27555555','2001-05-05','Mérida','M','earh_2001@outlook.com','La pedregosa','Soltero(a)'),(14,'Elber','Alonso','Rondón','Hernández','V25555555','2001-05-05','','M','ashjfd@sdbf','asjdhvadj',''),(18,'Hermenegildo','hgcajshgdcjh','gcjhgchjgchjgchj','gcjhgchjgc','V11111111','2006-11-11','hgfvchgcjgfcx','M','jcjhg@sajhdfvsj','En su casa','Soltero(a)'),(20,'Elber','Alonso','Rondón','Hernández','V27919569','2001-05-05','','M','earh2001@outlook.com','',''),(21,'Elber','Alonso','Rondón','Hernández','E12345678','2001-05-05','','M','elber.alonso16@gmail.com','',''),(22,'Carlos','Enrique','Goméz','Lopez','E14635135','2002-05-05','','M','earh2001@outlook.com','',''),(23,'Latia','Egon','Topes','Benes','E23566954','1995-02-20','4 Arkansas Lane','F','ebenes0@utexas.edu','53971 Elmside Junction','Soltero(a)'),(24,'Aldric','Sybilla','Embling','Baptista','V12252106','1973-03-21','634 Bunker Hill Street\r\n','F','sbaptista1@google.cn','961 Dawn Court\r\n','Casado(a)'),(25,'Belia','Briny','Muro','Crannell','E12777408','1962-01-28','6 Loomis Trail','F','bcrannell2@umn.edu','99 4th Hill\r\n','Divorsiado(a)'),(26,'Danit','Alan','Maskrey','Pietasch','V30016821','2009-08-08','9755 Duke Circle','M','apietasch3@hhs.gov','599 Springview Drive\r\n','Casado(a)'),(27,'Chauncey','Deanna','Mackneis','Stables','V17312460','1974-07-12','dstables4@t.co','M','67 Summerview Parkway','0351 La Follette Trail','Soltero(a)'),(28,'Reina','Goldie\n','Gurdon','Musso','E16855747','1985-11-07','78 Stang Drive\r\n','F','rgurdon5@nps.gov','986 Nevada Avenue\r\n','');
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -548,7 +552,7 @@ CREATE TABLE `representantes` (
   PRIMARY KEY (`idRepresentantes`),
   KEY `fk_personas_representantes` (`Cédula_Persona`),
   CONSTRAINT `fk_personas_representantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -557,7 +561,7 @@ CREATE TABLE `representantes` (
 
 LOCK TABLES `representantes` WRITE;
 /*!40000 ALTER TABLE `representantes` DISABLE KEYS */;
-INSERT INTO `representantes` VALUES (3,'Bachillerato','V27919566'),(7,'Bachillerato','V27555555');
+INSERT INTO `representantes` VALUES (3,'Bachillerato','V27919566'),(7,'Bachillerato','V27555555'),(8,'Bachillerato','V12252106'),(9,'Universitario','E12777408');
 /*!40000 ALTER TABLE `representantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -576,8 +580,8 @@ CREATE TABLE `teléfonos` (
   `Cédula_Persona` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idTeléfonos`),
   KEY `fk_personas_teléfonos` (`Cédula_Persona`),
-  CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `fk_personas_teléfonos` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +590,7 @@ CREATE TABLE `teléfonos` (
 
 LOCK TABLES `teléfonos` WRITE;
 /*!40000 ALTER TABLE `teléfonos` DISABLE KEYS */;
-INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','V27919566'),(20,'0412','87654321','Secundario','V27919566'),(21,'0274','12349587','Auxiliar','V27919566'),(22,'0274','12349587','Trabajo','V27919566'),(23,'0416','12345678','Principal','V27919567'),(24,'0412','87654321','Secundario','V27919567'),(25,'0274','12349587','Auxiliar','V27919567'),(30,'0426','8994472','Principal','V28636530'),(31,'0412','0763135','Secundario','V28636530'),(32,'0274','12349587','Auxiliar','V28636530'),(33,'0274','12349587','Trabajo','V28636530'),(34,'0412','3569252','Principal','V27555555'),(35,'0416','3569245','Secundario','V27555555'),(36,'','','Auxiliar','V27555555'),(37,'','','Trabajo','V27555555'),(38,'0416','12345678','Principal','V25555555'),(39,'','','Secundario','V25555555'),(40,'0414','51351123','Auxiliar','V25555555'),(53,'0416','12345678','Principal','V11111111'),(54,'0412','3569252','Secundario','V11111111'),(55,'0416','12345678','Principal','V26666666'),(56,'0412','3569252','Secundario','V26666666');
+INSERT INTO `teléfonos` VALUES (19,'0416','12345678','Principal','V27919566'),(20,'0412','87654321','Secundario','V27919566'),(21,'0274','12349587','Auxiliar','V27919566'),(22,'0274','12349587','Trabajo','V27919566'),(23,'0416','12345678','Principal','V27919567'),(24,'0412','87654321','Secundario','V27919567'),(25,'0274','12349587','Auxiliar','V27919567'),(30,'0426','8994472','Principal','V28636530'),(31,'0412','0763135','Secundario','V28636530'),(32,'0274','12349587','Auxiliar','V28636530'),(33,'0274','12349587','Trabajo','V28636530'),(34,'0412','3569252','Principal','V27555555'),(35,'0416','3569245','Secundario','V27555555'),(36,'','','Auxiliar','V27555555'),(37,'','','Trabajo','V27555555'),(38,'0416','12345678','Principal','V25555555'),(39,'','','Secundario','V25555555'),(40,'0414','51351123','Auxiliar','V25555555'),(53,'0416','12345678','Principal','V11111111'),(54,'0412','3569252','Secundario','V11111111'),(57,'0412','3569252','Principal','V12252106'),(58,'0416','3569245','Secundario','V12252106'),(59,'','','Auxiliar','V12252106'),(60,'','','Trabajo','V12252106'),(62,'0416','12345678','Principal','V30016821'),(63,'0412','3569252','Secundario','V30016821'),(64,'0412','3569252','Principal','V17312460'),(65,'0416','3569245','Secundario','V17312460'),(66,'0416','3569245','Auxiliar','V17312460');
 /*!40000 ALTER TABLE `teléfonos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,9 +611,10 @@ CREATE TABLE `usuarios` (
   `Respuesta_2` text COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idUsuarios`),
-  KEY `Cédula_Persona_idx` (`Cédula_Persona`),
+  UNIQUE KEY `Cedula_Persona` (`Cédula_Persona`),
+  KEY `Cedula_Persona_idx` (`Cédula_Persona`),
   CONSTRAINT `fk_personas_usuarios` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -618,7 +623,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'12345',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','V27919566'),(4,'12345',1,'Ciudad donde naciste','Color que más te gusta','Caja Seca','Azul','V28636530'),(5,'1234',2,'','','','','V27555555'),(11,'Clave_01',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','V27919569'),(12,'Clave_02',2,'Color que más te gusta','Azul','¿Cuál fue tu primer número de Teléfono?','04163569245','E12345678');
+INSERT INTO `usuarios` VALUES (1,'12345',1,'Ciudad donde naciste','Color que más te gusta','Caja Seca','Azul','V28636530'),(2,'12345',2,'Ciudad donde naciste','Color que más te gusta','Mérida','Azul','V27919566'),(13,'',2,'Ciudad donde naciste','Mérida','Color que más te gusta','Azul','E14635135');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -631,4 +636,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-02  7:20:58
+-- Dump completed on 2022-05-10  8:57:07
