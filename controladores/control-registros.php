@@ -46,6 +46,7 @@ $datos_económicos = New Datoseconómicos();
 $datos_laborales = New DatosLaborales();
 
 $datos_padre = new Padres();
+$datos_auxiliar = new ContactoAuxiliar();
 
 $datos_estudiante	= new Estudiantes();
 $datos_salud	= new Fichamédica();
@@ -244,20 +245,20 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//
 		//
 
-		$persona->setPrimer_Nombre('Primer_Nombre_R');
-		$persona->setSegundo_Nombre('Segundo_Nombre_R');
-		$persona->setPrimer_Apellido('Primer_Apellido_R');
-		$persona->setSegundo_Apellido('Segundo_Apellido_R');
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Familiar']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Familiar']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Familiar']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Familiar']);
 
-		$Cédula_padre = 'Cédula_P';
+		$Cédula_padre = $_POST['Tipo_Cédula_Familiar'].$_POST['Cédula_Familiar'];
 		$persona->setCédula($Cédula_padre);
 
-		$persona->setFecha_Nacimiento('Fecha_Nacimiento_R');
-		$persona->setLugar_Nacimiento('Lugar_Nacimiento_R');
-		$persona->setGénero('Género_R');
-		$persona->setCorreo_Electrónico('Correo_electrónico_R');
-		$persona->setDirección('Dirección_R');
-		$persona->setEstado_Civil('Estado_Civil_R');
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Familiar']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Familiar']);
+		$persona->setGénero($_POST['Género_Familiar']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Familiar']);
+		$persona->setDirección($_POST['Dirección_Familiar']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Familiar']);
 
 		$persona->insertarPersona();
 
@@ -273,16 +274,16 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//
 
 		#Teléfono principal
-		$Teléfonos->setPrefijo('Prefijo_Principal_Aux');
-		$Teléfonos->setNúmero_Telefónico('Teléfono_Principal_Aux');
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Familiar']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Familiar']);
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
 		$Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
-		$Teléfonos->setPrefijo('Prefijo_Secundario_Aux');
-		$Teléfonos->setNúmero_Telefónico('Teléfono_Secundario_Aux');
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Familiar']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Familiar']);
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
@@ -323,7 +324,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setCon_Quién_Vive($_POST['Con_Quién_Vive']);
 		$datos_estudiante->setCédula_Estudiante($Cédula_estudiante);
 		$datos_estudiante->setidRepresentante($datos_representante->getidRepresentantes());
-		$datos_estudiante->setidPadre($datos_padre->getidPadres());
+		$datos_estudiante->setidRepresentante($datos_representante->getidRepresentantes());
+		$datos_estudiante->setRelación_Representante($_POST['Vinculo_R']);
+		$datos_estudiante->setRelación_Padre($_POST['Vinculo_Familiar']);
 
 		$datos_estudiante->insertarEstudiante();
 

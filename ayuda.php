@@ -13,7 +13,7 @@
       </div>
       <div class="modal-body">
 				<p>Bienvenido(a) a la sección de ayuda, ¿Qué desea consultar?.</p>
-				<div class="accordion" id="accordionExample">
+				<div class="accordion mb-4" id="accordionExample">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingLogin">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
@@ -87,6 +87,7 @@
 						</div>
 				  </div>
 				</div>
+        <a href="/proyecto_pst/Manual.php" target="_blank"><i class="fas fa-download fa-lg me-2"></i>Descargar manual de usuario</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

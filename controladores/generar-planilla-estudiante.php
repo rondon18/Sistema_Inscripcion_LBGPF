@@ -71,6 +71,7 @@ $datos_representante = $Representante->consultarRepresentanteID($_POST['id_repre
 
 $datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
 $contacto_aux = new Personas();
+$Teléfonos_aux = $Teléfonos->consultarTeléfonos($datos_auxiliar['Cédula_Persona']);
 $dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
 
 $datos_económicos = $económicos->consultarDatoseconómicos($_POST['id_representante']);
