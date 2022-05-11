@@ -447,6 +447,14 @@ $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_
 						<div>
 							<span class="form-label">Presenta alguna de estas condiciones: </span>
 							<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
+
+								<?php
+
+
+								$condiciones = explode(", ")
+
+								 ?>
+
 								<div class="form-check form-check-inline">
 									<label class="form-label">Visual </label>
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual">
