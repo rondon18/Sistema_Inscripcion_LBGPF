@@ -12,10 +12,10 @@
   }})}
 }( jQuery ));
 
-$('#Primer_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Primer_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Primer_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Nombre_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Primer_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Apellido_R').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Cédula_R').validarIngreso('0123456789');
 
 
@@ -27,19 +27,18 @@ $('#Prefijo_Auxiliar_R').validarIngreso('0123456789');
 $('#Teléfono_Auxiliar_R').validarIngreso('0123456789');
 
 
-
-$('#Código_Carnet_Patria').validarIngreso('0123456789');
-$('#Serial_Carnet_Patria').validarIngreso('0123456789');
+$('#Código_Carnet_Patria_R').validarIngreso('0123456789');
+$('#Serial_Carnet_Patria_R').validarIngreso('0123456789');
 
 $('#Nro_Cuenta').validarIngreso('0123456789');
 $('#Prefijo_Trabajo_R').validarIngreso('0123456789');
 $('#Teléfono_Trabajo_R').validarIngreso('0123456789');
 $('#Remuneración').validarIngreso('0123456789');
 
-$('#Primer_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Primer_Apellido_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Apellido_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Primer_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Primer_Apellido_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Apellido_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 
 $('#Cédula_Aux').validarIngreso('0123456789');
 $('#Prefijo_Principal_Aux').validarIngreso('0123456789');
@@ -49,4 +48,4 @@ $('#Télefono_Secundario_Aux').validarIngreso('0123456789');
 $('#Prefijo_Auxiliar_Aux').validarIngreso('0123456789');
 $('#Teléfono_Auxiliar_Aux').validarIngreso('0123456789');
 
-$('#Relación_Auxiliar').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Relación_Auxiliar').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');

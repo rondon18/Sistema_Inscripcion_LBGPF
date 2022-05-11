@@ -78,7 +78,7 @@ $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante'
 
 
 $padre = $Padre->consultarPadres($_POST['id_padre']);
-$carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($padre['Cédula']);
+$carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
 $hijos = $Padre->consultarHijos($_POST['id_padre']);
 
 $fecha_actual = date("Y-m-d");
@@ -357,7 +357,7 @@ $pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI
 $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(65,6,utf8_decode('Condiciones DE LA VIVIENDA: ' . $datos_vivienda['Condiciones_Vivienda']),1,0);
+$pdf->Cell(65,6,utf8_decode('CONDICIONES DE LA VIVIENDA: ' . $datos_vivienda['Condiciones_Vivienda']),1,0);
 $pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_vivienda['Tipo_Vivienda']),1,0);
 $pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_vivienda['Tenencia_Vivienda']),1,1);
 $pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_pa),1,0);

@@ -68,7 +68,7 @@ if (!$_SESSION['login']) {
 								<option value="Abuela">
 								<option value="Abuelo">
 							</datalist>
-							<input type="text" class="form-control mb-2" id="Vinculo_R" minlength="3" maxlength="15" list="vinculos" required>
+							<input type="text" class="form-control mb-2" id="Vinculo_R" name="Vinculo_R" minlength="3" maxlength="15" list="vinculos" required>
 						</div>
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -209,13 +209,13 @@ if (!$_SESSION['login']) {
 						<div>
 							<span class="form-label">Carnet de la patria:</span>
 							<div class="input-group mb-2">
-								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
+								<select class="form-select w-auto" name="Tiene_Carnet_Patria_R" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si tiene</option>
 									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
-								<input class="form-control" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control" type="text" name="Código_Carnet_Patria_R" id="Código_Carnet_Patria_R" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control" type="text" name="Serial_Carnet_Patria_R" id="Serial_Carnet_Patria_R" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
 							</div>
 						</div>
 					</section>
@@ -351,7 +351,7 @@ if (!$_SESSION['login']) {
 						<!--Cargo que ocupa el representante-->
 						<div>
 							<label class="form-label">Cargo que ocupa:</label>
-							<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="60" minlength="3" required>
+							<input class="form-control mb-2" type="text" name="Empleo_R" id="Empleo_R" maxlength="60" minlength="3">
 						</div>
 						<!--Teléfono del trabajo de representante-->
 						<div>
@@ -374,7 +374,7 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Remuneración:</label>
 							<div class="input-group mb-2">
 								<!--Remuneración en base a sueldos minimos del representante-->
-								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" required>
+								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1">
 								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
 								<!--Tipo de Remuneración del representante-->
 								<select class="form-select" name="Tipo_Remuneración">

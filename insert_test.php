@@ -219,6 +219,8 @@ $datos_auxiliar->setRelación('Relación_Auxiliar');
 $datos_auxiliar->setCédula_Persona($persona->getCédula());
 $datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
 
+$datos_auxiliar->insertarContactoAuxiliar();
+
 //
 //
 // PARTE DEL PADRE/MADRE
@@ -248,6 +250,16 @@ $datos_padre->setPaís_Residencia("");
 $datos_padre->insertarPadres();
 
 //
+//	Datos del carnet de la patria del padre/madre
+//
+
+$carnet->setCódigo_Carnet('0123456789');
+$carnet->setSerial_Carnet('0123456789');
+$carnet->setCédula_Persona($persona->getCédula());
+
+$carnet->insertarCarnetPatria();
+
+//
 // Teléfonos del padre/madre
 //
 
@@ -263,6 +275,14 @@ $Teléfonos->insertarTeléfono();
 $Teléfonos->setPrefijo('Prefijo_Secundario_Aux');
 $Teléfonos->setNúmero_Telefónico('Teléfono_Secundario_Aux');
 $Teléfonos->setRelación_Teléfono('Secundario');
+$Teléfonos->setCédula_Persona($persona->getCédula());
+
+$Teléfonos->insertarTeléfono();
+
+#Teléfono auxiliar
+$Teléfonos->setPrefijo('Prefijo_Secundario_Aux');
+$Teléfonos->setNúmero_Telefónico('Teléfono_Secundario_Aux');
+$Teléfonos->setRelación_Teléfono('Auxiliar');
 $Teléfonos->setCédula_Persona($persona->getCédula());
 
 $Teléfonos->insertarTeléfono();
@@ -318,6 +338,14 @@ $Teléfonos->setCédula_Persona($persona->getCédula());
 
 $Teléfonos->insertarTeléfono();
 
+#Teléfono secundario
+$Teléfonos->setPrefijo('Prefijo_Secundario_Est');
+$Teléfonos->setNúmero_Telefónico('Teléfono_Secundario_Est');
+$Teléfonos->setRelación_Teléfono('Auxiliar');
+$Teléfonos->setCédula_Persona($persona->getCédula());
+
+$Teléfonos->insertarTeléfono();
+
 //
 //	Datos de salud
 //
@@ -346,7 +374,6 @@ $datos_salud->insertarFicha_médica($datos_estudiante->getidEstudiantes());
 
 $datos_sociales->setPosee_Canaima('');
 $datos_sociales->setCondición_Canaima('');
-$datos_sociales->setPosee_Carnet_Patria('');
 $datos_sociales->setAcceso_Internet('');
 
 $datos_sociales->insertarDatosSociales($datos_estudiante->getidEstudiantes());

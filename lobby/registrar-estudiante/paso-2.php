@@ -25,9 +25,17 @@ if (!isset($_POST['Datos_Representante'])) {
 		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
-	<form id="FormularioEstudiante" class="card" action="../../controladores/control-registros.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;" onsubmit='return validacion()' autocomplete="off">
-			<div class="card-header">
-				<h4>Formulario de registro de estudiantes</h4>
+	<!--Banner-->
+	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<div>
+			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+		</div>
+		<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+	</header>
+	<form id="FormularioEstudiante" class="card" action="../../controladores/control-registros.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;">
+			<div class="card-header py-3">
+				<h3>Formulario de registro.</h3>
 			</div>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -219,13 +227,13 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<span class="form-label">Carnet de la patria: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tiene_Carnet_Patria">
+								<select class="form-select" name="Tiene_Carnet_Patria_Est">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si tiene</option>
 									<option value="No">No tiene</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" minlength="10" maxlength="10">
-								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" minlength="10" maxlength="10">
+								<input class="form-control w-auto" type="text" name="Código_Carnet_Patria_Est" id="Código_Carnet_Patria_Est" placeholder="Código" minlength="10" maxlength="10">
+								<input class="form-control w-auto" type="text" name="Serial_Carnet_Patria_Est" id="Serial_Carnet_Patria_Est" placeholder="Serial" minlength="10" maxlength="10">
 							</div>
 						</div>
 						<!--Conexión a internet-->
@@ -251,18 +259,18 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<label class="form-label">Datos antropométricos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Índice" id="Índice" placeholder="Índice" required>
-								<input class="form-control mb-2" type="text" name="Talla" id="Talla" placeholder="Talla" required>
-								<input class="form-control mb-2" type="text" name="Peso" id="Peso" placeholder="Peso" required>
-								<input class="form-control mb-2" type="text" name="C_Braquial" id="C_Braquial" placeholder="C.brazo" required>
+								<input class="form-control mb-2" type="text" name="Índice" id="Índice" placeholder="Índice" required maxlength="5">
+								<input class="form-control mb-2" type="text" name="Talla" id="Talla" placeholder="Talla(cm)" required maxlength="5">
+								<input class="form-control mb-2" type="text" name="Peso" id="Peso" placeholder="Peso(kg)" required maxlength="5">
+								<input class="form-control mb-2" type="text" name="C_Braquial" id="C_Braquial(cm)" placeholder="C.brazo" required maxlength="5">
 							</div>
 						</div>
 						<div>
 							<label class="form-label">Tallas: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input class="form-control mb-2" type="text" name="Talla_Pantalón" id="Talla_Pantalón" placeholder="Pantalón" required>
-								<input class="form-control mb-2" type="text" name="Talla_Camisa" id="Talla_Camisa" placeholder="Camisa" required>
-								<input class="form-control mb-2" type="text" name="Talla_Zapatos" id="Talla_Zapatos" placeholder="Zapatos" required>
+								<input class="form-control mb-2" type="text" name="Talla_Pantalón" id="Talla_Pantalón" placeholder="Pantalón" required maxlength="5">
+								<input class="form-control mb-2" type="text" name="Talla_Camisa" id="Talla_Camisa" placeholder="Camisa" required maxlength="5">
+								<input class="form-control mb-2" type="text" name="Talla_Zapatos" id="Talla_Zapatos" placeholder="Zapatos" required maxlength="5">
 							</div>
 						</div>
 						<div>
@@ -350,7 +358,7 @@ if (!isset($_POST['Datos_Representante'])) {
 								</div>
 						</div>
 						<div>
-							<span class="form-label">Presenta alguna de estas Condiciones: </span>
+							<span class="form-label">Presenta alguna de estas condiciones: </span>
 							<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Visual </label>
@@ -419,7 +427,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Nro_Carnet_Discapacidad" id="Nro_Carnet_Discapacidad" placeholder="Nro. de carnet">
+								<input class="form-control w-auto" type="text" name="Nro_Carnet_Discapacidad" id="Nro_Carnet_Discapacidad" placeholder="Nro. de carnet" maxlength="25">
 							</div>
 						</div>
 					</div>
@@ -427,9 +435,9 @@ if (!isset($_POST['Datos_Representante'])) {
 				<section id="seccion5" style="display:none;">
 						<div>
 							<h5 class="mb-3"><i class="fa-solid fa-eye fa-xl"></i> Observaciones: </h5>
-							<label class="form-label text-muted"> 
+							<label class="form-label text-muted">
 								<small>
-									Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. La misma no puede exceder los 150 carácteres 
+									Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. La misma no puede exceder los 150 carácteres
 								</small>
 							</label>
 							<label class="form-label"> Social: </label>
@@ -589,6 +597,7 @@ if (!isset($_POST['Datos_Representante'])) {
 				</section>
 			</div>
 			<!-- datos del representante -->
+			<input type="hidden" name="Vinculo_R" value="<?php echo $_POST['Vinculo_R']?>">
 			<input type="hidden" name="Primer_Nombre_R" value="<?php echo $_POST['Primer_Nombre_R']?>">
 			<input type="hidden" name="Segundo_Nombre_R" value="<?php echo $_POST['Segundo_Nombre_R']?>">
 			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
@@ -608,9 +617,9 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
 			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
 			<input type="hidden" name="Grado_Instrucción" value="<?php echo $_POST['Grado_Instrucción']?>">
-			<input type="hidden" name="Tiene_Carnet_Patria" value="<?php echo $_POST['Tiene_Carnet_Patria']?>">
-			<input type="hidden" name="Código_Carnet_Patria" value="<?php echo $_POST['Código_Carnet_Patria']?>">
-			<input type="hidden" name="Serial_Carnet_Patria" value="<?php echo $_POST['Serial_Carnet_Patria']?>">
+			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R']?>">
+			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
+			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
 			<input type="hidden" name="Condición_vivienda" value="<?php echo $_POST['Condición_vivienda']?>">
 			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
 			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
@@ -647,7 +656,11 @@ if (!isset($_POST['Datos_Representante'])) {
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
 		</form>
-		<?php include '../../ayuda.php'; ?>
+		<!--Footer-->
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		</footer>
+		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>

@@ -63,8 +63,8 @@ $(document).ready(function(){
 
 //Registrar usuario
 
-$('#Primer_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Primer_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
-$('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéiou');
+$('#Primer_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Primer_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
+$('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Cédula_U').validarIngreso('0123456789');

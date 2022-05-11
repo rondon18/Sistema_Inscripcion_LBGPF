@@ -56,7 +56,6 @@ function privilegios($privilegios) {
 		<div class="card-header">
 			<h4>Perfil de usuario</h4>
 		</div>
-		<?php if ($_SESSION['usuario']['Privilegios'] == 2): ?>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
@@ -65,13 +64,6 @@ function privilegios($privilegios) {
 				<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de usuario</a>
 			</li>
 		</ul>
-		<?php else: ?>
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<p class="nav-link active">Datos personales</p>
-			</li>
-		</ul>
-		<?php endif ?>
 		<div class="card-body">
 			<section id="seccion1">
 				<ul class="list-group list-group-flush">
