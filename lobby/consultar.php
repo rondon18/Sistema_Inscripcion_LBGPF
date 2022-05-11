@@ -180,7 +180,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 										</form>
-										<form action="editar-estudiante/editar-estudiante.php" method="post" style="display: inline-block;" target="_blank">
+										<form action="editar-estudiante/paso-1.php" method="post" style="display: inline-block;" target="_blank">
 											<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
@@ -327,6 +327,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script type="text/javascript" src="../js/pdfmake.min.js"></script>
 <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+<script type="text/javascript" src="../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../js/datatables1.min.js"></script>
 <script type="text/javascript">
 	//Datatables estudiantes
@@ -425,6 +426,15 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	} );
 	<?php endif; ?>
 </script>
+<?php if (isset($_GET['exito'])): ?>
+<script type="text/javascript" defer>
+	Swal.fire(
+      'Exito',
+      'Registro realizado correctamente',
+      'success'
+    );
+</script>
+<?php endif; ?>
 <script type="text/javascript">
 	function confirmacion() {
 		//Pregunta si desea realizar la acción la cancela si selecciona NO

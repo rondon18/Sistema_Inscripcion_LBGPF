@@ -132,6 +132,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['persona']['Dirección'] = $persona->getDirección();
 		$_SESSION['persona']['Estado_Civil'] = $persona->getEstado_Civil();
 
+		require('../clases/bitácora.php');
+
+		$bitácora = new bitácora();
+		$_SESSION['acciones'] .= ',Edita perfil';
+		$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+
 		header('Location: ../lobby/index.php');
 	}
 	elseif ($orden == "Eliminar") {

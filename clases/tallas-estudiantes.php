@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class TallasEstudiante {
-	
+
 
 	private $idDatos_Tallas;
 	private $Talla_Camisa;
@@ -18,6 +18,13 @@ class TallasEstudiante {
 		$Talla_Pantalón = $this->getTalla_Pantalón();
 		$Talla_Zapatos = $this->getTalla_Zapatos();
 
+		$sql = "SELECT * FROM `datos-tallas` WHERE `idEstudiantes` = '$id_Estudiante'";
+
+		$registro_existe = $conexion->query($sql);
+		$resultado = $registro_existe->fetch_assoc();
+
+		#Consulta si el registro existe
+		if ($resultado == NULL) {
 		$sql = "INSERT INTO `datos-tallas`(`idDatos-Tallas`, `Talla_Camisa`, `Talla_Pantalón`, `Talla_Zapatos`, `idEstudiantes`) VALUES (
 			NULL,
 			'$Talla_Camisa',
@@ -25,11 +32,12 @@ class TallasEstudiante {
 			'$Talla_Zapatos',
 			'$id_Estudiante'
 		)";
-
-
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		$this->setidDatos_Tallas($conexion->insert_id);
-
+		}
+		elseif ($resultado != NULL) {
+			$this->setidDatos_Tallas($resultado['idDatos-Tallas']);
+		}
 		desconectarBD($conexion);
 	}
 
@@ -39,8 +47,8 @@ class TallasEstudiante {
 		$Talla_Camisa = $this->getTalla_Camisa();
 		$Talla_Pantalón = $this->getTalla_Pantalón();
 		$Talla_Zapatos = $this->getTalla_Zapatos();
-		
-		$sql = "UPDATE `datos-tallas` SET 
+
+		$sql = "UPDATE `datos-tallas` SET
 				`Talla_Camisa`='$Talla_Camisa',
 				`Talla_Pantalón`='$Talla_Pantalón',
 				`Talla_Zapatos`='$Talla_Zapatos'
@@ -53,11 +61,11 @@ class TallasEstudiante {
 
 	public function consultarTallasEstudiante($id_Estudiante) {
 		$conexion = conectarBD();
-		
+
 		#Consulta los datos de las tallas del estudiante solicitado
 		$sql = "SELECT * FROM `datos-tallas` WHERE `idEstudiantes` = '$id_Estudiante'";
 
-		$consulta_tallas = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_tallas = $conexion->query($sql) or die("error: ".$conexion->error);
 		$tallas = $consulta_tallas->fetch_assoc();
 
 		desconectarBD($conexion);

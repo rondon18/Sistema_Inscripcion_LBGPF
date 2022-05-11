@@ -41,29 +41,41 @@
 			$Institución_médica = $this->getInstitución_médica();
 			$Carnet_Discapacidad = $this->getCarnet_Discapacidad();
 
-			$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
-			VALUES (
-				NULL,
-				'$Estatura',
-				'$Peso',
-				'$Índice',
-				'$Circ_Braquial',
-				'$Lateralidad',
-				'$Tipo_Sangre',
-				'$Medicación',
-				'$Dieta_Especial',
-				'$Enfermedad',
-				'$Impedimento_Físico',
-				'$Alergias',
-				'$Cond_Vista',
-				'$Cond_Dental',
-				'$Institución_médica',
-				'$Carnet_Discapacidad',
-				'$id_Estudiante'
-				)";
+			$sql = "SELECT * FROM `datos-salud` WHERE `idEstudiantes` = '$id_Estudiante'";
 
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			$this->setidDatos_Médicos($conexion->insert_id);
+			$registro_existe = $conexion->query($sql);
+			$resultado = $registro_existe->fetch_assoc();
+
+			#Consulta si el registro existe
+			if ($resultado == NULL) {
+
+				$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
+				VALUES (
+					NULL,
+					'$Estatura',
+					'$Peso',
+					'$Índice',
+					'$Circ_Braquial',
+					'$Lateralidad',
+					'$Tipo_Sangre',
+					'$Medicación',
+					'$Dieta_Especial',
+					'$Enfermedad',
+					'$Impedimento_Físico',
+					'$Alergias',
+					'$Cond_Vista',
+					'$Cond_Dental',
+					'$Institución_médica',
+					'$Carnet_Discapacidad',
+					'$id_Estudiante'
+					)";
+
+				$conexion->query($sql) or die("error: ".$conexion->error);
+				$this->setidDatos_Médicos($conexion->insert_id);
+			}
+			elseif ($resultado != NULL) {
+				$this->setidDatos_Médicos($resultado['idDatos-Médicos']);
+			}
 
 			desconectarBD($conexion);
 		}

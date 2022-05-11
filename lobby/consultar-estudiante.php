@@ -67,6 +67,7 @@ $datos_representante = $Representante->consultarRepresentanteID($_POST['id_repre
 $datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
 $contacto_aux = new Personas();
 $dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
+$telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Persona']);
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
@@ -370,7 +371,7 @@ desconectarBD($conexion);
 					<tr>
 						<td> Relación: <?php echo $datos_auxiliar['Relación'] ?></td>
 						<td> Nombre: <?php echo $dat_contacto_aux['Primer_Nombre'].' '.$dat_contacto_aux['Primer_Apellido'] ?> </td>
-						<td colspan="2"> Teléfono: <?php echo $telefonos_pa[2]['Prefijo'] . '-' . $telefonos_pa[2]['Número_Telefónico'] ?> </td>
+						<td colspan="2"> Teléfono: <?php echo $telefonos_aux[0]['Prefijo'] . '-' . $telefonos_aux[0]['Número_Telefónico'] ?> </td>
 					</tr>
 
 					<tr class="table-primary">

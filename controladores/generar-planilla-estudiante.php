@@ -305,7 +305,7 @@ $pdf->Cell(0,6,utf8_decode('DIRECCIÓN: ' . $datos_representante['Dirección']),
 $pdf->Cell(50,6,utf8_decode('OTRO CONTACTO PARA EMERGENCIAS'),1,0);
 $pdf->Cell(38,6,utf8_decode('PARENTESCO: ' . $datos_auxiliar['Relación']),1,0);
 $pdf->Cell(75,6,utf8_decode('NOMBRE: ' . $dat_contacto_aux['Primer_Nombre'].' '.$dat_contacto_aux['Primer_Apellido']),1,0);
-$pdf->Cell(0,6,utf8_decode('TELÉFONO: ' . $Teléfonos_pa[2]['Prefijo'] . '-' . $Teléfonos_pa[2]['Número_Telefónico']),1,1);
+$pdf->Cell(0,6,utf8_decode('TELÉFONO: ' . $Teléfonos_aux[0]['Prefijo'] . '-' . $Teléfonos_aux[0]['Número_Telefónico']),1,1);
 $pdf->Cell(50,6,utf8_decode('BANCO: ' . $datos_económicos['Banco']),1,0);
 $pdf->Cell(40,6,utf8_decode('TIPO DE CUENTA: ' . $datos_económicos['Tipo_Cuenta']),1,0);
 $pdf->Cell(0,6,utf8_decode('NÚMERO DE CUENTA BANCARIA: ' . $datos_económicos['Cta_Bancaria']),1,1);
