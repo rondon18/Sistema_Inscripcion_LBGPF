@@ -41,7 +41,7 @@ if (!$_SESSION['login']) {
 						<a id="link1" class="nav-link active" href="#" onclick="seccion('seccion1')">Datos personales</a>
 					</li>
 					<li class="nav-item">
-						<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de representante</a>
+						<a id="link2" class="nav-link" href="#" onclick="seccion('seccion2')">Datos de contacto</a>
 					</li>
 					<li class="nav-item">
 						<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de vivienda</a>
@@ -123,11 +123,6 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Lugar de nacimiento:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="text" class="form-control mb-2" name="Lugar_Nacimiento_R" id="Lugar_Nacimiento_R" maxlength="20" minlength="3" required>
 						</div>
-						<!--Correo Electrónico del representante-->
-						<div>
-							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" minlength="15" required>
-						</div>
 						<!--Estado civil del representante-->
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -139,14 +134,43 @@ if (!$_SESSION['login']) {
 								<option value="Viudo(a)">Viudo(a)</option>
 							</select>
 						</div>
-						<!--Dirección de residencia-->
+						<div>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Primaria </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Bachillerato </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Universitario </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
+								</div>
+							</div>
+						</div>
+						<!--Carnet de la patria-->
+						<div>
+							<span class="form-label">Carnet de la patria:</span>
+							<div class="input-group mb-2">
+								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Si">Si tiene</option>
+									<option value="No">No tiene</option>
+								</select>
+								<input class="form-control" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
+								<input class="form-control" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
+							</div>
+						</div>
+					</section>
+					<section id="seccion2" style="display: none;">
+						<h5>Datos de contacto.</h5>
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"></textarea>
 						</div>
-					</section>
-					<section id="seccion2" style="display: none;">
-						<h5>Datos de representante.</h5>
 						<!--Teléfonos del representante-->
 						<div>
 							<datalist id="prefijos">
@@ -188,35 +212,10 @@ if (!$_SESSION['login']) {
 								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_R" id="Teléfono_Auxiliar_R" placeholder="Teléfono auxiliar" pattern="[0-9]+" maxlength="7" minlength="7">
 							</div>
 						</div>
+						<!--Correo Electrónico del representante-->
 						<div>
-							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
-								<div class="form-check form-check-inline">
-									<label class="form-label">Primaria </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required>
-								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-label">Bachillerato </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required>
-								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-label">Universitario </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
-								</div>
-							</div>
-						</div>
-						<!--Carnet de la patria-->
-						<div>
-							<span class="form-label">Carnet de la patria:</span>
-							<div class="input-group mb-2">
-								<select class="form-select w-auto" name="Tiene_Carnet_Patria" required>
-									<option selected disabled value="">Seleccione una opción</option>
-									<option value="Si">Si tiene</option>
-									<option value="No">No tiene</option>
-								</select>
-								<input class="form-control" type="text" name="Código_Carnet_Patria" id="Código_Carnet_Patria" placeholder="Código" pattern="[0-9]+" minlength="10" maxlength="10">
-								<input class="form-control" type="text" name="Serial_Carnet_Patria" id="Serial_Carnet_Patria" placeholder="Serial" pattern="[0-9]+" minlength="10" maxlength="10">
-							</div>
+							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<input type="email" class="form-control mb-2" name="Correo_electrónico_R" id="Correo_electrónico_R" minlength="15" required>
 						</div>
 					</section>
 					<section id="seccion3" style="display: none;">
