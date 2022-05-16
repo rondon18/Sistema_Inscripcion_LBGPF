@@ -89,6 +89,19 @@ $edad_diff_est = date_diff(date_create($fecha_nacimiento_est), date_create($fech
 $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_actual));
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
 
+
+function condiciones($condicion_b) {
+	if (!empty($datos_Médicos['Impedimento_Físico'])) {
+		$condiciones = explode(", ",$datos_Médicos['Impedimento_Físico']);
+		foreach ($condiciones as $condicion) {
+			if ($condicion == $condicion_b) {
+				echo "checked";
+			}
+		}
+	}
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -448,36 +461,29 @@ $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_
 							<span class="form-label">Presenta alguna de estas condiciones: </span>
 							<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
 
-								<?php
-
-
-								$condiciones = explode(", ")
-
-								 ?>
-
 								<div class="form-check form-check-inline">
 									<label class="form-label">Visual </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Visual" <?php condiciones("Visual");?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Motora </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Motora" <?php condiciones("Motora");?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Auditiva </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Auditiva" <?php condiciones("Auditiva");?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Escritura </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Escritura" <?php condiciones("Escritura");?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Lectura </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php condiciones("Lectura");?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Embarazo </label>
-									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo">
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php condiciones("Embarazo");?>>
 								</div>
 							</div>
 						</div>

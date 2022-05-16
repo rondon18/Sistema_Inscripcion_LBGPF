@@ -654,7 +654,7 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
 			<!--Botón para guardar-->
 			<div class="card-footer">
-				<input type="hidden" name="orden" value="Insertar">
+				<input type="hidden" name="orden" value="Editar">
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
 		</form>
