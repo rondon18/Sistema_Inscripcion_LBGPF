@@ -53,7 +53,7 @@
 			$sql = "UPDATE `datos-sociales` SET
 				`Posee_Canaima`='$Posee_Canaima',
 				`Condición_Canaima`='$Condición_Canaima',
-				`Acceso_Internet`='$Acceso_Internet',
+				`Acceso_Internet`='$Acceso_Internet'
 			WHERE `idEstudiantes`='$id_Estudiante'";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);

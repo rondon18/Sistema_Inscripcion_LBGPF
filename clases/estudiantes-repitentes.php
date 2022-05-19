@@ -30,6 +30,23 @@ class EstudiantesRepitentes {
 		desconectarBD($conexion);
 	}
 
+	public function editarEstudiantesRepitentes($idEstudiante) {
+		$conexion = conectarBD();
+
+		$Materias_Pendientes = $this->getMaterias_Pendientes();
+		$Año_Repetido = $this->getAño_Repetido();
+		$Que_Materias_Repite = $this->getQue_Materias_Repite();
+
+		$sql = "UPDATE `estudiantes-repitentes` SET
+		 `Materias_Pendientes`='$Materias_Pendientes',
+		 `Año_Repetido`='$Año_Repetido',
+		 `Que_Materias_Repite`='$Que_Materias_Repite'
+		 WHERE `idEstudiante`='$idEstudiante'";
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+		desconectarBD($conexion);
+	}
+
 	public function consultarEstudiantesRepitentes($id_Estudiante) {
 		$conexion = conectarBD();
 

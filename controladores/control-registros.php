@@ -35,6 +35,8 @@ require_once('../clases/carnet-patria.php');
 require_once('../clases/grado.php');
 require_once('../clases/año-escolar.php');
 
+require_once('../clases/inscripciones.php');
+
 
 $persona = new Personas();
 $Teléfonos = new Teléfonos();
@@ -57,6 +59,8 @@ $observaciones = new Observaciones();
 $año_escolar = new Año_Escolar();
 $grado = new GradoAcadémico();
 $estudiante_repitente = new EstudiantesRepitentes();
+
+$Inscripcion = new Inscripciones();
 
 
 if (isset($_POST['orden']) and $_POST['orden']) {
@@ -465,6 +469,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$observaciones->insertarObservaciones();
 
+		$Inscripcion->insertarRegistro($_SESSION['usuario']['idUsuarios'],$datos_estudiante->getidEstudiantes());
+
 		require('../clases/bitácora.php');
 
 		$bitácora = new bitácora();
@@ -475,9 +481,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 
 	elseif ($orden == "Editar") {
-
-
-
 
 		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
@@ -495,6 +498,10 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
 
 		$persona->editarPersonaC($Cédula_representante);
+
+
+
+		//Consulta el representante
 
 		$conexion = conectarBD();
 
@@ -678,6 +685,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->editarPersonaC($Cédula_padre);
 
 		$padre = $datos_padre->consultarPadresC($Cédula_padre);
+		$idPadre = $padre['idPadres'];
 
 		$datos_padre->setCédula_Persona($Cédula_padre);
 
@@ -736,13 +744,17 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setPlantel_Procedencia($_POST['Plantel_Procedencia']);
 		$datos_estudiante->setCon_Quién_Vive($_POST['Con_Quién_Vive']);
 		$datos_estudiante->setCédula_Estudiante($Cédula_estudiante);
-		$datos_estudiante->setidRepresentante($datos_representante->getidRepresentantes());
-		$datos_estudiante->setidPadre($datos_padre->getidPadres());
+		$datos_estudiante->setidRepresentante($idRepresentante);
+		$datos_estudiante->setidPadre($idPadre);
 		$datos_estudiante->setRelación_Representante($_POST['Vinculo_R']);
 		$datos_estudiante->setRelación_Padre($_POST['Vinculo_Familiar']);
 
 		$datos_estudiante->editarEstudiante($Cédula_estudiante);
 
+
+		$estudiante = $datos_estudiante->consultarEstudiante($Cédula_estudiante);
+
+		$idEstudiante = $estudiante['idEstudiantes'];
 		//
 		// Teléfonos del estudiante
 		//
@@ -769,7 +781,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setRelación_Teléfono('Auxiliar');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->editarTeléfono();
+		$Teléfonos->editarTeléfono($Cédula_estudiante);
 
 		//
 		//	Datos de salud
@@ -858,6 +870,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$grado->setGrado_A_Cursar($_POST['Grado_A_Cursar']);
 		$grado->editarGrado($datos_estudiante->getidEstudiantes(),$año_escolar->getInicio_Año_Escolar(),$año_escolar->getFin_Año_Escolar());
 
+
 		if ($_POST['Estudiante_Repitente'] == "Si") {
 			#Si repite año
 			$estudiante_repitente->getAño_Repetido($_POST['Año_Repitente']);
@@ -881,7 +894,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$observaciones->setOtra($_POST['observaciones_Otra']);
 		$observaciones->setidEstudiantes($datos_estudiante->getidEstudiantes());
 
-		$observaciones->editarObservaciones();
+		$observaciones->editarObservaciones($idEstudiante);
 
 		header('Location: ../lobby/consultar.php?exito');
 	}

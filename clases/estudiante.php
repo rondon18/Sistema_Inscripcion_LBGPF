@@ -53,12 +53,21 @@ class Estudiantes {
 		$conexion = conectarBD();
 
 		$Plantel_Procedencia = $this->getPlantel_Procedencia();
-
+		$Con_Quién_Vive = $this->getCon_Quién_Vive();
+		$idRepresentante = $this->getidRepresentante();
+		$Relación_Representante = $this->getRelación_Representante();
+		$idPadre = $this->getidPadre();
+		$Relación_Padre = $this->getRelación_Padre();
+		
 		$sql = "UPDATE `estudiantes` SET
-				`Plantel_Procedencia`='$Plantel_Procedencia',
-			WHERE `idRepresentante`='$idRepresentante' AND `idPadre`='$idPadre'";
+		 `Plantel_Procedencia`='$Plantel_Procedencia',
+		 `Con_Quién_Vive`='$Con_Quién_Vive',
+		 `idRepresentante`='$idRepresentante',
+		 `Relación_Representante`='$Relación_Representante',
+		 `idPadre`='$idPadre',
+		 `Relación_Padre`='$Relación_Padre'
+		 WHERE `Cédula_Persona`='$Cédula_Estudiante'";
 
-		#	UPDATE `estudiantes` SET `Plantel_Procedencia`='[value-2]',`Con_Quién_Vive`='[value-3]',`Cédula_Persona`='[value-4]',`idRepresentante`='[value-5]',`idPadre`='[value-6]' WHERE 1
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 

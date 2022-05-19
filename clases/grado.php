@@ -52,7 +52,7 @@ class GradoAcadémico {
 		$Grado_A_Cursar = $this->getGrado_A_Cursar();
 
 		$sql = "UPDATE `grado` SET
-					`Grado_A_Cursar`='$Grado_A_Cursar',
+					`Grado_A_Cursar`='$Grado_A_Cursar'
 				WHERE `idEstudiantes`='$id_Estudiante'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
