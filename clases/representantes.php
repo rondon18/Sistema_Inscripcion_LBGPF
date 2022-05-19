@@ -41,7 +41,7 @@ class Representantes {
 		$Grado_Académico = $this->getGrado_Académico();
 
 		$sql = "UPDATE `representantes` SET
-			`Grado_Académico`='$Grado_Académico',
+			`Grado_Académico`='$Grado_Académico'
 		 WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);

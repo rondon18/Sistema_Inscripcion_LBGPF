@@ -71,6 +71,18 @@ class Padres {
 		desconectarBD($conexion);
 		return $resultado;
 	}
+	public function consultarPadresC($Cedula){
+		#consulta los datos de personas y de padres donde las Cédulas en ambos registros coincidan
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `personas`,`padres` WHERE `personas`.`Cédula` = '$Cedula' AND `padres`.`Cédula_Persona` = '$Cedula'";
+
+		$padre = $conexion->query($sql);
+		$resultado = $padre->fetch_assoc();
+
+		desconectarBD($conexion);
+		return $resultado;
+	}
 	public function consultarHijos($id_padres){
 
 		$conexion = conectarBD();

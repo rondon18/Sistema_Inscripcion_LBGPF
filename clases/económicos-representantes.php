@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Datoseconómicos {
 	private $idDatos_económicos;
@@ -26,7 +26,7 @@ class Datoseconómicos {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-		
+
 			$sql = "INSERT INTO `datos-económicos`(`idDatos-económicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES (
 				NULL,
 				'$Banco',
@@ -41,7 +41,27 @@ class Datoseconómicos {
 		}
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		
+
+		desconectarBD($conexion);
+	}
+	public function editarDatoseconómicos($idRepresentante) {
+		$conexion = conectarBD();
+
+
+		$Banco = $this->getBanco();
+		$Tipo_Cuenta = $this->getTipo_Cuenta();
+		$Cta_Bancaria = $this->getCta_Bancaria();
+
+		$sql = "UPDATE `datos-económicos` SET
+		`Banco`='$Banco',
+		`Tipo_Cuenta`='$Tipo_Cuenta',
+		`Cta_Bancaria`='$Cta_Bancaria'
+		WHERE `idRepresentantes`='$idRepresentante'";
+
+
+
+		$conexion->query($sql) or die("error: ".$conexion->error);
+
 		desconectarBD($conexion);
 	}
 
@@ -50,9 +70,9 @@ class Datoseconómicos {
 
 		$sql = "SELECT * FROM `datos-económicos` WHERE `idRepresentantes` = '$idRepresentantes'";
 
-		$consulta_económicos = $conexion->query($sql) or die("error: ".$conexion->error);			
+		$consulta_económicos = $conexion->query($sql) or die("error: ".$conexion->error);
 		$datos_económicos = $consulta_económicos->fetch_assoc();
-		
+
 		desconectarBD($conexion);
 
 		return $datos_económicos;

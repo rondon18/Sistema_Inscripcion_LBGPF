@@ -16,13 +16,12 @@ if (!isset($_POST['Datos_Representante'])) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registrar nuevo estudiante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
 	<!--Banner-->

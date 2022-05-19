@@ -46,7 +46,7 @@ class ContactoAuxiliar {
 		$conexion = conectarBD();
 
 		$sql = "UPDATE `contactos_auxiliares` SET
-				`Relación`='$Relación',
+				`Relación`='$Relación'
 			WHERE `Cédula_Persona`='$Cédula_Persona'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);

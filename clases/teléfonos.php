@@ -48,7 +48,7 @@ class Teléfonos {
 
 		$sql = "UPDATE `teléfonos` SET
 				`Prefijo`='$Prefijo',
-				`Número_Telefónico`='$Número_Telefónico',
+				`Número_Telefónico`='$Número_Telefónico'
 			WHERE `Cédula_Persona`='$Cédula_Persona' AND `Relación_Teléfono`='$Relación_Teléfono'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);

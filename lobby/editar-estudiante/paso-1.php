@@ -71,7 +71,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['CÃ
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Registrar nuevo estudiante</title>
+	<title>Editar datos de estudiante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>

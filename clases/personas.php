@@ -98,6 +98,41 @@
 			desconectarBD($conexion);
 		}
 
+		public function editarPersonaC($Cedula) {
+			$conexion = conectarBD();
+
+			$Primer_Nombre = $this->getPrimer_Nombre();
+			$Segundo_Nombre = $this->getSegundo_Nombre();
+			$Primer_Apellido = $this->getPrimer_Apellido();
+			$Segundo_Apellido = $this->getSegundo_Apellido();
+			$Cédula = $this->getCédula();
+			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
+			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
+			$Género = $this->getGénero();
+			$Correo_Electrónico = $this->getCorreo_Electrónico();
+			$Dirección = $this->getDirección();
+			$Estado_Civil = $this->getEstado_Civil();
+
+
+			$sql = "UPDATE `personas` SET
+			`Primer_Nombre`='$Primer_Nombre',
+			`Segundo_Nombre`='$Segundo_Nombre',
+			`Primer_Apellido`='$Primer_Apellido',
+			`Segundo_Apellido`='$Segundo_Apellido',
+			`Cédula`='$Cédula',
+			`Fecha_Nacimiento`='$Fecha_Nacimiento',
+			`Lugar_Nacimiento`='$Lugar_Nacimiento',
+			`Género`='$Género',
+			`Correo_Electrónico`='$Correo_Electrónico',
+			`Dirección`='$Dirección',
+			`Estado_Civil`='$Estado_Civil'
+			WHERE `Cédula`='$Cedula'";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		public function eliminarPersona($id) {
 			$conexion = conectarBD();
 

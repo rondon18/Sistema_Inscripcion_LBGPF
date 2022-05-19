@@ -43,7 +43,7 @@ class CarnetPatria {
 
     $sql = "UPDATE `carnet-patria` SET
     `Código_Carnet`='$Código_Carnet',
-    `Serial_Carnet`='$Serial_Carnet',
+    `Serial_Carnet`='$Serial_Carnet'
     WHERE `Cédula_Persona`='$Cédula_Persona'";
 
     $conexion->query($sql) or die("error: ".$conexion->error);
