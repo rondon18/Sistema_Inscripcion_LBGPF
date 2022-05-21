@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.22-MariaDB, for Win64 (AMD64)
 --
--- Host: Localhost    Database: bd_proyecto
+-- Host: Localhost    Database: SI_LBGPF
 -- ------------------------------------------------------
 -- Server version	10.4.22-MariaDB
 

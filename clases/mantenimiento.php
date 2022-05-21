@@ -7,10 +7,10 @@ class Mantenimiento {
 	public function respaldarBD() {
 		$conexion = conectarBD();
 
-		$backup_file = "bd_proyecto__" . date("Y-m-d") ."__". date("H-i-s") . '.sql';
+		$backup_file = "SI_LBGPF__" . date("Y-m-d") ."__". date("H-i-s") . '.sql';
 
 		// comandos a ejecutar
-		$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost bd_proyecto > ../respaldos/$backup_file";
+		$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost SI_LBGPF > ../respaldos/$backup_file";
 
 		// ejecución y salida de éxito o errores
 		system($command,$output);
@@ -21,7 +21,7 @@ class Mantenimiento {
 		#Devuelve la base de datos a su estado inicial
 		$conexion = conectarBD();
 
-		$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost bd_proyecto < ../respaldos/respaldo-base.sql";
+		$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost SI_LBGPF < ../respaldos/respaldo-base.sql";
 
 		// ejecución y salida de éxito o errores
 		system($command,$output);
