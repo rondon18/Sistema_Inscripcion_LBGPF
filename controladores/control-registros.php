@@ -29,7 +29,7 @@ require_once('../clases/tallas-estudiantes.php');
 require_once('../clases/estudiantes-repitentes.php');
 require_once('../clases/observaciones-estudiantes.php');
 
-require_once('../clases/padres.php');
+require_once('../clases/Padre.php');
 
 require_once('../clases/carnet-patria.php');
 require_once('../clases/grado.php');
@@ -47,7 +47,7 @@ $datos_vivienda = New DatosVivienda();
 $datos_económicos = New Datoseconómicos();
 $datos_laborales = New DatosLaborales();
 
-$datos_padre = new Padres();
+$datos_padre = new Padre();
 $datos_auxiliar = new ContactoAuxiliar();
 
 $datos_estudiante	= new Estudiantes();
@@ -274,7 +274,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$datos_padre->setPaís_Residencia($_POST['País']);
 		}
 
-		$datos_padre->insertarPadres();
+		$datos_padre->insertarPadre();
 
 		//
 		// Teléfonos del padre/madre
@@ -323,7 +323,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setCon_Quién_Vive($_POST['Con_Quién_Vive']);
 		$datos_estudiante->setCédula_Estudiante($Cédula_estudiante);
 		$datos_estudiante->setidRepresentante($datos_representante->getidRepresentantes());
-		$datos_estudiante->setidPadre($datos_padre->getidPadres());
+		$datos_estudiante->setidPadre($datos_padre->getidPadre());
 		$datos_estudiante->setRelación_Representante($_POST['Vinculo_R']);
 		$datos_estudiante->setRelación_Padre($_POST['Vinculo_Familiar']);
 
@@ -684,8 +684,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->editarPersonaC($Cédula_padre);
 
-		$padre = $datos_padre->consultarPadresC($Cédula_padre);
-		$idPadre = $padre['idPadres'];
+		$padre = $datos_padre->consultarPadreC($Cédula_padre);
+		$idPadre = $padre['idPadre'];
 
 		$datos_padre->setCédula_Persona($Cédula_padre);
 
@@ -696,7 +696,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$datos_padre->setPaís_Residencia($_POST['País']);
 		}
 
-		$datos_padre->editarPadres($padre['idPadres']);
+		$datos_padre->editarPadre($padre['idPadre']);
 
 		//
 		// Teléfonos del padre/madre

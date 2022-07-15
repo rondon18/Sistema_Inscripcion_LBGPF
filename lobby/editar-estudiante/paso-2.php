@@ -384,8 +384,21 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 						</div>
 						<div>
-							<label class="form-label">Alergias:</label>
-							<input class="form-control mb-2" type="text" name="Alergias" id="Alergias" value="<?php echo $datos_Médicos['Alergias'] ?>">
+							<span class="form-label">¿Fue vacunado contra el COVID-19?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-2">
+								<select class="form-select" name="Vacunado" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+								<input class="form-control w-auto" type="text" name="Vacuna" id="Vacuna" value="<?php echo $datos_Médicos['Vacuna']; ?>">
+							</div>
+								<label class="form-label">Dosis aplicadas: </label>
+								<div class="input-group mb-2">
+									<input class="form-control text" type="number" name="Dosis" id="Dosis" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo $datos_Médicos['Dosis']; ?>">
+									<span class="input-group-text">Lote: </span>
+									<input class="form-control text" type="text" name="Lote" id="Lote" value="<?php echo $datos_Médicos['Lote']; ?>">
+								</div class="input-group mb-2">
 						</div>
 						<div>
 							<span class="form-label">Tipo de sangre: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
@@ -488,6 +501,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<label class="form-label">Embarazo </label>
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php condiciones("Embarazo",$datos_Médicos['Impedimento_Físico']);?>>
 								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Educativa especial</label>
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Educativa especial" <?php condiciones("Educativa especial",$datos_Médicos['Impedimento_Físico']);?>>
+								</div>
+							</div>
+								<input class="form-control mb-2" type="text" name="Necesidad_educativa" id="Necesidad_educativa" placeholder="¿Cuál necesidad educativa?" value="<?php echo $datos_Médicos['Necesidad_educativa']; ?>">							
+							<div>
 							</div>
 						</div>
 						<div>
@@ -500,17 +520,6 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option value="No" <?php if(empty($datos_Médicos['Institución_Médica'])){echo "selected";} ?>>No</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="Institución_médica" id="Institución_médica" placeholder="¿Cuál institución?" value="<?php echo $datos_Médicos['Institución_Médica']; ?>">
-							</div>
-						</div>
-						<div>
-							<span class="form-label">¿Recibe alguna médicación especial?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="input-group mb-2">
-								<select class="form-select" name="Recibe_médicación" required>
-									<option selected disabled value="">Seleccione una opción</option>
-									<option value="Si" <?php if(!empty($datos_Médicos['Medicación'])){echo "selected";} ?>>Si</option>
-									<option value="No" <?php if(empty($datos_Médicos['Medicación'])){echo "selected";} ?>>No</option>
-								</select>
-								<input class="form-control w-auto" type="text" name="médicación" id="médicación" placeholder="¿Cuál médicación?" value="<?php echo $datos_Médicos['Medicación'];?>">
 							</div>
 						</div>
 						<div>

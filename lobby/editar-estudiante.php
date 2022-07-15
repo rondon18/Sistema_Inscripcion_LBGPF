@@ -9,7 +9,7 @@ if (!$_SESSION['login']) {
 
 require('../clases/estudiante.php');
 require('../clases/representantes.php');
-require('../clases/padres.php');
+require('../clases/Padre.php');
 
 require('../clases/ficha-médica.php');
 require('../clases/sociales-estudiantes.php');
@@ -25,7 +25,7 @@ $conexion = conectarBD();
 
 $Estudiante = new Estudiantes();
 $Representante = new Representantes();
-$Padre = new Padres();
+$Padre = new Padre();
 
 $Datos_Médicos = new Fichamédica();
 $Datos_sociales = new DatosSociales();
@@ -45,7 +45,7 @@ $representante = $Representante->consultarRepresentante($_POST['id_representante
 $estudiante_repitente = $Estudiante_repitente->consultarEstudiantesRepitentes($_POST['id_estudiante']);
 $grado = $Grado->consultarGrado($_POST['id_estudiante']);
 
-$padre = $Padre->consultarPadres($estudiante['idPadre']);
+$padre = $Padre->consultarPadre($estudiante['idPadre']);
 
 $nombres_estudiante = explode(" ",$estudiante['Nombres']);
 $apellidos_estudiante = explode(" ",$estudiante['Apellidos']);

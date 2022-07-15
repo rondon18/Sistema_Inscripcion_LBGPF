@@ -9,11 +9,14 @@
 		private $Circ_Braquial;
 		private $Lateralidad;
 		private $Tipo_Sangre;
-		private $Medicación;
+		private $Vacunado;
+		private $Vacuna;
+		private $Dosis;
+		private $Lote;
 		private $Dieta_Especial;
 		private $Enfermedad;
 		private $Impedimento_Físico;
-		private $Alergias;
+		private $Necesidad_educativa;
 		private $Cond_Vista;
 		private $Cond_Dental;
 		private $Institución_médica;
@@ -31,11 +34,14 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$Medicación = $this->getMedicación();
+			$Vacunado = $this->getVacunado();
+			$Vacuna = $this->getVacuna();
+			$Dosis = $this->getDosis();
+			$Lote = $this->getLote();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
-			$Alergias = $this->getAlergias();
+			$Necesidad_educativa = $this->getNecesidad_educativa();
 			$Cond_Vista = $this->getCond_Vista();
 			$Cond_Dental = $this->getCond_Dental();
 			$Institución_médica = $this->getInstitución_médica();
@@ -49,7 +55,7 @@
 			#Consulta si el registro existe
 			if ($resultado == NULL) {
 
-				$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Medicación`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Alergias`, `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
+				$sql = "INSERT INTO `datos-salud`(`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Vacunado`, `Vacuna`, `Dosis`, `Lote`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Necesidad_educativa`,  `Cond_Vista`, `Cond_Dental`, `Institución_médica`, `Carnet_Discapacidad`, `idEstudiantes`)
 				VALUES (
 					NULL,
 					'$Estatura',
@@ -58,11 +64,14 @@
 					'$Circ_Braquial',
 					'$Lateralidad',
 					'$Tipo_Sangre',
-					'$Medicación',
+					'$Vacunado',
+					'$Vacuna',
+					'$Dosis',
+					'$Lote',
 					'$Dieta_Especial',
 					'$Enfermedad',
 					'$Impedimento_Físico',
-					'$Alergias',
+					'$Necesidad_educativa',
 					'$Cond_Vista',
 					'$Cond_Dental',
 					'$Institución_médica',
@@ -89,11 +98,14 @@
 			$Circ_Braquial = $this->getCirc_Braquial();
 			$Lateralidad = $this->getLateralidad();
 			$Tipo_Sangre = $this->getTipo_Sangre();
-			$Medicación = $this->getMedicación();
+			$Vacunado = $this->getVacunado();
+			$Vacuna = $this->getVacuna();
+			$Dosis = $this->getDosis();
+			$Lote = $this->getLote();
 			$Dieta_Especial = $this->getDieta_Especial();
 			$Enfermedad = $this->getEnfermedad();
 			$Impedimento_Físico = $this->getImpedimento_Físico();
-			$Alergias = $this->getAlergias();
+			$Necesidad_educativa = $this->getNecesidad_educativa();
 			$Cond_Vista = $this->getCond_Vista();
 			$Cond_Dental = $this->getCond_Dental();
 			$Institución_médica = $this->getInstitución_médica();
@@ -106,11 +118,14 @@
 			`Circ_Braquial`='$Circ_Braquial',
 			`Lateralidad`='$Lateralidad',
 			`Tipo_Sangre`='$Tipo_Sangre',
-			`Medicación`='$Medicación',
+			`Vacunado`='$Vacunado',
+			`Vacuna`='$Vacuna',
+			`Dosis`='$Dosis',
+			`Lote`='$Lote',
 			`Dieta_Especial`='$Dieta_Especial',
 			`Enfermedad`='$Enfermedad',
 			`Impedimento_Físico`='$Impedimento_Físico',
-			`Alergias`='$Alergias',
+			`Necesidad_educativa`='$Necesidad_educativa',		
 			`Cond_Vista`='$Cond_Vista',
 			`Cond_Dental`='$Cond_Dental',
 			`Institución_médica`='$Institución_médica',
@@ -156,8 +171,17 @@
 		public function setTipo_Sangre($Tipo_Sangre) {
 			$this->Tipo_Sangre = $Tipo_Sangre;
 		}
-		public function setMedicación($Medicación) {
-			$this->Medicación = $Medicación;
+		public function setVacunado($Vacunado) {
+			$this->Vacunado = $Vacunado;
+		}
+		public function setVacuna($Vacuna) {
+			$this->Vacuna = $Vacuna;
+		}
+		public function setDosis($Dosis) {
+			$this->Dosis = $Dosis;
+		}
+		public function setLote($Lote) {
+			$this->Lote = $Lote;
 		}
 		public function setDieta_Especial($Dieta_Especial) {
 			$this->Dieta_Especial = $Dieta_Especial;
@@ -168,8 +192,8 @@
 		public function setImpedimento_Físico($Impedimento_Físico) {
 			$this->Impedimento_Físico = $Impedimento_Físico;
 		}
-		public function setAlergias($Alergias) {
-			$this->Alergias = $Alergias;
+		public function setNecesidad_educativa($Necesidad_educativa) {
+			$this->Necesidad_educativa = $Necesidad_educativa;
 		}
 		public function setCond_Vista($Cond_Vista) {
 			$this->Cond_Vista = $Cond_Vista;
@@ -208,8 +232,17 @@
 		public function getTipo_Sangre() {
 			return $this->Tipo_Sangre;
 		}
-		public function getMedicación() {
-			return $this->Medicación;
+		public function getVacunado() {
+			return $this->Vacunado;
+		}
+		public function getVacuna() {
+			return $this->Vacuna;
+		}
+		public function getDosis() {
+			return $this->Dosis;
+		}
+		public function getLote() {
+			return $this->Lote;
 		}
 		public function getDieta_Especial() {
 			return $this->Dieta_Especial;
@@ -220,8 +253,8 @@
 		public function getImpedimento_Físico() {
 			return $this->Impedimento_Físico;
 		}
-		public function getAlergias() {
-			return $this->Alergias;
+		public function getNecesidad_educativa() {
+			return $this->Necesidad_educativa;
 		}
 		public function getCond_Vista() {
 			return $this->Cond_Vista;

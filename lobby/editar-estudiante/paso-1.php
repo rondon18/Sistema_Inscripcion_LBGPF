@@ -12,7 +12,8 @@ require('../../clases/representantes.php');
 require('../../clases/carnet-patria.php');
 require('../../clases/económicos-representantes.php');
 require('../../clases/laborales-representantes.php');
-require('../../clases/padres.php');
+require('../../clases/Padre.php');
+require('../../clases/madre.php');
 require('../../clases/ficha-médica.php');
 require('../../clases/sociales-Estudiantes.php');
 require('../../clases/tallas-Estudiantes.php');
@@ -34,7 +35,8 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
-$Padre = new Padres();
+$Padre = new Padre();
+$Madre = new Madre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
@@ -46,7 +48,7 @@ $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
-#Hacer algo parecido para llamar numeros de representantes y padres
+#Hacer algo parecido para llamar numeros de representantes y Padre
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 
 $telefonos_re = $Telefonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
@@ -545,6 +547,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 					<input type="hidden" name="Cédula_Estudiante" value="<?php echo $_POST['Cédula_Estudiante']; ?>">
 					<input type="hidden" name="id_Estudiante" value="<?php echo $_POST['id_Estudiante']; ?>">
 					<input type="hidden" name="id_representante" value="<?php echo $_POST['id_representante']; ?>">
+					<input type="hidden" name="id_madre" value="<?php echo $_POST['id_madre']; ?>">
 					<input type="hidden" name="id_padre" value="<?php echo $_POST['id_padre']; ?>">
 					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
