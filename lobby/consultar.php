@@ -29,7 +29,8 @@ function Género($Género){
 }
 require("../clases/estudiante.php");
 require("../clases/representantes.php");
-require("../clases/padres.php");
+require("../clases/Padre.php");
+require("../clases/madre.php");
 require("../controladores/conexion.php");
 require("../clases/usuario.php");
 
@@ -42,11 +43,13 @@ $registros_bitácora = $bitácora->mostrar_bitácora();
 
 $estudiante = new Estudiantes();
 $representante = new Representantes();
-$padres = new Padres();
+$Padre = new Padre();
+$Madre = new Madre();
 
 $listaEstudiantes = $estudiante->mostrarEstudiantes();
 $listaRepresentantes = $representante->mostrarRepresentantes();
-$listaPadres = $padres->mostrarPadres();
+$listaPadre = $Padre->mostrarPadre();
+$listaMadre = $Madre->mostrarMadre();
 
 if ($_SESSION['usuario']['Privilegios'] == 1) {
 	$usuario = new Usuarios();
@@ -171,6 +174,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+											<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
 											<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 										</form>
 										<form action="consultar-estudiante.php" method="post" style="display: inline-block;">
@@ -178,6 +182,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+											<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
 											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 										</form>
 										<form action="editar-estudiante/paso-1.php" method="post" style="display: inline-block;" target="_blank">
@@ -185,6 +190,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+											<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
 											<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 										</form>
 										<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>

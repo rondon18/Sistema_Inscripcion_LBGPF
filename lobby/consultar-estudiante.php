@@ -13,7 +13,8 @@ require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
 require('../clases/laborales-representantes.php');
-require('../clases/padres.php');
+require('../clases/Padre.php');
+require('../clases/madre.php');
 require('../clases/ficha-médica.php');
 require('../clases/sociales-Estudiantes.php');
 require('../clases/tallas-Estudiantes.php');
@@ -35,7 +36,8 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
-$Padre = new Padres();
+$Padre = new Padre();
+$Madre = new Madre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
@@ -47,7 +49,7 @@ $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
-#Hacer algo parecido para llamar numeros de representantes y padres
+#Hacer algo parecido para llamar numeros de representantes y Padre
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 $carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
@@ -56,6 +58,7 @@ $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
 $telefonos_Est = $Telefonos->consultarTeléfonos($_POST['Cédula_Estudiante']);
 $telefonos_re = $Telefonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
 $telefonos_pa = $Telefonos->consultarTeléfonosPadreID($_POST['id_padre']);
+$telefonos_ma = $Telefonos->consultarTeléfonosMadreID($_POST['id_madre']);
 
 $datos_Médicos = $datos_Médicos->consultarFicha_Médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
@@ -72,14 +75,17 @@ $telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Person
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
-$padre = $Padre->consultarPadres($_POST['id_padre']);
+$padre = $Padre->consultarPadre($_POST['id_padre']);
+$madre = $Madre->consultarMadre($_POST['id_madre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
-$hijos = $Padre->consultarHijos($_POST['id_padre']);
+$hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
+$hijos_ma = $Madre->consultarHijos($_POST['id_madre']);
 
 $fecha_actual = date("Y-m-d");
 $fecha_nacimiento_est = $Estudiante['Fecha_Nacimiento'];
 $fecha_nacimiento_re = $datos_representante['Fecha_Nacimiento'];
 $fecha_nacimiento_pa = $padre['Fecha_Nacimiento'];
+$fecha_nacimiento_ma = $madre['Fecha_Nacimiento'];
 $edad_diff_est = date_diff(date_create($fecha_nacimiento_est), date_create($fecha_actual));
 $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_actual));
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
@@ -375,7 +381,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr class="table-primary">
-						<th colspan="4">Datos del padre o madre</th>
+						<th colspan="4">Datos del padre</th>
 					</tr>
 
 					<tr>

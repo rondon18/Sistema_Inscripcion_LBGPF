@@ -15,7 +15,7 @@ require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
 require('../clases/laborales-representantes.php');
-require('../clases/padres.php');
+require('../clases/Padre.php');
 require('../clases/ficha-médica.php');
 require('../clases/sociales-estudiantes.php');
 require('../clases/tallas-estudiantes.php');
@@ -38,7 +38,7 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $económicos = new Datoseconómicos();
 $Laborales = new DatosLaborales();
-$Padre = new Padres();
+$Padre = new Padre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
@@ -51,7 +51,7 @@ $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
-#Hacer algo parecido para llamar numeros de representantes y padres
+#Hacer algo parecido para llamar numeros de representantes y Padre
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 $carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
@@ -78,7 +78,7 @@ $datos_económicos = $económicos->consultarDatoseconómicos($_POST['id_represen
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
 
-$padre = $Padre->consultarPadres($_POST['id_padre']);
+$padre = $Padre->consultarPadre($_POST['id_padre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
 $hijos = $Padre->consultarHijos($_POST['id_padre']);
 
@@ -272,11 +272,16 @@ $pdf->Cell(38,6,utf8_decode('TIPO DE SANGRE: ' . $datos_Médicos['Tipo_Sangre'])
 $pdf->Cell(0,6,utf8_decode('LATERALIDAD: ' . $datos_Médicos['Lateralidad']),1,1);
 $pdf->Cell(68,6,utf8_decode('CONDICIÓN DE LA DENTADURA: ' . $datos_Médicos['Cond_Dental']),1,0);
 $pdf->Cell(0,6,utf8_decode('CONDICIÓN OFTALMOLÓGICA: ' . $datos_Médicos['Cond_Vista']),1,1);
-$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS Condiciones: ' . rtrim($datos_Médicos['Impedimento_Físico'],",") ),1,1);
+$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS CONDICIONES: ' . rtrim($datos_Médicos['Impedimento_Físico'],",") ),1,1);
+$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE ESTAS NECESIDADES EDUCATIVAS ESPECIALES: ' . $datos_Médicos['Necesidad_educativa']),1,1);
 $pdf->Cell(70,6,utf8_decode('ES ATENDIDO POR OTRA INSTITUCIÓN: ' . $Institución ),1,0);
 $pdf->Cell(0,6,utf8_decode('CUÁL INSTITUCIÓN: ' . $datos_Médicos['Institución_Médica']),1,1);
 $pdf->Cell(65,6,utf8_decode('POSEE CARNET DE DISCAPACIDAD: ' . $carnet_dis ),1,0);
 $pdf->Cell(0,6,utf8_decode('NÚMERO DE CARNET: ' . $datos_Médicos['Carnet_Discapacidad']),1,1);
+$pdf->Cell(67,6,utf8_decode('FUE VACUNADO CONTRA EL COVID-19: ' . $datos_Médicos['Vacunado']),1,0);
+$pdf->Cell(58,6,utf8_decode('CUÁL VACUNA: ' . $datos_Médicos['Vacuna']),1,0);
+$pdf->Cell(32,6,utf8_decode('CUANTAS DOSIS: ' . $datos_Médicos['Dosis']),1,0);
+$pdf->Cell(0,6,utf8_decode('LOTE: ' . $datos_Médicos['Lote']),1,1);
 
 
 $pdf->AddPage();
@@ -351,9 +356,9 @@ $pdf->Cell(63,6,utf8_decode('GRADO DE INSTRUCCIÓN: ' . $datos_representante['Gr
 #AJUSTAR Índice DEL Teléfono Y VARIABLE PARA EL REPRESENTANTE
 $pdf->Cell(62,6,utf8_decode('REMUNERACIÓN (Sueldos mínimos): ' . $datos_laborales['Remuneración']),1,0);
 $pdf->Cell(0,6,utf8_decode('TIPO DE REMUNERACIÓN: ' . $datos_laborales['Tipo_Remuneración']),1,1);
-$pdf->Cell(0,6,utf8_decode('TIPO DE COLABORACIÓN QUE ESTA ENTREGANDO A LA INSTITUCIÓN (Dejar en blanco):'),'L,T,R',1,'C');
+/*$pdf->Cell(0,6,utf8_decode('TIPO DE COLABORACIÓN QUE ESTA ENTREGANDO A LA INSTITUCIÓN (Dejar en blanco):'),'L,T,R',1,'C');
 $pdf->SetFont('Arial','',8);
-$pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0);
+$pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0);*/
 
 $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
@@ -378,8 +383,10 @@ $pdf->Cell(19,6,utf8_decode('4TO: '),1,0);
 $pdf->Cell(19,6,utf8_decode('5TO: '),1,1);
 $pdf->Cell(0,6,utf8_decode('ESTÁ DISPUESTO A PARTICIPAR EN EL CONSEJO EDUCATIVO DEL AÑO ' . $Inicio_Año_Escolar . '-' . $Fin_Año_Escolar . '                          SI______ NO_______'),1,1);
 $pdf->Cell(0,6,utf8_decode('ESTÁ DISPUESTO A PARTICIPAR EN EL MOVIMIENTO BOLIVARIANO DE FAMILIA                               SI______ NO_______'),1,1);
+
 $pdf->Cell(0,6,utf8_decode('SE COMPROMETE A PARTICIPAR EN TODAS LAS CONVOCATORIAS DEL PLANTEL                            SI______ NO_______'),1,1);
-$pdf->MultiCell(0,10.6,utf8_decode("QUIÉN REALIZÓ LA INSCRIPCIÓN: (solo para personal de la institución)__________________________________\nFIRMA DEL REPRESENTANTE: _____________________________________"),1,1);
+$pdf->MultiCell(0,5.1,utf8_decode("ASISTIÓ AL TALLER DICTADO POR LA INSTITUCIÓN EN RELACIÓN A LAS NORMAS \nDE CONVIVENCIA, DERECHOS Y DEBERES DE PADRES, REPRESENTANTES Y ESTUDIANTES         SI______ NO_______"),1,1);
+$pdf->MultiCell(0,10.6,utf8_decode("RESPONSABLE DE LA INSCRIPCIÓN: (solo para personal de la institución)__________________________________\nFIRMA DEL REPRESENTANTE: _____________________________________\nFIRMA DEL ESTUDIANTE: _____________________________________\nFIRMA DEL RESPONSABLE DE LA INSTITUCIÓN: _____________________________________\n"),1,1);
 
 $pdf->AddPage();
 $pdf->SetFont('Arial','',14);

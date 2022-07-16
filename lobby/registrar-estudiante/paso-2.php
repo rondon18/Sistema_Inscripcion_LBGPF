@@ -383,6 +383,13 @@ if (!isset($_POST['Datos_Representante'])) {
 									<label class="form-label">Embarazo </label>
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo">
 								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Educativa especial</label>
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Educativa especial">
+								</div>
+							</div>
+								<input class="form-control mb-2" type="text" name="Necesidad_educativa" id="Necesidad_educativa" placeholder="¿Cuál necesidad educativa?">	
+							<div>								
 							</div>
 						</div>
 						<div>
@@ -397,15 +404,21 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<span class="form-label">¿Recibe alguna médicación especial?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span class="form-label">¿Fue vacunado contra el COVID-19?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Recibe_médicación" required>
+								<select class="form-select" name="Vacunado" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="médicación" id="médicación" placeholder="¿Cuál médicación?">
+								<input class="form-control w-auto" type="text" name="Vacuna" id="Vacuna" placeholder="¿Cuál vacuna?">
 							</div>
+								<label class="form-label">Dosis aplicadas: </label>
+								<div class="input-group mb-2">
+									<input class="form-control text" type="number" name="Dosis" id="Dosis" placeholder="Ingrese un numero..." min="0" step="1">
+									<span class="input-group-text">Lote: </span>
+									<input class="form-control text-end" type="text" name="Lote" id="Lote" placeholder="Ingrese un numero...">
+								</div class="input-group mb-2">
 						</div>
 						<div>
 							<span class="form-label">¿Tiene alguna dieta especial?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>

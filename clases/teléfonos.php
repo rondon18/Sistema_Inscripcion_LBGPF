@@ -82,7 +82,19 @@ class Teléfonos {
 	public function consultarTeléfonosPadreID($ID_Padre) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `padres`,`teléfonos` WHERE  `padres`.`idPadres` = '$ID_Padre' AND `teléfonos`.`Cédula_Persona` = `padres`.`Cédula_Persona`";
+		$sql = "SELECT * FROM `Padre`,`teléfonos` WHERE  `Padre`.`idPadre` = '$ID_Padre' AND `teléfonos`.`Cédula_Persona` = `Padre`.`Cédula_Persona`";
+
+		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
+
+		desconectarBD($conexion);
+
+		return $resultado;
+	}
+	public function consultarTeléfonosMadreID($ID_Madre) {
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `Madre`,`teléfonos` WHERE  `Madre`.`idMadre` = '$ID_Madre' AND `teléfonos`.`Cédula_Persona` = `Madre`.`Cédula_Persona`";
 
 		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
 		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);

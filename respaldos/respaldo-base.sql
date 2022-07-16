@@ -338,10 +338,10 @@ CREATE TABLE `estudiantes` (
   PRIMARY KEY (`idEstudiantes`,`Cédula_Persona`,`idRepresentante`,`idPadre`),
   KEY `Cedula_Persona_idx` (`Cédula_Persona`),
   KEY `id_Representante_idx` (`idRepresentante`),
-  KEY `fk_estudiantes_padres1_idx` (`idPadre`),
+  KEY `fk_estudiantes_Padre1_idx` (`idPadre`),
   CONSTRAINT `fk_Personas_Estudiantes` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Representantes_Estudiantes` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_estudiantes_padres1` FOREIGN KEY (`idPadre`) REFERENCES `padres` (`idPadres`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_estudiantes_Padre1` FOREIGN KEY (`idPadre`) REFERENCES `Padre` (`idPadre`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -477,17 +477,17 @@ LOCK TABLES `inscripciones` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `padres`
+-- Table structure for table `Padre`
 --
 
-DROP TABLE IF EXISTS `padres`;
+DROP TABLE IF EXISTS `Padre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `padres` (
-  `idPadres` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Padre` (
+  `idPadre` int(11) NOT NULL AUTO_INCREMENT,
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`idPadres`,`Cédula_Persona`),
+  PRIMARY KEY (`idPadre`,`Cédula_Persona`),
   UNIQUE KEY `Cedula_Persona_UNIQUE` (`Cédula_Persona`),
   KEY `Cedula_Persona_idx` (`Cédula_Persona`),
   CONSTRAINT `Cedula_Persona` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -495,13 +495,13 @@ CREATE TABLE `padres` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `padres`
+-- Dumping data for table `Padre`
 --
 
-LOCK TABLES `padres` WRITE;
-/*!40000 ALTER TABLE `padres` DISABLE KEYS */;
-INSERT INTO `padres` VALUES (2,'España','V27919566'),(9,'Venezuela','Cédula_P'),(13,'Venezuela','V87354354'),(14,'Venezuela','V65434684');
-/*!40000 ALTER TABLE `padres` ENABLE KEYS */;
+LOCK TABLES `Padre` WRITE;
+/*!40000 ALTER TABLE `Padre` DISABLE KEYS */;
+INSERT INTO `Padre` VALUES (2,'España','V27919566'),(9,'Venezuela','Cédula_P'),(13,'Venezuela','V87354354'),(14,'Venezuela','V65434684');
+/*!40000 ALTER TABLE `Padre` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
