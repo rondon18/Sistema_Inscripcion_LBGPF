@@ -262,15 +262,15 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 					<span>Grado de instrucción:</span>
 					<div class="form-check">
 						<label>Primaria </label>
-						<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Primaria"){ echo "checked";}?>>
+						<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Primaria" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Primaria"){ echo "checked";}?>>
 					</div>
 					<div class="form-check">
 						<label>Bachillerato </label>
-						<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Bachillerato"){ echo "checked";}?>>
+						<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Bachillerato" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Bachillerato"){ echo "checked";}?>>
 					</div>
 					<div class="form-check">
 						<label>Universitario </label>
-						<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Universitario"){ echo "checked";}?>>
+						<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Universitario" required <?php if(isset($_SESSION['representante'][5]) and $_SESSION['representante'][5] == "Universitario"){ echo "checked";}?>>
 					</div>
 				</div>
 			</section>
@@ -376,16 +376,16 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 				<div>
 					<label class="form-label">Remuneración:</label>
 					<div class="input-group">
-						<input class="form-control text-end" type="number" name="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo (int)$_SESSION['representante'][9];?>">
+						<input class="form-control text-end" type="number" name="Remuneración_R" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo (int)$_SESSION['representante'][9];?>">
 
 						<span class="input-group-text">Salarios mínimos</span>
 
-						<!--Tipo de Remuneración del representante-->
-						<select class="form-select" name="Tipo_Remuneración">
-							<option value="Diaria" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Diaria"){ echo "selected";} ?>>Remuneración diaria</option>
-							<option value="Semanal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Semanal"){ echo "selected";} ?>>Remuneración semanal</option>
-							<option value="Quincenal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Quincenal"){ echo "selected";} ?>>Remuneración quincenal</option>
-							<option value="Mensual" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración']) and $_SESSION['datos_laborales']['Tipo_Remuneración'] == "Mensual"){ echo "selected";} ?>>Remuneración mensual</option>
+						<!--Tipo de Remuneración_R del representante-->
+						<select class="form-select" name="Tipo_Remuneración_R">
+							<option value="Diaria" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración_R']) and $_SESSION['datos_laborales']['Tipo_Remuneración_R'] == "Diaria"){ echo "selected";} ?>>Remuneración diaria</option>
+							<option value="Semanal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración_R']) and $_SESSION['datos_laborales']['Tipo_Remuneración_R'] == "Semanal"){ echo "selected";} ?>>Remuneración semanal</option>
+							<option value="Quincenal" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración_R']) and $_SESSION['datos_laborales']['Tipo_Remuneración_R'] == "Quincenal"){ echo "selected";} ?>>Remuneración quincenal</option>
+							<option value="Mensual" <?php if(isset($_SESSION['datos_laborales']['Tipo_Remuneración_R']) and $_SESSION['datos_laborales']['Tipo_Remuneración_R'] == "Mensual"){ echo "selected";} ?>>Remuneración mensual</option>
 						</select>
 					</div>
 				</div>

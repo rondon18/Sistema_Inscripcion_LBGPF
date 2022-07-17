@@ -14,13 +14,13 @@ require('../clases/estudiante.php');
 require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
-require('../clases/laborales-representantes.php');
+require('../clases/laborales.php');
 require('../clases/Padre.php');
 require('../clases/ficha-médica.php');
 require('../clases/sociales-estudiantes.php');
 require('../clases/tallas-estudiantes.php');
 require('../clases/grado.php');
-require('../clases/vivienda-representantes.php');
+require('../clases/vivienda.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
@@ -322,7 +322,6 @@ $pdf->SetFont('Arial','',9);
 #DATOS DE MADRE O PADRE
 
 $pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS: ' . $padre['Primer_Nombre'] . ' ' . $padre['Segundo_Nombre'] . ' ' . $padre['Primer_Apellido'] . ' ' . $padre['Segundo_Apellido']),1,1);
-$pdf->Cell(64,6,utf8_decode('VÍNCULO CON EL ESTUDIANTE: ' . $Estudiante['Relación_Padre']),1,0);
 $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $padre['Cédula']),1,0);
 $pdf->Cell(24,6,utf8_decode('EDAD: ' . $edad_diff_pa->format('%y')." Años"),1,0);
 $pdf->SetFont('Arial','',8);
@@ -354,8 +353,8 @@ $pdf->Cell(58.5,6,utf8_decode('TELÉFONO TRABAJO: ' . Teléfono($Teléfonos_re[3
 $pdf->Cell(0,6,utf8_decode('LUGAR TRABAJO: ' . $datos_laborales['Lugar_Trabajo']),1,1);
 $pdf->Cell(63,6,utf8_decode('GRADO DE INSTRUCCIÓN: ' . $datos_representante['Grado_Académico']),1,0);
 #AJUSTAR Índice DEL Teléfono Y VARIABLE PARA EL REPRESENTANTE
-$pdf->Cell(62,6,utf8_decode('REMUNERACIÓN (Sueldos mínimos): ' . $datos_laborales['Remuneración']),1,0);
-$pdf->Cell(0,6,utf8_decode('TIPO DE REMUNERACIÓN: ' . $datos_laborales['Tipo_Remuneración']),1,1);
+$pdf->Cell(62,6,utf8_decode('Remuneración_R (Sueldos mínimos): ' . $datos_laborales['Remuneración_R']),1,0);
+$pdf->Cell(0,6,utf8_decode('TIPO DE Remuneración_R: ' . $datos_laborales['Tipo_Remuneración_R']),1,1);
 /*$pdf->Cell(0,6,utf8_decode('TIPO DE COLABORACIÓN QUE ESTA ENTREGANDO A LA INSTITUCIÓN (Dejar en blanco):'),'L,T,R',1,'C');
 $pdf->SetFont('Arial','',8);
 $pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0);*/
@@ -364,8 +363,8 @@ $pdf->SetFont('Arial','',14);
 $pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(65,6,utf8_decode('CONDICIONES DE LA VIVIENDA: ' . $datos_vivienda['Condiciones_Vivienda']),1,0);
-$pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_vivienda['Tipo_Vivienda']),1,0);
-$pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_vivienda['Tenencia_Vivienda']),1,1);
+$pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_vivienda['Tipo_Vivienda_R']),1,0);
+$pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_vivienda['Tenencia_vivienda_R']),1,1);
 $pdf->Cell(55,6,utf8_decode('POSEE CARNET DE LA PATRIA: ' . $carnet_pa),1,0);
 if ($hijos>1) {
     $TieneMasHijos = "Si";
@@ -393,10 +392,12 @@ $pdf->SetFont('Arial','',14);
 $pdf->Ln(6);
 $pdf->Cell(0,6,utf8_decode('OBSERVACIONES'),1,1,'C',1);
 $pdf->SetFont('Arial','',9);
-$pdf->Multicell(0,6,utf8_decode("Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. \nSocial: \n" . $observaciones_Est['Social'] . "\nFísico: \n " . $observaciones_Est['Físico'] .  "\nPersonal: \n " . $observaciones_Est['Personal'] . "\nFamiliar: \n" . $observaciones_Est['Familiar'] . "\nAcadémico: \n" . $observaciones_Est['Académico']),1,0);
-$pdf->MultiCell(0,10,utf8_decode("OTRA OBSERVACIÓN: \n" . $observaciones_Est['Otra']),1,1);
-
-
+$pdf->Multicell(0,5,utf8_decode("Realice una descripción general de su representado, mencionando características en el aspecto social, físico, personal, familiar y académico que a usted le gustaria dar a  conocer a los docentes de la institución. \nSocial: \n" . $observaciones_Est['Social'] . "\nFísico: " . $observaciones_Est['Físico'] .  "\nPersonal: " . $observaciones_Est['Personal'] . "\nFamiliar: \n" . $observaciones_Est['Familiar'] . "\nAcadémico: \n" . $observaciones_Est['Académico']),1,0);
+$pdf->MultiCell(0,5,utf8_decode("OTRA OBSERVACIÓN: \n" . $observaciones_Est['Otra']),1,1);
+$pdf->SetFont('Arial','',14);
+$pdf->Cell(0,6,utf8_decode('REQUISITOS'),1,1,'C',1);
+$pdf->SetFont('Arial','',9);
+$pdf->MultiCell(0,6,utf8_decode("Cédula\nFicha de inscripción\nCertificado de promoción\nCertificación de calificaciones\nFotos\nPermiso CEDNA\nInforme médico"),1,0);
 
 $pdf->Output();
 

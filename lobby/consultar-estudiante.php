@@ -12,14 +12,14 @@ require('../clases/Estudiante.php');
 require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
-require('../clases/laborales-representantes.php');
+require('../clases/laborales.php');
 require('../clases/Padre.php');
 require('../clases/madre.php');
 require('../clases/ficha-médica.php');
 require('../clases/sociales-Estudiantes.php');
 require('../clases/tallas-Estudiantes.php');
 require('../clases/grado.php');
-require('../clases/vivienda-representantes.php');
+require('../clases/vivienda.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
@@ -89,6 +89,7 @@ $fecha_nacimiento_ma = $madre['Fecha_Nacimiento'];
 $edad_diff_est = date_diff(date_create($fecha_nacimiento_est), date_create($fecha_actual));
 $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_actual));
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
+$edad_diff_ma = date_diff(date_create($fecha_nacimiento_ma), date_create($fecha_actual));
 
 $carnet_Est = "";
 if (empty($carnetpatria_Est['Código_Carnet']) AND empty($carnetpatria_Est['Serial_Carnet'])) {
@@ -127,10 +128,17 @@ else {
 }
 
 if ($padre['País_Residencia'] == "Venezuela") {
-    $SeEncuentraEnElPais = "Si";
+    $SeEncuentraEnElPais_pa = "Si";
 }
 else {
-    $SeEncuentraEnElPais = "No";
+    $SeEncuentraEnElPais_pa = "No";
+}
+
+if ($madre['País_Residencia'] == "Venezuela") {
+    $SeEncuentraEnElPais_ma = "Si";
+}
+else {
+    $SeEncuentraEnElPais_ma = "No";
 }
 
 if (empty($estudiantes_repitente['Que_Materias_Repite'])) {
@@ -153,11 +161,18 @@ else {
     $PadeceEnfermedad = "Si";
 }
 
-if ($hijos>1) {
-    $TieneMasHijos = "Si";
+if ($hijos_pa>1) {
+    $TieneMasHijos_pa = "Si";
 }
 else {
-    $TieneMasHijos = "No";
+    $TieneMasHijos_pa = "No";
+}
+
+if ($hijos_ma>1) {
+    $TieneMasHijos_ma = "Si";
+}
+else {
+    $TieneMasHijos_ma = "No";
 }
 
 $Año_actual = date("Y");
@@ -302,7 +317,10 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="4">Medicación: <?php echo $datos_Médicos['Medicación']?></td>
+						<td colspan="1">¿Fue vacunado contra el COVID-19?: <?php echo $datos_Médicos['Vacunado']?></td>
+						<td colspan="1">¿Cuál vacuna? <?php echo $datos_Médicos['Vacuna']?> </td>
+						<td colspan="1">Dosis aplicadas: <?php echo $datos_Médicos['Dosis']?></td>
+						<td colspan="1">Lote: <?php echo $datos_Médicos['Lote']?> </td>
 					</tr>
 
 					<tr>
@@ -311,10 +329,6 @@ desconectarBD($conexion);
 
 					<tr>
 						<td colspan="4">Impedimento Físico: <?php echo $datos_Médicos['Impedimento_Físico']?></td>
-					</tr>
-
-					<tr>
-						<td colspan="4">Alergias: <?php echo $datos_Médicos['Alergias']?></td>
 					</tr>
 
 					<tr>
@@ -392,7 +406,6 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td>Vínculo con el estudiante: <?php echo $Estudiante['Relación_Padre'] ?> </td>
 						<td>Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
 						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
 					</tr>
@@ -409,13 +422,88 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais?></td>
+						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais_pa?></td>
 						<td> <?php
 									if ($padre['País_Residencia'] == "Venezuela") {
     									echo "Dónde: " ;
 									}
 									else {
     									echo 'Dónde: ' . $padre['País_Residencia'];
+									} ?>
+					</tr>
+
+					<tr class="table-primary">
+						<th colspan="4">Datos economicos del padre</th>
+					</tr>
+
+					<tr>
+						<td>Trabaja: <?php echo $tiene_empleo?></td>
+						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+					</tr>
+
+					<tr>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
+						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales['Lugar_Trabajo']?></td>
+					</tr>
+
+					<tr>
+						<td colspan="1">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
+						<td colspan="1">Remuneración_R (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración_R']?></td>
+						<td colspan="2">Tipo Remuneración_R: <?php echo $datos_laborales['Tipo_Remuneración_R']?></td>
+					</tr>
+
+					<tr class="table-primary">
+						<th colspan="4">Datos sociales del padre</th>
+					</tr>
+
+					<tr>
+						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
+						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda_R']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_vivienda_R']?></td>
+					</tr>
+
+					<tr>
+						<td> Posee carnet de la patria: <?php echo $carnet_pa?></td>
+						<td> Código carnet de la patria: <?php echo $carnetpatria_pa['Código_Carnet']?></td>
+						<td> Serial carnet de la patria: <?php echo $carnetpatria_pa['Serial_Carnet']?></td>
+						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_pa?></td>
+					</tr>
+
+					<tr class="table-primary">
+						<th colspan="4">Datos de la madre</th>
+					</tr>
+
+					<tr>
+						<td>Nombres: <?php echo $madre['Primer_Nombre'] . ' ' . $madre['Segundo_Nombre']?></td>
+						<td>Apellidos: <?php echo $madre['Primer_Apellido'] . ' ' . $madre['Segundo_Apellido']?></td>
+						<td>Cédula: <?php echo $madre['Cédula']?></td>
+						<td>Edad: <?php echo $edad_diff_ma->format('%y')?> Años</td>
+					</tr>
+
+					<tr>
+						<td>Teléfono Principal: <?php echo $telefonos_ma[0]['Prefijo'] . '-' . $telefonos_ma[0]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_ma[1]['Prefijo'] . '-' . $telefonos_ma[1]['Número_Telefónico']?></td>
+					</tr>
+
+					<tr>
+						<td>Fecha Nacimiento: <?php echo $madre['Fecha_Nacimiento']?></td>
+						<td colspan="2">Lugar Nacimiento: <?php echo $madre['Lugar_Nacimiento']?></td>
+						<td colspan="2">Estado Civil: <?php echo $madre['Estado_Civil']?></td>
+					</tr>
+
+					<tr>
+						<td colspan="2">Dirección: <?php echo $madre['Dirección']?></td>
+						<td colspan="2">Correo Electrónico: <?php echo $madre['Correo_Electrónico']?></td>
+					</tr>
+
+					<tr>
+						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais_ma?></td>
+						<td> <?php
+									if ($madre['País_Residencia'] == "Venezuela") {
+    									echo "Dónde: " ;
+									}
+									else {
+    									echo 'Dónde: ' . $madre['País_Residencia'];
 									} ?>
 					</tr>
 
@@ -435,8 +523,8 @@ desconectarBD($conexion);
 
 					<tr>
 						<td colspan="1">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
-						<td colspan="1">Remuneración (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración']?></td>
-						<td colspan="2">Tipo Remuneración: <?php echo $datos_laborales['Tipo_Remuneración']?></td>
+						<td colspan="1">Remuneración_R (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración_R']?></td>
+						<td colspan="2">Tipo Remuneración_R: <?php echo $datos_laborales['Tipo_Remuneración_R']?></td>
 					</tr>
 
 					<tr class="table-primary">
@@ -445,8 +533,8 @@ desconectarBD($conexion);
 
 					<tr>
 						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
-						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda']?></td>
-						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_Vivienda']?></td>
+						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda_R']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_vivienda_R']?></td>
 					</tr>
 
 					<tr>
@@ -465,7 +553,7 @@ desconectarBD($conexion);
 	</div>
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F <i class="far fa-copyright"></i> 2022 - <?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>

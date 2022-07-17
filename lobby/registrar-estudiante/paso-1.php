@@ -35,7 +35,7 @@ if (!$_SESSION['login']) {
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">
-					<h3>Formulario de registro.</h3>
+					<h3>Formulario de registro representante.</h3>
 				</div>
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
@@ -48,7 +48,7 @@ if (!$_SESSION['login']) {
 						<a id="link3" class="nav-link" href="#" onclick="seccion('seccion3')">Datos de vivienda</a>
 					</li>
 					<li class="nav-item">
-						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos laborales y económicos</a>
+						<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos económicos</a>
 					</li>
 					<li class="nav-item">
 						<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Contacto auxiliar</a>
@@ -140,15 +140,15 @@ if (!$_SESSION['login']) {
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Primaria" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Bachillerato </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Bachillerato" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Universitario </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Universitario" required>
 								</div>
 							</div>
 						</div>
@@ -228,50 +228,50 @@ if (!$_SESSION['login']) {
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Buena" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Buena" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Regular </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Regular" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Regular" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Mala </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Mala" required>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Mala" required>
 								</div>
 							</div>
 							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Casa </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Casa" required>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Casa" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Apartamento </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Apartamento" required>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Apartamento" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Rancho </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Rancho" required>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Rancho" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Quinta </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Quinta" required>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Quinta" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Habitación </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" required>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Habitación" required>
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda">
+								<select class="form-select" name="Tenencia_vivienda_R">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
 									<option value="Prestada">Prestada</option>
 									<option value="Otro">Otro</option>
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
+								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
 							</div>
 						</div>
 					</section>
@@ -369,15 +369,15 @@ if (!$_SESSION['login']) {
 							<label class="form-label">Lugar del trabajo:</label>
 							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"></textarea>
 						</div>
-						<!--Remuneración del trabajo del representante-->
+						<!--Remuneración_R del trabajo del representante-->
 						<div>
 							<label class="form-label">Remuneración:</label>
 							<div class="input-group mb-2">
-								<!--Remuneración en base a sueldos minimos del representante-->
-								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1">
+								<!--Remuneración_R en base a sueldos minimos del representante-->
+								<input class="form-control text-end" type="number" name="Remuneración_R" id="Remuneración_R" placeholder="Ingrese un numero..." min="0" step="1">
 								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
-								<!--Tipo de Remuneración del representante-->
-								<select class="form-select" name="Tipo_Remuneración">
+								<!--Tipo de Remuneración_R del representante-->
+								<select class="form-select" name="Tipo_Remuneración_R">
 									<option value="Diaria">Remuneración diaria</option>
 									<option value="Semanal">Remuneración semanal</option>
 									<option value="Quincenal">Remuneración quincenal</option>

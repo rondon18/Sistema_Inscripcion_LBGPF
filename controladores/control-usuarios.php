@@ -8,9 +8,9 @@ require('../clases/personas.php');
 require('../clases/representantes.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/usuario.php');
-require('../clases/laborales-representantes.php');
+require('../clases/laborales.php');
 require('../clases/económicos-representantes.php');
-require('../clases/vivienda-representantes.php');
+require('../clases/vivienda.php');
 
 $conexion = conectarBD();
 

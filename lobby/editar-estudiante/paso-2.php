@@ -16,14 +16,15 @@ require('../../clases/Estudiante.php');
 require('../../clases/representantes.php');
 require('../../clases/carnet-patria.php');
 require('../../clases/económicos-representantes.php');
-require('../../clases/laborales-representantes.php');
-require('../../clases/padres.php');
+require('../../clases/laborales.php');
+require('../../clases/Padre.php');
+require('../../clases/madre.php');
 require('../../clases/ficha-médica.php');
 require('../../clases/sociales-Estudiantes.php');
 require('../../clases/tallas-Estudiantes.php');
 require('../../clases/observaciones-estudiantes.php');
 require('../../clases/grado.php');
-require('../../clases/vivienda-representantes.php');
+require('../../clases/vivienda.php');
 require('../../clases/contactos-auxiliares.php');
 require('../../clases/año-escolar.php');
 require('../../clases/Estudiantes-repitentes.php');
@@ -41,7 +42,8 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
-$Padre = new Padres();
+$Padre = new Padre();
+$Madre = new Madre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
 $Grado = new GradoAcadémico();
 $Año = new Año_Escolar();
@@ -55,7 +57,7 @@ $Observaciones = new Observaciones();
 $Datos_vivienda = new DatosVivienda();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
-#Hacer algo parecido para llamar numeros de representantes y padres
+#Hacer algo parecido para llamar numeros de representantes y Padre
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 $carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
@@ -64,6 +66,7 @@ $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
 $telefonos_Est = $Telefonos->consultarTeléfonos($_POST['Cédula_Estudiante']);
 $telefonos_re = $Telefonos->consultarTeléfonosRepresentanteID($_POST['id_representante']);
 $telefonos_pa = $Telefonos->consultarTeléfonosPadreID($_POST['id_padre']);
+$telefonos_ma = $Telefonos->consultarTeléfonosMadreID($_POST['id_madre']);
 
 $datos_Médicos = $datos_Médicos->consultarFicha_Médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
@@ -83,17 +86,21 @@ $telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Person
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
-$padre = $Padre->consultarPadres($_POST['id_padre']);
+$padre = $Padre->consultarPadre($_POST['id_padre']);
+$madre = $Madre->consultarMadre($_POST['id_madre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
-$hijos = $Padre->consultarHijos($_POST['id_padre']);
+$hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
+$hijos_ma = $Madre->consultarHijos($_POST['id_madre']);
 
 $fecha_actual = date("Y-m-d");
 $fecha_nacimiento_est = $Estudiante['Fecha_Nacimiento'];
 $fecha_nacimiento_re = $datos_representante['Fecha_Nacimiento'];
 $fecha_nacimiento_pa = $padre['Fecha_Nacimiento'];
+$fecha_nacimiento_ma = $madre['Fecha_Nacimiento'];
 $edad_diff_est = date_diff(date_create($fecha_nacimiento_est), date_create($fecha_actual));
 $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_actual));
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
+$edad_diff_ma = date_diff(date_create($fecha_nacimiento_ma), date_create($fecha_actual));
 
 
 function condiciones($condicion_b,$datos_Médicos) {
@@ -145,7 +152,10 @@ function condiciones($condicion_b,$datos_Médicos) {
 					<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Observaciones</a>
 				</li>
 				<li class="nav-item">
-					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')"> Datos familiares</a>
+					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')">Datos Padre</a>
+				</li>
+				<li class="nav-item">
+					<a id="link6" class="nav-link" href="#" onclick="seccion('seccion6')">Datos Madre</a>
 				</li>
 			</ul>
 			<div class="card-body">
@@ -498,6 +508,10 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura" <?php condiciones("Lectura",$datos_Médicos['Impedimento_Físico']);?>>
 								</div>
 								<div class="form-check form-check-inline">
+									<label class="form-label">Lenguaje </label>
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lenguaje" <?php condiciones("Lenguaje",$datos_Médicos['Impedimento_Físico']);?>>
+								</div>
+								<div class="form-check form-check-inline">
 									<label class="form-label">Embarazo </label>
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo" <?php condiciones("Embarazo",$datos_Médicos['Impedimento_Físico']);?>>
 								</div>
@@ -506,6 +520,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Educativa especial" <?php condiciones("Educativa especial",$datos_Médicos['Impedimento_Físico']);?>>
 								</div>
 							</div>
+							<span class="form-label">Presenta alguna de estas necesidades educativas especiales: </span>
 								<input class="form-control mb-2" type="text" name="Necesidad_educativa" id="Necesidad_educativa" placeholder="¿Cuál necesidad educativa?" value="<?php echo $datos_Médicos['Necesidad_educativa']; ?>">							
 							<div>
 							</div>
@@ -576,27 +591,16 @@ function condiciones($condicion_b,$datos_Médicos) {
 				</section>
 				<section id="seccion4" style="display:none;">
 					<!--Datos del padre o la madre-->
-					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos familiares (Madre/Padre).</h5>
+					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Padre.</h5>
 
 					<div>
 						<div>
-							<p class="form-label">Parentezco: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required <?php if($Estudiante['Relación_Padre'] == "Madre"){ echo "checked";} ?>>
-									<label class="form-label">Madre</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required <?php if($Estudiante['Relación_Padre'] == "Padre"){ echo "checked";} ?>>
-									<label class="form-label">Padre</label>
-								</div>
-							</div>
 							<!--Nombres del familiar-->
 							<div>
 								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre" value="<?php echo $padre['Primer_Nombre'] ?>">
-									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre" value="<?php echo $padre['Segundo_Nombre'] ?>">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Padre" placeholder="Primer nombre" value="<?php echo $padre['Primer_Nombre'] ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Padre" placeholder="Segundo nombre" value="<?php echo $padre['Segundo_Nombre'] ?>">
 								</div>
 
 							</div>
@@ -605,23 +609,8 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<div>
 								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido" value="<?php echo $padre['Primer_Apellido'] ?>">
-									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido" value="<?php echo $padre['Segundo_Apellido'] ?>">
-								</div>
-							</div>
-
-							<!--Género del familiar-->
-							<div>
-								<p class="form-label">Género: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-								<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
-									<div class="form-check form-check-inline">
-										<label class="form-label">F </label>
-										<input class="form-check-input" type="radio" name="Género_Familiar" value="F" <?php if($padre['Género'] == "F"){ echo "checked";} ?>>
-									</div>
-									<div class="form-check form-check-inline">
-										<label class="form-label">M </label>
-										<input class="form-check-input" type="radio" name="Género_Familiar" value="M" <?php if($padre['Género'] == "M"){ echo "checked";} ?>>
-									</div>
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Padre" placeholder="Primer apellido" value="<?php echo $padre['Primer_Apellido'] ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Padre" placeholder="Segundo apellido" value="<?php echo $padre['Segundo_Apellido'] ?>">
 								</div>
 							</div>
 							<!--Cédula del familiar-->
@@ -630,33 +619,33 @@ function condiciones($condicion_b,$datos_Médicos) {
 								<div class="input-group mb-2">
 									<?php
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
-									$tipo_Cédula = substr($padre['Cédula'],0,1);
-									$Cédula			= substr($padre['Cédula'],1,strlen($padre['Cédula'])-1);
+									$tipo_Cédula_Pa = substr($padre['Cédula'],0,1);
+									$Cédula_Pa			= substr($padre['Cédula'],1,strlen($padre['Cédula'])-1);
 								 	?>
-									<select class="form-select" id="Tipo_Cédula_Familiar" name="Tipo_Cédula_Familiar" required>
+									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre" required>
 										<option selected disabled value="">Tipo de cédula</option>
-										<option <?php if($tipo_Cédula == "V"){echo "selected";} ?> value="V">V</option>
-										<option <?php if($tipo_Cédula == "R"){echo "selected";} ?> value="E">E</option>
+										<option <?php if($tipo_Cédula_Pa == "V"){echo "selected";} ?> value="V">V</option>
+										<option <?php if($tipo_Cédula_Pa == "R"){echo "selected";} ?> value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Familiar" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula; ?>" required>
+									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Pa; ?>" required>
 								</div>
 							</div>
 							<!--Fecha de nacimiento del familiar-->
 							<div>
 								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $padre['Fecha_Nacimiento'] ?>">
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Padre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $padre['Fecha_Nacimiento'] ?>">
 							</div>
 
 							<!--Lugar de nacimiento del familiar-->
 							<div>
 								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar" required value="<?php echo $padre['Lugar_Nacimiento'] ?>">
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Padre" required value="<?php echo $padre['Lugar_Nacimiento'] ?>">
 							</div>
 
 							<!--Correo electrónico del familiar-->
 							<div>
 								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar" required  value="<?php echo $padre['Correo_Electrónico'] ?>">
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Padre" required  value="<?php echo $padre['Correo_Electrónico'] ?>">
 							</div>
 						</div>
 						<!--Teléfono principal-->
@@ -676,23 +665,23 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[0]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Pa" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[0]['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" minlength="7" maxlength="7" placeholder="Teléfono principal" required value="<?php echo $telefonos_pa[0]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Pa" minlength="7" maxlength="7" placeholder="Teléfono principal" required value="<?php echo $telefonos_pa[0]['Número_Telefónico'] ?>">
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[1]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Secundario_Pa" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[1]['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" minlength="7" maxlength="7" placeholder="Teléfono secundario" required value="<?php echo $telefonos_pa[1]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Pa" minlength="7" maxlength="7" placeholder="Teléfono secundario" required value="<?php echo $telefonos_pa[1]['Número_Telefónico'] ?>">
 							</div>
 						</div>
 
 						<!--Estado civil del familiar-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select" name="Estado_Civil_Familiar" required>
+							<select class="form-select" name="Estado_Civil_Padre" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option <?php if($padre['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
 								<option <?php if($padre['Estado_Civil'] == "Casado(a)") {echo "selected";} ?> value="Casado(a)">Casado(a)</option>
@@ -704,7 +693,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2"name="Dirección_Familiar"><?php echo $padre['Dirección']; ?></textarea>
+							<textarea class="form-control mb-2"name="Dirección_Padre"><?php echo $padre['Dirección']; ?></textarea>
 						</div>
 
 						<!--Se encuentra el familiar en el país-->
@@ -722,6 +711,129 @@ function condiciones($condicion_b,$datos_Médicos) {
 						</div>
 					</div>
 				</section>
+				<section id="seccion6" style="display:none;">
+					<!--Datos de la madre-->
+					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Madre.</h5>
+
+					<div>
+						<div>
+							<!--Nombres del familiar-->
+							<div>
+								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Madre" placeholder="Primer nombre" value="<?php echo $madre['Primer_Nombre'] ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Madre" placeholder="Segundo nombre" value="<?php echo $madre['Segundo_Nombre'] ?>">
+								</div>
+
+							</div>
+
+							<!--Apellidos del familiar-->
+							<div>
+								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Madre" placeholder="Primer apellido" value="<?php echo $madre['Primer_Apellido'] ?>">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Madre" placeholder="Segundo apellido" value="<?php echo $madre['Segundo_Apellido'] ?>">
+								</div>
+							</div>
+							<!--Cédula del familiar-->
+							<div>
+								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group mb-2">
+									<?php
+									#Separa la cédula del caracter que indica si es venezolana o extranjera
+									$tipo_Cédula_Ma = substr($madre['Cédula'],0,1);
+									$Cédula_Ma			= substr($madre['Cédula'],1,strlen($madre['Cédula'])-1);
+								 	?>
+									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre" required>
+										<option selected disabled value="">Tipo de cédula</option>
+										<option <?php if($tipo_Cédula_Ma == "V"){echo "selected";} ?> value="V">V</option>
+										<option <?php if($tipo_Cédula_Ma == "R"){echo "selected";} ?> value="E">E</option>
+									</select>
+									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Ma; ?>" required>
+								</div>
+							</div>
+							<!--Fecha de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Madre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $madre['Fecha_Nacimiento'] ?>">
+							</div>
+
+							<!--Lugar de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Madre" required value="<?php echo $madre['Lugar_Nacimiento'] ?>">
+							</div>
+
+							<!--Correo electrónico del familiar-->
+							<div>
+								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Madre" required  value="<?php echo $madre['Correo_Electrónico'] ?>">
+							</div>
+						</div>
+						<!--Teléfono principal-->
+						<div>
+							<datalist id="prefijos">
+								<!--Moviles-->
+								<option value="0416">
+								<option value="0426">
+								<option value="0414">
+								<option value="0412">
+
+								<!--Fijos-->
+								<option value="0271">
+								<option value="0274">
+								<option value="0275">
+							</datalist>
+							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Principal_Madre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_ma[0]['Prefijo'] ?>">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Madre" minlength="7" maxlength="7" placeholder="Teléfono principal" required value="<?php echo $telefonos_ma[0]['Número_Telefónico'] ?>">
+							</div>
+							<!--Teléfono secundario-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Secundario_Madre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_ma[1]['Prefijo'] ?>">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Madre" minlength="7" maxlength="7" placeholder="Teléfono secundario" required value="<?php echo $telefonos_ma[1]['Número_Telefónico'] ?>">
+							</div>
+						</div>
+
+						<!--Estado civil del familiar-->
+						<div>
+							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<select class="form-select" name="Estado_Civil_Madre" required>
+								<option selected disabled value="">Seleccione una opción</option>
+								<option <?php if($madre['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
+								<option <?php if($madre['Estado_Civil'] == "Casado(a)") {echo "selected";} ?> value="Casado(a)">Casado(a)</option>
+								<option <?php if($madre['Estado_Civil'] == "Divorciado(a)") {echo "selected";} ?> value="Divorciado(a)">Divorciado(a)</option>
+								<option <?php if($madre['Estado_Civil'] == "Viudo(a)") {echo "selected";} ?> value="Viudo(a)">Viudo(a)</option>
+							</select>
+						</div>
+
+						<!--Dirección de residencia del Familiar-->
+						<div>
+							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<textarea class="form-control mb-2"name="Dirección_Madre"><?php echo $madre['Dirección']; ?></textarea>
+						</div>
+
+						<!--Se encuentra el familiar en el país-->
+						<div>
+							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-2">
+								<select class="form-select" name="Reside_En_El_País_Ma" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Si" <?php if($madre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
+									<option value="No" <?php if($madre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
+								</select>
+								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="¿Donde?" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>"
+
+							</div>
+						</div>
+					</div>
+				</section>
+
 			</div>
 			<!-- datos del representante -->
 			<input type="hidden" name="Vinculo_R" value="<?php echo $_POST['Vinculo_R']?>">
@@ -743,14 +855,14 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Teléfono_Secundario_R" value="<?php echo $_POST['Teléfono_Secundario_R']?>">
 			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
 			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
-			<input type="hidden" name="Grado_Instrucción" value="<?php echo $_POST['Grado_Instrucción']?>">
+			<input type="hidden" name="Grado_Instrucción_R" value="<?php echo $_POST['Grado_Instrucción_R']?>">
 			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R']?>">
 			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
 			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
-			<input type="hidden" name="Condición_vivienda" value="<?php echo $_POST['Condición_vivienda']?>">
-			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda_Otro" value="<?php echo $_POST['Tenencia_vivienda_Otro']?>">
+			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">
+			<input type="hidden" name="Tipo_Vivienda_R" value="<?php echo $_POST['Tipo_Vivienda_R']?>">
+			<input type="hidden" name="Tenencia_vivienda_R" value="<?php echo $_POST['Tenencia_vivienda_R']?>">
+			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro']?>">
 			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
 			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">
 			<input type="hidden" name="Nro_Cuenta" value="<?php echo $_POST['Nro_Cuenta']?>">
@@ -759,8 +871,8 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Prefijo_Trabajo_R" value="<?php echo $_POST['Prefijo_Trabajo_R']?>">
 			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
 			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
-			<input type="hidden" name="Remuneración" value="<?php echo $_POST['Remuneración']?>">
-			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración']?>">
+			<input type="hidden" name="Remuneración_R" value="<?php echo $_POST['Remuneración_R']?>">
+			<input type="hidden" name="Tipo_Remuneración_R" value="<?php echo $_POST['Tipo_Remuneración_R']?>">
 			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
 			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
 			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
@@ -800,6 +912,7 @@ function enviar() {
 	var c = document.getElementById("seccion3");
 	var d = document.getElementById("seccion4");
 	var e = document.getElementById("seccion5");
+	var f = document.getElementById("seccion6");
 
 
 	a.style.display = "block";
@@ -807,6 +920,7 @@ function enviar() {
 	c.style.display = "block";
 	d.style.display = "block";
 	e.style.display = "block";
+	f.style.display = "block";
 
 	if (FormularioEstudiante.checkValidity()) {
 		FormularioEstudiante.submit();
@@ -824,6 +938,7 @@ function enviar() {
 	c.style.display = "none";
 	d.style.display = "none";
 	e.style.display = "none";
+	f.style.display = "none";
 
 }
 	function seccion(seccion) {
@@ -834,6 +949,7 @@ function enviar() {
 		var c = document.getElementById("seccion3");
 		var d = document.getElementById("seccion4");
 		var e = document.getElementById("seccion5");
+		var f = document.getElementById("seccion6");
 
 
 		//botones en la navegación
@@ -842,6 +958,7 @@ function enviar() {
 		var link_c = document.getElementById("link3");
 		var link_d = document.getElementById("link4");
 		var link_e = document.getElementById("link5");
+		var link_f = document.getElementById("link6");
 
 
 		//seccion seleccionada como activa(seccion 1 por defecto)
@@ -852,12 +969,14 @@ function enviar() {
 		c.style.display = "none";
 		d.style.display = "none";
 		e.style.display = "none";
+		f.style.display = "none";
 
 		link_a.classList.remove("active");
 		link_b.classList.remove("active");
 		link_c.classList.remove("active");
 		link_d.classList.remove("active");
 		link_e.classList.remove("active");
+		link_f.classList.remove("active");
 
 
 		if (seccion == a) {
@@ -879,6 +998,10 @@ function enviar() {
 		else if (seccion == e) {
 			e.style.display = "block";
 			link_e.classList.add("active");
+		}
+		else if (seccion == f) {
+			f.style.display = "block";
+			link_f.classList.add("active");
 		}
 	}
 </script>

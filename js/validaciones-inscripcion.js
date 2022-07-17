@@ -33,7 +33,7 @@ $('#Serial_Carnet_Patria_R').validarIngreso('0123456789');
 $('#Nro_Cuenta').validarIngreso('0123456789');
 $('#Prefijo_Trabajo_R').validarIngreso('0123456789');
 $('#Teléfono_Trabajo_R').validarIngreso('0123456789');
-$('#Remuneración').validarIngreso('0123456789');
+$('#Remuneración_R').validarIngreso('0123456789');
 
 $('#Primer_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Segundo_Nombre_Aux').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');

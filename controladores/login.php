@@ -5,8 +5,8 @@ require("../clases/personas.php");
 require("../clases/representantes.php");
 require("../clases/contactos-auxiliares.php");
 require("../clases/económicos-representantes.php");
-require("../clases/laborales-representantes.php");
-require("../clases/vivienda-representantes.php");
+require("../clases/laborales.php");
+require("../clases/vivienda.php");
 require("../clases/Teléfonos.php");
 require("../clases/bitácora.php");
 

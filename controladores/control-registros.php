@@ -15,9 +15,9 @@ require_once('../clases/personas.php');
 require_once('../clases/teléfonos.php');
 
 require_once('../clases/representantes.php');
-require_once('../clases/laborales-representantes.php');
+require_once('../clases/laborales.php');
 require_once('../clases/económicos-representantes.php');
-require_once('../clases/vivienda-representantes.php');
+require_once('../clases/vivienda.php');
 require_once('../clases/contactos-auxiliares.php');
 
 
@@ -133,7 +133,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->insertarTeléfono();
 
 		$datos_representante->setCédula_Persona($persona->getCédula());
-		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción']);
+		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción_R']);
 
 		$datos_representante->insertarRepresentante();
 
@@ -160,12 +160,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 		  $datos_laborales->setEmpleo($_POST['Empleo_R']);
 		  $datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-		  $datos_laborales->setRemuneración($_POST['Remuneración']);
-		  $datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneración']);
+		  $datos_laborales->setRemuneración_R($_POST['Remuneración_R']);
+		  $datos_laborales->setTipo_Remuneración_R($_POST['Tipo_Remuneración_R']);
 		}
 
 		$datos_laborales->setidRepresentantes($datos_representante->getidRepresentantes());
-		$datos_laborales->insertarDatosLaborales();
+		$datos_laborales->insertarDatosLaborales_R();
 
 		#Datos económicos
 		$datos_económicos->setBanco($_POST['Banco']);
@@ -175,15 +175,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_económicos->insertarDatoseconómicos();
 
 		#Datos vivienda
-		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda']);
-		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
+		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda_R']);
+		$datos_vivienda->setTipo_Vivienda_R($_POST['Tipo_Vivienda_R']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Otro'] == "Otro") {
-		  $datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda_Otro']);
+		if ($_POST['Tenencia_vivienda_R_Otro'] == "Otro") {
+		  $datos_vivienda->setTenencia_vivienda_R($_POST['Tenencia_vivienda_R_Otro']);
 		}
 		else{
-		  $datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda']);
+		  $datos_vivienda->setTenencia_vivienda_R($_POST['Tenencia_vivienda_R']);
 		}
 
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());
@@ -551,7 +551,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->editarTeléfono($Cédula_representante);
 
 		$datos_representante->setCédula_Persona($persona->getCédula());
-		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción']);
+		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción_R']);
 
 		$datos_representante->editarRepresentante($Cédula_representante);
 
@@ -578,12 +578,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 			$datos_laborales->setEmpleo($_POST['Empleo_R']);
 			$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-			$datos_laborales->setRemuneración($_POST['Remuneración']);
-			$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneración']);
+			$datos_laborales->setRemuneración_R($_POST['Remuneración_R']);
+			$datos_laborales->setTipo_Remuneración_R($_POST['Tipo_Remuneración_R']);
 		}
 
 		$datos_laborales->setidRepresentantes($datos_representante->getidRepresentantes());
-		$datos_laborales->editarDatosLaborales($idRepresentante);
+		$datos_laborales->editarDatosLaborales_R($idRepresentante);
 
 		#Datos económicos
 		$datos_económicos->setBanco($_POST['Banco']);
@@ -593,15 +593,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_económicos->editarDatoseconómicos($idRepresentante);
 
 		#Datos vivienda
-		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda']);
-		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
+		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda_R']);
+		$datos_vivienda->setTipo_Vivienda_R($_POST['Tipo_Vivienda_R']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Otro'] == "Otro") {
-			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda_Otro']);
+		if ($_POST['Tenencia_vivienda_R_Otro'] == "Otro") {
+			$datos_vivienda->setTenencia_vivienda_R($_POST['Tenencia_vivienda_R_Otro']);
 		}
 		else{
-			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_vivienda']);
+			$datos_vivienda->setTenencia_vivienda_R($_POST['Tenencia_vivienda_R']);
 		}
 
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());

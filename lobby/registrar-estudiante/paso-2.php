@@ -50,7 +50,10 @@ if (!isset($_POST['Datos_Representante'])) {
 					<a id="link5" class="nav-link" href="#" onclick="seccion('seccion5')">Observaciones</a>
 				</li>
 				<li class="nav-item">
-					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')"> Datos familiares</a>
+					<a id="link4" class="nav-link" href="#" onclick="seccion('seccion4')"> Datos Padre</a>
+				</li>
+				<li class="nav-item">
+					<a id="link6" class="nav-link" href="#" onclick="seccion('seccion6')"> Datos Madre</a>
 				</li>
 			</ul>
 			<div class="card-body">
@@ -284,10 +287,6 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 						<div>
-							<label class="form-label">Alergias:</label>
-							<input class="form-control mb-2" type="text" name="Alergias" id="Alergias">
-						</div>
-						<div>
 							<span class="form-label">Tipo de sangre: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Grupo_Sanguineo" required>
@@ -380,6 +379,10 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lectura">
 								</div>
 								<div class="form-check form-check-inline">
+									<label class="form-label">Lenguaje </label>
+									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Lenguaje">
+								</div>								
+								<div class="form-check form-check-inline">
 									<label class="form-label">Embarazo </label>
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Embarazo">
 								</div>
@@ -388,6 +391,7 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input class="form-check-input" type="checkbox" name="Condiciones_Salud[]" value="Educativa especial">
 								</div>
 							</div>
+							<span class="form-label">Presenta alguna de estas necesidades educativas especiales: </span>
 								<input class="form-control mb-2" type="text" name="Necesidad_educativa" id="Necesidad_educativa" placeholder="¿Cuál necesidad educativa?">	
 							<div>								
 							</div>
@@ -467,119 +471,91 @@ if (!isset($_POST['Datos_Representante'])) {
 						</div>
 				</section>
 				<section id="seccion4" style="display:none;">
-					<!--Datos del padre o la madre-->
-					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos familiares (Madre/Padre).</h5>
+					<!--Datos del padre-->
+					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Padre.</h5>
 
 					<div>
-						<div>
-							<p class="form-label">Parentezco: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Madre" required>
-									<label class="form-label">Madre</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="Vinculo_Familiar" value="Padre" required>
-									<label class="form-label">Padre</label>
-								</div>
-							</div>
-							<!--Nombres del familiar-->
+							<!--Nombres del padre-->
 							<div>
 								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Nombre_Familiar" placeholder="Primer nombre">
-									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Familiar" placeholder="Segundo nombre">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Padre" placeholder="Primer nombre">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Padre" placeholder="Segundo nombre">
 								</div>
-
 							</div>
 
-							<!--Apellidos del familiar-->
+							<!--Apellidos del padre-->
 							<div>
 								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
-									<input class="form-control mb-2" type="text" name="Primer_Apellido_Familiar" placeholder="Primer apellido">
-									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Familiar" placeholder="Segundo apellido">
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Padre" placeholder="Primer apellido">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Padre" placeholder="Segundo apellido">
 								</div>
 							</div>
-
-							<!--Género del familiar-->
-							<div>
-								<p class="form-label">Género: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-								<div class="pt-2 px-2 pb-0 mb-2 bg-light border rounded">
-									<div class="form-check form-check-inline">
-										<label class="form-label">F </label>
-										<input class="form-check-input" type="radio" name="Género_Familiar" value="F">
-									</div>
-									<div class="form-check form-check-inline">
-										<label class="form-label">M </label>
-										<input class="form-check-input" type="radio" name="Género_Familiar" value="M">
-									</div>
-								</div>
-							</div>
-							<!--Cédula del familiar-->
+							<!--Cédula del padre-->
 							<div>
 								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group mb-2">
-									<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Familiar" required>
+									<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Padre" required>
 										<option selected disabled value="">Tipo de cédula</option>
 										<option value="V">V</option>
 										<option value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Familiar" id="Cédula_Est" maxlength="8" minlength="7" required>
+									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" minlength="7" required>
 								</div>
 							</div>
-							<!--Fecha de nacimiento del familiar-->
+							<!--Fecha de nacimiento del padre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Familiar" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Padre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
 							</div>
 
-							<!--Lugar de nacimiento del familiar-->
+							<!--Lugar de nacimiento del padre-->
 							<div>
 								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Familiar" required>
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Padre" required>
 							</div>
 
-							<!--Correo electrónico del familiar-->
+							<!--Correo electrónico del padre-->
 							<div>
 								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<input class="form-control mb-2" type="email" name="Correo_electrónico_Familiar" required>
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Padre" required>
 							</div>
-						</div>
-						<!--Teléfono principal-->
-						<div>
-							<datalist id="prefijos">
-								<!--Moviles-->
-								<option value="0416">
-								<option value="0426">
-								<option value="0414">
-								<option value="0412">
 
-								<!--Fijos-->
-								<option value="0271">
-								<option value="0274">
-								<option value="0275">
-							</datalist>
-							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+						<!--Teléfono principal-->
+							<div>
+								<datalist id="prefijos">
+									<!--Moviles-->
+									<option value="0416">
+									<option value="0426">
+									<option value="0414">
+									<option value="0412">
+
+									<!--Fijos-->
+									<option value="0271">
+									<option value="0274">
+									<option value="0275">
+								</datalist>
+								<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Familiar" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Principal_Padre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Familiar" minlength="7" maxlength="7" placeholder="Teléfono principal" required>
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Padre" minlength="7" maxlength="7" placeholder="Teléfono principal" required>
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Familiar" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<input class="form-control" type="text" name="Prefijo_Secundario_Padre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Familiar" minlength="7" maxlength="7" placeholder="Teléfono secundario" required>
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Padre" minlength="7" maxlength="7" placeholder="Teléfono secundario" required>
 							</div>
 						</div>
 
 						<!--Estado civil del familiar-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select" name="Estado_Civil_Familiar" required>
+							<select class="form-select" name="Estado_Civil_Padre" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
@@ -591,19 +567,133 @@ if (!isset($_POST['Datos_Representante'])) {
 						<!--Dirección de residencia del Familiar-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2"name="Dirección_Familiar"></textarea>
+							<textarea class="form-control mb-2"name="Dirección_Padre"></textarea>
 						</div>
 
 						<!--Se encuentra el familiar en el país-->
 						<div>
 							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Reside_En_El_País" required>
+								<select class="form-select" name="Reside_En_El_País_Pa" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?">
+								<input class="form-control w-auto" type="text" name="País_Pa" id="País_Pa" placeholder="¿Donde?">
+							</div>
+						</div>
+					</div>
+				</section>
+				<section id="seccion6" style="display:none;">
+					<!--Datos de la madre-->
+					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Madre.</h5>
+
+					<div>
+							<!--Nombres del familiar-->
+							<div>
+								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Nombre_Madre" placeholder="Primer nombre">
+									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Madre" placeholder="Segundo nombre">
+								</div>
+							</div>
+
+							<!--Apellidos del familiar-->
+							<div>
+								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group">
+									<input class="form-control mb-2" type="text" name="Primer_Apellido_Madre" placeholder="Primer apellido">
+									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Madre" placeholder="Segundo apellido">
+								</div>
+							</div>
+							<!--Cédula del familiar-->
+							<div>
+								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<div class="input-group mb-2">
+									<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Madre" required>
+										<option selected disabled value="">Tipo de cédula</option>
+										<option value="V">V</option>
+										<option value="E">E</option>
+									</select>
+									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" required>
+								</div>
+							</div>
+							<!--Fecha de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Madre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
+							</div>
+
+							<!--Lugar de nacimiento del familiar-->
+							<div>
+								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Madre" required>
+							</div>
+
+							<!--Correo electrónico del familiar-->
+							<div>
+								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<input class="form-control mb-2" type="email" name="Correo_electrónico_Madre" required>
+							</div>
+							<!--Teléfono principal-->
+							<div>
+								<datalist id="prefijos">
+									<!--Moviles-->
+									<option value="0416">
+									<option value="0426">
+									<option value="0414">
+									<option value="0412">
+
+									<!--Fijos-->
+									<option value="0271">
+									<option value="0274">
+									<option value="0275">
+								</datalist>
+							</div>
+								<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Principal_Madre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Madre" minlength="7" maxlength="7" placeholder="Teléfono principal" required>
+							</div>
+							<!--Teléfono secundario-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Secundario_Madre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Madre" minlength="7" maxlength="7" placeholder="Teléfono secundario" required>
+							</div>
+						</div>
+
+						<!--Estado civil del familiar-->
+						<div>
+							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<select class="form-select" name="Estado_Civil_Madre" required>
+								<option selected disabled value="">Seleccione una opción</option>
+								<option value="Soltero(a)">Soltero(a)</option>
+								<option value="Casado(a)">Casado(a)</option>
+								<option value="Divorciado(a)">Divorciado(a)</option>
+								<option value="Viudo(a)">Viudo(a)</option>
+							</select>
+						</div>
+
+						<!--Dirección de residencia del Familiar-->
+						<div>
+							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<textarea class="form-control mb-2"name="Dirección_Madre"></textarea>
+						</div>
+
+						<!--Se encuentra el familiar en el país-->
+						<div>
+							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-2">
+								<select class="form-select" name="Reside_En_El_País_Ma" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="¿Donde?">
 
 							</div>
 						</div>
@@ -630,14 +720,14 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Teléfono_Secundario_R" value="<?php echo $_POST['Teléfono_Secundario_R']?>">
 			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
 			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
-			<input type="hidden" name="Grado_Instrucción" value="<?php echo $_POST['Grado_Instrucción']?>">
+			<input type="hidden" name="Grado_Instrucción_R" value="<?php echo $_POST['Grado_Instrucción_R']?>">
 			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R']?>">
 			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
 			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
-			<input type="hidden" name="Condición_vivienda" value="<?php echo $_POST['Condición_vivienda']?>">
-			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda_Otro" value="<?php echo $_POST['Tenencia_vivienda_Otro']?>">
+			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">
+			<input type="hidden" name="Tipo_Vivienda_R" value="<?php echo $_POST['Tipo_Vivienda_R']?>">
+			<input type="hidden" name="Tenencia_vivienda_R" value="<?php echo $_POST['Tenencia_vivienda_R']?>">
+			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro']?>">
 			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
 			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">
 			<input type="hidden" name="Nro_Cuenta" value="<?php echo $_POST['Nro_Cuenta']?>">
@@ -646,8 +736,8 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Prefijo_Trabajo_R" value="<?php echo $_POST['Prefijo_Trabajo_R']?>">
 			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
 			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
-			<input type="hidden" name="Remuneración" value="<?php echo $_POST['Remuneración']?>">
-			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración']?>">
+			<input type="hidden" name="Remuneración_R" value="<?php echo $_POST['Remuneración_R']?>">
+			<input type="hidden" name="Tipo_Remuneración_R" value="<?php echo $_POST['Tipo_Remuneración_R']?>">
 			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
 			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
 			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
@@ -687,6 +777,7 @@ function enviar() {
 	var c = document.getElementById("seccion3");
 	var d = document.getElementById("seccion4");
 	var e = document.getElementById("seccion5");
+	var f = document.getElementById("seccion6");
 
 
 	a.style.display = "block";
@@ -694,6 +785,7 @@ function enviar() {
 	c.style.display = "block";
 	d.style.display = "block";
 	e.style.display = "block";
+	f.style.display = "block";
 
 	if (FormularioEstudiante.checkValidity()) {
 		FormularioEstudiante.submit();
@@ -711,6 +803,7 @@ function enviar() {
 	c.style.display = "none";
 	d.style.display = "none";
 	e.style.display = "none";
+	f.style.display = "none";
 
 }
 	function seccion(seccion) {
@@ -721,6 +814,7 @@ function enviar() {
 		var c = document.getElementById("seccion3");
 		var d = document.getElementById("seccion4");
 		var e = document.getElementById("seccion5");
+		var f = document.getElementById("seccion6");
 
 
 		//botones en la navegación
@@ -729,6 +823,7 @@ function enviar() {
 		var link_c = document.getElementById("link3");
 		var link_d = document.getElementById("link4");
 		var link_e = document.getElementById("link5");
+		var link_f = document.getElementById("link6");
 
 
 		//seccion seleccionada como activa(seccion 1 por defecto)
@@ -739,12 +834,14 @@ function enviar() {
 		c.style.display = "none";
 		d.style.display = "none";
 		e.style.display = "none";
+		f.style.display = "none";
 
 		link_a.classList.remove("active");
 		link_b.classList.remove("active");
 		link_c.classList.remove("active");
 		link_d.classList.remove("active");
 		link_e.classList.remove("active");
+		link_f.classList.remove("active");
 
 
 		if (seccion == a) {
@@ -766,6 +863,10 @@ function enviar() {
 		else if (seccion == e) {
 			e.style.display = "block";
 			link_e.classList.add("active");
+		}
+		else if (seccion == f) {
+			f.style.display = "block";
+			link_f.classList.add("active");
 		}
 	}
 </script>

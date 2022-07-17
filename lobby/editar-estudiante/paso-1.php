@@ -11,14 +11,14 @@ require('../../clases/Estudiante.php');
 require('../../clases/representantes.php');
 require('../../clases/carnet-patria.php');
 require('../../clases/económicos-representantes.php');
-require('../../clases/laborales-representantes.php');
+require('../../clases/laborales.php');
 require('../../clases/Padre.php');
 require('../../clases/madre.php');
 require('../../clases/ficha-médica.php');
 require('../../clases/sociales-Estudiantes.php');
 require('../../clases/tallas-Estudiantes.php');
 require('../../clases/grado.php');
-require('../../clases/vivienda-representantes.php');
+require('../../clases/vivienda.php');
 require('../../clases/contactos-auxiliares.php');
 require('../../clases/año-escolar.php');
 require('../../clases/Estudiantes-repitentes.php');
@@ -204,15 +204,15 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Primaria" required <?php if($datos_representante['Grado_Académico'] == "Primaria") {echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Primaria" required <?php if($datos_representante['Grado_Académico'] == "Primaria") {echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Bachillerato </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Bachillerato" required <?php if($datos_representante['Grado_Académico'] == "Bachillerato") {echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Bachillerato" required <?php if($datos_representante['Grado_Académico'] == "Bachillerato") {echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Universitario </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción" value="Universitario" required <?php if($datos_representante['Grado_Académico'] == "Universitario") {echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Universitario" required <?php if($datos_representante['Grado_Académico'] == "Universitario") {echo "checked";} ?>>
 								</div>
 							</div>
 						</div>
@@ -292,50 +292,50 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Buena" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Buena"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Buena" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Buena"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Regular </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Regular" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Regular"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Regular" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Regular"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Mala </label>
-									<input class="form-check-input" type="radio" name="Condición_vivienda" value="Mala" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_R" value="Mala" required <?php if($datos_vivienda['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
 								</div>
 							</div>
 							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Casa </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Casa" required <?php if($datos_vivienda['Tipo_Vivienda'] == "Casa"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Casa" required <?php if($datos_vivienda['Tipo_Vivienda_R'] == "Casa"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Apartamento </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Apartamento" required <?php if($datos_vivienda['Tipo_Vivienda'] == "Apartamento"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Apartamento" required <?php if($datos_vivienda['Tipo_Vivienda_R'] == "Apartamento"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Rancho </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Rancho" required <?php if($datos_vivienda['Tipo_Vivienda'] == "Rancho"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Rancho" required <?php if($datos_vivienda['Tipo_Vivienda_R'] == "Rancho"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Quinta </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Quinta" required <?php if($datos_vivienda['Tipo_Vivienda'] == "Quinta"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Quinta" required <?php if($datos_vivienda['Tipo_Vivienda_R'] == "Quinta"){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Habitación </label>
-									<input class="form-check-input" type="radio" name="Tipo_Vivienda" value="Habitación" required <?php if($datos_vivienda['Tipo_Vivienda'] == "Habitación"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_R" value="Habitación" required <?php if($datos_vivienda['Tipo_Vivienda_R'] == "Habitación"){echo "checked";} ?>>
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda">
+								<select class="form-select" name="Tenencia_vivienda_R">
 									<option selected disabled value="">Seleccione una opción</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda_R'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda_R'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda_R'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda_R'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_Vivienda'] != "Propia" and $datos_vivienda['Tenencia_Vivienda'] != "Alquilada" and $datos_vivienda['Tenencia_Vivienda'] != "Prestada" and $datos_vivienda['Tenencia_Vivienda'] != "Otro"){echo "selected";} ?>>
+								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_vivienda_R'] != "Propia" and $datos_vivienda['Tenencia_vivienda_R'] != "Alquilada" and $datos_vivienda['Tenencia_vivienda_R'] != "Prestada" and $datos_vivienda['Tenencia_vivienda_R'] != "Otro"){echo "selected";} ?>>
 							</div>
 						</div>
 					</section>
@@ -433,19 +433,19 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<label class="form-label">Lugar del trabajo:</label>
 							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
 						</div>
-						<!--Remuneración del trabajo del representante-->
+						<!--Remuneración_R del trabajo del representante-->
 						<div>
 							<label class="form-label">Remuneración:</label>
 							<div class="input-group mb-2">
-								<!--Remuneración en base a sueldos minimos del representante-->
-								<input class="form-control text-end" type="number" name="Remuneración" id="Remuneración" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo $datos_laborales['Remuneración'] ?>">
+								<!--Remuneración_R en base a sueldos minimos del representante-->
+								<input class="form-control text-end" type="number" name="Remuneración_R" id="Remuneración_R" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo $datos_laborales['Remuneración_R'] ?>">
 								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
-								<!--Tipo de Remuneración del representante-->
-								<select class="form-select" name="Tipo_Remuneración">
-									<option <?php if($datos_laborales['Tipo_Remuneración'] == "Diaria"){echo "selected";} ?> value="Diaria">Remuneración diaria</option>
-									<option <?php if($datos_laborales['Tipo_Remuneración'] == "Semanal"){echo "selected";} ?> value="Semanal">Remuneración semanal</option>
-									<option <?php if($datos_laborales['Tipo_Remuneración'] == "Quincenal"){echo "selected";} ?> value="Quincenal">Remuneración quincenal</option>
-									<option <?php if($datos_laborales['Tipo_Remuneración'] == "Mensual"){echo "selected";} ?> value="Mensual">Remuneración mensual</option>
+								<!--Tipo de Remuneración_R del representante-->
+								<select class="form-select" name="Tipo_Remuneración_R">
+									<option <?php if($datos_laborales['Tipo_Remuneración_R'] == "Diaria"){echo "selected";} ?> value="Diaria">Remuneración diaria</option>
+									<option <?php if($datos_laborales['Tipo_Remuneración_R'] == "Semanal"){echo "selected";} ?> value="Semanal">Remuneración semanal</option>
+									<option <?php if($datos_laborales['Tipo_Remuneración_R'] == "Quincenal"){echo "selected";} ?> value="Quincenal">Remuneración quincenal</option>
+									<option <?php if($datos_laborales['Tipo_Remuneración_R'] == "Mensual"){echo "selected";} ?> value="Mensual">Remuneración mensual</option>
 								</select>
 							</div>
 						</div>
