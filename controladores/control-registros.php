@@ -285,6 +285,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
+		#Teléfono trabajo
+		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Ma']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Ma']);
+		$Teléfonos->setRelación_Teléfono('Trabajo');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
 
 		//
 		//
@@ -368,6 +375,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Padre']);
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Padre']);
 		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
+
+		#Teléfono trabajo
+		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Pa']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Pa']);
+		$Teléfonos->setRelación_Teléfono('Trabajo');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
 		$Teléfonos->insertarTeléfono();

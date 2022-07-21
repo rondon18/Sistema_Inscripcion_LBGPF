@@ -368,6 +368,10 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
+						<td colspan="4">Necesidad educativa especial: <?php echo $datos_Médicos['Necesidad_educativa']?></td>
+					</tr>					
+
+					<tr>
 						<td colspan="1">Cond Vista: <?php echo $datos_Médicos['Cond_Vista']?></td>
 						<td colspan="3">Cond Dental: <?php echo $datos_Médicos['Cond_Dental']?></td>
 					</tr>
@@ -448,7 +452,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td>Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
 						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
 					</tr>
 
@@ -465,13 +469,14 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais_pa?></td>
-						<td> <?php
+						<td colspan="2"> <?php
 									if ($padre['País_Residencia'] == "Venezuela") {
     									echo "Dónde: " ;
 									}
 									else {
     									echo 'Dónde: ' . $padre['País_Residencia'];
 									} ?>
+						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_pa?></td>
 					</tr>
 
 					<tr class="table-primary">
@@ -484,7 +489,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_pa[3]['Prefijo'],$telefonos_pa[3]['Número_Telefónico'])?></td>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_pa[2]['Prefijo'],$telefonos_pa[2]['Número_Telefónico'])?></td>
 						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_pa['Lugar_Trabajo']?></td>
 					</tr>
 
@@ -502,7 +507,6 @@ desconectarBD($conexion);
 						<td> Condiciones de la vivienda: <?php echo $datos_vivienda_pa['Condiciones_Vivienda']?></td>
 						<td> Tipo de vivienda: <?php echo $datos_vivienda_pa['Tipo_Vivienda']?></td>
 						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda_pa['Tenencia_Vivienda']?></td>
-						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_pa?></td>
 					</tr>
 
 
@@ -518,7 +522,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td>Teléfono Principal: <?php echo $telefonos_ma[0]['Prefijo'] . '-' . $telefonos_ma[0]['Número_Telefónico']?></td>
+						<td colspan="2">Teléfono Principal: <?php echo $telefonos_ma[0]['Prefijo'] . '-' . $telefonos_ma[0]['Número_Telefónico']?></td>
 						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_ma[1]['Prefijo'] . '-' . $telefonos_ma[1]['Número_Telefónico']?></td>
 					</tr>
 
@@ -535,13 +539,14 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais_ma?></td>
-						<td> <?php
+						<td colspan="2"> <?php
 									if ($madre['País_Residencia'] == "Venezuela") {
     									echo "Dónde: " ;
 									}
 									else {
     									echo 'Dónde: ' . $madre['País_Residencia'];
 									} ?>
+						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_ma?></td>									
 					</tr>
 
 					<tr class="table-primary">
@@ -554,7 +559,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_ma[3]['Prefijo'],$telefonos_ma[3]['Número_Telefónico'])?></td>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_ma[2]['Prefijo'],$telefonos_ma[2]['Número_Telefónico'])?></td>
 						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_ma['Lugar_Trabajo']?></td>
 					</tr>
 
