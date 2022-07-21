@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-07-2022 a las 01:24:51
+-- Tiempo de generación: 21-07-2022 a las 06:48:03
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -160,7 +160,8 @@ INSERT INTO `bitácora` (`idbitácora`, `idUsuarios`, `fechaInicioSesión`, `hor
 (97, 1, '2022-05-21', '11:05:42', 'Inicia Sesión, Visita menú principal', NULL, NULL),
 (98, 1, '2022-06-22', '22:03:38', 'Inicia Sesión, Visita menú principal', NULL, NULL),
 (99, 14, '2022-07-14', '12:43:05', 'Inicia Sesión, Visita menú principal, Consulta estudiantes, Visita menú principal, Visita perfil, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes', NULL, NULL),
-(100, 14, '2022-07-16', '00:31:56', 'Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal', NULL, NULL);
+(100, 14, '2022-07-16', '00:31:56', 'Inicia Sesión, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal', NULL, NULL),
+(101, 14, '2022-07-19', '22:26:37', 'Inicia Sesión, Visita menú principal, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Visita menú principal,Registra un estudiante, Consulta estudiantes, Consulta estudiantes, Visita menú principal, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Consulta estudiantes, Visita menú principal,Registra un estudiante, Consulta estudiantes, Consulta estudiantes', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +185,9 @@ INSERT INTO `carnet-patria` (`idCarnet`, `Código_Carnet`, `Serial_Carnet`, `Cé
 (18, '8543654868', '3541854354', 'V27555555'),
 (20, '5413584384', '8436685463', 'E45678912'),
 (22, '6541358484', '8435438434', 'V54138415'),
-(24, '6541358484', '8435438434', 'V54138416');
+(24, '6541358484', '8435438434', 'V54138416'),
+(25, '', '', 'V15453234'),
+(27, '', '', 'V27888000');
 
 -- --------------------------------------------------------
 
@@ -205,7 +208,8 @@ CREATE TABLE `contactos_auxiliares` (
 
 INSERT INTO `contactos_auxiliares` (`idContactoAuxiliar`, `Relación`, `Cédula_Persona`, `idRepresentante`) VALUES
 (14, 'Vecino', 'V25555555', 16),
-(18, 'Sobrina', 'V85413548', 17);
+(18, 'Sobrina', 'V85413548', 17),
+(19, 'Vecino', 'V33333333', 19);
 
 -- --------------------------------------------------------
 
@@ -228,7 +232,8 @@ CREATE TABLE `datos-económicos` (
 INSERT INTO `datos-económicos` (`idDatos-económicos`, `Banco`, `Tipo_Cuenta`, `Cta_Bancaria`, `idRepresentantes`) VALUES
 (1, 'Banco Provincial, S.A.', 'Corriente', '1351351351384135', 3),
 (12, 'Banco del Tesoro, C.A.', 'Corriente', '64535435843543846354', 16),
-(13, 'Banco Mercantil, C.A', 'Corriente', '41385418435348843584', 17);
+(13, 'Banco Mercantil, C.A', 'Corriente', '41385418435348843584', 17),
+(15, 'Banco Plaza C.A.', 'Corriente', '00000000000000000000', 19);
 
 -- --------------------------------------------------------
 
@@ -242,19 +247,65 @@ CREATE TABLE `datos-laborales` (
   `Lugar_Trabajo` varchar(45) DEFAULT NULL,
   `Remuneración` varchar(45) DEFAULT NULL,
   `Tipo_Remuneración` varchar(45) DEFAULT NULL,
-  `idRepresentantes` int(11) NOT NULL,
-  `idMadre` int(11) NOT NULL,
-  `idPadre` int(11) NOT NULL
+  `idRepresentantes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `datos-laborales`
 --
 
-INSERT INTO `datos-laborales` (`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`, `idMadre`, `idPadre`) VALUES
-(4, 'Desempleado', '', '', '', 3, 0, 0),
-(15, 'Electrical Engineer', '4 Mesta Hill', '3', 'Diaria', 16, 0, 0),
-(16, 'Desempleado', '', '', '', 17, 0, 0);
+INSERT INTO `datos-laborales` (`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`) VALUES
+(4, 'Desempleado', '', '', '', 3),
+(15, 'Electrical Engineer', '4 Mesta Hill', '3', 'Diaria', 16),
+(16, 'Desempleado', '', '', '', 17),
+(18, 'Chef', 'erffdgdfgdfgfdgdfgdfg', '56', 'Mensual', 19);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos-laborales-madres`
+--
+
+CREATE TABLE `datos-laborales-madres` (
+  `idDatos-laboralesMa` int(11) NOT NULL,
+  `Empleo` varchar(45) NOT NULL,
+  `Lugar_Trabajo` varchar(45) NOT NULL,
+  `Remuneración` varchar(45) NOT NULL,
+  `Tipo_Remuneración` varchar(45) NOT NULL,
+  `idMadre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `datos-laborales-madres`
+--
+
+INSERT INTO `datos-laborales-madres` (`idDatos-laboralesMa`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idMadre`) VALUES
+(1, 'Mesera', 'No se un lugarxd', '99', 'Semanal', 1),
+(7, 'Desempleado', '', '', '', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos-laborales-padres`
+--
+
+CREATE TABLE `datos-laborales-padres` (
+  `idDatos-laboralesPa` int(11) NOT NULL,
+  `Empleo` varchar(45) NOT NULL,
+  `Lugar_Trabajo` varchar(45) NOT NULL,
+  `Remuneración` varchar(45) NOT NULL,
+  `Tipo_Remuneración` varchar(45) NOT NULL,
+  `idPadre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `datos-laborales-padres`
+--
+
+INSERT INTO `datos-laborales-padres` (`idDatos-laboralesPa`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idPadre`) VALUES
+(1, 'Albañil', 'No se un lugar', '7', 'Diaria', 2),
+(2, 'Repartidor', 'Pizza Hut', '8', 'Quincenal', 13),
+(4, 'ttttttttttttttttttttttttttttt', 'nkjnljjljkjjlkdlvjlsdkjv', '54', 'Semanal', 16);
 
 -- --------------------------------------------------------
 
@@ -291,7 +342,8 @@ CREATE TABLE `datos-salud` (
 
 INSERT INTO `datos-salud` (`idDatos-Médicos`, `Estatura`, `Peso`, `Índice`, `Circ_Braquial`, `Lateralidad`, `Tipo_Sangre`, `Vacunado`, `Vacuna`, `Dosis`, `Lote`, `Dieta_Especial`, `Enfermedad`, `Impedimento_Físico`, `Necesidad_educativa`, `Cond_Vista`, `Cond_Dental`, `Institución_Médica`, `Carnet_Discapacidad`, `idEstudiantes`) VALUES
 (20, 175, 40, '5135', 25, 'Diestro', 'A+', 'Si', 'AstraZeneca', 0, 'D12345678901234', '', '', 'Visual, Motora, Auditiva, Escritura, Lectura, Lenguaje, Embarazo, Educativa especial', 'Motriz', 'Buena', 'Buena', '', '', 15),
-(24, 175, 40, '5135', 25, 'Diestro', 'A+', '', '', 0, '', '', '', 'Visual, Motora, Auditiva, Escritura, Lectura, Lenguaje, Embarazo, Educ', '', 'Buena', 'Buena', '', '', 17);
+(24, 175, 40, '5135', 25, 'Diestro', 'A+', '', '', 0, '', '', '', 'Visual, Motora, Auditiva, Escritura, Lectura, Lenguaje, Embarazo, Educ', '', 'Buena', 'Buena', '', '', 17),
+(26, 44, 33, '66', 222, 'Ambidextro', 'A-', 'Si', 'Aztrazeneca', 45, 'D35809348509834', '', '', 'Visual, Motora, Auditiva, Escritura, Lectura, Lenguaje, Embarazo, Educativa especial', 'yyyyyyyyyyyyyyy', 'Regular', 'Regular', '', '', 19);
 
 -- --------------------------------------------------------
 
@@ -313,7 +365,8 @@ CREATE TABLE `datos-sociales` (
 
 INSERT INTO `datos-sociales` (`idDatos-Sociales`, `Posee_Canaima`, `Condición_Canaima`, `Acceso_Internet`, `idEstudiantes`) VALUES
 (17, 'Si', 'Buenas Condiciones', 'Si', 15),
-(19, 'No', 'Malas Condiciones', 'Si', 17);
+(19, 'No', 'Malas Condiciones', 'Si', 17),
+(21, 'Si', 'Muy malas Condiciones', 'No', 19);
 
 -- --------------------------------------------------------
 
@@ -335,7 +388,8 @@ CREATE TABLE `datos-tallas` (
 
 INSERT INTO `datos-tallas` (`idDatos-Tallas`, `Talla_Camisa`, `Talla_Pantalón`, `Talla_Zapatos`, `idEstudiantes`) VALUES
 (13, 'M', '30', '37', 15),
-(16, 'M', '30', '37', 17);
+(16, 'M', '30', '37', 17),
+(18, '65', '44', '23', 19);
 
 -- --------------------------------------------------------
 
@@ -348,19 +402,63 @@ CREATE TABLE `datos-vivienda` (
   `Condiciones_Vivienda` varchar(25) NOT NULL,
   `Tipo_Vivienda` varchar(25) NOT NULL,
   `Tenencia_Vivienda` varchar(25) NOT NULL,
-  `idRepresentante` int(11) NOT NULL,
-  `idMadre` int(11) NOT NULL,
-  `idPadre` int(11) NOT NULL
+  `idRepresentante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `datos-vivienda`
 --
 
-INSERT INTO `datos-vivienda` (`idDatos-vivienda`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idRepresentante`, `idMadre`, `idPadre`) VALUES
-(1, 'Buena', 'Casa', 'Propia', 3, 0, 0),
-(10, 'Regular', 'Rancho', 'Alquilada', 16, 0, 0),
-(11, 'Regular', 'Casa', 'Propia', 17, 0, 0);
+INSERT INTO `datos-vivienda` (`idDatos-vivienda`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idRepresentante`) VALUES
+(1, 'Buena', 'Casa', 'Propia', 3),
+(10, 'Regular', 'Rancho', 'Alquilada', 16),
+(11, 'Regular', 'Casa', 'Propia', 17),
+(12, 'Regular', 'Apartamento', '', 19);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos-vivienda-madres`
+--
+
+CREATE TABLE `datos-vivienda-madres` (
+  `idDatos-viviendaMa` int(11) NOT NULL,
+  `Condiciones_Vivienda` varchar(25) NOT NULL,
+  `Tipo_Vivienda` varchar(25) NOT NULL,
+  `Tenencia_Vivienda` varchar(25) NOT NULL,
+  `idMadre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `datos-vivienda-madres`
+--
+
+INSERT INTO `datos-vivienda-madres` (`idDatos-viviendaMa`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idMadre`) VALUES
+(1, 'Buena', 'Apartamento', 'Propia', 1),
+(2, 'Regular', 'Rancho', 'Otro', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos-vivienda-padres`
+--
+
+CREATE TABLE `datos-vivienda-padres` (
+  `idDatos-viviendaPa` int(11) NOT NULL,
+  `Condiciones_Vivienda` varchar(25) NOT NULL,
+  `Tipo_Vivienda` varchar(25) NOT NULL,
+  `Tenencia_Vivienda` varchar(25) NOT NULL,
+  `idPadre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `datos-vivienda-padres`
+--
+
+INSERT INTO `datos-vivienda-padres` (`idDatos-viviendaPa`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idPadre`) VALUES
+(1, 'Buena', 'Casa', 'Alquilada', 2),
+(2, 'Mala', 'Apartamento', 'Alquilada', 13),
+(4, 'Buena', 'Apartamento', 'Prestada', 16);
 
 -- --------------------------------------------------------
 
@@ -385,7 +483,8 @@ CREATE TABLE `estudiantes` (
 
 INSERT INTO `estudiantes` (`idEstudiantes`, `Plantel_Procedencia`, `Con_Quién_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`, `idPadre`, `idMadre`) VALUES
 (15, 'Eastern Connecticut State University', 'Padre', 'V54138415', 17, 'Abuela', 13, 1),
-(17, 'Eastern Connecticut State University', 'Padre', 'V54138416', 17, 'Abuela', 13, 1);
+(17, 'Eastern Connecticut State University', 'Padre', 'V54138416', 17, 'Abuela', 13, 1),
+(19, 'dkjhvlkzsjhjvhxkjldvhv', 'yyyyyyyy', 'V27888000', 19, 'Tía', 16, 3);
 
 -- --------------------------------------------------------
 
@@ -410,7 +509,8 @@ CREATE TABLE `estudiantes-observaciones` (
 
 INSERT INTO `estudiantes-observaciones` (`idObservaciones`, `Social`, `Físico`, `Personal`, `Familiar`, `Académico`, `Otra`, `idEstudiantes`) VALUES
 (7, 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 'jdkhfjkjzlxkcnjkzkkjnckldjkfjslnjksndjflbsjdbfjkdskjbjfbjsdjkfadbsjkfbjksbhdfkbabsjdfhabshdfhbhkasbhdfbksfbhbshkjdbfkadsbhfbhasbdhfbjsakbhdfbkjasbjdfk', 15),
-(9, 'No socializa mucho', '', '', '', 'Adelantó un año', 'Deficit de atención', 17);
+(9, 'No socializa mucho', '', '', '', 'Adelantó un año', 'Deficit de atención', 17),
+(11, '', '', '', '', '', '', 19);
 
 -- --------------------------------------------------------
 
@@ -435,7 +535,8 @@ INSERT INTO `estudiantes-repitentes` (`idEstudiante-Repitente`, `Materias_Pendie
 (15, 'Inglés y Matematica', 'Segundo año', 'Inglés y Matematica', 17),
 (16, '', '', '', 17),
 (17, '', '', '', 17),
-(18, '', '', '', 17);
+(18, '', '', '', 17),
+(20, '', '', '', 19);
 
 -- --------------------------------------------------------
 
@@ -456,7 +557,8 @@ CREATE TABLE `grado` (
 
 INSERT INTO `grado` (`idGrado`, `Grado_A_Cursar`, `idEstudiantes`, `idAño-Escolar`) VALUES
 (13, 'Cuarto año', 15, 12),
-(15, 'Quinto año', 17, 12);
+(15, 'Quinto año', 17, 12),
+(17, 'Tercer año', 19, 12);
 
 -- --------------------------------------------------------
 
@@ -472,6 +574,13 @@ CREATE TABLE `inscripciones` (
   `idEstudiante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `inscripciones`
+--
+
+INSERT INTO `inscripciones` (`idInscripciones`, `Fecha_Inscripción`, `Hora_Inscripción`, `idUsuario`, `idEstudiante`) VALUES
+(2, '2022-07-20', '11:13:26pm', 14, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -481,6 +590,7 @@ CREATE TABLE `inscripciones` (
 CREATE TABLE `madre` (
   `idMadre` int(11) NOT NULL,
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
+  `Grado_Académico` varchar(15) COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -488,8 +598,9 @@ CREATE TABLE `madre` (
 -- Volcado de datos para la tabla `madre`
 --
 
-INSERT INTO `madre` (`idMadre`, `País_Residencia`, `Cédula_Persona`) VALUES
-(1, 'Venezuela', 'V13456324');
+INSERT INTO `madre` (`idMadre`, `País_Residencia`, `Grado_Académico`, `Cédula_Persona`) VALUES
+(1, 'Venezuela', '', 'V13456324'),
+(3, 'Grecia', '', 'V43434343');
 
 -- --------------------------------------------------------
 
@@ -500,6 +611,7 @@ INSERT INTO `madre` (`idMadre`, `País_Residencia`, `Cédula_Persona`) VALUES
 CREATE TABLE `padre` (
   `idPadre` int(11) NOT NULL,
   `País_Residencia` varchar(25) COLLATE utf8_bin NOT NULL,
+  `Grado_Académico` varchar(15) COLLATE utf8_bin NOT NULL,
   `Cédula_Persona` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -507,11 +619,12 @@ CREATE TABLE `padre` (
 -- Volcado de datos para la tabla `padre`
 --
 
-INSERT INTO `padre` (`idPadre`, `País_Residencia`, `Cédula_Persona`) VALUES
-(2, 'España', 'V27919566'),
-(9, 'Venezuela', 'Cédula_P'),
-(13, 'Venezuela', 'V87354354'),
-(14, 'Venezuela', 'V65434684');
+INSERT INTO `padre` (`idPadre`, `País_Residencia`, `Grado_Académico`, `Cédula_Persona`) VALUES
+(2, 'España', '', 'V27919566'),
+(9, 'Venezuela', '', 'Cédula_P'),
+(13, 'Venezuela', '', 'V87354354'),
+(14, 'Venezuela', '', 'V65434684'),
+(16, 'Venezuela', 'Primaria', 'V65656565');
 
 -- --------------------------------------------------------
 
@@ -553,7 +666,12 @@ INSERT INTO `personas` (`idPersonas`, `Primer_Nombre`, `Segundo_Nombre`, `Primer
 (71, 'Codi', 'Fonsie', 'Scallon', 'Widocks', 'V54138415', '2007-12-01', '83657 Corscot Way', 'M', 'cscallona@slashdot.org', '15213 Elmside Point\r\n', 'Soltero(a)'),
 (72, 'Dex', 'Leicester', 'Vinker', 'Lawler', 'V65434684', '1987-02-01', '86341 Vernon Junction', 'M', 'llawlerm@webnode.com', '86341 Vernon Junction', 'Casado(a)'),
 (74, 'Codiman', 'Fonsie', 'Scallon', 'Widocks', 'V54138416', '2007-12-01', '83657 Corscot Way', 'M', 'cscallona@slashdot.org', '15213 Elmside Point\r\n', 'Soltero(a)'),
-(75, 'Remolia', 'Veneviento', 'Panini', 'Blight', 'V13456324', '1982-02-23', 'San Petersburgo', 'F', 'therollercoasterssucks@gmail.com', 'San Juan de Lagunillas', 'Viudo(a)');
+(75, 'Remolia', 'Veneviento', 'Panini', 'Blight', 'V13456324', '1982-02-23', 'San Petersburgo', 'F', 'therollercoasterssucks@gmail.com', 'San Juan de Lagunillas', 'Viudo(a)'),
+(76, 'Filomena', 'Martina', 'Blanco', 'Paredes', 'V15453234', '1996-08-08', 'Mérida', 'F', 'richardismylove@gmail.com', 'dkjflkjksdjfsjldfjkldjfjlksdf', 'Soltero(a)'),
+(77, 'Juan', 'Roberto', 'Paredes', 'Blanco', 'V33333333', '1996-08-08', 'Mérida', 'M', 'popopopopoop@gmail.com', 'fnkjsdnlfnjsdnkfnksnkjfkn', 'Soltero(a)'),
+(81, 'grfghfdh', 'fdghfdhdf', 'rssgfgdfg', 'dfhfdhdfh', 'V43434343', '1979-11-11', 'dsfoshdfhsfgksghdfsjd', 'F', 'gdghjgdhfghdfghidfg@yahoo.com', 'dfsdgsdfgdsgdsg', 'Casado(a)'),
+(82, 'uuuuuuuuu', 'oooooooooo', 'yyyyyyyyyyy', 'eeeeeeeee', 'V65656565', '1978-02-22', 'rtrtyfghfhfh', 'F', 'fghfdhghdfghdfh@yahoo.com', 'fdgsfgsdfgdsgdgds', 'Casado(a)'),
+(83, 'rrrrrrrrrrrrr', 'ttttttttttttttt', 'eeeeeeeeeeeeee', 'tttttttttttt', 'V27888000', '2007-02-21', 'yyyyyyy', 'F', 'tttttttt@hotmail.com', 'zxnjkvbjzxjvn,jzxmcv', 'Soltero(a)');
 
 -- --------------------------------------------------------
 
@@ -575,7 +693,8 @@ INSERT INTO `representantes` (`idRepresentantes`, `Grado_Académico`, `Cédula_P
 (3, 'Bachillerato', 'V27919566'),
 (16, 'Primaria', 'V27555555'),
 (17, 'Bachillerato', 'E45678912'),
-(18, 'Universitario', 'V13456324');
+(18, 'Universitario', 'V13456324'),
+(19, 'Universitario', 'V15453234');
 
 -- --------------------------------------------------------
 
@@ -632,7 +751,25 @@ INSERT INTO `teléfonos` (`idTeléfonos`, `Prefijo`, `Número_Telefónico`, `Rel
 (181, '4354', '3854854', 'Secundario', 'V54138416'),
 (182, '4354', '3854854', 'Principal', 'V54138416'),
 (183, '0274', '7654321', 'Principal', 'V13456324'),
-(184, '0426', '1234567', 'Secundario', 'V13456324');
+(184, '0426', '1234567', 'Secundario', 'V13456324'),
+(185, '4532', '3434346', 'Auxiliar', 'V87354354'),
+(186, '0426', '9999995', 'Trabajo', 'V87354354'),
+(187, '0274', '5553334', 'Auxiliar', 'V13456324'),
+(188, '0416', '6655443', 'Trabajo', 'V13456324'),
+(189, '0275', '3333333', 'Principal', 'V15453234'),
+(190, '0274', '2222222', 'Secundario', 'V15453234'),
+(191, '0426', '1111111', 'Auxiliar', 'V15453234'),
+(192, '0275', '2222222', 'Trabajo', 'V15453234'),
+(193, '0271', '4444444', 'Principal', 'V33333333'),
+(194, '0412', '2222222', 'Secundario', 'V33333333'),
+(195, '0414', '1111111', 'Auxiliar', 'V33333333'),
+(201, '0271', '5454645', 'Principal', 'V43434343'),
+(202, '0412', '5464565', 'Secundario', 'V43434343'),
+(203, '0426', '7777777', 'Principal', 'V65656565'),
+(204, '0416', '4444444', 'Secundario', 'V65656565'),
+(205, '0426', '6666666', 'Principal', 'V27888000'),
+(206, '0426', '3333333', 'Secundario', 'V27888000'),
+(207, '0426', '3333333', 'Auxiliar', 'V27888000');
 
 -- --------------------------------------------------------
 
@@ -705,8 +842,21 @@ ALTER TABLE `datos-económicos`
 -- Indices de la tabla `datos-laborales`
 --
 ALTER TABLE `datos-laborales`
-  ADD PRIMARY KEY (`idDatos-laborales`,`idRepresentantes`),
-  ADD KEY `fk_datos-laborales_representantes1_idx` (`idRepresentantes`);
+  ADD PRIMARY KEY (`idDatos-laborales`,`idRepresentantes`);
+
+--
+-- Indices de la tabla `datos-laborales-madres`
+--
+ALTER TABLE `datos-laborales-madres`
+  ADD PRIMARY KEY (`idDatos-laboralesMa`),
+  ADD KEY `idPadre` (`idMadre`);
+
+--
+-- Indices de la tabla `datos-laborales-padres`
+--
+ALTER TABLE `datos-laborales-padres`
+  ADD PRIMARY KEY (`idDatos-laboralesPa`),
+  ADD KEY `idPadre` (`idPadre`);
 
 --
 -- Indices de la tabla `datos-salud`
@@ -739,6 +889,23 @@ ALTER TABLE `datos-vivienda`
   ADD PRIMARY KEY (`idDatos-vivienda`),
   ADD UNIQUE KEY `idRepresentante` (`idRepresentante`),
   ADD KEY `fk_representantes_vivienda` (`idRepresentante`);
+
+--
+-- Indices de la tabla `datos-vivienda-madres`
+--
+ALTER TABLE `datos-vivienda-madres`
+  ADD PRIMARY KEY (`idDatos-viviendaMa`),
+  ADD UNIQUE KEY `idRepresentante` (`idMadre`),
+  ADD KEY `fk_representantes_vivienda` (`idMadre`);
+
+--
+-- Indices de la tabla `datos-vivienda-padres`
+--
+ALTER TABLE `datos-vivienda-padres`
+  ADD PRIMARY KEY (`idDatos-viviendaPa`),
+  ADD UNIQUE KEY `idRepresentante` (`idPadre`),
+  ADD KEY `fk_representantes_vivienda` (`idPadre`),
+  ADD KEY `idPadre` (`idPadre`);
 
 --
 -- Indices de la tabla `estudiantes`
@@ -839,115 +1006,139 @@ ALTER TABLE `año-escolar`
 -- AUTO_INCREMENT de la tabla `bitácora`
 --
 ALTER TABLE `bitácora`
-  MODIFY `idbitácora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `idbitácora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `carnet-patria`
 --
 ALTER TABLE `carnet-patria`
-  MODIFY `idCarnet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idCarnet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `contactos_auxiliares`
 --
 ALTER TABLE `contactos_auxiliares`
-  MODIFY `idContactoAuxiliar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idContactoAuxiliar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-económicos`
 --
 ALTER TABLE `datos-económicos`
-  MODIFY `idDatos-económicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idDatos-económicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-laborales`
 --
 ALTER TABLE `datos-laborales`
-  MODIFY `idDatos-laborales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idDatos-laborales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `datos-laborales-madres`
+--
+ALTER TABLE `datos-laborales-madres`
+  MODIFY `idDatos-laboralesMa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `datos-laborales-padres`
+--
+ALTER TABLE `datos-laborales-padres`
+  MODIFY `idDatos-laboralesPa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-salud`
 --
 ALTER TABLE `datos-salud`
-  MODIFY `idDatos-Médicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idDatos-Médicos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-sociales`
 --
 ALTER TABLE `datos-sociales`
-  MODIFY `idDatos-Sociales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idDatos-Sociales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-tallas`
 --
 ALTER TABLE `datos-tallas`
-  MODIFY `idDatos-Tallas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idDatos-Tallas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `datos-vivienda`
 --
 ALTER TABLE `datos-vivienda`
-  MODIFY `idDatos-vivienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idDatos-vivienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `datos-vivienda-madres`
+--
+ALTER TABLE `datos-vivienda-madres`
+  MODIFY `idDatos-viviendaMa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `datos-vivienda-padres`
+--
+ALTER TABLE `datos-vivienda-padres`
+  MODIFY `idDatos-viviendaPa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `idEstudiantes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idEstudiantes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes-observaciones`
 --
 ALTER TABLE `estudiantes-observaciones`
-  MODIFY `idObservaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idObservaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes-repitentes`
 --
 ALTER TABLE `estudiantes-repitentes`
-  MODIFY `idEstudiante-Repitente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idEstudiante-Repitente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `idGrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idGrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  MODIFY `idInscripciones` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInscripciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `madre`
 --
 ALTER TABLE `madre`
-  MODIFY `idMadre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMadre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `padre`
 --
 ALTER TABLE `padre`
-  MODIFY `idPadre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idPadre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idPersonas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `idPersonas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `representantes`
 --
 ALTER TABLE `representantes`
-  MODIFY `idRepresentantes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idRepresentantes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `teléfonos`
 --
 ALTER TABLE `teléfonos`
-  MODIFY `idTeléfonos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `idTeléfonos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -985,6 +1176,18 @@ ALTER TABLE `datos-laborales`
   ADD CONSTRAINT `fk_datos-laborales_representantes1` FOREIGN KEY (`idRepresentantes`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `datos-laborales-madres`
+--
+ALTER TABLE `datos-laborales-madres`
+  ADD CONSTRAINT `datos-laborales-madres_ibfk_1` FOREIGN KEY (`idMadre`) REFERENCES `madre` (`idMadre`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `datos-laborales-padres`
+--
+ALTER TABLE `datos-laborales-padres`
+  ADD CONSTRAINT `datos-laborales-padres_ibfk_1` FOREIGN KEY (`idPadre`) REFERENCES `padre` (`idPadre`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `datos-salud`
 --
 ALTER TABLE `datos-salud`
@@ -1007,6 +1210,18 @@ ALTER TABLE `datos-tallas`
 --
 ALTER TABLE `datos-vivienda`
   ADD CONSTRAINT `fk_representantes_vivienda` FOREIGN KEY (`idRepresentante`) REFERENCES `representantes` (`idRepresentantes`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datos-vivienda-madres`
+--
+ALTER TABLE `datos-vivienda-madres`
+  ADD CONSTRAINT `datos-vivienda-madres_ibfk_1` FOREIGN KEY (`idMadre`) REFERENCES `madre` (`idMadre`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datos-vivienda-padres`
+--
+ALTER TABLE `datos-vivienda-padres`
+  ADD CONSTRAINT `datos-vivienda-padres_ibfk_1` FOREIGN KEY (`idPadre`) REFERENCES `padre` (`idPadre`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `estudiantes`
@@ -1047,7 +1262,7 @@ ALTER TABLE `inscripciones`
 -- Filtros para la tabla `madre`
 --
 ALTER TABLE `madre`
-  ADD CONSTRAINT `madre_ibfk_1` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `madre_ibfk_1` FOREIGN KEY (`Cédula_Persona`) REFERENCES `personas` (`Cédula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `padre`
