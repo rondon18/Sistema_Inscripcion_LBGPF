@@ -17,6 +17,8 @@ require('../../clases/representantes.php');
 require('../../clases/carnet-patria.php');
 require('../../clases/económicos-representantes.php');
 require('../../clases/laborales.php');
+require('../../clases/laborales-madres.php');
+require('../../clases/laborales-padres.php');
 require('../../clases/Padre.php');
 require('../../clases/madre.php');
 require('../../clases/ficha-médica.php');
@@ -25,6 +27,8 @@ require('../../clases/tallas-Estudiantes.php');
 require('../../clases/observaciones-estudiantes.php');
 require('../../clases/grado.php');
 require('../../clases/vivienda.php');
+require('../../clases/vivienda-madres.php');
+require('../../clases/vivienda-padres.php');
 require('../../clases/contactos-auxiliares.php');
 require('../../clases/año-escolar.php');
 require('../../clases/Estudiantes-repitentes.php');
@@ -42,6 +46,8 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
+$Laborales_Pa = new DatosLaboralesPadres();
+$Laborales_Ma = new DatosLaboralesMadres();
 $Padre = new Padre();
 $Madre = new Madre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
@@ -55,10 +61,15 @@ $Datos_Tallas = new TallasEstudiante();
 $Observaciones = new Observaciones();
 
 $Datos_vivienda = new DatosVivienda();
+$Datos_vivienda_Ma = new DatosViviendaMa();
+$Datos_vivienda_Pa = new DatosViviendaPa();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
 #Hacer algo parecido para llamar numeros de representantes y Padre
 $Estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
+$padre = $Padre->consultarPadre($_POST['id_padre']);
+$madre = $Madre->consultarMadre($_POST['id_madre']);
+
 $carnetpatria_Est = $CarnetPatria->consultarCarnetPatria($_POST['Cédula_Estudiante']);
 
 $Estudiantes_repitente = $Estudiantes_repitente->consultarEstudiantesRepitentes($_POST['id_Estudiante']);
@@ -74,7 +85,9 @@ $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']
 $datos_observaciones = $Observaciones->consultarObservaciones($_POST['id_Estudiante']);
 
 
-$datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
+$datos_vivienda = $Datos_vivienda->consultarDatosvivienda_R($_POST['id_representante']);
+$datos_vivienda_ma = $Datos_vivienda_Ma->consultarDatosvivienda_Ma($_POST['id_madre']);
+$datos_vivienda_pa = $Datos_vivienda_Pa->consultarDatosvivienda_Pa($_POST['id_padre']);
 
 $datos_representante = $Representante->consultarRepresentanteID($_POST['id_representante']);
 
@@ -85,9 +98,9 @@ $telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Person
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
+$datos_laborales_ma = $Laborales_Ma->consultarDatosLaborales_Ma($_POST['id_madre']);
+$datos_laborales_pa = $Laborales_Pa->consultarDatosLaborales_Pa($_POST['id_padre']);
 
-$padre = $Padre->consultarPadre($_POST['id_padre']);
-$madre = $Madre->consultarMadre($_POST['id_madre']);
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
 $hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
 $hijos_ma = $Madre->consultarHijos($_POST['id_madre']);
@@ -114,6 +127,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 	}
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,7 +150,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 	</header>
 	<form id="FormularioEstudiante" class="card" action="../../controladores/control-registros.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;">
 			<div class="card-header py-3">
-				<h3>Formulario de registro.</h3>
+				<h3>Formulario de registro estudiante y padres.</h3>
 			</div>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -705,11 +719,116 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option value="Si" <?php if($padre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if($padre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="¿Donde?" value="<?php if($padre['País_Residencia'] != "Venezuela"){echo $padre['País_Residencia'];} ?>"
+								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($padre['País_Residencia'] != "Venezuela"){echo $padre['País_Residencia'];} ?>"
 
 							</div>
 						</div>
 					</div>
+
+							<h5>Datos de vivienda.</h5>
+
+							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Buena </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Buena" required <?php if($datos_vivienda_pa['Condiciones_Vivienda'] == "Buena"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Regular </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Regular" required <?php if($datos_vivienda_pa['Condiciones_Vivienda'] == "Regular"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Mala </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Mala" required <?php if($datos_vivienda_pa['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
+								</div>
+							</div>
+							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Casa </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Casa" required <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Casa"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Apartamento </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Apartamento" required <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Apartamento"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Rancho </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Rancho" required <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Rancho"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Quinta </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Quinta" required <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Quinta"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Habitación </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Habitación" required <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Habitación"){echo "checked";} ?>>
+								</div>
+							</div>
+							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-3" required>
+								<select class="form-select" name="Tenencia_vivienda_Pa">
+									<option selected disabled value="">Seleccione una opción</option>
+									<option <?php if($datos_vivienda_pa['Tenencia_Vivienda'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
+									<option <?php if($datos_vivienda_pa['Tenencia_Vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									<option <?php if($datos_vivienda_pa['Tenencia_Vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
+									<option <?php if($datos_vivienda_pa['Tenencia_Vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+								</select>
+								<input class="form-control" type="text" name="Tenencia_vivienda_Pa_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda_pa['Tenencia_Vivienda'] != "Propia" and $datos_vivienda_pa['Tenencia_Vivienda'] != "Alquilada" and $datos_vivienda_pa['Tenencia_Vivienda'] != "Prestada" and $datos_vivienda_pa['Tenencia_Vivienda'] != "Otro"){echo "selected";} ?>>
+							</div>
+						</div>
+						<h5>Datos laborales.</h5>
+						<!--Trabaja el padre-->
+						<div>
+							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Si </label>
+									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="Si" required <?php if($datos_laborales_pa['Empleo'] != "Desempleado"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">No </label>
+									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="No" required <?php if($datos_laborales_pa['Empleo'] == "Desempleado"){echo "checked";} ?>>
+								</div>
+							</div>
+						</div>
+						<!--Cargo que ocupa el padre-->
+						<div>
+							<label class="form-label">Cargo que ocupa:</label>
+							<input class="form-control mb-2" type="text" name="Empleo_Pa" id="Empleo_Pa" maxlength="60" minlength="3" value="<?php echo $datos_laborales_pa['Empleo']; ?>">
+						</div>
+						<!--Teléfono del trabajo del padre-->
+						<div>
+							<label class="form-label">Teléfono del trabajo:</label>
+							<!--Teléfono principal-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Pa" id="Prefijo_Trabajo_Pa" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[3]['Prefijo'];} ?>">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Pa" id="Teléfono_Trabajo_Pa" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[3]['Número_Telefónico'];} ?>">
+							</div>
+						</div>
+						<!--Lugar en el que trabaja el padre-->
+						<div>
+							<label class="form-label">Lugar del trabajo:</label>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="55" minlength="3"><?php echo $datos_laborales_pa['Lugar_Trabajo'] ?></textarea>
+						</div>
+						<!--Remuneración del trabajo del padre-->
+						<div>
+							<label class="form-label">Remuneración:</label>
+							<div class="input-group mb-2">
+								<!--Remuneración en base a sueldos minimos del padre-->
+								<input class="form-control text-end" type="number" name="Remuneración_Pa" id="Remuneración_Pa" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo $datos_laborales_pa['Remuneración'] ?>">
+								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
+								<!--Tipo de Remuneración del padre-->
+								<select class="form-select" name="Tipo_Remuneración_Pa">
+									<option <?php if($datos_laborales_pa['Tipo_Remuneración'] == "Diaria"){echo "selected";} ?> value="Diaria">Remuneración diaria</option>
+									<option <?php if($datos_laborales_pa['Tipo_Remuneración'] == "Semanal"){echo "selected";} ?> value="Semanal">Remuneración semanal</option>
+									<option <?php if($datos_laborales_pa['Tipo_Remuneración'] == "Quincenal"){echo "selected";} ?> value="Quincenal">Remuneración quincenal</option>
+									<option <?php if($datos_laborales_pa['Tipo_Remuneración'] == "Mensual"){echo "selected";} ?> value="Mensual">Remuneración mensual</option>
+								</select>
+							</div>
+						</div>
 				</section>
 				<section id="seccion6" style="display:none;">
 					<!--Datos de la madre-->
@@ -717,7 +836,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 					<div>
 						<div>
-							<!--Nombres del familiar-->
+							<!--Nombres de la madre-->
 							<div>
 								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -727,7 +846,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							</div>
 
-							<!--Apellidos del familiar-->
+							<!--Apellidos de la madre-->
 							<div>
 								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -735,7 +854,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Madre" placeholder="Segundo apellido" value="<?php echo $madre['Segundo_Apellido'] ?>">
 								</div>
 							</div>
-							<!--Cédula del familiar-->
+							<!--Cédula de la madre-->
 							<div>
 								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group mb-2">
@@ -752,19 +871,19 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Ma; ?>" required>
 								</div>
 							</div>
-							<!--Fecha de nacimiento del familiar-->
+							<!--Fecha de nacimiento de la madre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Madre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $madre['Fecha_Nacimiento'] ?>">
 							</div>
 
-							<!--Lugar de nacimiento del familiar-->
+							<!--Lugar de nacimiento de la madre-->
 							<div>
 								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Madre" required value="<?php echo $madre['Lugar_Nacimiento'] ?>">
 							</div>
 
-							<!--Correo electrónico del familiar-->
+							<!--Correo electrónico de la madre-->
 							<div>
 								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="email" name="Correo_electrónico_Madre" required  value="<?php echo $madre['Correo_Electrónico'] ?>">
@@ -800,7 +919,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 						</div>
 
-						<!--Estado civil del familiar-->
+						<!--Estado civil de la madre-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select" name="Estado_Civil_Madre" required>
@@ -812,13 +931,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</select>
 						</div>
 
-						<!--Dirección de residencia del Familiar-->
+						<!--Dirección de residencia de la madre-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2"name="Dirección_Madre"><?php echo $madre['Dirección']; ?></textarea>
 						</div>
 
-						<!--Se encuentra el familiar en el país-->
+						<!--Se encuentra la madre en el país-->
 						<div>
 							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
@@ -827,11 +946,117 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option value="Si" <?php if($madre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if($madre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="¿Donde?" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>"
+								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>"
 
 							</div>
 						</div>
 					</div>
+
+							<h5>Datos de vivienda.</h5>
+
+							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Buena </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Buena" required <?php if($datos_vivienda_ma['Condiciones_Vivienda'] == "Buena"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Regular </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Regular" required <?php if($datos_vivienda_ma['Condiciones_Vivienda'] == "Regular"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Mala </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Mala" required <?php if($datos_vivienda_ma['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
+								</div>
+							</div>
+							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Casa </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Casa" required <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Casa"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Apartamento </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Apartamento" required <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Apartamento"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Rancho </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Rancho" required <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Rancho"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Quinta </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Quinta" required <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Quinta"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Habitación </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Habitación" required <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Habitación"){echo "checked";} ?>>
+								</div>
+							</div>
+							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-3" required>
+								<select class="form-select" name="Tenencia_vivienda_Ma">
+									<option selected disabled value="">Seleccione una opción</option>
+									<option <?php if($datos_vivienda_ma['Tenencia_Vivienda'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
+									<option <?php if($datos_vivienda_ma['Tenencia_Vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									<option <?php if($datos_vivienda_ma['Tenencia_Vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
+									<option <?php if($datos_vivienda_ma['Tenencia_Vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+								</select>
+								<input class="form-control" type="text" name="Tenencia_vivienda_Ma_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda_ma['Tenencia_Vivienda'] != "Propia" and $datos_vivienda_ma['Tenencia_Vivienda'] != "Alquilada" and $datos_vivienda_ma['Tenencia_Vivienda'] != "Prestada" and $datos_vivienda_ma['Tenencia_Vivienda'] != "Otro"){echo "selected";} ?>>
+							</div>
+						</div>
+
+						<h5>Datos laborales.</h5>
+						<!--Trabaja la madre-->
+						<div>
+							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Si </label>
+									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="Si" required <?php if($datos_laborales_ma['Empleo'] != "Desempleado"){echo "checked";} ?>>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">No </label>
+									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="No" required <?php if($datos_laborales_ma['Empleo'] == "Desempleado"){echo "checked";} ?>>
+								</div>
+							</div>
+						</div>
+						<!--Cargo que ocupa la madre-->
+						<div>
+							<label class="form-label">Cargo que ocupa:</label>
+							<input class="form-control mb-2" type="text" name="Empleo_Ma" id="Empleo_Ma" maxlength="60" minlength="3" value="<?php echo $datos_laborales_ma['Empleo']; ?>">
+						</div>
+						<!--Teléfono del trabajo de la madre-->
+						<div>
+							<label class="form-label">Teléfono del trabajo:</label>
+							<!--Teléfono principal-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Ma" id="Prefijo_Trabajo_Ma" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[3]['Prefijo'];} ?>">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Ma" id="Teléfono_Trabajo_Ma" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[3]['Número_Telefónico'];} ?>">
+							</div>
+						</div>
+						<!--Lugar en el que trabaja la madre-->
+						<div>
+							<label class="form-label">Lugar del trabajo:</label>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="55" minlength="3"><?php echo $datos_laborales_ma['Lugar_Trabajo'] ?></textarea>
+						</div>
+						<!--Remuneración del trabajo de la madre-->
+						<div>
+							<label class="form-label">Remuneración:</label>
+							<div class="input-group mb-2">
+								<!--Remuneración en base a sueldos minimos de la madre-->
+								<input class="form-control text-end" type="number" name="Remuneración_Ma" id="Remuneración_Ma" placeholder="Ingrese un numero..." min="0" step="1" value="<?php echo $datos_laborales_ma['Remuneración'] ?>">
+								<span class="input-group-text mb-2-text">Salarios mínimos</span required>
+								<!--Tipo de Remuneración de la madre-->
+								<select class="form-select" name="Tipo_Remuneración_Ma">
+									<option <?php if($datos_laborales_ma['Tipo_Remuneración'] == "Diaria"){echo "selected";} ?> value="Diaria">Remuneración diaria</option>
+									<option <?php if($datos_laborales_ma['Tipo_Remuneración'] == "Semanal"){echo "selected";} ?> value="Semanal">Remuneración semanal</option>
+									<option <?php if($datos_laborales_ma['Tipo_Remuneración'] == "Quincenal"){echo "selected";} ?> value="Quincenal">Remuneración quincenal</option>
+									<option <?php if($datos_laborales_ma['Tipo_Remuneración'] == "Mensual"){echo "selected";} ?> value="Mensual">Remuneración mensual</option>
+								</select>
+							</div>
+						</div>
 				</section>
 
 			</div>
@@ -860,8 +1085,8 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
 			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
 			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">
-			<input type="hidden" name="Tipo_Vivienda_R" value="<?php echo $_POST['Tipo_Vivienda_R']?>">
-			<input type="hidden" name="Tenencia_vivienda_R" value="<?php echo $_POST['Tenencia_vivienda_R']?>">
+			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
+			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
 			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro']?>">
 			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
 			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">
@@ -872,7 +1097,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
 			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
 			<input type="hidden" name="Remuneración_R" value="<?php echo $_POST['Remuneración_R']?>">
-			<input type="hidden" name="Tipo_Remuneración_R" value="<?php echo $_POST['Tipo_Remuneración_R']?>">
+			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración']?>">
 			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
 			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
 			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
@@ -894,6 +1119,8 @@ function condiciones($condicion_b,$datos_Médicos) {
 				<input type="hidden" name="orden" value="Editar">
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
+
+ <!-- 			<php print_r($datos_vivienda);?> -->
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">

@@ -9,7 +9,6 @@ class Estudiantes {
 	private $Relación_Representante;
 	private $idPadre;
 	private $idMadre;
-	private $Relación_Padre;
 
 	public function __construct() {}
 
@@ -23,7 +22,6 @@ class Estudiantes {
 		$Relación_Representante = $this->getRelación_Representante();
 		$idPadre = $this->getidPadre();
 		$idMadre = $this->getidMadre();
-		$Relación_Padre = $this->getRelación_Padre();
 
 		$sql = "SELECT * FROM `estudiantes` WHERE `Cédula_Persona` = '$Cédula_Estudiante'";
 
@@ -32,7 +30,7 @@ class Estudiantes {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quién_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`idMadre`,`Relación_Padre`) VALUES (
+			$sql = "INSERT INTO `estudiantes`(`idEstudiantes`, `Plantel_Procedencia`, `Con_Quién_Vive`, `Cédula_Persona`, `idRepresentante`, `Relación_Representante`,`idPadre`,`idMadre`) VALUES (
 				NULL,
 				'$Plantel_Procedencia',
 				'$Con_Quién_Vive',
@@ -40,8 +38,7 @@ class Estudiantes {
 				'$idRepresentante',
 				'$Relación_Representante',
 				'$idPadre',
-				'$idMadre',
-				'$Relación_Padre'
+				'$idMadre'
 			)";
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidEstudiantes($conexion->insert_id);
@@ -61,7 +58,6 @@ class Estudiantes {
 		$Relación_Representante = $this->getRelación_Representante();
 		$idPadre = $this->getidPadre();
 		$idMadre = $this->getidMadre();
-		$Relación_Padre = $this->getRelación_Padre();
 		
 		$sql = "UPDATE `estudiantes` SET
 		 `Plantel_Procedencia`='$Plantel_Procedencia',
@@ -69,8 +65,7 @@ class Estudiantes {
 		 `idRepresentante`='$idRepresentante',
 		 `Relación_Representante`='$Relación_Representante',
 		 `idPadre`='$idPadre',
-		 `idMadre`='$idMadre',
-		 `Relación_Padre`='$Relación_Padre'
+		 `idMadre`='$idMadre'
 		 WHERE `Cédula_Persona`='$Cédula_Estudiante'";
 
 
@@ -149,9 +144,6 @@ class Estudiantes {
 	public function setRelación_Representante($Relación_Representante) {
 		$this->Relación_Representante = $Relación_Representante;
 	}
-	public function setRelación_Padre($Relación_Padre) {
-		$this->Relación_Padre = $Relación_Padre;
-	}
 
 	public function getidEstudiantes() {
 		return $this->idEstudiantes;
@@ -173,9 +165,6 @@ class Estudiantes {
 	}
 	public function getCédula_Estudiante() {
 		return $this->Cédula_Estudiante;
-	}
-	public function getRelación_Padre() {
-		return $this->Relación_Padre;
 	}
 	public function getRelación_Representante() {
 		return $this->Relación_Representante;

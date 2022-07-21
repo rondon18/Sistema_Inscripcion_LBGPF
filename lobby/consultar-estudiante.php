@@ -13,6 +13,8 @@ require('../clases/representantes.php');
 require('../clases/carnet-patria.php');
 require('../clases/económicos-representantes.php');
 require('../clases/laborales.php');
+require('../clases/laborales-madres.php');
+require('../clases/laborales-padres.php');
 require('../clases/Padre.php');
 require('../clases/madre.php');
 require('../clases/ficha-médica.php');
@@ -20,6 +22,8 @@ require('../clases/sociales-Estudiantes.php');
 require('../clases/tallas-Estudiantes.php');
 require('../clases/grado.php');
 require('../clases/vivienda.php');
+require('../clases/vivienda-madres.php');
+require('../clases/vivienda-padres.php');
 require('../clases/contactos-auxiliares.php');
 require('../clases/año-escolar.php');
 require('../clases/Estudiantes-repitentes.php');
@@ -36,6 +40,8 @@ $CarnetPatria = new CarnetPatria();
 $Representante = new Representantes();
 $Economicos = new DatosEconómicos();
 $Laborales = new DatosLaborales();
+$Laborales_Ma = new DatosLaboralesMadres();
+$Laborales_Pa = new DatosLaboralesPadres();
 $Padre = new Padre();
 $Madre = new Madre();
 $Estudiantes_repitente = new EstudiantesRepitentes();
@@ -47,6 +53,8 @@ $datos_Médicos = new FichaMédica();
 $Datos_sociales = new DatosSociales();
 $Datos_Tallas = new TallasEstudiante();
 $Datos_vivienda = new DatosVivienda();
+$Datos_vivienda_Ma = new DatosViviendaMa();
+$Datos_vivienda_Pa = new DatosViviendaPa();
 $Datos_Auxiliar = new ContactoAuxiliar();
 
 #Hacer algo parecido para llamar numeros de representantes y Padre
@@ -63,9 +71,13 @@ $telefonos_ma = $Telefonos->consultarTeléfonosMadreID($_POST['id_madre']);
 $datos_Médicos = $datos_Médicos->consultarFicha_Médica($_POST['id_Estudiante']);
 $datos_sociales = $Datos_sociales->consultarDatosSociales($_POST['id_Estudiante']);
 $datos_tallas = $Datos_Tallas->consultarTallasEstudiante($_POST['id_Estudiante']);
-$datos_vivienda = $Datos_vivienda->consultarDatosvivienda($_POST['id_representante']);
+$datos_vivienda = $Datos_vivienda->consultarDatosvivienda_R($_POST['id_representante']);
+$datos_vivienda_ma = $Datos_vivienda_Ma->consultarDatosvivienda_Ma($_POST['id_madre']);
+$datos_vivienda_pa = $Datos_vivienda_Pa->consultarDatosvivienda_Pa($_POST['id_padre']);
 
 $datos_representante = $Representante->consultarRepresentanteID($_POST['id_representante']);
+$datos_madre = $Madre->consultarMadre($_POST['id_madre']);
+$datos_padre = $Padre->consultarPadre($_POST['id_padre']);
 
 $datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
 $contacto_aux = new Personas();
@@ -74,12 +86,15 @@ $telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Person
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
+$datos_laborales_ma = $Laborales_Ma->consultarDatosLaborales_Ma($_POST['id_madre']);
+$datos_laborales_pa = $Laborales_Pa->consultarDatosLaborales_Pa($_POST['id_padre']);
 
 $padre = $Padre->consultarPadre($_POST['id_padre']);
 $madre = $Madre->consultarMadre($_POST['id_madre']);
-$carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
+$carnetpatria_re = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
+$hijos_re = $Representante->mostrarRepresentados($_POST['id_representante']);
 $hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
-$hijos_ma = $Madre->consultarHijos($_POST['id_madre']);
+$hijos_ma = $Madre->consultarHijosMa($_POST['id_madre']);
 
 $fecha_actual = date("Y-m-d");
 $fecha_nacimiento_est = $Estudiante['Fecha_Nacimiento'];
@@ -99,11 +114,11 @@ else {
   $carnet_Est = "Si";
 }
 
-if (empty($carnetpatria_pa['Código_Carnet']) AND empty($carnetpatria_pa['Serial_Carnet'])) {
-  $carnet_pa = "No";
+if (empty($carnetpatria_re['Código_Carnet']) AND empty($carnetpatria_re['Serial_Carnet'])) {
+  $carnet_re = "No";
 }
 else {
-  $carnet_pa = "Si";
+  $carnet_re = "Si";
 }
 
 if (empty($datos_Médicos['Institución_médica'])) {
@@ -125,6 +140,20 @@ if (empty($datos_laborales['Empleo']) || $datos_laborales['Empleo']=="Desemplead
 }
 else {
     $tiene_empleo = "Si";
+}
+
+if (empty($datos_laborales_pa['Empleo']) || $datos_laborales_pa['Empleo']=="Desempleado") {
+    $tiene_empleo_pa = "No";
+}
+else {
+    $tiene_empleo_pa = "Si";
+}
+
+if (empty($datos_laborales_ma['Empleo']) || $datos_laborales_ma['Empleo']=="Desempleado") {
+    $tiene_empleo_ma = "No";
+}
+else {
+    $tiene_empleo_ma = "Si";
 }
 
 if ($padre['País_Residencia'] == "Venezuela") {
@@ -159,6 +188,13 @@ if (empty( $datos_Médicos['Enfermedad'])) {
 }
 else {
     $PadeceEnfermedad = "Si";
+}
+
+if ($hijos_re>1) {
+    $TieneMasHijos_re = "Si";
+}
+else {
+    $TieneMasHijos_re = "No";
 }
 
 if ($hijos_pa>1) {
@@ -383,6 +419,12 @@ desconectarBD($conexion);
 						<td>Tipo Cuenta: <?php echo $datos_economicos['Tipo_Cuenta']?></td>
 						<td colspan="2">Cta Bancaria: <?php echo $datos_economicos['Cta_Bancaria']?></td>
 					</tr>
+					<tr>
+						<td> Posee carnet de la patria: <?php echo $carnet_re?></td>
+						<td> Código carnet de la patria: <?php echo $carnetpatria_re['Código_Carnet']?></td>
+						<td> Serial carnet de la patria: <?php echo $carnetpatria_re['Serial_Carnet']?></td>
+						<td> Tiene más representados en el plantel: <?php echo $TieneMasHijos_re?></td>
+					</tr>
 
 					<tr class="table-primary">
 						<th colspan="4">Otro contacto para emergencias</th>
@@ -433,41 +475,36 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr class="table-primary">
-						<th colspan="4">Datos economicos del padre</th>
+						<th colspan="4">Datos laborales del padre</th>
 					</tr>
 
 					<tr>
-						<td>Trabaja: <?php echo $tiene_empleo?></td>
-						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+						<td>Trabaja: <?php echo $tiene_empleo_pa?></td>
+						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales_pa['Empleo']?></td>
 					</tr>
 
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
-						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales['Lugar_Trabajo']?></td>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_pa[3]['Prefijo'],$telefonos_pa[3]['Número_Telefónico'])?></td>
+						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_pa['Lugar_Trabajo']?></td>
 					</tr>
 
 					<tr>
-						<td colspan="1">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
-						<td colspan="1">Remuneración_R (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración_R']?></td>
-						<td colspan="2">Tipo Remuneración_R: <?php echo $datos_laborales['Tipo_Remuneración_R']?></td>
+						<td colspan="1">Grado de Instrucción: <?php echo $datos_padre['Grado_Académico']?></td>
+						<td colspan="1">Remuneración: (Cuántos sueldos mínimos): <?php echo $datos_laborales_pa['Remuneración']?></td>
+						<td colspan="2">Tipo Remuneración: <?php echo $datos_laborales_pa['Tipo_Remuneración']?></td>
 					</tr>
 
 					<tr class="table-primary">
-						<th colspan="4">Datos sociales del padre</th>
+						<th colspan="4">Datos vivienda del padre</th>
 					</tr>
 
 					<tr>
-						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
-						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda_R']?></td>
-						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_vivienda_R']?></td>
-					</tr>
-
-					<tr>
-						<td> Posee carnet de la patria: <?php echo $carnet_pa?></td>
-						<td> Código carnet de la patria: <?php echo $carnetpatria_pa['Código_Carnet']?></td>
-						<td> Serial carnet de la patria: <?php echo $carnetpatria_pa['Serial_Carnet']?></td>
+						<td> Condiciones de la vivienda: <?php echo $datos_vivienda_pa['Condiciones_Vivienda']?></td>
+						<td> Tipo de vivienda: <?php echo $datos_vivienda_pa['Tipo_Vivienda']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda_pa['Tenencia_Vivienda']?></td>
 						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_pa?></td>
 					</tr>
+
 
 					<tr class="table-primary">
 						<th colspan="4">Datos de la madre</th>
@@ -508,42 +545,34 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr class="table-primary">
-						<th colspan="4">Datos economicos</th>
+						<th colspan="4">Datos laborales de la madre</th>
 					</tr>
 
 					<tr>
-						<td>Trabaja: <?php echo $tiene_empleo?></td>
-						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+						<td>Trabaja: <?php echo $tiene_empleo_ma?></td>
+						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales_ma['Empleo']?></td>
 					</tr>
 
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
-						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales['Lugar_Trabajo']?></td>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_ma[3]['Prefijo'],$telefonos_ma[3]['Número_Telefónico'])?></td>
+						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_ma['Lugar_Trabajo']?></td>
 					</tr>
 
 					<tr>
-						<td colspan="1">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
-						<td colspan="1">Remuneración_R (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración_R']?></td>
-						<td colspan="2">Tipo Remuneración_R: <?php echo $datos_laborales['Tipo_Remuneración_R']?></td>
+						<td colspan="1">Grado de Instrucción: <?php echo $datos_madre['Grado_Académico']?></td>
+						<td colspan="1">Remuneración: (Cuántos sueldos mínimos): <?php echo $datos_laborales_ma['Remuneración']?></td>
+						<td colspan="2">Tipo Remuneración: <?php echo $datos_laborales_ma['Tipo_Remuneración']?></td>
 					</tr>
 
 					<tr class="table-primary">
-						<th colspan="4">Datos sociales del padre</th>
+						<th colspan="4">Datos vivienda de la madre</th>
 					</tr>
 
 					<tr>
-						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
-						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda_R']?></td>
-						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_vivienda_R']?></td>
+						<td> Condiciones de la vivienda: <?php echo $datos_vivienda_ma['Condiciones_Vivienda']?></td>
+						<td> Tipo de vivienda: <?php echo $datos_vivienda_ma['Tipo_Vivienda']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda_ma['Tenencia_Vivienda']?></td>
 					</tr>
-
-					<tr>
-						<td> Posee carnet de la patria: <?php echo $carnet_pa?></td>
-						<td> Código carnet de la patria: <?php echo $carnetpatria_pa['Código_Carnet']?></td>
-						<td> Serial carnet de la patria: <?php echo $carnetpatria_pa['Serial_Carnet']?></td>
-						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos?></td>
-					</tr>
-
 				</tbody>
 			</table>
 		</div>

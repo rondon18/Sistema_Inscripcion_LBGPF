@@ -4,13 +4,15 @@ class Madre {
 	private $idMadre;
 	private $Cédula_Persona;
 	private $País_Residencia;
+	private $Grado_Académico;
 
 	public function __construct() {}
 
 	public function insertarMadre() {
 		$conexion = conectarBD();
 
-		$País_Residencia = $this->getPaís_Residencia();
+		$País_Residencia = $this->getPaís_ResidenciaMa();
+		$Grado_Académico = $this->getGrado_AcadémicoMa();
 		$Cédula_Persona = $this->getCédula_Persona();
 
 		#verifica si el registro del Madre existe para evitar error por entrada duplicada
@@ -21,9 +23,10 @@ class Madre {
 
 		if ($resultado == NULL) {
 			#Si el registro no existe se crea con esta orden
-			$sql = "INSERT INTO `Madre`(`idMadre`, `País_Residencia`, `Cédula_Persona`) VALUES (
+			$sql = "INSERT INTO `Madre`(`idMadre`, `País_Residencia`, `Grado_Académico`, `Cédula_Persona`) VALUES (
 				NULL,
 				'$País_Residencia',
+				'$Grado_Académico',
 				'$Cédula_Persona'
 			)";
 
@@ -40,11 +43,13 @@ class Madre {
 	public function editarMadre($id_Madre){
 		$conexion = conectarBD();
 
-		$País_Residencia = $this->getPaís_Residencia();
+		$País_Residencia = $this->getPaís_ResidenciaMa();
+		$Grado_Académico = $this->getGrado_AcadémicoMa();
 
 		#para los Madre solo se puede ajustar el País_Residencia con el estudiante, sea Madre o madre
 		$sql = "UPDATE `Madre` SET
-		`País_Residencia`='$País_Residencia'
+		`País_Residencia`='$País_Residencia',
+		`Grado_Académico`='$Grado_Académico'
 		WHERE `idMadre`='$id_Madre'";
 
 		$conexion->query($sql);
@@ -83,7 +88,7 @@ class Madre {
 		desconectarBD($conexion);
 		return $resultado;
 	}
-	public function consultarHijos($id_Madre){
+	public function consultarHijosMa($id_Madre){
 
 		$conexion = conectarBD();
 
@@ -119,9 +124,12 @@ class Madre {
 	public function setidMadre($idMadre) {
 		$this->idMadre = $idMadre;
 	}
-	public function setPaís_Residencia($País_Residencia) {
+	public function setPaís_ResidenciaMa($País_Residencia) {
 		$this->País_Residencia = $País_Residencia;
 	}
+	public function setGrado_AcadémicoMa($Grado_Académico) {
+		$this->Grado_Académico = $Grado_Académico;
+	}	
 	public function setCédula_Persona($Cédula_Persona) {
 		$this->Cédula_Persona = $Cédula_Persona;
 	}
@@ -129,8 +137,11 @@ class Madre {
 	public function getidMadre() {
 		return $this->idMadre;
 	}
-	public function getPaís_Residencia() {
+	public function getPaís_ResidenciaMa() {
 		return $this->País_Residencia;
+	}
+	public function getGrado_AcadémicoMa() {
+		return $this->Grado_Académico;
 	}
 	public function getCédula_Persona() {
 		return $this->Cédula_Persona;

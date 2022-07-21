@@ -8,8 +8,6 @@ class DatosLaborales {
 	private $Remuneración;
 	private $Tipo_Remuneración;
 	private $idRepresentantes;
-	private $idMadre;
-	private $idPadre;
 
 	public function __construct(){}
 
@@ -21,8 +19,6 @@ class DatosLaborales {
 		$Remuneración = $this->getRemuneración();
 		$Tipo_Remuneración = $this->getTipo_Remuneración();
 		$idRepresentantes = $this->getidRepresentantes();
-		$idMadre = $this->getidMadre();
-		$idPadre = $this->getidPadre();
 
 		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
 
@@ -32,161 +28,14 @@ class DatosLaborales {
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
 		
-			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`, `idMadre`, `idPadre`) VALUES (
+			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`) VALUES (
 				NULL,
 				'$Empleo',
 				'$Lugar_Trabajo',
 				'$Remuneración',
 				'$Tipo_Remuneración',
-				'$idRepresentantes',
-				'$idMadre',
-				'$idPadre'
-			)";
-			$this->setidDatos_laborales($conexion->insert_id);
-		}
-		elseif ($resultado != NULL) {
-			$this->setidDatos_laborales($resultado['idDatos-laborales']);
-		}
+				'$idRepresentantes'
 
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		
-		desconectarBD($conexion);
-	}
-
-	public function editarDatosLaborales_R() {
-		$conexion = conectarBD();
-		
-		$Empleo = $this->getEmpleo();
-		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Remuneración = $this->getRemuneración();
-		$Tipo_Remuneración = $this->getTipo_Remuneración();
-		
-		$sql = "UPDATE `datos-laborales` SET 
-		`Empleo`='$Empleo',
-		`Lugar_Trabajo`='$Lugar_Trabajo',
-		`Remuneración`='$Remuneración',
-		`Tipo_Remuneración`='$Tipo_Remuneración'
-		WHERE `idRepresentantes`='[value-6]'";
-
-		$conexion->query($sql) or die("error: ".$conexion->error);
-
-		desconectarBD($conexion);
-	}
-
-	public function consultarDatosLaborales($idRepresentantes) {
-		$conexion = conectarBD();
-
-		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
-
-		$consulta_laborales = $conexion->query($sql) or die("error: ".$conexion->error);
-		$datos_laborales = $consulta_laborales->fetch_assoc();
-		
-		desconectarBD($conexion);
-
-		return $datos_laborales;
-	}
-	
-	public function insertarDatosLaborales_Ma() {
-		$conexion = conectarBD();
-
-		$Empleo = $this->getEmpleo();
-		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Remuneración = $this->getRemuneración();
-		$Tipo_Remuneración = $this->getTipo_Remuneración();
-		$idRepresentantes = $this->getidRepresentantes();
-		$idMadre = $this->getidMadre();
-		$idPadre = $this->getidPadre();
-
-		$sql = "SELECT * FROM `datos-laborales` WHERE `idMadre` = '$idMadre'";
-
-		$registro_existe = $conexion->query($sql);
-		$resultado = $registro_existe->fetch_assoc();
-
-		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
-		if ($resultado == NULL) {
-		
-			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`, `idMadre`, `idPadre`) VALUES (
-				NULL,
-				'$Empleo',
-				'$Lugar_Trabajo',
-				'$Remuneración',
-				'$Tipo_Remuneración',
-				'$idRepresentantes',
-				'$idMadre',
-				'$idPadre'
-			)";
-			$this->setidDatos_laborales($conexion->insert_id);
-		}
-		elseif ($resultado != NULL) {
-			$this->setidDatos_laborales($resultado['idDatos-laborales']);
-		}
-
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		
-		desconectarBD($conexion);
-	}
-
-	public function editarDatosLaborales_Ma() {
-		$conexion = conectarBD();
-		
-		$Empleo = $this->getEmpleo();
-		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Remuneración = $this->getRemuneración();
-		$Tipo_Remuneración = $this->getTipo_Remuneración();
-		
-		$sql = "UPDATE `datos-laborales` SET 
-		`Empleo`='$Empleo',
-		`Lugar_Trabajo`='$Lugar_Trabajo',
-		`Remuneración`='$Remuneración',
-		`Tipo_Remuneración`='$Tipo_Remuneración'
-		WHERE `idMadre`='[value-7]'";
-
-		$conexion->query($sql) or die("error: ".$conexion->error);
-
-		desconectarBD($conexion);
-	}
-
-	public function consultarDatosLaborales($idRepresentantes) {
-		$conexion = conectarBD();
-
-		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
-
-		$consulta_laborales = $conexion->query($sql) or die("error: ".$conexion->error);
-		$datos_laborales = $consulta_laborales->fetch_assoc();
-		
-		desconectarBD($conexion);
-
-		return $datos_laborales;
-	}
-
-	public function insertarDatosLaborales_R() {
-		$conexion = conectarBD();
-
-		$Empleo = $this->getEmpleo();
-		$Lugar_Trabajo = $this->getLugar_Trabajo();
-		$Remuneración = $this->getRemuneración();
-		$Tipo_Remuneración = $this->getTipo_Remuneración();
-		$idRepresentantes = $this->getidRepresentantes();
-		$idMadre = $this->getidMadre();
-		$idPadre = $this->getidPadre();
-
-		$sql = "SELECT * FROM `datos-laborales` WHERE `idRepresentantes` = '$idRepresentantes'";
-
-		$registro_existe = $conexion->query($sql);
-		$resultado = $registro_existe->fetch_assoc();
-
-		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
-		if ($resultado == NULL) {
-		
-			$sql = "INSERT INTO `datos-laborales`(`idDatos-laborales`, `Empleo`, `Lugar_Trabajo`, `Remuneración`, `Tipo_Remuneración`, `idRepresentantes`, `idMadre`, `idPadre`) VALUES (
-				NULL,
-				'$Empleo',
-				'$Lugar_Trabajo',
-				'$Remuneración',
-				'$Tipo_Remuneración',
-				'$idRepresentantes',
-				'$idMadre',
-				'$idPadre'
 			)";
 			$this->setidDatos_laborales($conexion->insert_id);
 		}

@@ -34,7 +34,7 @@ if (!isset($_POST['Datos_Representante'])) {
 	</header>
 	<form id="FormularioEstudiante" class="card" action="../../controladores/control-registros.php" method="POST" onsubmit="enviar();" style="max-width: 600px; margin: 74px auto;">
 			<div class="card-header py-3">
-				<h3>Formulario de registro.</h3>
+				<h3>Formulario de registro estudiante y padres.</h3>
 			</div>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
@@ -415,13 +415,13 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Vacuna" id="Vacuna" placeholder="¿Cuál vacuna?">
+								<input class="form-control w-auto" type="text" name="Vacuna" id="Vacuna" placeholder="¿Cuál vacuna?" maxlength="15">
 							</div>
 								<label class="form-label">Dosis aplicadas: </label>
 								<div class="input-group mb-2">
 									<input class="form-control text" type="number" name="Dosis" id="Dosis" placeholder="Ingrese un numero..." min="0" step="1">
 									<span class="input-group-text">Lote: </span>
-									<input class="form-control text-end" type="text" name="Lote" id="Lote" placeholder="Ingrese un numero...">
+									<input class="form-control text-end" type="text" name="Lote" id="Lote" placeholder="Ingrese un numero..." maxlength="15">
 								</div class="input-group mb-2">
 						</div>
 						<div>
@@ -496,7 +496,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group mb-2">
-									<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Padre" required>
+									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre" required>
 										<option selected disabled value="">Tipo de cédula</option>
 										<option value="V">V</option>
 										<option value="E">E</option>
@@ -552,7 +552,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 
-						<!--Estado civil del familiar-->
+						<!--Estado civil del padre-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select" name="Estado_Civil_Padre" required>
@@ -564,13 +564,33 @@ if (!isset($_POST['Datos_Representante'])) {
 							</select>
 						</div>
 
-						<!--Dirección de residencia del Familiar-->
+						<!--Grado de instrucción del padre-->
+
+						<div>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Primaria </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" value="Primaria" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Bachillerato </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" value="Bachillerato" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Universitario </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" value="Universitario" required>
+								</div>
+							</div>
+						</div>						
+
+						<!--Dirección de residencia del padre-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2"name="Dirección_Padre"></textarea>
 						</div>
 
-						<!--Se encuentra el familiar en el país-->
+						<!--Se encuentra el padre en el país-->
 						<div>
 							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
@@ -579,17 +599,123 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País_Pa" id="País_Pa" placeholder="¿Donde?">
+								<input class="form-control w-auto" type="text" name="País_Pa" id="País_Pa" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra">
 							</div>
 						</div>
-					</div>
+
+						<div>						
+
+							<h5>Datos de vivienda.</h5>
+
+							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Buena </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Buena" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Regular </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Regular" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Mala </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Mala" required>
+								</div>
+							</div>
+							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Casa </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Casa" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Apartamento </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Apartamento" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Rancho </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Rancho" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Quinta </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Quinta" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Habitación </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Habitación" required>
+								</div>
+							</div>
+							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda_Pa" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Propia">Propia</option>
+									<option value="Alquilada">Alquilada</option>
+									<option value="Prestada">Prestada</option>
+									<option value="Otro">Otro</option>
+								</select>
+								<input class="form-control" type="text" name="Tenencia_vivienda_Pa_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
+							</div>
+						</div>
+						<h5>Datos laborales.</h5>
+						<!--Trabaja el padre-->
+						<div>
+							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Si </label>
+									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="Si" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">No </label>
+									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="No" required>
+								</div>
+							</div>
+						</div>
+						<!--Cargo que ocupa el padre-->
+						<div>
+							<label class="form-label">Cargo que ocupa:</label>
+							<input class="form-control mb-2" type="text" name="Empleo_Pa" id="Empleo_Pa" maxlength="60" minlength="3">
+						</div>
+						<!--Teléfono del trabajo del padre-->
+						<div>
+							<label class="form-label">Teléfono del trabajo:</label>
+							<!--Teléfono principal-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Pa" id="Prefijo_Trabajo_Pa" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Pa" id="Teléfono_Trabajo_Pa" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
+							</div>
+						</div>
+						<!--Lugar en el que trabaja el padre-->
+						<div>
+							<label class="form-label">Lugar del trabajo:</label>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="55" minlength="3"></textarea>
+						</div>
+						<!--Remuneración del trabajo del padre-->
+						<div>
+							<label class="form-label">Remuneración:</label>
+							<div class="input-group mb-2">
+								<!--Remuneración en base a sueldos minimos del padre-->
+								<input class="form-control text-end" type="number" name="Remuneración_Pa" id="Remuneración_Pa" placeholder="Ingrese un numero..." min="0" step="1">
+								<span class="input-group-text mb-2-text">Salarios mínimos</span>
+								<!--Tipo de Remuneración del padre-->
+								<select class="form-select" name="Tipo_Remuneración_Pa" required>
+									<option value="Diaria">Remuneración diaria</option>
+									<option value="Semanal">Remuneración semanal</option>
+									<option value="Quincenal">Remuneración quincenal</option>
+									<option value="Mensual">Remuneración mensual</option>
+								</select>
+							</div>
+						</div>
 				</section>
 				<section id="seccion6" style="display:none;">
 					<!--Datos de la madre-->
 					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Madre.</h5>
 
 					<div>
-							<!--Nombres del familiar-->
+							<!--Nombres de la madre-->
 							<div>
 								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -598,7 +724,7 @@ if (!isset($_POST['Datos_Representante'])) {
 								</div>
 							</div>
 
-							<!--Apellidos del familiar-->
+							<!--Apellidos de la madre-->
 							<div>
 								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -606,11 +732,11 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Madre" placeholder="Segundo apellido">
 								</div>
 							</div>
-							<!--Cédula del familiar-->
+							<!--Cédula de la madre-->
 							<div>
 								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group mb-2">
-									<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Madre" required>
+									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre" required>
 										<option selected disabled value="">Tipo de cédula</option>
 										<option value="V">V</option>
 										<option value="E">E</option>
@@ -618,19 +744,19 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" required>
 								</div>
 							</div>
-							<!--Fecha de nacimiento del familiar-->
+							<!--Fecha de nacimiento de la madre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Madre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required>
 							</div>
 
-							<!--Lugar de nacimiento del familiar-->
+							<!--Lugar de nacimiento de la madre-->
 							<div>
 								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Madre" required>
 							</div>
 
-							<!--Correo electrónico del familiar-->
+							<!--Correo electrónico de la madre-->
 							<div>
 								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="email" name="Correo_electrónico_Madre" required>
@@ -666,7 +792,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							</div>
 						</div>
 
-						<!--Estado civil del familiar-->
+						<!--Estado civil de la madre-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select" name="Estado_Civil_Madre" required>
@@ -678,13 +804,33 @@ if (!isset($_POST['Datos_Representante'])) {
 							</select>
 						</div>
 
-						<!--Dirección de residencia del Familiar-->
+						<!--Grado de instrucción de la madre-->
+
+						<div>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Primaria </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" value="Primaria" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Bachillerato </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" value="Bachillerato" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Universitario </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" value="Universitario" required>
+								</div>
+							</div>
+						</div>							
+
+						<!--Dirección de residencia de la madre-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2"name="Dirección_Madre"></textarea>
 						</div>
 
-						<!--Se encuentra el familiar en el país-->
+						<!--Se encuentra en el país la madre-->
 						<div>
 							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
@@ -693,11 +839,121 @@ if (!isset($_POST['Datos_Representante'])) {
 									<option value="Si">Si</option>
 									<option value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="¿Donde?">
+								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra">
 
 							</div>
 						</div>
+
+<div>
+							<h5>Datos de vivienda.</h5>
+
+						<div>
+							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Buena </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Buena" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Regular </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Regular" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Mala </label>
+									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Mala" required>
+								</div>
+							</div>
+							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Casa </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Casa" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Apartamento </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Apartamento" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Rancho </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Rancho" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Quinta </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Quinta" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Habitación </label>
+									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Habitación" required>
+								</div>
+							</div>
+							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda_Ma" required>
+									<option selected disabled value="">Seleccione una opción</option>
+									<option value="Propia">Propia</option>
+									<option value="Alquilada">Alquilada</option>
+									<option value="Prestada">Prestada</option>
+									<option value="Otro">Otro</option>
+								</select>
+								<input class="form-control" type="text" name="Tenencia_vivienda_Ma_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique">
+							</div>
+						</div>
+						<h5>Datos laborales.</h5>
+						<!--Trabaja la madre-->
+						<div>
+							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Si </label>
+									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="Si" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">No </label>
+									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="No" required>
+								</div>
+							</div>
+						</div>
+						<!--Cargo que ocupa la madre-->
+						<div>
+							<label class="form-label">Cargo que ocupa:</label>
+							<input class="form-control mb-2" type="text" name="Empleo_Ma" id="Empleo_Ma" maxlength="60" minlength="3">
+						</div>
+						<!--Teléfono del trabajo de la madre-->
+						<div>
+							<label class="form-label">Teléfono del trabajo:</label>
+							<!--Teléfono principal-->
+							<div class="input-group mb-2">
+								<!--Prefijo-->
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Ma" id="Prefijo_Trabajo_Ma" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos">
+								<!--Número-->
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Ma" id="Teléfono_Trabajo_Ma" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7">
+							</div>
+						</div>
+						<!--Lugar en el que trabaja la madre-->
+						<div>
+							<label class="form-label">Lugar del trabajo:</label>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="55" minlength="3"></textarea>
+						</div>
+						<!--Remuneración del trabajo de la madre-->
+						<div>
+							<label class="form-label">Remuneración:</label>
+							<div class="input-group mb-2">
+								<!--Remuneración en base a sueldos minimos de la madre-->
+								<input class="form-control text-end" type="number" name="Remuneración_Ma" id="Remuneración_Ma" placeholder="Ingrese un numero..." min="0" step="1">
+								<span class="input-group-text mb-2-text">Salarios mínimos</span>
+								<!--Tipo de Remuneración de la madre-->
+								<select class="form-select" name="Tipo_Remuneración_Ma" required>
+									<option value="Diaria">Remuneración diaria</option>
+									<option value="Semanal">Remuneración semanal</option>
+									<option value="Quincenal">Remuneración quincenal</option>
+									<option value="Mensual">Remuneración mensual</option>
+								</select>
+							</div>
 					</div>
+
+					</div>
+
+					
 				</section>
 			</div>
 			<!-- datos del representante -->
@@ -756,7 +1012,7 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
 			<!--Botón para guardar-->
 			<div class="card-footer">
-				<input type="hidden" name="orden" value="Editar">
+				<input type="hidden" name="orden" value="Insertar">
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
 		</form>

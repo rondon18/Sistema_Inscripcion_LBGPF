@@ -4,6 +4,7 @@ class Padre {
 	private $idPadre;
 	private $Cédula_Persona;
 	private $País_Residencia;
+	private $Grado_Académico;
 
 	public function __construct() {}
 
@@ -11,6 +12,7 @@ class Padre {
 		$conexion = conectarBD();
 
 		$País_Residencia = $this->getPaís_Residencia();
+		$Grado_Académico = $this->getGrado_AcadémicoPa();
 		$Cédula_Persona = $this->getCédula_Persona();
 
 		#verifica si el registro del padre existe para evitar error por entrada duplicada
@@ -21,9 +23,10 @@ class Padre {
 
 		if ($resultado == NULL) {
 			#Si el registro no existe se crea con esta orden
-			$sql = "INSERT INTO `Padre`(`idPadre`, `País_Residencia`, `Cédula_Persona`) VALUES (
+			$sql = "INSERT INTO `Padre`(`idPadre`, `País_Residencia`, `Grado_Académico`, `Cédula_Persona`) VALUES (
 				NULL,
 				'$País_Residencia',
+				'$Grado_Académico',
 				'$Cédula_Persona'
 			)";
 
@@ -44,7 +47,8 @@ class Padre {
 
 		#para los Padre solo se puede ajustar el País_Residencia con el estudiante, sea padre o madre
 		$sql = "UPDATE `Padre` SET
-		`País_Residencia`='$País_Residencia'
+		`País_Residencia`='$País_Residencia',
+		`Grado_Académico`='$Grado_Académico'
 		WHERE `idPadre`='$id_Padre'";
 
 		$conexion->query($sql);
@@ -122,6 +126,9 @@ class Padre {
 	public function setPaís_Residencia($País_Residencia) {
 		$this->País_Residencia = $País_Residencia;
 	}
+	public function setGrado_AcadémicoPa($Grado_Académico) {
+		$this->Grado_Académico = $Grado_Académico;
+	}	
 	public function setCédula_Persona($Cédula_Persona) {
 		$this->Cédula_Persona = $Cédula_Persona;
 	}
@@ -132,6 +139,9 @@ class Padre {
 	public function getPaís_Residencia() {
 		return $this->País_Residencia;
 	}
+	public function getGrado_AcadémicoPa() {
+		return $this->Grado_Académico;
+	}	
 	public function getCédula_Persona() {
 		return $this->Cédula_Persona;
 	}

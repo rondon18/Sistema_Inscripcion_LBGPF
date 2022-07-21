@@ -140,15 +140,15 @@ if (!$_SESSION['login']) {
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Primaria" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Primaria" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Bachillerato </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Bachillerato" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Bachillerato" required>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">Universitario </label>
-									<input class="form-check-input" type="radio" name="Grado_Instrucción_R_R" value="Universitario" required>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_R" value="Universitario" required>
 								</div>
 							</div>
 						</div>
