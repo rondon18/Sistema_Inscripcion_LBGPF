@@ -93,7 +93,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['CÃ
 			<div class="card">
 				<!--Datos del representante-->
 				<div class="card-header py-3">
-					<h3>Formulario de registro.</h3>
+					<h3>Formulario de registro representante.</h3>
 				</div>
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
@@ -554,6 +554,8 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['CÃ
 					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
+
+<?php print_r($datos_vivienda) ;?>
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">

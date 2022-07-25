@@ -701,7 +701,7 @@ if (!isset($_POST['Datos_Representante'])) {
 								<input class="form-control text-end" type="number" name="Remuneración_Pa" id="Remuneración_Pa" placeholder="Ingrese un numero..." min="0" step="1">
 								<span class="input-group-text mb-2-text">Salarios mínimos</span>
 								<!--Tipo de Remuneración del padre-->
-								<select class="form-select" name="Tipo_Remuneración_Pa" required>
+								<select class="form-select" name="Tipo_Remuneración_Pa">
 									<option value="Diaria">Remuneración diaria</option>
 									<option value="Semanal">Remuneración semanal</option>
 									<option value="Quincenal">Remuneración quincenal</option>
@@ -942,7 +942,7 @@ if (!isset($_POST['Datos_Representante'])) {
 								<input class="form-control text-end" type="number" name="Remuneración_Ma" id="Remuneración_Ma" placeholder="Ingrese un numero..." min="0" step="1">
 								<span class="input-group-text mb-2-text">Salarios mínimos</span>
 								<!--Tipo de Remuneración de la madre-->
-								<select class="form-select" name="Tipo_Remuneración_Ma" required>
+								<select class="form-select" name="Tipo_Remuneración_Ma">
 									<option value="Diaria">Remuneración diaria</option>
 									<option value="Semanal">Remuneración semanal</option>
 									<option value="Quincenal">Remuneración quincenal</option>

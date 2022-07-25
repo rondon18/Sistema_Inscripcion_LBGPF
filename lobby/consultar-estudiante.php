@@ -431,12 +431,42 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr class="table-primary">
+						<th colspan="4">Datos laborales del representante</th>
+					</tr>
+
+					<tr>
+						<td>Trabaja: <?php echo $tiene_empleo?></td>
+						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+					</tr>
+
+					<tr>
+						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_re[3]['Prefijo'],$telefonos_re[3]['Número_Telefónico'])?></td>
+						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales['Lugar_Trabajo']?></td>
+					</tr>
+
+					<tr>
+						<td colspan="1">Grado de Instrucción: <?php echo $datos_representante['Grado_Académico']?></td>
+						<td colspan="1">Remuneración: (Cuántos sueldos mínimos): <?php echo $datos_laborales['Remuneración']?></td>
+						<td colspan="2">Tipo Remuneración: <?php echo $datos_laborales['Tipo_Remuneración']?></td>
+					</tr>
+
+					<tr class="table-primary">
+						<th colspan="4">Datos vivienda del representante</th>
+					</tr>
+
+					<tr>
+						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
+						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_Vivienda']?></td>
+					</tr>
+
+					<tr class="table-primary">
 						<th colspan="4">Otro contacto para emergencias</th>
 					</tr>
 
 					<tr>
 						<td> Relación: <?php echo $datos_auxiliar['Relación'] ?></td>
-						<td> Nombre: <?php echo $dat_contacto_aux['Primer_Nombre'].' '.$dat_contacto_aux['Primer_Apellido'] ?> </td>
+						<td colspan="2"> Nombre: <?php echo $dat_contacto_aux['Primer_Nombre'].' '.$dat_contacto_aux['Primer_Apellido'] ?> </td>
 						<td colspan="2"> Teléfono: <?php echo $telefonos_aux[0]['Prefijo'] . '-' . $telefonos_aux[0]['Número_Telefónico'] ?> </td>
 					</tr>
 
