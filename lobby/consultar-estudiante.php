@@ -92,7 +92,7 @@ $datos_laborales_pa = $Laborales_Pa->consultarDatosLaborales_Pa($_POST['id_padre
 $padre = $Padre->consultarPadre($_POST['id_padre']);
 $madre = $Madre->consultarMadre($_POST['id_madre']);
 $carnetpatria_re = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
-$hijos_re = $Representante->mostrarRepresentados($_POST['id_representante']);
+$hijos_re = $Representante->numeroRepresentados($_POST['id_representante']);
 $hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
 $hijos_ma = $Madre->consultarHijosMa($_POST['id_madre']);
 
@@ -298,7 +298,7 @@ desconectarBD($conexion);
 					<tr>
 						<td>Plantel Procedencia: <?php echo $Estudiante['Plantel_Procedencia']?></td>
 						<td>Año a cursar: <?php echo $grado['Grado_A_Cursar']?></td>
-						<td colspan="2">Periodo academico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
+						<td colspan="2">Periodo académico: <?php echo $Año->getInicio_Año_Escolar()."-".$Año->getFin_Año_Escolar()?></td>
 					</tr>
 
 					<tr class="table-primary">
@@ -330,7 +330,7 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td>Indice: <?php echo $datos_Médicos['Índice'] ?> </td>
+						<td>Índice: <?php echo $datos_Médicos['Índice'] ?> </td>
 						<td>Talla: <?php echo $datos_Médicos['Estatura'] ?> CM</td>
 						<td>Peso: <?php echo $datos_Médicos['Peso'] ?> KG</td>
 						<td>C. Brazo: <?php echo $datos_Médicos['Circ_Braquial'] ?> CM</td>
@@ -436,7 +436,7 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Trabaja: <?php echo $tiene_empleo?></td>
-						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales['Empleo']?></td>
+						<td colspan="3">En qué se desempeña: <?php echo $datos_laborales['Empleo']?></td>
 					</tr>
 
 					<tr>
@@ -515,7 +515,7 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Trabaja: <?php echo $tiene_empleo_pa?></td>
-						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales_pa['Empleo']?></td>
+						<td colspan="3">En qué se desempeña: <?php echo $datos_laborales_pa['Empleo']?></td>
 					</tr>
 
 					<tr>
@@ -585,7 +585,7 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Trabaja: <?php echo $tiene_empleo_ma?></td>
-						<td colspan="3">En qué se desempleña: <?php echo $datos_laborales_ma['Empleo']?></td>
+						<td colspan="3">En qué se desempeña: <?php echo $datos_laborales_ma['Empleo']?></td>
 					</tr>
 
 					<tr>

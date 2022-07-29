@@ -121,6 +121,20 @@ class Representantes {
 		return $Lista_Estudiantes;
 	}
 
+	public function numeroRepresentados($id_Representante){
+
+		$conexion = conectarBD();
+
+		$sql = "SELECT `idRepresentante` FROM `estudiantes` WHERE `idRepresentante`='$id_Representante'";
+
+
+		$representante = $conexion->query($sql);
+		$resultado = $representante->fetch_all();
+
+		desconectarBD($conexion);
+		return sizeof($resultado);
+	}
+
 	public function setidRepresentantes($idRepresentantes) {
 		$this->idRepresentantes = $idRepresentantes;
 	}

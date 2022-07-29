@@ -103,7 +103,7 @@ $datos_laborales_pa = $Laborales_Pa->consultarDatosLaborales_Pa($_POST['id_padre
 
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
 $hijos_pa = $Padre->consultarHijos($_POST['id_padre']);
-$hijos_ma = $Madre->consultarHijos($_POST['id_madre']);
+$hijos_ma = $Madre->consultarHijosMa($_POST['id_madre']);
 
 $fecha_actual = date("Y-m-d");
 $fecha_nacimiento_est = $Estudiante['Fecha_Nacimiento'];
@@ -412,8 +412,8 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<div class="input-group mb-2">
 								<select class="form-select" name="Vacunado" required>
 									<option selected disabled value="">Seleccione una opción</option>
-									<option value="Si">Si</option>
-									<option value="No">No</option>
+									<option <?php if($datos_Médicos['Vacunado'] == "Si"){echo "selected";} ?> value="Si">Si</option>
+									<option <?php if($datos_Médicos['Vacunado'] == "No"){echo "selected";} ?> value="No">No</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="Vacuna" id="Vacuna" value="<?php echo $datos_Médicos['Vacuna']; ?>">
 							</div>
@@ -429,7 +429,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<div class="input-group mb-2">
 								<select class="form-select" name="Grupo_Sanguineo" required>
 									<?php
-									$sangre = 	explode("+",$datos_Médicos['Tipo_Sangre']);
+									$sangre = substr($datos_Médicos['Tipo_Sangre'],0);
 									$factor = substr($datos_Médicos['Tipo_Sangre'],1);
 									 ?>
 									<option selected disabled value="">Seleccione una opción</option>
@@ -604,12 +604,12 @@ function condiciones($condicion_b,$datos_Médicos) {
 						</div>
 				</section>
 				<section id="seccion4" style="display:none;">
-					<!--Datos del padre o la madre-->
+					<!--Datos del padre-->
 					<h5 class="mb-3"><i class="fa-solid fa-people-roof fa-xl"></i> Datos Padre.</h5>
 
 					<div>
 						<div>
-							<!--Nombres del familiar-->
+							<!--Nombres del padre-->
 							<div>
 								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -619,7 +619,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							</div>
 
-							<!--Apellidos del familiar-->
+							<!--Apellidos del padre-->
 							<div>
 								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group">
@@ -627,7 +627,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Padre" placeholder="Segundo apellido" value="<?php echo $padre['Segundo_Apellido'] ?>">
 								</div>
 							</div>
-							<!--Cédula del familiar-->
+							<!--Cédula del padre-->
 							<div>
 								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<div class="input-group mb-2">
@@ -644,19 +644,19 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Pa; ?>" required>
 								</div>
 							</div>
-							<!--Fecha de nacimiento del familiar-->
+							<!--Fecha de nacimiento del padre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Padre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." required value="<?php echo $padre['Fecha_Nacimiento'] ?>">
 							</div>
 
-							<!--Lugar de nacimiento del familiar-->
+							<!--Lugar de nacimiento del padre-->
 							<div>
 								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Padre" required value="<?php echo $padre['Lugar_Nacimiento'] ?>">
 							</div>
 
-							<!--Correo electrónico del familiar-->
+							<!--Correo electrónico del padre-->
 							<div>
 								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 								<input class="form-control mb-2" type="email" name="Correo_electrónico_Padre" required  value="<?php echo $padre['Correo_Electrónico'] ?>">
@@ -679,20 +679,20 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Pa" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[0]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Padre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[0]['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Pa" minlength="7" maxlength="7" placeholder="Teléfono principal" required value="<?php echo $telefonos_pa[0]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Padre" minlength="7" maxlength="7" placeholder="Teléfono principal" required value="<?php echo $telefonos_pa[0]['Número_Telefónico'] ?>">
 							</div>
 							<!--Teléfono secundario-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Pa" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[1]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Secundario_Padre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_pa[1]['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Pa" minlength="7" maxlength="7" placeholder="Teléfono secundario" required value="<?php echo $telefonos_pa[1]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Padre" minlength="7" maxlength="7" placeholder="Teléfono secundario" required value="<?php echo $telefonos_pa[1]['Número_Telefónico'] ?>">
 							</div>
 						</div>
 
-						<!--Estado civil del familiar-->
+						<!--Estado civil del padre-->
 						<div>
 							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<select class="form-select" name="Estado_Civil_Padre" required>
@@ -704,22 +704,42 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</select>
 						</div>
 
-						<!--Dirección de residencia del Familiar-->
+						<!--Grado de instrucción del padre-->
+
+						<div>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Primaria </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" <?php if($padre['Grado_Académico'] == "Primaria") {echo "checked";} ?>  value="Primaria" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Bachillerato </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" <?php if($padre['Grado_Académico'] == "Bachillerato") {echo "checked";} ?> value="Bachillerato" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Universitario </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Pa" <?php if($padre['Grado_Académico'] == "Universitario") {echo "checked";} ?> value="Universitario" required>
+								</div>
+							</div>
+						</div>							
+
+						<!--Dirección de residencia del padre-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2"name="Dirección_Padre"><?php echo $padre['Dirección']; ?></textarea>
 						</div>
 
-						<!--Se encuentra el familiar en el país-->
+						<!--Se encuentra el padre en el país-->
 						<div>
 							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Reside_En_El_País" required>
+								<select class="form-select" name="Reside_En_El_País_Pa" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if($padre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if($padre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País" id="País" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($padre['País_Residencia'] != "Venezuela"){echo $padre['País_Residencia'];} ?>"
+								<input class="form-control w-auto" type="text" name="País_Pa" id="País_Pa" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($padre['País_Residencia'] != "Venezuela"){echo $padre['País_Residencia'];} ?>"
 
 							</div>
 						</div>
@@ -803,9 +823,9 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<!--Teléfono principal-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Trabajo_Pa" id="Prefijo_Trabajo_Pa" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[3]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Pa" id="Prefijo_Trabajo_Pa" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[2]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Pa" id="Teléfono_Trabajo_Pa" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[3]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Pa" id="Teléfono_Trabajo_Pa" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_pa['Empleo'] != "Desempleado") {echo $telefonos_pa[2]['Número_Telefónico'];} ?>">
 							</div>
 						</div>
 						<!--Lugar en el que trabaja el padre-->
@@ -931,6 +951,26 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</select>
 						</div>
 
+						<!--Grado de instrucción de la madre-->
+
+						<div>
+							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
+								<div class="form-check form-check-inline">
+									<label class="form-label">Primaria </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" <?php if($madre['Grado_Académico'] == "Primaria") {echo "checked";} ?> value="Primaria" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Bachillerato </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" <?php if($madre['Grado_Académico'] == "Bachillerato") {echo "checked";} ?> value="Bachillerato" required>
+								</div>
+								<div class="form-check form-check-inline">
+									<label class="form-label">Universitario </label>
+									<input class="form-check-input" type="radio" name="Grado_Instrucción_Ma" <?php if($madre['Grado_Académico'] == "Universitario") {echo "checked";} ?> value="Universitario" required>
+								</div>
+							</div>
+						</div>							
+
 						<!--Dirección de residencia de la madre-->
 						<div>
 							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -1031,9 +1071,9 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<!--Teléfono principal-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Trabajo_Ma" id="Prefijo_Trabajo_Ma" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[3]['Prefijo'];} ?>">
+								<input class="form-control" type="text" name="Prefijo_Trabajo_Ma" id="Prefijo_Trabajo_Ma" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[2]['Prefijo'];} ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Ma" id="Teléfono_Trabajo_Ma" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[3]['Número_Telefónico'];} ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Trabajo_Ma" id="Teléfono_Trabajo_Ma" placeholder="Teléfono principal" pattern="[0-9]+" maxlength="7" minlength="7" value="<?php if($datos_laborales_ma['Empleo'] != "Desempleado") {echo $telefonos_ma[2]['Número_Telefónico'];} ?>">
 							</div>
 						</div>
 						<!--Lugar en el que trabaja la madre-->

@@ -44,6 +44,7 @@ class Padre {
 		$conexion = conectarBD();
 
 		$País_Residencia = $this->getPaís_Residencia();
+		$Grado_Académico = $this->getGrado_AcadémicoPa();
 
 		#para los Padre solo se puede ajustar el País_Residencia con el estudiante, sea padre o madre
 		$sql = "UPDATE `Padre` SET

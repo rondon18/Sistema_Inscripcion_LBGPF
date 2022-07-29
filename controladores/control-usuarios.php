@@ -56,8 +56,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		#Usuario
 		$usuario->setClave($_POST['Contraseña']);
 		$usuario->setPregunta_Seg_1($_POST['Pregunta_Seg_1']);
-		$usuario->setPregunta_Seg_2($_POST['Respuesta_1']);
-		$usuario->setRespuesta_1($_POST['Pregunta_Seg_2']);
+		$usuario->setPregunta_Seg_2($_POST['Pregunta_Seg_2']);
+		$usuario->setRespuesta_1($_POST['Respuesta_1']);
 		$usuario->setRespuesta_2($_POST['Respuesta_2']);
 
 		$usuario->setPrivilegios(2);#Se establese como 2 para todos los representantes

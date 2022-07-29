@@ -223,7 +223,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$datos_madre->setCédula_Persona($Cédula_madre);
 		if ($_POST['Reside_En_El_País_Ma'] == "Si") {
-			$datos_madre->setPaís_Residencia('Venezuela');
+			$datos_madre->setPaís_ResidenciaMa('Venezuela');
 		}
 		else {
 			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
@@ -727,8 +727,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 			$datos_laborales->setEmpleo($_POST['Empleo_R']);
 			$datos_laborales->setLugar_Trabajo($_POST['Lugar_Trabajo_R']);
-			$datos_laborales->setRemuneración_R($_POST['Remuneración_R']);
-			$datos_laborales->setTipo_Remuneración_R($_POST['Tipo_Remuneración_R']);
+			$datos_laborales->setRemuneración($_POST['Remuneración_R']);
+			$datos_laborales->setTipo_Remuneración($_POST['Tipo_Remuneración']);
 		}
 
 		$datos_laborales->setidRepresentantes($datos_representante->getidRepresentantes());
@@ -743,88 +743,18 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		#Datos vivienda
 		$datos_vivienda->setCondiciones_Vivienda($_POST['Condición_vivienda_R']);
-		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda_R']);
+		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_R'] == "Otro") {
+		if ($_POST['Tenencia_vivienda'] == "Otro") {
 			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
 		}
 		else{
-			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R']);
+			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda']);
 		}
 
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());
 		$datos_vivienda->editarDatosVivienda($idRepresentante);
-
-		//
-		// DATOS LABORALES MADRE
-		//
-
-		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Madre_Trabaja'] == "No") {
-			$datos_laborales_ma->setEmpleoMa("Desempleado");
-		}
-		else {
-			$datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma']);
-			$datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma']);
-			$datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma']);
-			$datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
-		}
-
-		$datos_madre->setCédula_Persona($persona->getCédula());
-		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
-		$datos_laborales_ma->setidMadre($datos_madre->getidMadre());
-		$datos_laborales_ma->editarDatosLaborales_Ma($idMadre);
-
-		#Datos vivienda
-		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma']);
-		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma']);
-
-		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
-			$datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro']);
-		}
-		else{
-			$datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
-		}
-
-		$datos_vivienda_ma->setidMadre($datos_madre->getidMadre());
-		$datos_vivienda_ma->editarDatosVivienda_Ma($idMadre);
-
-		//
-		// DATOS LABORALES PADRE
-		//
-
-		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Padre_Trabaja'] == "No") {
-			$datos_laborales_pa->setEmpleoPa("Desempleado");
-		}
-		else {
-			$datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
-			$datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
-			$datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
-			$datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
-		}
-
-		$datos_padre->setCédula_Persona($persona->getCédula());
-		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa']);		
-		$datos_laborales_pa->setidPadre($datos_padre->getidPadre());
-		$datos_laborales_pa->editarDatosLaborales_Pa($idPadre);
-
-		#Datos vivienda
-		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa']);
-		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa']);
-
-		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
-			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
-		}
-		else{
-			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
-		}
-
-		$datos_vivienda_pa->setidPadre($datos_padre->getidPadre());
-		$datos_vivienda_pa->editarDatosVivienda_Pa($idPadre);
 
 		//
 		// DATOS DEL CONTACTO AUXILIAR
@@ -908,14 +838,87 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_madre->setCédula_Persona($Cédula_madre);
 
 		if ($_POST['Reside_En_El_País_Ma'] == "Si") {
-			$datos_madre->setPaís_Residencia('Venezuela');
+			$datos_madre->setPaís_ResidenciaMa('Venezuela');
 		}
 		else {
-			$datos_madre->setPaís_Residencia($_POST['País_Ma']);
+			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
 		}
+		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
 
 		$datos_madre->editarMadre($madre['idMadre']);
 
+		//Consulta la madre
+
+		$conexion = conectarBD();
+
+		$sql = "SELECT * FROM `madre` WHERE `Cédula_Persona` = '$Cédula_madre'";
+
+		$consulta_madre = $conexion->query($sql) or die("error: ".$conexion->error);
+		$representantes = $consulta_madre->fetch_assoc();
+		$idMadre = $madre['idMadre'];
+
+		desconectarBD($conexion);
+
+		//
+		// DATOS LABORALES MADRE
+		//
+
+		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
+		if ($_POST['Madre_Trabaja'] == "No") {
+			$datos_laborales_ma->setEmpleoMa("Desempleado");
+		}
+		else {
+			$datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma']);
+			$datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma']);
+			$datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma']);
+			$datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
+		}
+
+		$datos_laborales_ma->setidMadre($datos_madre->getidMadre());
+		$datos_laborales_ma->editarDatosLaborales_Ma($idMadre);
+
+		#Datos vivienda
+		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma']);
+		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma']);
+
+		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
+		if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
+			$datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro']);
+		}
+		else{
+			$datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
+		}
+
+		$datos_vivienda_ma->setidMadre($datos_madre->getidMadre());
+		$datos_vivienda_ma->editarDatosVivienda_Ma($idMadre);
+
+		//
+		// Teléfonos de la madre
+		//		
+
+		#Teléfono principal
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Madre']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Madre']);
+		$Teléfonos->setRelación_Teléfono('Principal');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->editarTeléfono($Cédula_madre);
+
+		#Teléfono secundario
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Madre']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Madre']);
+		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->editarTeléfono($Cédula_madre);	
+
+		#Teléfono trabajo
+		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Ma']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Ma']);
+		$Teléfonos->setRelación_Teléfono('Trabajo');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->editarTeléfono($Cédula_madre);		
 
 		//
 		//
@@ -950,8 +953,55 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		else {
 			$datos_padre->setPaís_Residencia($_POST['País_Pa']);
 		}
+		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa']);		
 
 		$datos_padre->editarPadre($padre['idPadre']);
+
+		//Consulta el padre
+
+		$conexion = conectarBD();		
+		
+		$sql = "SELECT * FROM `padre` WHERE `Cédula_Persona` = '$Cédula_padre'";
+
+		$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+		$padre = $consulta_padre->fetch_assoc();
+
+		$idPadre = $padre['idPadre'];
+
+		desconectarBD($conexion);
+
+		//
+		// DATOS LABORALES PADRE
+		//
+
+		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
+		if ($_POST['Padre_Trabaja'] == "No") {
+			$datos_laborales_pa->setEmpleoPa("Desempleado");
+		}
+		else {
+			$datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
+			$datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
+			$datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
+			$datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
+		}
+
+		$datos_laborales_pa->setidPadre($datos_padre->getidPadre());
+		$datos_laborales_pa->editarDatosLaborales_Pa($idPadre);
+
+		#Datos vivienda
+		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa']);
+		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa']);
+
+		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
+		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
+			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
+		}
+		else{
+			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
+		}
+
+		$datos_vivienda_pa->setidPadre($datos_padre->getidPadre());
+		$datos_vivienda_pa->editarDatosVivienda_Pa($idPadre);
 
 		//
 		// Teléfonos del padre
@@ -973,25 +1023,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->editarTeléfono($Cédula_padre);
 
-		//
-		// Teléfonos de la madre
-		//		
-
-		#Teléfono principal
-		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Madre']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Madre']);
-		$Teléfonos->setRelación_Teléfono('Principal');
+		#Teléfono trabajo
+		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Pa']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Pa']);
+		$Teléfonos->setRelación_Teléfono('Trabajo');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->editarTeléfono($Cédula_madre);
-
-		#Teléfono secundario
-		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Madre']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Madre']);
-		$Teléfonos->setRelación_Teléfono('Secundario');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
-
-		$Teléfonos->editarTeléfono($Cédula_madre);		
+		$Teléfonos->editarTeléfono($Cédula_padre);
 
 		//
 		//

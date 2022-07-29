@@ -12,16 +12,20 @@ require('../../clases/representantes.php');
 require('../../clases/carnet-patria.php');
 require('../../clases/económicos-representantes.php');
 require('../../clases/laborales.php');
+require('../../clases/laborales-madres.php');
+require('../../clases/laborales-padres.php');
 require('../../clases/padre.php');
 require('../../clases/madre.php');
 require('../../clases/ficha-médica.php');
-require('../../clases/sociales-Estudiantes.php');
-require('../../clases/tallas-Estudiantes.php');
+require('../../clases/sociales-estudiantes.php');
+require('../../clases/tallas-estudiantes.php');
 require('../../clases/grado.php');
 require('../../clases/vivienda.php');
+require('../../clases/vivienda-madres.php');
+require('../../clases/vivienda-padres.php');
 require('../../clases/contactos-auxiliares.php');
 require('../../clases/año-escolar.php');
-require('../../clases/Estudiantes-repitentes.php');
+require('../../clases/estudiantes-repitentes.php');
 require('../../clases/teléfonos.php');
 
 require('../../controladores/conexion.php');
@@ -66,6 +70,7 @@ $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representa
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
 
 $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['Cédula']);
+
 ?>
 
 
@@ -433,7 +438,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<label class="form-label">Lugar del trabajo:</label>
 							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
 						</div>
-						<!--Remuneración_R del trabajo del representante-->
+						<!--Remuneración del trabajo del representante-->
 						<div>
 							<label class="form-label">Remuneración:</label>
 							<div class="input-group mb-2">
@@ -554,8 +559,6 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
-
-<?php print_r($datos_vivienda) ;?>
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
