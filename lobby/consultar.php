@@ -145,6 +145,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Peso</th>
 								<th>Índice</th>
 								<th>Circ. Braquial</th>
+								<th>Vacunado</th>
+								<th>Vacuna</th>
+								<th>Dosis</th>
+								<th>Lote</th>
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -167,6 +171,17 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Peso']."kg"; ?></td>
 									<td><?php echo $estudiante['Índice']; ?></td>
 									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
+
+									<td><?php echo $estudiante['Vacunado']; ?></td>
+									
+									<td><?php echo $estudiante['Vacuna']; ?></td>
+									<?php if ($estudiante['Dosis'] >= 1):?>
+										<td><?php echo $estudiante['Dosis']; ?></td>
+									<?php else:?>
+										<td>No vacunado</td>
+									<?php endif;?>
+									<td><?php echo $estudiante['Lote']; ?></td>
+
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
