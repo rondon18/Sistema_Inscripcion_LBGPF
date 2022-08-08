@@ -23,7 +23,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 	<title>Editar Perfil</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
 </head>
 <body>
 	<form class="card" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 74px auto;">

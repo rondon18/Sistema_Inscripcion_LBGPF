@@ -66,7 +66,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
 	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
 </head>
 <style media="screen">

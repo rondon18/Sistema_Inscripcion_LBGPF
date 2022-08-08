@@ -78,3 +78,16 @@ body {
   border: transparent;
 }
 
+#js_up  {
+  opacity: 0.5;
+  transition: opacity .5s ease;
+}
+
+#js_up:hover  {
+  opacity: 1;
+}
+
+#distintivo {
+  width: 48px;
+  height: 42px;
+}
