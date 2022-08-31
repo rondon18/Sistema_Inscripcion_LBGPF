@@ -7,6 +7,7 @@
 	<title>Página de inicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/hover.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css" />
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
@@ -14,7 +15,8 @@
 
 <body>
 
-	<main class="h-100 d-flex flex-column justify-content-between" style="min-height:100vh;">
+
+	<main class="w-100 h-100" style="min-height:90vh">
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-3 border-secondary shadow-lg"
 			aria-label="Barra de navegación">
@@ -23,10 +25,10 @@
 
 				<a class="navbar-brand" href="#">
 
-					<img src="../../img/distintivo-LGPF.png" class="me-2" width="48" height="42"
+					<img id="distintivo" src="../../img/distintivo-LGPF.png" class="me-2" width="64"
 						alt="Distintivo de la institución">
 
-					<span>L.B. Gonzalo Picón Febres</span>
+					<span class="fs-6 fs-sm-1">L. B. Gonzalo Picón Febres</span>
 				</a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#BarraNavegación"
@@ -47,11 +49,39 @@
 							</a>
 						</li>
 
-						<li class="nav-item">
-							<a class="nav-link" href="#">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="fas fa-search"></i>
 								Consultar
 							</a>
+
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+								<!-- Accciones de representante -->
+
+								<li><a class="dropdown-item" href="#">Estudiantes</a></li>
+
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+
+								<!-- Acciones de docente / administrador -->
+
+								<li><a class="dropdown-item" href="#">Representantes</a></li>
+								<li><a class="dropdown-item" href="#">Padres</a></li>
+
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+
+								<!-- Acciones de administrador -->
+
+								<li><a class="dropdown-item" href="#">Usuarios</a></li>
+								<li><a class="dropdown-item" href="#">Registros</a></li>
+
+							</ul>
+
 						</li>
 
 						<li class="nav-item">
@@ -68,6 +98,8 @@
 							</a>
 						</li>
 
+
+
 					</ul>
 
 				</div>
@@ -76,136 +108,139 @@
 
 		</nav>
 
-		<div class="container-md pb-3">
-			<div class="row">
+		<div class="container-md py-3">
 
-				<div class="col-12 order-1 order-md-0 col-md-3 p-2">
-					<div class="bg-light border rounded-3 w-100">
-						<div class="border p-3 text-center">
-							<p class="mb-0">
-								Menú de contexto
-							</p>
-						</div>
-						<div class="text-center">
+			<div class="card bg-light w-100 mx-0">
 
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item"><a class="btn btn-secondary" href="#">Respaldar BD</a></li>
-								<li class="list-group-item"><a class="btn btn-secondary" href="#">Restaurar BD</a></li>
-							</ul>
-						
-						</div>
-
-						<div class="border p-2 text-center">
-							<p class="mb-0">
-								<small class="text-muted">Presione para enfocar la opción</small>
-							</p>
-						</div>
-
-					</div>
+				<div class="card-header text-center">
+					<b>Área de mantenimiento</b>
 				</div>
 
-				<div class="col-12 order-0 order-md-1 col-md-9 p-2">
-					<div class="card text-center bg-light w-100">
+				<div class="row">
 
-						<div class="card-header">
-							<b>Menú principal</b>
-						</div>
+					<div class="col-12 pt-2 px-5">
 
-						<div class="card-body">
+						<ul class="list-group list-group-flush">
 
-							<p class="card-text">
-								<span>Bienvenido al modulo de mantenimiento</span>
-							</p>
-							<div class="text-start container">
+							<li class="list-group-item">
 
-								<form id="Respaldar" class="d-block my-3 border rounded-3 p-3"
-									action="../../controladores/control-mantenimiento.php" method="POST">
-									<p><strong>Generar un respaldo de la base de datos.</strong></p>
-									<input type="hidden" name="orden" value="Respaldar">
+								<div class="row">
 
-									<button class="btn btn-primary mb-2" type="button" onclick="respaldarBD()"
-										title="Presione aquí para respaldar la base de datos.">
-										Respaldar <i class="fas fa-download fa-lg"></i>
-									</button>
+									<!-- Panel de respaldo -->
+									<div class="col-12 col-md-6 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 
-									<p class="text-muted mb-0">
-										<small><u><i>Respalda la base de datos y descarga este mismo.</i></u></small>
-									</p>
+											<i class="fas fa-floppy-disk fa-3x me-2"></i>
 
-								</form>
+											<div class="ps-2 m-0 my-1 w-100">
 
-								<form id="Restaurar" class="d-block my-3 border rounded-3 p-3" action="test.php" method="POST">
-									<p><strong>Restaurar base de datos.</strong></p>
-									<div class="input-group mb-2">
+												<p class="mb-1">
+													Generar un respaldo: <br>
 
-										<select class="form-select overflow-hidden" id="puntoGuardado" name="puntoGuardado"
-											placeholder="Seleccione un punto de restauración"
-											title="Debe seleccionar alguna de las opciones." required>
+													<small>Respalda la base de datos y descarga este mismo.</small>
+												</p>
 
-											<option disabled selected>Seleccione un punto de restauración</option>
+												<form id="Respaldar" action="#" onclick="respaldarBD()">
+													<button type="button"
+														class="form-control btn btn-outline-light mt-2 mb-0 hvr-icon-grow">
+														Respaldar
+														<i class="fas fa-download fa-lg ms-1 hvr-icon"></i>
+													</button>
+												</form>
+											</div>
 
-											<!--Timestamp del respaldo-->
-											<option>1-1-1</option>
-											<option>2-2-2</option>
-											<option>3-3-3</option>
-											<option>4-4-4</option>
-											<option>5-5-5</option>
-											<option>6-6-6</option>
-											<option>7-7-7</option>
-											<option>8-8-8</option>
-											<option>Valores por defecto</option>
-
-										</select>
-
-										<input type="hidden" name="orden" value="Restaurar">
-
-										<button class="btn btn-primary" type="button" onclick="restaurarBD()"
-											title="Presione aquí para restaurar la base de datos.">
-											Restaurar <i class="fas fa-database fa-lg"></i>
-										</button>
+										</div>
 
 									</div>
 
-									<p class="text-muted mb-0"><small><u><i>Regresa la base de datos a un punto anterior. Genera
-													un
-													respaldo
-													automaticamente.</i></u></small></p>
+									<!-- Panel de padres -->
+									<div class="col-12 col-md-6 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-success py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 
-								</form>
-							</div>
-						</div>
+											<i class="fas fa-rotate-left fa-3x me-2"></i>
+											<div class="ps-2 m-0 my-1 w-100">
+												<p>
+													Restaurar a un punto anterior: <br>
+												</p>
 
-						<div class="card-footer">
-							<span class="text-muted">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i>
-								2022-2022</span>
-						</div>
+												<form id="Restaurar" action="" method="post">
 
+													<div class="input-group w-100">
+
+														<select class="form-select overflow-hidden" id="puntoGuardado"
+															name="puntoGuardado" placeholder="Seleccione un punto de restauración"
+															title="Debe seleccionar alguna de las opciones." required>
+															<option disabled selected>Seleccione un punto de restauración</option>
+															<option value="">01-01-01</option>
+															<option value="">02-02-02</option>
+															<option value="">03-03-03</option>
+															<option value="">04-04-04</option>
+															<option value="">05-05-05</option>
+															<option value="">06-06-06</option>
+															<option value="">07-07-07</option>
+															<option value="">08-08-08</option>
+															<option value="">09-09-09</option>
+															<option value="">10-10-10</option>
+															<option value="">11-11-11</option>
+															<option value="">12-12-12</option>
+															<option value="">13-13-13</option>
+															<option value="">14-14-14</option>
+															<option value="">15-15-15</option>
+															<option value="">16-16-16</option>
+															<option value="">17-17-17</option>
+															<option value="">18-18-18</option>
+															<option value="">19-19-19</option>
+															<option value="">20-20-20</option>
+															<option>Valores por defecto</option>
+														</select>
+														<button type="button" onclick="restaurarBD()"
+															class="btn btn-outline-light form-control hvr-icon-grow">
+															Restaurar
+															<i class="fas fa-database fa-lg ms-1 hvr-icon"></i>
+														</button>
+													</div>
+												</form>
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</li>
+						</ul>
 					</div>
 				</div>
-
+				<div class="card-footer text-center">
+					<span class="text-muted">Sistema de inscripción L.B. G.P.F</span>
+				</div>
 			</div>
+
 		</div>
 
-		<!--Footer-->
-		<footer
-			class="w-100 bg-white d-flex justify-content-center align-items-center justify-content-md-between shadow p-1 mt-auto mb-0"
-			style="z-index:1000;">
-			<div>
-				<img src="../../img/banner-gobierno.png" alt="" height="42" class="d-none d-sm-inline-block align-text-top">
-				<img src="../../img/banner-MPPE.png" alt="" height="42" class="d-none d-sm-inline-block align-text-top">
-			</div>
-			<img src="../../img/banner-LGPF.png" alt="" height="42" class="d-inline-block align-text-top">
-		</footer>
 	</main>
 
+	<footer class="w-100 m-0 container-fluid row bg-white p-0">
+		<div class="col-12">
+			<div
+				class="w-100 bg-white d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center justify-content-md-between shadow"
+				style="z-index:1000;"">
+						<img src=" ../../img/banner-gobierno.png" alt="" height="48" class="m-2">
+				<img src="../../img/banner-MPPE.png" alt="" height="48" class="m-2 me-md-auto">
+				<img src="../../img/banner-LGPF.png" alt="" height="48" class="m-2">
+			</div>
+		</div>
+	</footer>
+
 	<!--Botón para subir-->
-	<a href="#" id="js_up" class="position-fixed bottom-0 end-0 btn btn-secondary mb-4 me-4 me-sm-5"
+	<a href="#" id="js_up" class="position-fixed bottom-0 start-0 btn btn-secondary mb-4 ms-4 ms-sm-5"
 		title="Subir al inicio" style="z-index:1001;">
 
 		<i class="fa fa-lg fa-arrow-up" aria-hidden="true"></i>
 
 	</a>
-
 
 </body>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
@@ -223,8 +258,8 @@
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				cancelButtonText: '¡No, detente! <i class="fas fa-thumbs-down"></i>',
-				confirmButtonText: '<i class="fas fa-thumbs-up"></i> ¡Sí, continua!'
+				cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+				confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
 			}).then((result) => {
 				if (result.isConfirmed) {
 
@@ -238,7 +273,7 @@
 				title: 'Seleccione un respaldo antes de continuar',
 				icon: 'error',
 				confirmButtonColor: '#0d6efd',
-				confirmButtonText: 'Cerrar'
+				confirmButtonText: 'Cerrar <i class="ms-1 fas fa-lg fa-xmark"></i>'
 			})
 		}
 
@@ -252,8 +287,8 @@
 			showCancelButton: true,
 			confirmButtonColor: '#0d6efd',
 			cancelButtonColor: '#d33',
-			cancelButtonText: '¡No, detente! <i class="fas fa-thumbs-down"></i>',
-			confirmButtonText: '<i class="fas fa-thumbs-up"></i> ¡Sí, continua!'
+			cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+			confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
 		}).then((result) => {
 			if (result.isConfirmed) {
 				document.getElementById("Respaldar").submit();
@@ -277,7 +312,7 @@
 				}).then((result) => {
 					/* Read more about handling dismissals below */
 					if (result.dismiss === Swal.DismissReason.timer) {
-						console.log('I was closed by the timer')
+						console.log('Cerrado por el temporizador')
 					}
 				})
 			}

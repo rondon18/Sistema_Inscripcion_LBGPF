@@ -8,12 +8,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/hover.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css" />
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 
 <body>
-	<main class="h-100">
+
+
+	<main class="w-100 h-100" style="min-height:100vh">
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-3 border-secondary shadow-lg"
 			aria-label="Barra de navegación">
@@ -43,12 +46,6 @@
 							<a class="nav-link active" aria-current="page" href="#">
 								<i class="fas fa-home"></i>
 								Menú principal
-							</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-
 							</a>
 						</li>
 
@@ -111,85 +108,205 @@
 
 		</nav>
 
-		<div class="container-md pb-3">
+		<div class="container-md py-3">
 
-			<div class="row">
+			<div class="card bg-light w-100 mx-0">
 
+				<div class="card-header text-center">
+					<b>Menú principal</b>
+				</div>
 
-				<div class="col-12 pt-2">
+				<div class="row">
+					<div class="col-12 pt-2">
+						<ul class="list-group list-group-flush">
 
+							<li class="list-group-item text-center">
+								<span>Bienvenido(a), Elber Rondón.</span>
+							</li>
 
-					<div class="card bg-light w-100 mx-0">
-						<div class="card-header text-center">
-							<b>Menú principal</b>
-						</div>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-12">
-									<p class="text-center">
-										<span>Bienvenido(a), Elber Rondón.</span>
-									</p>
-								</div>
-								<div class="col-12">
-									<div class="row">
-										<div class="col-4 d-flex p-2">
-											<div class="d-flex bg-primary p-3 rounded-2 text-white w-100">
-												<i class="fas fa-user fa-4x"></i>
-												<p class="ps-2">
-													Estudiantes registrados: <br> 
-													<big><b class="text-decoration-underline">12345</b></big>
-												</p>
-											</div>
-										</div>
-										<div class="col-4 d-flex p-2">
-											<div class="d-flex bg-success p-3 rounded-2 text-white w-100">
-												<i class="fas fa-user fa-4x"></i>
-												<p class="ps-2">
-													Padres registrados: <br> 
-													<big><b class="text-decoration-underline">12345</b></big>
-												</p>
-											</div>
-										</div>
-										<div class="col-4 d-flex p-2">
-											<div class="d-flex bg-danger p-3 rounded-2 text-white w-100">
-												<i class="fas fa-user fa-4x"></i>
-												<p class="ps-2">
-													Representantes registrados: <br> 
-													<big><b class="text-decoration-underline">12345</b></big>
-												</p>
-											</div>
+							<li class="list-group-item">
+								<div class="row justify-content-center">
+
+									<!-- Panel de estudiantes -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-children fa-3x me-2"></i>
+
+											<p class="ps-2 m-0 my-1 w-100">
+												Estudiantes registrados: <br>
+												<big><b class="text-decoration-underline">12345</b></big>
+
+												<br>
+
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Consultar
+													<i class="fas fa-search fa-lg ms-1 hvr-icon"></i>
+												</a>
+
+											</p>
 										</div>
 									</div>
+
+									<!-- Panel de padres -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-success py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-users fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Padres registrados: <br>
+												<big><b class="text-decoration-underline">12345</b></big>
+
+												<br>
+
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Consultar
+													<i class="fas fa-search fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+									<!-- Panel de representantes -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-danger py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-person fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Representantes registrados: <br>
+												<big><b class="text-decoration-underline">12345</b></big>
+
+												<br>
+
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Consultar
+													<i class="fas fa-search fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+									<!-- Panel de docentes (Administrador) -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-secondary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-user fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Docentes registrados: <br>
+												<big><b class="text-decoration-underline">12345</b></big>
+
+												<br>
+
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Consultar
+													<i class="fas fa-search fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+									<!-- Panel de usuarios (Administrador) -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-secondary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-user fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Usuarios registrados: <br>
+												<big><b class="text-decoration-underline">12345</b></big>
+
+												<br>
+
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Consultar
+													<i class="fas fa-search fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+
+									<!-- Panel para iniciar registro de estudiante -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-user-plus fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Inciar registro: <br>
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Registrar nuevo
+													<i class="fas fa-plus-square fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+									<!-- Panel para acceder al modulo de mantenimiento(Administrador) -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-wrench fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Realizar mantenimiento al sistema: <br>
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Ir
+													<i class="fas fa-cog fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
+									<!-- Panel para acceder al modulo de perfil -->
+									<div class="col-12 col-md-6 col-lg-4 d-flex p-2">
+										<div
+											class="cartilla d-flex bg-danger	 py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
+											<i class="fas fa-user-circle fa-3x me-2"></i>
+											<p class="ps-2 m-0 my-1 w-100">
+												Consultar mi perfil: <br>
+												<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon-grow">
+													Ir
+													<i class="fas fa-arrow-right fa-lg ms-1 hvr-icon"></i>
+												</a>
+											</p>
+										</div>
+									</div>
+
 								</div>
-							</div>
-						</div>
 
-						<div class="card-footer text-center">
-							<span class="text-muted">Sistema de inscripción L.B. G.P.F</span>
-						</div>
-
+							</li>
+						</ul>
 					</div>
-
+				</div>
+				<div class="card-footer text-center">
+					<span class="text-muted">Sistema de inscripción L.B. G.P.F</span>
 				</div>
 			</div>
 
+		</div>
+
 	</main>
+
 	<footer class="w-100 m-0 container-fluid row bg-white p-0">
 		<div class="col-12">
-			<div class="w-100 bg-white d-flex justify-content-center align-items-center justify-content-md-between shadow"
+			<div
+				class="w-100 bg-white d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center justify-content-md-between shadow"
 				style="z-index:1000;"">
 						<img src=" ../../img/banner-gobierno.png" alt="" height="48" class="m-2">
-				<img src="../../img/banner-MPPE.png" alt="" height="48" class="m-2 me-auto">
+				<img src="../../img/banner-MPPE.png" alt="" height="48" class="m-2 me-md-auto">
 				<img src="../../img/banner-LGPF.png" alt="" height="48" class="m-2">
 			</div>
 		</div>
 	</footer>
 
+	<!--Botón para subir-->
+	<a href="#" id="js_up" class="position-fixed bottom-0 start-0 btn btn-secondary mb-4 ms-4 ms-sm-5"
+		title="Subir al inicio" style="z-index:1001;">
 
+		<i class="fa fa-lg fa-arrow-up" aria-hidden="true"></i>
 
-
+	</a>
 
 </body>
+
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	function confirmacion() {
