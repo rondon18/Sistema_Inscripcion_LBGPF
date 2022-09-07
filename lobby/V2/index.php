@@ -289,7 +289,7 @@
 		<div class="col-12">
 			<div
 				class="w-100 bg-white d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center justify-content-md-between shadow"
-				style="z-index:1000;"">
+				style="z-index:1000;">
 						<img src=" ../../img/banner-gobierno.png" alt="" height="48" class="m-2">
 				<img src="../../img/banner-MPPE.png" alt="" height="48" class="m-2 me-md-auto">
 				<img src="../../img/banner-LGPF.png" alt="" height="48" class="m-2">

@@ -48,7 +48,7 @@
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">
+							<a class="nav-link active" aria-current="page" href="../index.php">
 								<i class="fas fa-home"></i>
 								Menú principal
 							</a>
@@ -312,7 +312,7 @@
 							</div>
 
 							<div class="">
-								
+
 								<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
 									Mostrando Estudiantes registrados
 								</p>

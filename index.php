@@ -13,13 +13,18 @@
 </head>
 <body>
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
-		<div>
-			<img src="img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
-			<img src="img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+	<header class="w-100 m-0 container-fluid row bg-white p-0 position-fixed">
+		<div class="col-12">
+			<div
+				class="w-100 bg-white d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center justify-content-md-between shadow"
+				style="z-index:1000;">
+						<img src=" img/banner-gobierno.png" alt="" height="48" class="m-2">
+				<img src="img/banner-MPPE.png" alt="" height="48" class="m-2 me-md-auto">
+				<img src="img/banner-LGPF.png" alt="" height="48" class="m-2">
+			</div>
 		</div>
-		<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
+
 
 	<form class="w-100 h-100 d-flex" action="controladores/login.php" method="POST" style="min-height: 100vh;">
 		<div class="card text-center m-auto" style="max-width:400px; margin:auto;">
