@@ -73,7 +73,7 @@ $conteo_estudiantes = $estudiante->retornarConteo();
 						</li>
 
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
 								data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="fas fa-search"></i>
 								Consultar
@@ -83,7 +83,7 @@ $conteo_estudiantes = $estudiante->retornarConteo();
 
 								<!-- Accciones de representante -->
 
-								<li><a class="dropdown-item" href="#">Estudiantes</a></li>
+								<li><a class="dropdown-item" href="consultar/estudiantes.php">Estudiantes</a></li>
 
 								<li>
 									<hr class="dropdown-divider">
@@ -91,8 +91,8 @@ $conteo_estudiantes = $estudiante->retornarConteo();
 
 								<!-- Acciones de docente / administrador -->
 
-								<li><a class="dropdown-item" href="#">Representantes</a></li>
-								<li><a class="dropdown-item" href="#">Padres</a></li>
+								<li><a class="dropdown-item" href="consultar/representantes.php">Representantes</a></li>
+								<li><a class="dropdown-item" href="consultar/padres.php">Padres</a></li>
 
 								<li>
 									<hr class="dropdown-divider">
@@ -100,22 +100,22 @@ $conteo_estudiantes = $estudiante->retornarConteo();
 
 								<!-- Acciones de administrador -->
 
-								<li><a class="dropdown-item" href="#">Usuarios</a></li>
-								<li><a class="dropdown-item" href="#">Registros</a></li>
+								<li><a class="dropdown-item" href="consultar/usuarios.php">Usuarios</a></li>
+								<li><a class="dropdown-item" href="consultar/registros.php">Registros</a></li>
 
 							</ul>
 
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="mantenimiento.php">
 								<i class="fas fa-wrench"></i>
 								Mantenimiento
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="perfil/perfil.php">
 								<i class="fas fa-user"></i>
 								Perfil
 							</a>

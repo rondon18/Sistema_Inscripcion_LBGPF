@@ -1,3 +1,64 @@
+<?php
+
+session_start();
+
+if (!$_SESSION['login']) {
+	header('Location: ../index.php');
+	exit();
+}
+
+
+function calculaedad($fechanacimiento){
+  list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+  $ano_diferencia  = date("Y") - $ano;
+  $mes_diferencia = date("m") - $mes;
+  $dia_diferencia   = date("d") - $dia;
+  if ($dia_diferencia < 0 || $mes_diferencia < 0)
+    $ano_diferencia--;
+  return $ano_diferencia;
+}
+
+function Género($Género){
+	if ($Género == "F") {
+		$Género = "Femenino";
+	}
+	elseif ($Género == "M") {
+		$Género = "Masculino";
+	}
+	return $Género;
+}
+require("../../clases/estudiante.php");
+require("../../clases/representantes.php");
+require("../../clases/Padre.php");
+require("../../clases/madre.php");
+require("../../controladores/conexion.php");
+require("../../clases/usuario.php");
+
+require('../../clases/bitácora.php');
+$bitácora = new bitácora();
+$_SESSION['acciones'] .= ', Consulta estudiantes';
+$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+
+$registros_bitácora = $bitácora->mostrar_bitácora();
+
+$estudiante = new Estudiantes();
+$representante = new Representantes();
+$Padre = new Padre();
+$Madre = new Madre();
+
+$listaEstudiantes = $estudiante->mostrarEstudiantes();
+$listaRepresentantes = $representante->mostrarRepresentantes();
+$listaPadre = $Padre->mostrarPadre();
+$listaMadre = $Madre->mostrarMadre();
+
+if ($_SESSION['usuario']['Privilegios'] == 1) {
+	$usuario = new Usuarios();
+	$lista_usuarios = $usuario->mostrarUsuarios();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +109,7 @@
 					<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">
+							<a class="nav-link active" aria-current="page" href="../index.php">
 								<i class="fas fa-home"></i>
 								Menú principal
 							</a>
@@ -133,23 +194,23 @@
 								<div
 									class="selector-consulta d-flex flex-column flex-sm-row gap-2 align-items-center justify-content-evenly">
 									<p class="h4 m-0 text-center">Consultar:</p>
-									<a href="" class="btn btn-outline-light hvr-icon-grow">
+									<a href="estudiantes.php" class="btn btn-outline-light hvr-icon-grow">
 										<i class="fas fa-lg fa-children me-2 hvr-icon"></i>
 										Estudiantes
 									</a>
-									<a href="" class="btn btn-outline-light hvr-icon-grow">
+									<a href="representantes.php" class="btn btn-outline-light hvr-icon-grow">
 										<i class="fas fa-lg fa-users me-2 hvr-icon"></i>
 										Representantes
 									</a>
-									<a href="" class="btn btn-outline-light hvr-icon-grow">
+									<a href="padres.php" class="btn btn-outline-light hvr-icon-grow">
 										<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
 										Padres
 									</a>
-									<a href="" class="btn btn-outline-light hvr-icon-grow">
+									<a href="usuarios.php" class="btn btn-outline-light hvr-icon-grow">
 										<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
 										Usuarios
 									</a>
-									<a href="" class="btn btn-outline-light hvr-icon-grow">
+									<a href="registros.php" class="btn btn-outline-light hvr-icon-grow">
 										<i class="fas fa-lg fa-clipboard me-2 hvr-icon"></i>
 										Registros
 									</a>
@@ -312,7 +373,7 @@
 							</div>
 
 							<div class="">
-								
+
 								<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
 									Mostrando Estudiantes registrados
 								</p>
@@ -342,369 +403,93 @@
 										<th>Acciones</th>
 									</thead>
 									<tbody>
-										<tr>
-											<td style="min-width:100px">sub item 1</td>
-											<td style="min-width:100px">sub item 2</td>
-											<td style="min-width:100px">sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td style="min-width:100px">sub item 6</td>
-											<td style="min-width:150px">sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>sub item 1</td>
-											<td>sub item 2</td>
-											<td>sub item 3</td>
-											<td>sub item 4</td>
-											<td>sub item 5</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 6</td>
-											<td>sub item 7</td>
-											<td>
-												<div class="input-group">
-													<button class="btn btn-sm btn-primary">
-														Accion 1
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-													<button class="btn btn-sm btn-primary">
-														Accion 2
-														<i class="fas fa-lg fa-link"></i>
-													</button>
-												</div>
-											</td>
-										</tr>
+										<?php foreach ($listaEstudiantes as $estudiante):?>
+												<tr>
+													<td><?php echo $estudiante['Cédula']; ?></td>
+													<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
+													<td style="min-width:210px;"><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
+													<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
+													<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
+													<td style="min-width:120px;"><?php echo $estudiante['Grado_A_Cursar']; ?></td>
+													<td><?php echo Género($estudiante['Género']); ?></td>
+													<td style="min-width:160px;"><?php echo $estudiante['Correo_Electrónico']; ?></td>
+													<td style="min-width:190px;"><?php echo $estudiante['Dirección']; ?></td>
+													<td><?php echo $estudiante['Talla_Camisa']; ?></td>
+													<td><?php echo $estudiante['Talla_Pantalón']; ?></td>
+													<td><?php echo $estudiante['Talla_Zapatos']; ?></td>
+													<td><?php echo $estudiante['Estatura']."cm"; ?></td>
+													<td><?php echo $estudiante['Peso']."kg"; ?></td>
+													<td><?php echo $estudiante['Índice']; ?></td>
+													<td><?php echo $estudiante['Circ_Braquial']; ?></td>
+
+													<td><?php echo $estudiante['Vacunado']; ?></td>
+
+													<td><?php echo $estudiante['Vacuna']; ?></td>
+													<?php if ($estudiante['Dosis'] >= 1):?>
+														<td><?php echo $estudiante['Dosis']; ?></td>
+													<?php else:?>
+														<td>No vacunado</td>
+													<?php endif;?>
+													<td><?php echo $estudiante['Lote']; ?></td>
+
+													<td>
+														<!--Generar planilla de inscripción-->
+														<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
+															<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+															<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+															<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
+															<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+															<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
+															<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+														</form>
+														<form action="consultar-estudiante.php" method="post" style="display: inline-block;">
+															<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+															<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+															<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
+															<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+															<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
+															<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
+														</form>
+														<form action="editar-estudiante/paso-1.php" method="post" style="display: inline-block;" target="_blank">
+															<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+															<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
+															<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
+															<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
+															<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
+															<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+														</form>
+														<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+														<form action="../controladores/control-registros.php" method="post" style="display: inline-block;">
+															<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
+															<button class="btn btn-sm btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="Eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+														</form>
+														<?php endif; ?>
+													</td>
+												</tr>
+										<?php endforeach ?>
 									</tbody>
 									<tfoot>
-										<th>Pie de tabla 1</th>
-										<th>Pie de tabla 2</th>
-										<th>Pie de tabla 3</th>
-										<th>Pie de tabla 4</th>
-										<th>Pie de tabla 5</th>
-										<th>Pie de tabla 6</th>
-										<th>Pie de tabla 7</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
-										<th>Pie de tabla 8</th>
+										<th><small>Cédula</small></th>
+										<th><small>Nombres</small></th>
+										<th><small>Apellidos</small></th>
+										<th><small>Fecha de nacimiento</small></th>
+										<th><small>Edad</small></th>
+										<th><small>Año a cursar</small></th>
+										<th><small>Género</small></th>
+										<th><small>Correo electrónico</small></th>
+										<th><small>Dirección de residencia</small></th>
+										<th><small>Talla de camisa</small></th>
+										<th><small>Talla de pantalón</small></th>
+										<th><small>Talla de zapatos</small></th>
+										<th><small>Estatura</small></th>
+										<th><small>Peso</small></th>
+										<th><small>Índice</small></th>
+										<th><small>Circ. Braquial</small></th>
+										<th><small>Vacunado</small></th>
+										<th><small>Vacuna</small></th>
+										<th><small>Dosis</small></th>
+										<th><small>Lote</small></th>
+										<th><small>Acciones</small></th>
 									</tfoot>
 								</table>
 							</div>
@@ -728,7 +513,7 @@
 		<div class="col-12">
 			<div
 				class="w-100 bg-white d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center justify-content-md-between shadow"
-				style="z-index:1000;"">
+				style="z-index:1000;">
 						<img src=" ../../img/banner-gobierno.png" alt="" height="48" class="m-2">
 				<img src="../../img/banner-MPPE.png" alt="" height="48" class="m-2 me-md-auto">
 				<img src="../../img/banner-LGPF.png" alt="" height="48" class="m-2">

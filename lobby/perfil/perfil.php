@@ -2,12 +2,12 @@
 session_start();
 
 if (!$_SESSION['login']) {
-	header('Location: ../index.php');
+	header('Location: ../../index.php');
 	exit();
 }
 
-require('../clases/bitácora.php');
-require('../controladores/conexion.php');
+require('../../clases/bitácora.php');
+require('../../controladores/conexion.php');
 $bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Visita perfil';
 $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
@@ -38,19 +38,19 @@ function privilegios($privilegios) {
 	<meta charset="utf-8">
 	<title>Perfil del usuario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
+	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
-			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
-			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
 	<div class="card" style="max-width: 600px; margin: 74px auto;">
 		<div class="card-header">
@@ -115,9 +115,9 @@ function privilegios($privilegios) {
 			</section>
 		</div>
 		<div class="card-footer">
-			<a class="btn btn-primary" href="index.php">Volver <i class="fas fa-home"></i></a>
+			<a class="btn btn-primary" href="../index.php">Volver <i class="fas fa-home"></i></a>
 			<a class="btn btn-primary" href="editar-perfil.php">Editar perfil <i class="fas fa-user-edit"></i></a>
-			<form class="d-inline" action="../controladores/control-usuarios.php" method="POST">
+			<form class="d-inline" action="../../controladores/control-usuarios.php" method="POST">
 				<button class="btn btn-primary" type="submit" name="DarseDeBaja" onclick="return confirmacion();">Darse de baja <i class="fas fa-user-minus"></i></button>
 				<input type="hidden" name="orden" value="Eliminar">
 			</form>
@@ -127,8 +127,8 @@ function privilegios($privilegios) {
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
 		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
 	</footer>
-	<?php include '../ayuda.php'; ?>
-	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+	<?php include '../../ayuda.php'; ?>
+	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 function confirmacion() {
 	//Pregunta si desea realizar la acción la cancela si selecciona NO
