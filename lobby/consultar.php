@@ -149,15 +149,12 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Vacuna</th>
 								<th>Dosis</th>
 								<th>Lote</th>
-<<<<<<< Updated upstream
-=======
 								<th>Datos Representante</th>
 								<th>Cédula</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Dirección</th>
 								<th>Fecha de nacimiento</th>
->>>>>>> Stashed changes
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -166,7 +163,9 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<tr>
 									<td><?php echo $estudiante['Cédula']; ?></td>
 									<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
-									<td style="min-width:210px;"><?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?></td>
+									<td style="min-width:210px;">
+										<?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?>		
+									</td>
 									<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
 									<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
 									<td style="min-width:120px;"><?php echo $estudiante['Grado_A_Cursar']; ?></td>
@@ -180,31 +179,17 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Peso']."kg"; ?></td>
 									<td><?php echo $estudiante['Índice']; ?></td>
 									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
-<<<<<<< Updated upstream
-
-									<td><?php echo $estudiante['Vacunado']; ?></td>
-									
-									<td><?php echo $estudiante['Vacuna']; ?></td>
-									<?php if ($estudiante['Dosis'] >= 1):?>
-										<td><?php echo $estudiante['Dosis']; ?></td>
-									<?php else:?>
-										<td>No vacunado</td>
-									<?php endif;?>
-									<td><?php echo $estudiante['Lote']; ?></td>
-
-=======
 									<td><?php echo $estudiante['Vacunado']; ?></td>								
 									<td><?php echo $estudiante['Vacuna']; ?></td>
 									<td><?php echo $estudiante['Dosis']; ?></td>
 									<td><?php echo $estudiante['Lote']; ?></td>
-									<td> </td>
+									<td> .</td>
 									<?php $datosRepresentante = $representante->consultarRepresentanteID($estudiante['idRepresentante']);?>
 									<td><?php echo $datosRepresentante['Cédula']; ?> </td>
 									<td><?php echo $datosRepresentante['Primer_Nombre']." ".$datosRepresentante['Segundo_Nombre']; ?> </td>
 									<td><?php echo $datosRepresentante['Primer_Apellido']." ".$datosRepresentante['Segundo_Apellido']; ?> </td>
 									<td><?php echo $datosRepresentante['Dirección']; ?> </td>
 									<td><?php echo $datosRepresentante['Fecha_Nacimiento']; ?> </td>
->>>>>>> Stashed changes
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
@@ -290,8 +275,6 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											else echo ", "; ?>
 										<?php endforeach; ?>
 										</td>
-
-
 									</tr>
 								<?php endforeach; ?>
 								</tbody>
@@ -403,17 +386,17 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			dom: 'Bfrtip',
 			buttons: [
 				{
-	            extend: 'excelHtml5',
-							exportOptions: {
-                columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-            	},                	                       
-	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-	            autoFilter: true,
-	            filename: 'Reporte de estudiantes',
-	            sheetName: 'Reporte de estudiantes',
-	            className: 'btn btn-success',
-	            messageTop: 'Reporte de estudiantes'
-	        	}
+          extend: 'excelHtml5',
+					exportOptions: {
+            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+        	},                	                       
+          text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
+          autoFilter: true,
+          filename: 'Reporte de estudiantes',
+          sheetName: 'Reporte de estudiantes',
+          className: 'btn btn-success',
+          messageTop: 'Reporte de estudiantes'
+        	}
 		  	],
 		  	"pagingType": "numbers"
 	  	<?php endif; ?>

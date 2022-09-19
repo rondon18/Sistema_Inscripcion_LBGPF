@@ -61,10 +61,7 @@ $datos_vivienda = $Datos_vivienda->consultarDatosvivienda_R($_POST['id_represent
 
 $datos_representante = $Representante->consultarRepresentanteID($_POST['id_representante']);
 
-$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
-$contacto_aux = new Personas();
-$dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
-$telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Persona']);
+$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante'],$_POST['id_Estudiante']);
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
@@ -461,8 +458,8 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Primer_Nombre'] ?>">
-								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Segundo_Nombre'] ?>">
+								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Primer_Nombre'] ?>">
+								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Segundo_Nombre'] ?>">
 							</div>
 						</div>
 
@@ -470,44 +467,9 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<div>
 							<label class="form-label">Apellidos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Primer_Apellido'] ?>">
-								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Segundo_Apellido'] ?>">
+								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Primer_Apellido'] ?>">
+								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Segundo_Apellido'] ?>">
 							</div>
-						</div>
-						<!--Género del contacto auxiliar-->
-						<div>
-							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
-								<div class="form-check form-check-inline">
-									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="F" required <?php if ($dat_contacto_aux['Género'] == "F"){echo "checked";} ?>>
-								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="M" required <?php if ($dat_contacto_aux['Género'] == "M"){echo "checked";} ?>>
-								</div>
-							</div>
-						</div>
-						<!--Cédula del contacto auxiliar-->
-						<div>
-							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<?php
-							#Separa la cédula del caracter que indica si es venezolana o extranjera
-							$tipo_Cédula = substr($dat_contacto_aux['Cédula'],0,1);
-							$Cédula			= substr($dat_contacto_aux['Cédula'],1,strlen($datos_representante['Cédula'])-1);
-							?>
-							<div class="input-group mb-2">
-								<select class="form-select" name="Tipo_Cédula_Aux" required>
-									<option selected disabled value="">Tipo de cédula</option>
-									<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";} ?>>V</option>
-									<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";} ?>>E</option>
-								</select>
-								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required value="<?php echo $Cédula; ?>">
-						</div>
-						<!--Correo Electrónico del contacto auxiliar-->
-						<div>
-							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required value="<?php echo $dat_contacto_aux['Correo_Electrónico'] ?>">
 						</div>
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
@@ -515,31 +477,10 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<!--Teléfono principal-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[0]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $datos_auxiliar['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[0]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required value="<?php echo $datos_auxiliar['Número_Telefónico'] ?>">
 							</div>
-
-							<!--Teléfono secundario-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[1]['Prefijo'] ?>">
-								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[1]['Número_Telefónico'] ?>">
-							</div>
-
-							<!--Teléfono auxiliar-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[2]['Prefijo'] ?>">
-								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[2]['Número_Telefónico'] ?>">
-							</div>
-						</div>
-						<!--Dirección de residencia del contacto auxiliar-->
-						<div>
-							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_Aux" id="Dirección_Aux" minlength="10"><?php echo $dat_contacto_aux['Dirección'] ?></textarea>
 						</div>
 						<!--Relación del contacto auxiliar-->
 						<div>
