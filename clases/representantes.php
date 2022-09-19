@@ -104,7 +104,7 @@ class Representantes {
 		$conexion = conectarBD();
 
 		#consulta solo las personas que tengan presencia en la tabla estudiantes
-		$sql = "SELECT * FROM `personas`,`estudiantes` WHERE `estudiantes`.`Cédula_Persona`= `personas`.`Cédula`AND `estudiantes`.`idRepresentante` = '$id_Representante'";
+		$sql = "SELECT * FROM `personas`,`estudiantes`,`grado` WHERE `estudiantes`.`Cédula_Persona`= `personas`.`Cédula` AND `grado`.`idEstudiantes` = `estudiantes`.`idEstudiantes` AND `estudiantes`.`idRepresentante` = '$id_Representante' ";
 
 
 		$consulta_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);

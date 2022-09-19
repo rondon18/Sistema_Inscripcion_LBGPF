@@ -65,7 +65,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$usuario->insertarUsuario();
 
-		header('Location: ../index.php');
+		header('Location: ../lobby/index.php');
 	}
 
 	elseif ($orden == "Editar") {

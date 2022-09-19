@@ -149,6 +149,15 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Vacuna</th>
 								<th>Dosis</th>
 								<th>Lote</th>
+<<<<<<< Updated upstream
+=======
+								<th>Datos Representante</th>
+								<th>Cédula</th>
+								<th>Nombres</th>
+								<th>Apellidos</th>
+								<th>Dirección</th>
+								<th>Fecha de nacimiento</th>
+>>>>>>> Stashed changes
 								<th>Acciones</th>
 							</thead>
 							<tbody>
@@ -171,6 +180,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Peso']."kg"; ?></td>
 									<td><?php echo $estudiante['Índice']; ?></td>
 									<td><?php echo $estudiante['Circ_Braquial']; ?></td>
+<<<<<<< Updated upstream
 
 									<td><?php echo $estudiante['Vacunado']; ?></td>
 									
@@ -182,6 +192,19 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<?php endif;?>
 									<td><?php echo $estudiante['Lote']; ?></td>
 
+=======
+									<td><?php echo $estudiante['Vacunado']; ?></td>								
+									<td><?php echo $estudiante['Vacuna']; ?></td>
+									<td><?php echo $estudiante['Dosis']; ?></td>
+									<td><?php echo $estudiante['Lote']; ?></td>
+									<td> </td>
+									<?php $datosRepresentante = $representante->consultarRepresentanteID($estudiante['idRepresentante']);?>
+									<td><?php echo $datosRepresentante['Cédula']; ?> </td>
+									<td><?php echo $datosRepresentante['Primer_Nombre']." ".$datosRepresentante['Segundo_Nombre']; ?> </td>
+									<td><?php echo $datosRepresentante['Primer_Apellido']." ".$datosRepresentante['Segundo_Apellido']; ?> </td>
+									<td><?php echo $datosRepresentante['Dirección']; ?> </td>
+									<td><?php echo $datosRepresentante['Fecha_Nacimiento']; ?> </td>
+>>>>>>> Stashed changes
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
@@ -239,10 +262,16 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<th>Dirección</th>
 									<th>Estado civil</th>
 									<th>Grado de instrucción</th>
+									<th>Año del(os) representado(s)</th>
 								</thead>
 								<tbody>
 								<?php foreach ($listaRepresentantes as $representante): ?>
 									<tr>
+									<?php 
+									$Representante = new Representantes();
+									$representados = $Representante->mostrarRepresentados($representante['idRepresentantes']);
+									$cont = 0;
+									$coma = count($representados); ?>
 										<td><?php echo $representante['Cédula']?></td>
 										<td><?php echo $representante['Primer_Nombre'].' '.$representante['Segundo_Nombre']?></td>
 										<td><?php echo $representante['Primer_Apellido'].' '.$representante['Segundo_Apellido']?></td>
@@ -253,6 +282,16 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<td><?php echo $representante['Dirección']?></td>
 										<td><?php echo $representante['Estado_Civil']?></td>
 										<td><?php echo $representante['Grado_Académico']?></td>
+										<td>
+										<?php foreach ($representados as $representante):?>
+											<?php 
+											echo $representados[$cont]['Grado_A_Cursar'];
+											if (++$cont === $coma) echo " " ;
+											else echo ", "; ?>
+										<?php endforeach; ?>
+										</td>
+
+
 									</tr>
 								<?php endforeach; ?>
 								</tbody>
@@ -268,6 +307,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						<div class="card-body">
 								<table id="usuarios" class="table table-striped table-bordered table-sm w-100">
 									<thead>
+										<th>ID usuario</th>
 										<th>Cédula del usuario</th>
 										<th>Nombres</th>
 										<th>Apellidos</th>
@@ -277,6 +317,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<tbody>
 										<?php foreach ($lista_usuarios as $usuario): ?>
 										<tr>
+											<td><?php echo $usuario['idUsuarios'];?></td>
 											<td><?php echo $usuario['Cédula_Persona'];?></td>
 											<td><?php echo $usuario['Primer_Nombre']. " " .$usuario['Segundo_Nombre']?></td>
 											<td><?php echo $usuario['Primer_Apellido']. " " .$usuario['Segundo_Apellido']?></td>
@@ -340,7 +381,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 	</div>
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 
@@ -358,11 +399,14 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			"language": {
 					"url": "../js/datatables-español.json"
 			  },
-	  	<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+	  	<?php if ($_SESSION['usuario']['Privilegios'] == 1 || $_SESSION['usuario']['Privilegios'] == 2): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
 	            extend: 'excelHtml5',
+							exportOptions: {
+                columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+            	},                	                       
 	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de estudiantes',
@@ -382,7 +426,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			"language": {
 					"url": "../js/datatables-español.json"
 			  },
-			<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+			<?php if ($_SESSION['usuario']['Privilegios'] == 1  || $_SESSION['usuario']['Privilegios'] == 2): ?>
 			dom: 'Bfrtip',
 			buttons: [
 				{
@@ -410,6 +454,9 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			buttons: [
 				{
 	            extend: 'excelHtml5',
+							exportOptions: {
+                columns: [0,1,2,3,4]
+            	}, 	            
 	            text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
 	            autoFilter: true,
 	            filename: 'Reporte de usuarios',

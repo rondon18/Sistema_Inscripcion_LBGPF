@@ -146,7 +146,7 @@
 			</div>
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Insertar">
-				<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+				<a class="btn btn-primary" href="../lobby/index.php">Volver al menu</a>
 				<input class="btn btn-primary" type="submit" value="Guardar y continuar">
 			</div>
 		</div>

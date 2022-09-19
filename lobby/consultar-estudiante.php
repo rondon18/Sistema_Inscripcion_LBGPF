@@ -79,10 +79,9 @@ $datos_representante = $Representante->consultarRepresentanteID($_POST['id_repre
 $datos_madre = $Madre->consultarMadre($_POST['id_madre']);
 $datos_padre = $Padre->consultarPadre($_POST['id_padre']);
 
-$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
-$contacto_aux = new Personas();
-$dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
-$telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Persona']);
+
+
+$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante'],$_POST['id_Estudiante']);
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
@@ -242,6 +241,8 @@ desconectarBD($conexion);
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+<?php echo $_POST['id_representante'].' '.$_POST['id_Estudiante'];?>
+
 		<div>
 			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -465,9 +466,32 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td> Relación: <?php echo $datos_auxiliar['Relación'] ?></td>
-						<td colspan="2"> Nombre: <?php echo $dat_contacto_aux['Primer_Nombre'].' '.$dat_contacto_aux['Primer_Apellido'] ?> </td>
-						<td colspan="2"> Teléfono: <?php echo $telefonos_aux[0]['Prefijo'] . '-' . $telefonos_aux[0]['Número_Telefónico'] ?> </td>
+						<td>
+							Relación: 
+							<?php echo $datos_auxiliar['Relación'] ?? NULL?>								
+						</td>
+						<td colspan="2"> 
+							Nombre: 
+							<?php echo $datos_auxiliar['Primer_Nombre'] ?? NULL; ?> 
+							<?php echo $datos_auxiliar['Primer_Apellido'] ?? NULL; ?> 
+						</td>
+						<td colspan="2">
+							Teléfono Principal: 
+						<?php 
+
+							try {
+								if (!isset($datos_auxiliar['Prefijo'],$datos_auxiliar['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($datos_auxiliar['Prefijo'],$datos_auxiliar['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
 					</tr>
 
 					<tr class="table-primary">
@@ -482,8 +506,40 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo $telefonos_pa[0]['Prefijo'] . '-' . $telefonos_pa[0]['Número_Telefónico']?></td>
-						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_pa[1]['Prefijo'] . '-' . $telefonos_pa[1]['Número_Telefónico']?></td>
+						<td colspan="2">
+							Teléfono Principal: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_pa[0]['Prefijo'],$telefonos_pa[0]['Núpero_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_pa[0]['Prefijo'],$telefonos_pa[0]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
+						<td colspan="2">
+							Teléfono Secundario: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_pa[1]['Prefijo'],$telefonos_pa[1]['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_pa[1]['Prefijo'],$telefonos_pa[1]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
 					</tr>
 
 					<tr>
@@ -499,13 +555,15 @@ desconectarBD($conexion);
 
 					<tr>
 						<td>Se encuentra en el país: <?php echo $SeEncuentraEnElPais_pa?></td>
-						<td colspan="2"> <?php
-									if ($padre['País_Residencia'] == "Venezuela") {
-    									echo "Dónde: " ;
-									}
-									else {
-    									echo 'Dónde: ' . $padre['País_Residencia'];
-									} ?>
+						<td colspan="2"> 
+						<?php
+							if ($padre['País_Residencia'] == "Venezuela") {
+								echo "Dónde: " ;
+							}
+							else {
+								echo 'Dónde: ' . $padre['País_Residencia'];
+							} 
+						?>
 						<td> Tiene más hijos en el plantel: <?php echo $TieneMasHijos_pa?></td>
 					</tr>
 
@@ -519,7 +577,23 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_pa[2]['Prefijo'],$telefonos_pa[2]['Número_Telefónico'])?></td>
+						<td colspan="2">
+							Teléfono del trabajo: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_pa[2]['Prefijo'],$telefonos_pa[2]['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_pa[2]['Prefijo'],$telefonos_pa[2]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
 						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_pa['Lugar_Trabajo']?></td>
 					</tr>
 
@@ -552,8 +626,40 @@ desconectarBD($conexion);
 					</tr>
 
 					<tr>
-						<td colspan="2">Teléfono Principal: <?php echo $telefonos_ma[0]['Prefijo'] . '-' . $telefonos_ma[0]['Número_Telefónico']?></td>
-						<td colspan="2">Teléfono Secundario: <?php echo $telefonos_ma[1]['Prefijo'] . '-' . $telefonos_ma[1]['Número_Telefónico']?></td>
+						<td colspan="2">
+							Teléfono Principal: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_ma[0]['Prefijo'],$telefonos_ma[0]['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_ma[0]['Prefijo'],$telefonos_ma[0]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
+						<td colspan="2">
+							Teléfono Secundario: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_ma[1]['Prefijo'],$telefonos_ma[1]['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_ma[1]['Prefijo'],$telefonos_ma[1]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>		
+						</td>
 					</tr>
 
 					<tr>
@@ -588,8 +694,25 @@ desconectarBD($conexion);
 						<td colspan="3">En qué se desempeña: <?php echo $datos_laborales_ma['Empleo']?></td>
 					</tr>
 
+
+	
 					<tr>
-						<td colspan="1">Teléfono Trabajo: <?php echo telefono($telefonos_ma[2]['Prefijo'],$telefonos_ma[2]['Número_Telefónico'])?></td>
+						<td colspan="1">Teléfono Trabajo: 
+						<?php 
+
+							try {
+								if (!isset($telefonos_ma[2]['Prefijo'],$telefonos_ma[2]['Número_Telefónico'])) {
+									throw new Exception('nulo');
+								}
+								else {
+									echo telefono($telefonos_ma[2]['Prefijo'],$telefonos_ma[2]['Número_Telefónico']);
+								}
+							} catch (Exception $e) {
+								echo ("No tiene");
+							}
+
+						?>
+						</td>
 						<td colspan="3">Lugar Trabajo: <?php echo $datos_laborales_ma['Lugar_Trabajo']?></td>
 					</tr>
 

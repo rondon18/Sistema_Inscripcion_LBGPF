@@ -62,7 +62,6 @@
 			</div>
 			<div class="card-footer">
 				<input class="btn btn-primary" type="submit" name="Ingresar" value="Ingresar">
-				<a class="btn btn-primary" href="registrarse/registrarse.php">Registrarse</a>
 			</div>
 		</div>
 	</form>

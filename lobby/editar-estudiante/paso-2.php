@@ -1126,7 +1126,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
 			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">
 			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
+			<input type="hidden" name="Tenencia_Vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
 			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro']?>">
 			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
 			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">

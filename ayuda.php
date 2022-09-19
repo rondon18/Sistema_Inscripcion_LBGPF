@@ -87,7 +87,7 @@
 						</div>
 				  </div>
 				</div>
-        <a href="/proyecto_pst/docs/Manual de usuario.pdf" target="_blank"><i class="fas fa-download fa-lg me-2"></i>Descargar manual de usuario</a>
+        <a href="/Sistema_Inscripcion_LBGPF/docs/Manual_de_usuario.pdf" target="_blank"><i class="fas fa-download fa-lg me-2"></i>Descargar manual de usuario</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

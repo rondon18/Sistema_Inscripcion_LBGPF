@@ -25,7 +25,7 @@ class DatosVivienda {
 		$resultado = $registro_existe->fetch_assoc();
 		
 		if ($resultado == NULL) {
-			$sql = "INSERT INTO `datos-vivienda`(`idDatos_vivienda`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idRepresentante`) VALUES (
+			$sql = "INSERT INTO `datos-vivienda`(`idDatos-vivienda`, `Condiciones_Vivienda`, `Tipo_Vivienda`, `Tenencia_Vivienda`, `idRepresentante`) VALUES (
 				NULL,
 				'$Condiciones_Vivienda',
 				'$Tipo_Vivienda',

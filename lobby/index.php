@@ -53,6 +53,11 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 					<a class="btn btn-sm bg-primary text-white mb-2" href="perfil.php">
 						Ver perfil <i class="fas fa-address-card fa-lg"></i>
 					</a>
+
+					<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
+						<a class="btn btn-sm bg-primary text-white mb-2" href="../registrarse/registrarse.php">Registrar usuario <i class="fas fa-user-plus fa-lg"></i></a>
+					<?php endif; ?>
+
 					<a class="btn btn-sm bg-primary text-white mb-2" href="registrar-estudiante/paso-1.php">
 						Registrar estudiante <i class="fas fa-user-plus fa-lg"></i>
 					</a>
@@ -97,7 +102,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 
 	<!--Footer-->
 	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. G.P.F - <?php echo date("Y"); ?></span>
+		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../ayuda.php'; ?>
 </body>
