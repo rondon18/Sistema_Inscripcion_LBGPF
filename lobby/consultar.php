@@ -31,6 +31,7 @@ require("../clases/estudiante.php");
 require("../clases/representantes.php");
 require("../clases/Padre.php");
 require("../clases/madre.php");
+require("../clases/teléfonos.php");
 require("../controladores/conexion.php");
 require("../clases/usuario.php");
 
@@ -45,11 +46,22 @@ $estudiante = new Estudiantes();
 $representante = new Representantes();
 $Padre = new Padre();
 $Madre = new Madre();
+$Teléfonos = new Teléfonos();
 
 $listaEstudiantes = $estudiante->mostrarEstudiantes();
 $listaRepresentantes = $representante->mostrarRepresentantes();
 $listaPadre = $Padre->mostrarPadre();
 $listaMadre = $Madre->mostrarMadre();
+
+function Teléfono($prefijo,$numero) {
+  if (empty($prefijo) and empty($numero)) {
+    $Teléfono = "";
+  }
+  else {
+    $Teléfono = "$prefijo-$numero";
+  }
+  return $Teléfono;
+}
 
 if ($_SESSION['usuario']['Privilegios'] == 1) {
 	$usuario = new Usuarios();
@@ -149,18 +161,21 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<th>Vacuna</th>
 								<th>Dosis</th>
 								<th>Lote</th>
+								<th>Teléfonos</th>								
 								<th>Datos Representante</th>
 								<th>Cédula</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Dirección</th>
 								<th>Fecha de nacimiento</th>
+								<th>Teléfonos</th>								
 								<th>Acciones</th>
 							</thead>
 							<tbody>
 
 						<?php foreach ($listaEstudiantes as $estudiante):?>
 								<tr>
+									<?php $Teléfonos_Est = $Teléfonos->consultarTeléfonos($estudiante['Cédula']);  ?>
 									<td><?php echo $estudiante['Cédula']; ?></td>
 									<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
 									<td style="min-width:210px;">
@@ -183,13 +198,16 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Vacuna']; ?></td>
 									<td><?php echo $estudiante['Dosis']; ?></td>
 									<td><?php echo $estudiante['Lote']; ?></td>
+									<td><?php echo Teléfono($Teléfonos_Est[0]['Prefijo'],$Teléfonos_Est[0]['Número_Telefónico']) ." / ". Teléfono($Teléfonos_Est[1]['Prefijo'],$Teléfonos_Est[1]['Número_Telefónico']) ?></td>
 									<td></td>
 									<?php $datosRepresentante = $representante->consultarRepresentanteID($estudiante['idRepresentante']);?>
+									<?php $Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($estudiante['idRepresentante']); ?>
 									<td><?php echo $datosRepresentante['Cédula']; ?> </td>
 									<td><?php echo $datosRepresentante['Primer_Nombre']." ".$datosRepresentante['Segundo_Nombre']; ?> </td>
 									<td><?php echo $datosRepresentante['Primer_Apellido']." ".$datosRepresentante['Segundo_Apellido']; ?> </td>
 									<td><?php echo $datosRepresentante['Dirección']; ?> </td>
 									<td><?php echo $datosRepresentante['Fecha_Nacimiento']; ?> </td>
+									<td><?php echo Teléfono($Teléfonos_re[0]['Prefijo'],$Teléfonos_re[0]['Número_Telefónico']) . ' / ' . Teléfono($Teléfonos_re[1]['Prefijo'],$Teléfonos_re[1]['Número_Telefónico']) . ' / ' . Teléfono($Teléfonos_re[2]['Prefijo'],$Teléfonos_re[2]['Número_Telefónico']) ?></td>
 									<td>
 										<!--Generar planilla de inscripción-->
 										<form action="../controladores/generar-planilla-estudiante.php" method="POST" style="display: inline-block;" target="_blank">
@@ -248,6 +266,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<th>Estado civil</th>
 									<th>Grado de instrucción</th>
 									<th>Año del(os) representado(s)</th>
+									<th>Teléfonos</th>
 								</thead>
 								<tbody>
 								<?php foreach ($listaRepresentantes as $representante): ?>
@@ -256,7 +275,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									$Representante = new Representantes();
 									$representados = $Representante->mostrarRepresentados($representante['idRepresentantes']);
 									$cont = 0;
-									$coma = count($representados); ?>
+									$coma = count($representados); 
+									$Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($representante['idRepresentantes']); ?>
 										<td><?php echo $representante['Cédula']?></td>
 										<td><?php echo $representante['Primer_Nombre'].' '.$representante['Segundo_Nombre']?></td>
 										<td><?php echo $representante['Primer_Apellido'].' '.$representante['Segundo_Apellido']?></td>
@@ -275,6 +295,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											else echo ", "; ?>
 										<?php endforeach; ?>
 										</td>
+										<td><?php echo Teléfono($Teléfonos_re[0]['Prefijo'],$Teléfonos_re[0]['Número_Telefónico']) . ' / ' . Teléfono($Teléfonos_re[1]['Prefijo'],$Teléfonos_re[1]['Número_Telefónico']) . ' / ' . Teléfono($Teléfonos_re[2]['Prefijo'],$Teléfonos_re[2]['Número_Telefónico']) ?></td>										
 									</tr>
 								<?php endforeach; ?>
 								</tbody>

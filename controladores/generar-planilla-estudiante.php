@@ -220,7 +220,7 @@ $pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $Estudiante['Cédula']),1
 $pdf->Cell(26,6,utf8_decode('EDAD: ' . $edad_diff_est->format('%y')." Años"),1,0);
 #                                                         OJO: LA CANTIDAD DEL ARREGLO VARIA
 
-$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . Teléfono($Teléfonos_Est[0]['Prefijo'],$Teléfonos_Est[0]['Número_Telefónico']) ." / ". Teléfono($Teléfonos_Est[0]['Prefijo'],$Teléfonos_Est[0]['Número_Telefónico'])),1,1);
+$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . Teléfono($Teléfonos_Est[0]['Prefijo'],$Teléfonos_Est[0]['Número_Telefónico']) ." / ". Teléfono($Teléfonos_Est[1]['Prefijo'],$Teléfonos_Est[1]['Número_Telefónico'])),1,1);
 $pdf->Cell(57,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $Estudiante['Fecha_Nacimiento']),1,0);
 $pdf->SetFont('Arial','',7);
 $pdf->Cell(0,6,utf8_decode('LUGAR DE NACIMIENTO: ' . $Estudiante['Lugar_Nacimiento']),1,1);

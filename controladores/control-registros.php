@@ -977,7 +977,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
 			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
 		}
-		else{
+		else {
 			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
 		}
 
