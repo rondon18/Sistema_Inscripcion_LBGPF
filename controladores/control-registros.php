@@ -775,14 +775,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		// Teléfonos del auxiliar
 		//
 
-		#Teléfono principal
-		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		$Teléfonos->setRelación_Teléfono('Principal');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
-
-		$Teléfonos->editarTeléfono($Cédula_auxiliar);
-
 		#Teléfono secundario
 		// $Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
 		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
@@ -1096,10 +1088,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setLateralidad($_POST['Lateralidad']);
 		$tipo_sangre = $_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus'];
 		$datos_salud->setTipo_Sangre($tipo_sangre);
-
-		if ($_POST['Recibe_médicación'] == "Si") {
-			$datos_salud->setMedicación($_POST['médicación']);
-		}
 
 		if ($_POST['Tiene_Dieta_Especial'] == "Si") {
 			$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);

@@ -398,10 +398,10 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<div class="input-group mb-2">
 								<select class="form-select" name="Padece_Enfermedad" required>
 									<option selected disabled value="">Seleccione una opción</option>
-									<option <?php if(empty($datos_Médicos['Enfermedad'])){echo "selected";} ?> value="Si">Si</option>
+									<option <?php if(!empty($datos_Médicos['Enfermedad'])){echo "selected";} ?> value="Si">Si</option>
 									<option <?php if(empty($datos_Médicos['Enfermedad'])){echo "selected";} ?> value="No">No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="Cual_Enfermedad" id="Cual_Enfermedad" placeholder="¿Cuál enfermedad?">
+								<input class="form-control w-auto" type="text" name="Cual_Enfermedad" id="Cual_Enfermedad" placeholder="¿Cuál enfermedad?" value="<?php echo $datos_Médicos['Enfermedad']; ?>">
 							</div>
 						</div>
 						<div>
@@ -434,12 +434,14 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option <?php if($sangre[0] == "A"){echo "selected";} ?> value="A">A</option>
 									<option <?php if($sangre[0] == "B"){echo "selected";} ?> value="B">B</option>
 									<option <?php if($sangre[0] == "AB"){echo "selected";} ?> value="AB">AB</option>
+									<option <?php if($sangre[0] == "NC"){echo "selected";} ?> value="NC">NC</option>									
 								</select>
 								<span class="input-group-text">Factor Rhesus: </span>
 								<select class="form-select" name="Factor_Rhesus" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($factor == "+"){echo "selected";}?> value="+">+</option>
 									<option <?php if($factor == "-"){echo "selected";}?> value="-">-</option>
+									<option <?php if($factor == "N"){echo "selected";}?> value="N">N</option>									
 								</select>
 							</div>
 						</div>
@@ -608,7 +610,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<!--Nombres del padre-->
 							<div>
-								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Nombres:</label>
 								<div class="input-group">
 									<input class="form-control mb-2" type="text" name="Primer_Nombre_Padre" placeholder="Primer nombre" value="<?php echo $padre['Primer_Nombre'] ?>">
 									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Padre" placeholder="Segundo nombre" value="<?php echo $padre['Segundo_Nombre'] ?>">
@@ -618,7 +620,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							<!--Apellidos del padre-->
 							<div>
-								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Apellidos:</label>
 								<div class="input-group">
 									<input class="form-control mb-2" type="text" name="Primer_Apellido_Padre" placeholder="Primer apellido" value="<?php echo $padre['Primer_Apellido'] ?>">
 									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Padre" placeholder="Segundo apellido" value="<?php echo $padre['Segundo_Apellido'] ?>">
@@ -626,7 +628,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 							<!--Cédula del padre-->
 							<div>
-								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Cédula:</label>
 								<div class="input-group mb-2">
 									<?php
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
@@ -636,26 +638,26 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre">
 										<option selected disabled value="">Tipo de cédula</option>
 										<option <?php if($tipo_Cédula_Pa == "V"){echo "selected";} ?> value="V">V</option>
-										<option <?php if($tipo_Cédula_Pa == "R"){echo "selected";} ?> value="E">E</option>
+										<option <?php if($tipo_Cédula_Pa == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
 									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Pa; ?>">
 								</div>
 							</div>
 							<!--Fecha de nacimiento del padre-->
 							<div>
-								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Fecha de nacimiento:</label>
 								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Padre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." value="<?php echo $padre['Fecha_Nacimiento'] ?>">
 							</div>
 
 							<!--Lugar de nacimiento del padre-->
 							<div>
-								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Lugar de nacimiento:</label>
 								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Padre" value="<?php echo $padre['Lugar_Nacimiento'] ?>">
 							</div>
 
 							<!--Correo electrónico del padre-->
 							<div>
-								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Correo electrónico:</label>
 								<input class="form-control mb-2" type="email" name="Correo_electrónico_Padre" value="<?php echo $padre['Correo_Electrónico'] ?>">
 							</div>
 						</div>
@@ -673,7 +675,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 								<option value="0274">
 								<option value="0275">
 							</datalist>
-							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
 								<input class="form-control" type="text" name="Prefijo_Principal_Padre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php echo $telefonos_pa[0]['Prefijo'] ?>">
@@ -691,7 +693,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 						<!--Estado civil del padre-->
 						<div>
-							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Estado civil:</label>
 							<select class="form-select" name="Estado_Civil_Padre">
 								<option selected disabled value="">Seleccione una opción</option>
 								<option <?php if($padre['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
@@ -704,7 +706,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<!--Grado de instrucción del padre-->
 
 						<div>
-							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Grado de instrucción:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
@@ -723,18 +725,18 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 						<!--Dirección de residencia del padre-->
 						<div>
-							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Dirección de residencia:</label>
 							<textarea class="form-control mb-2"name="Dirección_Padre"><?php echo $padre['Dirección']; ?></textarea>
 						</div>
 
 						<!--Se encuentra el padre en el país-->
 						<div>
-							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span class="form-label">¿Se encuentra en el país?:</span>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Reside_En_El_País_Pa">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if($padre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
-									<option value="No" <?php if($padre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
+									<option value="No" <?php if($padre['País_Residencia'] != "Venezuela" && $padre['País_Residencia'] != ""){echo "selected";} ?>>No</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="País_Pa" id="País_Pa" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($padre['País_Residencia'] != "Venezuela"){echo $padre['País_Residencia'];} ?>"
 
@@ -744,7 +746,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							<h5>Datos de vivienda.</h5>
 
-							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Condiciones de la vivienda:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
@@ -759,7 +761,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="radio" name="Condición_vivienda_Pa" value="Mala" <?php if($datos_vivienda_pa['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
 								</div>
 							</div>
-							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Tipo de vivienda:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Casa </label>
@@ -782,7 +784,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Pa" value="Habitación" <?php if($datos_vivienda_pa['Tipo_Vivienda'] == "Habitación"){echo "checked";} ?>>
 								</div>
 							</div>
-							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Tenencia de la vivienda:</span>
 							<div class="input-group mb-3">
 								<select class="form-select" name="Tenencia_vivienda_Pa">
 									<option selected disabled value="">Seleccione una opción</option>
@@ -797,11 +799,11 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<h5>Datos laborales.</h5>
 						<!--Trabaja el padre-->
 						<div>
-							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Trabaja:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Si </label>
-									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="Si" <?php if($datos_laborales_pa['Empleo'] != "Desempleado"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Padre_Trabaja" value="Si" <?php if($datos_laborales_pa['Empleo'] != "Desempleado" && $datos_laborales_pa['Empleo'] != ""){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">No </label>
@@ -855,7 +857,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<!--Nombres de la madre-->
 							<div>
-								<label class="form-label">Nombres: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Nombres:</label>
 								<div class="input-group">
 									<input class="form-control mb-2" type="text" name="Primer_Nombre_Madre" placeholder="Primer nombre" value="<?php echo $madre['Primer_Nombre'] ?>">
 									<input class="form-control mb-2" type="text" name="Segundo_Nombre_Madre" placeholder="Segundo nombre" value="<?php echo $madre['Segundo_Nombre'] ?>">
@@ -865,7 +867,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							<!--Apellidos de la madre-->
 							<div>
-								<label class="form-label">Apellidos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Apellidos:</label>
 								<div class="input-group">
 									<input class="form-control mb-2" type="text" name="Primer_Apellido_Madre" placeholder="Primer apellido" value="<?php echo $madre['Primer_Apellido'] ?>">
 									<input class="form-control mb-2" type="text" name="Segundo_Apellido_Madre" placeholder="Segundo apellido" value="<?php echo $madre['Segundo_Apellido'] ?>">
@@ -873,7 +875,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 							<!--Cédula de la madre-->
 							<div>
-								<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Cédula:</label>
 								<div class="input-group mb-2">
 									<?php
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
@@ -883,26 +885,26 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre">
 										<option selected disabled value="">Tipo de cédula</option>
 										<option <?php if($tipo_Cédula_Ma == "V"){echo "selected";} ?> value="V">V</option>
-										<option <?php if($tipo_Cédula_Ma == "R"){echo "selected";} ?> value="E">E</option>
+										<option <?php if($tipo_Cédula_Ma == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
 									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Ma; ?>">
 								</div>
 							</div>
 							<!--Fecha de nacimiento de la madre-->
 							<div>
-								<label class="form-label">Fecha de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Fecha de nacimiento:</label>
 								<input class="form-control mb-2" type="date" name="Fecha_Nacimiento_Madre" min="<?php echo date('Y')-100 .'-01-01'?>" max="<?php echo date('Y')-18 .'-01-01'?>" title="Debe tener al menos 18 años." value="<?php echo $madre['Fecha_Nacimiento'] ?>">
 							</div>
 
 							<!--Lugar de nacimiento de la madre-->
 							<div>
-								<label class="form-label">Lugar de nacimiento: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Lugar de nacimiento:</label>
 								<input class="form-control mb-2" type="text" name="Lugar_Nacimiento_Madre" value="<?php echo $madre['Lugar_Nacimiento'] ?>">
 							</div>
 
 							<!--Correo electrónico de la madre-->
 							<div>
-								<label class="form-label">Correo electrónico: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+								<label class="form-label">Correo electrónico:</label>
 								<input class="form-control mb-2" type="email" name="Correo_electrónico_Madre" value="<?php echo $madre['Correo_Electrónico'] ?>">
 							</div>
 						</div>
@@ -920,7 +922,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 								<option value="0274">
 								<option value="0275">
 							</datalist>
-							<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label>Teléfonos:</label>
 							<div class="input-group mb-2">
 								<!--Prefijo-->
 								<input class="form-control" type="text" name="Prefijo_Principal_Madre" list="prefijos" minlength="4" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" value="<?php echo $telefonos_ma[0]['Prefijo'] ?>">
@@ -938,7 +940,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 						<!--Estado civil de la madre-->
 						<div>
-							<label class="form-label">Estado civil: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Estado civil:</label>
 							<select class="form-select" name="Estado_Civil_Madre">
 								<option selected disabled value="">Seleccione una opción</option>
 								<option <?php if($madre['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
@@ -951,7 +953,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<!--Grado de instrucción de la madre-->
 
 						<div>
-							<span>Grado de instrucción:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Grado de instrucción:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Primaria </label>
@@ -970,18 +972,18 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 						<!--Dirección de residencia de la madre-->
 						<div>
-							<label class="form-label">Dirección de residencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+							<label class="form-label">Dirección de residencia:</label>
 							<textarea class="form-control mb-2"name="Dirección_Madre"><?php echo $madre['Dirección']; ?></textarea>
 						</div>
 
 						<!--Se encuentra la madre en el país-->
 						<div>
-							<span class="form-label">¿Se encuentra en el país?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span class="form-label">¿Se encuentra en el país?:</span>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Reside_En_El_País_Ma">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if($madre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
-									<option value="No" <?php if($madre['País_Residencia'] != "Venezuela"){echo "selected";} ?>>No</option>
+									<option value="No" <?php if($madre['País_Residencia'] != "Venezuela" && $madre['País_Residencia'] != ""){echo "selected";} ?>>No</option>
 								</select>
 								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>"
 
@@ -991,7 +993,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 							<h5>Datos de vivienda.</h5>
 
-							<span>Condiciones de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Condiciones de la vivienda:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Buena </label>
@@ -1006,7 +1008,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="radio" name="Condición_vivienda_Ma" value="Mala" <?php if($datos_vivienda_ma['Condiciones_Vivienda'] == "Mala"){echo "checked";} ?>>
 								</div>
 							</div>
-							<span>Tipo de vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Tipo de vivienda:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Casa </label>
@@ -1029,7 +1031,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<input class="form-check-input" type="radio" name="Tipo_Vivienda_Ma" value="Habitación" <?php if($datos_vivienda_ma['Tipo_Vivienda'] == "Habitación"){echo "checked";} ?>>
 								</div>
 							</div>
-							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Tenencia de la vivienda:</span>
 							<div class="input-group mb-3">
 								<select class="form-select" name="Tenencia_vivienda_Ma">
 									<option selected disabled value="">Seleccione una opción</option>
@@ -1045,11 +1047,11 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<h5>Datos laborales.</h5>
 						<!--Trabaja la madre-->
 						<div>
-							<span>Trabaja:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
+							<span>Trabaja:</span>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
 									<label class="form-label">Si </label>
-									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="Si" <?php if($datos_laborales_ma['Empleo'] != "Desempleado"){echo "checked";} ?>>
+									<input class="form-check-input" type="radio" name="Madre_Trabaja" value="Si" <?php if($datos_laborales_ma['Empleo'] != "Desempleado" && $datos_laborales_ma['Empleo'] != ""){echo "checked";} ?>>
 								</div>
 								<div class="form-check form-check-inline">
 									<label class="form-label">No </label>
