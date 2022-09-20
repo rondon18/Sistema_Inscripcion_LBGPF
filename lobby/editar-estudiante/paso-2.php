@@ -346,7 +346,6 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 							<div>
 								<label class="form-label">¿En que Condiciones?</label>
-								<?php var_dump($datos_sociales['Condición_Canaima']); ?>
 								<select class="form-select mb-2" name="Condiciones_Canaima" >
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($datos_sociales['Condición_Canaima'] == "Muy buenas Condiciones"){echo "selected";} ?> value="Muy buenas Condiciones">Muy buenas Condiciones</option>
