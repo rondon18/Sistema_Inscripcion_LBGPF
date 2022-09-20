@@ -183,7 +183,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 									<td><?php echo $estudiante['Vacuna']; ?></td>
 									<td><?php echo $estudiante['Dosis']; ?></td>
 									<td><?php echo $estudiante['Lote']; ?></td>
-									<td> .</td>
+									<td></td>
 									<?php $datosRepresentante = $representante->consultarRepresentanteID($estudiante['idRepresentante']);?>
 									<td><?php echo $datosRepresentante['Cédula']; ?> </td>
 									<td><?php echo $datosRepresentante['Primer_Nombre']." ".$datosRepresentante['Segundo_Nombre']; ?> </td>
