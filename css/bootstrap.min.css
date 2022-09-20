@@ -1,4 +1,21 @@
-@charset "UTF-8";/*!
+@charset "UTF-8";
+
+
+input:empty {
+   border: 1.4px solid rgba(28.953, 0, 155) !important;
+}
+
+input:invalid , select:invalid , textarea:invalid {
+   border: 1.4px solid rgba(255, 0, 0, 155) !important;
+}
+input[required=""], select[required=""], textarea[required=""] {
+   border: 1.4px solid rgba(154, 205, 50, 155) !important;
+}  
+
+input:valid, select:valid, textarea:valid {
+   border: 1.4px solid rgba(0, 128, 0, 155) !important;
+}
+/*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.

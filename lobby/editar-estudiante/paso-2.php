@@ -136,18 +136,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
-<style type="text/css">
-	input:invalid , select:invalid , textarea:invalid {
-		border: red 2px solid !important;
-	}
-	input[required=""], select[required=""], textarea[required=""] {
-		border: yellowgreen 2px solid ;
-	}	
 
-	input:valid, select:valid {
-		border: green 2px solid !important;
-	}
-</style>
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
@@ -436,11 +425,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<span class="form-label">Tipo de sangre: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Grupo_Sanguineo" required>
 									<?php
 									$sangre = substr($datos_Médicos['Tipo_Sangre'],0,-1);
-									$factor = trim($datos_Médicos['Tipo_Sangre'], "ABO");
+
+									$factor = substr($datos_Médicos['Tipo_Sangre'],-1);
+
 									 ?>
+								<select class="form-select" name="Grupo_Sanguineo" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($sangre == "O"){echo "selected";} ?> value="O">O</option>
 									<option <?php if($sangre == "A"){echo "selected";} ?> value="A">A</option>
@@ -997,11 +988,10 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option value="Si" <?php if($madre['País_Residencia'] == "Venezuela"){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if($madre['País_Residencia'] != "Venezuela" && $madre['País_Residencia'] != ""){echo "selected";} ?>>No</option>
 								</select>
-								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>"
+								<input class="form-control w-auto" type="text" name="País_Ma" id="País_Ma" placeholder="En Caso de estar fuera del país, especifique en cuál se encuentra" value="<?php if($madre['País_Residencia'] != "Venezuela"){echo $madre['País_Residencia'];} ?>">
 
 							</div>
 						</div>
-					</div>
 
 							<h5>Datos de vivienda.</h5>
 
@@ -1160,7 +1150,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
 
- <!-- 			<php print_r($datos_vivienda);?> -->
+ 			<?php print_r($datos_vivienda);?>
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">

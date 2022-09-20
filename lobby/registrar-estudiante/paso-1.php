@@ -263,8 +263,8 @@ if (!$_SESSION['login']) {
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda_R">
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda_R" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
