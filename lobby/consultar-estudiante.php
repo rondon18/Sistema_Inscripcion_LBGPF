@@ -100,10 +100,25 @@ $fecha_nacimiento_est = $Estudiante['Fecha_Nacimiento'];
 $fecha_nacimiento_re = $datos_representante['Fecha_Nacimiento'];
 $fecha_nacimiento_pa = $padre['Fecha_Nacimiento'];
 $fecha_nacimiento_ma = $madre['Fecha_Nacimiento'];
+
+
+if ($fecha_nacimiento_pa == "0000-00-00") {
+    $fecha_nacimiento_pa = " ";
+    $padre['Fecha_Nacimiento'] = " ";
+}
+
+if ($fecha_nacimiento_ma == "0000-00-00") {
+    $fecha_nacimiento_ma = " ";
+    $madre['Fecha_Nacimiento'] = " ";
+}
+
 $edad_diff_est = date_diff(date_create($fecha_nacimiento_est), date_create($fecha_actual));
 $edad_diff_re = date_diff(date_create($fecha_nacimiento_re), date_create($fecha_actual));
 $edad_diff_pa = date_diff(date_create($fecha_nacimiento_pa), date_create($fecha_actual));
 $edad_diff_ma = date_diff(date_create($fecha_nacimiento_ma), date_create($fecha_actual));
+
+
+
 
 $carnet_Est = "";
 if (empty($carnetpatria_Est['Código_Carnet']) AND empty($carnetpatria_Est['Serial_Carnet'])) {

@@ -627,6 +627,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	elseif ($orden == "Editar") {
 
+		foreach ($_POST as $key => $value) {
+			print_r($key . "->" . $value . "<br>");
+		}
+
+		var_dump($_POST['Tenencia_Vivienda']);
+
 		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
@@ -742,11 +748,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda'] == "Otro") {
+		if ($_POST["Tenencia_Vivienda"] == "Otro") {
 			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
 		}
 		else{
-			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda']);
+			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_Vivienda']);
 		}
 
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());
@@ -761,8 +767,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
 		$datos_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
 		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
-		$datos_auxiliar->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);		
+		$datos_auxiliar->setPrefijo($_POST['Prefijo_Auxiliar_R']);
+		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);		
 		// $Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
 		// $persona->setCédula($Cédula_auxiliar);
 		// $persona->setGénero($_POST['Género_Aux']);
