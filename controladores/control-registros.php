@@ -748,6 +748,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
+
+		if ($_POST['Tenencia_Vivienda'] == "Otro") {
+			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
+		}
+		else{
+			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_Vivienda']);
+		
 		if ($_POST["Tenencia_Vivienda"] == "Otro") {
 			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
 		}
