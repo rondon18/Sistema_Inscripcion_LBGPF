@@ -136,6 +136,18 @@ function condiciones($condicion_b,$datos_Médicos) {
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
+<style type="text/css">
+	input:invalid , select:invalid , textarea:invalid {
+		border: red 2px solid !important;
+	}
+	input[required=""], select[required=""], textarea[required=""] {
+		border: yellowgreen 2px solid ;
+	}	
+
+	input:valid, select:valid {
+		border: green 2px solid !important;
+	}
+</style>
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
@@ -200,7 +212,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option <?php if($tipo_Cédula == "V"){echo "selected";} ?> value="V">V</option>
 									<option <?php if($tipo_Cédula == "E"){echo "selected";} ?> value="E">E</option>
 								</select>
-								<input type="text" class="form-control w-auto" name="Cédula_Est" id="Cédula_Est" maxlength="8" minlength="7" required value="<?php echo $Cédula; ?>">
+								<input type="text" class="form-control w-auto" name="Cédula_Est" id="Cédula_Est" maxlength="8" required value="<?php echo $Cédula; ?>">
 							</div>
 						</div>
 						<div>
@@ -302,7 +314,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						</div>
 						<div>
 							<label class="form-label">Plantel de procedencia: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2"name="Plantel_Procedencia" id="Plantel_Procedencia" required><?php echo $Estudiante['Plantel_Procedencia']; ?></textarea>
+							<textarea class="form-control mb-2" name="Plantel_Procedencia" id="Plantel_Procedencia" required><?php echo $Estudiante['Plantel_Procedencia']; ?></textarea>
 						</div>
 					</div>
 				</section>
@@ -334,6 +346,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							</div>
 							<div>
 								<label class="form-label">¿En que Condiciones?</label>
+								<?php var_dump($datos_sociales['Condición_Canaima']); ?>
 								<select class="form-select mb-2" name="Condiciones_Canaima" >
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($datos_sociales['Condición_Canaima'] == "Muy buenas Condiciones"){echo "selected";} ?> value="Muy buenas Condiciones">Muy buenas Condiciones</option>
@@ -347,7 +360,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<span class="form-label">Carnet de la patria: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tiene_Carnet_Patria_Est">
+								<select class="form-select" name="Tiene_Carnet_Patria_Est" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if(!empty($carnetpatria_Est['Código_Carnet']) and !empty($carnetpatria_Est['Serial_Carnet'])){echo "selected";} ?> value="Si">Si tiene</option>
 									<option <?php if(empty($carnetpatria_Est['Código_Carnet']) and empty($carnetpatria_Est['Serial_Carnet'])){echo "selected";} ?> value="No">No tiene</option>
@@ -426,15 +439,15 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<div class="input-group mb-2">
 								<select class="form-select" name="Grupo_Sanguineo" required>
 									<?php
-									$sangre = substr($datos_Médicos['Tipo_Sangre'],0);
-									$factor = substr($datos_Médicos['Tipo_Sangre'],1);
+									$sangre = substr($datos_Médicos['Tipo_Sangre'],0,-1);
+									$factor = trim($datos_Médicos['Tipo_Sangre'], "ABO");
 									 ?>
 									<option selected disabled value="">Seleccione una opción</option>
-									<option <?php if($sangre[0] == "O"){echo "selected";} ?> value="O">O</option>
-									<option <?php if($sangre[0] == "A"){echo "selected";} ?> value="A">A</option>
-									<option <?php if($sangre[0] == "B"){echo "selected";} ?> value="B">B</option>
-									<option <?php if($sangre[0] == "AB"){echo "selected";} ?> value="AB">AB</option>
-									<option <?php if($sangre[0] == "NC"){echo "selected";} ?> value="NC">NC</option>									
+									<option <?php if($sangre == "O"){echo "selected";} ?> value="O">O</option>
+									<option <?php if($sangre == "A"){echo "selected";} ?> value="A">A</option>
+									<option <?php if($sangre == "B"){echo "selected";} ?> value="B">B</option>
+									<option <?php if($sangre == "AB"){echo "selected";} ?> value="AB">AB</option>
+									<option <?php if($sangre == "NC"){echo "selected";} ?> value="NC">NC</option>									
 								</select>
 								<span class="input-group-text">Factor Rhesus: </span>
 								<select class="form-select" name="Factor_Rhesus" required>
@@ -640,7 +653,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 										<option <?php if($tipo_Cédula_Pa == "V"){echo "selected";} ?> value="V">V</option>
 										<option <?php if($tipo_Cédula_Pa == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Pa; ?>">
+									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Pa; ?>">
 								</div>
 							</div>
 							<!--Fecha de nacimiento del padre-->
@@ -887,7 +900,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 										<option <?php if($tipo_Cédula_Ma == "V"){echo "selected";} ?> value="V">V</option>
 										<option <?php if($tipo_Cédula_Ma == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7" value="<?php echo $Cédula_Ma; ?>">
+									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Ma; ?>">
 								</div>
 							</div>
 							<!--Fecha de nacimiento de la madre-->
