@@ -472,7 +472,7 @@ desconectarBD($conexion);
 					<tr>
 						<td> Condiciones de la vivienda: <?php echo $datos_vivienda['Condiciones_Vivienda']?></td>
 						<td> Tipo de vivienda: <?php echo $datos_vivienda['Tipo_Vivienda']?></td>
-						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_Vivienda']?></td>
+						<td colspan="2"> Tenencia de la vivienda: <?php echo $datos_vivienda['Tenencia_vivienda'] ?? NULL?></td>
 					</tr>
 
 					<tr class="table-primary">

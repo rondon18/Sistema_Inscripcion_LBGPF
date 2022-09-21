@@ -73,17 +73,19 @@ $estudiante_repitente = new EstudiantesRepitentes();
 $Inscripcion = new Inscripciones();
 
 
+
+
 if (isset($_POST['orden']) and $_POST['orden']) {
 
 	$orden = $_POST['orden'];
 
 	if ($orden == "Insertar") {
 
-		// foreach ($_POST as $key => $value) {
-		// 	echo $key.">>";
-		// 	var_dump($value);
-		// 	echo "<br><br>";
-		// }
+		 //~ foreach ($_POST as $key => $value) {
+		 	//~ echo $key.">>";
+		 	//~ var_dump($value);
+		 	//~ echo "<br><br>";
+		 //~ }
 
 		//
 		// REPRESENTANTE
@@ -210,25 +212,32 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		$ced_m = $_POST['Tipo_Cédula_Madre'] ?? NULL;
+
+		$Cédula_madre = $ced_m.$_POST['Cédula_Madre'];
 		$persona->setCédula($Cédula_madre);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Madre']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Madre']);
 		$persona->setDirección($_POST['Dirección_Madre']);
-		$persona->setEstado_Civil($_POST['Estado_Civil_Madre']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Madre'] ?? NULL);
 
 		$persona->insertarPersona();
 
 		$datos_madre->setCédula_Persona($Cédula_madre);
-		if ($_POST['Reside_En_El_País_Ma'] == "Si") {
-			$datos_madre->setPaís_ResidenciaMa('Venezuela');
+		
+		if (isset($_POST['Reside_En_El_País_Ma']))
+		{
+			if ($_POST['Reside_En_El_País_Ma'] == "Si") {
+				$datos_madre->setPaís_ResidenciaMa('Venezuela');
+			}
+			else {
+				$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
+			}
 		}
-		else {
-			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
-		}
-		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
+		
+		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma'] ?? NULL);		
 
 		$datos_madre->insertarMadre();
 
@@ -237,30 +246,40 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//		
 
 		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Madre_Trabaja'] == "No") {
-		  $datos_laborales_ma->setEmpleoMa("Desempleado");
+		
+		if (isset($_POST['Madre_Trabaja']))
+		{
+			if ($_POST['Madre_Trabaja'] == "No") {
+			  $datos_laborales_ma->setEmpleoMa("Desempleado");
+			}
+			else {
+			  $datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma'] ?? NULL);
+			  $datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma'] ?? NULL);
+			  $datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma'] ?? NULL);
+			  $datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
+			}
 		}
-		else {
-		  $datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma']);
-		  $datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma']);
-		  $datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma']);
-		  $datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
-		}
+		
+		
 
 		$datos_laborales_ma->setidMadre($datos_madre->getidMadre());
 		$datos_laborales_ma->insertarDatosLaborales_Ma();
 
 		#Datos vivienda
-		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma']);
-		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma']);
+		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma'] ?? NULL);
+		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma'] ?? NULL);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
-		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro']);
+		if (isset($_POST['Madre_Trabaja']))
+		{
+			if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
+			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro'] ?? NULL);
+			}
+			else{
+			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
+			}
 		}
-		else{
-		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
-		}
+		
 
 		$datos_vivienda_ma->setidMadre($datos_madre->getidMadre());
 		$datos_vivienda_ma->insertarDatosVivienda_Ma();
@@ -304,25 +323,37 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre']);
 
-		$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+		if (isset($_POST['Tipo_Cédula_Padre']))
+		{
+			$Ced_P = $_POST['Tipo_Cédula_Padre']; 
+		}
+		else {
+			$Ced_P = "";
+		}
+
+		$Cédula_padre = $Ced_P.$_POST['Cédula_Padre'];
 		$persona->setCédula($Cédula_padre);
 
-		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre']);
-		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Padre']);
-		$persona->setDirección($_POST['Dirección_Padre']);
-		$persona->setEstado_Civil($_POST['Estado_Civil_Padre']);
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre'] ?? NULL);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre'] ?? NULL);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Padre'] ?? NULL);
+		$persona->setDirección($_POST['Dirección_Padre'] ?? NULL);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Padre'] ?? NULL);
 
 		$persona->insertarPersona();
 
 		$datos_padre->setCédula_Persona($Cédula_padre);
-		if ($_POST['Reside_En_El_País_Pa'] == "Si") {
-			$datos_padre->setPaís_Residencia('Venezuela');
+		if (isset($_POST['Reside_En_El_País_Pa']))
+		{
+			if ($_POST['Reside_En_El_País_Pa'] == "Si") {
+				$datos_padre->setPaís_Residencia('Venezuela');
+			}
+			else {
+				$datos_padre->setPaís_Residencia($_POST['País_Pa']);
+			}
 		}
-		else {
-			$datos_padre->setPaís_Residencia($_POST['País_Pa']);
-		}
-		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa']);		
+		
+		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa'] ?? NULL);		
 
 		$datos_padre->insertarPadre();
 
@@ -331,31 +362,36 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//
 
 		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Padre_Trabaja'] == "No") {
-		  $datos_laborales_pa->setEmpleoPa("Desempleado");
+		if (isset($_POST['Padre_Trabaja']))
+		{
+			if ($_POST['Padre_Trabaja'] == "No") {
+			  $datos_laborales_pa->setEmpleoPa("Desempleado");
+			}
+			else {
+			  $datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
+			  $datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
+			  $datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
+			  $datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
+			}	
 		}
-		else {
-		  $datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
-		  $datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
-		  $datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
-		  $datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
-		}		
+		
 
 		$datos_laborales_pa->setidPadre($datos_padre->getidPadre());
 		$datos_laborales_pa->insertarDatosLaborales_Pa();
 
 		#Datos vivienda
-		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa']);
-		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa']);
+		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa'] ?? NULL);
+		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa'] ?? NULL);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
-		  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
+		if (isset($_POST['Tenencia_vivienda_Pa'])) {
+			if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
+			  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro'] ?? NULL);
+			}
+			else{
+			  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
+			}
 		}
-		else{
-		  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
-		}
-
 		$datos_vivienda_pa->setidPadre($datos_padre->getidPadre());
 		$datos_vivienda_pa->insertarDatosVivienda_Pa();
 
@@ -489,26 +525,36 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$tipo_sangre = $_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus'];
 		$datos_salud->setTipo_Sangre($tipo_sangre);
 
-		if ($_POST['Recibe_médicación'] == "Si") {
-			$datos_salud->setMedicación($_POST['médicación']);
-		}
 
-		if ($_POST['Tiene_Dieta_Especial'] == "Si") {
-			$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
-		}
+		//~ if ($_POST['Recibe_médicación'] == "Si") {
+			//~ $datos_salud->setMedicación($_POST['médicación']);
+		//~ }
 
-		if ($_POST['Tiene_Carnet_Discapacidad'] == "Si") {
-			$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
+		if (isset($_POST['Tiene_Dieta_Especial']))
+		{
+			if ($_POST['Tiene_Dieta_Especial'] == "Si") {
+				$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
+			}
 		}
-
-		if ($_POST['Recibe_Atención_Inst'] == "Si") {
-			$datos_salud->setInstitución_médica($_POST['Institución_médica']);
+		if (isset($_POST['Tiene_Carnet_Discapacidad']))
+		{
+			if ($_POST['Tiene_Carnet_Discapacidad'] == "Si") {
+				$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
+			}
 		}
-
-		if ($_POST['Padece_Enfermedad'] == "Si") {
-			$datos_salud->setEnfermedad($_POST['Cual_Enfermedad']);
+		if (isset($_POST['Recibe_Atención_Inst']))
+		{
+			if ($_POST['Recibe_Atención_Inst'] == "Si") {
+				$datos_salud->setInstitución_médica($_POST['Institución_médica']);
+			}
 		}
-
+		if (isset($_POST['Padece_Enfermedad']))
+		{
+			if ($_POST['Padece_Enfermedad'] == "Si") {
+				$datos_salud->setEnfermedad($_POST['Cual_Enfermedad']);
+			}
+		}
+		
 		$impedimentos = "";
 
 		if (isset($_POST['Condiciones_Salud'])) {
@@ -627,11 +673,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	elseif ($orden == "Editar") {
 
-		foreach ($_POST as $key => $value) {
-			print_r($key . "->" . $value . "<br>");
-		}
 
-		var_dump($_POST['Tenencia_Vivienda']);
 
 		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
@@ -845,8 +887,19 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
 		}
 		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
+     
 
-		$datos_madre->editarMadre($madre['idMadre']);
+		//Cedula nula de relleno
+
+
+		if (empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+			$datos_madre->insertarMadre();
+
+		}
+		else {
+			$datos_madre->editarMadre($madre['idMadre']);
+		}
+
 
 		//Consulta la madre
 
@@ -1060,7 +1113,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setCédula_Estudiante($Cédula_estudiante);
 		$datos_estudiante->setidRepresentante($idRepresentante);
 		$datos_estudiante->setidPadre($idPadre);
-		$datos_estudiante->setidPadre($idMadre);
+		$datos_estudiante->setidMadre($idMadre);
 		$datos_estudiante->setRelación_Representante($_POST['Vinculo_R']);
 
 		$datos_estudiante->editarEstudiante($Cédula_estudiante);
@@ -1212,7 +1265,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		header('Location: ../lobby/consultar.php?exito');
 	}
-
+}
 	elseif ($orden == "Eliminar") {
 		$datos_estudiante->eliminarEstudiante($_POST['Cédula_Estudiante']);
 		header('Location: ../lobby/consultar.php');

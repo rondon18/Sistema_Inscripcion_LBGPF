@@ -139,8 +139,9 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						Estudiantes registrados
 					</div>
 					<div class="card-body">
-						<table id="estudiantes" class="table table-striped table-bordered table-sm w-100">
+						<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100">
 							<thead>
+								<th>Nro°</th>
 								<th>Cédula</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
@@ -175,6 +176,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 
 						<?php foreach ($listaEstudiantes as $estudiante):?>
 								<tr>
+									<td><?php echo $estudiante['idEstudiantes']; ?></td>
 									<?php $Teléfonos_Est = $Teléfonos->consultarTeléfonos($estudiante['Cédula']);  ?>
 									<td><?php echo $estudiante['Cédula']; ?></td>
 									<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
@@ -253,7 +255,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						Representantes registrados
 					</div>
 					<div class="card-body">
-							<table id="representantes" class="table table-striped table-bordered table-sm w-100">
+							<table id="representantes" class="text-uppercase table table-striped table-bordered table-sm w-100">
 								<thead>
 									<th>Cédula</th>
 									<th>Nombres</th>
@@ -309,7 +311,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 							Usuarios registrados
 						</div>
 						<div class="card-body">
-								<table id="usuarios" class="table table-striped table-bordered table-sm w-100">
+								<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100">
 									<thead>
 										<th>ID usuario</th>
 										<th>Cédula del usuario</th>
@@ -347,7 +349,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 							Registro de bitácora
 						</div>
 						<div class="card-body">
-								<table id="bitácora" class="table table-striped table-bordered table-sm w-100">
+								<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
 									<thead>
 										<th>Nro. Registro</th>
 										<th>Id de usuario</th>
@@ -405,6 +407,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			  },
 	  	<?php if ($_SESSION['usuario']['Privilegios'] == 1 || $_SESSION['usuario']['Privilegios'] == 2): ?>
 			dom: 'Bfrtip',
+			"order": [[ 0, "desc" ]],
 			buttons: [
 				{
           extend: 'excelHtml5',

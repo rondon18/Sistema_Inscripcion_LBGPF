@@ -1,19 +1,24 @@
 @charset "UTF-8";
 
 
-input:empty {
-   border: 1.4px solid rgba(28.953, 0, 155) !important;
+input {
+   transition: border .25s ease-in !important;
 }
 
-input:invalid , select:invalid , textarea:invalid {
-   border: 1.4px solid rgba(255, 0, 0, 155) !important;
-}
+
 input[required=""], select[required=""], textarea[required=""] {
    border: 1.4px solid rgba(154, 205, 50, 155) !important;
 }  
 
-input:valid, select:valid, textarea:valid {
+input:optional,select:optional,textarea:optional {
+   border: 1.4px solid cyan !important;
+}
+
+input:valid:not(:empty), input:valid:not([type="radio"]), input:valid:not([type="checkbox"]), select:valid, textarea:valid:not(:empty) {
    border: 1.4px solid rgba(0, 128, 0, 155) !important;
+}
+input:invalid:not(:empty) , select:invalid:not(:empty) , textarea:invalid:not(:empty) {
+   border: 1.4px solid rgba(255, 0, 0, 155) !important;
 }
 /*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)

@@ -544,7 +544,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<span class="form-label">Es atendido por otra institución: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<?php print_r($datos_Médicos['Institución_Médica']); ?>
+								<!-- <?php print_r($datos_Médicos['Institución_Médica']); ?> -->
 								<select class="form-select" name="Recibe_Atención_Inst">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if(!empty($datos_Médicos['Institución_Médica'])){echo "selected";} ?>>Si</option>
@@ -1149,8 +1149,6 @@ function condiciones($condicion_b,$datos_Médicos) {
 				<input type="hidden" name="orden" value="Editar">
 				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
 			</div>
-
- 			<?php print_r($datos_vivienda);?>
 		</form>
 		<!--Footer-->
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">

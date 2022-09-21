@@ -176,10 +176,11 @@ if (!$_SESSION['login']) {
 						<div>
 							<datalist id="prefijos">
 								<!--Moviles-->
-								<option value="0416">
-								<option value="0426">
-								<option value="0414">
 								<option value="0412">
+								<option value="0414">
+								<option value="0416">
+								<option value="0424">
+								<option value="0426">
 
 								<!--Fijos-->
 								<option value="0271">

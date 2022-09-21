@@ -115,10 +115,11 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<datalist id="prefijos-estudiante">
 									<!--Moviles-->
-									<option value="0416">
-									<option value="0426">
-									<option value="0414">
 									<option value="0412">
+									<option value="0414">
+									<option value="0416">
+									<option value="0424">	
+									<option value="0426">
 								</datalist>
 
 								<label>Teléfonos: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -528,10 +529,11 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<datalist id="prefijos">
 									<!--Moviles-->
-									<option value="0416">
-									<option value="0426">
-									<option value="0414">
 									<option value="0412">
+									<option value="0414">
+									<option value="0416">
+									<option value="0424">	
+									<option value="0426">
 
 									<!--Fijos-->
 									<option value="0271">
@@ -767,10 +769,11 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<datalist id="prefijos">
 									<!--Moviles-->
-									<option value="0416">
-									<option value="0426">
-									<option value="0414">
 									<option value="0412">
+									<option value="0414">
+									<option value="0416">
+									<option value="0424">	
+									<option value="0426">
 
 									<!--Fijos-->
 									<option value="0271">
@@ -836,7 +839,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<span class="form-label">¿Se encuentra en el país?:</span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Reside_En_El>
+								<select class="form-select" name="Reside_En_El_País_Ma">
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si</option>
 									<option value="No">No</option>

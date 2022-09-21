@@ -48,7 +48,6 @@ class ContactoAuxiliar {
 				'$idRepresentante',
 				'$idEstudiantes'
 			)";
-			echo $sql;
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			$this->setidContactoAuxiliar($conexion->insert_id);

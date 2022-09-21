@@ -332,12 +332,20 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C√
 							<div class="input-group mb-3" required>
 								<select class="form-select" name="Tenencia_vivienda">
 									<option selected disabled value="">Seleccione una opci√≥n</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+									<option 
+									<?php 
+									if($datos_vivienda['Tenencia_vivienda'] == "Propia")
+										{echo "selected";} 
+									?> 
+									value="Propia">
+										Propia
+									</option>
+
+									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
+									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_Vivienda'] != "Propia" and $datos_vivienda['Tenencia_Vivienda'] != "Alquilada" and $datos_vivienda['Tenencia_Vivienda'] != "Prestada" and $datos_vivienda['Tenencia_Vivienda'] != "Otro"){echo "selected";} ?>>
+								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_vivienda'] != "Propia" and $datos_vivienda['Tenencia_vivienda'] != "Alquilada" and $datos_vivienda['Tenencia_vivienda'] != "Prestada" and $datos_vivienda['Tenencia_vivienda'] != "Otro"){echo "selected";} ?>>
 							</div>
 						</div>
 					</section>

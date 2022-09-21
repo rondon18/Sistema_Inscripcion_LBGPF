@@ -38,7 +38,7 @@ class DatosVivienda {
 			$this->setidDatos_vivienda($conexion->insert_id);
 		}
 		elseif ($resultado != NULL) {
-			$this->setidDatos_vivienda($resultado['idDatos_vivienda']);
+			#$this->setidDatos_vivienda($resultado['idDatos_vivienda']);
 		}
 		desconectarBD($conexion);
 	}
