@@ -815,7 +815,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		if (!isset($_POST['Tipo_Cédula_Madre'])) {
+			$Tc_madre = "V";
+			$Cédula_madre = $Tc_madre.$_POST['Cédula_Madre'];
+		}
+		else {
+			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		}
+
 		$persona->setCédula($Cédula_madre);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
