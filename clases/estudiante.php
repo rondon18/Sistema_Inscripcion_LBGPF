@@ -56,16 +56,16 @@ class Estudiantes {
 		$Con_Quién_Vive = $this->getCon_Quién_Vive();
 		$idRepresentante = $this->getidRepresentante();
 		$Relación_Representante = $this->getRelación_Representante();
-		// $idPadre = $this->getidPadre();
-		// $idMadre = $this->getidMadre();
+		$idPadre = $this->getidPadre();
+		$idMadre = $this->getidMadre();
 		
 		$sql = "UPDATE `estudiantes` SET
 		 `Plantel_Procedencia`='$Plantel_Procedencia',
 		 `Con_Quién_Vive`='$Con_Quién_Vive',
 		 `idRepresentante`='$idRepresentante',
-		 `Relación_Representante`='$Relación_Representante'
-		 -- `idPadre`='$idPadre'
-		 -- `idMadre`='$idMadre'
+		 `Relación_Representante`='$Relación_Representante',
+		 `idPadre`='$idPadre',
+		 `idMadre`='$idMadre'
 		 WHERE `Cédula_Persona`='$Cédula_Estudiante'";
 
 

@@ -892,26 +892,28 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//Cedula nula de relleno
 
 
+
+		//si la cédula es vacia, no edita sino inserta
 		if (empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
 			$datos_madre->insertarMadre();
-
+			$idMadre = $datos_madre->getidMadre();
 		}
 		else {
+			//si esta llena lo contrario
 			$datos_madre->editarMadre($madre['idMadre']);
+			
+			//Consulta la madre
+
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `madre` WHERE `Cédula_Persona` = '$Cédula_madre'";
+
+			$consulta_madre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representantes = $consulta_madre->fetch_assoc();
+			$idMadre = $madre['idMadre'];
+
+			desconectarBD($conexion);
 		}
-
-
-		//Consulta la madre
-
-		$conexion = conectarBD();
-
-		$sql = "SELECT * FROM `madre` WHERE `Cédula_Persona` = '$Cédula_madre'";
-
-		$consulta_madre = $conexion->query($sql) or die("error: ".$conexion->error);
-		$representantes = $consulta_madre->fetch_assoc();
-		$idMadre = $madre['idMadre'];
-
-		desconectarBD($conexion);
 
 		//
 		// DATOS LABORALES MADRE
@@ -1263,7 +1265,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$observaciones->editarObservaciones($idEstudiante);
 
-		header('Location: ../lobby/consultar.php?exito');
+
+		foreach ($_POST as $key => $value) {
+			echo $key."->".$value."<br>";
+		}
+
+
+		#header('Location: ../lobby/consultar.php?exito');
 	}
 }
 	elseif ($orden == "Eliminar") {
