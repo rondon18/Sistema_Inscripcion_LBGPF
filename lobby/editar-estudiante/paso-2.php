@@ -833,7 +833,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<!--Lugar en el que trabaja el padre-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="55" minlength="3"><?php echo $datos_laborales_pa['Lugar_Trabajo'] ?></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="180" minlength="3"><?php echo $datos_laborales_pa['Lugar_Trabajo'] ?></textarea>
 						</div>
 						<!--Remuneración del trabajo del padre-->
 						<div>
@@ -1080,7 +1080,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<!--Lugar en el que trabaja la madre-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="55" minlength="3"><?php echo $datos_laborales_ma['Lugar_Trabajo'] ?></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="180" minlength="3"><?php echo $datos_laborales_ma['Lugar_Trabajo'] ?></textarea>
 						</div>
 						<!--Remuneración del trabajo de la madre-->
 						<div>

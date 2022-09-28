@@ -69,7 +69,7 @@ if (!$_SESSION['login']) {
 								<option value="Abuela">
 								<option value="Abuelo">
 							</datalist>
-							<input type="text" class="form-control mb-2" id="Vinculo_R" name="Vinculo_R" minlength="3" maxlength="15" list="vinculos" required>
+							<input type="text" class="form-control mb-2" id="Vinculo_R" name="Vinculo_R" minlength="3" maxlength="15" placeholder="Madre, padre, tíos o abuelos, etc." list="vinculos" required>
 						</div>
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -127,7 +127,7 @@ if (!$_SESSION['login']) {
 						<!--Estado civil del representante-->
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select mb-2" name="Estado_Civil_R">
+							<select class="form-select mb-2" name="Estado_Civil_R" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
@@ -170,7 +170,7 @@ if (!$_SESSION['login']) {
 						<h5>Datos de contacto.</h5>
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"></textarea>
+							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10" required></textarea>
 						</div>
 						<!--Teléfonos del representante-->
 						<div>
@@ -283,7 +283,7 @@ if (!$_SESSION['login']) {
 							<!--Datos bancarios del representante-->
 							<div>
 								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<select class="form-select" name="Banco">
+								<select class="form-select" name="Banco" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
@@ -329,7 +329,7 @@ if (!$_SESSION['login']) {
 									</div>
 									<div>
 										<label class="form-label">Número de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX">
+									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" required>
 									</div>
 							</div>
 						</div>
@@ -368,7 +368,7 @@ if (!$_SESSION['login']) {
 						<!--Lugar en el que trabaja el representante-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="180" minlength="3"></textarea>
 						</div>
 						<!--Remuneración_R del trabajo del representante-->
 						<div>
@@ -471,7 +471,7 @@ if (!$_SESSION['login']) {
 						<!--Relación del contacto auxiliar-->
 						<div>
 							<label class="form-label">Relación con la persona:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" maxlength="12" minlength="3" required>
+							<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" placeholder="Vecino, familiar, etc." maxlength="12" minlength="3" required>
 						</div>
 					</section>
 				</div>

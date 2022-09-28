@@ -193,7 +193,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<!--Estado civil del representante-->
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select mb-2" name="Estado_Civil_R">
+							<select class="form-select mb-2" name="Estado_Civil_R" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option  <?php if($datos_representante['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
 								<option  <?php if($datos_representante['Estado_Civil'] == "Casado(a)") {echo "selected";} ?> value="Casado(a)">Casado(a)</option>
@@ -236,7 +236,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<h5>Datos de contacto.</h5>
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"><?php echo $datos_representante['Dirección'] ?></textarea>
+							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10" required><?php echo $datos_representante['Dirección'] ?></textarea>
 						</div>
 						<!--Teléfonos del representante-->
 						<div>
@@ -330,7 +330,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda">
+								<select class="form-select" name="Tenencia_vivienda" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option 
 									<?php 
@@ -356,7 +356,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<!--Datos bancarios del representante-->
 							<div>
 								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<select class="form-select" name="Banco">
+								<select class="form-select" name="Banco" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($datos_economicos['Banco'] == "Banco de Venezuela S.A."){echo "selected";} ?> value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option <?php if($datos_economicos['Banco'] == "Venezolano de Crédito S.A."){echo "selected";} ?> value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
@@ -402,7 +402,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 									</div>
 									<div>
 										<label class="form-label">Número de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" value="<?php echo $datos_economicos['Cta_Bancaria']; ?>">
+									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" value="<?php echo $datos_economicos['Cta_Bancaria']; ?>" required>
 									</div>
 							</div>
 						</div>
@@ -441,7 +441,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<!--Lugar en el que trabaja el representante-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="180" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
 						</div>
 						<!--Remuneración del trabajo del representante-->
 						<div>

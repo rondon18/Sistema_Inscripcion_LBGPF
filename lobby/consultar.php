@@ -234,7 +234,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 											<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">
 											<input type="hidden" name="id_padre" value="<?php echo $estudiante['idPadre']; ?>">
 											<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
-											<button class="btn btn-sm btn-primary" type="submit" name="Consultar" disabled="" title="Funcion en mantenimiento">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+											<button class="btn btn-sm btn-primary" type="submit" name="Consultar" title="Funcion en mantenimiento">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 										</form>
 										<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
 										<form action="../controladores/control-registros.php" method="post" style="display: inline-block;">

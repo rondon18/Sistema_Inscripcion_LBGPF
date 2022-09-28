@@ -695,7 +695,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<!--Lugar en el que trabaja el padre-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="55" minlength="3"></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Pa" id="Lugar_Trabajo_Pa" maxlength="180" minlength="3"></textarea>
 						</div>
 						<!--Remuneración del trabajo del padre-->
 						<div>
@@ -937,7 +937,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<!--Lugar en el que trabaja la madre-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="55" minlength="3"></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_Ma" id="Lugar_Trabajo_Ma" maxlength="180" minlength="3"></textarea>
 						</div>
 						<!--Remuneración del trabajo de la madre-->
 						<div>

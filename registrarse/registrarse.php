@@ -70,9 +70,9 @@
 					<!--Cédula del representante-->
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-						<div class="input-group mb-2" required>
-							<select class="form-select" name="Tipo_Cédula_U">
-								<option selected disabled>Tipo de cédula</option>
+						<div class="input-group mb-2">
+							<select class="form-select" name="Tipo_Cédula_U" required>
+								<option selected disabled value="">Tipo de cédula</option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 							</select>
@@ -99,8 +99,8 @@
 							$requisitos = "La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números";
 							$patron = '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$';
 							?>
-							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
-							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
+							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
+							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
 						</div>
 						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números</small>
 					</div>
@@ -109,7 +109,7 @@
 
 					<label for="" class="form-label">Pregunta 1:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 					<select name="Pregunta_Seg_1" class="form-select mb-2" required>
-						<option selected disabled>Seleccione una opción</option>
+						<option selected disabled value="">Seleccione una opción</option>
 						<option value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste">Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
@@ -127,7 +127,7 @@
 
 					<label for="" class="form-label">Pregunta 2:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 					<select name="Pregunta_Seg_2" class="form-select mb-2" required>
-						<option selected disabled>Seleccione una opción</option>
+						<option selected disabled value="">Seleccione una opción</option>
 						<option value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste">Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>

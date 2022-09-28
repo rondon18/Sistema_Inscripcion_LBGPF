@@ -5,8 +5,93 @@ input {
    transition: border .25s ease-in !important;
 }
 
+/*input:not(input[type="checkbox"], input[type="radio"], input[type="button"]),
+input:not(:empty:invalid),
+input:not(:empty:valid),
+input:not(:empty:optional) 
+select:not(:empty:invalid),
+select:not(:empty:required),
+select:not(:empty:valid),
+select:not(:empty:optional) 
+select:not(:empty:required) 
+{
+ border: burlywood 2px solid !important;
+}*/
 
-input[required=""], select[required=""], textarea[required=""] {
+/*input:invalid:not(
+   input:empty,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+) 
+{
+   border: red 1px solid !important;
+}*/
+
+
+input:empty:not(
+   :required,
+   :optional:empty,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+textarea:empty
+{
+   border: dodgerblue 1px solid !important;
+}
+
+
+input:valid:not(
+   :optional,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+select:valid:not(:optional),
+textarea:valid:not(:optional)
+{
+   border: green 1px solid !important;
+}
+
+input:valid:not(
+   :optional:empty,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+select:valid:not(:optional),
+textarea:valid:not(:optional)
+{
+   border: green 1px solid !important;
+}
+
+input:required:empty,
+select:required:empty,
+textarea:required:empty,
+select:invalid
+{
+   border: lightcoral 1px solid !important;
+}
+
+input:optional:empty,
+input:optional:not(:placeholder-shown),
+select:optional:empty,
+select:optional:not(:placeholder-shown),
+textarea:optional:empty,
+textarea:optional:not(:placeholder-shown),
+div > input:not(input[type="search"])
+{
+   border: dodgerblue 1px dashed !important;
+}
+/*input[required=""], 
+select[required=""], 
+textarea[required=""] 
+{
    border: 1.4px solid rgba(154, 205, 50, 155) !important;
 }  
 
@@ -19,7 +104,7 @@ input:valid:not(:empty), input:valid:not([type="radio"]), input:valid:not([type=
 }
 input:invalid:not(:empty) , select:invalid:not(:empty) , textarea:invalid:not(:empty) {
    border: 1.4px solid rgba(255, 0, 0, 155) !important;
-}
+}*/
 /*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
