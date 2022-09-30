@@ -545,7 +545,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<span class="form-label">Es atendido por otra institución: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
 								<!-- <?php print_r($datos_Médicos['Institución_Médica']); ?> -->
-								<select class="form-select" name="Recibe_Atención_Inst">
+								<select class="form-select" name="Recibe_Atención_Inst" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if(!empty($datos_Médicos['Institución_Médica'])){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if(empty($datos_Médicos['Institución_Médica'])){echo "selected";} ?>>No</option>
@@ -556,7 +556,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<span class="form-label">¿Tiene alguna dieta especial?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tiene_Dieta_Especial">
+								<select class="form-select" name="Tiene_Dieta_Especial" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if(!empty($datos_Médicos['Dieta_Especial'])){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if(empty($datos_Médicos['Dieta_Especial'])){echo "selected";} ?>>No</option>
@@ -567,7 +567,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 						<div>
 							<span class="form-label">Posee carnet de discapacidad: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tiene_Carnet_Discapacidad">
+								<select class="form-select" name="Tiene_Carnet_Discapacidad" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si" <?php if(!empty($datos_Médicos['Carnet_Discapacidad'])){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if(empty($datos_Médicos['Carnet_Discapacidad'])){echo "selected";} ?>>No</option>

@@ -329,23 +329,46 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda" required>
-									<option selected disabled value="">Seleccione una opción</option>
-									<option 
-									<?php 
-									if($datos_vivienda['Tenencia_vivienda'] == "Propia")
-										{echo "selected";} 
-									?> 
-									value="Propia">
-										Propia
-									</option>
 
+							<?php  
+							//confirma si la tenencia de vivienda del representante es OTRA
+							if (
+									$datos_vivienda['Tenencia_vivienda'] != "Propia" &&
+									$datos_vivienda['Tenencia_vivienda'] != "Alquilada" &&
+									$datos_vivienda['Tenencia_vivienda'] != "Prestada"
+								) 
+							{
+								$tenencia_o = $datos_vivienda['Tenencia_vivienda'];
+							}
+							else {
+								$tenencia_o = NULL;
+							}
+							?>
+							
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda" required>
+									
+									<option selected disabled value="">Seleccione una opción</option>
+
+									<option 
+									<?php if($datos_vivienda['Tenencia_vivienda'] == "Propia"){echo "selected";}?> value="Propia">Propia</option>
+
+									
 									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									
 									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
-									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+									
+									<?php if ($tenencia_o): ?>
+									<option selected value="Otro">Otro</option>
+										
+									<?php else: ?>
+									<option value="Otro">Otro</option>
+									<?php endif ?>
+								
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_vivienda'] != "Propia" and $datos_vivienda['Tenencia_vivienda'] != "Alquilada" and $datos_vivienda['Tenencia_vivienda'] != "Prestada" and $datos_vivienda['Tenencia_vivienda'] != "Otro"){echo "selected";} ?>>
+
+								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" value="<?php echo $tenencia_o; ?>">
+
 							</div>
 						</div>
 					</section>
