@@ -1,34 +1,32 @@
 @charset "UTF-8";
 
+/*Animacion de pulso para resaltar el boton de ayuda*/
+
+#boton-ayuda{
+   animation: shadow-pulse 4s ease-in-out infinite 1.5s;
+}
+
+@keyframes shadow-pulse {
+   0%,60%{
+      box-shadow: 0 0 0 0 lightgray;
+   }
+
+   85%{
+      box-shadow: 0 0 0 5px lightgray;
+   }
+
+   100%{
+      box-shadow: 0 0 0 10px transparent;
+   }
+   
+}
+
+
+/*Reglas visuales para los estados de los campos de formulario*/
 
 input {
    transition: border .25s ease-in !important;
 }
-
-/*input:not(input[type="checkbox"], input[type="radio"], input[type="button"]),
-input:not(:empty:invalid),
-input:not(:empty:valid),
-input:not(:empty:optional) 
-select:not(:empty:invalid),
-select:not(:empty:required),
-select:not(:empty:valid),
-select:not(:empty:optional) 
-select:not(:empty:required) 
-{
- border: burlywood 2px solid !important;
-}*/
-
-/*input:invalid:not(
-   input:empty,
-   input[type="checkbox"], 
-   input[type="radio"], 
-   input[type="button"], 
-   input[type="submit"]
-) 
-{
-   border: red 1px solid !important;
-}*/
-
 
 input:empty:not(
    :required,
@@ -42,7 +40,6 @@ textarea:empty
 {
    border: dodgerblue 1px solid !important;
 }
-
 
 input:valid:not(
    :optional,
@@ -73,7 +70,8 @@ textarea:valid:not(:optional)
 input:required:empty,
 select:required:empty,
 textarea:required:empty,
-select:invalid
+select:invalid,
+textarea:invalid
 {
    border: lightcoral 1px solid !important;
 }
@@ -88,23 +86,7 @@ div > input:not(input[type="search"])
 {
    border: dodgerblue 1px dashed !important;
 }
-/*input[required=""], 
-select[required=""], 
-textarea[required=""] 
-{
-   border: 1.4px solid rgba(154, 205, 50, 155) !important;
-}  
 
-input:optional,select:optional,textarea:optional {
-   border: 1.4px solid cyan !important;
-}
-
-input:valid:not(:empty), input:valid:not([type="radio"]), input:valid:not([type="checkbox"]), select:valid, textarea:valid:not(:empty) {
-   border: 1.4px solid rgba(0, 128, 0, 155) !important;
-}
-input:invalid:not(:empty) , select:invalid:not(:empty) , textarea:invalid:not(:empty) {
-   border: 1.4px solid rgba(255, 0, 0, 155) !important;
-}*/
 /*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

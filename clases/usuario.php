@@ -57,10 +57,21 @@ class Usuarios {
 		$conexion = conectarBD();
 
 		$Clave = $this->getClave();
+		$Pregunta_Seg_1 = $this->getPregunta_Seg_1();
+		$Pregunta_Seg_2 = $this->getPregunta_Seg_2();
+		$Respuesta_1 = $this->getRespuesta_1();
+		$Respuesta_2 = $this->getRespuesta_2();
 
 		$sql = "UPDATE `usuarios` SET
-			`Clave`='$Clave'
+			`Clave`='$Clave',
+			`Pregunta_Seg_1` = '$Pregunta_Seg_1', 
+			`Pregunta_Seg_2` = '$Pregunta_Seg_2', 
+			`Respuesta_1` = '$Respuesta_1', 
+			`Respuesta_2` = '$Respuesta_2'
+
 		WHERE `Cédula_Persona`='$Cédula_Persona'";
+
+		echo $sql;
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);

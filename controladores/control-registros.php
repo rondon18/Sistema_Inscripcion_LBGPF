@@ -677,80 +677,80 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	elseif ($orden == "Editar") {
 
+		//DATOS DEL REPRESENTANTE 
+
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
+
+		$Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
+		$persona->setCédula($Cédula_representante);
+
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
+		$persona->setGénero($_POST['Género_R']);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
+		$persona->setDirección($_POST['Dirección_R']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
+
+		$persona->editarPersonaC($Cédula_representante);
 
 
-		// $persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
-		// $persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
-		// $persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
-		// $persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
 
-		// $Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
-		// $persona->setCédula($Cédula_representante);
+		//Consulta el representante para obtener su id
 
-		// $persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
-		// $persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
-		// $persona->setGénero($_POST['Género_R']);
-		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
-		// $persona->setDirección($_POST['Dirección_R']);
-		// $persona->setEstado_Civil($_POST['Estado_Civil_R']);
+		$conexion = conectarBD();
 
-		// $persona->editarPersonaC($Cédula_representante);
+		$sql = "SELECT * FROM `representantes` WHERE `Cédula_Persona` = '$Cédula_representante'";
 
+		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
+		$representantes = $consulta_representantes->fetch_assoc();
 
+		$idRepresentante = $representantes['idRepresentantes'];
 
-		// //Consulta el representante
+		desconectarBD($conexion);
 
-		// $conexion = conectarBD();
+		//
+		// Teléfonos representante
+		//
 
-		// $sql = "SELECT * FROM `representantes` WHERE `Cédula_Persona` = '$Cédula_representante'";
+		#Teléfono principal
+		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_R']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
+		$Teléfonos->setRelación_Teléfono('Principal');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		// $consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
-		// $representantes = $consulta_representantes->fetch_assoc();
+		$Teléfonos->editarTeléfono($Cédula_representante);
 
-		// $idRepresentante = $representantes['idRepresentantes'];
+		#Teléfono secundario
+		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_R']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
+		$Teléfonos->setRelación_Teléfono('Secundario');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		// desconectarBD($conexion);
+		$Teléfonos->editarTeléfono($Cédula_representante);
 
-		// //
-		// // Teléfonos representante
-		// //
+		#Teléfono auxiliar
+		$Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_R']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);
+		$Teléfonos->setRelación_Teléfono('Auxiliar');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		// #Teléfono principal
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Principal_R']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
-		// $Teléfonos->setRelación_Teléfono('Principal');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
+		$Teléfonos->editarTeléfono($Cédula_representante);
 
-		// $Teléfonos->editarTeléfono($Cédula_representante);
+		#Teléfono trabajo
+		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
+		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
+		$Teléfonos->setRelación_Teléfono('Trabajo');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
 
-		// #Teléfono secundario
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Secundario_R']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
-		// $Teléfonos->setRelación_Teléfono('Secundario');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
+		$Teléfonos->editarTeléfono($Cédula_representante);
 
-		// $Teléfonos->editarTeléfono($Cédula_representante);
+		$datos_representante->setCédula_Persona($persona->getCédula());
+		$datos_representante->setGrado_Académico($_POST['Grado_Instrucción_R']);
 
-		// #Teléfono auxiliar
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_R']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);
-		// $Teléfonos->setRelación_Teléfono('Auxiliar');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
-
-		// $Teléfonos->editarTeléfono($Cédula_representante);
-
-		// #Teléfono trabajo
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_R']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
-		// $Teléfonos->setRelación_Teléfono('Trabajo');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
-
-		// $Teléfonos->editarTeléfono($Cédula_representante);
-
-		// $datos_representante->setCédula_Persona($persona->getCédula());
-		// $datos_representante->setGrado_Académico($_POST['Grado_Instrucción_R']);
-
-		// $datos_representante->editarRepresentante($Cédula_representante);
+		$datos_representante->editarRepresentante($Cédula_representante);
 
 		// //
 		// // CARNET DE LA PATRIA

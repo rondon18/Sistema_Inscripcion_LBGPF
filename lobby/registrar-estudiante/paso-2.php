@@ -507,6 +507,9 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Padre" maxlength="8" minlength="7">
 								</div>
 							</div>
+
+							<p>En caso de no saberlo, dejar en blanco</p>
+
 							<!--Fecha de nacimiento del padre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento:</label>
@@ -748,6 +751,9 @@ if (!isset($_POST['Datos_Representante'])) {
 									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" minlength="7">
 								</div>
 							</div>
+
+							<p>En caso de no saberlo, dejar en blanco</p>
+
 							<!--Fecha de nacimiento de la madre-->
 							<div>
 								<label class="form-label">Fecha de nacimiento:</label>

@@ -142,7 +142,7 @@ if (!$_SESSION['login']) {
 
 					<label for="" class="form-label">Pregunta 2:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 					<select name="Pregunta_Seg_2" class="form-select mb-2" required>
-						<option selected disabled value="">>Seleccione una opción</option>
+						<option selected disabled value="">Seleccione una opción</option>
 						<option value="Ciudad de tu luna de miel" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>

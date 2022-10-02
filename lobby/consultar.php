@@ -313,8 +313,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						<div class="card-body">
 								<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100">
 									<thead>
-										<th>ID usuario</th>
-										<th>Cédula del usuario</th>
+										<th>ID</th>
+										<th>Cédula</th>
 										<th>Nombres</th>
 										<th>Apellidos</th>
 										<th>Privilegios</th>

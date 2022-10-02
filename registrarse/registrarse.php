@@ -99,8 +99,8 @@
 							$requisitos = "La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números";
 							$patron = '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$';
 							?>
-							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
-							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
+							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>" required>
+							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" minlength="8" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>" required>
 						</div>
 						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números</small>
 					</div>
