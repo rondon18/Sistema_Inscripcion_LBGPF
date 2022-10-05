@@ -430,7 +430,7 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<span class="form-label">¿Tiene alguna dieta especial?: <small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
 							<div class="input-group mb-2">
-								<select class="form-select" name="Tiene_Dieta_Especial">
+								<select class="form-select" name="Tiene_Dieta_Especial" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Si">Si</option>
 									<option value="No">No</option>

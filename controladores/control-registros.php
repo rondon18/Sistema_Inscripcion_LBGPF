@@ -79,17 +79,17 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 	$orden = $_POST['orden'];
 
-	echo "<table border='1'>";
-	foreach ($_POST as $key => $value) {
-		echo "<tr>";
-		echo "<td>".$key."</td>";
-		echo "<td>".$value."</td>";
-		echo "</tr>";
-	}
-	echo "</table>";
+	// echo "<table border='1'>";
+	// foreach ($_POST as $key => $value) {
+	// 	echo "<tr>";
+	// 	echo "<td>".$key."</td>";
+	// 	echo "<td>";
+	// 	var_dump($value);
+	// 	echo "</td>";
+	// 	echo "</tr>";
+	// }
+	// echo "</table>";
 	if ($orden == "Insertar") {
-
-		
 
 		//
 		// REPRESENTANTE
@@ -216,10 +216,27 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$ced_m = $_POST['Tipo_Cédula_Madre'] ?? NULL;
+		$fila = $persona->contarPersonas();
 
-		$Cédula_madre = $ced_m.$_POST['Cédula_Madre'];
-		$persona->setCédula($Cédula_madre);
+		// Si se deja vacio la cédula del madre al no conocerla o recordarla
+		// Se asigna una cédula provisional que puede ser cambiada para evitar conflictos
+
+			
+		//si la cédula y su tipo están llenos
+		if (!empty($_POST['Tipo_Cédula_Madre']) and !empty($_POST['Cédula_Madre'])) {
+			//asignacion con los datos enviados
+			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+			$persona->setCédula($Cédula_madre);
+			echo "madre";		
+		}
+
+		//si la cédula o su tipo están vacios
+		elseif(empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+			// asignacion de cédula probicional e incremento para el caso madre
+			$Cédula_madre = "V".$fila;
+			$persona->setCédula($Cédula_madre);
+		}
+
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Madre']);
@@ -322,21 +339,32 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//
 		//
 
-		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Padre']);
-		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Padre']);
-		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre']);
-		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre']);
+		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Padre'] ?? NULL);
+		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Padre'] ?? NULL);
+		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre'] ?? NULL);
+		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre'] ?? NULL);
 
-		if (isset($_POST['Tipo_Cédula_Padre']))
-		{
-			$Ced_P = $_POST['Tipo_Cédula_Padre']; 
-		}
-		else {
-			$Ced_P = "";
+		
+		$fila = $persona->contarPersonas();
+
+		// Si se deja vacio la cédula del padre al no conocerla o recordarla
+		// Se asigna una cédula provisional que puede ser cambiada para evitar conflictos
+
+		//Si el campo se envia
+			
+		//si la cédula y su tipo están llenos
+		if (!empty($_POST['Tipo_Cédula_Padre']) and !empty($_POST['Cédula_Padre'])) {
+			//asignacion con los datos enviados
+			$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+			$persona->setCédula($Cédula_padre);
 		}
 
-		$Cédula_padre = $Ced_P.$_POST['Cédula_Padre'];
-		$persona->setCédula($Cédula_padre);
+		//si la cédula o su tipo están vacios
+		elseif(empty($_POST['Tipo_Cédula_Padre']) or empty($_POST['Cédula_Padre'])) {
+			// asignacion de cédula probicional e incremento para el caso madre
+			$Cédula_padre = "V".$fila;
+			$persona->setCédula($Cédula_padre);
+		}
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre'] ?? NULL);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre'] ?? NULL);
@@ -347,6 +375,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->insertarPersona();
 
 		$datos_padre->setCédula_Persona($Cédula_padre);
+
 		if (isset($_POST['Reside_En_El_País_Pa']))
 		{
 			if ($_POST['Reside_En_El_País_Pa'] == "Si") {

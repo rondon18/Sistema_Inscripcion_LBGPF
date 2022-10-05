@@ -170,6 +170,19 @@
 			return $personas;
 		}
 
+		public function contarPersonas() {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `personas`";
+
+			$con_filas = $conexion->query($sql) or die("error: ".$conexion->error);
+
+			// obtiene el número de filas y lo pone en una variable
+			$fila = $con_filas->num_rows;
+
+			return $fila;
+		}
+
 		public function setidPersonas($idPersonas) {
 			$this->idPersonas = $idPersonas;
 		}
