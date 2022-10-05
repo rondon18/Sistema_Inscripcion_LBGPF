@@ -9,7 +9,14 @@ $persona = new Personas();
 $fila = $persona->contarPersonas();
 
 var_dump($fila);
+
 desconectarBD($conexion);
+
+echo "a".NULL;
+
+foreach ($_POST as $key => $value) {
+	echo $value;
+}
 
 //Si el campo se envia
 		if (isset($_POST['Tipo_Cédula_Padre'],$_POST['Cédula_Padre'])) {
@@ -37,6 +44,11 @@ desconectarBD($conexion);
 	
 	<input type="text" name="Tipo_Cédula_Padre" value="test">
 	<input type="text" name="Cédula_Padre" value="">
+
+	<select name="A" id="">
+		<option value="" selected disabled>a</option>
+		<option value="">b</option>
+	</select>
 
 	<input type="submit" name="enviar">
 
