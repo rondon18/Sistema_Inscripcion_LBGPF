@@ -139,7 +139,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 <body>
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+	<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
 			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -194,7 +194,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 							#Separa la cédula del caracter que indica si es venezolana o extranjera
 							$tipo_Cédula = substr($Estudiante['Cédula'],0,1);
 							$Cédula			= substr($Estudiante['Cédula'],1,strlen($Estudiante['Cédula'])-1);
-						 	?>
+							?>
 							<div class="input-group mb-2">
 								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Est" required>
 									<option selected disabled value="">Tipo de cédula</option>
@@ -637,13 +637,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
 									$tipo_Cédula_Pa = substr($padre['Cédula'],0,1);
 									$Cédula_Pa			= substr($padre['Cédula'],1,strlen($padre['Cédula'])-1);
-								 	?>
-									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre">
+									?>
+									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre" required>
 										<option selected disabled value="">Tipo de cédula</option>
 										<option <?php if($tipo_Cédula_Pa == "V"){echo "selected";} ?> value="V">V</option>
 										<option <?php if($tipo_Cédula_Pa == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Pa; ?>">
+									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Pa; ?>" required>
 								</div>
 							</div>
 							<!--Fecha de nacimiento del padre-->
@@ -884,13 +884,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
 									$tipo_Cédula_Ma = substr($madre['Cédula'],0,1);
 									$Cédula_Ma			= substr($madre['Cédula'],1,strlen($madre['Cédula'])-1);
-								 	?>
-									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre">
+									?>
+									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre" required>
 										<option selected disabled value="">Tipo de cédula</option>
 										<option <?php if($tipo_Cédula_Ma == "V"){echo "selected";} ?> value="V">V</option>
 										<option <?php if($tipo_Cédula_Ma == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
-									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Ma; ?>">
+									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Ma; ?>" required>
 								</div>
 							</div>
 							<!--Fecha de nacimiento de la madre-->
@@ -1144,10 +1144,12 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
 			<input type="hidden" name="Segundo_Apellido_Aux" value="<?php echo $_POST['Segundo_Apellido_Aux']?>">
 			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
+
 			<!--Botón para guardar-->
 			<div class="card-footer">
 				<input type="hidden" name="orden" value="Editar">
-				<button class="btn btn-primary" type="submit" onclick="enviar();">Registrar estudiante</button>
+				<button class="btn btn-primary" type="button" onclick="resetearCampos()">Deshacer cambios</button>
+				<button class="btn btn-primary" type="button" onclick="enviar();">Registrar estudiante</button>
 			</div>
 		</form>
 		<!--Footer-->
@@ -1160,42 +1162,79 @@ function condiciones($condicion_b,$datos_Médicos) {
 <script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
-function enviar() {
-	var FormularioEstudiante = document.getElementById("FormularioEstudiante");
-	var a = document.getElementById("seccion1");
-	var b = document.getElementById("seccion2");
-	var c = document.getElementById("seccion3");
-	var d = document.getElementById("seccion4");
-	var e = document.getElementById("seccion5");
-	var f = document.getElementById("seccion6");
+	function enviar() {
+		var FormularioEstudiante = document.getElementById("FormularioEstudiante");
+		var a = document.getElementById("seccion1");
+		var b = document.getElementById("seccion2");
+		var c = document.getElementById("seccion3");
+		var d = document.getElementById("seccion4");
+		var e = document.getElementById("seccion5");
+		var f = document.getElementById("seccion6");
 
 
-	a.style.display = "block";
-	b.style.display = "block";
-	c.style.display = "block";
-	d.style.display = "block";
-	e.style.display = "block";
-	f.style.display = "block";
+		a.style.display = "block";
+		b.style.display = "block";
+		c.style.display = "block";
+		d.style.display = "block";
+		e.style.display = "block";
+		f.style.display = "block";
 
-	if (FormularioEstudiante.checkValidity()) {
-		FormularioEstudiante.submit();
+		if (FormularioEstudiante.checkValidity()) {		
+			//Pregunta si desea realizar la acción la cancela si selecciona NO
+			Swal.fire({
+				title: '¿Desea continuar?',
+				text: 'Se actualizarán los datos referentes al estudiante',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#0d6efd',
+				cancelButtonColor: '#d33',
+				cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+				confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.getElementById("FormularioEstudiante").submit();
+					let timerInterval
+					Swal.fire({
+						title: '¡Exito!',
+						icon: 'success',
+						text: 'Respaldo realizado correctamente.',
+						timer: 3500,
+						timerProgressBar: true,
+						didOpen: () => {
+							Swal.showLoading()
+							const b = Swal.getHtmlContainer().querySelector('b')
+							timerInterval = setInterval(() => {
+								b.textContent = Swal.getTimerLeft()
+							}, 100)
+						},
+						willClose: () => {
+							clearInterval(timerInterval)
+						}
+					}).then((result) => {
+						/* Read more about handling dismissals below */
+						if (result.dismiss === Swal.DismissReason.timer) {
+							console.log('Cerrado por el temporizador')
+						}
+					})
+				}
+			})
+		}
+		else {
+			Swal.fire(
+				'Atención',
+				'Faltan campos por llenar',
+				'info'
+			 );
+		}
+
+		a.style.display = "block";
+		b.style.display = "none";
+		c.style.display = "none";
+		d.style.display = "none";
+		e.style.display = "none";
+		f.style.display = "none";
+
 	}
-	else {
-		Swal.fire(
-	      'Atención',
-	      'Faltan campos por llenar',
-	      'info'
-	    );
-	}
-
-	a.style.display = "block";
-	b.style.display = "none";
-	c.style.display = "none";
-	d.style.display = "none";
-	e.style.display = "none";
-	f.style.display = "none";
-
-}
 	function seccion(seccion) {
 
 		//secciones
@@ -1258,6 +1297,45 @@ function enviar() {
 			f.style.display = "block";
 			link_f.classList.add("active");
 		}
+	}
+	function resetearCampos() {
+		//Pregunta si desea realizar la acción la cancela si selecciona NO
+		Swal.fire({
+			title: '¿Desea restaurar los datos?',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#0d6efd',
+			cancelButtonColor: '#d33',
+			cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+			confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				let timerInterval
+				Swal.fire({
+					title: '¡Exito!',
+					icon: 'success',
+					text: 'Datos restaurados en la sección',
+					timer: 1500,
+					timerProgressBar: true,
+					didOpen: () => {
+						Swal.showLoading()
+						const b = Swal.getHtmlContainer().querySelector('b')
+						timerInterval = setInterval(() => {
+							b.textContent = Swal.getTimerLeft()
+						}, 100)
+					},
+					willClose: () => {
+						clearInterval(timerInterval)
+					}
+				}).then((result) => {
+					/* Read more about handling dismissals below */
+					if (result.dismiss === Swal.DismissReason.timer) {
+						console.log('Cerrado por el temporizador')
+					}
+					document.getElementById("FormularioEstudiante").reset();
+				})
+			}
+		})
 	}
 </script>
 </body>

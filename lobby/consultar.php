@@ -106,10 +106,10 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 </style>
 <body>
 	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+	<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 		<div>
-			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
-			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
+			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
 		</div>
 		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
@@ -133,12 +133,14 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 					</li>
 					<?php endif ?>
 			</ul>
-			<section class="card-body">
+			<section class="card-body px-2 pt-0">
 				<div id="seccion1" class="card my-2">
 					<div class="card-header">
 						Estudiantes registrados
 					</div>
 					<div class="card-body">
+						<div class="table-responsive">
+							
 						<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100">
 							<thead>
 								<th>Nro°</th>
@@ -253,6 +255,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						<?php endforeach ?>
 							</tbody>
 						</table>
+						</div>
 					</div>
 				</div>
 
@@ -261,6 +264,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 						Representantes registrados
 					</div>
 					<div class="card-body">
+						<div class="table-responsive">
 							<table id="representantes" class="text-uppercase table table-striped table-bordered table-sm w-100">
 								<thead>
 									<th>Cédula</th>
@@ -308,6 +312,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 								<?php endforeach; ?>
 								</tbody>
 							</table>
+						</div>
 					</div>
 				</div>
 				<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
@@ -317,6 +322,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 							Usuarios registrados
 						</div>
 						<div class="card-body">
+							<div class="table-responsive">
+								
 								<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100">
 									<thead>
 										<th>ID</th>
@@ -348,6 +355,8 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 										<?php endforeach; ?>
 									</tbody>
 								</table>
+
+							</div>
 						</div>
 					</div>
 				<div id="seccion4" class="card my-2">
@@ -355,40 +364,43 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 							Registro de bitácora
 						</div>
 						<div class="card-body">
+							<div class="table-responsive">
+								
 								<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
-									<thead>
+									<thead style="font-size: .90em">
 										<th>Nro. Registro</th>
 										<th>Id de usuario</th>
-										<th>Fecha entrada</th>
+										<th>Fecha Entrada</th>
 										<th>Hora entrada</th>
-										<th>Acciones realizadas</th>
 										<th>Fecha de cierre</th>
 										<th>Hora de cierre</th>
+										<th>Acciones realizadas</th>
 									</thead>
-									<tbody>
+									<tbody style="font-size: .85em;">
 									<?php foreach ($registros_bitácora as $registro): ?>
 										<?php if ($registro['idbitácora'] != $_SESSION['idbitácora']): #No muestra el ultimo registro por ser el actial?>
 											<tr>
-												<td><?php echo $registro['idbitácora']?></td>
-												<td><?php echo $registro['idUsuarios']?></td>
-												<td><?php echo $registro['fechaInicioSesión']?></td>
-												<td><?php echo $registro['horaInicioSesión']?></td>
-												<td style="min-width:400px; max-width: 800px;"><small><?php echo $registro['linksVisitados']?></small></td>
+												<td><center><?php echo $registro['idbitácora']?></center></td>
+												<td><center><?php echo $registro['idUsuarios']?></center></td>
+												<td><center><?php echo $registro['fechaInicioSesión']?></center></td>
+												<td><center><?php echo $registro['horaInicioSesión']?></center></td>
 												<td><?php if(!empty($registro['fechaFinalSesión'])) { echo $registro['fechaFinalSesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
 												<td><?php if(!empty($registro['horaFinalSesión'])) { echo $registro['horaFinalSesión'];} else {echo "Sesión no cerrada correctamente";}?></td>
+												<td style="min-width:400px; max-width: 700px;"><?php echo $registro['linksVisitados']?></td>
 											</tr>
 										<?php endif;?>
 									<?php endforeach; ?>
 									</tbody>
 								</table>
+
+							</div>
 						</div>
 					</div>
 				<?php endif; ?>
 			</section>
-		</div>
-
-		<div class="card text-center" style="width: 100%; margin-top: 20px;">
-			<a class="btn btn-primary" href="index.php">Volver al menú</a>
+			<section class="card-footer">
+				<a class="btn btn-primary" href="index.php">Volver al menú</a>
+			</section>
 		</div>
 	</div>
 	<!--Footer-->
@@ -516,7 +528,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
     );
 </script>
 <?php endif; ?>
-<script type="text/javascript">
+<script type="text/javascript" defer>
 	function confirmacion() {
 		//Pregunta si desea realizar la acción la cancela si selecciona NO
     if(confirm("¿Desea realizar esta accion?")) {
@@ -551,7 +563,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 			c.style.display = "none";
 			d.style.display = "none";
 			<?php endif; ?>
-	}, 2000);
+	}, 2500);
 
 	function seccion(seccion) {
 

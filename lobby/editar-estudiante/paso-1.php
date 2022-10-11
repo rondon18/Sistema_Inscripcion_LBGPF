@@ -84,7 +84,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 </head>
 <body>
 		<!--Banner-->
-		<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 			<div>
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -528,6 +528,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 					<input type="hidden" name="id_padre" value="<?php echo $_POST['id_padre']; ?>">
 					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+					<button class="btn btn-primary" type="button" onclick="resetearCampos()">Deshacer cambios</button>
 					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
@@ -544,7 +545,6 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 <script>
 
 function enviar() {
-
 	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
 
 	var a = document.getElementById("seccion1");
@@ -560,7 +560,44 @@ function enviar() {
 	e.style.display = "block";
 
 	if (FormularioRepresentante.checkValidity()) {
-		FormularioRepresentante.submit();
+		//Pregunta si desea realizar la acción la cancela si selecciona NO
+			Swal.fire({
+				title: '¿Desea continuar?',
+				text: 'Se actualizarán los datos referentes al estudiante',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#0d6efd',
+				cancelButtonColor: '#d33',
+				cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+				confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.getElementById("FormularioRepresentante").submit();
+					let timerInterval
+					Swal.fire({
+						title: '¡Exito!',
+						icon: 'success',
+						text: 'Cambios enviados.',
+						timer: 3500,
+						timerProgressBar: true,
+						didOpen: () => {
+							Swal.showLoading()
+							const b = Swal.getHtmlContainer().querySelector('b')
+							timerInterval = setInterval(() => {
+								b.textContent = Swal.getTimerLeft()
+							}, 100)
+						},
+						willClose: () => {
+							clearInterval(timerInterval)
+						}
+					}).then((result) => {
+						/* Read more about handling dismissals below */
+						if (result.dismiss === Swal.DismissReason.timer) {
+							console.log('Cerrado por el temporizador')
+						}
+					})
+				}
+			})
 	}
 	else {
 		Swal.fire(
@@ -576,63 +613,101 @@ function enviar() {
 		d.style.display = "none";
 		e.style.display = "none";
 	}, 1000);
-
-
 }
 
 function seccion(seccion) {
 
 
-		//secciones
-		var a = document.getElementById("seccion1");
-		var b = document.getElementById("seccion2");
-		var c = document.getElementById("seccion3");
-		var d = document.getElementById("seccion4");
-		var e = document.getElementById("seccion5");
+	//secciones
+	var a = document.getElementById("seccion1");
+	var b = document.getElementById("seccion2");
+	var c = document.getElementById("seccion3");
+	var d = document.getElementById("seccion4");
+	var e = document.getElementById("seccion5");
 
-		//botones en la navegación
-		var link_a = document.getElementById("link1");
-		var link_b = document.getElementById("link2");
-		var link_c = document.getElementById("link3");
-		var link_d = document.getElementById("link4");
-		var link_e = document.getElementById("link5");
+	//botones en la navegación
+	var link_a = document.getElementById("link1");
+	var link_b = document.getElementById("link2");
+	var link_c = document.getElementById("link3");
+	var link_d = document.getElementById("link4");
+	var link_e = document.getElementById("link5");
 
-		//seccion seleccionada como activa(seccion 1 por defecto)
-		var seccion = document.getElementById(seccion);
+	//seccion seleccionada como activa(seccion 1 por defecto)
+	var seccion = document.getElementById(seccion);
 
-		a.style.display = "none";
-		b.style.display = "none";
-		c.style.display = "none";
-		d.style.display = "none";
-		e.style.display = "none";
+	a.style.display = "none";
+	b.style.display = "none";
+	c.style.display = "none";
+	d.style.display = "none";
+	e.style.display = "none";
 
-		link_a.classList.remove("active");
-		link_b.classList.remove("active");
-		link_c.classList.remove("active");
-		link_d.classList.remove("active");
-		link_e.classList.remove("active");
+	link_a.classList.remove("active");
+	link_b.classList.remove("active");
+	link_c.classList.remove("active");
+	link_d.classList.remove("active");
+	link_e.classList.remove("active");
 
-		if (seccion == a) {
-			a.style.display = "block";
-			link_a.classList.add("active");
-		}
-		else if (seccion == b) {
-			b.style.display = "block";
-			link_b.classList.add("active");
-		}
-		else if (seccion == c) {
-			c.style.display = "block";
-			link_c.classList.add("active");
-		}
-		else if (seccion == d) {
-			d.style.display = "block";
-			link_d.classList.add("active");
-		}
-		else if (seccion == e) {
-			e.style.display = "block";
-			link_e.classList.add("active");
-		}
+	if (seccion == a) {
+		a.style.display = "block";
+		link_a.classList.add("active");
 	}
+	else if (seccion == b) {
+		b.style.display = "block";
+		link_b.classList.add("active");
+	}
+	else if (seccion == c) {
+		c.style.display = "block";
+		link_c.classList.add("active");
+	}
+	else if (seccion == d) {
+		d.style.display = "block";
+		link_d.classList.add("active");
+	}
+	else if (seccion == e) {
+		e.style.display = "block";
+		link_e.classList.add("active");
+	}
+}
+
+function resetearCampos() {
+	//Pregunta si desea realizar la acción la cancela si selecciona NO
+	Swal.fire({
+		title: '¿Desea restaurar los datos?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#0d6efd',
+		cancelButtonColor: '#d33',
+		cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+		confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			let timerInterval
+			Swal.fire({
+				title: '¡Exito!',
+				icon: 'success',
+				text: 'Datos restaurados en la sección',
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: () => {
+					Swal.showLoading()
+					const b = Swal.getHtmlContainer().querySelector('b')
+					timerInterval = setInterval(() => {
+						b.textContent = Swal.getTimerLeft()
+					}, 100)
+				},
+				willClose: () => {
+					clearInterval(timerInterval)
+				}
+			}).then((result) => {
+				/* Read more about handling dismissals below */
+				if (result.dismiss === Swal.DismissReason.timer) {
+					console.log('Cerrado por el temporizador')
+				}
+				document.getElementById("FormularioRepresentante").reset();
+			})
+		}
+	})
+}
 </script>
 
 </body>

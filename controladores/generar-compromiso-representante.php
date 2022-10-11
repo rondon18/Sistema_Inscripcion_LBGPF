@@ -28,7 +28,7 @@ $estudiante = $Estudiante->consultarEstudiante($_POST['Cédula_Estudiante']);
 $grado = $Grado->consultarGrado($_POST['id_Estudiante']);
 $datos_representante = $Representante->consultarRepresentanteID($_POST['id_representante']);
 
-$fecha_actual = date("d-m-Y");
+
 
 if ($grado['Grado_A_Cursar'] == "Primer año") {
     $grado = "1";
@@ -68,8 +68,38 @@ $pdf->MultiCell(0,5.5,utf8_decode('Otro compromiso:
 ____________________________________________________________________________________________________________________________________________________________________________________________________
 De igual manera, doy constancia que he sido informado (a) de mis obligaciones como representante como lo establece la LOPNNA en el art 54 el cual dice: "Los padres, representantes o responsables tienen la obligación inmediata de garantizar la educación de los niños y adolescentes. En consecuencia, debe inscribirlos oportunamente en una escuela, plantel o instituto de educación, de conformidad con la ley, así como exigirles su asistencia regular a clases y participar activamente en su proceso educativo".'),0,1);
 $pdf->MultiCell(0,14,utf8_decode('En atención a lo antes expuesto y en señal de conformidad firman,'));
-$pdf->MultiCell(0,6,utf8_decode("____________               _______________                 ______________                    ______________\nRepresentante                   Coordinadora                     Docente orientador                      Orientador(a)"),0,1);
-$pdf->Cell(0,6,utf8_decode('Fecha del compromiso: ' . $fecha_actual),0,1);
+
+// $pdf->MultiCell(0,6,utf8_decode("____________               _______________                 ______________                    ______________\nRepresentante                   Coordinadora                     Docente orientador                      Orientador(a)"),0,1);
+
+$pdf->Ln(2);
+
+
+$pdf->Cell(10,6,"",0,0);
+$pdf->Cell(35,6,utf8_decode(''),'B',0);
+$pdf->Cell(10,6,"",0,0);
+$pdf->Cell(35,6,utf8_decode(''),'B',0);
+$pdf->Cell(10,6,"",0,0);
+$pdf->Cell(35,6,utf8_decode(''),'B',0);
+$pdf->Cell(10,6,"",0,0);
+$pdf->Cell(35,6,utf8_decode(''),'B',1);
+
+$pdf->Cell(0,6,utf8_decode('                Representante                      Coordinadora                    Docente orientador                   Orientador(a)'),0,1);
+
+$pdf->Ln(3);
+
+$fecha_actual = date("d-m-Y");
+
+date_default_timezone_set("America/Caracas");
+setlocale(LC_ALL, 'es_VE.UTF-8','esp');
+/* Convertimos la fecha a marca de tiempo */
+$marca = strtotime($fecha_actual);
+
+
+$fecha_expedicion = ucfirst(utf8_encode(strftime('%A'))).strftime('%e de %B de %Y', $marca);
+
+
+
+$pdf->Cell(0,6,utf8_decode('Fecha del compromiso: ' . $fecha_expedicion),0,1);
 $pdf->Cell(0,6,utf8_decode('COORDINACIÓN DE  ' . $grado . '° AÑO'),0,1,'C');
 $pdf->Cell(0,6,utf8_decode('LCDA.'),0,1,'C');
 
