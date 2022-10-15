@@ -529,7 +529,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['CÃ
 					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
 					<button class="btn btn-primary" type="button" onclick="resetearCampos()">Deshacer cambios</button>
-					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
+					<input class="btn btn-primary" type="button" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
 		</form>
@@ -606,6 +606,7 @@ function enviar() {
 	      'info'
 	    );
 	}
+	
 	setTimeout(function(){
 		a.style.display = "block";
 		b.style.display = "none";

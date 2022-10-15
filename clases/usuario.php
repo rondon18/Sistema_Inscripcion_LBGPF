@@ -32,7 +32,6 @@ class Usuarios {
 
 		#Consulta si el registro ya existe para prevenir registros duplicados o excesivos
 		if ($resultado == NULL) {
-			#INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`, `Cédula_Persona`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]')
 			$sql = "INSERT INTO `usuarios`(`idUsuarios`, `Clave`, `Privilegios`, `Pregunta_Seg_1`, `Pregunta_Seg_2`, `Respuesta_1`, `Respuesta_2`,`Cédula_Persona`) VALUES (
 				NULL,
 				'$Clave',
@@ -88,7 +87,11 @@ class Usuarios {
 	public function consultarUsuario($Cédula_Persona) {
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `usuarios` WHERE `Cédula_Persona`='$Cédula_Persona'";
+		$sql = "
+		SELECT * FROM `personas`,`usuarios` WHERE 
+			`personas`.`Cédula` = '$Cédula' AND 
+			`usuarios`.`Cédula_Persona`='$Cédula_Persona'
+		";
 
 		$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
 		$usuario = $consulta_usuario->fetch_assoc();
