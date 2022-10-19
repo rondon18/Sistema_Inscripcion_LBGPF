@@ -383,8 +383,8 @@ function Relleno($var) {
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0">
-			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>

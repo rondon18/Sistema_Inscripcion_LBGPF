@@ -82,7 +82,7 @@ select:optional:empty,
 select:optional:not(:placeholder-shown),
 textarea:optional:empty,
 textarea:optional:not(:placeholder-shown),
-div > input:not(input[type="search"])
+div > input:not(div > input[type="search"])
 {
    border: dodgerblue 1px dashed !important;
 }

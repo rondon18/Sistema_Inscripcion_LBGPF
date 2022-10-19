@@ -1,5 +1,5 @@
 <!-- Botón de ayuda -->
-<button id="boton-ayuda" type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Ayuda">
+<button id="boton-ayuda" type="button" class="btn btn-primary position-fixed bottom-0 end-0 m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Ayuda" style="z-index: 1000;">
 	<i class="fas fa-question-circle fa-lg"></i>
 	<span	class="d-none d-lg-inline ms-1">Ayuda</span>
 </button>

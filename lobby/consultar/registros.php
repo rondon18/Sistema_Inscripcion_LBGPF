@@ -1,72 +1,27 @@
 <?php
-session_start();
-if (!$_SESSION['login']) {
-	header('Location: ../../index.php');
-	exit();
-}
-function calculaedad($fechanacimiento){
-list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-$ano_diferencia  = date("Y") - $ano;
-$mes_diferencia = date("m") - $mes;
-$dia_diferencia   = date("d") - $dia;
-if ($dia_diferencia < 0 || $mes_diferencia < 0)
-$ano_diferencia--;
-return $ano_diferencia;
-}
-function Género($Género){
-	if ($Género == "F") {
-		$Género = "Femenino";
+	session_start();
+	if (!$_SESSION['login']) {
+		header('Location: ../../index.php');
+		exit();
 	}
-	elseif ($Género == "M") {
-		$Género = "Masculino";
+
+	//Devuelve al index del lobby si el usuario no es administrador
+	if ($_SESSION['usuario']['Privilegios'] > 1) {
+		header('Location: ../index.php');
 	}
-	return $Género;
-}
-require("../../clases/estudiante.php");
-require("../../clases/representantes.php");
-require("../../clases/Padre.php");
-require("../../clases/madre.php");
-require("../../clases/teléfonos.php");
-require("../../controladores/conexion.php");
-require("../../clases/usuario.php");
-require('../../clases/bitácora.php');
-$bitácora = new bitácora();
-$_SESSION['acciones'] .= ', Consulta estudiantes';
-$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
-$registros_bitácora = $bitácora->mostrar_bitácora();
-$estudiante = new Estudiantes();
-$representante = new Representantes();
-$Padre = new Padre();
-$Madre = new Madre();
-$Teléfonos = new Teléfonos();
-$listaEstudiantes = $estudiante->mostrarEstudiantes();
-$listaRepresentantes = $representante->mostrarRepresentantes();
-$listaPadre = $Padre->mostrarPadre();
-$listaMadre = $Madre->mostrarMadre();
-function Teléfono($prefijo,$numero) {
-if (empty($prefijo) and empty($numero)) {
-$Teléfono = "";
-}
-else {
-$Teléfono = "$prefijo-$numero";
-}
-return $Teléfono;
-}
-if ($_SESSION['usuario']['Privilegios'] == 1) {
+
+	require("../../controladores/conexion.php");
+	require("../../clases/usuario.php");
+	require('../../clases/bitácora.php');
+	require('funciones.php');
+
+	$bitácora = new bitácora();
+	$_SESSION['acciones'] .= ', Consulta estudiantes';
+	$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+	$registros_bitácora = $bitácora->mostrar_bitácora();
+
 	$usuario = new Usuarios();
 	$lista_usuarios = $usuario->mostrarUsuarios();
-}
-
-function Cédula_Usuario($id, $lista_usuarios) {
-	foreach ($lista_usuarios as $usuario) {
-		if ($id == $usuario['idUsuarios']) {
-			return $usuario;
-			break;
-		}
-	} 
-}
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -175,143 +130,6 @@ function Cédula_Usuario($id, $lista_usuarios) {
 									</div>
 								</div>
 								
-								<!-- Boton de busqueda -->
-								<div class="mb-3">
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">
-									Búsqueda avanzada
-									<i class="fas fa-lg fa-search ms-1"></i>
-									</button>
-									<!-- Modal -->
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Búsqueda avanzada: Estudiantes</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-													aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<form action="">
-														<div class="row">
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Palabra a buscar</p>
-																<input class="form-control p-2 px-3 fs-3" type="text"
-																placeholder="Ingrese texto....">
-															</div>
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Filtros de búsqueda</p>
-															</div>
-															<div class="col-12 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Tipo de cédula:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Venezolana</option>
-																	<option value="">Extranjera</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Género:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Femenino</option>
-																	<option value="">Masculino</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Año a cursar:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Primer año</option>
-																	<option value="">Segundo año</option>
-																	<option value="">Tercer año</option>
-																	<option value="">Cuarto año</option>
-																	<option value="">Quinto año</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacunado:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Si</option>
-																	<option value="">No</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacuna aplicada:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Pfizer-BioNTech</option>
-																	<option value="">Oxford/AstraZeneca</option>
-																	<option value="">Ad26.CoV2.S de Janssen</option>
-																	<option value="">Moderna (ARNm-1273)</option>
-																	<option value="">Sinopharm</option>
-																	<option value="">CoronaVac de Sinovac</option>
-																	<option value="">BBV152 (Covaxin) de Bharat Biotech</option>
-																	<option value="">Covovax</option>
-																	<option value="">Cansino</option>
-																	<option value="">Sputnik V</option>
-																	<option value="">Abdala</option>
-																	<option value="">Otra</option>
-																</select>
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido despúes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido antes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-12 mb-2">
-																<label for="" class="form-label h6 text-decoration-underline">Ordenar por:</label>
-																<select name="" id="" class="form-select">
-																	<option value="">Cédula</option>
-																	<option value="">Nombres</option>
-																	<option value="">Apellidos</option>
-																	<option value="">Fecha de nacimiento</option>
-																	<option value="">Edad</option>
-																	<option value="">Año a cursar</option>
-																	<option value="">Género</option>
-																	<option value="">Correo electrónico</option>
-																	<option value="">Dirección de residencia</option>
-																	<option value="">Talla de camisa</option>
-																	<option value="">Talla de pantalón</option>
-																	<option value="">Talla de zapatos</option>
-																	<option value="">Estatura</option>
-																	<option value="">Peso</option>
-																	<option value="">Índice</option>
-																	<option value="">Circ. Braquial</option>
-																	<option value="">Vacunado</option>
-																	<option value="">Vacuna</option>
-																	<option value="">Dosis</option>
-																	<option value="">Lote</option>
-																</select>
-															</div>
-															<div class="col-12">
-																<button class="btn btn btn-primary w-xs-100 w-sm-100 w-md-auto w-lg-auto">
-																Buscar
-																<i class="fas fa-lg fa-search ms-1"></i>
-																</button>
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Cerrar</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
 								<!-- Tabla volcada -->
 								<div class="table-responsive">
 									<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
@@ -395,8 +213,8 @@ function Cédula_Usuario($id, $lista_usuarios) {
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0">
-			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>

@@ -62,7 +62,7 @@ function Teléfono($prefijo,$numero) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/datatables.min.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../../css/datatables.min.css"/> -->
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
 		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
@@ -88,6 +88,38 @@ function Teléfono($prefijo,$numero) {
 			border-radius: 0.25rem !important;
 			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
 			margin: .25rem;
+		}
+		.dt-button {
+			color: #fff !important;
+			background-color: #dc3545 !important;
+			border-color: #0d6efd !important;
+			display: inline-block !important;
+			font-weight: 400 !important;
+			line-height: 1.5 !important;
+			text-align: center !important;
+			text-decoration: none !important;
+			vertical-align: middle !important;
+			cursor: pointer !important;
+			-webkit-user-select: none !important;
+			-moz-user-select: none !important;
+			user-select: none !important;
+			border: 1px solid transparent !important;
+			padding: 0.375rem 0.75rem !important;
+			font-size: 1rem !important;
+			border-radius: 0.25rem !important;
+			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+			margin: .25rem;
+
+		}
+		.dt-button.active{
+			background-color: #0d6efd !important;
+		}
+
+		.dt-button.active > span > .fa-solid.fa-xmark {
+			display: none !important;
+		}
+		.dt-button:not(.dt-button.active) > span > .fa-solid.fa-check {
+			display: none !important;
 		}
 	</style>
 	<body>
@@ -162,143 +194,6 @@ function Teléfono($prefijo,$numero) {
 									</div>
 								</div>
 								
-								<!-- Boton de busqueda -->
-								<div class="mb-3">
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">
-									Búsqueda avanzada
-									<i class="fas fa-lg fa-search ms-1"></i>
-									</button>
-									<!-- Modal -->
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Búsqueda avanzada: Estudiantes</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-													aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<form action="">
-														<div class="row">
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Palabra a buscar</p>
-																<input class="form-control p-2 px-3 fs-3" type="text"
-																placeholder="Ingrese texto....">
-															</div>
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Filtros de búsqueda</p>
-															</div>
-															<div class="col-12 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Tipo de cédula:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Venezolana</option>
-																	<option value="">Extranjera</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Género:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Femenino</option>
-																	<option value="">Masculino</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Año a cursar:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Primer año</option>
-																	<option value="">Segundo año</option>
-																	<option value="">Tercer año</option>
-																	<option value="">Cuarto año</option>
-																	<option value="">Quinto año</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacunado:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Si</option>
-																	<option value="">No</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacuna aplicada:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Pfizer-BioNTech</option>
-																	<option value="">Oxford/AstraZeneca</option>
-																	<option value="">Ad26.CoV2.S de Janssen</option>
-																	<option value="">Moderna (ARNm-1273)</option>
-																	<option value="">Sinopharm</option>
-																	<option value="">CoronaVac de Sinovac</option>
-																	<option value="">BBV152 (Covaxin) de Bharat Biotech</option>
-																	<option value="">Covovax</option>
-																	<option value="">Cansino</option>
-																	<option value="">Sputnik V</option>
-																	<option value="">Abdala</option>
-																	<option value="">Otra</option>
-																</select>
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido despúes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido antes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-12 mb-2">
-																<label for="" class="form-label h6 text-decoration-underline">Ordenar por:</label>
-																<select name="" id="" class="form-select">
-																	<option value="">Cédula</option>
-																	<option value="">Nombres</option>
-																	<option value="">Apellidos</option>
-																	<option value="">Fecha de nacimiento</option>
-																	<option value="">Edad</option>
-																	<option value="">Año a cursar</option>
-																	<option value="">Género</option>
-																	<option value="">Correo electrónico</option>
-																	<option value="">Dirección de residencia</option>
-																	<option value="">Talla de camisa</option>
-																	<option value="">Talla de pantalón</option>
-																	<option value="">Talla de zapatos</option>
-																	<option value="">Estatura</option>
-																	<option value="">Peso</option>
-																	<option value="">Índice</option>
-																	<option value="">Circ. Braquial</option>
-																	<option value="">Vacunado</option>
-																	<option value="">Vacuna</option>
-																	<option value="">Dosis</option>
-																	<option value="">Lote</option>
-																</select>
-															</div>
-															<div class="col-12">
-																<button class="btn btn btn-primary w-xs-100 w-sm-100 w-md-auto w-lg-auto">
-																Buscar
-																<i class="fas fa-lg fa-search ms-1"></i>
-																</button>
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Cerrar</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
 								<!-- Tabla volcada -->
 								<div class="table-responsive">
 									<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
@@ -343,16 +238,16 @@ function Teléfono($prefijo,$numero) {
 												<td><?php echo $estudiante['idEstudiantes']; ?></td>
 												<?php $Teléfonos_Est = $Teléfonos->consultarTeléfonos($estudiante['Cédula']);  ?>
 												<td><?php echo $estudiante['Cédula']; ?></td>
-												<td style="min-width:210px;"><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
-												<td style="min-width:210px;">
+												<td><?php echo $estudiante['Primer_Nombre']." ".$estudiante['Segundo_Nombre']; ?></td>
+												<td>
 													<?php echo $estudiante['Primer_Apellido']." ".$estudiante['Segundo_Apellido']; ?>
 												</td>
 												<td><?php echo $estudiante['Fecha_Nacimiento']; ?></td>
 												<td><?php echo calculaedad($estudiante['Fecha_Nacimiento']); ?></td>
-												<td style="min-width:120px;"><?php echo $estudiante['Grado_A_Cursar']; ?></td>
+												<td><?php echo $estudiante['Grado_A_Cursar']; ?></td>
 												<td><?php echo Género($estudiante['Género']); ?></td>
-												<td style="min-width:160px;"><?php echo $estudiante['Correo_Electrónico']; ?></td>
-												<td style="min-width:190px;"><?php echo $estudiante['Dirección']; ?></td>
+												<td><?php echo $estudiante['Correo_Electrónico']; ?></td>
+												<td><?php echo $estudiante['Dirección']; ?></td>
 												<td><?php echo $estudiante['Talla_Camisa']; ?></td>
 												<td><?php echo $estudiante['Talla_Pantalón']; ?></td>
 												<td><?php echo $estudiante['Talla_Zapatos']; ?></td>
@@ -427,50 +322,78 @@ function Teléfono($prefijo,$numero) {
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0">
-			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 </div>
 
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+<!-- <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../../js/datatables.min.js"></script>
 <script type="text/javascript" src="../../js/pdfmake.min.js"></script>
 <script type="text/javascript" src="../../js/vfs_fonts.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/datatables1.min.js"></script>
+<script type="text/javascript" src="../../js/datatables1.min.js"></script> -->
+
+<link rel="stylesheet" href="../../datatables/datatables.min.css">
+<script src="../../datatables/datatables.min.js"></script>
+
 
 <script type="text/javascript">
 	//Datatables estudiantes
 	$(document).ready( function () {
-		$('#estudiantes').DataTable({
-			responsive: true,
-			"language": {
-					"url": "../../js/datatables-español.json"
-			},
+		var table = $('#estudiantes').DataTable({
+			
 			dom: 'Bfrtip',
 			"order": [[ 0, "desc" ]],
+			"pagingType": "full",
+			"language": {"url": "../../js/datatables-español.json"},
 			buttons: [
 				{
-				extend: 'excelHtml5',
-				exportOptions: {
-					columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+					extend: 'colvis',
+					className: 'btn btn-secondary',
+					text: 'Filtrar columnas<i class="fas fa-filter fa-lg mx-2"></i>',
+					columns: [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28],
+					collectionLayout: 'fixed columns',
+					popoverTitle: '<span class="h4">Seleccione las columnas a mostrar</span>',
+					columnText: function ( dt, idx, title ) {
+            return '<i class="fa-solid fa-check fa-lg me-2"></i><i class="fa-solid fa-xmark fa-lg me-2"></i> '+title;
+          }
 				},
-				text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-				autoFilter: true,
-				filename: 'Reporte de estudiantes',
-				sheetName: 'Reporte de estudiantes',
-				className: 'btn btn-success',
-				messageTop: 'Reporte de estudiantes'
+				{
+					extend: 'excelHtml5',
+					exportOptions: {
+						columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+					},
+					text: '<span class="d-none d-md-inline">Generar reporte en Excel</span> <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
+					autoFilter: true,
+					filename: 'Reporte de estudiantes',
+					sheetName: 'Reporte de estudiantes',
+					className: 'btn btn-success',
+					messageTop: 'Reporte de estudiantes'
 				}
 			],
-			"pagingType": "full_numbers"
+			responsive: 	
+			{
+				details: {
+          display: $.fn.dataTable.Responsive.display.modal( {
+              header: function ( row ) {
+                  var data = row.data();
+                  return 'Detalles de '+data[2];
+              }
+          } ),
+          renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+              tableClass: 'table table-borderless table-striped '
+          })
+        }
+      },
 		});
 	});
 </script>
-
 <script type="text/javascript" defer>
+
+
 	function confirmacion() {
 		//Pregunta si desea realizar la acción la cancela si selecciona NO
 		if(confirm("¿Desea realizar esta accion?")) {
