@@ -25,15 +25,15 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<title>Consultar registros</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/datatables.min.css"/>
+		<link rel="stylesheet" href="../../datatables/datatables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 	</head>
 	<style media="screen">
@@ -108,23 +108,23 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 									<div
 										class="selector-consulta d-flex flex-column flex-sm-row gap-2 align-items-center justify-content-evenly">
 										<p class="h4 m-0 text-center">Consultar:</p>
-										<a href="estudiantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="estudiantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-children me-2 hvr-icon"></i>
 											Estudiantes
 										</a>
-										<a href="representantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="representantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-users me-2 hvr-icon"></i>
 											Representantes
 										</a>
-										<a href="padres.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="padres.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
 											Padres
 										</a>
-										<a href="usuarios.php" class="btn btn-outline-light hvr-icon-grow active">
+										<a href="usuarios.php" class="btn btn-outline-light btn-sm hvr-icon-grow active">
 											<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
 											Usuarios
 										</a>
-										<a href="registros.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="registros.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-clipboard me-2 hvr-icon"></i>
 											Registros
 										</a>
@@ -136,15 +136,16 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 									<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
 										Mostrando Estudiantes registrados
 									</p>
-									<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100">
+									<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
 									<thead>
 										<th>Cédula</th>
 										<th>Nombres</th>
 										<th>Apellidos</th>
 										<th>Privilegios</th>
+										<th>Cargo</th>
 										<th>Acciones</th>
 									</thead>
-									<tbody class="text-center">
+									<tbody>
 										<?php foreach ($lista_usuarios as $usuario): ?>
 										<tr>
 											
@@ -152,26 +153,57 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 												<?php echo $usuario['Cédula_Persona'];?>
 											</td>
 
-											<td class="text-start">
+											<td class="text-start" style="min-width: 180px;">
 												<?php echo $usuario['Primer_Nombre']. " " .$usuario['Segundo_Nombre']?>	
 											</td>
 
-											<td class="text-start">
+											<td class="text-start" style="min-width: 180px;">
 												<?php echo $usuario['Primer_Apellido']. " " .$usuario['Segundo_Apellido']?>
 											</td>
 											
 											<td>
 												<?php echo privilegios($usuario['Privilegios']); ?>
 											</td>
-											
+
 											<td>
-												
+												<?php 
+
+												$test = rand(1,5);
+
+												if ($test == 1) {
+													echo "Docente";
+												}
+												elseif ($test == 2) {
+													echo "Secretario(a)";
+												}
+												elseif ($test == 3) {
+													echo "Coordinador(a)";
+												}
+												elseif ($test == 4) {
+													echo "Coordinador académico";
+												}
+												elseif ($test == 5) {
+													echo "Director";
+												}
+
+												?>
+											</td>
+											
+											<td style="min-width: 100vw;">
+												<form class="d-inline-block" action="">
+													<button class="btn btn-sm btn-danger">Editar</button>
+												</form>
+												<form class="d-inline-block" action="">
+													<button class="btn btn-sm btn-danger">Cambiar cargo</button>			
+												</form>
+
 												<?php if ($usuario['Privilegios'] <= 1): ?>
-												<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
-													Eliminar Usuario
-													<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
-												</button>
-												
+												<div class="d-inline-block">
+													<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
+														Eliminar Usuario
+														<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
+													</button>
+												</div>
 												<?php else: ?>
 												<form action="../controladores/control-usuarios.php" method="post">
 													<input type="hidden" name="idUsuario" value="<?php echo $usuario['Cédula_Persona'];?>">
@@ -180,7 +212,6 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 														<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 													</button>
 												</form>
-												
 												<?php endif; ?>
 											</td>
 										</tr>
@@ -197,45 +228,15 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 </div>
 
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="../../js/datatables.min.js"></script>
-<script type="text/javascript" src="../../js/pdfmake.min.js"></script>
-<script type="text/javascript" src="../../js/vfs_fonts.js"></script>
-<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/datatables1.min.js"></script>
-
-<script type="text/javascript">
-	//Datatables usuarios
-	$(document).ready( function () {
-		$('#usuarios').DataTable({
-			responsive: true,
-			"language": {
-				"url": "../../js/datatables-español.json"
-			},
-			dom: 'Bfrtip',
-			buttons: [{
-				extend: 'excelHtml5',
-				exportOptions: {
-					columns: [0,1,2,3,4]
-				},
-				text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-				autoFilter: true,
-				filename: 'Reporte de usuarios',
-				sheetName: 'Reporte de usuarios',
-				className: 'btn btn-success',
-				messageTop: 'Reporte de usuarios'
-			}],
-			"pagingType": "full_numbers"
-		});
-	});
-</script>
+<script src="../../datatables/datatables.min.js"></script>
+<script src="../../js/consulta-usuarios.js"></script>
 
 <script type="text/javascript" defer>
 	function confirmacion() {

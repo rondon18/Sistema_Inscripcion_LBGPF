@@ -89,7 +89,7 @@ class Usuarios {
 
 		$sql = "
 		SELECT * FROM `personas`,`usuarios` WHERE 
-			`personas`.`Cédula` = '$Cédula' AND 
+			`personas`.`Cédula` = '$Cédula_Persona' AND 
 			`usuarios`.`Cédula_Persona`='$Cédula_Persona'
 		";
 
@@ -100,6 +100,39 @@ class Usuarios {
 
 		return $usuario;
 	}
+
+	public funcion verificarPreguntas($Cédula_Persona){
+
+		//consulto si el usuario existe
+		
+
+
+		if ($usuario = $this->consultarUsuario($Cédula_Persona);) {
+			$conexion = conectarBD();
+
+			$Respuesta1 = $this->getRespuesta_1();
+			$Respuesta2 = $this->getRespuesta_2();
+
+			$sql = "
+				SELECT * FROM `usuarios` 
+				WHERE 
+				(`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') 
+				AND 
+				`Cédula_Persona` = 'V27919566';
+			";
+
+			desconectarBD($conexion);
+
+			return true;
+		}
+		else {
+			return false;
+		}
+
+
+		$sql = "SELECT * FROM `usuarios` WHERE (`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') AND `Cédula_Persona` = 'V27919566';";
+	}
+
 	public function mostrarUsuarios() {
 		$conexion = conectarBD();
 

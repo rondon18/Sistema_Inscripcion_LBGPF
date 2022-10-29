@@ -10,6 +10,8 @@ require("../clases/vivienda.php");
 require("../clases/Teléfonos.php");
 require("../clases/bitácora.php");
 
+
+// Inicio de sesión regular
 if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $clave = $_POST['clave'] != "")) {
 
 	$Cédula = $_POST['Tipo_Cédula'].$_POST['Cédula'];
@@ -60,14 +62,14 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 
 	desconectarBD($conexion);
 }
+
+// Inicio de sesión con pregunta de seguridad
 elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST['Recuperar_Clave'])) {
 
 	$Cédula = $_POST['Cédula'];
 
 	$Respuesta1 = $_POST['Respuesta1'];
 	$Respuesta2 = $_POST['Respuesta2'];
-
-
 
 	$conexion = conectarBD();
 
@@ -81,7 +83,7 @@ elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST
 		//consulto si al menos una de las dos preguntas es correcta
 		$sql = "SELECT * FROM `usuarios` WHERE (`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') AND `Cédula_Persona` = 'V27919566';";
 
-		$registro_existe = $conexion->query($sql);
+		$registro_existe = $conexion->query($Cédula);
 		$resultado_usuario = $registro_existe->fetch_assoc();
 
 		if ($resultado_usuario == NULL) {

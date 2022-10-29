@@ -10,6 +10,7 @@ require("../../clases/Padre.php");
 require("../../clases/madre.php");
 require("../../clases/teléfonos.php");
 require('../../clases/bitácora.php');
+require('funciones.php');
 
 $bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Consulta estudiantes';
@@ -22,50 +23,9 @@ $Teléfonos = new Teléfonos();
 $listaPadre = $Padre->mostrarPadre();
 $listaMadre = $Madre->mostrarMadre();
 
-function calculaedad($fechanacimiento){
-list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-$ano_diferencia  = date("Y") - $ano;
-$mes_diferencia = date("m") - $mes;
-$dia_diferencia   = date("d") - $dia;
-if ($dia_diferencia < 0 || $mes_diferencia < 0)
-$ano_diferencia--;
-return $ano_diferencia;
-}
-function Género($Género){
-	if ($Género == "F") {
-		$Género = "Femenino";
-	}
-	elseif ($Género == "M") {
-		$Género = "Masculino";
-	}
-	return $Género;
-}
-function Teléfono($prefijo,$numero) {
-	if (empty($prefijo) and empty($numero)) {
-		$Teléfono = "";
-	}
-	else {
-		$Teléfono = "$prefijo-$numero";
-	}
-	return $Teléfono;
-}
-
-function Relleno($var) {
-	if (!empty($var) and ($var != "0000-00-00")) {
-		$salida = $var;
-	}
-	elseif ($var == "0000-00-00") {
-		$salida = "-- -- --";
-	}
-	elseif (empty($var) ) {
-		$salida = "No suministrado(a)";
-	}
-	return $salida;
-}
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<title>Consultar registros</title>
 		<meta charset="utf-8">
@@ -73,7 +33,7 @@ function Relleno($var) {
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/datatables.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 	</head>
 	<style media="screen">
@@ -148,163 +108,26 @@ function Relleno($var) {
 									<div
 										class="selector-consulta d-flex flex-column flex-sm-row gap-2 align-items-center justify-content-evenly">
 										<p class="h4 m-0 text-center">Consultar:</p>
-										<a href="estudiantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="estudiantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-children me-2 hvr-icon"></i>
 											Estudiantes
 										</a>
-										<a href="representantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="representantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-users me-2 hvr-icon"></i>
 											Representantes
 										</a>
-										<a href="padres.php" class="btn btn-outline-light hvr-icon-grow active">
+										<a href="padres.php" class="btn btn-outline-light btn-sm hvr-icon-grow active">
 											<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
 											Padres
 										</a>
-										<a href="usuarios.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="usuarios.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
 											Usuarios
 										</a>
-										<a href="registros.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="registros.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-clipboard me-2 hvr-icon"></i>
 											Registros
 										</a>
-									</div>
-								</div>
-								
-								<!-- Boton de busqueda -->
-								<div class="mb-3">
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">
-									Búsqueda avanzada
-									<i class="fas fa-lg fa-search ms-1"></i>
-									</button>
-									<!-- Modal -->
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Búsqueda avanzada: Estudiantes</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-													aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<form action="">
-														<div class="row">
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Palabra a buscar</p>
-																<input class="form-control p-2 px-3 fs-3" type="text"
-																placeholder="Ingrese texto....">
-															</div>
-															<div class="col-12 mb-2">
-																<p
-																	class="my-2 h5 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-																Filtros de búsqueda</p>
-															</div>
-															<div class="col-12 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Tipo de cédula:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Venezolana</option>
-																	<option value="">Extranjera</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Género:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Femenino</option>
-																	<option value="">Masculino</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-4 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Año a cursar:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Primer año</option>
-																	<option value="">Segundo año</option>
-																	<option value="">Tercer año</option>
-																	<option value="">Cuarto año</option>
-																	<option value="">Quinto año</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacunado:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Si</option>
-																	<option value="">No</option>
-																</select>
-															</div>
-															<div class="col-6 col-md-5 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Vacuna aplicada:</label>
-																<select name="campo1" id="" class="form-select">
-																	<option value="">Cualquiera</option>
-																	<option value="">Pfizer-BioNTech</option>
-																	<option value="">Oxford/AstraZeneca</option>
-																	<option value="">Ad26.CoV2.S de Janssen</option>
-																	<option value="">Moderna (ARNm-1273)</option>
-																	<option value="">Sinopharm</option>
-																	<option value="">CoronaVac de Sinovac</option>
-																	<option value="">BBV152 (Covaxin) de Bharat Biotech</option>
-																	<option value="">Covovax</option>
-																	<option value="">Cansino</option>
-																	<option value="">Sputnik V</option>
-																	<option value="">Abdala</option>
-																	<option value="">Otra</option>
-																</select>
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido despúes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-6 col-lg-3 mb-2">
-																<label for="campo1" class="form-label h6 text-decoration-underline">Nacido antes de:</label>
-																<input type="date" name="campo1" class="form-control">
-															</div>
-															<div class="col-12 mb-2">
-																<label for="" class="form-label h6 text-decoration-underline">Ordenar por:</label>
-																<select name="" id="" class="form-select">
-																	<option value="">Cédula</option>
-																	<option value="">Nombres</option>
-																	<option value="">Apellidos</option>
-																	<option value="">Fecha de nacimiento</option>
-																	<option value="">Edad</option>
-																	<option value="">Año a cursar</option>
-																	<option value="">Género</option>
-																	<option value="">Correo electrónico</option>
-																	<option value="">Dirección de residencia</option>
-																	<option value="">Talla de camisa</option>
-																	<option value="">Talla de pantalón</option>
-																	<option value="">Talla de zapatos</option>
-																	<option value="">Estatura</option>
-																	<option value="">Peso</option>
-																	<option value="">Índice</option>
-																	<option value="">Circ. Braquial</option>
-																	<option value="">Vacunado</option>
-																	<option value="">Vacuna</option>
-																	<option value="">Dosis</option>
-																	<option value="">Lote</option>
-																</select>
-															</div>
-															<div class="col-12">
-																<button class="btn btn btn-primary w-xs-100 w-sm-100 w-md-auto w-lg-auto">
-																Buscar
-																<i class="fas fa-lg fa-search ms-1"></i>
-																</button>
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Cerrar</button>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 								
@@ -313,7 +136,7 @@ function Relleno($var) {
 									<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
 										Mostrando Padres registrados
 									</p>
-									<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100">
+									<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
 										<thead>
 											<th>Cédula</th>
 											<th>Nombres</th>
@@ -329,45 +152,45 @@ function Relleno($var) {
 
 											<?php foreach ($listaPadre as $padre):?>
 											<tr>
-												<td><?php echo Relleno($padre['Cédula']); ?></td>
+												<td><?php echo comprobarVacio($padre['Cédula']); ?></td>
 												<td style="min-width:210px;">
 													<?php 
-														echo Relleno($padre['Primer_Nombre'])." ".$padre['Segundo_Nombre']; 
+														echo comprobarVacio($padre['Primer_Nombre'])." ".$padre['Segundo_Nombre']; 
 													?>
 												</td>
 												<td style="min-width:210px;">
 													<?php 
-														echo Relleno($padre['Primer_Apellido'])." ".$padre['Segundo_Apellido']; 
+														echo comprobarVacio($padre['Primer_Apellido'])." ".$padre['Segundo_Apellido']; 
 													?>
 												</td>
 												<td>Padre</td>
-												<td class="text-center"><?php echo Relleno($padre['Fecha_Nacimiento']); ?></td>
-												<td><?php echo Relleno($padre['Lugar_Nacimiento']); ?></td>
-												<td style="min-width:160px;"><?php echo Relleno($padre['Correo_Electrónico']); ?></td>
-												<td style="min-width:190px;"><?php echo Relleno($padre['Dirección']); ?></td>
-												<td><?php echo Relleno($padre['Estado_Civil']); ?></td>
+												<td class="text-center"><?php echo comprobarVacio($padre['Fecha_Nacimiento'],"F"); ?></td>
+												<td><?php echo comprobarVacio($padre['Lugar_Nacimiento']); ?></td>
+												<td style="min-width:160px;"><?php echo comprobarVacio($padre['Correo_Electrónico']); ?></td>
+												<td style="min-width:190px;"><?php echo comprobarVacio($padre['Dirección']); ?></td>
+												<td><?php echo comprobarVacio($padre['Estado_Civil']); ?></td>
 											</tr>
 											<?php endforeach; ?>
 
 											<?php foreach ($listaMadre as $madre):?>
 											<tr>
-												<td><?php echo Relleno($madre['Cédula']); ?></td>
+												<td><?php echo comprobarVacio($madre['Cédula']); ?></td>
 												<td style="min-width:210px;">
 													<?php 
-														echo Relleno($madre['Primer_Nombre'])." ".$madre['Segundo_Nombre']; 
+														echo comprobarVacio($madre['Primer_Nombre'])." ".$madre['Segundo_Nombre']; 
 													?>
 												</td>
 												<td style="min-width:210px;">
 													<?php 
-														echo Relleno($madre['Primer_Apellido'])." ".$madre['Segundo_Apellido']; 
+														echo comprobarVacio($madre['Primer_Apellido'])." ".$madre['Segundo_Apellido']; 
 													?>
 												</td>
 												<td>Madre</td>
-												<td class="text-center"><?php echo Relleno($madre['Fecha_Nacimiento']); ?></td>
-												<td><?php echo Relleno($madre['Lugar_Nacimiento']); ?></td>
-												<td style="min-width:160px;"><?php echo Relleno($madre['Correo_Electrónico']); ?></td>
-												<td style="min-width:190px;"><?php echo Relleno($madre['Dirección']); ?></td>
-												<td><?php echo Relleno($madre['Estado_Civil']); ?></td>
+												<td class="text-center"><?php echo comprobarVacio($madre['Fecha_Nacimiento'],"F"); ?></td>
+												<td><?php echo comprobarVacio($madre['Lugar_Nacimiento']); ?></td>
+												<td style="min-width:160px;"><?php echo comprobarVacio($madre['Correo_Electrónico']); ?></td>
+												<td style="min-width:190px;"><?php echo comprobarVacio($madre['Dirección']); ?></td>
+												<td><?php echo comprobarVacio($madre['Estado_Civil']); ?></td>
 											</tr>
 											<?php endforeach ?>
 
@@ -383,7 +206,7 @@ function Relleno($var) {
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
@@ -391,125 +214,9 @@ function Relleno($var) {
 </div>
 
 
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="../../js/datatables.min.js"></script>
-<script type="text/javascript" src="../../js/pdfmake.min.js"></script>
-<script type="text/javascript" src="../../js/vfs_fonts.js"></script>
-<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/datatables1.min.js"></script>
-
-<script type="text/javascript">
-	//Datatables estudiantes
-	$(document).ready( function () {
-		$('#estudiantes').DataTable({
-			responsive: true,
-			"language": {
-					"url": "../../js/datatables-español.json"
-			},
-<?php if ($_SESSION['usuario']['Privilegios'] == 1 || $_SESSION['usuario']['Privilegios'] == 2): ?>
-			dom: 'Bfrtip',
-			"order": [[ 0, "desc" ]],
-			buttons: [
-				{
-				extend: 'excelHtml5',
-				exportOptions: {
-					columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-				},
-				text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-				autoFilter: true,
-				filename: 'Reporte de estudiantes',
-				sheetName: 'Reporte de estudiantes',
-				className: 'btn btn-success',
-				messageTop: 'Reporte de estudiantes'
-				}
-			],
-			"pagingType": "full_numbers"
-<?php endif; ?>
-});
-} );
-
-
-
-
-//Datatables representantes
-$(document).ready( function () {
-$('#representantes').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-buttons: [
-{
-extend: 'excelHtml5',
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de representantes',
-sheetName: 'Reporte de representantes',
-className: 'btn btn-success',
-messageTop: 'Reporte de representantes'
-}
-]
-});
-} );
-
-
-
-
-<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-//Datatables usuarios
-$(document).ready( function () {
-$('#usuarios').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-buttons: [
-{
-extend: 'excelHtml5',
-exportOptions: {
-columns: [0,1,2,3,4]
-},
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de usuarios',
-sheetName: 'Reporte de usuarios',
-className: 'btn btn-success',
-messageTop: 'Reporte de usuarios'
-}
-],
-"pagingType": "full_numbers"
-});
-} );
-
-
-
-
-//Datatables bitácora
-$(document).ready( function () {
-$('#bitácora').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-"order": [[ 0, "desc" ]],
-buttons: [
-{
-extend: 'excelHtml5',
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de bitácora',
-sheetName: 'Reporte de bitácora',
-className: 'btn btn-success',
-messageTop: 'Reporte de bitácora'
-}
-]
-});
-} );
-<?php endif; ?>
-</script>
+<link rel="stylesheet" href="../../datatables/datatables.min.css">
+<script src="../../datatables/datatables.min.js"></script>
+<script src="../../js/consulta-padres.js"></script>
 
 <script type="text/javascript" defer>
 	function confirmacion() {

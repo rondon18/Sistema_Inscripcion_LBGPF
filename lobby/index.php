@@ -11,14 +11,14 @@ $_SESSION['acciones'] .= ', Visita menú principal';
 $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Página de inicio</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/colores.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 		<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
 	</head>
@@ -71,7 +71,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 												<i class="fas fa-user-plus fa-3x me-2"></i>
 												<p class="ps-2 m-0 my-1 w-100">
 													Inscribir estudiante: <br>
-													<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
+													<a href="registrar-estudiante/paso-1.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
 														Registrar nuevo
 														<i class="fas fa-plus-square fa-lg ms-1 hvr-icon"></i>
 													</a>
@@ -85,7 +85,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 												<i class="fas fa-user-plus fa-3x me-2"></i>
 												<p class="ps-2 m-0 my-1 w-100">
 													Registrar usuario: <br>
-													<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
+													<a href="registrar-usuario/index.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
 														Registrar nuevo
 														<i class="fas fa-plus-square fa-lg ms-1 hvr-icon"></i>
 													</a>
@@ -99,7 +99,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 												<i class="fas fa-user-circle fa-3x me-2"></i>
 												<p class="ps-2 m-0 my-1 w-100">
 													Consultar mi perfil: <br>
-													<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
+													<a href="perfil/index.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
 														Ir
 														<i class="fas fa-arrow-right fa-lg ms-1 hvr-icon"></i>
 													</a>
@@ -113,7 +113,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 												<i class="fas fa-wrench fa-3x me-2"></i>
 												<p class="ps-2 m-0 my-1 w-100">
 													Realizar mantenimiento al sistema: <br>
-													<a href="#" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
+													<a href="mantenimiento/index.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
 														Ir
 														<i class="fas fa-cog fa-lg ms-1 hvr-icon"></i>
 													</a>
@@ -130,77 +130,12 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 					</div>
 				</div>
 			</div>
-			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0">
+			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
 				<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 			</footer>
 			<?php include '../ayuda.php'; ?>
 		</main>
-		<!-- <div class="card text-center m-auto" style="max-width:620px; margin:auto;">
-					<div class="card-header">
-								<b>Menú principal</b>
-					</div>
-					<div class="card-body">
-								<p class="card-text">
-					<span>Bienvenido(a), <?php echo $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Primer_Apellido']; ?>.</span>
-				</p>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<p>¿Qué desea hacer?</p>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="perfil.php">
-							Ver perfil <i class="fas fa-address-card fa-lg"></i>
-						</a>
-						<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="../registrarse/registrarse.php">Registrar usuario <i class="fas fa-user-plus fa-lg"></i></a>
-						<?php endif; ?>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="registrar-estudiante/paso-1.php">
-							Registrar estudiante <i class="fas fa-user-plus fa-lg"></i>
-						</a>
-						<?php if ($_SESSION['usuario']['Privilegios'] >= 2): ?>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="consultar.php">
-							Consultar estudiantes <i class="fas fa-search fa-lg"></i>
-						</a>
-						<?php elseif ($_SESSION['usuario']['Privilegios'] == 1): ?>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="consultar.php">
-							Gestionar registros <i class="fas fa-search fa-lg"></i>
-						</a>
-						<?php endif;?>
-						<a class="btn btn-sm bg-primary text-white mb-2" href="../controladores/logout.php">
-							Cerrar Sesión <i class="fas fa-door-open fa-lg"></i>
-						</a>
-					</li>
-					<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-					<li class="list-group-item">
-						<p>Mantenimiento</p>
-						<form class="d-inline" action="../controladores/control-mantenimiento.php" method="POST" target="_blank">
-							<button type="submit" class="btn btn-sm bg-primary text-white mb-2" name="orden" value="Respaldar">
-							Generar respaldo <i class="fas fa-download fa-lg"></i>
-							</button>
-						</form>
-						<form id="Restaurar" class="d-inline" action="../controladores/control-mantenimiento.php" method="POST" >
-							<button class="btn btn-sm bg-primary text-white mb-2" name="orden" value="Restaurar" onclick="confirmacion()">
-							Restaurar base de datos <i class="fas fa-database fa-lg"></i>
-							</button>
-						</form>
-					</li>
-					<?php endif ?>
-				</ul>
-			</div>
-			<div class="card-footer">
-				<span class="text-muted">Sistema de inscripción L.B. G.P.F</span>
-			</div>
-		</div> -->
-		<!--Footer-->
 		
 	</body>
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript">
-		function confirmacion() {
-			//Pregunta si desea realizar la acción la cancela si selecciona NO
-			document.getElementById("Restaurar").addEventListener("click", function(event){
-				if(!confirm("¿Esta seguro de realizar esta acción?")){
-					event.preventDefault();
-				}
-			});
-		}
-	</script>
 </html>

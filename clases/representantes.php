@@ -84,7 +84,7 @@ class Representantes {
 		#Muestra todas las representantes en la tabla
 		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `personas`,`representantes` WHERE `personas`.`Cédula` = `representantes`.`Cédula_Persona`";
+		$sql = "SELECT * FROM `personas`, `representantes`, `datos-vivienda`, `datos-laborales`, `datos-económicos` WHERE `personas`.`Cédula` = `representantes`.`Cédula_Persona` AND `representantes`.`idRepresentantes` = `datos-económicos`.`idRepresentantes` AND `representantes`.`idRepresentantes` = `datos-vivienda`.`idRepresentante` AND `representantes`.`idRepresentantes` = `datos-laborales`.`idRepresentantes`;";
 
 		$consulta_representantes = $conexion->query($sql) or die("error: ".$conexion->error);
 		$representantes = $consulta_representantes->fetch_all(MYSQLI_ASSOC);

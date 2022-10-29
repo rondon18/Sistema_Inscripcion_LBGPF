@@ -53,4 +53,27 @@ function Cédula_Usuario($id, $lista_usuarios) {
 	} 
 }
 
+function comprobarVacio($var, $val = "") {
+	if (!empty($var)) {
+		if ($val == "R") {
+			echo $var." Sueldos minimos";		
+		}
+		elseif ($val == "E") {
+			echo $var." Años";		
+		}
+		elseif ($val == "D") {
+			echo $var." Dosis";		
+		}
+		elseif ($val == "F" and $var == "0000-00-00") {
+			echo "-----------";	
+		}
+		else {
+			echo $var;
+		}
+	}
+	else {
+		echo "-----------";
+	}
+}
+
 ?>

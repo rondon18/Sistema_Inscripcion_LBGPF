@@ -24,15 +24,16 @@
 	$lista_usuarios = $usuario->mostrarUsuarios();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<title>Consultar registros</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/datatables.min.css"/>
+		<link rel="stylesheet" href="../../datatables/datatables.min.css">
+
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/colores.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 	</head>
 	<style media="screen">
@@ -107,23 +108,23 @@
 									<div
 										class="selector-consulta d-flex flex-column flex-sm-row gap-2 align-items-center justify-content-evenly">
 										<p class="h4 m-0 text-center">Consultar:</p>
-										<a href="estudiantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="estudiantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-children me-2 hvr-icon"></i>
 											Estudiantes
 										</a>
-										<a href="representantes.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="representantes.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-users me-2 hvr-icon"></i>
 											Representantes
 										</a>
-										<a href="padres.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="padres.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
 											Padres
 										</a>
-										<a href="usuarios.php" class="btn btn-outline-light hvr-icon-grow">
+										<a href="usuarios.php" class="btn btn-outline-light btn-sm hvr-icon-grow">
 											<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
 											Usuarios
 										</a>
-										<a href="registros.php" class="btn btn-outline-light hvr-icon-grow active">
+										<a href="registros.php" class="btn btn-outline-light btn-sm hvr-icon-grow active">
 											<i class="fas fa-lg fa-clipboard me-2 hvr-icon"></i>
 											Registros
 										</a>
@@ -136,11 +137,11 @@
 										Mostrando Estudiantes registrados
 									</p>
 									<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
-									<thead style="font-size: .90em">
-										<th>Nro.</th>
+									<thead style="font-size: 95%">
+										<th>Nro de registro.</th>
 										<th>Usuario</th>
-										<th>Fecha Entrada</th>
-										<th>Hora entrada</th>
+										<th>Fecha de entrada</th>
+										<th>Hora de entrada</th>
 										<th>Fecha de cierre</th>
 										<th>Hora de cierre</th>
 										<th>Acciones realizadas</th>
@@ -150,13 +151,13 @@
 										<?php if ($registro['idbitácora'] != $_SESSION['idbitácora']): #No muestra el ultimo registro por ser el actual?>
 											<tr>
 												
-												<td class="text-center">
+												<td>
 													<?php echo $registro['idbitácora']?>
 												</td>
 												<?php 
 													$cedula_usuario = Cédula_Usuario($registro['idUsuarios'],$lista_usuarios);
 												?>
-												<td class="text-center" title="<?php echo $cedula_usuario['Primer_Nombre'].' '.$cedula_usuario['Primer_Apellido'] ?>">
+												<td title="<?php echo $cedula_usuario['Primer_Nombre'].' '.$cedula_usuario['Primer_Apellido'] ?>">
 													<p style="cursor:help;" class="m-0 p-0">
 														<span style="border-bottom: dashed 1px #000;">
 															<?php echo $cedula_usuario['Cédula_Persona'];?>
@@ -213,132 +214,15 @@
 				</div>
 			</div>
 		</div>
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-absolute bottom-0" style="z-index: 100;">
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 </div>
 
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="../../js/datatables.min.js"></script>
-<script type="text/javascript" src="../../js/pdfmake.min.js"></script>
-<script type="text/javascript" src="../../js/vfs_fonts.js"></script>
-<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/datatables1.min.js"></script>
-
-<script type="text/javascript">
-	//Datatables estudiantes
-	$(document).ready( function () {
-		$('#estudiantes').DataTable({
-			responsive: true,
-			"language": {
-					"url": "../../js/datatables-español.json"
-			},
-<?php if ($_SESSION['usuario']['Privilegios'] == 1 || $_SESSION['usuario']['Privilegios'] == 2): ?>
-			dom: 'Bfrtip',
-			"order": [[ 0, "desc" ]],
-			buttons: [
-				{
-				extend: 'excelHtml5',
-				exportOptions: {
-					columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-				},
-				text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-				autoFilter: true,
-				filename: 'Reporte de estudiantes',
-				sheetName: 'Reporte de estudiantes',
-				className: 'btn btn-success',
-				messageTop: 'Reporte de estudiantes'
-				}
-			],
-			"pagingType": "full_numbers"
-<?php endif; ?>
-});
-} );
-
-
-
-
-//Datatables representantes
-$(document).ready( function () {
-$('#representantes').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-buttons: [
-{
-extend: 'excelHtml5',
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de representantes',
-sheetName: 'Reporte de representantes',
-className: 'btn btn-success',
-messageTop: 'Reporte de representantes'
-}
-]
-});
-} );
-
-
-
-
-<?php if ($_SESSION['usuario']['Privilegios'] == 1): ?>
-//Datatables usuarios
-$(document).ready( function () {
-$('#usuarios').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-buttons: [
-{
-extend: 'excelHtml5',
-exportOptions: {
-columns: [0,1,2,3,4]
-},
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de usuarios',
-sheetName: 'Reporte de usuarios',
-className: 'btn btn-success',
-messageTop: 'Reporte de usuarios'
-}
-],
-"pagingType": "full_numbers"
-});
-} );
-
-
-
-
-//Datatables bitácora
-$(document).ready( function () {
-$('#bitácora').DataTable({
-responsive: true,
-"language": {
-"url": "../../js/datatables-español.json"
-},
-dom: 'Bfrtip',
-"order": [[ 0, "desc" ]],
-buttons: [
-{
-extend: 'excelHtml5',
-text: 'Generar reporte en Excel <i class="fa-solid fa-file-excel fa-lg ms-2"></i>',
-autoFilter: true,
-filename: 'Reporte de bitácora',
-sheetName: 'Reporte de bitácora',
-className: 'btn btn-success',
-messageTop: 'Reporte de bitácora'
-}
-]
-});
-} );
-<?php endif; ?>
-</script>
+<script src="../../datatables/datatables.min.js"></script>
+<script src="../../js/consulta-bitacora.js"></script>
 
 <script type="text/javascript" defer>
 	function confirmacion() {
