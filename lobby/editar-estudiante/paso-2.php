@@ -129,7 +129,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Editar datos de estudiante</title>

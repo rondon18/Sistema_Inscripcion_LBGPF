@@ -33,7 +33,7 @@ function privilegios($privilegios) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Perfil del usuario</title>

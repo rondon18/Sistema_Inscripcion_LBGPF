@@ -13,7 +13,7 @@ if (!isset($_POST['Datos_Representante'])) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Registrar nuevo estudiante</title>

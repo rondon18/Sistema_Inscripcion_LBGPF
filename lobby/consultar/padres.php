@@ -56,7 +56,7 @@ if ($_SESSION['usuario']['Privilegios'] == 1) {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">

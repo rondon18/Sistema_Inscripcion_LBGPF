@@ -17,7 +17,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Editar Perfil</title>

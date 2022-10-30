@@ -22,7 +22,7 @@ $conteo_estudiantes = $estudiante->retornarConteo();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">

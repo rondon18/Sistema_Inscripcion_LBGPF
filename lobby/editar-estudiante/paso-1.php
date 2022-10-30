@@ -75,7 +75,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['CÃ
 
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Editar datos de estudiante</title>
