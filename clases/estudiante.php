@@ -56,16 +56,16 @@ class Estudiantes {
 		$Con_Quién_Vive = $this->getCon_Quién_Vive();
 		$idRepresentante = $this->getidRepresentante();
 		$Relación_Representante = $this->getRelación_Representante();
-		// $idPadre = $this->getidPadre();
-		// $idMadre = $this->getidMadre();
-
+		$idPadre = $this->getidPadre();
+		$idMadre = $this->getidMadre();
+		
 		$sql = "UPDATE `estudiantes` SET
 		 `Plantel_Procedencia`='$Plantel_Procedencia',
 		 `Con_Quién_Vive`='$Con_Quién_Vive',
 		 `idRepresentante`='$idRepresentante',
-		 `Relación_Representante`='$Relación_Representante'
-		 -- `idPadre`='$idPadre'
-		 -- `idMadre`='$idMadre'
+		 `Relación_Representante`='$Relación_Representante',
+		 `idPadre`='$idPadre',
+		 `idMadre`='$idMadre'
 		 WHERE `Cédula_Persona`='$Cédula_Estudiante'";
 
 
@@ -118,22 +118,6 @@ class Estudiantes {
 		desconectarBD($conexion);
 
 		return $Lista_Estudiantes;
-	}
-
-	public function retornarConteo() {
-		#Muestra todos las estudiantes en la tabla
-		$conexion = conectarBD();
-
-		#consulta cuantos registros hay en la tabla
-		$sql = "SELECT COUNT(*) FROM estudiantes;";
-
-		$total_estudiantes = $conexion->query($sql) or die("error: ".$conexion->error);
-
-		$conteo_estudiantes = $total_estudiantes->fetch_Column();
-
-		desconectarBD($conexion);
-
-		return $conteo_estudiantes;
 	}
 
 	public function setidEstudiantes($idEstudiantes) {

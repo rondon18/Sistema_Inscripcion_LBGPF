@@ -1,4 +1,93 @@
-@charset "UTF-8";/*!
+@charset "UTF-8";
+
+/*Animacion de pulso para resaltar el boton de ayuda*/
+
+#boton-ayuda{
+   animation: shadow-pulse 4s ease-in-out infinite 1.5s;
+}
+
+@keyframes shadow-pulse {
+   0%,60%{
+      box-shadow: 0 0 0 0 lightgray;
+   }
+
+   85%{
+      box-shadow: 0 0 0 5px lightgray;
+   }
+
+   100%{
+      box-shadow: 0 0 0 10px transparent;
+   }
+   
+}
+
+
+/*Reglas visuales para los estados de los campos de formulario*/
+
+input {
+   transition: border .25s ease-in !important;
+}
+
+input:empty:not(
+   :required,
+   :optional:empty,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+textarea:empty
+{
+   border: dodgerblue 1px solid !important;
+}
+
+input:valid:not(
+   :optional,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+select:valid:not(:optional),
+textarea:valid:not(:optional)
+{
+   border: green 1px solid !important;
+}
+
+input:valid:not(
+   :optional:empty,
+   input[type="checkbox"], 
+   input[type="radio"], 
+   input[type="button"], 
+   input[type="submit"]
+),
+select:valid:not(:optional),
+textarea:valid:not(:optional)
+{
+   border: green 1px solid !important;
+}
+
+input:required:empty,
+select:required:empty,
+textarea:required:empty,
+select:invalid,
+textarea:invalid
+{
+   border: lightcoral 1px solid !important;
+}
+
+input:optional:empty,
+input:optional:not(:placeholder-shown),
+select:optional:empty,
+select:optional:not(:placeholder-shown),
+textarea:optional:empty,
+textarea:optional:not(:placeholder-shown),
+div > input:not(div > input[type="search"])
+{
+   border: dodgerblue 1px dashed !important;
+}
+
+/*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.

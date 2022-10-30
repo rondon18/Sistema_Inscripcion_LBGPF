@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!$_SESSION['login']) {
-	header('Location: ../index.php');
+	header('Location: ../../index.php');
 	exit();
 }
 
@@ -13,21 +13,21 @@ if (!$_SESSION['login']) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registro - Datos del representante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/estilos.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../img/distintivo-LGPF.png">
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
+	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
 	<!--Banner-->
 	<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;" style="z-index:1000;">
 		<div>
-			<img src="../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
-			<img src="../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
+			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
+			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
 		</div>
-		<img src="../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
+		<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 	</header>
-	<form id="registro" action="../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='enviar();'>
+	<form id="registro" action="../../controladores/control-usuarios.php" method="POST" style="max-width: 600px; margin: 75px auto;" onsubmit='enviar();'>
 		<div class="card">
 			<!--Datos del representante-->
 			<div class="card-header py-3">
@@ -84,8 +84,8 @@ if (!$_SESSION['login']) {
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<div class="input-group mb-2">
-							<select class="form-select" name="Tipo_Cédula_U">
-								<option selected disabled>Tipo de cédula</option>
+							<select class="form-select" name="Tipo_Cédula_U" required>
+								<option selected disabled value="">Tipo de cédula</option>
 								<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";}?>>V</option>
 								<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";}?>>E</option>
 							</select>
@@ -124,7 +124,7 @@ if (!$_SESSION['login']) {
 
 					<label for="" class="form-label">Pregunta 1:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 					<select name="Pregunta_Seg_1" class="form-select mb-2" required>
-						<option selected disabled>Seleccione una opción</option>
+						<option selected disabled value="">Seleccione una opción</option>
 						<option value="Ciudad de tu luna de miel" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['usuario']['Pregunta_Seg_1'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
@@ -142,7 +142,7 @@ if (!$_SESSION['login']) {
 
 					<label for="" class="form-label">Pregunta 2:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 					<select name="Pregunta_Seg_2" class="form-select mb-2" required>
-						<option selected disabled>Seleccione una opción</option>
+						<option selected disabled value="">Seleccione una opción</option>
 						<option value="Ciudad de tu luna de miel" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 						<option value="Ciudad donde naciste" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 						<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['usuario']['Pregunta_Seg_2'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
@@ -172,10 +172,10 @@ if (!$_SESSION['login']) {
 		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 
-	<?php include '../ayuda.php';?>
-<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../js/validaciones.js"></script>
-<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+	<?php include '../../ayuda.php';?>
+<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/validaciones.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 
 	function enviar() {

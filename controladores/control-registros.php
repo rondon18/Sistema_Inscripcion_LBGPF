@@ -73,17 +73,23 @@ $estudiante_repitente = new EstudiantesRepitentes();
 $Inscripcion = new Inscripciones();
 
 
+
+
 if (isset($_POST['orden']) and $_POST['orden']) {
 
 	$orden = $_POST['orden'];
 
+	// echo "<table border='1'>";
+	// foreach ($_POST as $key => $value) {
+	// 	echo "<tr>";
+	// 	echo "<td>".$key."</td>";
+	// 	echo "<td>".$value."</td>";
+	// 	echo "</tr>";
+	// }
+	echo "</table>";
 	if ($orden == "Insertar") {
 
-		// foreach ($_POST as $key => $value) {
-		// 	echo $key.">>";
-		// 	var_dump($value);
-		// 	echo "<br><br>";
-		// }
+		
 
 		//
 		// REPRESENTANTE
@@ -210,25 +216,32 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		$ced_m = $_POST['Tipo_Cédula_Madre'] ?? NULL;
+
+		$Cédula_madre = $ced_m.$_POST['Cédula_Madre'];
 		$persona->setCédula($Cédula_madre);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Madre']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Madre']);
 		$persona->setDirección($_POST['Dirección_Madre']);
-		$persona->setEstado_Civil($_POST['Estado_Civil_Madre']);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Madre'] ?? NULL);
 
 		$persona->insertarPersona();
 
 		$datos_madre->setCédula_Persona($Cédula_madre);
-		if ($_POST['Reside_En_El_País_Ma'] == "Si") {
-			$datos_madre->setPaís_ResidenciaMa('Venezuela');
+		
+		if (isset($_POST['Reside_En_El_País_Ma']))
+		{
+			if ($_POST['Reside_En_El_País_Ma'] == "Si") {
+				$datos_madre->setPaís_ResidenciaMa('Venezuela');
+			}
+			else {
+				$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
+			}
 		}
-		else {
-			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
-		}
-		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
+		
+		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma'] ?? NULL);		
 
 		$datos_madre->insertarMadre();
 
@@ -237,30 +250,40 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//		
 
 		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Madre_Trabaja'] == "No") {
-		  $datos_laborales_ma->setEmpleoMa("Desempleado");
+		
+		if (isset($_POST['Madre_Trabaja']))
+		{
+			if ($_POST['Madre_Trabaja'] == "No") {
+			  $datos_laborales_ma->setEmpleoMa("Desempleado");
+			}
+			else {
+			  $datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma'] ?? NULL);
+			  $datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma'] ?? NULL);
+			  $datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma'] ?? NULL);
+			  $datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
+			}
 		}
-		else {
-		  $datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma']);
-		  $datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma']);
-		  $datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma']);
-		  $datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
-		}
+		
+		
 
 		$datos_laborales_ma->setidMadre($datos_madre->getidMadre());
 		$datos_laborales_ma->insertarDatosLaborales_Ma();
 
 		#Datos vivienda
-		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma']);
-		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma']);
+		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma'] ?? NULL);
+		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma'] ?? NULL);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
-		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro']);
+		if (isset($_POST['Madre_Trabaja']))
+		{
+			if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
+			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro'] ?? NULL);
+			}
+			else{
+			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
+			}
 		}
-		else{
-		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
-		}
+		
 
 		$datos_vivienda_ma->setidMadre($datos_madre->getidMadre());
 		$datos_vivienda_ma->insertarDatosVivienda_Ma();
@@ -304,25 +327,37 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre']);
 
-		$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+		if (isset($_POST['Tipo_Cédula_Padre']))
+		{
+			$Ced_P = $_POST['Tipo_Cédula_Padre']; 
+		}
+		else {
+			$Ced_P = "";
+		}
+
+		$Cédula_padre = $Ced_P.$_POST['Cédula_Padre'];
 		$persona->setCédula($Cédula_padre);
 
-		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre']);
-		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Padre']);
-		$persona->setDirección($_POST['Dirección_Padre']);
-		$persona->setEstado_Civil($_POST['Estado_Civil_Padre']);
+		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre'] ?? NULL);
+		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre'] ?? NULL);
+		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Padre'] ?? NULL);
+		$persona->setDirección($_POST['Dirección_Padre'] ?? NULL);
+		$persona->setEstado_Civil($_POST['Estado_Civil_Padre'] ?? NULL);
 
 		$persona->insertarPersona();
 
 		$datos_padre->setCédula_Persona($Cédula_padre);
-		if ($_POST['Reside_En_El_País_Pa'] == "Si") {
-			$datos_padre->setPaís_Residencia('Venezuela');
+		if (isset($_POST['Reside_En_El_País_Pa']))
+		{
+			if ($_POST['Reside_En_El_País_Pa'] == "Si") {
+				$datos_padre->setPaís_Residencia('Venezuela');
+			}
+			else {
+				$datos_padre->setPaís_Residencia($_POST['País_Pa']);
+			}
 		}
-		else {
-			$datos_padre->setPaís_Residencia($_POST['País_Pa']);
-		}
-		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa']);		
+		
+		$datos_padre->setGrado_AcadémicoPa($_POST['Grado_Instrucción_Pa'] ?? NULL);		
 
 		$datos_padre->insertarPadre();
 
@@ -331,31 +366,36 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//
 
 		#Si se marca que si tiene empleo, se asignan los datos, sino, se asigna como desempleado
-		if ($_POST['Padre_Trabaja'] == "No") {
-		  $datos_laborales_pa->setEmpleoPa("Desempleado");
+		if (isset($_POST['Padre_Trabaja']))
+		{
+			if ($_POST['Padre_Trabaja'] == "No") {
+			  $datos_laborales_pa->setEmpleoPa("Desempleado");
+			}
+			else {
+			  $datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
+			  $datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
+			  $datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
+			  $datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
+			}	
 		}
-		else {
-		  $datos_laborales_pa->setEmpleoPa($_POST['Empleo_Pa']);
-		  $datos_laborales_pa->setLugar_TrabajoPa($_POST['Lugar_Trabajo_Pa']);
-		  $datos_laborales_pa->setRemuneraciónPa($_POST['Remuneración_Pa']);
-		  $datos_laborales_pa->setTipo_RemuneraciónPa($_POST['Tipo_Remuneración_Pa']);
-		}		
+		
 
 		$datos_laborales_pa->setidPadre($datos_padre->getidPadre());
 		$datos_laborales_pa->insertarDatosLaborales_Pa();
 
 		#Datos vivienda
-		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa']);
-		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa']);
+		$datos_vivienda_pa->setCondiciones_ViviendaPa($_POST['Condición_vivienda_Pa'] ?? NULL);
+		$datos_vivienda_pa->setTipo_ViviendaPa($_POST['Tipo_Vivienda_Pa'] ?? NULL);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
-		  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
+		if (isset($_POST['Tenencia_vivienda_Pa'])) {
+			if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
+			  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro'] ?? NULL);
+			}
+			else{
+			  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
+			}
 		}
-		else{
-		  $datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
-		}
-
 		$datos_vivienda_pa->setidPadre($datos_padre->getidPadre());
 		$datos_vivienda_pa->insertarDatosVivienda_Pa();
 
@@ -387,59 +427,34 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-		//
-		// DATOS DEL CONTACTO AUXILIAR
-		//
-
-		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
-		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
-		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
-		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
-		$Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
-		$persona->setCédula($Cédula_auxiliar);
-		$persona->setGénero($_POST['Género_Aux']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
-		$persona->setDirección($_POST['Dirección_Aux']);
-
-		$persona->insertarPersona();
 
 		//
 		// Teléfonos del auxiliar
 		//
 
 		#Teléfono principal
-		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		$Teléfonos->setRelación_Teléfono('Principal');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
+		// $Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
+		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
+		// $Teléfonos->setRelación_Teléfono('Principal');
+		// $Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
-		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
-		$Teléfonos->setRelación_Teléfono('Secundario');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
+		// $Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
+		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
+		// $Teléfonos->setRelación_Teléfono('Secundario');
+		// $Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
+		// $Teléfonos->insertarTeléfono();
 
 		#Teléfono auxiliar
-		$Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
-		$Teléfonos->setRelación_Teléfono('Auxiliar');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
+		// $Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
+		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
+		// $Teléfonos->setRelación_Teléfono('Auxiliar');
+		// $Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->insertarTeléfono();
-
-		//
-		//	Datos del auxiliar
-		//
-
-		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
-		$datos_auxiliar->setCédula_Persona($persona->getCédula());
-		$datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
-
-		$datos_auxiliar->insertarContactoAuxiliar();
+		// $Teléfonos->insertarTeléfono();
 
 		//
 		//
@@ -514,26 +529,36 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$tipo_sangre = $_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus'];
 		$datos_salud->setTipo_Sangre($tipo_sangre);
 
-		if ($_POST['Recibe_médicación'] == "Si") {
-			$datos_salud->setMedicación($_POST['médicación']);
-		}
 
-		if ($_POST['Tiene_Dieta_Especial'] == "Si") {
-			$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
-		}
+		//~ if ($_POST['Recibe_médicación'] == "Si") {
+			//~ $datos_salud->setMedicación($_POST['médicación']);
+		//~ }
 
-		if ($_POST['Tiene_Carnet_Discapacidad'] == "Si") {
-			$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
+		if (isset($_POST['Tiene_Dieta_Especial']))
+		{
+			if ($_POST['Tiene_Dieta_Especial'] == "Si") {
+				$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
+			}
 		}
-
-		if ($_POST['Recibe_Atención_Inst'] == "Si") {
-			$datos_salud->setInstitución_médica($_POST['Institución_médica']);
+		if (isset($_POST['Tiene_Carnet_Discapacidad']))
+		{
+			if ($_POST['Tiene_Carnet_Discapacidad'] == "Si") {
+				$datos_salud->setCarnet_Discapacidad($_POST['Nro_Carnet_Discapacidad']);
+			}
 		}
-
-		if ($_POST['Padece_Enfermedad'] == "Si") {
-			$datos_salud->setEnfermedad($_POST['Cual_Enfermedad']);
+		if (isset($_POST['Recibe_Atención_Inst']))
+		{
+			if ($_POST['Recibe_Atención_Inst'] == "Si") {
+				$datos_salud->setInstitución_médica($_POST['Institución_médica']);
+			}
 		}
-
+		if (isset($_POST['Padece_Enfermedad']))
+		{
+			if ($_POST['Padece_Enfermedad'] == "Si") {
+				$datos_salud->setEnfermedad($_POST['Cual_Enfermedad']);
+			}
+		}
+		
 		$impedimentos = "";
 
 		if (isset($_POST['Condiciones_Salud'])) {
@@ -617,6 +642,27 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$observaciones->setidEstudiantes($datos_estudiante->getidEstudiantes());
 
 		$observaciones->insertarObservaciones();
+		
+		//
+		// DATOS DEL CONTACTO AUXILIAR
+		//
+
+		$datos_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
+		$datos_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
+		$datos_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
+		$datos_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
+		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);				
+		$datos_auxiliar->setPrefijo($_POST['Prefijo_Principal_Aux']);
+		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
+		$datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
+		$datos_auxiliar->setidEstudiantes($datos_estudiante->getidEstudiantes());
+		// $Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		// $persona->setCédula($Cédula_auxiliar);
+		// $persona->setGénero($_POST['Género_Aux']);
+		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
+		// $persona->setDirección($_POST['Dirección_Aux']);
+
+		$datos_auxiliar->insertarContactoAuxiliar();
 
 		$Inscripcion->insertarRegistro($_SESSION['usuario']['idUsuarios'],$datos_estudiante->getidEstudiantes());
 
@@ -630,6 +676,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 
 	elseif ($orden == "Editar") {
+
+		//DATOS DEL REPRESENTANTE 
 
 		$persona->setPrimer_Nombre($_POST['Primer_Nombre_R']);
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_R']);
@@ -650,7 +698,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 
-		//Consulta el representante
+		//Consulta el representante para obtener su id
 
 		$conexion = conectarBD();
 
@@ -746,11 +794,18 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_vivienda->setTipo_Vivienda($_POST['Tipo_Vivienda']);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if ($_POST['Tenencia_vivienda'] == "Otro") {
+
+		if ($_POST['Tenencia_Vivienda'] == "Otro") {
 			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
 		}
 		else{
-			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda']);
+			$datos_vivienda->setTenencia_Vivienda($_POST['Tenencia_Vivienda']);
+		
+		if ($_POST["Tenencia_Vivienda"] == "Otro") {
+			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_vivienda_R_Otro']);
+		}
+		else{
+			$datos_vivienda->setTenencia_vivienda($_POST['Tenencia_Vivienda']);
 		}
 
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());
@@ -760,55 +815,40 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		// DATOS DEL CONTACTO AUXILIAR
 		//
 
-		$persona->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
-		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
-		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
-		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
-		$Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
-		$persona->setCédula($Cédula_auxiliar);
-		$persona->setGénero($_POST['Género_Aux']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
-		$persona->setDirección($_POST['Dirección_Aux']);
+		$datos_auxiliar->setPrimer_Nombre($_POST['Primer_Nombre_Aux']);
+		$datos_auxiliar->setSegundo_Nombre($_POST['Segundo_Nombre_Aux']);
+		$datos_auxiliar->setPrimer_Apellido($_POST['Primer_Apellido_Aux']);
+		$datos_auxiliar->setSegundo_Apellido($_POST['Segundo_Apellido_Aux']);
+		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
+		$datos_auxiliar->setPrefijo($_POST['Prefijo_Auxiliar_R']);
+		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);		
+		// $Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		// $persona->setCédula($Cédula_auxiliar);
+		// $persona->setGénero($_POST['Género_Aux']);
+		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
+		// $persona->setDirección($_POST['Dirección_Aux']);
 
-		$persona->editarPersonaC($Cédula_auxiliar);
+		$datos_auxiliar->editarContactoAuxiliar($datos_auxiliar->getidContactoAuxiliar());
 
 		//
 		// Teléfonos del auxiliar
 		//
 
-		#Teléfono principal
-		$Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		$Teléfonos->setRelación_Teléfono('Principal');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
-
-		$Teléfonos->editarTeléfono($Cédula_auxiliar);
-
 		#Teléfono secundario
-		$Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
-		$Teléfonos->setRelación_Teléfono('Secundario');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
+		// $Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
+		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
+		// $Teléfonos->setRelación_Teléfono('Secundario');
+		// $Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->editarTeléfono($Cédula_auxiliar);
+		// $Teléfonos->editarTeléfono($Cédula_auxiliar);
 
 		#Teléfono auxiliar
-		$Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
-		$Teléfonos->setRelación_Teléfono('Auxiliar');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
+		// $Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
+		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
+		// $Teléfonos->setRelación_Teléfono('Auxiliar');
+		// $Teléfonos->setCédula_Persona($persona->getCédula());
 
-		$Teléfonos->editarTeléfono($Cédula_auxiliar);
-
-		//
-		//	Datos del auxiliar
-		//
-
-		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
-		$datos_auxiliar->setCédula_Persona($persona->getCédula());
-		$datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
-
-		$datos_auxiliar->editarContactoAuxiliar();
+		// $Teléfonos->editarTeléfono($Cédula_auxiliar);
 
 		//
 		//
@@ -821,7 +861,14 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		if (!isset($_POST['Tipo_Cédula_Madre'])) {
+			$Tc_madre = "V";
+			$Cédula_madre = $Tc_madre.$_POST['Cédula_Madre'];
+		}
+		else {
+			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+		}
+
 		$persona->setCédula($Cédula_madre);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
@@ -844,20 +891,33 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
 		}
 		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
+     
 
-		$datos_madre->editarMadre($madre['idMadre']);
+		//Cedula nula de relleno
 
-		//Consulta la madre
 
-		$conexion = conectarBD();
 
-		$sql = "SELECT * FROM `madre` WHERE `Cédula_Persona` = '$Cédula_madre'";
+		//si la cédula es vacia, no edita sino inserta
+		if (empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+			$datos_madre->insertarMadre();
+			$idMadre = $datos_madre->getidMadre();
+		}
+		else {
+			//si esta llena lo contrario
+			$datos_madre->editarMadre($madre['idMadre']);
+			
+			//Consulta la madre
 
-		$consulta_madre = $conexion->query($sql) or die("error: ".$conexion->error);
-		$representantes = $consulta_madre->fetch_assoc();
-		$idMadre = $madre['idMadre'];
+			$conexion = conectarBD();
 
-		desconectarBD($conexion);
+			$sql = "SELECT * FROM `madre` WHERE `Cédula_Persona` = '$Cédula_madre'";
+
+			$consulta_madre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representantes = $consulta_madre->fetch_assoc();
+			$idMadre = $madre['idMadre'];
+
+			desconectarBD($conexion);
+		}
 
 		//
 		// DATOS LABORALES MADRE
@@ -996,7 +1056,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		if ($_POST['Tenencia_vivienda_Pa'] == "Otro") {
 			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa_Otro']);
 		}
-		else{
+		else {
 			$datos_vivienda_pa->setTenencia_viviendaPa($_POST['Tenencia_vivienda_Pa']);
 		}
 
@@ -1059,7 +1119,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_estudiante->setCédula_Estudiante($Cédula_estudiante);
 		$datos_estudiante->setidRepresentante($idRepresentante);
 		$datos_estudiante->setidPadre($idPadre);
-		$datos_estudiante->setidPadre($idMadre);
+		$datos_estudiante->setidMadre($idMadre);
 		$datos_estudiante->setRelación_Representante($_POST['Vinculo_R']);
 
 		$datos_estudiante->editarEstudiante($Cédula_estudiante);
@@ -1107,10 +1167,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_salud->setLateralidad($_POST['Lateralidad']);
 		$tipo_sangre = $_POST['Grupo_Sanguineo'].$_POST['Factor_Rhesus'];
 		$datos_salud->setTipo_Sangre($tipo_sangre);
-
-		if ($_POST['Recibe_médicación'] == "Si") {
-			$datos_salud->setMedicación($_POST['médicación']);
-		}
 
 		if ($_POST['Tiene_Dieta_Especial'] == "Si") {
 			$datos_salud->setDieta_Especial($_POST['Dieta_Especial']);
@@ -1213,9 +1269,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$observaciones->editarObservaciones($idEstudiante);
 
-		header('Location: ../lobby/consultar.php?exito');
+		header('Location: cerrar-pestaña.php');
 	}
-
+	}
 	elseif ($orden == "Eliminar") {
 		$datos_estudiante->eliminarEstudiante($_POST['Cédula_Estudiante']);
 		header('Location: ../lobby/consultar.php');

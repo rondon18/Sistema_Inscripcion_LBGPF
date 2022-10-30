@@ -61,10 +61,7 @@ $datos_vivienda = $Datos_vivienda->consultarDatosvivienda_R($_POST['id_represent
 
 $datos_representante = $Representante->consultarRepresentanteID($_POST['id_representante']);
 
-$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante']);
-$contacto_aux = new Personas();
-$dat_contacto_aux = $contacto_aux->consultarPersona($datos_auxiliar['Cédula_Persona']);
-$telefonos_aux = $Telefonos->consultarTeléfonos($datos_auxiliar['Cédula_Persona']);
+$datos_auxiliar = $Datos_Auxiliar->consultarContactoAuxiliar($_POST['id_representante'],$_POST['id_Estudiante']);
 
 $datos_economicos = $Economicos->consultarDatosEconómicos($_POST['id_representante']);
 $datos_laborales = $Laborales->consultarDatosLaborales($_POST['id_representante']);
@@ -87,7 +84,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 </head>
 <body>
 		<!--Banner-->
-		<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 			<div>
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -196,7 +193,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<!--Estado civil del representante-->
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select mb-2" name="Estado_Civil_R">
+							<select class="form-select mb-2" name="Estado_Civil_R" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option  <?php if($datos_representante['Estado_Civil'] == "Soltero(a)") {echo "selected";} ?> value="Soltero(a)">Soltero(a)</option>
 								<option  <?php if($datos_representante['Estado_Civil'] == "Casado(a)") {echo "selected";} ?> value="Casado(a)">Casado(a)</option>
@@ -239,7 +236,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<h5>Datos de contacto.</h5>
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"><?php echo $datos_representante['Dirección'] ?></textarea>
+							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10" required><?php echo $datos_representante['Dirección'] ?></textarea>
 						</div>
 						<!--Teléfonos del representante-->
 						<div>
@@ -332,15 +329,46 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda">
+
+							<?php  
+							//confirma si la tenencia de vivienda del representante es OTRA
+							if (
+									$datos_vivienda['Tenencia_vivienda'] != "Propia" &&
+									$datos_vivienda['Tenencia_vivienda'] != "Alquilada" &&
+									$datos_vivienda['Tenencia_vivienda'] != "Prestada"
+								) 
+							{
+								$tenencia_o = $datos_vivienda['Tenencia_vivienda'];
+							}
+							else {
+								$tenencia_o = NULL;
+							}
+							?>
+							
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda" required>
+									
 									<option selected disabled value="">Seleccione una opción</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Propia"){echo "selected";} ?> value="Propia">Propia</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
-									<option <?php if($datos_vivienda['Tenencia_Vivienda'] == "Otro"){echo "selected";} ?> value="Otro">Otro</option>
+
+									<option 
+									<?php if($datos_vivienda['Tenencia_vivienda'] == "Propia"){echo "selected";}?> value="Propia">Propia</option>
+
+									
+									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Alquilada"){echo "selected";} ?> value="Alquilada">Alquilada</option>
+									
+									<option <?php if($datos_vivienda['Tenencia_vivienda'] == "Prestada"){echo "selected";} ?> value="Prestada">Prestada</option>
+									
+									<?php if ($tenencia_o): ?>
+									<option selected value="Otro">Otro</option>
+										
+									<?php else: ?>
+									<option value="Otro">Otro</option>
+									<?php endif ?>
+								
 								</select>
-								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" <?php if($datos_vivienda['Tenencia_Vivienda'] != "Propia" and $datos_vivienda['Tenencia_Vivienda'] != "Alquilada" and $datos_vivienda['Tenencia_Vivienda'] != "Prestada" and $datos_vivienda['Tenencia_Vivienda'] != "Otro"){echo "selected";} ?>>
+
+								<input class="form-control" type="text" name="Tenencia_vivienda_R_Otro" maxlength="12" minlength="3" placeholder="En Caso de ser otro, especifique" value="<?php echo $tenencia_o; ?>">
+
 							</div>
 						</div>
 					</section>
@@ -351,7 +379,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<!--Datos bancarios del representante-->
 							<div>
 								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<select class="form-select" name="Banco">
+								<select class="form-select" name="Banco" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option <?php if($datos_economicos['Banco'] == "Banco de Venezuela S.A."){echo "selected";} ?> value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option <?php if($datos_economicos['Banco'] == "Venezolano de Crédito S.A."){echo "selected";} ?> value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
@@ -397,7 +425,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 									</div>
 									<div>
 										<label class="form-label">Número de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" value="<?php echo $datos_economicos['Cta_Bancaria']; ?>">
+									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" value="<?php echo $datos_economicos['Cta_Bancaria']; ?>" required>
 									</div>
 							</div>
 						</div>
@@ -436,7 +464,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<!--Lugar en el que trabaja el representante-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="180" minlength="3"><?php echo $datos_laborales['Lugar_Trabajo'] ?></textarea>
 						</div>
 						<!--Remuneración del trabajo del representante-->
 						<div>
@@ -461,8 +489,8 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Primer_Nombre'] ?>">
-								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Segundo_Nombre'] ?>">
+								<input type="text" class="form-control mb-2" name="Primer_Nombre_Aux" id="Primer_Nombre_Aux" placeholder="Primer nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Primer_Nombre'] ?>">
+								<input type="text" class="form-control mb-2" name="Segundo_Nombre_Aux" id="Segundo_Nombre_Aux" placeholder="Segundo nombre" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Segundo_Nombre'] ?>">
 							</div>
 						</div>
 
@@ -470,44 +498,9 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 						<div>
 							<label class="form-label">Apellidos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Primer_Apellido'] ?>">
-								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $dat_contacto_aux['Segundo_Apellido'] ?>">
+								<input type="text" class="form-control mb-2" name="Primer_Apellido_Aux" id="Primer_Apellido_Aux" placeholder="Primer apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Primer_Apellido'] ?>">
+								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required value="<?php echo $datos_auxiliar['Segundo_Apellido'] ?>">
 							</div>
-						</div>
-						<!--Género del contacto auxiliar-->
-						<div>
-							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
-								<div class="form-check form-check-inline">
-									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="F" required <?php if ($dat_contacto_aux['Género'] == "F"){echo "checked";} ?>>
-								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="M" required <?php if ($dat_contacto_aux['Género'] == "M"){echo "checked";} ?>>
-								</div>
-							</div>
-						</div>
-						<!--Cédula del contacto auxiliar-->
-						<div>
-							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<?php
-							#Separa la cédula del caracter que indica si es venezolana o extranjera
-							$tipo_Cédula = substr($dat_contacto_aux['Cédula'],0,1);
-							$Cédula			= substr($dat_contacto_aux['Cédula'],1,strlen($datos_representante['Cédula'])-1);
-							?>
-							<div class="input-group mb-2">
-								<select class="form-select" name="Tipo_Cédula_Aux" required>
-									<option selected disabled value="">Tipo de cédula</option>
-									<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";} ?>>V</option>
-									<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";} ?>>E</option>
-								</select>
-								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required value="<?php echo $Cédula; ?>">
-						</div>
-						<!--Correo Electrónico del contacto auxiliar-->
-						<div>
-							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required value="<?php echo $dat_contacto_aux['Correo_Electrónico'] ?>">
 						</div>
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
@@ -515,31 +508,10 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<!--Teléfono principal-->
 							<div class="input-group mb-2">
 								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[0]['Prefijo'] ?>">
+								<input class="form-control" type="text" name="Prefijo_Principal_Aux" id="Prefijo_Principal_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $datos_auxiliar['Prefijo'] ?>">
 								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[0]['Número_Telefónico'] ?>">
+								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required value="<?php echo $datos_auxiliar['Número_Telefónico'] ?>">
 							</div>
-
-							<!--Teléfono secundario-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[1]['Prefijo'] ?>">
-								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[1]['Número_Telefónico'] ?>">
-							</div>
-
-							<!--Teléfono auxiliar-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required value="<?php echo $telefonos_aux[2]['Prefijo'] ?>">
-								<!--Número-->
-								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required value="<?php echo $telefonos_aux[2]['Número_Telefónico'] ?>">
-							</div>
-						</div>
-						<!--Dirección de residencia del contacto auxiliar-->
-						<div>
-							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_Aux" id="Dirección_Aux" minlength="10"><?php echo $dat_contacto_aux['Dirección'] ?></textarea>
 						</div>
 						<!--Relación del contacto auxiliar-->
 						<div>
@@ -556,7 +528,8 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 					<input type="hidden" name="id_padre" value="<?php echo $_POST['id_padre']; ?>">
 					<input type="hidden" name="Datos_Representante" value="Datos_Representante">
 					<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
-					<input class="btn btn-primary" type="submit" onclick="enviar()" value="Guardar y continuar">
+					<button class="btn btn-primary" type="button" onclick="resetearCampos()">Deshacer cambios</button>
+					<input class="btn btn-primary" type="button" onclick="enviar()" value="Guardar y continuar">
 				</div>
 			</div>
 		</form>
@@ -572,7 +545,6 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 <script>
 
 function enviar() {
-
 	var FormularioRepresentante = document.getElementById("FormularioRepresentante");
 
 	var a = document.getElementById("seccion1");
@@ -588,7 +560,44 @@ function enviar() {
 	e.style.display = "block";
 
 	if (FormularioRepresentante.checkValidity()) {
-		FormularioRepresentante.submit();
+		//Pregunta si desea realizar la acción la cancela si selecciona NO
+			Swal.fire({
+				title: '¿Desea continuar?',
+				text: 'Se actualizarán los datos referentes al estudiante',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#0d6efd',
+				cancelButtonColor: '#d33',
+				cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+				confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					document.getElementById("FormularioRepresentante").submit();
+					let timerInterval
+					Swal.fire({
+						title: '¡Exito!',
+						icon: 'success',
+						text: 'Cambios enviados.',
+						timer: 3500,
+						timerProgressBar: true,
+						didOpen: () => {
+							Swal.showLoading()
+							const b = Swal.getHtmlContainer().querySelector('b')
+							timerInterval = setInterval(() => {
+								b.textContent = Swal.getTimerLeft()
+							}, 100)
+						},
+						willClose: () => {
+							clearInterval(timerInterval)
+						}
+					}).then((result) => {
+						/* Read more about handling dismissals below */
+						if (result.dismiss === Swal.DismissReason.timer) {
+							console.log('Cerrado por el temporizador')
+						}
+					})
+				}
+			})
 	}
 	else {
 		Swal.fire(
@@ -597,6 +606,7 @@ function enviar() {
 	      'info'
 	    );
 	}
+	
 	setTimeout(function(){
 		a.style.display = "block";
 		b.style.display = "none";
@@ -604,63 +614,101 @@ function enviar() {
 		d.style.display = "none";
 		e.style.display = "none";
 	}, 1000);
-
-
 }
 
 function seccion(seccion) {
 
 
-		//secciones
-		var a = document.getElementById("seccion1");
-		var b = document.getElementById("seccion2");
-		var c = document.getElementById("seccion3");
-		var d = document.getElementById("seccion4");
-		var e = document.getElementById("seccion5");
+	//secciones
+	var a = document.getElementById("seccion1");
+	var b = document.getElementById("seccion2");
+	var c = document.getElementById("seccion3");
+	var d = document.getElementById("seccion4");
+	var e = document.getElementById("seccion5");
 
-		//botones en la navegación
-		var link_a = document.getElementById("link1");
-		var link_b = document.getElementById("link2");
-		var link_c = document.getElementById("link3");
-		var link_d = document.getElementById("link4");
-		var link_e = document.getElementById("link5");
+	//botones en la navegación
+	var link_a = document.getElementById("link1");
+	var link_b = document.getElementById("link2");
+	var link_c = document.getElementById("link3");
+	var link_d = document.getElementById("link4");
+	var link_e = document.getElementById("link5");
 
-		//seccion seleccionada como activa(seccion 1 por defecto)
-		var seccion = document.getElementById(seccion);
+	//seccion seleccionada como activa(seccion 1 por defecto)
+	var seccion = document.getElementById(seccion);
 
-		a.style.display = "none";
-		b.style.display = "none";
-		c.style.display = "none";
-		d.style.display = "none";
-		e.style.display = "none";
+	a.style.display = "none";
+	b.style.display = "none";
+	c.style.display = "none";
+	d.style.display = "none";
+	e.style.display = "none";
 
-		link_a.classList.remove("active");
-		link_b.classList.remove("active");
-		link_c.classList.remove("active");
-		link_d.classList.remove("active");
-		link_e.classList.remove("active");
+	link_a.classList.remove("active");
+	link_b.classList.remove("active");
+	link_c.classList.remove("active");
+	link_d.classList.remove("active");
+	link_e.classList.remove("active");
 
-		if (seccion == a) {
-			a.style.display = "block";
-			link_a.classList.add("active");
-		}
-		else if (seccion == b) {
-			b.style.display = "block";
-			link_b.classList.add("active");
-		}
-		else if (seccion == c) {
-			c.style.display = "block";
-			link_c.classList.add("active");
-		}
-		else if (seccion == d) {
-			d.style.display = "block";
-			link_d.classList.add("active");
-		}
-		else if (seccion == e) {
-			e.style.display = "block";
-			link_e.classList.add("active");
-		}
+	if (seccion == a) {
+		a.style.display = "block";
+		link_a.classList.add("active");
 	}
+	else if (seccion == b) {
+		b.style.display = "block";
+		link_b.classList.add("active");
+	}
+	else if (seccion == c) {
+		c.style.display = "block";
+		link_c.classList.add("active");
+	}
+	else if (seccion == d) {
+		d.style.display = "block";
+		link_d.classList.add("active");
+	}
+	else if (seccion == e) {
+		e.style.display = "block";
+		link_e.classList.add("active");
+	}
+}
+
+function resetearCampos() {
+	//Pregunta si desea realizar la acción la cancela si selecciona NO
+	Swal.fire({
+		title: '¿Desea restaurar los datos?',
+		icon: 'question',
+		showCancelButton: true,
+		confirmButtonColor: '#0d6efd',
+		cancelButtonColor: '#d33',
+		cancelButtonText: '¡No, detente! <i class="ms-1 fas fa-lg fa-thumbs-down"></i>',
+		confirmButtonText: '<i class="me-1 fas fa-lg fa-thumbs-up"></i> ¡Sí, continua!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			let timerInterval
+			Swal.fire({
+				title: '¡Exito!',
+				icon: 'success',
+				text: 'Datos restaurados en la sección',
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: () => {
+					Swal.showLoading()
+					const b = Swal.getHtmlContainer().querySelector('b')
+					timerInterval = setInterval(() => {
+						b.textContent = Swal.getTimerLeft()
+					}, 100)
+				},
+				willClose: () => {
+					clearInterval(timerInterval)
+				}
+			}).then((result) => {
+				/* Read more about handling dismissals below */
+				if (result.dismiss === Swal.DismissReason.timer) {
+					console.log('Cerrado por el temporizador')
+				}
+				document.getElementById("FormularioRepresentante").reset();
+			})
+		}
+	})
+}
 </script>
 
 </body>

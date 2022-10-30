@@ -108,12 +108,13 @@ class Padre {
 		$sql = "SELECT * FROM `personas`,`Padre` WHERE `personas`.`Cédula` = `Padre`.`Cédula_Persona`";
 
 		$consulta_Padre = $conexion->query($sql) or die("error: ".$conexion->error);
-		$Padre = $consulta_Padre->fetch_all();
+		
+		$Padre = $consulta_Padre->fetch_all(MYSQLI_ASSOC);
 
 		#Hace un arreglo de arreglos para contener los campos de la Padre
 		$Lista_Padre = [];
-		foreach ($Padre as $Padre) {
-			$Lista_Padre[]= $Padre;
+		foreach ($Padre as $padre) {
+			$Lista_Padre[]= $padre;
 		}
 
 		desconectarBD($conexion);

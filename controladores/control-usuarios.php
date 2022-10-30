@@ -19,6 +19,10 @@ $persona_auxiliar = new Personas();
 
 $usuario = new Usuarios();
 
+
+var_dump($_SESSION);
+
+
 if (isset($_POST['orden']) and $_POST['orden']) {
 
 	$orden = $_POST['orden'];
@@ -65,7 +69,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$usuario->insertarUsuario();
 
-		header('Location: ../index.php');
+		header('Location: ../lobby/index.php');
 	}
 
 	elseif ($orden == "Editar") {
@@ -98,7 +102,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		*/
 
 		#Usuario
-		if ($_POST['Contraseña'] == $_POST['RepetirContraseña']) {
+		if (
+			(!empty($_POST['Contraseña']) and !empty($_POST['RepetirContraseña'])) and ($_POST['Contraseña'] == $_POST['RepetirContraseña'])) {
 			$usuario->setClave($_POST['Contraseña']);
 		}
 		else {
@@ -131,6 +136,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['persona']['Correo_Electrónico'] = $persona->getCorreo_Electrónico();
 		$_SESSION['persona']['Dirección'] = $persona->getDirección();
 		$_SESSION['persona']['Estado_Civil'] = $persona->getEstado_Civil();
+
+
+		$_SESSION['usuario']['Pregunta_Seg_1'] = $usuario->getPregunta_Seg_1();
+		$_SESSION['usuario']['Pregunta_Seg_2'] = $usuario->getPregunta_Seg_2();
+		$_SESSION['usuario']['Respuesta_1'] = $usuario->getRespuesta_1();
+		$_SESSION['usuario']['Respuesta_2'] = $usuario->getRespuesta_2();
 
 		require('../clases/bitácora.php');
 

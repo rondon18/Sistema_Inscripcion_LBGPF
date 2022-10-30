@@ -24,7 +24,7 @@ if (!$_SESSION['login']) {
 </head>
 <body>
 		<!--Banner-->
-		<header class="w-100 bg-white d-flex justify-content-between shadow p-1 position-fixed top-0" style="z-index:1000;">
+		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 			<div>
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-inline-block align-text-top">
@@ -69,7 +69,7 @@ if (!$_SESSION['login']) {
 								<option value="Abuela">
 								<option value="Abuelo">
 							</datalist>
-							<input type="text" class="form-control mb-2" id="Vinculo_R" name="Vinculo_R" minlength="3" maxlength="15" list="vinculos" required>
+							<input type="text" class="form-control mb-2" id="Vinculo_R" name="Vinculo_R" minlength="3" maxlength="15" placeholder="Madre, padre, tíos o abuelos, etc." list="vinculos" required>
 						</div>
 						<div>
 							<label class="form-label">Nombres:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -127,7 +127,7 @@ if (!$_SESSION['login']) {
 						<!--Estado civil del representante-->
 						<div>
 							<label class="form-label">Estado civil:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<select class="form-select mb-2" name="Estado_Civil_R">
+							<select class="form-select mb-2" name="Estado_Civil_R" required>
 								<option selected disabled value="">Seleccione una opción</option>
 								<option value="Soltero(a)">Soltero(a)</option>
 								<option value="Casado(a)">Casado(a)</option>
@@ -170,16 +170,17 @@ if (!$_SESSION['login']) {
 						<h5>Datos de contacto.</h5>
 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10"></textarea>
+							<textarea class="form-control mb-2" name="Dirección_R" id="Dirección_R" rows="4" minlength="10" required></textarea>
 						</div>
 						<!--Teléfonos del representante-->
 						<div>
 							<datalist id="prefijos">
 								<!--Moviles-->
-								<option value="0416">
-								<option value="0426">
-								<option value="0414">
 								<option value="0412">
+								<option value="0414">
+								<option value="0416">
+								<option value="0424">
+								<option value="0426">
 
 								<!--Fijos-->
 								<option value="0271">
@@ -263,8 +264,8 @@ if (!$_SESSION['login']) {
 								</div>
 							</div>
 							<span>Tenencia de la vivienda:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></span>
-							<div class="input-group mb-3" required>
-								<select class="form-select" name="Tenencia_vivienda_R">
+							<div class="input-group mb-3">
+								<select class="form-select" name="Tenencia_vivienda_R" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
@@ -282,7 +283,7 @@ if (!$_SESSION['login']) {
 							<!--Datos bancarios del representante-->
 							<div>
 								<label class="form-label">Banco:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-								<select class="form-select" name="Banco">
+								<select class="form-select" name="Banco" required>
 									<option selected disabled value="">Seleccione una opción</option>
 									<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 									<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
@@ -328,7 +329,7 @@ if (!$_SESSION['login']) {
 									</div>
 									<div>
 										<label class="form-label">Número de cuenta:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX">
+									 	<input type="text" class="form-control mb-2" name="Nro_Cuenta" id="Nro_Cuenta" pattern="[0-9]{20}" maxlength="20" title="Una cuenta bancaria valida consta de 20 digitos" placeholder="XXXX-XXXXXXXXXXXXXX" required>
 									</div>
 							</div>
 						</div>
@@ -367,7 +368,7 @@ if (!$_SESSION['login']) {
 						<!--Lugar en el que trabaja el representante-->
 						<div>
 							<label class="form-label">Lugar del trabajo:</label>
-							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="55" minlength="3"></textarea>
+							<textarea class="form-control mb-2" name="Lugar_Trabajo_R" id="Lugar_Trabajo_R" maxlength="180" minlength="3"></textarea>
 						</div>
 						<!--Remuneración_R del trabajo del representante-->
 						<div>
@@ -406,7 +407,7 @@ if (!$_SESSION['login']) {
 							</div>
 						</div>
 						<!--Género del contacto auxiliar-->
-						<div>
+<!-- 						<div>
 							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
 							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
 								<div class="form-check form-check-inline">
@@ -418,9 +419,9 @@ if (!$_SESSION['login']) {
 									<input class="form-check-input" type="radio" name="Género_Aux" value="M" required>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!--Cédula del contacto auxiliar-->
-						<div>
+<!-- 						<div>
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
 								<select class="form-select" name="Tipo_Cédula_Aux" required>
@@ -429,12 +430,12 @@ if (!$_SESSION['login']) {
 									<option value="E">E</option>
 								</select>
 								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required>
-						</div>
+						</div> -->
 						<!--Correo Electrónico del contacto auxiliar-->
-						<div>
+<!-- 						<div>
 							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required>
-						</div>
+						</div> -->
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
 							<label class="form-label">Teléfonos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -447,30 +448,30 @@ if (!$_SESSION['login']) {
 							</div>
 
 							<!--Teléfono secundario-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
+<!-- 							<div class="input-group mb-2">
+								
 								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
-								<!--Número-->
+								
 								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
-							</div>
+							</div> -->
 
 							<!--Teléfono auxiliar-->
-							<div class="input-group mb-2">
-								<!--Prefijo-->
+<!-- 							<div class="input-group mb-2">
+								
 								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
-								<!--Número-->
+								
 								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
-							</div>
+							</div> -->
 						</div>
 						<!--Dirección de residencia del contacto auxiliar-->
-						<div>
+<!-- 						<div>
 							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<textarea class="form-control mb-2" name="Dirección_Aux" id="Dirección_Aux" minlength="10"></textarea>
-						</div>
+						</div> -->
 						<!--Relación del contacto auxiliar-->
 						<div>
 							<label class="form-label">Relación con la persona:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" maxlength="12" minlength="3" required>
+							<input type="text" class="form-control mb-2" name="Relación_Auxiliar" id="Relación_Auxiliar" placeholder="Vecino, familiar, etc." maxlength="12" minlength="3" required>
 						</div>
 					</section>
 				</div>

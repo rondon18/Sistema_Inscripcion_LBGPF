@@ -108,7 +108,7 @@ class Madre {
 		$sql = "SELECT * FROM `personas`,`Madre` WHERE `personas`.`Cédula` = `Madre`.`Cédula_Persona`";
 
 		$consulta_Madre = $conexion->query($sql) or die("error: ".$conexion->error);
-		$Madre = $consulta_Madre->fetch_all();
+		$Madre = $consulta_Madre->fetch_all(MYSQLI_ASSOC);
 
 		#Hace un arreglo de arreglos para contener los campos de la Madre
 		$Lista_Madre = [];
