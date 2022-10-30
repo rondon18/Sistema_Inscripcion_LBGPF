@@ -104,10 +104,8 @@ class Usuarios {
 	public funcion verificarPreguntas($Cédula_Persona){
 
 		//consulto si el usuario existe
-		
-
-
-		if ($usuario = $this->consultarUsuario($Cédula_Persona);) {
+		if ($usuario = $this->consultarUsuario($Cédula_Persona)) {
+			
 			$conexion = conectarBD();
 
 			$Respuesta1 = $this->getRespuesta_1();
@@ -123,14 +121,14 @@ class Usuarios {
 
 			desconectarBD($conexion);
 
-			return true;
+
+			$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
+			$usuario_verificado = $consulta_usuario->fetch_assoc();
+			return $usuario_verificado;
 		}
 		else {
 			return false;
 		}
-
-
-		$sql = "SELECT * FROM `usuarios` WHERE (`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') AND `Cédula_Persona` = 'V27919566';";
 	}
 
 	public function mostrarUsuarios() {
