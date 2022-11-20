@@ -101,7 +101,7 @@ class Usuarios {
 		return $usuario;
 	}
 
-	public funcion verificarPreguntas($Cédula_Persona){
+	public function verificarPreguntas($Cédula_Persona){
 
 		//consulto si el usuario existe
 		if ($usuario = $this->consultarUsuario($Cédula_Persona)) {
