@@ -48,7 +48,7 @@ $('#Teléfono_Auxiliar_Aux').validarIngreso('0123456789');
 $('#Relación_Auxiliar').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 
 
-//Deshabilita area de trabajo si marca no
+//Deshabilita area de trabajo del representante si marca no
 $(document).ready(function(){
   $('#FormularioRepresentante').change(function(){
     selected_value = $("input[name='Representante_Trabaja']:checked").val();
@@ -61,10 +61,36 @@ $(document).ready(function(){
   });
 });
 
+//Deshabilita area de trabajo del padre si marca no
 $(document).ready(function(){
-  $("#link1, #link2, #link3, #link4, #link5").click(function(){
-    $("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5").hide();
-    $("#link1, #link2, #link3, #link4, #link5").removeClass("active");
+  $('#Formulario_Est_Padres').change(function(){
+    selected_value = $("input[name='Padre_Trabaja']:checked").val();
+    if (selected_value == "Si") {
+      $("#Laborales_Padre").prop("disabled", false);;
+    }
+    else if (selected_value == "No"){
+      $("#Laborales_Padre").prop("disabled", true);;
+    }
+  });
+});
+
+//Deshabilita area de trabajo de la madre si marca no
+$(document).ready(function(){
+  $('#Formulario_Est_Padres').change(function(){
+    selected_value = $("input[name='Madre_Trabaja']:checked").val();
+    if (selected_value == "Si") {
+      $("#Laborales_Madre").prop("disabled", false);;
+    }
+    else if (selected_value == "No"){
+      $("#Laborales_Madre").prop("disabled", true);;
+    }
+  });
+});
+
+$(document).ready(function(){
+  $("#link1, #link2, #link3, #link4, #link5, #link6").click(function(){
+    $("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5, #seccion6").hide();
+    $("#link1, #link2, #link3, #link4, #link5, #link6").removeClass("active");
   });
 });
 
@@ -102,13 +128,20 @@ $(document).ready(function(){
     $("#link5").addClass("active");
   });
 });
+$(document).ready(function(){
+  $("#link6").click(function(){
+    $("#seccion6").show();
+    $("#link6").addClass("active");
+  });
+});
 
 //validacion y envio
 $.fn.isValid = function(){
   return this[0].checkValidity()
 }
 
-$( "#B_enviar" ).click(function() {
+// Envío de formulario del representante
+$( "#B_enviar_1" ).click(function() {
      //Revela todas las secciones para prevenir el problema con los campos no visibles
   $("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5").show();
   $("#link1, #link2, #link3, #link4, #link5").removeClass("active");
@@ -118,6 +151,29 @@ $( "#B_enviar" ).click(function() {
      $("#seccion2, #seccion3, #seccion4, #seccion5").hide();
      $("#link1").addClass("active");
           $( "#FormularioRepresentante" ).submit();
+  }
+  else { 
+     //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto
+     Swal.fire(
+      'Atención',
+      'Faltan campos por llenar <br><br> <span class="form-text">Será regresado a la primera sección, pero se mantendrán los cambios.</span>',
+      'info'
+    );
+     $("#seccion2, #seccion3, #seccion4, #seccion5").hide();
+     $("#link1").addClass("active");
+  }
+});
+
+$( "#B_enviar_2" ).click(function() {
+     //Revela todas las secciones para prevenir el problema con los campos no visibles
+  $("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5").show();
+  $("#link1, #link2, #link3, #link4, #link5").removeClass("active");
+
+  if ($( "#Formulario_Est_Padres").isValid() == true) {
+     // Envia el formulario si es valido
+     $("#seccion2, #seccion3, #seccion4, #seccion5").hide();
+     $("#link1").addClass("active");
+          $( "#Formulario_Est_Padres" ).submit();
   }
   else { 
      //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto

@@ -20,7 +20,7 @@ $persona_auxiliar = new Personas();
 $usuario = new Usuarios();
 
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 
 if (isset($_POST['orden']) and $_POST['orden']) {

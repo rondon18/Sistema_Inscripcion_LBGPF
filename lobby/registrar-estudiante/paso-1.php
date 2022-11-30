@@ -15,7 +15,7 @@ if (!$_SESSION['login']) {
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Registrar nuevo estudiante</title>
+	<title>Registrar nuevo estudiante | Paso 1</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
@@ -406,36 +406,7 @@ if (!$_SESSION['login']) {
 								<input type="text" class="form-control mb-2" name="Segundo_Apellido_Aux" id="Segundo_Apellido_Aux" placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Debe ingresar solo letras" required>
 							</div>
 						</div>
-						<!--Género del contacto auxiliar-->
-<!-- 						<div>
-							<p>Género:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></p>
-							<div class="pt-2 px-2 pb-0 bg-light border rounded mb-3">
-								<div class="form-check form-check-inline">
-									<label class="form-label">F </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="F" required>
-								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-label">M </label>
-									<input class="form-check-input" type="radio" name="Género_Aux" value="M" required>
-								</div>
-							</div>
-						</div> -->
-						<!--Cédula del contacto auxiliar-->
-<!-- 						<div>
-							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<div class="input-group mb-2">
-								<select class="form-select" name="Tipo_Cédula_Aux" required>
-									<option selected disabled value="">Tipo de cédula</option>
-									<option value="V">V</option>
-									<option value="E">E</option>
-								</select>
-								<input type="text" class="form-control w-auto" name="Cédula_Aux" id="Cédula_Aux" placeholder="Cédula de identidad" pattern="[0-9]+" maxlength="8" minlength="7" required>
-						</div> -->
-						<!--Correo Electrónico del contacto auxiliar-->
-<!-- 						<div>
-							<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<input type="email" class="form-control mb-2" name="Correo_electrónico_Aux" id="Correo_electrónico_Aux" minlength="10" required>
-						</div> -->
+
 						<!--Teléfonos del contacto auxiliar-->
 						<div>
 							<label class="form-label">Teléfonos:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
@@ -446,28 +417,8 @@ if (!$_SESSION['login']) {
 								<!--Número-->
 								<input class="form-control w-auto" type="tel" name="Teléfono_Principal_Aux" id="Télefono_Principal_Aux" placeholder="Principal" maxlength="7" minlength="7" required>
 							</div>
-
-							<!--Teléfono secundario-->
-<!-- 							<div class="input-group mb-2">
-								
-								<input class="form-control" type="text" name="Prefijo_Secundario_Aux" id="Prefijo_Secundario_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
-								
-								<input class="form-control w-auto" type="tel" name="Teléfono_Secundario_Aux" id="Télefono_Secundario_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
-							</div> -->
-
-							<!--Teléfono auxiliar-->
-<!-- 							<div class="input-group mb-2">
-								
-								<input class="form-control" type="text" name="Prefijo_Auxiliar_Aux" id="Prefijo_Auxiliar_Aux" list="prefijos" pattern="[0-9]+" maxlength="4" placeholder="Prefijo telefónico" title="Solo ingresar caracteres numericos" required>
-								
-								<input class="form-control w-auto" type="tel" name="Teléfono_Auxiliar_Aux" id="Teléfono_Auxiliar_Aux" placeholder="Auxiliar" maxlength="7" minlength="7" required>
-							</div> -->
 						</div>
-						<!--Dirección de residencia del contacto auxiliar-->
-<!-- 						<div>
-							<label class="form-label">Dirección de residencia:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-							<textarea class="form-control mb-2" name="Dirección_Aux" id="Dirección_Aux" minlength="10"></textarea>
-						</div> -->
+
 						<!--Relación del contacto auxiliar-->
 						<div>
 							<label class="form-label">Relación con la persona:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>

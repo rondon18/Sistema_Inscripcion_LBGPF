@@ -1,6 +1,7 @@
 <?php
 
 class Padre {
+	
 	private $idPadre;
 	private $Cédula_Persona;
 	private $País_Residencia;

@@ -16,7 +16,7 @@ if (!isset($_POST['Datos_Representante'])) {
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Registrar nuevo estudiante</title>
+	<title>Registrar nuevo estudiante | Paso 2</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
@@ -988,7 +988,6 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
 			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
 			<input type="hidden" name="Grado_Instrucción_R" value="<?php echo $_POST['Grado_Instrucción_R']?>">
-			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R']?>">
 			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
 			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
 			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">

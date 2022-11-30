@@ -86,7 +86,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	// 	echo "<td>".$value."</td>";
 	// 	echo "</tr>";
 	// }
-	echo "</table>";
+	// echo "</table>";
 	if ($orden == "Insertar") {
 
 		
@@ -100,6 +100,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
 
+		// Concatenado del tipo y el número de cédula
 		$Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
 		$persona->setCédula($Cédula_representante);
 
@@ -109,7 +110,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
 		$persona->setDirección($_POST['Dirección_R']);
 		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
-
 		$persona->insertarPersona();
 
 		//
@@ -121,7 +121,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_R']);
 		$Teléfonos->setRelación_Teléfono('Principal');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
-
 		$Teléfonos->insertarTeléfono();
 
 		#Teléfono secundario
@@ -129,7 +128,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_R']);
 		$Teléfonos->setRelación_Teléfono('Secundario');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
-
 		$Teléfonos->insertarTeléfono();
 
 		#Teléfono auxiliar
@@ -137,7 +135,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);
 		$Teléfonos->setRelación_Teléfono('Auxiliar');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
-
 		$Teléfonos->insertarTeléfono();
 
 		#Teléfono trabajo
@@ -145,7 +142,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_R']);
 		$Teléfonos->setRelación_Teléfono('Trabajo');
 		$Teléfonos->setCédula_Persona($persona->getCédula());
-
 		$Teléfonos->insertarTeléfono();
 
 		$datos_representante->setCédula_Persona($persona->getCédula());
@@ -157,10 +153,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		// CARNET DE LA PATRIA
 		//
 
-		if ($_POST['Tiene_Carnet_Patria_R'] = "Si") {
-			$carnet->setCódigo_Carnet($_POST['Código_Carnet_Patria_R']);
-			$carnet->setSerial_Carnet($_POST['Serial_Carnet_Patria_R']);
-		}
+		// Retirado select de si o no
+		$carnet->setCódigo_Carnet($_POST['Código_Carnet_Patria_R']);
+		$carnet->setSerial_Carnet($_POST['Serial_Carnet_Patria_R']);
+
+
 		$carnet->setCédula_Persona($persona->getCédula());
 
 		$carnet->insertarCarnetPatria();
@@ -205,6 +202,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_vivienda->setidRepresentante($datos_representante->getidRepresentantes());
 		$datos_vivienda->insertarDatosVivienda();
 
+
+
+
+
+
 		//
 		//
 		// PARTE DE LA MADRE
@@ -216,10 +218,26 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		$ced_m = $_POST['Tipo_Cédula_Madre'] ?? NULL;
+		$fila = $persona->contarPersonas();
 
-		$Cédula_madre = $ced_m.$_POST['Cédula_Madre'];
-		$persona->setCédula($Cédula_madre);
+		// Si se deja vacio la cédula del madre al no conocerla o recordarla
+		// Se asigna una cédula provisional que puede ser cambiada para evitar conflictos
+
+
+		//si la cédula y su tipo están llenos
+		if (!empty($_POST['Tipo_Cédula_Madre']) and !empty($_POST['Cédula_Madre'])) {
+			//asignacion con los datos enviados
+			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+			$persona->setCédula($Cédula_madre);
+			echo "madre";		
+		}
+
+		//si la cédula o su tipo están vacios
+		elseif(empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+			// asignacion de cédula probicional e incremento para el caso madre
+			$Cédula_madre = "V".$fila;
+			$persona->setCédula($Cédula_madre);
+		}
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Madre']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Madre']);
@@ -257,10 +275,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			  $datos_laborales_ma->setEmpleoMa("Desempleado");
 			}
 			else {
-			  $datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma'] ?? NULL);
-			  $datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma'] ?? NULL);
-			  $datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma'] ?? NULL);
-			  $datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
+				$datos_laborales_ma->setEmpleoMa($_POST['Empleo_Ma'] ?? NULL);
+				$datos_laborales_ma->setLugar_TrabajoMa($_POST['Lugar_Trabajo_Ma'] ?? NULL);
+				$datos_laborales_ma->setRemuneraciónMa($_POST['Remuneración_Ma'] ?? NULL);
+				$datos_laborales_ma->setTipo_RemuneraciónMa($_POST['Tipo_Remuneración_Ma']);
+
+				// Si trabaja se asignan valores al número del trabajo
+				$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Ma']);
+				$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Ma']);
+
 			}
 		}
 		
@@ -269,27 +292,32 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_laborales_ma->setidMadre($datos_madre->getidMadre());
 		$datos_laborales_ma->insertarDatosLaborales_Ma();
 
-		#Datos vivienda
+		#Teléfono trabajo
+		$Teléfonos->setRelación_Teléfono('Trabajo');
+		$Teléfonos->setCédula_Persona($persona->getCédula());
+
+		$Teléfonos->insertarTeléfono();
+		
+		// 
+		//	DATOS DE VIVIENDA DE LA MADRE 
+		// 
+
 		$datos_vivienda_ma->setCondiciones_ViviendaMa($_POST['Condición_vivienda_Ma'] ?? NULL);
 		$datos_vivienda_ma->setTipo_ViviendaMa($_POST['Tipo_Vivienda_Ma'] ?? NULL);
 
 		#Si marca la tenencia como otro. Asume el texto ingresado en la casilla
-		if (isset($_POST['Madre_Trabaja']))
-		{
-			if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
-			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro'] ?? NULL);
-			}
-			else{
-			  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
-			}
+		if ($_POST['Tenencia_vivienda_Ma'] == "Otro") {
+		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma_Otro'] ?? NULL);
+		}
+		else{
+		  $datos_vivienda_ma->setTenencia_viviendaMa($_POST['Tenencia_vivienda_Ma']);
 		}
 		
-
 		$datos_vivienda_ma->setidMadre($datos_madre->getidMadre());
 		$datos_vivienda_ma->insertarDatosVivienda_Ma();
 
 		//
-		// Teléfonos de la madre
+		// TELÉFONOS DE LA MADRE
 		//
 
 		#Teléfono principal
@@ -308,13 +336,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-		#Teléfono trabajo
-		$Teléfonos->setPrefijo($_POST['Prefijo_Trabajo_Ma']);
-		$Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Trabajo_Ma']);
-		$Teléfonos->setRelación_Teléfono('Trabajo');
-		$Teléfonos->setCédula_Persona($persona->getCédula());
-
-		$Teléfonos->insertarTeléfono();
+		
 
 		//
 		//
@@ -327,12 +349,24 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre']);
 
-		if (isset($_POST['Tipo_Cédula_Padre']))
-		{
-			$Ced_P = $_POST['Tipo_Cédula_Padre']; 
+		$fila = $persona->contarPersonas();
+
+		// Si se deja vacio la cédula del padre al no conocerla o recordarla
+		// Se asigna una cédula provisional que puede ser cambiada para evitar conflictos
+
+		//Si el campo se envia
+
+		//si la cédula y su tipo están llenos
+		if (!empty($_POST['Tipo_Cédula_Padre']) and !empty($_POST['Cédula_Padre'])) {
+			//asignacion con los datos enviados
+			$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+			$persona->setCédula($Cédula_padre);
 		}
-		else {
-			$Ced_P = "";
+		//si la cédula o su tipo están vacios
+		elseif(empty($_POST['Tipo_Cédula_Padre']) or empty($_POST['Cédula_Padre'])) {
+			// asignacion de cédula probicional e incremento para el caso madre
+			$Cédula_padre = "V".$fila;
+			$persona->setCédula($Cédula_padre);
 		}
 
 		$Cédula_padre = $Ced_P.$_POST['Cédula_Padre'];
@@ -427,34 +461,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Teléfonos->insertarTeléfono();
 
-
-		//
-		// Teléfonos del auxiliar
-		//
-
-		#Teléfono principal
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Principal_Aux']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
-		// $Teléfonos->setRelación_Teléfono('Principal');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
-
-		// $Teléfonos->insertarTeléfono();
-
-		#Teléfono secundario
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Secundario_Aux']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Secundario_Aux']);
-		// $Teléfonos->setRelación_Teléfono('Secundario');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
-
-		// $Teléfonos->insertarTeléfono();
-
-		#Teléfono auxiliar
-		// $Teléfonos->setPrefijo($_POST['Prefijo_Auxiliar_Aux']);
-		// $Teléfonos->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_Aux']);
-		// $Teléfonos->setRelación_Teléfono('Auxiliar');
-		// $Teléfonos->setCédula_Persona($persona->getCédula());
-
-		// $Teléfonos->insertarTeléfono();
 
 		//
 		//
@@ -672,7 +678,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['acciones'] .= ',Registra un estudiante';
 		$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
-		header('Location: ../lobby/consultar.php?exito');
+		header('Location: ../lobby/consultar/estudiantes.php?exito');
 	}
 
 	elseif ($orden == "Editar") {
@@ -891,11 +897,9 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$datos_madre->setPaís_ResidenciaMa($_POST['País_Ma']);
 		}
 		$datos_madre->setGrado_AcadémicoMa($_POST['Grado_Instrucción_Ma']);		
-     
+	  
 
 		//Cedula nula de relleno
-
-
 
 		//si la cédula es vacia, no edita sino inserta
 		if (empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
