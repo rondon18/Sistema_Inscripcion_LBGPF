@@ -173,14 +173,18 @@
 		public function contarPersonas() {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `personas`";
+			$sql = "SELECT `idPersonas` FROM `personas` ORDER BY `idPersonas` DESC LIMIT 1";
 
 			$con_filas = $conexion->query($sql) or die("error: ".$conexion->error);
 
-			// obtiene el número de filas y lo pone en una variable
-			$fila = $con_filas->num_rows;
+			// obtiene el id más alto de la tabla y lo pone en una variable
+			$fila = $con_filas->fetch_assoc();
 
-			return $fila;
+			desconectarBD($conexion);
+
+			// Retorna el valor consultado más uno
+			$fila = $fila['idPersonas'];
+			return $fila+1;
 		}
 
 		public function setidPersonas($idPersonas) {
@@ -257,4 +261,5 @@
 			return $this->Estado_Civil;
 		}
 	}
+
 ?>

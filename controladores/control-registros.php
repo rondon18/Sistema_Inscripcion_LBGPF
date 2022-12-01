@@ -369,9 +369,6 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$persona->setCédula($Cédula_padre);
 		}
 
-		$Cédula_padre = $Ced_P.$_POST['Cédula_Padre'];
-		$persona->setCédula($Cédula_padre);
-
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre'] ?? NULL);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Padre'] ?? NULL);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Padre'] ?? NULL);

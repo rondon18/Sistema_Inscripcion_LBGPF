@@ -655,7 +655,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<span>Tenencia de la vivienda:</span>
 							<div class="input-group mb-3">
 								<select class="form-select" name="Tenencia_vivienda_Pa">
-									<option selected disabled value="">Seleccione una opción</option>
+									<option selected value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
 									<option value="Prestada">Prestada</option>
@@ -900,7 +900,7 @@ if (!isset($_POST['Datos_Representante'])) {
 							<span>Tenencia de la vivienda:</span>
 							<div class="input-group mb-3">
 								<select class="form-select" name="Tenencia_vivienda_Ma">
-									<option selected disabled value="">Seleccione una opción</option>
+									<option selected value="">Seleccione una opción</option>
 									<option value="Propia">Propia</option>
 									<option value="Alquilada">Alquilada</option>
 									<option value="Prestada">Prestada</option>
