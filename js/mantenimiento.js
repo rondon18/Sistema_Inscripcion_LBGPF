@@ -76,11 +76,32 @@ $( "#boton-respaldar" ).click(function( event ) {
 });
 
 $( "#boton-restaurar" ).click(function( event ) {
-	if ($( "#FormularioRepresentante").isValid() == true) {
-     // Envia el formulario si es valido
-     $("#seccion2, #seccion3, #seccion4, #seccion5").hide();
-     $("#link1").addClass("active");
-          $( "#FormularioRepresentante" ).submit();
+	if ($( "#restaurar-bd").isValid() == true) {
+    	 // Envia el formulario si es valido
+		let timerInterval
+			Swal.fire({
+				title: 'Se restaurará la base de datos',
+				icon: 'info',
+				text: 'Aguarde, el proceso puede demorar...',
+				timer: 2000,
+				timerProgressBar: true,
+				didOpen: () => {
+					Swal.showLoading()
+					const b = Swal.getHtmlContainer().querySelector('b')
+					timerInterval = setInterval(() => {
+						b.textContent = Swal.getTimerLeft()
+					}, 100)
+				},
+				willClose: () => {
+					clearInterval(timerInterval)
+				}
+			}).then((result) => {
+				/* Read more about handling dismissals below */
+				if (result.dismiss === Swal.DismissReason.timer) {
+					console.log('Cerrado por el temporizador')
+				}
+			})
+	    $( "#restaurar-bd" ).submit();
   }
   else { 
      //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto
@@ -89,7 +110,5 @@ $( "#boton-restaurar" ).click(function( event ) {
       'Faltan campos por llenar <br><br> <span class="form-text">Será regresado a la primera sección, pero se mantendrán los cambios.</span>',
       'info'
     );
-     $("#seccion2, #seccion3, #seccion4, #seccion5").hide();
-     $("#link1").addClass("active");
   }
 });

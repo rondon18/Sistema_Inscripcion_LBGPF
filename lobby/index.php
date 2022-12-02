@@ -48,10 +48,10 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 									
 									<span class="text-muted">¿Qué desea hacer?</span>
 								</li>
-								<li class="list-group-item px-md-4 px-xl-5">
+								<li class="list-group-item px-md-4 px-lg-3 px-xl-5">
 									<div class="row">
 										<!-- Panel de estudiantes -->
-										<div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex p-2">
+										<div class="col-12 col-md-6 col-lg-4 col-xl-4 d-flex p-2">
 											<div
 												class="d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 												<i class="fas fa-list fa-3x me-2"></i>
@@ -65,7 +65,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 											</div>
 										</div>
 										<!-- Panel para iniciar registro de estudiante -->
-										<div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex p-2">
+										<div class="col-12 col-md-6 col-lg-4 col-xl-4 d-flex p-2">
 											<div
 												class="d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 												<i class="fas fa-user-plus fa-3x me-2"></i>
@@ -79,7 +79,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 											</div>
 										</div>
 										<!-- Panel para iniciar registro de estudiante -->
-										<div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex p-2">
+										<div class="col-12 col-md-6 col-lg-4 col-xl-4 d-flex p-2">
 											<div
 												class="d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 												<i class="fas fa-user-plus fa-3x me-2"></i>
@@ -93,7 +93,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 											</div>
 										</div>
 										<!-- Panel para acceder al modulo de perfil -->
-										<div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex p-2">
+										<div class="col-12 col-md-6 col-lg-4 col-xl-4 d-flex p-2">
 											<div
 												class="d-flex bg-danger py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 												<i class="fas fa-user-circle fa-3x me-2"></i>
@@ -107,7 +107,7 @@ $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora'])
 											</div>
 										</div>
 										<!-- Panel para acceder al modulo de mantenimiento(Administrador) -->
-										<div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex p-2">
+										<div class="col-12 col-md-6 col-lg-4 col-xl-4 d-flex p-2">
 											<div
 												class="d-flex bg-primary py-2 px-3 rounded-2 text-white shadow border w-100 align-items-center justify-content-center">
 												<i class="fas fa-wrench fa-3x me-2"></i>

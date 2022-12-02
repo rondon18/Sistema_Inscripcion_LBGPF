@@ -1275,7 +1275,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 	elseif ($orden == "Eliminar") {
 		$datos_estudiante->eliminarEstudiante($_POST['Cédula_Estudiante']);
-		header('Location: ../lobby/consultar.php');
+		header('Location: ../lobby/consultar/estudiantes.php');
 	}
 	else {
 		echo "La orden: ' ". $orden . " ' no es valida.";

@@ -62,7 +62,7 @@
 							extend: 		'excelHtml5',
 							text: 			'<i class="fas fa-lg fa-clipboard-check me-2"></i>Todo',
 							exportOptions: {
-								columns: 	':not(:last-child)',
+								columns: 	':not(:last-child,:first-child)',
 							},
 							autoFilter: true,
 							filename: 	'Reporte general de estudiantes',

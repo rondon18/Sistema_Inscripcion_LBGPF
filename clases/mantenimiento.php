@@ -9,8 +9,8 @@
 		public function respaldarBD() {
 			$conexion = conectarBD();
 
-			$nombre_respaldo 	= "SI_LBGPF";
-			$fecha_respaldo 	= date("Y-m-d");
+			$nombre_respaldo 	= "respaldo";
+			$fecha_respaldo 	= date("d-m-Y");
 			$hora_respaldo 		= date("H-i-s");
 			$extension 				= '.sql';
 
@@ -32,15 +32,13 @@
 
 			header("Location: ../respaldos/$respaldo");
 		}
-		public function restaurarBD() {
+		public function restaurarBD($respaldo) {
 			#Devuelve la base de datos a un estado anterior o a su estado inicial
-			$conexion = conectarBD();
 
-			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost SI_LBGPF < ../respaldos/respaldo-base.sql";
+			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost SI_LBGPF < ../respaldos/".$respaldo;
 
 			// ejecución y salida de éxito o errores
 			system($command,$output);
-
 		}
 	}
 ?>

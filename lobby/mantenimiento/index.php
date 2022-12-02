@@ -17,7 +17,20 @@ $bitácora = new bitácora();
 $_SESSION['acciones'] .= ', Visita modulo de mantenimiento';
 $bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
-$listado = glob('../../respaldos/*', );
+// Generacion de listado de ficheros
+$listado = glob('../../respaldos/*', GLOB_NOSORT);
+$listado = array_reverse($listado,true);
+
+
+// Auxiliar para verificar que vuelca glob()
+// echo "<table border='1' style='margin-top:100px'>";
+// foreach ($listado as $key => $value) {
+// 	echo "<tr>";
+// 	echo "<td>".$key."</td>";
+// 	echo "<td>".$value."</td>";
+// 	echo "</tr>";
+// }
+// echo "</table>";
 
 function hallarRespaldosEsp($dato){
 	if (strlen(substr($dato, 16)) != 34) {
@@ -39,7 +52,7 @@ if (isset($_POST['select-respaldo'])) {
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>Registrar nuevo estudiante</title>
+		<title>Mantenimiento</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
@@ -109,17 +122,23 @@ if (isset($_POST['select-respaldo'])) {
 										</div>
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
-												<form id="restaurar-bd" method="post" action="#">
+												<form id="restaurar-bd" method="post" action="../../controladores/control-mantenimiento.php">
 													<div class="input-group">
-														<select name="select-respaldo" class="form-select" required>
+														<select name="respaldo" class="form-select" required>
 															<option class="small" value="" selected disabled>Seleccione un respaldo</option>
 															<?php foreach ($listado as $elemento): ?>
 
-															<option class="small" value="<?php echo substr($elemento, 16); ?>"><?php echo substr($elemento, 16,-4);?></option>
+															<option 
+																class="small" 
+																value="<?php echo substr($elemento, 16); ?>"
+															>
+															<?php echo substr($elemento, 16,-4);?>
+															</option>
 															
 															<?php endforeach ?>
 														</select>
-														<button id="boton-restaurar" class="btn btn-primary" name="orden" value="Restaurar">
+														<input type="hidden" name="orden" value="Restaurar">
+														<button id="boton-restaurar" class="btn btn-primary" name="orden" value="Restaurar" type="button">
 															<i class="fas fa-database fa-lg me-2"></i>
 															Restaurar BD
 														</button>
@@ -153,7 +172,36 @@ if (isset($_POST['select-respaldo'])) {
 	</body>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
+<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+<?php 
+if (isset($_GET['exito'])) {
+echo '
+	<script type="text/javascript">
+	let timerInterval
+	Swal.fire({
+		title: "base de datos restaurada",
+		icon: "success",
+		timer: 2000,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading()
+			const b = Swal.getHtmlContainer().querySelector("b")
+			timerInterval = setInterval(() => {
+				b.textContent = Swal.getTimerLeft()
+			}, 100)
+		},
+		willClose: () => {
+			clearInterval(timerInterval)
+		}
+	}).then((result) => {
+		/* Read more about handling dismissals below */
+		if (result.dismiss === Swal.DismissReason.timer) {
+			console.log("Cerrado por el temporizador")
+		}
+	})
+	</script>
+';	
+} 
+?>
 </html>

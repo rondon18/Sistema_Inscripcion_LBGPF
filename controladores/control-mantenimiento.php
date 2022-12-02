@@ -21,8 +21,8 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	}
 	
 	elseif ($orden == "Restaurar") {
-		$mantenimiento->restaurarBD();
-		header('Location: ../lobby/mantenimiento/index.php');
+		$mantenimiento->restaurarBD($_POST['respaldo']);
+		header('Location: ../lobby/mantenimiento/index.php?exito');
 	}
 }
 else {

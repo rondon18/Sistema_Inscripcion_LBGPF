@@ -116,7 +116,7 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 											<?php
 												// Separa la cédula del caracter que indica si es venezolana o extranjera
 												$tipo_Cédula = substr($_SESSION['persona']['Cédula'],0,1);
-												$Cédula			= substr($_SESSION['persona']['Cédula'],1,strlen($_SESSION['persona']['Cédula'])-1);
+												$Cédula= substr($_SESSION['persona']['Cédula'],0,strlen($_SESSION['persona']['Cédula'])-1);
 										 	?>
 
 											<div class="col-12 col-lg-10">
@@ -254,7 +254,7 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 											</div>
 											<div class="col-12 col-md-6">
 												<input class="form-control mb-2" name="Respuesta_2" type="text" placeholder="Respuesta a la pregunta"  minlength="3" maxlength="50" required value="<?php echo $_SESSION['usuario']['Respuesta_2'] ?? NULL ?>">
-
+												<input type="hidden" name="orden" value="Editar">
 											</div>
 										</div>								
 									</section>
@@ -264,9 +264,8 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 						</div>
 					</div>
 					<div class="card-footer">
-						<input type="hidden" name="orden" value="Editar">
 						<a class="btn btn-primary" href="index.php">Volver al inicio</a>
-						<input class="btn btn-primary" type="button" value="Guardar y continuar">
+						<input id="B_enviar" class="btn btn-primary" type="button" value="Guardar y continuar">
 					</div>		
 				</div>
 			
@@ -279,7 +278,7 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
+<script type="text/javascript" src="../../js/validaciones-usuario.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

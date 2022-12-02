@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if (!$_SESSION['login']) {
+	header('Location: ../index.php');
+	exit();
+}
 
 require("conexion.php");
 
@@ -149,7 +153,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['acciones'] .= ',Edita perfil';
 		$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
-		header('Location: ../lobby/index.php');
+		header('Location: ../lobby/perfil/index.php');
 	}
 	elseif ($orden == "Eliminar") {
 
@@ -174,7 +178,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 			$_SESSION['acciones'] .= ', Elimina un usuario';
 			$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
 
-			header('Location: ../lobby/consultar.php');
+			header('Location: ../lobby/consultar/usuarios.php');
 		}
 	}
 	else {
