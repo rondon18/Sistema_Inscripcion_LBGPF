@@ -36,7 +36,7 @@ require('../../clases/teléfonos.php');
 
 require('../../controladores/conexion.php');
 
-require('../../clases/bitácora.php');
+require('../../clases/bitacora.php');
 
 $conexion = conectarBD();
 
@@ -192,14 +192,14 @@ function condiciones($condicion_b,$datos_Médicos) {
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<?php
 							#Separa la cédula del caracter que indica si es venezolana o extranjera
-							$tipo_Cédula = substr($Estudiante['Cédula'],0,1);
+							$nacioNalidad = substr($Estudiante['Cédula'],0,1);
 							$Cédula			= substr($Estudiante['Cédula'],1,strlen($Estudiante['Cédula'])-1);
 							?>
 							<div class="input-group mb-2">
-								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Est" required>
-									<option selected disabled value="">Tipo de cédula</option>
-									<option <?php if($tipo_Cédula == "V"){echo "selected";} ?> value="V">V</option>
-									<option <?php if($tipo_Cédula == "E"){echo "selected";} ?> value="E">E</option>
+								<select class="form-select" id="NacioNalidad_R" name="NacioNalidad_Est" required>
+									<option selected disabled value="">Nacionalidad</option>
+									<option <?php if($nacioNalidad == "V"){echo "selected";} ?> value="V">V</option>
+									<option <?php if($nacioNalidad == "E"){echo "selected";} ?> value="E">E</option>
 								</select>
 								<input type="text" class="form-control w-auto" name="Cédula_Est" id="Cédula_Est" maxlength="8" required value="<?php echo $Cédula; ?>">
 							</div>
@@ -635,13 +635,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 								<div class="input-group mb-2">
 									<?php
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
-									$tipo_Cédula_Pa = substr($padre['Cédula'],0,1);
+									$nacioNalidad_Pa = substr($padre['Cédula'],0,1);
 									$Cédula_Pa			= substr($padre['Cédula'],1,strlen($padre['Cédula'])-1);
 									?>
-									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre" required>
-										<option selected disabled value="">Tipo de cédula</option>
-										<option <?php if($tipo_Cédula_Pa == "V"){echo "selected";} ?> value="V">V</option>
-										<option <?php if($tipo_Cédula_Pa == "E"){echo "selected";} ?> value="E">E</option>
+									<select class="form-select" id="NacioNalidad_Padre" name="NacioNalidad_Padre" required>
+										<option selected disabled value="">Nacionalidad</option>
+										<option <?php if($nacioNalidad_Pa == "V"){echo "selected";} ?> value="V">V</option>
+										<option <?php if($nacioNalidad_Pa == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
 									<input type="text" class="form-control w-auto" name="Cédula_Padre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Pa; ?>" required>
 								</div>
@@ -882,13 +882,13 @@ function condiciones($condicion_b,$datos_Médicos) {
 								<div class="input-group mb-2">
 									<?php
 									#Separa la cédula del caracter que indica si es venezolana o extranjera
-									$tipo_Cédula_Ma = substr($madre['Cédula'],0,1);
+									$nacioNalidad_Ma = substr($madre['Cédula'],0,1);
 									$Cédula_Ma			= substr($madre['Cédula'],1,strlen($madre['Cédula'])-1);
 									?>
-									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre" required>
-										<option selected disabled value="">Tipo de cédula</option>
-										<option <?php if($tipo_Cédula_Ma == "V"){echo "selected";} ?> value="V">V</option>
-										<option <?php if($tipo_Cédula_Ma == "E"){echo "selected";} ?> value="E">E</option>
+									<select class="form-select" id="NacioNalidad_Madre" name="NacioNalidad_Madre" required>
+										<option selected disabled value="">Nacionalidad</option>
+										<option <?php if($nacioNalidad_Ma == "V"){echo "selected";} ?> value="V">V</option>
+										<option <?php if($nacioNalidad_Ma == "E"){echo "selected";} ?> value="E">E</option>
 									</select>
 									<input type="text" class="form-control w-auto" name="Cédula_Madre" id="Cédula_Est" maxlength="8" value="<?php echo $Cédula_Ma; ?>" required>
 								</div>
@@ -1108,7 +1108,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
 			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
 			<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R']?>">
-			<input type="hidden" name="Tipo_Cédula_R" value="<?php echo $_POST['Tipo_Cédula_R']?>">
+			<input type="hidden" name="NacioNalidad_R" value="<?php echo $_POST['NacioNalidad_R']?>">
 			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
 			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
 			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
@@ -1158,7 +1158,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 		</footer>
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>

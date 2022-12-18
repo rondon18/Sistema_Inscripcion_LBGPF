@@ -47,7 +47,7 @@ INSERT INTO `año-escolar` (`idAño-Escolar`, `Inicio_Año_Escolar`, `Fin_Año_E
 --
 
 CREATE TABLE `bitácora` (
-  `idbitácora` int(11) NOT NULL,
+  `id_bitacora` int(11) NOT NULL,
   `idUsuarios` int(11) NOT NULL,
   `fechaInicioSesión` date NOT NULL,
   `horaInicioSesión` time NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `bitácora` (
 -- Volcado de datos para la tabla `bitácora`
 --
 
-INSERT INTO `bitácora` (`idbitácora`, `idUsuarios`, `fechaInicioSesión`, `horaInicioSesión`, `linksVisitados`, `fechaFinalSesión`, `horaFinalSesión`) VALUES
+INSERT INTO `bitácora` (`id_bitacora`, `idUsuarios`, `fechaInicioSesión`, `horaInicioSesión`, `linksVisitados`, `fechaFinalSesión`, `horaFinalSesión`) VALUES
 (1, 2, '2022-04-22', '17:34:06', 'Muchos,ajshdvjasgdvjashdvjh', '2022-04-22', '19:34:06'),
 (2, 2, '2022-04-26', '01:51:36', '/proyecto_pst/controladores/login.php', '0000-00-00', '00:00:00'),
 (3, 2, '2022-04-26', '01:52:40', 'Inicia Sesión,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita menú principal,Visita perfil,Visita perfil,Visita perfil', NULL, NULL),
@@ -813,7 +813,7 @@ ALTER TABLE `año-escolar`
 -- Indices de la tabla `bitácora`
 --
 ALTER TABLE `bitácora`
-  ADD PRIMARY KEY (`idbitácora`),
+  ADD PRIMARY KEY (`id_bitacora`),
   ADD KEY `fk_usuarios_bitacora` (`idUsuarios`);
 
 --
@@ -1006,7 +1006,7 @@ ALTER TABLE `año-escolar`
 -- AUTO_INCREMENT de la tabla `bitácora`
 --
 ALTER TABLE `bitácora`
-  MODIFY `idbitácora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `carnet-patria`

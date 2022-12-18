@@ -7,11 +7,11 @@ if (!$_SESSION['login']) {
 }
 
 require('funciones.php');
-require('../../clases/bitácora.php');
+require('../../clases/bitacora.php');
 require('../../controladores/conexion.php');
-$bitácora = new bitácora();
+$bitacora = new bitacora();
 $_SESSION['acciones'] .= ', Modifica su perfil';
-$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Segundo_Nombre']." ".$_SESSION['persona']['Primer_Apellido']." ".$_SESSION['persona']['Segundo_Apellido']
 
@@ -30,9 +30,9 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
-	<main style="max-height: 100vh; overflow-y: auto;">
+	<main class="d-flex flex-column justify-content-between vh-100">
 		<!--Banner-->
-		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-absolute top-0" style="z-index:1000;">
+		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1">
 			<div>
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
@@ -40,7 +40,7 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
 		
-		<div class="container-md py-3 px-xl-5 my-5 mb-lg-0">
+		<div class="container-md">
 		
 				<div class="card">
 					
@@ -115,16 +115,16 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 
 											<?php
 												// Separa la cédula del caracter que indica si es venezolana o extranjera
-												$tipo_Cédula = substr($_SESSION['persona']['Cédula'],0,1);
-												$Cédula= substr($_SESSION['persona']['Cédula'],0,strlen($_SESSION['persona']['Cédula'])-1);
+												$nacioNalidad = substr($_SESSION['persona']['Cédula'],0,1);
+												$Cédula= substr($_SESSION['persona']['Cédula'],1,strlen($_SESSION['persona']['Cédula'])-1);
 										 	?>
 
 											<div class="col-12 col-lg-10">
 												<div class="input-group mb-2">
-													<select id="Tipo_Cédula_R" class="form-select" name="Tipo_Cédula_R" required>
-														<option disabled value="">Tipo de cédula</option>
-														<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";}?>>V</option>
-														<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";}?>>E</option>
+													<select id="NacioNalidad_U" class="form-select" name="NacioNalidad_U" required>
+														<option disabled value="">Nacionalidad</option>
+														<option value="V" <?php if($nacioNalidad == "V") {echo "selected";}?>>V</option>
+														<option value="E" <?php if($nacioNalidad == "E") {echo "selected";}?>>E</option>
 													</select>
 													<input id="Cédula_U" class="form-control w-auto" type="text"  name="Cédula_U" pattern="[0-9]+" maxlength="8" minlength="7" required value="<?php echo $Cédula ?? NULL ?>">
 
@@ -264,21 +264,23 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 						</div>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-primary" href="index.php">Volver al inicio</a>
-						<input id="B_enviar" class="btn btn-primary" type="button" value="Guardar y continuar">
+						<a class="btn btn-primary" href="index.php">Volver</a>
+						<input class="btn btn-primary" type="submit" form="registro" value="Guardar y continuar">
 					</div>		
 				</div>
 			
 		</div>
 
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2">
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-usuario.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../../js/messages_es.min.js"></script>
+<script type="text/javascript" src="../../js/validaciones_usuario.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

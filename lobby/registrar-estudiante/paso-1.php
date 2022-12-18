@@ -106,8 +106,8 @@ if (!$_SESSION['login']) {
 						<div>
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R" required>
-									<option selected disabled value="">Tipo de cédula</option>
+								<select class="form-select" id="NacioNalidad_R" name="NacioNalidad_R" required>
+									<option selected disabled value="">Nacionalidad</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
@@ -439,7 +439,7 @@ if (!$_SESSION['login']) {
 		</footer>
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>

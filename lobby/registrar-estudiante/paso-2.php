@@ -77,8 +77,8 @@ if (!isset($_POST['Datos_Representante'])) {
 						<div>
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<div class="input-group mb-2">
-								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_Est" required>
-									<option selected disabled value="">Tipo de cédula</option>
+								<select class="form-select" id="NacioNalidad_R" name="NacioNalidad_Est" required>
+									<option selected disabled value="">Nacionalidad</option>
 									<option value="V">V</option>
 									<option value="E">E</option>
 								</select>
@@ -499,8 +499,8 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<label class="form-label">Cédula:</label>
 								<div class="input-group mb-2">
-									<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre">
-										<option selected disabled value="">Tipo de cédula</option>
+									<select class="form-select" id="NacioNalidad_Padre" name="NacioNalidad_Padre">
+										<option selected disabled value="">Nacionalidad</option>
 										<option value="V">V</option>
 										<option value="E">E</option>
 									</select>
@@ -743,8 +743,8 @@ if (!isset($_POST['Datos_Representante'])) {
 							<div>
 								<label class="form-label">Cédula:</label>
 								<div class="input-group mb-2">
-									<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre">
-										<option selected disabled value="">Tipo de cédula</option>
+									<select class="form-select" id="NacioNalidad_Madre" name="NacioNalidad_Madre">
+										<option selected disabled value="">Nacionalidad</option>
 										<option value="V">V</option>
 										<option value="E">E</option>
 									</select>
@@ -974,7 +974,7 @@ if (!isset($_POST['Datos_Representante'])) {
 			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
 			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
 			<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R']?>">
-			<input type="hidden" name="Tipo_Cédula_R" value="<?php echo $_POST['Tipo_Cédula_R']?>">
+			<input type="hidden" name="NacioNalidad_R" value="<?php echo $_POST['NacioNalidad_R']?>">
 			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
 			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
 			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
@@ -1023,7 +1023,7 @@ if (!isset($_POST['Datos_Representante'])) {
 		</footer>
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>

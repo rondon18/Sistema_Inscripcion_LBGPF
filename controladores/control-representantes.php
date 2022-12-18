@@ -36,7 +36,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$Cédula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$Cédula = $_POST['NacioNalidad_U'].$_POST['Cédula_U'];
 		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
@@ -80,7 +80,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$Cédula = $_POST['Tipo_Cédula_U'].$_POST['Cédula_U'];
+		$Cédula = $_POST['NacioNalidad_U'].$_POST['Cédula_U'];
 		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
@@ -132,11 +132,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['persona']['Dirección'] = $persona->getDirección();
 		$_SESSION['persona']['Estado_Civil'] = $persona->getEstado_Civil();
 
-		require('../clases/bitácora.php');
+		require('../clases/bitacora.php');
 
-		$bitácora = new bitácora();
+		$bitacora = new bitacora();
 		$_SESSION['acciones'] .= ',Edita perfil';
-		$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+		$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 		header('Location: ../lobby/index.php');
 	}
@@ -146,22 +146,22 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 			$usuario->eliminarUsuario($_SESSION['persona']['Cédula']);
 
-			require('../clases/bitácora.php');
+			require('../clases/bitacora.php');
 
-			$bitácora = new bitácora();
+			$bitacora = new bitacora();
 			$_SESSION['acciones'] .= ',Se da de baja';
-			$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+			$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 			header('Location: logout.php');
 		}
 		elseif (isset($_POST['idUsuario'])) {
 			$usuario->eliminarUsuario($_POST['idUsuario']);
 
-			require('../clases/bitácora.php');
+			require('../clases/bitacora.php');
 
-			$bitácora = new bitácora();
+			$bitacora = new bitacora();
 			$_SESSION['acciones'] .= ', Elimina un usuario';
-			$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+			$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 			header('Location: ../lobby/consultar.php');
 		}

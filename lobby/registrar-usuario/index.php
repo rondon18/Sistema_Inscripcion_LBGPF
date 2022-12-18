@@ -72,8 +72,8 @@
 					<div>
 						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<div class="input-group mb-2">
-							<select class="form-select" name="Tipo_Cédula_U" required>
-								<option selected disabled value="">Tipo de cédula</option>
+							<select class="form-select" name="NacioNalidad_U" required>
+								<option selected disabled value="">Nacionalidad</option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 							</select>
@@ -157,7 +157,7 @@
 		<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 	</footer>
 	<?php include '../../ayuda.php'; ?>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>

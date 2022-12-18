@@ -103,6 +103,40 @@ class Teléfonos {
 
 		return $resultado;
 	}
+
+	public function mostrar_telefonos() {
+		$conexion = conectarBD();
+
+		$sql = "
+		SELECT 
+			`Prefijo`,
+			`Número_Telefónico`,
+			`Relación_Teléfono`,
+			`Cédula_Persona` 
+		FROM 
+			`teléfonos` 
+		ORDER BY 
+			`Cédula_Persona`";
+
+		$busqueda = $conexion->query($sql) or die("error: ".$conexion->error);
+		$resultado = $busqueda->fetch_all(MYSQLI_ASSOC);
+
+		desconectarBD($conexion);
+
+		return $resultado;
+	}
+
+	public function filtrar_telefonos($cedula,$lista) {
+		$telefonos = [];
+		foreach ($lista as $contacto) {
+			if ($contacto["Cédula_Persona"] == $cedula) {
+				array_push($telefonos, $contacto);
+			}
+		}
+		return array_reverse($telefonos);
+	}
+
+
 	public function setidTeléfonos($idTeléfonos) {
 		$this->idTeléfonos = $idTeléfonos;
 	}

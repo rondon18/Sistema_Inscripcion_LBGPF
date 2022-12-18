@@ -7,8 +7,8 @@ $usuario = new Usuarios();
 
 $datos_usuario = NULL;
 
-if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
-	$Cédula = $_POST['Tipo_Cédula'].$_POST['Cédula'];
+if (isset($_POST['NacioNalidad'],$_POST['Cédula'])) {
+	$Cédula = $_POST['NacioNalidad'].$_POST['Cédula'];
 	if ($datos_usuario = $usuario->consultarUsuario($Cédula)) {
 		$Pregunta1 = $datos_usuario['Pregunta_Seg_1'];
 		$Pregunta2 = $datos_usuario['Pregunta_Seg_2'];
@@ -40,7 +40,7 @@ if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
 
 		<?php
 
-			if (isset($_POST['Tipo_Cédula'],$_POST['Cédula']) AND $datos_usuario != NULL) {
+			if (isset($_POST['NacioNalidad'],$_POST['Cédula']) AND $datos_usuario != NULL) {
 				$accion = "controladores/login.php";
 			} else {
 				$accion = "recuperar-clave.php";
@@ -74,8 +74,8 @@ if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
 							<div class="row">
 								<div class="col">
 									<div class="input-group mb-2">
-										<!-- Campo del tipo de cédula -->
-										<select class="form-select" name="Tipo_Cédula" required>
+										<!-- Campo del nacionalidad -->
+										<select class="form-select" name="NacioNalidad" required>
 											<option selected disabled value="">Seleccione una opción</option>
 											<option value="V">V</option>
 											<option value="E">E</option>
@@ -161,7 +161,7 @@ if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
 							</tr>
 							<tr>
 								<td class="input-group">
-									<select class="form-select w-auto" name="Tipo_Cédula" required>
+									<select class="form-select w-auto" name="NacioNalidad" required>
 										<option value="V">V</option>
 										<option value="E">E</option>
 									</select>
@@ -215,7 +215,7 @@ if (isset($_POST['Tipo_Cédula'],$_POST['Cédula'])) {
 	</main>
 
 <script type="text/javascript" src="js/sweetalert2.js"></script>
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/validaciones.js"></script>
 <?php if(isset($_POST['Cédula']) AND $datos_usuario == NULL): ?>

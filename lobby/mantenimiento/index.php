@@ -11,11 +11,11 @@ else {
 		header('Location: ../index.php');
 	}
 }
-require('../../clases/bitácora.php');
+require('../../clases/bitacora.php');
 require('../../controladores/conexion.php');
-$bitácora = new bitácora();
+$bitacora = new bitacora();
 $_SESSION['acciones'] .= ', Visita modulo de mantenimiento';
-$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 // Generacion de listado de ficheros
 $listado = glob('../../respaldos/*', GLOB_NOSORT);
@@ -171,7 +171,7 @@ if (isset($_POST['select-respaldo'])) {
 		</main>
 	</body>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <?php 

@@ -48,14 +48,14 @@ DROP TABLE IF EXISTS `bitácora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bitácora` (
-  `idbitácora` int(11) NOT NULL AUTO_INCREMENT,
+  `id_bitacora` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuarios` int(11) NOT NULL,
   `fechaInicioSesión` date NOT NULL,
   `horaInicioSesión` time NOT NULL,
   `linksVisitados` text NOT NULL,
   `fechaFinalSesión` date DEFAULT NULL,
   `horaFinalSesión` time DEFAULT NULL,
-  PRIMARY KEY (`idbitácora`),
+  PRIMARY KEY (`id_bitacora`),
   KEY `fk_usuarios_bitacora` (`idUsuarios`)
 ) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;

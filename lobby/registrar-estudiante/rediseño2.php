@@ -160,14 +160,14 @@
 										</div>
 										<div class="col-12 col-lg-10">
 											<div class="input-group mb-2">
-												<!-- Tipo de Cédula -->
+												<!-- NacionalIdad -->
 												<select 
-													id="Tipo_Cédula_R" 
+													id="NacioNalidad_R" 
 													class="form-select" 
-													name="Tipo_Cédula_Est" 
+													name="NacioNalidad_Est" 
 													required
 												>
-													<option selected disabled value="">Tipo de cédula</option>
+													<option selected disabled value="">Nacionalidad</option>
 													<option value="V">V</option>
 													<option value="E">E</option>
 												</select>
@@ -1195,9 +1195,9 @@
 										</div>
 										<div class="col-12 col-lg-10">
 											<div class="input-group">
-												<!-- Tipo de cédula -->
-												<select class="form-select" id="Tipo_Cédula_Padre" name="Tipo_Cédula_Padre">
-													<option selected disabled value="">Tipo de cédula</option>
+												<!-- Nacionalidad -->
+												<select class="form-select" id="NacioNalidad_Padre" name="NacioNalidad_Padre">
+													<option selected disabled value="">Nacionalidad</option>
 													<option value="V">V</option>
 													<option value="E">E</option>
 												</select>
@@ -1631,9 +1631,9 @@
 										</div>
 										<div class="col-12 col-lg-10">
 											<div class="input-group">
-												<!-- Tipo de cédula -->
-												<select class="form-select" id="Tipo_Cédula_Madre" name="Tipo_Cédula_Madre">
-													<option selected disabled value="">Tipo de cédula</option>
+												<!-- Nacionalidad -->
+												<select class="form-select" id="NacioNalidad_Madre" name="NacioNalidad_Madre">
+													<option selected disabled value="">Nacionalidad</option>
 													<option value="V">V</option>
 													<option value="E">E</option>
 												</select>
@@ -2003,7 +2003,7 @@
 								<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
 								<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
 								<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R']?>">
-								<input type="hidden" name="Tipo_Cédula_R" value="<?php echo $_POST['Tipo_Cédula_R']?>">
+								<input type="hidden" name="NacioNalidad_R" value="<?php echo $_POST['NacioNalidad_R']?>">
 								<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
 								<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
 								<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
@@ -2061,7 +2061,7 @@
 		<?php include '../../ayuda.php'; ?>
 	</main>
 	<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-	<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 	<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 	<script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>

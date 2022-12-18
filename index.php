@@ -11,10 +11,11 @@
 		<link rel="stylesheet" type="text/css" href="css/all.min.css"/>
 		<link rel="icon" type="img/png" href="img/distintivo-LGPF.png">
 	</head>
+
 	<body>
-		<main class="d-flex vh-100" style="max-height: 100vh; overflow-y: auto;">
+		<main class="d-flex flex-column justify-content-between vh-100">
 			<!--Banner-->
-			<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-absolute top-0" style="z-index:1000;">
+			<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1" style="z-index:1000;">
 				<div>
 					<img src="img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
 					<img src="img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
@@ -22,95 +23,110 @@
 				<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 			</header>
 			
-			<div class="container-md py-3 px-xl-5 align-self-center">
-				<div class="card mx-auto my-auto" style="max-width:400px;">
-					<form action="controladores/login.php" method="POST">
-						<div class="card-header text-center">
-							<b>Ingresar al sistema</b>
+			<div class="container mx-md-5 px-md-5 my-5 align-self-center">
+				<div class="card shadow overflow-hidden rounded-3">
+					<div class="row">
+						<div class="col-lg-4 d-none d-lg-inline-block">
+							<img class="w-100 h-100" src="img/img-ref.jpg" alt="">
+							<!-- <img class="w-100 h-100 position-absolute" src="img/icono.svg" alt=""> -->
 						</div>
-						<div class="card-body p-4">
-
-							<div class="row mb-2">
-								<div class="col-12 text-center">
-									<i class="fa-solid fa-5x fa-circle-user mt-0 mb-2"></i>
+						<form id="login" action="controladores/login.php" method="POST" class="col-lg-8 p-5">
+							<h3 class="mb-4">
+								<i class="fa-solid fa-lg fa-house me-2"></i>
+								Iniciar sesión
+							</h3>
+							<div class="row">
+								<div class="col-12 col-md-4 mb-2 campo">
+									<label for="nacionalidad" class="form-label">
+										Nacionalidad:
+									</label>
+									<!-- Campo de nacionalidad -->
+									<select 
+										class="form-select" 
+										name="nacionalidad" 
+										required
+									>
+										<option selected value="">Nacionalidad</option>
+										<option value="V">Venezolano(a)</option>
+										<option value="E">Extrajero(a)</option>
+									</select>
+								</div>
+								<div class="col-12 col-md-8 mb-2 campo">
+									<label for="cedula" class="form-label">Cédula:</label>
+									<!-- Campo del número de cedula -->
+									<input 
+										id="cedula" 
+										class="form-control" 
+										type="text" 
+										name="cedula" 
+										maxlength="8" 
+										placeholder="Cedula de usuario"
+										autocomplete="off" 
+										required
+									>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12">
-										<label class="form-label">Cédula:</label>
+								<div class="col-12 col-lg mb-2 campo">
+									<label for="clave" class="form-label">Contraseña:</label>
+									<input 
+										id="clave" 
+										class="form-control" 
+										type="password" 
+										name="clave" 
+										placeholder="Contraseña de ingreso" 
+										autocomplete="off" 
+										required
+									>
 								</div>
 							</div>
-
-							<div class="row">
-								<div class="col">
-									<div class="input-group mb-2">
-										<!-- Campo del tipo de cédula -->
-										<select class="form-select" name="Tipo_Cédula" required>
-											<option selected disabled value="">Seleccione una opción</option>
-											<option value="V">V</option>
-											<option value="E">E</option>
-										</select>
-										<!-- Campo del número de cédula -->
-										<input class="form-control w-sm-auto" type="text" id="Cédula" name="Cédula" placeholder="Cédula de usuario" maxlength="15" required>		
-									</div>
+							<div class="row mt-3">
+								<div class="col-12 col-lg mb-2">
+									<button class="btn btn-primary" type="submit">
+										Ingresar al sistema
+										<i class="fa-solid fa-lg fa-paper-plane ms-2"></i>
+									</button>
+								</div>
+								<div class="col-12 col-lg mb-2">
+									<a href="recuperar-clave.php">¿Contraseña olvidada?</a>
 								</div>
 							</div>
-
-							<div class="row">
-								<div class="col">
-									<label class="form-label">Contraseña:</label>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col">
-									<input class="form-control mb-2" type="password" id="clave" name="clave" placeholder="Contraseña de ingreso" required>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col">
-									<small>
-										<a class="text-muted" href="recuperar-clave.php">
-											¿Contraseña olvidada?
-										</a>
-									</small>
-								</td>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer">
-							<button class="btn btn-primary w-100" type="submit" name="Ingresar">Iniciar sesión</button>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
-
-			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
+			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2">
 				<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 			</footer>
 			<?php include 'ayuda.php'; ?>
 		</main>
-		<script type="text/javascript" src="js/sweetalert2.js"></script>
-		<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+		
+		<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-		<script type="text/javascript" src="js/validaciones.js"></script>
+
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/messages_es.min.js"></script>
+		<script type="text/javascript" src="js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+		
+		<script type="text/javascript" src="js/sweetalert2.js"></script>
+		
 		<?php if (isset($_GET['error'])): ?>
-			<script type="text/javascript" defer>
-				Swal.fire(
-					'Error',
-					'Cédula o clave incorrecta',
-					'warning'
-				);
-			</script>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Error',
+				'Cedula o clave incorrecta',
+				'warning'
+			);
+		</script>
 		<?php elseif(isset($_GET['error_pregunta'])): ?>
-			<script type="text/javascript" defer>
-				Swal.fire(
-					'Error',
-					'Las respuestas ingresadas no coinciden',
-					'warning'
-				);
-			</script>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Error',
+				'Las respuestas ingresadas no coinciden',
+				'warning'
+			);
+		</script>
 		<?php endif ?>
 	</body>
 </html>

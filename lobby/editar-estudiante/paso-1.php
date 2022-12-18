@@ -30,7 +30,7 @@ require('../../clases/teléfonos.php');
 
 require('../../controladores/conexion.php');
 
-require('../../clases/bitácora.php');
+require('../../clases/bitacora.php');
 
 $conexion = conectarBD();
 
@@ -168,14 +168,14 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 							<label class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 							<?php
 							#Separa la cédula del caracter que indica si es venezolana o extranjera
-							$tipo_Cédula = substr($datos_representante['Cédula'],0,1);
+							$nacioNalidad = substr($datos_representante['Cédula'],0,1);
 							$Cédula			= substr($datos_representante['Cédula'],1,strlen($datos_representante['Cédula'])-1);
 						 	?>
 							<div class="input-group mb-2">
-								<select class="form-select" id="Tipo_Cédula_R" name="Tipo_Cédula_R" required>
-									<option selected disabled value="">Tipo de cédula</option>
-									<option value="V" <?php if($tipo_Cédula == "V") {echo "selected";} ?>>V</option>
-									<option value="E" <?php if($tipo_Cédula == "E") {echo "selected";} ?>>E</option>
+								<select class="form-select" id="NacioNalidad_R" name="NacioNalidad_R" required>
+									<option selected disabled value="">Nacionalidad</option>
+									<option value="V" <?php if($nacioNalidad == "V") {echo "selected";} ?>>V</option>
+									<option value="E" <?php if($nacioNalidad == "E") {echo "selected";} ?>>E</option>
 								</select>
 								<input type="text" class="form-control w-auto" name="Cédula_R" id="Cédula_R" maxlength="8" minlength="7" required value="<?php echo $Cédula; ?>">
 							</div>
@@ -539,7 +539,7 @@ $carnetpatria_pa = $CarnetPatria->consultarCarnetPatria($datos_representante['C�
 		</footer>
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>

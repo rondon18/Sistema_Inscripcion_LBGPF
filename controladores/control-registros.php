@@ -101,7 +101,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
 
 		// Concatenado del tipo y el número de cédula
-		$Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
+		$Cédula_representante = $_POST['NacioNalidad_R'].$_POST['Cédula_R'];
 		$persona->setCédula($Cédula_representante);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
@@ -225,15 +225,15 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 
 		//si la cédula y su tipo están llenos
-		if (!empty($_POST['Tipo_Cédula_Madre']) and !empty($_POST['Cédula_Madre'])) {
+		if (!empty($_POST['NacioNalidad_Madre']) and !empty($_POST['Cédula_Madre'])) {
 			//asignacion con los datos enviados
-			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+			$Cédula_madre = $_POST['NacioNalidad_Madre'].$_POST['Cédula_Madre'];
 			$persona->setCédula($Cédula_madre);
 			echo "madre";		
 		}
 
 		//si la cédula o su tipo están vacios
-		elseif(empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+		elseif(empty($_POST['NacioNalidad_Madre']) or empty($_POST['Cédula_Madre'])) {
 			// asignacion de cédula probicional e incremento para el caso madre
 			$Cédula_madre = "V".$fila;
 			$persona->setCédula($Cédula_madre);
@@ -357,13 +357,13 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//Si el campo se envia
 
 		//si la cédula y su tipo están llenos
-		if (!empty($_POST['Tipo_Cédula_Padre']) and !empty($_POST['Cédula_Padre'])) {
+		if (!empty($_POST['NacioNalidad_Padre']) and !empty($_POST['Cédula_Padre'])) {
 			//asignacion con los datos enviados
-			$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+			$Cédula_padre = $_POST['NacioNalidad_Padre'].$_POST['Cédula_Padre'];
 			$persona->setCédula($Cédula_padre);
 		}
 		//si la cédula o su tipo están vacios
-		elseif(empty($_POST['Tipo_Cédula_Padre']) or empty($_POST['Cédula_Padre'])) {
+		elseif(empty($_POST['NacioNalidad_Padre']) or empty($_POST['Cédula_Padre'])) {
 			// asignacion de cédula probicional e incremento para el caso madre
 			$Cédula_padre = "V".$fila;
 			$persona->setCédula($Cédula_padre);
@@ -470,7 +470,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Est']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Est']);
 
-		$Cédula_estudiante = $_POST['Tipo_Cédula_Est'].$_POST['Cédula_Est'];
+		$Cédula_estudiante = $_POST['NacioNalidad_Est'].$_POST['Cédula_Est'];
 		$persona->setCédula($Cédula_estudiante);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Est']);
@@ -659,7 +659,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Principal_Aux']);
 		$datos_auxiliar->setidRepresentante($datos_representante->getidRepresentantes());
 		$datos_auxiliar->setidEstudiantes($datos_estudiante->getidEstudiantes());
-		// $Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		// $Cédula_auxiliar = $_POST['NacioNalidad_Aux'].$_POST['Cédula_Aux'];
 		// $persona->setCédula($Cédula_auxiliar);
 		// $persona->setGénero($_POST['Género_Aux']);
 		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
@@ -669,11 +669,11 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$Inscripcion->insertarRegistro($_SESSION['usuario']['idUsuarios'],$datos_estudiante->getidEstudiantes());
 
-		require('../clases/bitácora.php');
+		require('../clases/bitacora.php');
 
-		$bitácora = new bitácora();
+		$bitacora = new bitacora();
 		$_SESSION['acciones'] .= ',Registra un estudiante';
-		$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+		$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 		header('Location: ../lobby/consultar/estudiantes.php?exito');
 	}
@@ -687,7 +687,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_R']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_R']);
 
-		$Cédula_representante = $_POST['Tipo_Cédula_R'].$_POST['Cédula_R'];
+		$Cédula_representante = $_POST['NacioNalidad_R'].$_POST['Cédula_R'];
 		$persona->setCédula($Cédula_representante);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
@@ -825,7 +825,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_auxiliar->setRelación($_POST['Relación_Auxiliar']);
 		$datos_auxiliar->setPrefijo($_POST['Prefijo_Auxiliar_R']);
 		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);		
-		// $Cédula_auxiliar = $_POST['Tipo_Cédula_Aux'].$_POST['Cédula_Aux'];
+		// $Cédula_auxiliar = $_POST['NacioNalidad_Aux'].$_POST['Cédula_Aux'];
 		// $persona->setCédula($Cédula_auxiliar);
 		// $persona->setGénero($_POST['Género_Aux']);
 		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
@@ -864,12 +864,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Madre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Madre']);
 
-		if (!isset($_POST['Tipo_Cédula_Madre'])) {
+		if (!isset($_POST['NacioNalidad_Madre'])) {
 			$Tc_madre = "V";
 			$Cédula_madre = $Tc_madre.$_POST['Cédula_Madre'];
 		}
 		else {
-			$Cédula_madre = $_POST['Tipo_Cédula_Madre'].$_POST['Cédula_Madre'];
+			$Cédula_madre = $_POST['NacioNalidad_Madre'].$_POST['Cédula_Madre'];
 		}
 
 		$persona->setCédula($Cédula_madre);
@@ -899,7 +899,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		//Cedula nula de relleno
 
 		//si la cédula es vacia, no edita sino inserta
-		if (empty($_POST['Tipo_Cédula_Madre']) or empty($_POST['Cédula_Madre'])) {
+		if (empty($_POST['NacioNalidad_Madre']) or empty($_POST['Cédula_Madre'])) {
 			$datos_madre->insertarMadre();
 			$idMadre = $datos_madre->getidMadre();
 		}
@@ -992,7 +992,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Padre']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Padre']);
 
-		$Cédula_padre = $_POST['Tipo_Cédula_Padre'].$_POST['Cédula_Padre'];
+		$Cédula_padre = $_POST['NacioNalidad_Padre'].$_POST['Cédula_Padre'];
 		$persona->setCédula($Cédula_padre);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Padre']);
@@ -1103,7 +1103,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_Est']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_Est']);
 
-		$Cédula_estudiante = $_POST['Tipo_Cédula_Est'].$_POST['Cédula_Est'];
+		$Cédula_estudiante = $_POST['NacioNalidad_Est'].$_POST['Cédula_Est'];
 		$persona->setCédula($Cédula_estudiante);
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Est']);

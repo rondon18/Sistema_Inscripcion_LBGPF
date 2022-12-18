@@ -16,7 +16,7 @@ require('../clases/grado.php');
 
 require('../controladores/conexion.php');
 
-require('../clases/bitácora.php');
+require('../clases/bitacora.php');
 
 $conexion = conectarBD();
 

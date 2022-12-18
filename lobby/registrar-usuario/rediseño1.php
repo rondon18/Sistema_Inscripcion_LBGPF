@@ -99,8 +99,8 @@
 
 											<div class="col-12 col-lg-10">
 												<div class="input-group mb-2">
-													<select id="Tipo_Cédula_R" class="form-select" name="Tipo_Cédula_R" required>
-														<option selected disabled value="">Tipo de cédula</option>
+													<select id="NacioNalidad_R" class="form-select" name="NacioNalidad_R" required>
+														<option selected disabled value="">Nacionalidad</option>
 														<option value="V">V</option>
 														<option value="E">E</option>
 													</select>
@@ -625,7 +625,7 @@
 		<?php include '../../ayuda.php'; ?>
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>

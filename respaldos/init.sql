@@ -35,14 +35,14 @@ COLLATE = utf8_bin;
 -- Table `si_lbgpf`.`bitácora`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `si_lbgpf`.`bitácora` (
-  `idbitácora` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_bitacora` INT(11) NOT NULL AUTO_INCREMENT,
   `idUsuarios` INT(11) NOT NULL,
   `fechaInicioSesión` DATE NOT NULL,
   `horaInicioSesión` TIME NOT NULL,
   `linksVisitados` TEXT NOT NULL,
   `fechaFinalSesión` DATE NULL DEFAULT NULL,
   `horaFinalSesión` TIME NULL DEFAULT NULL,
-  PRIMARY KEY (`idbitácora`),
+  PRIMARY KEY (`id_bitacora`),
   INDEX `fk_usuarios_bitacora` (`idUsuarios` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 144

@@ -8,13 +8,13 @@ require("../clases/económicos-representantes.php");
 require("../clases/laborales.php");
 require("../clases/vivienda.php");
 require("../clases/Teléfonos.php");
-require("../clases/bitácora.php");
+require("../clases/bitacora.php");
 
 
 // Inicio de sesión regular
-if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $clave = $_POST['clave'] != "")) {
+if (isset($_POST['cedula'],$_POST['clave']) and ($_POST['cedula'] != "" and $clave = $_POST['clave'] != "")) {
 
-	$Cédula = $_POST['Tipo_Cédula'].$_POST['Cédula'];
+	$Cédula = $_POST['nacionalidad'].$_POST['cedula'];
 	$clave = $_POST['clave'];
 
 	$conexion = conectarBD();
@@ -41,9 +41,9 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 			#se crea variable de Sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
-			$bitácora = new bitácora();
+			$bitacora = new bitacora();
 
-			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
+			$_SESSION['id_bitacora'] = $bitacora->guardar_bitacora($_SESSION['usuario']['idUsuarios']);
 			$_SESSION['acciones'] = "Inicia Sesión";
 
 			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante
@@ -64,9 +64,9 @@ if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $c
 }
 
 // Inicio de sesión con pregunta de seguridad
-elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST['Recuperar_Clave'])) {
+elseif (isset($_POST['cedula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST['Recuperar_Clave'])) {
 
-	$Cédula = $_POST['Cédula'];
+	$Cédula = $_POST['cedula'];
 
 	$Respuesta1 = $_POST['Respuesta1'];
 	$Respuesta2 = $_POST['Respuesta2'];
@@ -95,9 +95,9 @@ elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST
 			#se crea variable de Sesión con los datos del usuario
 			$_SESSION['usuario'] = $resultado_usuario;
 
-			$bitácora = new bitácora();
+			$bitacora = new bitacora();
 
-			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
+			$_SESSION['id_bitacora'] = $bitacora->guardar_bitacora($_SESSION['usuario']['idUsuarios']);
 			$_SESSION['acciones'] = "Inicia Sesión";
 
 			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante

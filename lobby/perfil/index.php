@@ -7,11 +7,11 @@ if (!$_SESSION['login']) {
 }
 
 require('funciones.php');
-require('../../clases/bitácora.php');
+require('../../clases/bitacora.php');
 require('../../controladores/conexion.php');
-$bitácora = new bitácora();
+$bitacora = new bitacora();
 $_SESSION['acciones'] .= ', Visita perfil';
-$bitácora->actualizar_bitácora($_SESSION['acciones'],$_SESSION['idbitácora']);
+$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Segundo_Nombre']." ".$_SESSION['persona']['Primer_Apellido']." ".$_SESSION['persona']['Segundo_Apellido']
 
@@ -30,9 +30,9 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
 </head>
 <body>
-	<main style="max-height: 100vh; overflow-y: auto;">
+	<main class="d-flex flex-column justify-content-between vh-100">
 		<!--Banner-->
-		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-absolute top-0" style="z-index:1000;">
+		<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1">
 			<div>
 				<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
 				<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
@@ -40,7 +40,7 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 			<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
 		</header>
 		
-		<div class="container-md py-3 px-xl-5 my-5 mb-lg-0">
+		<div class="container-md">
 		
 				<div class="card">
 					
@@ -239,13 +239,13 @@ $nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona'
 			
 		</div>
 
-		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
+		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2">
 			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>

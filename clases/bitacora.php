@@ -1,10 +1,10 @@
 <?php
 
-class bitácora {
+class bitacora {
 
 	public function __construct(){}
 
-	public function guardar_bitácora($idUsuarios){
+	public function guardar_bitacora($idUsuarios){
 		$conexion = conectarBD();
 		date_default_timezone_set("America/Caracas");
 		$fechaActual = date("Y-m-d");
@@ -12,7 +12,18 @@ class bitácora {
 
 		$links = "Inicia Sesión";
 
-		$sql = "INSERT INTO `bitácora`(`idbitácora`, `idUsuarios`, `fechaInicioSesión`, `horaInicioSesión`, `linksVisitados`, `fechaFinalSesión`, `horaFinalSesión`) VALUES (
+		$sql = "
+		INSERT INTO `bitacora`
+		(
+			`id_bitacora`, 
+			`idUsuarios`, 
+			`fechaInicioSesión`, 
+			`horaInicioSesión`, 
+			`linksVisitados`, 
+			`fechaFinalSesión`, 
+			`horaFinalSesión`
+		) 
+		VALUES (
 			NULL,
 			'$idUsuarios',
 			'$fechaActual',
@@ -23,45 +34,45 @@ class bitácora {
 		)";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
-		$idbitácora = $conexion->insert_id;
+		$id_bitacora = $conexion->insert_id;
 
 		desconectarBD($conexion);
 
-		return $idbitácora;
+		return $id_bitacora;
 	}
 
-	public function actualizar_bitácora($acciones,$idbitácora){
+	public function actualizar_bitacora($acciones,$id_bitacora){
 
 		$conexion = conectarBD();
 
-		$sql = "UPDATE `bitácora` SET
+		$sql = "UPDATE `bitacora` SET
 		`linksVisitados`='$acciones'
-		WHERE `idbitácora`='$idbitácora'";
+		WHERE `id_bitacora`='$id_bitacora'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
 
-	public function cerrar_bitácora($idbitácora){
+	public function cerrar_bitacora($id_bitacora){
 		$conexion = conectarBD();
 
 		date_default_timezone_set("America/Caracas");
 		$fechaFinal = date("Y-m-d");
 		$horaFinal = date("H:i:s");
 
-		$sql = "UPDATE `bitácora` SET
+		$sql = "UPDATE `bitacora` SET
 		`fechaFinalSesión`='$fechaFinal',
 		`horaFinalSesión`='$horaFinal'
-		WHERE `idbitácora`='$idbitácora'";
+		WHERE `id_bitacora`='$id_bitacora'";
 
 		$conexion->query($sql) or die("error: ".$conexion->error);
 		desconectarBD($conexion);
 	}
 
-	public function mostrar_bitácora() {
+	public function mostrar_bitacora() {
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `bitácora` ORDER BY `idbitácora` DESC";
+			$sql = "SELECT * FROM `bitacora` ORDER BY `id_bitacora` DESC";
 
 			$consulta_registros = $conexion->query($sql) or die("error: ".$conexion->error);
 			$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
