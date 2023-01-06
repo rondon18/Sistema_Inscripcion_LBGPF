@@ -6,7 +6,7 @@
 			"pagingType": "full",
 			"language": {"url": "../../js/datatables-español.json"},
 			
-			dom: 'Bfrtip',
+			dom: '<"nav nav-fill mb-2"<B><"ms-auto d-none d-md-inline-block"l><"ms-md-4"f>>rt<".nav"<"mx-auto m-md-0"i><"ms-md-auto"p>>',
 
 			buttons: [{
 				extend: 		'excelHtml5',
@@ -34,5 +34,9 @@
         }
       },
 
+      "lengthMenu": [
+				[5,10, 25],
+				[5,10, 25],
+			],
 		});
 	});

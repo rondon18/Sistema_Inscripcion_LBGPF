@@ -89,7 +89,7 @@ $listaRepresentantes = $representante->mostrarRepresentantes();
 				<td><?php echo $representante['Lugar_Nacimiento'];?></td>
 				<td><?php echo Género($representante['Género']); ?></td>
 				<td><?php echo $representante['Correo_Electrónico'];?></td>
-				<td><?php echo $representante['Dirección'];?></td>
+				<td style="min-width: 100vw"><?php echo $representante['Dirección'];?></td>
 				<td><?php echo $representante['Estado_Civil'];?></td>
 				<td><?php echo $representante['Grado_Académico'];?></td>
 				

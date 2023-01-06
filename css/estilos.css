@@ -25,6 +25,13 @@ body {
    }
 }
 
+.form-label.requerido:after
+{
+  content: ' *';
+  color: red;
+}
+
+
 div.campo:has(.form-control:required) label.form-label:after,
 div.campo:has(.form-select:required) label.form-label:after
 {
@@ -37,9 +44,9 @@ label.error {
    color: red;
 }
 
-.form-select::after {
+/*.form-select::after {
   content: "";
-}
+}*/
 
 .form-control.error:not(:focus), 
 .form-select.error:not(:focus)  
@@ -55,8 +62,8 @@ label.error {
    background-color: rgb(224 242 254) !important;
 }
 
-.form-control.valid, 
-.form-select.valid
+.form-control.valid:not(:disabled), 
+.form-select.valid:not(:disabled)
 {
    border: 1px green solid !important;
    background-color: rgb(220 252 231) !important;
@@ -88,6 +95,10 @@ label.error {
   .w-xs-auto {
     width: auto !important;
   }
+}
+
+optgroup:disabled {
+  display: none !important;
 }
 
 /* // Small devices (landscape phones, 576px and up) */

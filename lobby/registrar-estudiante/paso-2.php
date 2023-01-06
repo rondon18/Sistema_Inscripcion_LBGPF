@@ -21,7 +21,7 @@ if (!isset($_POST['Datos_Representante'])) {
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+	<link rel="icon" type="img/png" href="../../img/icono.png">
 </head>
 <body>
 	<!--Banner-->
@@ -1024,7 +1024,7 @@ if (!isset($_POST['Datos_Representante'])) {
 		<?php include '../../ayuda.php';?>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-estudiante.js"></script>
+<script type="text/javascript" src="../../js/validaciones_estudiante.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script>
 function enviar() {

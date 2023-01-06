@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+	<link rel="icon" type="img/png" href="../../img/icono.png">
 </head>
 <body>
 	<main style="max-height: 100vh; overflow-y: auto;">
@@ -626,7 +626,7 @@
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
+<script type="text/javascript" src="../../js/validaciones_inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

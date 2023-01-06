@@ -251,7 +251,7 @@ desconectarBD($conexion);
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+	<link rel="icon" type="img/png" href="../../img/icono.png">
 </head>
 <body>
 	<!--Banner-->

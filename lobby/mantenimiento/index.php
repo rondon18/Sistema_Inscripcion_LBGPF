@@ -41,9 +41,7 @@ function hallarRespaldosEsp($dato){
 	}
 }
 
-if (isset($_POST['select-respaldo'])) {
-	echo "<br><br><br><br><br>".$_POST['select-respaldo'];
-}
+$nivel = 2;
 
 ?>
 
@@ -57,20 +55,12 @@ if (isset($_POST['select-respaldo'])) {
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-		<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+		<link rel="icon" type="img/png" href="../../img/icono.png">
 	</head>
 	<body>
-		<main style="max-height: 100vh; overflow-y: auto;">
-			<!--Banner-->
-			<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-absolute top-0" style="z-index:1000;">
-				<div>
-					<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-					<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-				</div>
-				<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
-			</header>
-			
-			<div class="container-md py-3 px-xl-5 my-5 mb-lg-0">
+		<main class="d-flex flex-column justify-content-between vh-100">
+			<?php include('../../header.php'); ?>
+			<div class="container-md">
 				
 				<div class="card">
 					<div class="card-header text-center">
@@ -159,15 +149,16 @@ if (isset($_POST['select-respaldo'])) {
 						</div>
 					</div>
 					<div class="card-footer">
-						<a class="btn btn-primary" href="../index.php">Volver al inicio</a>
+						<a class="btn btn-primary" href="../index.php">
+							<i class="fa-solid fa-lg me-2 fa-backward"></i>
+							Volver al inicio
+						</a>
 					</div>
 				</div>
 				
 			</div>
-			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
-				<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
-			</footer>
-			<?php include '../../ayuda.php'; ?>
+			<?php include('../../footer.php'); ?>
+			<?php include('../../ayuda.php'); ?>
 		</main>
 	</body>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>

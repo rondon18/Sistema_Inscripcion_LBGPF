@@ -1,4 +1,7 @@
 <?php
+
+$nivel = 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -9,19 +12,12 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="css/all.min.css"/>
-		<link rel="icon" type="img/png" href="img/distintivo-LGPF.png">
+		<link rel="icon" type="img/png" href="img/icono.png">
 	</head>
 
 	<body>
 		<main class="d-flex flex-column justify-content-between vh-100">
-			<!--Banner-->
-			<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1" style="z-index:1000;">
-				<div>
-					<img src="img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-					<img src="img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-				</div>
-				<img src="img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
-			</header>
+			<?php include('header.php'); ?>
 			
 			<div class="container mx-md-5 px-md-5 my-5 align-self-center">
 				<div class="card shadow overflow-hidden rounded-3">
@@ -95,10 +91,8 @@
 					</div>
 				</div>
 			</div>
-			<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2">
-				<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
-			</footer>
-			<?php include 'ayuda.php'; ?>
+			<?php include('footer.php'); ?>
+			<?php include('ayuda.php'); ?>
 		</main>
 		
 		<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>

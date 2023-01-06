@@ -6,9 +6,10 @@
 			"pagingType": "full",
 			"language": {"url": "../../js/datatables-español.json"},
 			
-			dom: 'Bfrtip',
+			dom: '<"nav nav-fill mb-2"<B><"ms-auto d-none d-md-inline-block"l><"ms-md-4"f>>rt<".nav"<"mx-auto m-md-0"i><"ms-md-auto"p>>',
 
-			buttons: [{
+			buttons: [
+			{
 				extend: 		'excelHtml5',
 				autoFilter: true,
 				className: 	'btn btn-secondary',
@@ -19,7 +20,16 @@
 				exportOptions: {
 					columns: 	':not(:last-child)',
 				},
-			}],
+			},
+			// Boton parar ir a registrar un estudiante
+			{
+				className: 		'btn btn-secondary',
+				text: 				'Registrar usuario<i class="fas fa-lg fa-user-plus ms-2"></i>',
+				action: function ( e, dt, button, config ) {
+					window.location = '../registrar-usuario/index.php';
+				}         
+			},
+			],
 			
 			responsive: 	
 			{
@@ -37,5 +47,9 @@
         }
       },
 
+      "lengthMenu": [
+				[5,10, 25],
+				[5,10, 25],
+			],
 		});
 	});
