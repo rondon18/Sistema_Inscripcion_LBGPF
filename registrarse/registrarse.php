@@ -72,7 +72,7 @@
 						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<div class="input-group mb-2" required>
 							<select class="form-select" name="Tipo_Cédula_U">
-								<option selected disabled>Tipo de cédula</option>
+								<option selected disabled>Nacionaldad</option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 							</select>
@@ -102,7 +102,7 @@
 							<input class="form-control mb-2" type="password" name="Contraseña" placeholder="Contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
 							<input class="form-control mb-2" type="password" name="RepetirContraseña" placeholder="Repertir la contraseña" pattern="<?php echo $patron;?>" title="<?php echo $requisitos;?>">
 						</div>
-						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayusculas, minusculas, simbolos y números</small>
+						<small class="d-inline-block form-text">La contraseña debe tener al menos 8 caracteres e incluir: mayúsculas, minúsculas, símbolos y números</small>
 					</div>
 					<!--Preguntas de seguridad-->
 					<h5>Preguntas de seguridad:</h5>
@@ -115,7 +115,7 @@
 						<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 						<option value="Color que más te gusta">Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu héroe favorito?</option>
 						<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
@@ -133,7 +133,7 @@
 						<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 						<option value="Color que más te gusta">Color que más te gusta</option>
 						<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+						<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu héroe favorito?</option>
 						<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 						<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 						<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
