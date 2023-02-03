@@ -83,7 +83,7 @@
 					className: 		'btn btn-secondary',
 					text: 				'Registrar estudiante<i class="fas fa-lg fa-user-plus ms-2"></i>',
 					action: function ( e, dt, button, config ) {
-						window.location = '../registrar-estudiante/paso-1.php';
+						window.location = '../registrar-estudiante/paso_1.php';
 					}         
 				},
 				

@@ -7,17 +7,13 @@ if (!isset($_GET['sec'])) {
 	header('Location: index.php');
 }
 
-require("../../clases/estudiante.php");
+require("../../clases/estudiantes.php");
 require("../../clases/representantes.php");
-require("../../clases/teléfonos.php");
+require("../../clases/telefonos.php");
 
-$estudiante = new Estudiantes();
-$representante = new Representantes();
-$Teléfonos = new Teléfonos();
-$lista_telefonos = $Teléfonos->mostrar_telefonos();
-
-$listaEstudiantes = $estudiante->mostrarEstudiantes();
-$listaRepresentantes = $representante->mostrarRepresentantes();
+$estudiante = new estudiantes();
+$representante = new representantes();
+$teléfonos = new telefonos();
 
 
 ?>							
@@ -166,7 +162,7 @@ $listaRepresentantes = $representante->mostrarRepresentantes();
 						<input type="hidden" name="id_madre" value="<?php echo $estudiante['idMadre']; ?>">
 						<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
 					</form>
-					<form action="editar-estudiante/paso-1.php" method="post" style="display: inline-block;" target="_blank">
+					<form action="editar-estudiante/paso_1.php" method="post" style="display: inline-block;" target="_blank">
 						<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['Cédula']; ?>">
 						<input type="hidden" name="id_Estudiante" value="<?php echo $estudiante['idEstudiantes']; ?>">
 						<input type="hidden" name="id_representante" value="<?php echo $estudiante['idRepresentante']; ?>">

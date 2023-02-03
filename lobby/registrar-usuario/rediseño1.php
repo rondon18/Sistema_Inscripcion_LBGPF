@@ -55,7 +55,7 @@
 							
 							<!-- Contenedor del formulario -->
 							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
-								<form id="FormularioRepresentante" action="paso-2.php" method="POST">
+								<form id="FormularioRepresentante" action="paso_2.php" method="POST">
 									<!-- Seccion de datos personales -->
 									<section id="seccion1" class="row">
 										<!-- Titulo de la seccion -->

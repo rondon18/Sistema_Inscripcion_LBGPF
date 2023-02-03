@@ -95,7 +95,7 @@ $(document).ready(function(){
 
 jQuery.validator.addMethod("lettersonly", function(value, element) 
 {
-return this.optional(element) || /^[a-z," "]+$/i.test(value);
+return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
 }, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
 $("#formulario_estudiantes").validate({
@@ -204,7 +204,7 @@ $("#boton_siguiente").click(function() {
 		// Activa la seccion actual y su indicador
 		$("#seccion" + count_form_1).fadeIn();
 		$("#link" + count_form_1).addClass("active");
-		if (count_form_1 == 5) {
+		if (count_form_1 == 6) {
 			$("#boton_siguiente").hide();
 			$("#boton_guardar").fadeIn();
 		}
@@ -233,6 +233,6 @@ $("#boton_guardar").click(function() {
 			'info'
 		);
 	}
-	$("#seccion1, #seccion2, #seccion3, #seccion4").hide();
+	$("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5").hide();
 });
 

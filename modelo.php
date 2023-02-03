@@ -48,7 +48,7 @@
 												<i class="fas fa-user-plus fa-3x me-2"></i>
 												<p class="ps-2 m-0 my-1 w-100">
 													Inscribir estudiante: <br>
-													<a href="registrar-estudiante/paso-1.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
+													<a href="registrar-estudiante/paso_1.php" class="d-block btn btn-sm btn-outline-light mt-2 mb-0 hvr-icon">
 														Registrar nuevo
 														<i class="fas fa-plus-square fa-lg ms-1 hvr-icon"></i>
 													</a>

@@ -1,99 +1,293 @@
+// PADRE
+
+//Deshabilita las opciones de datos del padre si marca no
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado de los 
+		// radiobotones de si desea agregar los datos del padre o no
+		selected_value = $("input[name='agregar_p']:checked").val();
+		if (selected_value == "S") {
+			$("#datos_p").prop("disabled", false);
+			$("#datos_p").fadeIn();
+		}
+		else if (selected_value == "N"){
+			$("#datos_p").prop("disabled", true);
+			$("#datos_p").fadeOut();
+		}
+	});
+});
+
+//Habilita/Deshabilita el campo especificar país de padre
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado del select de si reside en el país
+		selected_value = $("select[name='reside_en_el_pais_p']>option:selected").val();
+		if (selected_value == "No") {
+			$("#pais_p").prop("disabled", false);
+		}
+		else {
+			$("#pais_p").prop("disabled", true);
+		}
+	});
+});
+
+//Deshabilita area de trabajo del padre si marca no
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado de los 
+		// radiobotones de si trabaja o no
+		selected_value = $("input[name='padre_trabaja']:checked").val();
+		if (selected_value == "Si") {
+			$("#datos_trabajo_p").prop("disabled", false);
+			$("#datos_trabajo_p").fadeIn();
+		}
+		else if (selected_value == "No"){
+			$("#datos_trabajo_p").prop("disabled", true);
+			$("#datos_trabajo_p").fadeOut();
+		}
+	});
+});
+
+
+//Habilita/Deshabilita el campo de otra tenencia
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado del select de tenencia de vivienda
+		selected_value = $("select[name='tenencia_vivienda_p']>option:selected").val();
+		if (selected_value == "Otro") {
+			$("#tenencia_vivienda_p_otro").prop("disabled", false);
+		}
+		else {
+			$("#tenencia_vivienda_p_otro").prop("disabled", true);
+		}
+	});
+});
+
+
+
+
+// MADRE
+
+//Deshabilita las opciones de datos del padre si marca no
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado de los 
+		// radiobotones de si desea agregar los datos del padre o no
+		selected_value = $("input[name='agregar_m']:checked").val();
+		if (selected_value == "S") {
+			$("#datos_m").prop("disabled", false);
+			$("#datos_m").fadeIn();
+		}
+		else if (selected_value == "N"){
+			$("#datos_m").prop("disabled", true);
+			$("#datos_m").fadeOut();
+		}
+	});
+});
+
+//Habilita/Deshabilita el campo especificar país de padre
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado del select de si reside en el país
+		selected_value = $("select[name='reside_en_el_pais_m']>option:selected").val();
+		if (selected_value == "No") {
+			$("#pais_m").prop("disabled", false);
+		}
+		else {
+			$("#pais_m").prop("disabled", true);
+		}
+	});
+});
+
+//Deshabilita area de trabajo del padre si marca no
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado de los 
+		// radiobotones de si trabaja o no
+		selected_value = $("input[name='madre_trabaja']:checked").val();
+		if (selected_value == "Si") {
+			$("#datos_trabajo_m").prop("disabled", false);
+			$("#datos_trabajo_m").fadeIn();
+		}
+		else if (selected_value == "No"){
+			$("#datos_trabajo_m").prop("disabled", true);
+			$("#datos_trabajo_m").fadeOut();
+		}
+	});
+});
+
+
+//Habilita/Deshabilita el campo de otra tenencia
+$(document).ready(function(){
+	$('#formulario_padres').change(function(){
+		// Sigue cambios en el valor seleccionado del select de tenencia de vivienda
+		selected_value = $("select[name='tenencia_vivienda_m']>option:selected").val();
+		if (selected_value == "Otro") {
+			$("#tenencia_vivienda_m_otro").prop("disabled", false);
+		}
+		else {
+			$("#tenencia_vivienda_m_otro").prop("disabled", true);
+		}
+	});
+});
+
+
+
+
+
+
+
 jQuery.validator.addMethod("lettersonly", function(value, element) 
 {
-return this.optional(element) || /^[a-z," "]+$/i.test(value);
+return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
 }, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
 $("#formulario_padres").validate({
 	rules:{
 
+		// Parte del padre
+
 		// personal
-		primer_nombre_r: {
+		primer_nombre_p: {
 			lettersonly: true,
+			minlength: 3,
 		},
-		segundo_nombre_r: {
+		segundo_nombre_p: {
 			lettersonly: true,
+			minlength: 3,
 		},
-		primer_apellido_r: {
+		primer_apellido_p: {
 			lettersonly: true,
+			minlength: 3,
 		},
-		segundo_apellido_r: {
+		segundo_apellido_p: {
 			lettersonly: true,
+			minlength: 3,
 		},
-		cedula_r: {
+		cedula_p: {
+			digits: true,
+			maxlength:11,
+		},
+		codigo_carnet_patria_p: {
 			digits: true,
 		},
-		codigo_carnet_patria_r: {
-			digits: true,
-		},
-		serial_carnet_patria_r: {
+		serial_carnet_patria_p: {
 			digits: true,
 		},
 
 		// contacto
-		prefijo_principal_r: {
+		prefijo_principal_p: {
 			digits: true,
 			minlength: 4,
 			maxlength: 4,
 		},
-		telefono_principal_r: {
+		telefono_principal_p: {
 			digits: true,
 			minlength: 7,
 			maxlength: 7,
 		},
-		prefijo_secundario_r: {
+		prefijo_secundario_p: {
 			digits: true,
 			minlength: 4,
 			maxlength: 4,
 		},
-		telefono_secundario_r: {
+		telefono_secundario_p: {
 			digits: true,
 			minlength: 7,
 			maxlength: 7,
 		},
-		prefijo_auxiliar_r: {
-			digits: true,
-			minlength: 4,
-			maxlength: 4,
-		},
-		telefono_auxiliar_r: {
-			digits: true,
-			minlength: 7,
-			maxlength: 7,
-		},
-
-		// direccion
-		municipio: {
-			maxlength: 80,
-		},
-		parroquia: {
-			maxlength: 80,
-		},
-		sector: {
-			maxlength: 80,
-		},
-		calle: {
-			maxlength: 80,
-		},
-		nro_casa: {
-			maxlength: 80,
-		},
-		punto_referencia: {
-			maxlength: 80,
-		},
-
 
 		// vivienda
-		tenencia_vivienda_r_otro: {
+		pais_p: {
 			lettersonly: true,
+			minlength: 3,
+		},
+		tenencia_vivienda_p_otro: {
+			lettersonly: true,
+			minlength: 3,
 		},
 
 		// trabajo
-		prefijo_trabajo_r: {
+		prefijo_trabajo_p: {
 			digits: true,
 			minlength: 4,
 			maxlength: 4,
 		},
-		telefono_trabajo_r: {
+		telefono_trabajo_p: {
+			digits: true,
+			minlength: 7,
+			maxlength: 12,
+		},
+		
+		// Parte de la madre
+
+		// personal
+		primer_nombre_m: {
+			lettersonly: true,
+			minlength: 3,
+		},
+		segundo_nombre_m: {
+			lettersonly: true,
+			minlength: 3,
+		},
+		primer_apellido_m: {
+			lettersonly: true,
+			minlength: 3,
+		},
+		segundo_apellido_m: {
+			lettersonly: true,
+			minlength: 3,
+		},
+		cedula_m: {
+			digits: true,
+			maxlength:11,
+		},
+		codigo_carnet_matria_m: {
+			digits: true,
+		},
+		serial_carnet_matria_m: {
+			digits: true,
+		},
+
+		// contacto
+		prefijo_principal_m: {
+			digits: true,
+			minlength: 4,
+			maxlength: 4,
+		},
+		telefono_principal_m: {
+			digits: true,
+			minlength: 7,
+			maxlength: 7,
+		},
+		prefijo_secundario_m: {
+			digits: true,
+			minlength: 4,
+			maxlength: 4,
+		},
+		telefono_secundario_m: {
+			digits: true,
+			minlength: 7,
+			maxlength: 7,
+		},
+
+		// vivienda
+		pais_m: {
+			lettersonly: true,
+			minlength: 3,
+		},
+		tenencia_vivienda_m_otro: {
+			lettersonly: true,
+			minlength: 3,
+		},
+
+		// trabajo
+		prefijo_trabajo_m: {
+			digits: true,
+			minlength: 4,
+			maxlength: 4,
+		},
+		telefono_trabajo_m: {
 			digits: true,
 			minlength: 7,
 			maxlength: 12,
@@ -177,6 +371,6 @@ $("#boton_guardar").click(function() {
 			'info'
 		);
 	}
-	$("#seccion1, #seccion2, #seccion3, #seccion4").hide();
+	$("#seccion1").hide();
 });
 

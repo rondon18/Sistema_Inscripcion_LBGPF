@@ -19,23 +19,23 @@ foreach ($_POST as $key => $value) {
 }
 
 //Si el campo se envia
-		if (isset($_POST['NacioNalidad_Padre'],$_POST['Cédula_Padre'])) {
-			
-			//si la cédula y su tipo están llenos
-			if (!empty($_POST['NacioNalidad_Padre']) and !empty($_POST['Cédula_Padre'])) {
-				//asignacion con los datos enviados
-				$Cédula_padre = $_POST['NacioNalidad_Padre'].$_POST['Cédula_Padre'];
-				echo $Cédula_padre;
-			}
-
-			//si la cédula o su tipo están vacios
-			elseif(empty($_POST['NacioNalidad_Padre']) or empty($_POST['Cédula_Padre'])) {
-				// asignacion de cédula probicional e incremento para el caso madre
-				$cedula_P = "V".$fila;
-				echo "cedula";
-				$fila++;
-			}
+	if (isset($_POST['NacioNalidad_Padre'],$_POST['Cédula_Padre'])) {
+		
+		//si la cédula y su tipo están llenos
+		if (!empty($_POST['NacioNalidad_Padre']) and !empty($_POST['Cédula_Padre'])) {
+			//asignacion con los datos enviados
+			$Cédula_padre = $_POST['NacioNalidad_Padre'].$_POST['Cédula_Padre'];
+			echo $Cédula_padre;
 		}
+
+		//si la cédula o su tipo están vacios
+		elseif(empty($_POST['NacioNalidad_Padre']) or empty($_POST['Cédula_Padre'])) {
+			// asignacion de cédula probicional e incremento para el caso madre
+			$cedula_P = "V".$fila;
+			echo "cedula";
+			$fila++;
+		}
+	}
 
 ?>
 

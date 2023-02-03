@@ -1,74 +1,76 @@
 <?php 
 
-session_start();
-if (!$_SESSION['login']) {
-	header('Location: ../../index.php');
-	exit();
-}
+	session_start();
+	if (!$_SESSION['login']) {
+		header('Location: ../../index.php');
+		exit();
+	}
 
-require('funciones.php');
+	require('funciones.php');
 
-require("../../controladores/conexion.php");
-require('../../clases/bitacora.php');
+	require("../../controladores/conexion.php");
+	require('../../clases/bitacora.php');
 
-$bitacora = new bitacora();
-$_SESSION['acciones'] .= ', Consulta estudiantes';
+	$bitacora = new bitacora();
+	$_SESSION['acciones'] .= ', Consulta estudiantes';
 
-$active_est = "";
-$active_rep = "";
-$active_pad = "";
-$active_usr = "";
-$active_reg = "";
+	$active_est = "";
+	$active_rep = "";
+	$active_pad = "";
+	$active_usr = "";
+	$active_reg = "";
 
-if (isset($_GET['sec'])) {
-	switch ($_GET['sec']) {
-		
-		case 'est':
-			$_SESSION['acciones'] .= ', Consulta estudiantes';
-			$active_est = "active";
-			break;
-		
-		case 'rep':
-			$_SESSION['acciones'] .= ', Consulta representantes';
-			$active_rep = "active";
-			break;
-		
-		case 'pad':
-			$_SESSION['acciones'] .= ', Consulta padres';
-			$active_pad = "active";
-			break;
-		
-		case 'usr':
-			//Devuelve al index si el usuario no es administrador y muestra un error
-			if ($_SESSION['usuario']['Privilegios'] > 1) {
-				header('Location: index.php?error');
-			}
-			$_SESSION['acciones'] .= ', Consulta estudiantes';
-			$active_usr = "active";
-			break;
-		
-		case 'reg':
-			//Devuelve al index si el usuario no es administrador y muestra un error
-			if ($_SESSION['usuario']['Privilegios'] > 1) {
-				header('Location: index.php?error');
-			}
-			$_SESSION['acciones'] .= ', Consulta bitácora';
-			$active_reg = "active";
-			break;
-		
-		default:
-			$_SESSION['acciones'] .= ', Consulta estudiantes';
-			break;
-	} 
-}
-else {
-	$_SESSION['acciones'] .= ', Visita area de consulta';
-}
+	if (isset($_GET['sec'])) {
+		switch ($_GET['sec']) {
+			
+			case 'est':
+				$_SESSION['acciones'] .= ', Consulta estudiantes';
+				$active_est = "active";
+				break;
+			
+			case 'rep':
+				$_SESSION['acciones'] .= ', Consulta representantes';
+				$active_rep = "active";
+				break;
+			
+			case 'pad':
+				$_SESSION['acciones'] .= ', Consulta padres';
+				$active_pad = "active";
+				break;
+			
+			case 'usr':
+				//Devuelve al index si el usuario no es administrador y muestra un error
+				if ($_SESSION['usuario']['Privilegios'] > 1) {
+					header('Location: index.php?error');
+				}
+				$_SESSION['acciones'] .= ', Consulta estudiantes';
+				$active_usr = "active";
+				break;
+			
+			case 'reg':
+				//Devuelve al index si el usuario no es administrador y muestra un error
+				if ($_SESSION['usuario']['Privilegios'] > 1) {
+					header('Location: index.php?error');
+				}
+				$_SESSION['acciones'] .= ', Consulta bitácora';
+				$active_reg = "active";
+				break;
+			
+			default:
+				$_SESSION['acciones'] .= ', Consulta estudiantes';
+				break;
+		} 
+	}
+	else {
+		$_SESSION['acciones'] .= ', Visita área de consulta';
+	}
 
-// Actualiza la bitácora
-$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
+	// Actualiza la bitácora
+	$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+	$bitacora->actualizar_bitacora();
 
-$nivel = 2;
+	$nivel = 2;
 
 ?>
 <!DOCTYPE html>
@@ -134,7 +136,7 @@ $nivel = 2;
 									<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
 									Padres
 								</a>
-								<?php if ($_SESSION['usuario']['Privilegios'] <= 1): ?>
+								<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 								<a href="index.php?sec=usr" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_usr; ?>">
 									<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
 									Usuarios

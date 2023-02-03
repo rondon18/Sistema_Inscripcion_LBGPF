@@ -1,85 +1,55 @@
 <?php  
 
-class Inscripciones {
-	private $idInscripciones;
-	private $Fecha_Inscripción;
-	private $Hora_Inscripción;
-	private $idUsuario;
-	private $idEstudiante;
+	class inscripciones {
 
-	public function __construct(){}
+		// 
 
-	public function insertarRegistro($idUsuario,$idEstudiante) {
-		$conexion = conectarBD();
-
-		date_default_timezone_set("America/Caracas");
-		$Fecha_Inscripción = date('Y-m-d');
-		$Hora_Inscripción = date('h:i:sa');
+		private $id_inscripcion;
+		private $fecha;
+		private $hora;
+		private $cedula_usuario;
+		private $cedula_estudiante;
 
 
-		$sql = "INSERT INTO `Inscripciones`(`idInscripciones`, `Fecha_Inscripción`, `Hora_Inscripción`, `idUsuario`, `idEstudiante`) VALUES (
-				NULL,
-				'$Fecha_Inscripción',
-				'$Hora_Inscripción',
-				'$idUsuario',
-				'$idEstudiante'
-			)";
+		// CONSTRUCTOR 
+		public function __construct() {}
 
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		desconectarBD($conexion);
+
+		// GETTERS
+		public function get_id_inscripcion() {
+			return $this->id_inscripcion;
+		}
+		public function get_fecha() {
+			return $this->fecha;
+		}
+		public function get_hora() {
+			return $this->hora;
+		}
+		public function get_cedula_usuario() {
+			return $this->cedula_usuario;
+		}
+		public function get_cedula_estudiante() {
+			return $this->cedula_estudiante;
+		}
+
+
+		// SETTERS
+		public function set_id_inscripcion($id_inscripcion) {
+			$this->id_inscripcion = $id_inscripcion;
+		}
+		public function set_fecha($fecha) {
+			$this->fecha = $fecha;
+		}
+		public function set_hora($hora) {
+			$this->hora = $hora;
+		}
+		public function set_cedula_usuario($cedula_usuario) {
+			$this->cedula_usuario = $cedula_usuario;
+		}
+		public function set_cedula_estudiante($cedula_estudiante) {
+			$this->cedula_estudiante = $cedula_estudiante;
+		}
+
 	}
-
-	public function editarRegistro($idUsuario,$idEstudiante) {
-		$conexion = conectarBD();
-
-		$Fecha_Inscripción = date('Y-m-d');
-		$Hora_Inscripción = date('h:i:sa');
-		
-		$sql = "UPDATE `Inscripciones` SET
-				`Fecha_Inscripción`='$Fecha_Inscripción',
-				`Hora_Inscripción`='$Hora_Inscripción',
-			WHERE `idUsuario`='$idUsuario' AND `idEstudiante`='$idEstudiante'";
-
-		$conexion->query($sql) or die("error: ".$conexion->error);
-		desconectarBD($conexion);
-	}
-
-	public function setidInscripciones($idInscripciones) {
-		$this->idInscripciones = $idInscripciones;
-	}
-	public function setFecha_Inscripción($Fecha_Inscripción) {
-		$this->Fecha_Inscripción = $Fecha_Inscripción;
-	}
-	public function setHora_Inscripción($Hora_Inscripción) {
-		$this->Hora_Inscripción = $Hora_Inscripción;
-	}
-	public function setidUsuario($idUsuario) {
-		$this->idUsuario = $idUsuario;
-	}
-	public function setidEstudiante($idEstudiante) {
-		$this->idEstudiante = $idEstudiante;
-	}
-
-	public function getidInscripciones() {
-		return $this->idInscripciones;
-	}
-	public function getFecha_Inscripción() {
-		return $this->Fecha_Inscripción;
-	}
-	public function getHora_Inscripción() {
-		return $this->Hora_Inscripción;
-	}
-	public function getidUsuario() {
-		return $this->idUsuario;
-	}
-	public function getidEstudiante() {
-		return $this->idEstudiante;
-	}
-
-
-
-
-}
-
 
 ?>

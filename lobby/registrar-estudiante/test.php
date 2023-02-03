@@ -1,12 +1,14 @@
 <?php 
 
-echo "<table border='1'>";
-foreach ($_POST as $key => $value) {
-	echo "<tr>";
-	echo "<td>".$key."</td>";
-	echo "<td>".$value."</td>";
-	echo "</tr>";
+session_start();
+
+var_dump($_SESSION);
+
+foreach ($_SESSION as $key => $value) {
+	echo $key;
+	echo "<br><br>";
+	var_dump($value);
+	echo "<br><br><br><br>";
 }
-echo "</table>";
 
 ?>

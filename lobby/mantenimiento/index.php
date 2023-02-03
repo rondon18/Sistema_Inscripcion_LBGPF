@@ -7,7 +7,7 @@ if (!$_SESSION['login']) {
 }
 else {
 	//Si los privilegios son de nivel 2 redirecciona
-	if ($_SESSION['usuario']['Privilegios'] > 1) {
+	if ($_SESSION['datos_login']['privilegios'] > 1) {
 		header('Location: ../index.php');
 	}
 }
@@ -15,7 +15,9 @@ require('../../clases/bitacora.php');
 require('../../controladores/conexion.php');
 $bitacora = new bitacora();
 $_SESSION['acciones'] .= ', Visita modulo de mantenimiento';
-$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
+$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+$bitacora->actualizar_bitacora();
 
 // Generacion de listado de ficheros
 $listado = glob('../../respaldos/*', GLOB_NOSORT);
@@ -64,14 +66,14 @@ $nivel = 2;
 				
 				<div class="card">
 					<div class="card-header text-center">
-						<b class="fs-4">Area de mantenimiento</b>
+						<b class="fs-4">Área de mantenimiento</b>
 					</div>
 					
 					<div class="card-body row">
 						<!-- Contenedor para centrar el contenido -->
 						<div class="col-12 col-lg-11 py-0 mx-auto my-2" style="max-height: 60vh; overflow-y: auto;">
 							<!-- Contenedor -->
-							<section class="row justify-content-center" action="paso-2.php" method="POST">
+							<section class="row justify-content-center" action="paso_2.php" method="POST">
 
 								<!-- Respaldar BD -->
 								<div class="col-12 col-lg">
@@ -95,7 +97,7 @@ $nivel = 2;
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
 												<span class="form-text">
-													Presione para generar un respado de la base de datos, que puede ser descargado (dependiendo del navegador). También será almacenado en el sistema.
+													Presione para generar un respaldo de la base de datos, que puede ser descargado (dependiendo del navegador). También será almacenado en el sistema.
 												</span>
 											</div>
 										</div>
@@ -165,10 +167,8 @@ $nivel = 2;
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<?php 
-if (isset($_GET['exito'])) {
-echo '
-	<script type="text/javascript">
+<?php if (isset($_GET['exito']): ?>
+<script type="text/javascript">
 	let timerInterval
 	Swal.fire({
 		title: "base de datos restaurada",
@@ -191,8 +191,9 @@ echo '
 			console.log("Cerrado por el temporizador")
 		}
 	})
-	</script>
-';	
+</script>
+<?php endif ?>
+	
 } 
 ?>
 </html>

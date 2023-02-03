@@ -24,16 +24,17 @@ $nivel = 0;
 					<div class="row">
 						<div class="col-lg-4 d-none d-lg-inline-block">
 							<img class="w-100 h-100" src="img/img-ref.jpg" alt="">
-							<!-- <img class="w-100 h-100 position-absolute" src="img/icono.svg" alt=""> -->
 						</div>
+						<?php if (!isset($_GET["contraseña_olvidada"])): ?>
+							
 						<form id="login" action="controladores/login.php" method="POST" class="col-lg-8 p-5">
 							<h3 class="mb-4">
 								<i class="fa-solid fa-lg fa-house me-2"></i>
 								Iniciar sesión
 							</h3>
 							<div class="row">
-								<div class="col-12 col-md-4 mb-2 campo">
-									<label for="nacionalidad" class="form-label">
+								<div class="col-12 col-md-4 mb-2">
+									<label for="nacionalidad" class="form-label requerido">
 										Nacionalidad:
 									</label>
 									<!-- Campo de nacionalidad -->
@@ -44,12 +45,12 @@ $nivel = 0;
 									>
 										<option selected value="">Nacionalidad</option>
 										<option value="V">Venezolano(a)</option>
-										<option value="E">Extrajero(a)</option>
+										<option value="E">Extranjero(a)</option>
 									</select>
 								</div>
-								<div class="col-12 col-md-8 mb-2 campo">
-									<label for="cedula" class="form-label">Cédula:</label>
-									<!-- Campo del número de cedula -->
+								<div class="col-12 col-md-8 mb-2">
+									<label for="cedula" class="form-label requerido">Cédula:</label>
+									<!-- Campo del número de cédula -->
 									<input 
 										id="cedula" 
 										class="form-control" 
@@ -63,13 +64,13 @@ $nivel = 0;
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12 col-lg mb-2 campo">
-									<label for="clave" class="form-label">Contraseña:</label>
+								<div class="col-12 col-lg mb-2">
+									<label for="contraseña" class="form-label requerido">Contraseña:</label>
 									<input 
-										id="clave" 
+										id="contraseña" 
 										class="form-control" 
 										type="password" 
-										name="clave" 
+										name="contraseña" 
 										placeholder="Contraseña de ingreso" 
 										autocomplete="off" 
 										required
@@ -84,10 +85,14 @@ $nivel = 0;
 									</button>
 								</div>
 								<div class="col-12 col-lg mb-2">
-									<a href="recuperar-clave.php">¿Contraseña olvidada?</a>
+									<a href="index.php?contraseña_olvidada">¿Contraseña olvidada?</a>
 								</div>
 							</div>
 						</form>
+
+						<?php else: ?>
+							<?php include("recuperar_contraseña.php"); ?>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>
@@ -109,7 +114,7 @@ $nivel = 0;
 		<script type="text/javascript" defer>
 			Swal.fire(
 				'Error',
-				'Cedula o clave incorrecta',
+				'Cédula o contraseña incorrecta',
 				'warning'
 			);
 		</script>

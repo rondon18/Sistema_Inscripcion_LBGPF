@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	if (!$_SESSION['login']) {
 		header('Location: ../index.php');
 		exit();
@@ -10,9 +11,14 @@
 
 	$bitacora = new bitacora();
 	$_SESSION['acciones'] .= ', Visita menú principal';
-	$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
+
+	$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+	$bitacora->actualizar_bitacora();
 
 	$nivel = 1;
+
+	// var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +49,7 @@
 							<img class="me-5" src="../img/icono.png" alt="Icono del sistema" width="100">
 							<div>
 								<p class="h3 mb-1">
-									Bienvenido(a), <?php echo $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Primer_Apellido']; ?>.
+									Bienvenido(a), <?php echo $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['p_apellido']; ?>.
 								</p>
 								<span class="text-muted">¿Qué desea hacer?</span>
 							</div>
@@ -56,6 +62,28 @@
 										<div class="px-2 w-100">
 											<h6 class="card-title mb-2">Gestionar registros.</h6>
 											<a href="consultar/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Visitar sección</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col px-2 px-md-4 py-2">
+								<div class="card bg-light">
+									<div class="card-body d-flex align-items-center">
+										<i class="fa-solid fa-user-plus fa-2xl m-2"></i>
+										<div class="px-2 w-100">
+											<h6 class="card-title mb-2">Registrar estudiante.</h6>
+											<a href="registrar-estudiante/paso_1.php" class="btn btn-primary w-100 btn-sm stretched-link">Iniciar inscripción</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col px-2 px-md-4 py-2">
+								<div class="card bg-light">
+									<div class="card-body d-flex align-items-center">
+										<i class="fa-solid fa-user-plus fa-2xl m-2"></i>
+										<div class="px-2 w-100">
+											<h6 class="card-title mb-2">Registrar usuario.</h6>
+											<a href="registrar-usuario/paso_1.php" class="btn btn-primary w-100 btn-sm stretched-link">Iniciar proceso</a>
 										</div>
 									</div>
 								</div>

@@ -1,23 +1,26 @@
 <?php
-session_start();
+	session_start();
 
-if (!$_SESSION['login']) {
-	header('Location: ../../index.php');
-	exit();
-}
+	if (!$_SESSION['login']) {
+		header('Location: ../../index.php');
+		exit();
+	}
 
-require('funciones.php');
-require('../../clases/bitacora.php');
-require('../../controladores/conexion.php');
-$bitacora = new bitacora();
-$_SESSION['acciones'] .= ', Visita perfil';
-$bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
-
-$nombre_completo = $_SESSION['persona']['Primer_Nombre']." ".$_SESSION['persona']['Segundo_Nombre']." ".$_SESSION['persona']['Primer_Apellido']." ".$_SESSION['persona']['Segundo_Apellido'];
-
-$nivel = 2;
+	require('funciones.php');
+	require('../../clases/bitacora.php');
+	require('../../controladores/conexion.php');
+	$bitacora = new bitacora();
+	$_SESSION['acciones'] .= ', Visita perfil';
 
 
+	// Actualiza la bitácora
+	$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+	$bitacora->actualizar_bitacora();
+
+	$nombre_completo = $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['s_nombre']." ".$_SESSION['datos_login']['p_apellido']." ".$_SESSION['datos_login']['s_apellido'];
+
+	$nivel = 2;
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +111,7 @@ $nivel = 2;
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php echo $_SESSION['persona']['Cédula'];?></p>
+												<p><?php echo $_SESSION['datos_login']['cedula'];?></p>
 											</div>
 										</div>
 
@@ -122,7 +125,7 @@ $nivel = 2;
 											</div>
 											<div class="col-12 col-lg-8">
 												<p>
-													<?php echo formatoFechaCompleto($_SESSION['persona']['Fecha_Nacimiento']);?>
+													<?php echo formatoFechaCompleto($_SESSION['datos_login']['fecha_nacimiento']);?>
 												</p>
 											</div>
 										</div>
@@ -136,7 +139,7 @@ $nivel = 2;
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php echo generoCompleto($_SESSION['persona']['Género']);?></p>
+												<p><?php echo generoCompleto($_SESSION['datos_login']['genero']);?></p>
 											</div>
 										</div>			
 
@@ -149,7 +152,7 @@ $nivel = 2;
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php echo $_SESSION['persona']['Correo_Electrónico']?></p>
+												<p><?php echo $_SESSION['datos_login']['email']?></p>
 											</div>
 										</div>
 									</section>
@@ -186,7 +189,7 @@ $nivel = 2;
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php privilegios($_SESSION['usuario']['Privilegios']); ?></p>
+												<p><?php privilegios($_SESSION['datos_login']['privilegios']); ?></p>
 											</div>
 										</div>
 
@@ -201,15 +204,15 @@ $nivel = 2;
 													<ol class="mt-2">
 														<li class="mb-1">
 															<span class="h6">
-																<?php echo $_SESSION['usuario']['Pregunta_Seg_1'];?>:
+																<?php echo $_SESSION['datos_login']['pregunta_seg_1'];?>:
 															</span>
-															<span><?php echo $_SESSION['usuario']['Respuesta_1'];?></span>
+															<span><?php echo $_SESSION['datos_login']['respuesta_1'];?></span>
 														</li>
 														<li class="mb-1">
 															<span class="h6">
-																<?php echo $_SESSION['usuario']['Pregunta_Seg_2'];?>:
+																<?php echo $_SESSION['datos_login']['pregunta_seg_2'];?>:
 															</span>
-															<span><?php echo $_SESSION['usuario']['Respuesta_2'];?></span>
+															<span><?php echo $_SESSION['datos_login']['respuesta_2'];?></span>
 														</li>
 													</ol>
 													<p>

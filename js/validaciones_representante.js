@@ -58,31 +58,7 @@ $(document).ready(function(){
 	});
 });
 
-//Deshabilita area de trabajo del padre si marca no
-$(document).ready(function(){
-	$('#formulario_est_padres').change(function(){
-		selected_value = $("input[name='padre_trabaja']:checked").val();
-		if (selected_value == "Si") {
-			$("#laborales_padre").prop("disabled", false);
-		}
-		else if (selected_value == "No"){
-			$("#laborales_padre").prop("disabled", true);
-		}
-	});
-});
 
-//Deshabilita area de trabajo de la madre si marca no
-$(document).ready(function(){
-	$('#formulario_est_padres').change(function(){
-		selected_value = $("input[name='madre_trabaja']:checked").val();
-		if (selected_value == "Si") {
-			$("#laborales_madre").prop("disabled", false);
-		}
-		else if (selected_value == "No"){
-			$("#laborales_madre").prop("disabled", true);
-		}
-	});
-});
 
 
 //Habilita/Deshabilita el campo de otro vinculo del representante
@@ -193,7 +169,7 @@ $(document).ready(function() {
 
 jQuery.validator.addMethod("lettersonly", function(value, element) 
 {
-return this.optional(element) || /^[a-z," "]+$/i.test(value);
+return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
 }, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
 $("#formulariorepresentante").validate({

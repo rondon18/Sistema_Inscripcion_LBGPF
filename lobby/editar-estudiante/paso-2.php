@@ -8,7 +8,7 @@ if (!$_SESSION['login']) {
 }
 
 if (!isset($_POST['Datos_Representante'])) {
-	header('Location: paso-1.php');
+	header('Location: paso_1.php');
 }
 
 require('../../clases/personas.php');
