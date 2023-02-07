@@ -36,12 +36,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$Cédula = $_POST['NacioNalidad_U'].$_POST['Cédula_U'];
+		$Cédula = $_POST['NacioNalidad_U'].$_POST['cedula_u'];
 		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
-		$persona->setGénero($_POST['Género_U']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_U']);
+		$persona->setgenero($_POST['genero_u']);
+		$persona->setCorreo_Electrónico($_POST['email_u']);
 		$persona->setDirección($_POST['Dirección_U']);
 		$persona->setEstado_Civil($_POST['Estado_Civil_U']);
 
@@ -80,12 +80,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$persona->setSegundo_Nombre($_POST['Segundo_Nombre_U']);
 		$persona->setPrimer_Apellido($_POST['Primer_Apellido_U']);
 		$persona->setSegundo_Apellido($_POST['Segundo_Apellido_U']);
-		$Cédula = $_POST['NacioNalidad_U'].$_POST['Cédula_U'];
+		$Cédula = $_POST['NacioNalidad_U'].$_POST['cedula_u'];
 		$persona->setCédula($Cédula);
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_U']);
 		#$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_U']);
-		$persona->setGénero($_POST['Género_U']);
-		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_U']);
+		$persona->setgenero($_POST['genero_u']);
+		$persona->setCorreo_Electrónico($_POST['email_u']);
 		#$persona->setDirección($_POST['Dirección_U']);
 		#$persona->setEstado_Civil($_POST['Estado_Civil_U']);
 
@@ -127,7 +127,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$_SESSION['persona']['Cédula'] = $persona->getCédula();
 		$_SESSION['persona']['Fecha_Nacimiento'] = $persona->getFecha_Nacimiento();
 		$_SESSION['persona']['Lugar_Nacimiento'] = $persona->getLugar_Nacimiento();
-		$_SESSION['persona']['Género'] = $persona->getGénero();
+		$_SESSION['persona']['Género'] = $persona->getgenero();
 		$_SESSION['persona']['Correo_Electrónico'] = $persona->getCorreo_Electrónico();
 		$_SESSION['persona']['Dirección'] = $persona->getDirección();
 		$_SESSION['persona']['Estado_Civil'] = $persona->getEstado_Civil();

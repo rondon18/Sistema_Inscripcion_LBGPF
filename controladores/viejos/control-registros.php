@@ -106,7 +106,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
-		$persona->setGénero($_POST['Género_R']);
+		$persona->setgenero($_POST['Género_R']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
 		$persona->setDirección($_POST['Dirección_R']);
 		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
@@ -475,7 +475,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Est']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Est']);
-		$persona->setGénero($_POST['Género_Est']);
+		$persona->setgenero($_POST['Género_Est']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Est']);
 		$persona->setDirección($_POST['Dirección_Est']);
 		$persona->setEstado_Civil('Soltero(a)');
@@ -661,7 +661,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_auxiliar->setidEstudiantes($datos_estudiante->getidEstudiantes());
 		// $Cédula_auxiliar = $_POST['NacioNalidad_Aux'].$_POST['Cédula_Aux'];
 		// $persona->setCédula($Cédula_auxiliar);
-		// $persona->setGénero($_POST['Género_Aux']);
+		// $persona->setgenero($_POST['Género_Aux']);
 		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
 		// $persona->setDirección($_POST['Dirección_Aux']);
 
@@ -692,7 +692,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_R']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_R']);
-		$persona->setGénero($_POST['Género_R']);
+		$persona->setgenero($_POST['Género_R']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_R']);
 		$persona->setDirección($_POST['Dirección_R']);
 		$persona->setEstado_Civil($_POST['Estado_Civil_R']);
@@ -827,7 +827,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 		$datos_auxiliar->setNúmero_Telefónico($_POST['Teléfono_Auxiliar_R']);		
 		// $Cédula_auxiliar = $_POST['NacioNalidad_Aux'].$_POST['Cédula_Aux'];
 		// $persona->setCédula($Cédula_auxiliar);
-		// $persona->setGénero($_POST['Género_Aux']);
+		// $persona->setgenero($_POST['Género_Aux']);
 		// $persona->setCorreo_Electrónico($_POST['Correo_electrónico_Aux']);
 		// $persona->setDirección($_POST['Dirección_Aux']);
 
@@ -1108,7 +1108,7 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 
 		$persona->setFecha_Nacimiento($_POST['Fecha_Nacimiento_Est']);
 		$persona->setLugar_Nacimiento($_POST['Lugar_Nacimiento_Est']);
-		$persona->setGénero($_POST['Género_Est']);
+		$persona->setgenero($_POST['Género_Est']);
 		$persona->setCorreo_Electrónico($_POST['Correo_electrónico_Est']);
 		$persona->setDirección($_POST['Dirección_Est']);
 		$persona->setEstado_Civil('Soltero(a)');

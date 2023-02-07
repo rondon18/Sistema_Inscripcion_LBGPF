@@ -298,7 +298,7 @@ function condiciones($condicion_b,$datos_Médicos) {
 									<option value="Si" <?php if(!empty($Estudiantes_repitente['Materias_Pendientes'])){echo "selected";} ?>>Si</option>
 									<option value="No" <?php if(empty($Estudiantes_repitente['Materias_Pendientes'])){echo "selected";} ?>>No</option>
 								</select>
-								<input id="Materias_Pendientes" class="form-control w-auto" type="text" name="Materias_Pendientes" placeholder="¿Cuáles?" value="<?php echo $Estudiantes_repitente['Materias_Pendientes']?>">
+								<input id="Materias_Pendientes" class="form-control w-auto" type="text" name="Materias_Pendientes" placeholder="¿Cuáles?" value="<?php echo $Estudiantes_repitente['Materias_Pendientes'];?>">
 							</div>
 						</div>
 						<div>
@@ -1102,48 +1102,48 @@ function condiciones($condicion_b,$datos_Médicos) {
 
 			</div>
 			<!-- datos del representante -->
-			<input type="hidden" name="Vinculo_R" value="<?php echo $_POST['Vinculo_R']?>">
-			<input type="hidden" name="Primer_Nombre_R" value="<?php echo $_POST['Primer_Nombre_R']?>">
-			<input type="hidden" name="Segundo_Nombre_R" value="<?php echo $_POST['Segundo_Nombre_R']?>">
-			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R']?>">
-			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R']?>">
-			<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R']?>">
-			<input type="hidden" name="NacioNalidad_R" value="<?php echo $_POST['NacioNalidad_R']?>">
-			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R']?>">
-			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R']?>">
-			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R']?>">
-			<input type="hidden" name="Correo_electrónico_R" value="<?php echo $_POST['Correo_electrónico_R']?>">
-			<input type="hidden" name="Estado_Civil_R" value="<?php echo $_POST['Estado_Civil_R']?>">
-			<input type="hidden" name="Dirección_R" value="<?php echo $_POST['Dirección_R']?>">
-			<input type="hidden" name="Prefijo_Principal_R" value="<?php echo $_POST['Prefijo_Principal_R']?>">
-			<input type="hidden" name="Teléfono_Principal_R" value="<?php echo $_POST['Teléfono_Principal_R']?>">
-			<input type="hidden" name="Prefijo_Secundario_R" value="<?php echo $_POST['Prefijo_Secundario_R']?>">
-			<input type="hidden" name="Teléfono_Secundario_R" value="<?php echo $_POST['Teléfono_Secundario_R']?>">
-			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R']?>">
-			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R']?>">
-			<input type="hidden" name="Grado_Instrucción_R" value="<?php echo $_POST['Grado_Instrucción_R']?>">
-			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R']?>">
-			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R']?>">
-			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R']?>">
-			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R']?>">
-			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda']?>">
-			<input type="hidden" name="Tenencia_Vivienda" value="<?php echo $_POST['Tenencia_vivienda']?>">
-			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro']?>">
-			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco']?>">
-			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta']?>">
-			<input type="hidden" name="Nro_Cuenta" value="<?php echo $_POST['Nro_Cuenta']?>">
-			<input type="hidden" name="Representante_Trabaja" value="<?php echo $_POST['Representante_Trabaja']?>">
-			<input type="hidden" name="Empleo_R" value="<?php echo $_POST['Empleo_R']?>">
-			<input type="hidden" name="Prefijo_Trabajo_R" value="<?php echo $_POST['Prefijo_Trabajo_R']?>">
-			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R']?>">
-			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R']?>">
-			<input type="hidden" name="Remuneración_R" value="<?php echo $_POST['Remuneración_R']?>">
-			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración']?>">
-			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux']?>">
-			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux']?>">
-			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux']?>">
-			<input type="hidden" name="Segundo_Apellido_Aux" value="<?php echo $_POST['Segundo_Apellido_Aux']?>">
-			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar']?>">
+			<input type="hidden" name="Vinculo_R" value="<?php echo $_POST['Vinculo_R'];?>">
+			<input type="hidden" name="Primer_Nombre_R" value="<?php echo $_POST['Primer_Nombre_R'];?>">
+			<input type="hidden" name="Segundo_Nombre_R" value="<?php echo $_POST['Segundo_Nombre_R'];?>">
+			<input type="hidden" name="Primer_Apellido_R" value="<?php echo $_POST['Primer_Apellido_R'];?>">
+			<input type="hidden" name="Segundo_Apellido_R" value="<?php echo $_POST['Segundo_Apellido_R'];?>">
+			<input type="hidden" name="Género_R" value="<?php echo $_POST['Género_R'];?>">
+			<input type="hidden" name="NacioNalidad_R" value="<?php echo $_POST['NacioNalidad_R'];?>">
+			<input type="hidden" name="Cédula_R" value="<?php echo $_POST['Cédula_R'];?>">
+			<input type="hidden" name="Fecha_Nacimiento_R" value="<?php echo $_POST['Fecha_Nacimiento_R'];?>">
+			<input type="hidden" name="Lugar_Nacimiento_R" value="<?php echo $_POST['Lugar_Nacimiento_R'];?>">
+			<input type="hidden" name="Correo_electrónico_R" value="<?php echo $_POST['Correo_electrónico_R'];?>">
+			<input type="hidden" name="Estado_Civil_R" value="<?php echo $_POST['Estado_Civil_R'];?>">
+			<input type="hidden" name="Dirección_R" value="<?php echo $_POST['Dirección_R'];?>">
+			<input type="hidden" name="Prefijo_Principal_R" value="<?php echo $_POST['Prefijo_Principal_R'];?>">
+			<input type="hidden" name="Teléfono_Principal_R" value="<?php echo $_POST['Teléfono_Principal_R'];?>">
+			<input type="hidden" name="Prefijo_Secundario_R" value="<?php echo $_POST['Prefijo_Secundario_R'];?>">
+			<input type="hidden" name="Teléfono_Secundario_R" value="<?php echo $_POST['Teléfono_Secundario_R'];?>">
+			<input type="hidden" name="Prefijo_Auxiliar_R" value="<?php echo $_POST['Prefijo_Auxiliar_R'];?>">
+			<input type="hidden" name="Teléfono_Auxiliar_R" value="<?php echo $_POST['Teléfono_Auxiliar_R'];?>">
+			<input type="hidden" name="Grado_Instrucción_R" value="<?php echo $_POST['Grado_Instrucción_R'];?>">
+			<input type="hidden" name="Tiene_Carnet_Patria_R" value="<?php echo $_POST['Tiene_Carnet_Patria_R'];?>">
+			<input type="hidden" name="Código_Carnet_Patria_R" value="<?php echo $_POST['Código_Carnet_Patria_R'];?>">
+			<input type="hidden" name="Serial_Carnet_Patria_R" value="<?php echo $_POST['Serial_Carnet_Patria_R'];?>">
+			<input type="hidden" name="Condición_vivienda_R" value="<?php echo $_POST['Condición_vivienda_R'];?>">
+			<input type="hidden" name="Tipo_Vivienda" value="<?php echo $_POST['Tipo_Vivienda'];?>">
+			<input type="hidden" name="Tenencia_Vivienda" value="<?php echo $_POST['Tenencia_vivienda'];?>">
+			<input type="hidden" name="Tenencia_vivienda_R_Otro" value="<?php echo $_POST['Tenencia_vivienda_R_Otro'];?>">
+			<input type="hidden" name="Banco" value="<?php echo $_POST['Banco'];?>">
+			<input type="hidden" name="Tipo_Cuenta" value="<?php echo $_POST['Tipo_Cuenta'];?>">
+			<input type="hidden" name="Nro_Cuenta" value="<?php echo $_POST['Nro_Cuenta'];?>">
+			<input type="hidden" name="Representante_Trabaja" value="<?php echo $_POST['Representante_Trabaja'];?>">
+			<input type="hidden" name="Empleo_R" value="<?php echo $_POST['Empleo_R'];?>">
+			<input type="hidden" name="Prefijo_Trabajo_R" value="<?php echo $_POST['Prefijo_Trabajo_R'];?>">
+			<input type="hidden" name="Teléfono_Trabajo_R" value="<?php echo $_POST['Teléfono_Trabajo_R'];?>">
+			<input type="hidden" name="Lugar_Trabajo_R" value="<?php echo $_POST['Lugar_Trabajo_R'];?>">
+			<input type="hidden" name="Remuneración_R" value="<?php echo $_POST['Remuneración_R'];?>">
+			<input type="hidden" name="Tipo_Remuneración" value="<?php echo $_POST['Tipo_Remuneración'];?>">
+			<input type="hidden" name="Primer_Nombre_Aux" value="<?php echo $_POST['Primer_Nombre_Aux'];?>">
+			<input type="hidden" name="Segundo_Nombre_Aux" value="<?php echo $_POST['Segundo_Nombre_Aux'];?>">
+			<input type="hidden" name="Primer_Apellido_Aux" value="<?php echo $_POST['Primer_Apellido_Aux'];?>">
+			<input type="hidden" name="Segundo_Apellido_Aux" value="<?php echo $_POST['Segundo_Apellido_Aux'];?>">
+			<input type="hidden" name="Relación_Auxiliar" value="<?php echo $_POST['Relación_Auxiliar'];?>">
 
 			<!--Botón para guardar-->
 			<div class="card-footer">

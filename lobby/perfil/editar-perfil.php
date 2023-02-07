@@ -152,9 +152,9 @@
 											</div>
 											<div class="col-12 col-lg-6">
 													<input 
-														id="cédula_u" 
+														id="cedula_u" 
 														class="form-control" 
-														type="text"  name="cédula_u" 
+														type="text"  name="cedula_u" 
 														pattern="[0-9]+" 
 														maxlength="8" 
 														minlength="7" 
@@ -184,11 +184,11 @@
 											<div class="col-12 col-lg-3">
 												<div class="form-check form-check-inline">
 													<label for="genero_f" class="form-label">F</label>
-													<input id="genero_f" class="form-check-input" type="radio" name="género_u" value="F" required <?php if($_SESSION['datos_login']['genero'] == "F"){echo "checked";} ?>>
+													<input id="genero_f" class="form-check-input" type="radio" name="genero_u" value="F" required <?php if($_SESSION['datos_login']['genero'] == "F"){echo "checked";} ?>>
 												</div>
 												<div class="form-check form-check-inline">
 													<label for="genero_m" class="form-label">M</label>
-													<input id="genero_m" class="form-check-input" type="radio" name="género_u" value="M" required <?php if($_SESSION['datos_login']['genero'] == "M"){echo "checked";} ?>>
+													<input id="genero_m" class="form-check-input" type="radio" name="genero_u" value="M" required <?php if($_SESSION['datos_login']['genero'] == "M"){echo "checked";} ?>>
 												</div>
 											</div>
 
@@ -200,10 +200,10 @@
 											</div>	
 											<div class="col-12 col-lg-8">
 												<input 
-													id="correo_electrónico_u" 
+													id="email_u" 
 													class="form-control mb-2" 
 													type="email" 
-													name="correo_electrónico_u" 
+													name="email_u" 
 													minlength="15" 
 													required 
 													value="<?php echo $_SESSION['datos_login']['email'] ?? NULL ?>"

@@ -9,13 +9,14 @@ if (!isset($_GET['sec'])) {
 }
 
 //Devuelve al index del lobby si el usuario no es administrador
-if ($_SESSION['usuario']['Privilegios'] > 1) {
+if ($_SESSION['datos_login']['privilegios'] > 1) {
 	header('Location: ../index.php');
 }
-require("../../clases/usuario.php");;
+require("../../clases/personas.php");;
+require("../../clases/usuarios.php");;
 
 $usuario = new Usuarios();
-$lista_usuarios = $usuario->mostrarUsuarios();
+$lista_usuarios = $usuario->mostrar_usuarios();
 
 ?>
 
@@ -29,53 +30,27 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 			<th>Cédula</th>
 			<th>Nombres</th>
 			<th>Apellidos</th>
+			<th>Correo electrónico</th>
 			<th>Privilegios</th>
 			<th>Cargo</th>
 			<th>Acciones</th>
 		</thead>
 		<tbody>
+
 			<?php foreach ($lista_usuarios as $usuario): ?>
 			<tr>
 				
-				<td>
-					<?php echo $usuario['Cédula_Persona'];?>
-				</td>
+				<td><?php echo $usuario['cedula'];?></td>
 
-				<td class="text-start" style="min-width: 180px;">
-					<?php echo $usuario['Primer_Nombre']. " " .$usuario['Segundo_Nombre']?>	
-				</td>
+				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_nombre']." ".$usuario['s_nombre'];?></td>
 
-				<td class="text-start" style="min-width: 180px;">
-					<?php echo $usuario['Primer_Apellido']. " " .$usuario['Segundo_Apellido']?>
-				</td>
-				
-				<td>
-					<?php echo privilegios($usuario['Privilegios']); ?>
-				</td>
+				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_apellido']." ".$usuario['s_apellido'];?></td>
 
-				<td>
-					<?php 
+				<td><?php echo $usuario['email']?></td>
+				<td><?php echo privilegios($usuario['privilegios']);?></td>
 
-					$test = rand(1,5);
-
-					if ($test == 1) {
-						echo "Docente";
-					}
-					elseif ($test == 2) {
-						echo "Secretario(a)";
-					}
-					elseif ($test == 3) {
-						echo "Coordinador(a)";
-					}
-					elseif ($test == 4) {
-						echo "Coordinador académico";
-					}
-					elseif ($test == 5) {
-						echo "Director";
-					}
-
-					?>
-				</td>
+				<td><?php echo $usuario['rol']?></td>
+					
 				
 				<td style="min-width: 100vw;">
 					<form class="d-inline-block" action="">
@@ -85,7 +60,7 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 						<button class="btn btn-sm btn-danger">Cambiar cargo</button>			
 					</form>
 
-					<?php if ($usuario['Privilegios'] <= 1): ?>
+					<?php if ($usuario['privilegios'] <= 1): ?>
 					<div class="d-inline-block">
 						<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
 							Eliminar Usuario
@@ -100,10 +75,10 @@ $lista_usuarios = $usuario->mostrarUsuarios();
 							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 						</button>
 					</form>
-					<?php endif; ?>
+					<?php endif;?>
 				</td>
 			</tr>
-			<?php endforeach; ?>
+			<?php endforeach;?>
 		</tbody>
 	</table>
 </div>

@@ -17,6 +17,67 @@
 		// CONSTRUCTOR
 		public function _construct() {}
 
+		public function insertar_usuarios() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$rol = $this->get_rol();
+			$privilegios = $this->get_privilegios();
+			$contraseña = $this->get_contraseña();
+			$pregunta_seg_1 = $this->get_pregunta_seg_1();
+			$respuesta_1 = $this->get_respuesta_1();
+			$pregunta_seg_2 = $this->get_pregunta_seg_2();
+			$respuesta_2 = $this->get_respuesta_2();
+
+			$sql = "
+				INSERT INTO `usuarios`(
+			    `cedula_persona`,
+			    `rol`,
+			    `privilegios`,
+			    `contraseña`,
+			    `pregunta_seg_1`,
+			    `respuesta_1`,
+			    `pregunta_seg_2`,
+			    `respuesta_2`
+				)
+				VALUES(
+			    '$cedula_persona',
+			    '$rol',
+			    '$privilegios',
+			    '$contraseña',
+			    '$pregunta_seg_1',
+			    '$respuesta_1',
+			    '$pregunta_seg_2',
+			    '$respuesta_2'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_persona` = `cedula_persona`;
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+
+		public function mostrar_usuarios() {
+			// Muestra todos los usuarios registrados
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `vista_usuarios`";
+
+			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
+			
+			$lista_usuarios = $resultado->fetch_all(MYSQLI_ASSOC);
+			
+			desconectarBD($conexion);
+
+			return $lista_usuarios;
+		}
+
+
 		public function consultar_usuario() {
 
 			$conexion = conectarBD();

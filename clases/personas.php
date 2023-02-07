@@ -1,10 +1,5 @@
 <?php 
 
-	include('estudiantes.php');
-	include('padres.php');
-	include('representantes.php');
-	include('usuarios.php');
-
 	class personas {
 
 		// 
@@ -25,6 +20,78 @@
 		// CONSTRUCTOR
 		public function __construct() {}
 
+		public function insertar_persona() {
+			$conexion = conectarBD();
+
+			$cedula = $this->get_cedula();
+			$p_nombre = $this->get_p_nombre();
+			$s_nombre = $this->get_s_nombre();
+			$p_apellido = $this->get_p_apellido();
+			$s_apellido = $this->get_s_apellido();
+			$fecha_nacimiento = $this->get_fecha_nacimiento();
+			$lugar_nacimiento = $this->get_lugar_nacimiento();
+			$genero = $this->get_genero();
+			$estado_civil = $this->get_estado_civil();
+			$email = $this->get_email();
+			$grado_academico = $this->get_grado_academico();
+
+			$sql = "
+				INSERT INTO `personas`(
+			    `cedula`,
+			    `p_nombre`,
+			    `s_nombre`,
+			    `p_apellido`,
+			    `s_apellido`,
+			    `fecha_nacimiento`,
+			    `lugar_nacimiento`,
+			    `genero`,
+			    `estado_civil`,
+			    `email`,
+			    `grado_academico`
+				)
+				VALUES(
+			    '$cedula',
+			    '$p_nombre',
+			    '$s_nombre',
+			    '$p_apellido',
+			    '$s_apellido',
+			    '$fecha_nacimiento',
+			    '$lugar_nacimiento',
+			    '$genero',
+			    '$estado_civil',
+			    '$email',
+			    '$grado_academico'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula` = `cedula`;
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+		public function generar_cedula_provisional() {
+			$conexion = conectarBD();
+			$sql = "
+				SELECT
+			    *
+				FROM
+			    `personas`
+			";
+
+			// echo $sql;
+			
+			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+
+			// echo $resultado->num_rows;
+			
+			return $resultado->num_rows + 1;
+		}
 
 		// GETTERS
 		public function get_cedula() {

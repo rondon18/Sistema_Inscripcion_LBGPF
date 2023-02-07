@@ -115,6 +115,19 @@
 			desconectarBD($conexion);
 		}
 
+		public function mostrar_bitacora() {
+			$conexion = conectarBD();
+
+			$sql = "SELECT * FROM `bitacora` ORDER BY `id_bitacora` DESC";
+
+			$consulta_registros = $conexion->query($sql) or die("error: ".$conexion->error);
+			$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
+
+			desconectarBD($conexion);
+
+			return $registros;
+	}
+
 
 		// GETTERS
 		public function get_id_bitacora() {

@@ -682,7 +682,7 @@ CREATE TABLE `personas` (
   `Dirección` text COLLATE utf8_bin NOT NULL,
   `Estado_Civil` varchar(15) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idPersonas`),
-  UNIQUE KEY `Cédula_UNIQUE` (`Cédula`)
+  UNIQUE KEY `cedula_uNIQUE` (`Cédula`)
 ) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -14,6 +14,40 @@
 		// CONSTRUCTOR
 		public function __construct(){}
 
+		public function insertar_datos_laborales() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$empleo = $this->get_empleo();
+			$lugar_trabajo = $this->get_lugar_trabajo();
+			$remuneracion = $this->get_remuneracion();
+			$tipo_remuneracion = $this->get_tipo_remuneracion();
+
+			$sql = "
+				INSERT INTO `datos_laborales`(
+					`cedula_persona`,
+					`empleo`,
+					`lugar_trabajo`,
+					`remuneracion`,
+					`tipo_remuneracion`
+				)
+				VALUES(
+					'$cedula_persona',
+					'$empleo',
+					'$lugar_trabajo',
+					'$remuneracion',
+					'$tipo_remuneracion'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_persona` = `cedula_persona`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
 
 		// GETTERS
 		public function get_cedula_persona() {

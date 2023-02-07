@@ -152,7 +152,7 @@
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php echo $_SESSION['datos_login']['email']?></p>
+												<p><?php echo $_SESSION['datos_login']['email'];?></p>
 											</div>
 										</div>
 									</section>

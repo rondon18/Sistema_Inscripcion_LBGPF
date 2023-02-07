@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `si_lbgpf`.`personas` (
   `Dirección` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
   `Estado_Civil` VARCHAR(15) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL,
   PRIMARY KEY (`idPersonas`),
-  UNIQUE INDEX `Cédula_UNIQUE` (`Cédula` ASC))
+  UNIQUE INDEX `cedula_uNIQUE` (`Cédula` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 822
 DEFAULT CHARACTER SET = utf8

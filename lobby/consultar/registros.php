@@ -9,16 +9,17 @@
 	}
 
 	//Devuelve al index del lobby si el usuario no es administrador
-	if ($_SESSION['usuario']['Privilegios'] > 1) {
+	if ($_SESSION['datos_login']['privilegios'] > 1) {
 		header('Location: ../index.php');
 	}
 
-	require("../../clases/usuario.php");
+	require("../../clases/personas.php");
+	require("../../clases/usuarios.php");
 
 	$registros_bitácora = $bitacora->mostrar_bitacora();
 
-	$usuario = new Usuarios();
-	$lista_usuarios = $usuario->mostrarUsuarios();
+	$usuario = new usuarios();
+	$lista_usuarios = $usuario->mostrar_usuarios();
 ?>
 								
 <!-- Tabla volcada -->
@@ -38,59 +39,50 @@
 		</thead>
 		<tbody style="font-size: .85em;">
 		<?php foreach ($registros_bitácora as $registro): ?>
-			<?php if ($registro['id_bitacora'] != $_SESSION['id_bitacora']): #No muestra el ultimo registro por ser el actual?>
-				<tr>
-					
-					<td>
-						<?php echo $registro['id_bitacora']?>
-					</td>
-					<?php 
-						$cedula_usuario = Cédula_Usuario($registro['idUsuarios'],$lista_usuarios);
-					?>
-					<td title="<?php echo $cedula_usuario['Primer_Nombre'].' '.$cedula_usuario['Primer_Apellido'] ?>">
-						<p style="cursor:help;" class="m-0 p-0">
-							<span style="border-bottom: dashed 1px #000;">
-								<?php echo $cedula_usuario['Cédula_Persona'];?>
-							</span>
-							<span class="fas fa-question-circle"></span>
-						</p>
-					</td>
 
-					<td style="min-width: 170px;">
-						<?php echo $registro['fechaInicioSesión']?>
-					</td>
-
-					<td style="min-width: 170px;">
-						<?php echo $registro['horaInicioSesión']?>
-					</td>
-
-					<td style="min-width: 180px">
-						<?php 
-							if(!empty($registro['fechaFinalSesión'])) { 
-								echo $registro['fechaFinalSesión'];
-							} 
-							else {
-								echo "Sesión no cerrada correctamente";
-							}
-						?>		
-					</td>
-					<td style="min-width: 180px">
-						<?php 
-							if(!empty($registro['horaFinalSesión'])) {
-								echo $registro['horaFinalSesión'];
-							}
-							else {
-								echo "Sesión no cerrada correctamente";
-							}
-						?>
-					</td>
-					
-					<td style="min-width: 400px">
-						<?php echo $registro['linksVisitados']?>
-					</td>
+			<tr>
 				
-				</tr>
-			<?php endif;?>
+				<td>
+					<?php echo $registro['id_bitacora'];?>
+				</td>
+
+				<td><?php echo $registro['cedula_usuario'];?></td>
+
+				<td style="min-width: 170px;">
+					<?php echo $registro['fecha_ingreso'];?>
+				</td>
+
+				<td style="min-width: 170px;">
+					<?php echo $registro['hora_ingreso'];?>
+				</td>
+
+				<td style="min-width: 180px">
+					<?php 
+						if($registro['fecha_salida'] != "0000-00-00") { 
+							echo $registro['fecha_salida'];
+						} 
+						else {
+							echo "Sesión no cerrada correctamente";
+						}
+					?>		
+				</td>
+				<td style="min-width: 180px">
+					<?php 
+						if($registro['hora_salida'] != "00:00:00") {
+							echo $registro['hora_salida'];
+						}
+						else {
+							echo "Sesión no cerrada correctamente";
+						}
+					?>
+				</td>
+				
+				<td style="min-width: 400px">
+					<?php echo $registro['acciones_realizadas'];?>
+				</td>
+			
+			</tr>
+
 		<?php endforeach; ?>
 		</tbody>
 	</table>

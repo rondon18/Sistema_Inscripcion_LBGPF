@@ -7,7 +7,6 @@ if (!$_SESSION['login']) {
 }
 
 require("../../clases/representantes.php");
-require("../../clases/teléfonos.php");
 
 
 //REGISTRO DE VISITA EN LA BITACORA
@@ -17,11 +16,10 @@ $bitacora->actualizar_bitacora($_SESSION['acciones'],$_SESSION['id_bitacora']);
 
 
 //INSTACIACION DE LOS REPRESENTANTES Y LOS TELEFONOS
-$representante = new Representantes();
-$Teléfonos = new Teléfonos();
+$representantes = new representantes();
 
 
-$listaRepresentantes = $representante->mostrarRepresentantes();
+$lista_representantes = $representantes->mostrar_representantes();
 
 ?>
 
@@ -44,11 +42,10 @@ $listaRepresentantes = $representante->mostrarRepresentantes();
 			<th>Estado civil</th>
 			<th>Grado de instrucción</th>
 			<th>Año del(os) representado(s)</th>
-			<th>Teléfonos</th>
 
 			<!-- Datos de vivienda -->
 			<th>Datos de vivienda</th>
-			<th>Vivienda</th>
+			<th>Tipo de vivienda</th>
 			<th>Tenencia de la vivienda</th>
 			<th>Condiciones de la vivienda</th>
 
@@ -63,91 +60,146 @@ $listaRepresentantes = $representante->mostrarRepresentantes();
 			<th>Datos economicos</th>
 			<th>Banco de la cuenta</th>
 
+			<!-- Acciones -->
+			<th>Acciones</th>
+
 		</thead>
 		<tbody>
-			<?php foreach ($listaRepresentantes as $representante): ?>
+			<?php foreach ($lista_representantes as $representante): ?>
 			<tr>
-				<?php
-					//Cantidad dde estudiantes que tiene el representante
-					$Representante = new Representantes();
-					$representados = $Representante->mostrarRepresentados($representante['idRepresentantes']);
-					$cont = 0;
-					$coma = count($representados);
-
-					//Números de telefono del representante
-					$Teléfonos_re = $Teléfonos->consultarTeléfonosRepresentanteID($representante['idRepresentantes']); 
-				?>
-
-				<td><?php echo $representante['Cédula'];?></td>
-				<td>
-					<?php echo $representante['Primer_Nombre'].' '.$representante['Segundo_Nombre'];?>
-				</td>
-				<td>
-					<?php echo $representante['Primer_Apellido'].' '.$representante['Segundo_Apellido'];?>		
-				</td>
-				<td><?php echo $representante['Fecha_Nacimiento'];?></td>
-				<td><?php echo $representante['Lugar_Nacimiento'];?></td>
-				<td><?php echo Género($representante['Género']); ?></td>
-				<td><?php echo $representante['Correo_Electrónico'];?></td>
-				<td style="min-width: 100vw"><?php echo $representante['Dirección'];?></td>
-				<td><?php echo $representante['Estado_Civil'];?></td>
-				<td><?php echo $representante['Grado_Académico'];?></td>
 				
+
+				<td><?php echo $representante['cedula'];?></td>
 				<td>
-					<?php foreach ($representados as $Representante):?>
-						<?php
-							echo $representados[$cont]['Grado_A_Cursar'];
-							if (++$cont === $coma) {
-								echo " " ;
-							} 
-							else {
-								echo ", ";
-							} 
-						?>
-					<?php endforeach; ?>
+					<?php echo $representante['p_nombre'].' '.$representante['s_nombre'];?>
 				</td>
-				
 				<td>
+					<?php echo $representante['p_apellido'].' '.$representante['s_apellido'];?>		
+				</td>
+				<td><?php echo $representante['fecha_nacimiento'];?></td>
+				<td><?php echo $representante['lugar_nacimiento'];?></td>
+				<td><?php echo genero($representante['genero']); ?></td>
+				<td><?php echo $representante['email'];?></td>
+
 				<?php 
-					echo comprobarVacio(Teléfono($Teléfonos_re[0]['Prefijo'],$Teléfonos_re[0]['Número_Telefónico']));
-					
-					echo  ' / ';
-					
-					echo comprobarVacio(Teléfono($Teléfonos_re[1]['Prefijo'],$Teléfonos_re[1]['Número_Telefónico']));
-					
-					echo  ' / ';
-					
-					echo comprobarVacio(Teléfono($Teléfonos_re[2]['Prefijo'],$Teléfonos_re[2]['Número_Telefónico']));
+
+					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
+
+					$direccion = "";
+
+					if (empty($representante['estado'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['estado']." ";
+					}
+					if (empty($representante['municipio'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['municipio']." ";
+					}
+					if (empty($representante['parroquia'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['parroquia']." ";
+					}
+					if (empty($representante['sector'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['sector']." ";
+					}
+					if (empty($representante['calle'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['calle']." ";
+					}
+					if (empty($representante['nro_casa'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['nro_casa']." ";
+					}
+					if (empty($representante['punto_referencia'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $representante['punto_referencia']." ";
+					}
 				?>
+				<td style="min-width: 100vw"><?php echo $direccion;?></td>
+				<td><?php echo $representante['estado_civil'];?></td>
+				<td><?php echo $representante['grado_academico'];?></td>
+				
+				<td>
+					<?php
+
+						//Cantidad de estudiantes que representa el representante
+
+						$representantes->set_cedula_persona($representante['cedula']);
+						$representados = $representantes->mostrar_representados();
+						$grados_representados = [];
+
+						foreach ($representados as $representado) {
+							$grados_representados[] = $representado['grado_a_cursar'];
+						}
+						echo implode(',', $grados_representados);
+
+					?>
 				</td>
 				
 				<!-- Datos vivienda -->
 				<td></td>
 
-				<td><?php echo $representante['Condiciones_Vivienda'];?></td>
-				<td><?php echo $representante['Tipo_Vivienda'];?></td>
-				<td><?php echo $representante['Tenencia_vivienda'];?></td>
+				<td><?php echo $representante['tipo'];?></td>
+				<td><?php echo $representante['tenencia'];?></td>
+				<td><?php echo $representante['condicion'];?></td>
 
 				<!-- Datos laborales -->
 				<td></td>
 				
-				<td><?php echo $representante['Empleo'];?></td>
+				<td><?php echo $representante['empleo'];?></td>
 				<td>
-					<?php echo comprobarVacio($representante['Lugar_Trabajo']);?>
+					<?php echo comprobar_vacio($representante['lugar_trabajo']);?>
 				</td>
 				<td>
-					<?php echo comprobarVacio($representante['Remuneración'],"R");?>
+					<?php echo comprobar_vacio($representante['remuneracion'],"R");?>
 				</td>
 				<td>
-					<?php echo comprobarVacio($representante['Tipo_Remuneración']);?>
+					<?php echo comprobar_vacio($representante['tipo_remuneracion']);?>
 				</td>
 				
 				<!-- Datos economicos -->
 				<td></td>
-				
-				<td><?php echo $representante['Banco'];?></td>
+				<td><?php echo $representante['banco'];?></td>
 
-			
+				<td>
+
+					<!-- Consultar el representante -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
+						<input type="hidden" name="accion" value="consultar">
+						<button class="btn btn-sm btn-primary">Consultar</button>
+					</form>
+
+					<!-- Editar el representante -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
+						<input type="hidden" name="accion" value="editar">
+						<button class="btn btn-sm btn-primary">Editar</button>
+					</form>
+
+					<!-- Eliminar el representante -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
+						<input type="hidden" name="accion" value="eliminar">
+						<button class="btn btn-sm btn-danger">Eliminar</button>
+					</form>
+
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

@@ -59,25 +59,25 @@
 						<div class="pt-2 px-2 pb-0 bg-light border rounded">
 							<div class="form-check form-check-inline">
 								<label class="form-label">F </label>
-								<input class="form-check-input" type="radio" name="Género_U" value="F" required>
+								<input class="form-check-input" type="radio" name="genero_u" value="F" required>
 							</div>
 
 							<div class="form-check form-check-inline">
 								<label class="form-label">M </label>
-								<input class="form-check-input" type="radio" name="Género_U" value="M" required>
+								<input class="form-check-input" type="radio" name="genero_u" value="M" required>
 							</div>
 						</div>
 					</div>
 					<!--Cédula del representante-->
 					<div>
-						<label for="Cédula_U" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
+						<label for="cedula_u" class="form-label">Cédula:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
 						<div class="input-group mb-2">
 							<select class="form-select" name="NacioNalidad_U" required>
 								<option selected disabled value="">Nacionalidad</option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 							</select>
-							<input type="text" class="form-control" name="Cédula_U" id="Cédula_U" pattern="[0-	9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required>
+							<input type="text" class="form-control" name="cedula_u" id="cedula_u" pattern="[0-	9]+" maxlength="8" minlength="7" title="Debe ingresar al menos 7 caracteres e ingresar unicamente números" required>
 						</div>
 					</div>
 					<!--Fecha de nacimiento del representante-->
@@ -88,7 +88,7 @@
 					<!--Correo Electrónico del representante-->
 					<div>
 						<label class="form-label">Correo electrónico:<small class="text-danger"><i class="fa-solid fa-circle-exclamation ms-2"></i> (Campo requerido)</small></label>
-						<input type="email" class="form-control mb-2" name="Correo_electrónico_U" id="Correo_electrónico_U" minlength="15" required>
+						<input type="email" class="form-control mb-2" name="email_u" id="email_u" minlength="15" required>
 					</div>
 				</section>
 				<section id="seccion2" style="display: none;">

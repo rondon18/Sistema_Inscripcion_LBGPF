@@ -13,25 +13,30 @@ function privilegios($priv) {
 	return $priv;
 }
 
-function calculaedad($fechanacimiento){
-	list($ano,$mes,$dia) = explode("-",$fechanacimiento);
-	$ano_diferencia  = date("Y") - $ano;
-	$mes_diferencia = date("m") - $mes;
-	$dia_diferencia   = date("d") - $dia;
-	if ($dia_diferencia < 0 || $mes_diferencia < 0){
-		$ano_diferencia--;
+function calcular_edad($fecha_nacimiento){
+	if ($fecha_nacimiento != "0000-00-00") {
+		list($ano,$mes,$dia) = explode("-",$fecha_nacimiento);
+		$ano_diferencia  = date("Y") - $ano;
+		$mes_diferencia = date("m") - $mes;
+		$dia_diferencia   = date("d") - $dia;
+		if ($dia_diferencia < 0 || $mes_diferencia < 0){
+			$ano_diferencia--;
+		}
+		return $ano_diferencia;
 	}
-	return $ano_diferencia;
+	else {
+		return NULL;
+	}
 }
 
-function Género($Género){
-	if ($Género == "F") {
-		$Género = "Femenino";
+function genero($genero){
+	if ($genero == "F") {
+		$genero = "Femenino";
 	}
-	elseif ($Género == "M") {
-		$Género = "Masculino";
+	elseif ($genero == "M") {
+		$genero = "Masculino";
 	}
-	return $Género;
+	return $genero;
 }
 
 function Teléfono($prefijo,$numero) {
@@ -44,7 +49,7 @@ $Teléfono = "$prefijo-$numero";
 return $Teléfono;
 }
 
-function Cédula_Usuario($id, $lista_usuarios) {
+function cedula_usuario($id, $lista_usuarios) {
 	foreach ($lista_usuarios as $usuario) {
 		if ($id == $usuario['idUsuarios']) {
 			return $usuario;
@@ -53,7 +58,7 @@ function Cédula_Usuario($id, $lista_usuarios) {
 	} 
 }
 
-function comprobarVacio($var, $val = "") {
+function comprobar_vacio($var, $val = "") {
 	if (!empty($var)) {
 		if ($val == "R") {
 			echo $var." Sueldos minimos";		

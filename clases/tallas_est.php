@@ -11,7 +11,41 @@
 
 		// CONSTRUCTOR
 		public function __construct() {}
-	
+		
+
+		public function insertar_tallas_est() {
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$camisa = $this->get_camisa();
+			$pantalon = $this->get_pantalon();
+			$calzado = $this->get_calzado();
+
+			$conexion = conectarBD();
+
+			$sql = "
+				INSERT INTO `tallas_est`(
+				    `cedula_estudiante`,
+				    `camisa`,
+				    `pantalon`,
+				    `calzado`
+				)
+				VALUES(
+				    '$cedula_estudiante',
+				    '$camisa',
+				    '$pantalon',
+				    '$calzado'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_estudiante` = `cedula_estudiante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 
 		// GETTERS
 		
@@ -35,19 +69,19 @@
 		// SETTERS
 		
 		public function set_cedula_estudiante($cedula_estudiante) {
-			$this->cedula_estudiante = $cedula_estudiante
+			$this->cedula_estudiante = $cedula_estudiante;
 		}
 		
 		public function set_camisa($camisa) {
-			$this->camisa = $camisa
+			$this->camisa = $camisa;
 		}
 		
 		public function set_pantalon($pantalon) {
-			$this->pantalon = $pantalon
+			$this->pantalon = $pantalon;
 		}
 		
 		public function set_calzado($calzado) {
-			$this->calzado = $calzado
+			$this->calzado = $calzado;
 		}
 
 	}

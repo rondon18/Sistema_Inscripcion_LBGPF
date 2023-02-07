@@ -10,10 +10,47 @@
 		private $peso;
 		private $indice_m_c;
 		private $circ_braquial;
-		
+
+
 		
 		// CONSTRUCTOR
 		public function __construct(){}
+
+
+		public function insertar_antropometria_est() {
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$estatura = $this->get_estatura();
+			$peso = $this->get_peso();
+			$indice_m_c = $this->get_indice_m_c();
+			$circ_braquial = $this->get_circ_braquial();
+
+			$conexion = conectarBD();
+
+			$sql = "
+				INSERT INTO `antropometria_est`(
+			    `cedula_estudiante`,
+			    `estatura`,
+			    `peso`,
+			    `indice_m_c`,
+			    `circ_braquial`
+				)
+				VALUES(
+			    '$cedula_estudiante',
+			    '$estatura',
+			    '$peso',
+			    '$indice_m_c',
+			    '$circ_braquial'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_estudiante` = `cedula_estudiante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			desconectarBD($conexion);
+		}		
 
 
 		// GETTERS

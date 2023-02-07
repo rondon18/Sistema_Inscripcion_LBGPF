@@ -16,6 +16,44 @@
 		public function ___construct() {}
 
 
+		public function insertar_contactos_aux() {
+			$conexion = conectarBD();
+
+			$cedula_representante = $this->get_cedula_representante();
+			$nombre = $this->get_nombre();
+			$apellido = $this->get_apellido();
+			$prefijo_telefono = $this->get_prefijo_telefono();
+			$nro_telefono = $this->get_nro_telefono();
+			$relacion = $this->get_relacion();
+
+			$sql = "
+				INSERT INTO `contactos_aux`(
+			    `cedula_representante`,
+			    `nombre`,
+			    `apellido`,
+			    `prefijo_telefono`,
+			    `nro_telefono`,
+			    `relacion`
+				)
+				VALUES(
+			    '$cedula_representante',
+			    '$nombre',
+			    '$apellido',
+			    '$prefijo_telefono',
+			    '$nro_telefono',
+			    '$relacion'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_representante` = `cedula_representante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_representante() {
 			return $this->cedula_representante;

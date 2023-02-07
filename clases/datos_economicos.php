@@ -13,6 +13,37 @@
 		// CONSTRUCTOR
 		public function __construct() {}
 		
+		public function insertar_datos_economicos() {
+			$conexion = conectarBD();
+
+			$cedula_representante = $this->get_cedula_representante();
+			$banco = $this->get_banco();
+			$tipo_cuenta = $this->get_tipo_cuenta();
+			$nro_cuenta = $this->get_nro_cuenta();
+
+			$sql = "
+				INSERT INTO `datos_economicos`(
+					`cedula_representante`,
+					`banco`,
+					`tipo_cuenta`,
+					`nro_cuenta`
+				)
+				VALUES(
+					'$cedula_representante',
+					'$banco',
+					'$tipo_cuenta',
+					'$nro_cuenta'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_representante` = `cedula_representante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
 
 		// GETTERS
 		public function get_cedula_representante() {

@@ -16,6 +16,7 @@ else {
 	// Verificación al momento de enviar el formulario
 	if (isset($_POST['paso_2'])) {
 		// Check de que el paso fue completado
+		$_SESSION['orden'] = "insertar";
 		$_SESSION['paso_2'] = $_POST['paso_2'];
 		
 

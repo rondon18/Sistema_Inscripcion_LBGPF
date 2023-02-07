@@ -18,6 +18,7 @@ else {
 	// Verificación al momento de enviar el formulario
 	if (isset($_POST['paso_3'])) {
 		// Check de que el paso fue completado
+		$_SESSION['orden'] = "insertar";
 		$_SESSION['paso_3'] = $_POST['paso_3'];
 		
 
@@ -31,7 +32,7 @@ else {
 		$_SESSION['datos_inscripcion']['datos_estudiante'] = $datos_estudiante;
 
 		// Redirecciona al paso 2
-		header('Location: test.php');
+		header('Location: ../../controladores/control_registros.php');
 	}
 }
 
@@ -175,37 +176,157 @@ $nivel = 2;
 											<div class="col-12 col-lg-2">
 												<label class="form-label requerido">Cédula:</label>
 											</div>
-											<div class="col-12 col-lg-3">
-													<!-- NacionalIdad -->
-													<select 
-														id="nacionalidad_r" 
-														class="form-select" 
-														name="nacionalidad_est" 
-														required
-													>
-														<option selected disabled value="">Nacionalidad</option>
-														<option <?php dato_sesion_opt("V","nacionalidad_est","s",3);?> value="V">V</option>
-														<option <?php dato_sesion_opt("E","nacionalidad_est","s",3);?> value="E">E</option>
-													</select>
-											</div>
-											<div class="col-12 col-lg-7">
-													<!-- Número de cédula -->
-													<input 
-														id="cedula_est"
-														class="form-control" 
-														type="text" 
-														name="cedula_est" 
-														maxlength="8" 
-														minlength="7"
-														placeholder="Número de cedula" 
-														required
-														value="<?php echo dato_sesion_i("cedula_est",3);?>"
-													>
-											</div>
+											
+											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (dato_sesion_i("usar_c_e",3) == "no_tiene") {} ?>>
+												
+												<div class="col-12 col-lg-4">
+														<!-- NacionalIdad -->
+														<select 
+															id="nacionalidad_r" 
+															class="form-select" 
+															name="nacionalidad_est" 
+															required
+														>
+															<option selected disabled value="">Nacionalidad</option>
+															<option <?php dato_sesion_opt("V","nacionalidad_est","s",3);?> value="V">V</option>
+															<option <?php dato_sesion_opt("E","nacionalidad_est","s",3);?> value="E">E</option>
+														</select>
+												</div>
+												<div class="col-12 col-lg-8">
+														<!-- Número de cédula -->
+														<input 
+															id="cedula_est"
+															class="form-control" 
+															type="text" 
+															name="cedula_est" 
+															maxlength="8" 
+															minlength="7"
+															placeholder="Número de cedula" 
+															required
+															value="<?php echo dato_sesion_i("cedula_est",3);?>"
+														>
+												</div>
+
+											</fieldset>
+
 											<div class="col-12 col-lg-12 mt-2 mb-2">
 												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos.</span>
 											</div>
 										</div>
+
+										<div class="row mb-5">
+											<div class="col-12 mb-4">
+												<div class="form-check form-switch form-check-inline">
+													<input 
+														id="usar_c_e" 
+														class="form-check-input" 
+														type="checkbox" 
+														name="usar_c_e" 
+														value="no_tiene" 
+													>
+													<label for="usar_c_e" class="form-label">
+														El estudiante no tiene cédula.
+													</label>
+												</div>
+										</div>
+
+										<!-- Cédula escolar -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-4">
+												<label id="c_escolar" for="cedula_escolar_est" class="form-label">Cédula escolar:</label>
+											</div>
+								
+											<div class="col-11 col-lg-7">
+												<!-- Número de cédula escolar -->
+												<input 
+													id="cedula_escolar_est"
+													class="form-control" 
+													type="text" 
+													name="cedula_escolar_est" 
+													maxlength="14" 
+													minlength="12"
+													placeholder="Número de cedula escolar" 
+													value="<?php echo dato_sesion_i("cedula_escolar_est",3);?>"
+												>
+											</div>
+											<div class="col-1">
+												<button 
+													id="boton_c_escolar" 
+													class="btn btn-primary" 
+													type="button"
+													data-bs-toggle="modal" 
+													data-bs-target="#ayuda_c_escolar"
+												>
+													<i class="fa-solid fa-lg fa-circle-question"></i>
+												</button>
+												<div class="modal fade" id="ayuda_c_escolar" tabindex="-1" aria-labelledby="label_c_escolar" aria-hidden="true">
+													<div class="modal-dialog modal-dialog-scrollable">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="label_c_escolar">
+																	<i class="fa-solid fa-xl me-2 fa-circle-question"></i>
+																	Acerca de la cédula escolar.
+																</h5>
+																<button 
+																	type="button" 
+																	class="btn-close" 
+																	data-bs-dismiss="modal" 
+																	aria-label="Close"
+																></button>
+															</div>
+															<div class="modal-body">
+																<span>
+																	La cédula escolar está formada por doce caracteres:
+																</span>
+																<ul>
+																	<li>
+																		El primero corresponde a la nacionalidad:
+																		<ul>
+																			<li>
+																				V si nació en Venezuela o si uno de los padres es venezolano,
+																				aunque el niño haya nacido en el exterior.
+																			</li>
+																			<li>
+																				E extranjero si es el caso.
+																			</li>
+																		</ul>
+																	</li>
+																	<li>
+																		El segundo es un dígito que indica
+																		<ol>
+																			<li>parto sencillo</li>
+																			<li>morochos o gemelos: Nº 1 primer niño, Nº 2 segundo niño</li>
+																			<li>trillizos...</li>
+																		</ol>
+																	</li>
+																	<li>
+																		El tercero y cuarto dígito corresponden a las dos últimas cifras del
+																		año de nacimiento del niño.
+																	</li>
+																	<li>
+																		Los ocho dígitos restantes, corresponden al número de cédula de la madre,
+																		en caso de no existir, usar la del padre.
+																	</li>
+																	<li>
+																		Si el número de la cédula tiene siete dígitos, debe anteponer un cero
+																		antes del primer dígito.
+																	</li>
+																</ul>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-12 col-lg-12 mt-2 mb-2">
+												<span class="form-text">La cédula escolar es opcional, pero será requerida si el estudiante no posee cédula.</span>
+											</div>
+										</div>
+
+										
 
 
 										<!-- Genero -->
@@ -935,6 +1056,28 @@ $nivel = 2;
 												<span class="form-text">En caso de no padecer ninguna, dejar vacío.</span>
 											</div>
 										</div>
+
+										<!-- Impedimento físico -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-5">
+												<label for="enfermedad" class="form-label">¿Tiene algun impedimento físico?:</label>
+											</div>
+											<div class="col-12 col-lg-7">
+												<input 
+													id="impedimento" 
+													class="form-control" 
+													type="text" 
+													name="impedimento"
+													placeholder="impedimento que padece"
+													minlength="3"
+													maxlength="50" 
+													value="<?php echo dato_sesion_i("impedimento",3);?>"
+												>
+											</div>
+											<div class="col-12 col-lg-12">
+												<span class="form-text">En caso de no padecer ninguno, dejar vacío.</span>
+											</div>
+										</div>
 										
 
 										<!-- Tipo de sangre -->
@@ -1491,6 +1634,25 @@ $nivel = 2;
 													minlength="3"
 													maxlength="180"
 													value="<?php echo dato_sesion_i("dieta_especial",3);?>"
+												>
+											</div>
+										</div>
+										
+										<!-- Dieta especial -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-5">
+												<label for="medicacion" class="form-label">¿Recibe alguna medicación?:</label>
+											</div>
+											<div class="col-12 col-lg-7">
+												<input 
+													id="medicacion" 
+													class="form-control" 
+													type="text" 
+													name="medicacion"
+													placeholder="¿Cuál?"
+													minlength="3"
+													maxlength="180"
+													value="<?php echo dato_sesion_i("medicacion",3);?>"
 												>
 											</div>
 										</div>

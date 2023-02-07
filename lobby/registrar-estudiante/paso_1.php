@@ -15,6 +15,7 @@ $nivel = 2;
 // Verificación al momento de enviar el formulario
 if (isset($_POST['paso_1'])) {
 	// Check de que el paso fue completado
+	$_SESSION['orden'] = "insertar";
 	$_SESSION['paso_1'] = $_POST['paso_1'];
 	
 
@@ -197,14 +198,14 @@ if (isset($_POST['paso_1'])) {
 														type="text" 
 														name="cedula_r" 
 														maxlength="8" 
-														minlength="6" 
+														minlength="7" 
 														placeholder="Número de cedula"
 														required 
 														value="<?php echo dato_sesion_i("cedula_r");?>"
 													>
 											</div>
 											<div class="col-12 col-lg-12 mt-2">
-												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de 6 a 8 dígitos.</span>
+												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de 7 a 8 dígitos.</span>
 											</div>
 										</div>
 
@@ -1541,6 +1542,7 @@ if (isset($_POST['paso_1'])) {
 
 									</section>
 									<input type="hidden" name="paso_1" value="paso_1">
+									<input type="hidden" name="orden" value="insertar">
 								</form>
 							</div>
 						</div>

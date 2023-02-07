@@ -40,7 +40,7 @@
 			
 			case 'usr':
 				//Devuelve al index si el usuario no es administrador y muestra un error
-				if ($_SESSION['usuario']['Privilegios'] > 1) {
+				if ($_SESSION['datos_login']['privilegios'] > 1) {
 					header('Location: index.php?error');
 				}
 				$_SESSION['acciones'] .= ', Consulta estudiantes';
@@ -49,7 +49,7 @@
 			
 			case 'reg':
 				//Devuelve al index si el usuario no es administrador y muestra un error
-				if ($_SESSION['usuario']['Privilegios'] > 1) {
+				if ($_SESSION['datos_login']['privilegios'] > 1) {
 					header('Location: index.php?error');
 				}
 				$_SESSION['acciones'] .= ', Consulta bitácora';

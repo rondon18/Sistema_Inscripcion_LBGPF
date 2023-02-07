@@ -7,16 +7,12 @@ if (!isset($_GET['sec'])) {
 	header('Location: index.php');
 }
 
-require("../../clases/Padre.php");
-require("../../clases/madre.php");
-require("../../clases/teléfonos.php");
+require("../../clases/padres.php");
 
-$Padre = new Padre();
-$Madre = new Madre();
-$Teléfonos = new Teléfonos();
 
-$listaPadre = $Padre->mostrarPadre();
-$listaMadre = $Madre->mostrarMadre();
+$padres = new padres();
+
+$lista_padres = $padres->mostrar_padres();
 
 ?>
 
@@ -36,52 +32,136 @@ $listaMadre = $Madre->mostrarMadre();
 			<th>Correo Electrónico</th>
 			<th>Dirección</th>
 			<th>Estado Civil</th>
+			<th>Hijos en el plantel</th>
+			<th>Acciones</th>
 		</thead>
 		<tbody>
 
-			<?php foreach ($listaPadre as $padre):?>
+			<?php foreach ($lista_padres as $padre):?>
 			<tr>
-				<td><?php echo comprobarVacio($padre['Cédula']); ?></td>
+				<td><?php echo comprobar_vacio($padre['cedula']); ?></td>
 				<td style="min-width:210px;">
 					<?php 
-						echo comprobarVacio($padre['Primer_Nombre'])." ".$padre['Segundo_Nombre']; 
+						echo comprobar_vacio($padre['p_nombre'])." ".$padre['s_nombre']; 
 					?>
 				</td>
 				<td style="min-width:210px;">
 					<?php 
-						echo comprobarVacio($padre['Primer_Apellido'])." ".$padre['Segundo_Apellido']; 
+						echo comprobar_vacio($padre['p_apellido'])." ".$padre['s_apellido']; 
 					?>
 				</td>
-				<td>Padre</td>
-				<td class="text-center"><?php echo comprobarVacio($padre['Fecha_Nacimiento'],"F"); ?></td>
-				<td><?php echo comprobarVacio($padre['Lugar_Nacimiento']); ?></td>
-				<td style="min-width:160px;"><?php echo comprobarVacio($padre['Correo_Electrónico']); ?></td>
-				<td style="min-width:190px;"><?php echo comprobarVacio($padre['Dirección']); ?></td>
-				<td><?php echo comprobarVacio($padre['Estado_Civil']); ?></td>
+				<td>
+					<?php 
+
+						if ($padre['genero'] == "M") {
+							echo "Madre";
+						}
+						else {
+							echo "Padre";
+						}
+
+					?>
+				</td>
+				<td class="text-center"><?php echo comprobar_vacio($padre['fecha_nacimiento'],"F"); ?></td>
+				<td><?php echo comprobar_vacio($padre['lugar_nacimiento']); ?></td>
+				<td style="min-width:160px;"><?php echo comprobar_vacio($padre['email']); ?></td>
+
+				<?php 
+
+					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
+
+					$direccion = "";
+
+					if (empty($padre['estado'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['estado']." ";
+					}
+					if (empty($padre['municipio'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['municipio']." ";
+					}
+					if (empty($padre['parroquia'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['parroquia']." ";
+					}
+					if (empty($padre['sector'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['sector']." ";
+					}
+					if (empty($padre['calle'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['calle']." ";
+					}
+					if (empty($padre['nro_casa'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['nro_casa']." ";
+					}
+					if (empty($padre['punto_referencia'])) {
+						$direccion .= "";
+					}
+					else {
+						$direccion .= $padre['punto_referencia']." ";
+					}
+				?>
+				<td style="min-width: 100vw"><?php echo $direccion;?></td>
+				<td><?php echo comprobar_vacio($padre['estado_civil']); ?></td>
+
+				<td>
+					<?php
+
+						//Cantidad de estudiantes que representa el padre
+
+						$padres->set_cedula_persona($padre['cedula']);
+						$hijos = $padres->mostrar_hijos();
+						$grados_hijos = [];
+
+						foreach ($hijos as $hijo) {
+							$grados_hijos[] = $hijo['grado_a_cursar'];
+						}
+						echo implode(',', $grados_hijos);
+
+					?>
+				</td>
+
+				<td>
+
+					<!-- Consultar el padre -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+						<input type="hidden" name="accion" value="consultar">
+						<button class="btn btn-sm btn-primary">Consultar</button>
+					</form>
+
+					<!-- Editar el padre -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+						<input type="hidden" name="accion" value="editar">
+						<button class="btn btn-sm btn-primary">Editar</button>
+					</form>
+
+					<!-- Eliminar el padre -->
+					<form action="#" method="post" target="_blank" class="d-inline-block">
+						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+						<input type="hidden" name="accion" value="eliminar">
+						<button class="btn btn-sm btn-danger">Eliminar</button>
+					</form>
+
+				</td>
+
 			</tr>
 			<?php endforeach; ?>
-
-			<?php foreach ($listaMadre as $madre):?>
-			<tr>
-				<td><?php echo comprobarVacio($madre['Cédula']); ?></td>
-				<td style="min-width:210px;">
-					<?php 
-						echo comprobarVacio($madre['Primer_Nombre'])." ".$madre['Segundo_Nombre']; 
-					?>
-				</td>
-				<td style="min-width:210px;">
-					<?php 
-						echo comprobarVacio($madre['Primer_Apellido'])." ".$madre['Segundo_Apellido']; 
-					?>
-				</td>
-				<td>Madre</td>
-				<td class="text-center"><?php echo comprobarVacio($madre['Fecha_Nacimiento'],"F"); ?></td>
-				<td><?php echo comprobarVacio($madre['Lugar_Nacimiento']); ?></td>
-				<td style="min-width:160px;"><?php echo comprobarVacio($madre['Correo_Electrónico']); ?></td>
-				<td style="min-width:190px;"><?php echo comprobarVacio($madre['Dirección']); ?></td>
-				<td><?php echo comprobarVacio($madre['Estado_Civil']); ?></td>
-			</tr>
-			<?php endforeach ?>
 
 		</tbody>
 	</table>

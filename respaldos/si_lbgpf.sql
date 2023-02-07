@@ -968,7 +968,7 @@ ALTER TABLE `padre`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`idPersonas`),
-  ADD UNIQUE KEY `Cédula_UNIQUE` (`Cédula`);
+  ADD UNIQUE KEY `cedula_uNIQUE` (`Cédula`);
 
 --
 -- Indices de la tabla `representantes`

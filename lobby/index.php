@@ -77,6 +77,7 @@
 									</div>
 								</div>
 							</div>
+							<?php if ($_SESSION['datos_login']['privilegios'] < 2): ?>
 							<div class="col px-2 px-md-4 py-2">
 								<div class="card bg-light">
 									<div class="card-body d-flex align-items-center">
@@ -99,6 +100,7 @@
 									</div>
 								</div>
 							</div>
+							<?php endif ?>
 							<div class="col px-2 px-md-4 py-2">
 								<div class="card bg-light">
 									<div class="card-body d-flex align-items-center">

@@ -167,7 +167,7 @@ $nivel = 2;
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<?php if (isset($_GET['exito']): ?>
+<?php if (isset($_GET['exito'])): ?>
 <script type="text/javascript">
 	let timerInterval
 	Swal.fire({
@@ -193,7 +193,4 @@ $nivel = 2;
 	})
 </script>
 <?php endif ?>
-	
-} 
-?>
 </html>

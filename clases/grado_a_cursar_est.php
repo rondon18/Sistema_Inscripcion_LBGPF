@@ -12,6 +12,36 @@
 		public function __construct() {}
 
 
+		public function insertar_grado_a_cursar_est() {
+			$conexion = conectarBD();
+
+			$grado_a_cursar = $this->get_grado_a_cursar();
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$id_per_academico = $this->get_id_per_academico();
+
+			$sql = "
+				INSERT INTO `grado_a_cursar_est`(
+					`grado_a_cursar`,
+					`cedula_estudiante`,
+					`id_per_academico`
+				)
+				VALUES(
+					'$grado_a_cursar',
+					'$cedula_estudiante',
+					'$id_per_academico'
+				)
+				ON DUPLICATE KEY UPDATE
+				`id_per_academico` = `id_per_academico`;
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+
 		// GETTERS
 		public function get_grado_a_cursar() {
 			return $this->grado_a_cursar;

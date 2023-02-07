@@ -14,6 +14,38 @@
 		public function __construct() {}
 
 
+		public function insertar_datos_vivienda() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$condicion = $this->get_condicion();
+			$tipo = $this->get_tipo();
+			$tenencia = $this->get_tenencia();
+
+			$sql = "
+				INSERT INTO `datos_vivienda`(
+					`cedula_persona`,
+					`condicion`,
+					`tipo`,
+					`tenencia`
+				)
+				VALUES(
+					'$cedula_persona',
+					'$condicion',
+					'$tipo',
+					'$tenencia'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_persona` = `cedula_persona`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_persona() {
 			return $this->cedula_persona;

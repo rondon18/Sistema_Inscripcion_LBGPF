@@ -9,7 +9,7 @@
 		private $Cédula;
 		private $Fecha_Nacimiento;
 		private $Lugar_Nacimiento;
-		private $Género;
+		private $genero;
 		private $Correo_Electrónico;
 		private $Dirección;
 		private $Estado_Civil;
@@ -26,7 +26,7 @@
 			$Cédula = $this->getCédula();
 			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
 			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
-			$Género = $this->getGénero();
+			$genero = $this->getgenero();
 			$Correo_Electrónico = $this->getCorreo_Electrónico();
 			$Dirección = $this->getDirección();
 			$Estado_Civil = $this->getEstado_Civil();
@@ -47,7 +47,7 @@
 					'$Cédula',
 					'$Fecha_Nacimiento',
 					'$Lugar_Nacimiento',
-					'$Género',
+					'$genero',
 					'$Correo_Electrónico',
 					'$Dirección',
 					'$Estado_Civil'
@@ -73,7 +73,7 @@
 			$Cédula = $this->getCédula();
 			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
 			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
-			$Género = $this->getGénero();
+			$genero = $this->getgenero();
 			$Correo_Electrónico = $this->getCorreo_Electrónico();
 			$Dirección = $this->getDirección();
 			$Estado_Civil = $this->getEstado_Civil();
@@ -87,7 +87,7 @@
 			`Cédula`='$Cédula',
 			`Fecha_Nacimiento`='$Fecha_Nacimiento',
 			`Lugar_Nacimiento`='$Lugar_Nacimiento',
-			`Género`='$Género',
+			`Género`='$genero',
 			`Correo_Electrónico`='$Correo_Electrónico',
 			`Dirección`='$Dirección',
 			`Estado_Civil`='$Estado_Civil'
@@ -108,7 +108,7 @@
 			$Cédula = $this->getCédula();
 			$Fecha_Nacimiento = $this->getFecha_Nacimiento();
 			$Lugar_Nacimiento = $this->getLugar_Nacimiento();
-			$Género = $this->getGénero();
+			$genero = $this->getgenero();
 			$Correo_Electrónico = $this->getCorreo_Electrónico();
 			$Dirección = $this->getDirección();
 			$Estado_Civil = $this->getEstado_Civil();
@@ -122,7 +122,7 @@
 			`Cédula`='$Cédula',
 			`Fecha_Nacimiento`='$Fecha_Nacimiento',
 			`Lugar_Nacimiento`='$Lugar_Nacimiento',
-			`Género`='$Género',
+			`Género`='$genero',
 			`Correo_Electrónico`='$Correo_Electrónico',
 			`Dirección`='$Dirección',
 			`Estado_Civil`='$Estado_Civil'
@@ -211,8 +211,8 @@
 		public function setLugar_Nacimiento($Lugar_Nacimiento) {
 			$this->Lugar_Nacimiento = $Lugar_Nacimiento;
 		}
-		public function setGénero($Género) {
-			$this->Género = $Género;
+		public function setgenero($genero) {
+			$this->Género = $genero;
 		}
 		public function setCorreo_Electrónico($Correo_Electrónico) {
 			$this->Correo_Electrónico = $Correo_Electrónico;
@@ -248,7 +248,7 @@
 		public function getLugar_Nacimiento() {
 			return $this->Lugar_Nacimiento;
 		}
-		public function getGénero() {
+		public function getgenero() {
 			return $this->Género;
 		}
 		public function getCorreo_Electrónico() {

@@ -65,6 +65,23 @@ $(document).ready(function(){
 });
 
 
+//Deshabilita los campos de la cédula si el estudiante no tiene o usa cédula escolar
+$(document).ready(function(){
+	$('#formulario_estudiantes').change(function(){
+		if ($("#usar_c_e").is(":checked")) {
+			$("#cedula_estudiante").prop("disabled", true);
+			$('input[name="cedula_escolar_est"]').attr("required", true);
+			$('#c_escolar').toggleClass("requerido");
+		}
+		else {
+			$("#cedula_estudiante").prop("disabled", false);
+			$('input[name="cedula_escolar_est"]').attr("required", false);
+			$('#c_escolar').toggleClass("requerido");
+		}
+	});
+});
+
+
 // Calcula el IMC del estudiante
 $(document).ready(function(){
 	$('#formulario_estudiantes').change(function(){
@@ -98,6 +115,12 @@ jQuery.validator.addMethod("lettersonly", function(value, element)
 return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
 }, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
+
+jQuery.validator.addMethod("alphanumeric", function(value, element) 
+{
+return this.optional(element) || /^[\w.]+$/i.test(value);
+}, "Solo caracteres númericos y alfabeticos, por favor.");
+
 $("#formulario_estudiantes").validate({
 	rules:{
 
@@ -124,6 +147,11 @@ $("#formulario_estudiantes").validate({
 		},
 		cedula_est: {
 			digits: true,
+		},
+		cedula_escolar_est: {
+			minlength:12,
+			maxlength: 14,
+			alphanumeric: true,
 		},
 		
 		codigo_carnet_patria_est: {

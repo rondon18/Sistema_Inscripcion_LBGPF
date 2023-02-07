@@ -22,6 +22,63 @@
 		public function __construct(){}
 
 
+		public function insertar_datos_salud() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$lateralidad = $this->get_lateralidad();
+			$tipo_sangre = $this->get_tipo_sangre();
+			$medicacion = $this->get_medicacion();
+			$dieta_especial = $this->get_dieta_especial();
+			$padecimiento = $this->get_padecimiento();
+			$impedimento_fisico = $this->get_impedimento_fisico();
+			$necesidad_educativa = $this->get_necesidad_educativa();
+			$condicion_vista = $this->get_condicion_vista();
+			$condicion_dental = $this->get_condicion_dental();
+			$institucion_medica = $this->get_institucion_medica();
+			$carnet_discapacidad = $this->get_carnet_discapacidad();
+
+			
+			$sql = "
+				INSERT INTO `datos_salud`(
+					`cedula_estudiante`,
+					`lateralidad`,
+					`tipo_sangre`,
+					`medicacion`,
+					`dieta_especial`,
+					`padecimiento`,
+					`impedimento_fisico`,
+					`necesidad_educativa`,
+					`condicion_vista`,
+					`condicion_dental`,
+					`institucion_medica`,
+					`carnet_discapacidad`
+				)
+				VALUES(
+					'$cedula_estudiante',
+					'$lateralidad',
+					'$tipo_sangre',
+					'$medicacion',
+					'$dieta_especial',
+					'$padecimiento',
+					'$impedimento_fisico',
+					'$necesidad_educativa',
+					'$condicion_vista',
+					'$condicion_dental',
+					'$institucion_medica',
+					'$carnet_discapacidad'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_estudiante` = `cedula_estudiante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_estudiante() {
 			return $this->cedula_estudiante;
