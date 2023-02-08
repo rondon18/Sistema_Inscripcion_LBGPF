@@ -16,7 +16,7 @@ else {
 	// Verificación al momento de enviar el formulario
 	if (isset($_POST['paso_2'])) {
 		// Check de que el paso fue completado
-		$_SESSION['orden'] = "insertar";
+		$_SESSION['orden'] = "editar";
 		$_SESSION['paso_2'] = $_POST['paso_2'];
 		
 
@@ -95,53 +95,10 @@ $nivel = 2;
 
 										?>
 
-										<?php if (!representante_p_m("p")):?>
-										<!-- Anexar datos -->
-										<div class="row mb-2">
-											<div class="col-12 col-lg-6">
-												<label class="form-label requerido">
-													¿Desea agregar datos del padre?:
-												</label>
-											</div>
-											<div class="col-12 col-lg-6">
-												<!-- Si agregar -->
-												<div class="form-check form-check-inline">
-													<input 
-														id="agregar_p_s" 
-														class="form-check-input" 
-														type="radio"
-														name="agregar_p" 
-														value="S" 
-														required
-														<?php dato_sesion_opt("S","agregar_p","rc",2);?>
-													>
-													<label for="agregar_p_s" class="form-label">Si</label>
-												</div>
-												<!-- No agregar -->
-												<div class="form-check form-check-inline">
-													<input 
-														id="agregar_p_n" 
-														class="form-check-input" 
-														type="radio"
-														name="agregar_p" 
-														value="N" 
-														required
-														<?php dato_sesion_opt("N","agregar_p","rc",2);?>
-													>
-													<label for="agregar_p_n" class="form-label">No</label>
-												</div>
-												<label id="agregar_p-error" class="error w-100" for="agregar_p" style="display:none;"></label>
-											</div>
-										</div>
-										<?php endif;?>
-
-
 										<div class="row mb-4">
 											<div class="col-12">
-												<?php if (representante_p_m("p")):?>
+												<?php if (dato_input("relacion_representante","de") == "Padre"):?>
 												<span class="">El representante es el padre, se rellenará automáticamente el formulario.</span>
-												<?php else:?>
-												<span class="form-text">Agregar estos datos no es obligatorio.</span>
 												<?php endif?>
 											</div>
 										</div>
@@ -154,8 +111,8 @@ $nivel = 2;
 
 										?>
 										
-										<?php if (!representante_p_m("p")): ?>
-										<fieldset id="datos_p" <?php activar_p_m("p");?>>
+										<?php if (dato_input("relacion_representante","de") != "Padre"): ?>
+										<fieldset id="datos_p">
 											<!-- Nombres -->
 											<div class="row mb-4">
 												<div class="col-12 col-lg-2">
@@ -170,7 +127,7 @@ $nivel = 2;
 														name="primer_nombre_p"
 														placeholder="Primer nombre"
 														required 
-														value="<?php echo dato_sesion_i("primer_nombre_p",2);?>"
+														value="<?php echo dato_input("p_nombre","dp");?>"
 													>
 												</div>
 												<!-- Segundo nombre -->
@@ -181,7 +138,7 @@ $nivel = 2;
 														type="text" 
 														name="segundo_nombre_p"
 														placeholder="Segundo nombre"
-														value="<?php echo dato_sesion_i("segundo_nombre_p",2);?>"
+														value="<?php echo dato_input("s_nombre","dp");?>"
 													>
 												</div>
 											</div>
@@ -200,7 +157,7 @@ $nivel = 2;
 														type="text" 
 														name="primer_apellido_p"
 														placeholder="Primer apellido"
-														value="<?php echo dato_sesion_i("primer_apellido_p",2);?>"
+														value="<?php echo dato_input("p_apellido","dp");?>"
 													>
 												</div>
 												<!-- Segundo apellido -->
@@ -211,7 +168,7 @@ $nivel = 2;
 														type="text" 
 														name="segundo_apellido_p"
 														placeholder="Segundo apellido"
-														value="<?php echo dato_sesion_i("segundo_apellido_p",2);?>"
+														value="<?php echo dato_input("s_apellido","dp");?>"
 													>
 												</div>
 											</div>
@@ -223,6 +180,12 @@ $nivel = 2;
 													<label class="form-label requerido">Cédula:</label>
 												</div>
 
+												<?php 
+													$nac = trim(dato_input("cedula","dp"),"123456789");
+													$nro_c = trim(dato_input("cedula","dp"),"VE");
+												?>
+
+
 												<!-- Nacionalidad -->
 												<div class="col-12 col-lg-3">
 													<select 
@@ -232,8 +195,8 @@ $nivel = 2;
 														required
 													>
 														<option selected value="">Nacionalidad</option>
-														<option <?php dato_sesion_opt("V","nacionalidad_p","s",2);?> value="V">V</option>
-														<option <?php dato_sesion_opt("E","nacionalidad_p","s",2);?> value="E">E</option>
+														<option value="V" <?php if ($nac == "V") {echo "selected";}?>>V</option>
+														<option value="E" <?php if ($nac == "E") {echo "selected";}?>>E</option>
 													</select>
 												</div>
 
@@ -248,7 +211,7 @@ $nivel = 2;
 														minlength="7"
 														placeholder="Número de cedula" 
 														required 
-														value="<?php echo dato_sesion_i("cedula_p",2);?>"
+														value="<?php echo $nro_c;?>"
 													>
 												</div>
 											</div>
@@ -266,7 +229,7 @@ $nivel = 2;
 														name="fecha_nacimiento_p"
 														min="<?php echo date('Y')-100 .'-01-01'?>" 
 														max="<?php echo date('Y')-18 .'-01-01'?>"
-														value="<?php echo dato_sesion_i("fecha_nacimiento_p",2);?>"
+														value="<?php echo dato_input("fecha_nacimiento","dp");?>"
 													>
 												</div>
 												<!-- Lugar de nacimiento -->
@@ -280,7 +243,7 @@ $nivel = 2;
 														maxlength="150" 
 														minlength="3"
 														placeholder="Estado, ciudad" 
-														value="<?php echo dato_sesion_i("lugar_nacimiento_p",2);?>"
+														value="<?php echo dato_input("lugar_nacimiento","dp");?>"
 													>
 												</div>
 											</div>
@@ -297,10 +260,10 @@ $nivel = 2;
 														name="estado_civil_p"
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("Soltero(a)","estado_civil_p","s",2);?> value="Soltero(a)">Soltero(a)</option>
-														<option <?php dato_sesion_opt("Casado(a)","estado_civil_p","s",2);?> value="Casado(a)">Casado(a)</option>
-														<option <?php dato_sesion_opt("Divorciado(a)","estado_civil_p","s",2);?> value="Divorciado(a)">Divorciado(a)</option>
-														<option <?php dato_sesion_opt("Viudo(a)","estado_civil_p","s",2);?> value="Viudo(a)">Viudo(a)</option>
+														<option <?php dato_option("Soltero(a)","estado_civil","s","dp");?> value="Soltero(a)">Soltero(a)</option>
+														<option <?php dato_option("Casado(a)","estado_civil","s","dp");?> value="Casado(a)">Casado(a)</option>
+														<option <?php dato_option("Divorciado(a)","estado_civil","s","dp");?> value="Divorciado(a)">Divorciado(a)</option>
+														<option <?php dato_option("Viudo(a)","estado_civil","s","dp");?> value="Viudo(a)">Viudo(a)</option>
 													</select>
 												</div>
 											</div>
@@ -318,7 +281,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_p"
 															value="Primaria"
-															<?php dato_sesion_opt("Primaria","grado_instruccion_p","rc",2);?>
+															<?php dato_option("Primaria","grado_academico","rc","dp");?>
 														>
 														<label for="grado_instruccion_p_p" class="form-label">Primaria</label>
 													</div>
@@ -329,7 +292,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_p"	
 															value="Bachillerato"
-															<?php dato_sesion_opt("Bachillerato","grado_instruccion_p","rc",2);?>
+															<?php dato_option("Bachillerato","grado_academico","rc","dp");?>
 														>
 														<label for="grado_instruccion_p_b" class="form-label">Bachillerato</label>
 													</div>
@@ -340,7 +303,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_p"
 															value="Universitario"
-															<?php dato_sesion_opt("Universitario","grado_instruccion_p","rc",2);?>
+															<?php dato_option("Universitario","grado_academico","rc","dp");?>
 														>
 														<label for="grado_instruccion_p_u" class="form-label">Universitario</label>
 													</div>
@@ -369,7 +332,7 @@ $nivel = 2;
 														type="email" 
 														name="correo_electronico_p"
 														placeholder="correo_ejemplo@dominio.com"
-														value="<?php echo dato_sesion_i("correo_electronico_p",2);?>" 
+														value="<?php echo dato_input("email","dp");?>" 
 													>
 												</div>
 											</div>
@@ -394,7 +357,7 @@ $nivel = 2;
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo" 
-														value="<?php echo dato_sesion_i("prefijo_principal_p",2);?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["prefijo"];?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -406,7 +369,7 @@ $nivel = 2;
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7" 
-														value="<?php echo dato_sesion_i("telefono_principal_p",2);?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["numero"];?>"
 													>
 												</div>
 											</div>
@@ -424,7 +387,7 @@ $nivel = 2;
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo"
-														value="<?php echo dato_sesion_i("prefijo_secundario_p",2);?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["prefijo"];?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -436,7 +399,7 @@ $nivel = 2;
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7"
-														value="<?php echo dato_sesion_i("telefono_secundario_p",2);?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["numero"];?>"
 													>
 												</div>
 											</div>
@@ -461,7 +424,7 @@ $nivel = 2;
 														rows="2" 
 														maxlength="180" 
 														style="resize:none;" 
-													><?php echo dato_sesion_i("direccion_p",2);?></textarea>
+													><?php echo dato_input("punto_referencia","dp");?></textarea>
 												</div>
 											</div>
 
@@ -477,9 +440,9 @@ $nivel = 2;
 														name="reside_en_el_pais_p"	
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("NC","reside_en_el_pais_p","s",2);?> value="NC">Desconoce</option>
-														<option <?php dato_sesion_opt("Si","reside_en_el_pais_p","s",2);?> value="Si">Si</option>
-														<option <?php dato_sesion_opt("No","reside_en_el_pais_p","s",2);?> value="No">No</option>
+														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] == "No conocido") {echo "selected";}?> value="NC">Desconoce</option>
+														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] == "Venezuela") {echo "selected";}?> value="Si">Si</option>
+														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_padre"]["pais_residencia"] != "Venezuela") {echo "selected";}?> value="No">No</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -536,8 +499,13 @@ $nivel = 2;
 														placeholder="¿En que pais?"
 														list="paises" 
 														required 
-														value="<?php echo dato_sesion_i("pais_p",2);?>"
-														<?php if(dato_sesion_i("reside_en_el_pais_p",2) != "No"){echo "disabled";}?>
+														<?php if (
+															$_SESSION["datos_padre"]["pais_residencia"] != "No conocido" and 
+															$_SESSION["datos_padre"]["pais_residencia"] != "Venezuela"): ?>
+														value="<?php echo dato_input("pais_residencia","dp");?>"
+														<?php else: ?>
+														disabled
+														<?php endif ?>
 													>
 												</div>
 											</div>
@@ -562,7 +530,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_p" 
 															value="Buena" 
-															<?php dato_sesion_opt("Buena","condicion_vivienda_p","rc",2);?>
+															<?php dato_option("Buena","condicion","rc","dp");?>
 														>
 													</div>
 													<!-- Condición Regular -->
@@ -574,7 +542,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_p" 
 															value="Regular" 
-															<?php dato_sesion_opt("Regular","condicion_vivienda_p","rc",2);?>
+															<?php dato_option("Regular","condicion","rc","dp");?>
 														>
 													</div>
 													<!-- Condición Mala -->
@@ -586,7 +554,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_p" 
 															value="Mala" 
-															<?php dato_sesion_opt("Mala","condicion_vivienda_p","rc",2);?>
+															<?php dato_option("Mala","condicion","rc","dp");?>
 														>
 													</div>
 													<label id="condicion_vivienda_p-error" class="error w-100" style="display:none;" for="condicion_vivienda_p"></label>
@@ -609,7 +577,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_p" 
 															value="Casa" 
-															<?php dato_sesion_opt("Casa","tipo_vivienda_p","rc",2);?>
+															<?php dato_option("Casa","tipo","rc","dp");?>
 														>
 													</div>
 													<!-- Caso: Apartamento -->
@@ -621,7 +589,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_p" 
 															value="Apartamento" 
-															<?php dato_sesion_opt("Apartamento","tipo_vivienda_p","rc",2);?>
+															<?php dato_option("Apartamento","tipo","rc","dp");?>
 														>
 													</div>
 													<!-- Caso: Rancho -->
@@ -633,7 +601,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_p" 
 															value="Rancho" 
-															<?php dato_sesion_opt("Rancho","tipo_vivienda_p","rc",2);?>
+															<?php dato_option("Rancho","tipo","rc","dp");?>
 														>
 													</div>
 													<!-- Caso: Quinta -->
@@ -645,7 +613,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_p" 
 															value="Quinta" 
-															<?php dato_sesion_opt("Quinta","tipo_vivienda_p","rc",2);?>
+															<?php dato_option("Quinta","tipo","rc","dp");?>
 														>
 													</div>
 													<!-- Caso: Habitación -->
@@ -657,7 +625,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_p" 
 															value="Habitacion" 
-															<?php dato_sesion_opt("Habitacion","tipo_vivienda_p","rc",2);?>
+															<?php dato_option("Habitacion","tipo","rc","dp");?>
 														>
 													</div>
 													<label id="tipo_vivienda_p-error" class="error w-100" style="display:none;" for="tipo_vivienda_p"></label>
@@ -677,11 +645,11 @@ $nivel = 2;
 														name="tenencia_vivienda_p" 
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("NC","tenencia_vivienda_p","s",2);?> value="NC">Desconoce</option>
-														<option <?php dato_sesion_opt("Propia","tenencia_vivienda_p","s",2);?> value="Propia">Propia</option>
-														<option <?php dato_sesion_opt("Alquilada","tenencia_vivienda_p","s",2);?> value="Alquilada">Alquilada</option>
-														<option <?php dato_sesion_opt("Prestada","tenencia_vivienda_p","s",2);?> value="Prestada">Prestada</option>
-														<option <?php dato_sesion_opt("Otro","tenencia_vivienda_p","s",2);?> value="Otro">Otro</option>
+														<option <?php dato_option("NC","tenencia","s","dp");?> value="NC">Desconoce</option>
+														<option <?php dato_option("Propia","tenencia","s","dp");?> value="Propia">Propia</option>
+														<option <?php dato_option("Alquilada","tenencia","s","dp");?> value="Alquilada">Alquilada</option>
+														<option <?php dato_option("Prestada","tenencia","s","dp");?> value="Prestada">Prestada</option>
+														<option <?php dato_option("Otro","tenencia","s","dp");?> value="Otro">Otro</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -695,8 +663,11 @@ $nivel = 2;
 														minlength="3" 
 														placeholder="En caso de ser otro, especifique"
 														required 
-														value="<?php echo dato_sesion_i("tenencia_vivienda_p_otro",2);?>"
-														<?php if(dato_sesion_i("tenencia_vivienda_p",2) != "Otro"){echo "disabled";}?>
+														<?php if (dato_input("tenencia","dp") == "Otro"): ?>
+														value="<?php echo dato_input("tenencia","dp");?>"	
+														<?php else: ?>
+														disabled
+														<?php endif ?>
 													>
 												</div>
 											</div>
@@ -729,7 +700,7 @@ $nivel = 2;
 															name="padre_trabaja" 
 															value="Si" 
 															required
-															<?php dato_sesion_opt("Si","padre_trabaja","rc",2);?>
+															<?php if (!empty($_SESSION["datos_padre"]["empleo"])) {echo "checked";};?>
 														>
 													</div>
 													<!-- Caso: No -->
@@ -742,7 +713,7 @@ $nivel = 2;
 															name="padre_trabaja" 
 															value="No" 
 															required
-															<?php dato_sesion_opt("No","padre_trabaja","rc",2);?>
+															<?php if (empty($_SESSION["datos_padre"]["empleo"])) {echo "checked";};?>
 														>
 													</div>
 													<label id="padre_trabaja-error" class="error w-100" style="display:none;" for="padre_trabaja"></label>
@@ -756,7 +727,7 @@ $nivel = 2;
 
 
 											<!-- Campos si el padre trabaja -->
-											<fieldset id="datos_trabajo_p" <?php if (dato_sesion_i("padre_trabaja",2) == "No"){echo 'disabled style="display: none;"';};?>>
+											<fieldset id="datos_trabajo_p" <?php if (empty($_SESSION["datos_padre"]["empleo"])) {echo 'disabled style="display: none;"';};?>>
 												
 												<!-- Cargo que ocupa -->
 												<div class="row mb-4">
@@ -772,7 +743,7 @@ $nivel = 2;
 															maxlength="60" 
 															minlength="3"
 															required 
-															value="<?php echo dato_sesion_i("empleo_p",2);?>"
+															value="<?php echo dato_input("empleo","dp");?>"
 														>
 													</div>
 												</div>
@@ -792,7 +763,7 @@ $nivel = 2;
 															list="prefijos" 
 															maxlength="4" 
 															placeholder="Prefijo"
-															value="<?php echo dato_sesion_i("prefijo_trabajo_p",2);?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["prefijo"];?>"
 														>
 													</div>
 													<div class="col-12 col-lg-6">
@@ -804,7 +775,7 @@ $nivel = 2;
 															placeholder="Número" 
 															maxlength="12" 
 															minlength="7"
-															value="<?php echo dato_sesion_i("telefono_trabajo_p",2);?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["numero"];?>"
 														>
 													</div>
 													<!-- Información adicional -->
@@ -824,7 +795,7 @@ $nivel = 2;
 															maxlength="180" 
 															minlength="3" 
 															style="resize: none;"
-														><?php echo dato_sesion_i("lugar_trabajo_p",2);?></textarea>
+														><?php echo dato_input("lugar_trabajo","dp");?></textarea>
 													</div>
 												</div>
 												
@@ -842,7 +813,7 @@ $nivel = 2;
 															placeholder="Ingrese un numero..." 
 															min="0" 
 															step="0.5" 
-															value="<?php echo dato_sesion_i("remuneracion_p",2);?>"
+															value="<?php echo dato_input("remuneracion","dp");?>"
 														>
 														<label id="remuneracion_r-error" class="error w-100" style="display:none;" for="remuneracion_p"></label>
 														<!-- Información adicional -->
@@ -857,10 +828,10 @@ $nivel = 2;
 															name="tipo_remuneracion_p" 
 														>
 															<option value="" selected>Frecuencia de la remuneración</option>
-															<option <?php dato_sesion_opt("Diaria","tipo_remuneracion_p","s",2);?> value="Diaria">Diaria</option>
-															<option <?php dato_sesion_opt("Semanal","tipo_remuneracion_p","s",2);?> value="Semanal">Semanal</option>
-															<option <?php dato_sesion_opt("Quincenal","tipo_remuneracion_p","s",2);?> value="Quincenal">Quincenal</option>
-															<option <?php dato_sesion_opt("Mensual","tipo_remuneracion_p","s",2);?> value="Mensual">Mensual</option>
+															<option <?php dato_option("Diaria","tipo_remuneracion","s","dp");?> value="Diaria">Diaria</option>
+															<option <?php dato_option("Semanal","tipo_remuneracion","s","dp");?> value="Semanal">Semanal</option>
+															<option <?php dato_option("Quincenal","tipo_remuneracion","s","dp");?> value="Quincenal">Quincenal</option>
+															<option <?php dato_option("Mensual","tipo_remuneracion","s","dp");?> value="Mensual">Mensual</option>
 														</select>
 													</div>
 												</div>
@@ -881,59 +852,16 @@ $nivel = 2;
 											</div>
 										</div>
 
-
-										<?php if (!representante_p_m("m")):?>
-										<!-- Anexar datos -->
-										<div class="row mb-2">
-											<div class="col-12 col-lg-6">
-												<label class="form-label requerido">
-													¿Desea agregar datos del madre?:
-												</label>
-											</div>
-											<div class="col-12 col-lg-6">
-												<!-- Si agregar -->
-												<div class="form-check form-check-inline">
-													<input 
-														id="agregar_m_s" 
-														class="form-check-input" 
-														type="radio"
-														name="agregar_m" 
-														value="S" 
-														required
-														<?php dato_sesion_opt("S","agregar_m","rc",2);?>
-													>
-													<label for="agregar_m_s" class="form-label">Si</label>
-												</div>
-												<!-- No agregar -->
-												<div class="form-check form-check-inline">
-													<input 
-														id="agregar_m_n" 
-														class="form-check-input" 
-														type="radio"
-														name="agregar_m" 
-														value="N" 
-														required
-														<?php dato_sesion_opt("N","agregar_m","rc",2);?>
-													>
-													<label for="agregar_m_n" class="form-label">No</label>
-												</div>
-												<label id="agregar_m-error" class="error w-100" for="agregar_m" style="display:none;"></label>
-											</div>
-										</div>
-										<?php endif;?>
-
 										<div class="row mb-4">
 											<div class="col-12">
-												<?php if (representante_p_m("m")):?>
+												<?php if (dato_input("relacion_representante","de") == "Madre"):?>
 												<span class="">El representante es la madre, se rellenará automáticamente el formulario.</span>
-												<?php else:?>
-												<span class="form-text">Agregar estos datos no es obligatorio.</span>
 												<?php endif;?>
 											</div>
 										</div>
 
-										<?php if (!representante_p_m("m")):?>
-										<fieldset id="datos_m" <?php activar_p_m("m");?>>
+										<?php if (dato_input("relacion_representante","de") != "Madre"):?>
+										<fieldset id="datos_m">
 											<!-- Nombres -->
 											<div class="row mb-4">
 												<div class="col-12 col-lg-2">
@@ -948,7 +876,7 @@ $nivel = 2;
 														name="primer_nombre_m"
 														placeholder="Primer nombre"
 														required 
-														value="<?php echo dato_sesion_i("primer_nombre_m",2);?>"
+														value="<?php echo dato_input("p_nombre","dm");?>"
 													>
 												</div>
 												<!-- Segundo nombre -->
@@ -959,7 +887,7 @@ $nivel = 2;
 														type="text" 
 														name="segundo_nombre_m"
 														placeholder="Segundo nombre"
-														value="<?php echo dato_sesion_i("segundo_nombre_m",2);?>"
+														value="<?php echo dato_input("s_nombre","dm");?>"
 													>
 												</div>
 											</div>
@@ -978,7 +906,7 @@ $nivel = 2;
 														type="text" 
 														name="primer_apellido_m"
 														placeholder="Primer apellido"
-														value="<?php echo dato_sesion_i("primer_apellido_m",2);?>"
+														value="<?php echo dato_input("p_apellido","dm");?>"
 													>
 												</div>
 												<!-- Segundo apellido -->
@@ -989,7 +917,7 @@ $nivel = 2;
 														type="text" 
 														name="segundo_apellido_m"
 														placeholder="Segundo apellido"
-														value="<?php echo dato_sesion_i("segundo_apellido_m",2);?>"
+														value="<?php echo dato_input("s_apellido","dm");?>"
 													>
 												</div>
 											</div>
@@ -1001,6 +929,11 @@ $nivel = 2;
 													<label class="form-label requerido">Cédula:</label>
 												</div>
 
+												<?php 
+													$nac = trim(dato_input("cedula","dm"),"123456789");
+													$nro_c = trim(dato_input("cedula","dm"),"VE");
+												?>
+
 												<!-- Nacionalidad -->
 												<div class="col-12 col-lg-3">
 													<select 
@@ -1010,8 +943,8 @@ $nivel = 2;
 														required
 													>
 														<option selected value="">Nacionalidad</option>
-														<option <?php dato_sesion_opt("V","nacionalidad_m","s",2);?> value="V">V</option>
-														<option <?php dato_sesion_opt("E","nacionalidad_m","s",2);?> value="E">E</option>
+														<option value="V" <?php if ($nac == "V") {echo "selected";}?>>V</option>
+														<option value="E" <?php if ($nac == "E") {echo "selected";}?>>E</option>
 													</select>
 												</div>
 
@@ -1026,7 +959,7 @@ $nivel = 2;
 														minlength="7"
 														placeholder="Número de cedula" 
 														required 
-														value="<?php echo dato_sesion_i("cedula_m",2);?>"
+														value="<?php echo $nro_c;?>"
 													>
 												</div>
 											</div>
@@ -1044,7 +977,7 @@ $nivel = 2;
 														name="fecha_nacimiento_m"
 														min="<?php echo date('Y')-100 .'-01-01'?>" 
 														max="<?php echo date('Y')-18 .'-01-01'?>"
-														value="<?php echo dato_sesion_i("fecha_nacimiento_m",2);?>"
+														value="<?php echo dato_input("fecha_nacimiento","dm");?>"
 													>
 												</div>
 												<!-- Lugar de nacimiento -->
@@ -1058,7 +991,7 @@ $nivel = 2;
 														maxlength="150" 
 														minlength="3"
 														placeholder="Estado, ciudad" 
-														value="<?php echo dato_sesion_i("lugar_nacimiento_m",2);?>"
+														value="<?php echo dato_input("lugar_nacimiento","dm");?>"
 													>
 												</div>
 											</div>
@@ -1075,10 +1008,10 @@ $nivel = 2;
 														name="estado_civil_m"
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("Soltero(a)","estado_civil_m","s",2);?> value="Soltero(a)">Soltero(a)</option>
-														<option <?php dato_sesion_opt("Casado(a)","estado_civil_m","s",2);?> value="Casado(a)">Casado(a)</option>
-														<option <?php dato_sesion_opt("Divorciado(a)","estado_civil_m","s",2);?> value="Divorciado(a)">Divorciado(a)</option>
-														<option <?php dato_sesion_opt("Viudo(a)","estado_civil_m","s",2);?> value="Viudo(a)">Viudo(a)</option>
+														<option <?php dato_option("Soltero(a)","estado_civil","s","dm");?> value="Soltero(a)">Soltero(a)</option>
+														<option <?php dato_option("Casado(a)","estado_civil","s","dm");?> value="Casado(a)">Casado(a)</option>
+														<option <?php dato_option("Divorciado(a)","estado_civil","s","dm");?> value="Divorciado(a)">Divorciado(a)</option>
+														<option <?php dato_option("Viudo(a)","estado_civil","s","dm");?> value="Viudo(a)">Viudo(a)</option>
 													</select>
 												</div>
 											</div>
@@ -1096,7 +1029,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_m"
 															value="Primaria"
-															<?php dato_sesion_opt("Primaria","grado_instruccion_m","rc",2);?>
+															<?php dato_option("Primaria","grado_academico","rc","dm");?>
 														>
 														<label for="grado_instruccion_m_p" class="form-label">Primaria</label>
 													</div>
@@ -1107,7 +1040,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_m"	
 															value="Bachillerato"
-															<?php dato_sesion_opt("Bachillerato","grado_instruccion_m","rc",2);?>
+															<?php dato_option("Bachillerato","grado_academico","rc","dm");?>
 														>
 														<label for="grado_instruccion_m_b" class="form-label">Bachillerato</label>
 													</div>
@@ -1118,7 +1051,7 @@ $nivel = 2;
 															type="radio" 
 															name="grado_instruccion_m"
 															value="Universitario"
-															<?php dato_sesion_opt("Universitario","grado_instruccion_m","rc",2);?>
+															<?php dato_option("Universitario","grado_academico","rc","dm");?>
 														>
 														<label for="grado_instruccion_m_u" class="form-label">Universitario</label>
 													</div>
@@ -1147,7 +1080,7 @@ $nivel = 2;
 														type="email" 
 														name="correo_electronico_m"
 														placeholder="correo_ejemplo@dominio.com" 
-														value="<?php echo dato_sesion_i("correo_electronico_m",2);?>"
+														value="<?php echo dato_input("email","dm");?>"
 													>
 												</div>
 											</div>
@@ -1172,7 +1105,7 @@ $nivel = 2;
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo" 
-														value="<?php echo dato_sesion_i("prefijo_principal_m",2);?>"
+														value="<?php echo $_SESSION['tlfs_madre'][0]["prefijo"];?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -1184,7 +1117,7 @@ $nivel = 2;
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7" 
-														value="<?php echo dato_sesion_i("telefono_principal_m",2);?>"
+														value="<?php echo $_SESSION['tlfs_madre'][0]["numero"];?>"
 													>
 												</div>
 											</div>
@@ -1202,7 +1135,7 @@ $nivel = 2;
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo"
-														value="<?php echo dato_sesion_i("prefijo_secundario_m",2);?>"
+														value="<?php echo $_SESSION['tlfs_madre'][1]["prefijo"];?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -1214,7 +1147,7 @@ $nivel = 2;
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7"
-														value="<?php echo dato_sesion_i("telefono_secundario_m",2);?>"
+														value="<?php echo $_SESSION['tlfs_madre'][1]["numero"];?>"
 													>
 												</div>
 											</div>
@@ -1239,7 +1172,7 @@ $nivel = 2;
 														rows="2" 
 														maxlength="180" 
 														style="resize:none;" 
-													><?php echo dato_sesion_i("direccion_m",2);?></textarea>
+													><?php echo dato_input("punto_referencia","dm");?></textarea>
 												</div>
 											</div>
 
@@ -1255,9 +1188,9 @@ $nivel = 2;
 														name="reside_en_el_pais_m"	
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("NC","reside_en_el_pais_m","s",2);?> value="NC">Desconoce</option>
-														<option <?php dato_sesion_opt("Si","reside_en_el_pais_m","s",2);?> value="Si">Si</option>
-														<option <?php dato_sesion_opt("No","reside_en_el_pais_m","s",2);?> value="No">No</option>
+														<option value="NC" <?php if ($_SESSION["datos_madre"]["pais_residencia"] == "No conocido") {echo "selected";}?>>Desconoce</option>
+														<option value="Si" <?php if ($_SESSION["datos_madre"]["pais_residencia"] == "Venezuela") {echo "selected";}?>>Si</option>
+														<option value="No" <?php if ($_SESSION["datos_madre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_madre"]["pais_residencia"] != "Venezuela") {echo "selected";}?>>No</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -1314,8 +1247,13 @@ $nivel = 2;
 														placeholder="¿En que pais?"
 														list="paises" 
 														required 
-														value="<?php echo dato_sesion_i("pais_m",2);?>"
-														<?php if (dato_sesion_i("reside_en_el_pais_m",2) != "No"){echo 'disabled';};?>
+														<?php if (
+															$_SESSION["datos_madre"]["pais_residencia"] != "No conocido" and 
+															$_SESSION["datos_madre"]["pais_residencia"] != "Venezuela"): ?>
+														value="<?php echo dato_input("pais_residencia","dm");?>"
+														<?php else: ?>
+														disabled
+														<?php endif ?>
 													>
 												</div>
 											</div>
@@ -1341,7 +1279,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_m" 
 															value="Buena"
-															<?php dato_sesion_opt("Buena","condicion_vivienda_m","rc",2);?> 
+															<?php dato_option("Buena","condicion","rc","dm");?> 
 														>
 													</div>
 													<!-- Condición Regular -->
@@ -1353,7 +1291,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_m" 
 															value="Regular" 
-															<?php dato_sesion_opt("Regular","condicion_vivienda_m","rc",2);?>
+															<?php dato_option("Regular","condicion","rc","dm");?>
 														>
 													</div>
 													<!-- Condición Mala -->
@@ -1365,7 +1303,7 @@ $nivel = 2;
 															type="radio" 
 															name="condicion_vivienda_m" 
 															value="Mala" 
-															<?php dato_sesion_opt("Mala","condicion_vivienda_m","rc",2);?>
+															<?php dato_option("Mala","condicion","rc","dm");?>
 														>
 													</div>
 													<label id="condicion_vivienda_p-error" class="error w-100" style="display:none;" for="condicion_vivienda_m"></label>
@@ -1388,7 +1326,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_m" 
 															value="Casa" 
-															<?php dato_sesion_opt("Casa","tipo_vivienda_m","rc",2);?>
+															<?php dato_option("Casa","tipo","rc","dm");?>
 														>
 													</div>
 													<!-- Caso: Apartamento -->
@@ -1400,7 +1338,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_m" 
 															value="Apartamento" 
-															<?php dato_sesion_opt("Apartamento","tipo_vivienda_m","rc",2);?>
+															<?php dato_option("Apartamento","tipo","rc","dm");?>
 														>
 													</div>
 													<!-- Caso: Rancho -->
@@ -1412,7 +1350,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_m" 
 															value="Rancho" 
-															<?php dato_sesion_opt("Rancho","tipo_vivienda_m","rc",2);?>
+															<?php dato_option("Rancho","tipo","rc","dm");?>
 														>
 													</div>
 													<!-- Caso: Quinta -->
@@ -1424,7 +1362,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_m" 
 															value="Quinta" 
-															<?php dato_sesion_opt("Quinta","tipo_vivienda_m","rc",2);?>
+															<?php dato_option("Quinta","tipo","rc","dm");?>
 														>
 													</div>
 													<!-- Caso: Habitación -->
@@ -1436,7 +1374,7 @@ $nivel = 2;
 															type="radio" 
 															name="tipo_vivienda_m" 
 															value="Habitacion" 
-															<?php dato_sesion_opt("Habitacion","tipo_vivienda_m","rc",2);?>
+															<?php dato_option("Habitacion","tipo","rc","dm");?>
 														>
 													</div>
 													<label id="tipo_vivienda_p-error" class="error w-100" style="display:none;" for="tipo_vivienda_m"></label>
@@ -1456,11 +1394,11 @@ $nivel = 2;
 														name="tenencia_vivienda_m" 
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("NC","tenencia_vivienda_m","s",2);?> value="NC">Desconoce</option>
-														<option <?php dato_sesion_opt("Propia","tenencia_vivienda_m","s",2);?> value="Propia">Propia</option>
-														<option <?php dato_sesion_opt("Alquilada","tenencia_vivienda_m","s",2);?> value="Alquilada">Alquilada</option>
-														<option <?php dato_sesion_opt("Prestada","tenencia_vivienda_m","s",2);?> value="Prestada">Prestada</option>
-														<option <?php dato_sesion_opt("Otro","tenencia_vivienda_m","s",2);?> value="Otro">Otro</option>
+														<option <?php dato_option("NC","tenencia","s","dm");?> value="NC">Desconoce</option>
+														<option <?php dato_option("Propia","tenencia","s","dm");?> value="Propia">Propia</option>
+														<option <?php dato_option("Alquilada","tenencia","s","dm");?> value="Alquilada">Alquilada</option>
+														<option <?php dato_option("Prestada","tenencia","s","dm");?> value="Prestada">Prestada</option>
+														<option <?php dato_option("Otro","tenencia","s","dm");?> value="Otro">Otro</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -1474,8 +1412,11 @@ $nivel = 2;
 														minlength="3" 
 														placeholder="En caso de ser otro, especifique"
 														required 
-														value="<?php echo dato_sesion_i("tenencia_vivienda_m_otro",2);?>"
-														<?php if(dato_sesion_i("tenencia_vivienda_m",2) != "Otro"){echo "disabled";}?> 
+														<?php if (dato_input("tenencia","dm") == "Otro"): ?>
+														value="<?php echo dato_input("tenencia","dm");?>"	
+														<?php else: ?>
+														disabled
+														<?php endif ?>
 													>
 												</div>
 											</div>
@@ -1508,7 +1449,7 @@ $nivel = 2;
 															name="madre_trabaja" 
 															value="Si" 
 															required
-															<?php dato_sesion_opt("Si","madre_trabaja","rc",2);?>
+															<?php if (!empty($_SESSION["datos_madre"]["empleo"])) {echo "checked";};?>
 
 														>
 													</div>
@@ -1522,7 +1463,7 @@ $nivel = 2;
 															name="madre_trabaja" 
 															value="No" 
 															required
-															<?php dato_sesion_opt("No","madre_trabaja","rc",2);?>
+															<?php if (empty($_SESSION["datos_madre"]["empleo"])) {echo "checked";};?>
 
 														>
 													</div>
@@ -1537,7 +1478,7 @@ $nivel = 2;
 
 
 											<!-- Campos si el madre trabaja -->
-											<fieldset id="datos_trabajo_m" <?php if (dato_sesion_i("madre_trabaja",2) == "No"){echo 'disabled style="display: none;"';};?>>
+											<fieldset id="datos_trabajo_m" <?php if (empty($_SESSION["datos_madre"]["empleo"])){echo 'disabled style="display: none;"';};?>>
 												
 												<!-- Cargo que ocupa -->
 												<div class="row mb-4">
@@ -1553,7 +1494,7 @@ $nivel = 2;
 															maxlength="60" 
 															minlength="3"
 															required 
-															value="<?php echo dato_sesion_i("empleo_m",2);?>"
+															value="<?php echo dato_input("empleo","dm");?>"
 														>
 													</div>
 												</div>
@@ -1573,7 +1514,7 @@ $nivel = 2;
 															list="prefijos" 
 															maxlength="4" 
 															placeholder="Prefijo"
-															value="<?php echo dato_sesion_i("prefijo_trabajo_m",2);?>"
+															value="<?php echo $_SESSION['tlfs_madre'][2]["prefijo"];?>"
 														>
 													</div>
 													<div class="col-12 col-lg-6">
@@ -1585,7 +1526,7 @@ $nivel = 2;
 															placeholder="Número" 
 															maxlength="12" 
 															minlength="7"
-															value="<?php echo dato_sesion_i("telefono_trabajo_m",2);?>"
+															value="<?php echo $_SESSION['tlfs_madre'][2]["numero"];?>"
 														>
 													</div>
 													<!-- Información adicional -->
@@ -1605,7 +1546,7 @@ $nivel = 2;
 															maxlength="180" 
 															minlength="3" 
 															style="resize: none;" 
-														><?php echo dato_sesion_i("lugar_trabajo_m",2);?></textarea>
+														><?php echo dato_input("lugar_trabajo","dm");?></textarea>
 													</div>
 												</div>
 												
@@ -1623,7 +1564,7 @@ $nivel = 2;
 															placeholder="Ingrese un numero..." 
 															min="0" 
 															step="0.5" 
-															value="<?php echo dato_sesion_i("remuneracion_m",2);?>"
+															value="<?php echo dato_input("remuneracion","dm");?>"
 														>
 														<label id="remuneracion_r-error" class="error w-100" style="display:none;" for="remuneracion_m"></label>
 														<!-- Información adicional -->
@@ -1638,10 +1579,10 @@ $nivel = 2;
 															name="tipo_remuneracion_m" 
 														>
 															<option value="" selected>Frecuencia de la remuneración</option>
-															<option <?php dato_sesion_opt("Diaria","tipo_remuneracion_m","s",2);?> value="Diaria">Diaria</option>
-															<option <?php dato_sesion_opt("Semanal","tipo_remuneracion_m","s",2);?> value="Semanal">Semanal</option>
-															<option <?php dato_sesion_opt("Quincenal","tipo_remuneracion_m","s",2);?> value="Quincenal">Quincenal</option>
-															<option <?php dato_sesion_opt("Mensual","tipo_remuneracion_m","s",2);?> value="Mensual">Mensual</option>
+															<option <?php dato_option("Diaria","tipo_remuneracion","s","dm");?> value="Diaria">Diaria</option>
+															<option <?php dato_option("Semanal","tipo_remuneracion","s","dm");?> value="Semanal">Semanal</option>
+															<option <?php dato_option("Quincenal","tipo_remuneracion","s","dm");?> value="Quincenal">Quincenal</option>
+															<option <?php dato_option("Mensual","tipo_remuneracion","s","dm");?> value="Mensual">Mensual</option>
 														</select>
 													</div>
 												</div>

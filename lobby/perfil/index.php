@@ -159,7 +159,7 @@
 
 
 									<!-- Seccion de datos de usuario -->
-									<section id="seccion2" class="row" style="display:none;">
+									<section id="seccion2" class="row">
 										<!-- Titulo de la seccion -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
@@ -243,7 +243,24 @@
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones_usuario.js"></script>
+
+<script type="text/javascript">
+	
+	$("#link1").click(function() {
+		$("#seccion2").hide();
+		$("#seccion1").fadeIn();
+		$("#link2").removeClass("active");
+		$("#link1").addClass("active");
+	});
+	
+	$("#link2").click(function() {
+		$("#seccion1").hide();
+		$("#seccion2").fadeIn();
+		$("#link1").removeClass("active");
+		$("#link2").addClass("active");
+	});
+
+</script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

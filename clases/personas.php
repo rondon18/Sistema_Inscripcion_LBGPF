@@ -37,33 +37,94 @@
 
 			$sql = "
 				INSERT INTO `personas`(
-			    `cedula`,
-			    `p_nombre`,
-			    `s_nombre`,
-			    `p_apellido`,
-			    `s_apellido`,
-			    `fecha_nacimiento`,
-			    `lugar_nacimiento`,
-			    `genero`,
-			    `estado_civil`,
-			    `email`,
-			    `grado_academico`
+					`cedula`,
+					`p_nombre`,
+					`s_nombre`,
+					`p_apellido`,
+					`s_apellido`,
+					`fecha_nacimiento`,
+					`lugar_nacimiento`,
+					`genero`,
+					`estado_civil`,
+					`email`,
+					`grado_academico`
 				)
 				VALUES(
-			    '$cedula',
-			    '$p_nombre',
-			    '$s_nombre',
-			    '$p_apellido',
-			    '$s_apellido',
-			    '$fecha_nacimiento',
-			    '$lugar_nacimiento',
-			    '$genero',
-			    '$estado_civil',
-			    '$email',
-			    '$grado_academico'
+					'$cedula',
+					'$p_nombre',
+					'$s_nombre',
+					'$p_apellido',
+					'$s_apellido',
+					'$fecha_nacimiento',
+					'$lugar_nacimiento',
+					'$genero',
+					'$estado_civil',
+					'$email',
+					'$grado_academico'
 				)
 				ON DUPLICATE KEY UPDATE
 				`cedula` = `cedula`;
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}		
+
+		public function editar_persona($cedula_actual) {
+			$conexion = conectarBD();
+
+			$cedula = $this->get_cedula();
+			$p_nombre = $this->get_p_nombre();
+			$s_nombre = $this->get_s_nombre();
+			$p_apellido = $this->get_p_apellido();
+			$s_apellido = $this->get_s_apellido();
+			$fecha_nacimiento = $this->get_fecha_nacimiento();
+			$lugar_nacimiento = $this->get_lugar_nacimiento();
+			$genero = $this->get_genero();
+			$estado_civil = $this->get_estado_civil();
+			$email = $this->get_email();
+			$grado_academico = $this->get_grado_academico();
+
+			$sql = "
+				UPDATE
+			    `personas`
+				SET
+					`cedula` = '$cedula',
+			    `p_nombre` = '$p_nombre',
+			    `s_nombre` = '$s_nombre',
+			    `p_apellido` = '$p_apellido',
+			    `s_apellido` = '$s_apellido',
+			    `fecha_nacimiento` = '$fecha_nacimiento',
+			    `lugar_nacimiento` = '$lugar_nacimiento',
+			    `genero` = '$genero',
+			    `estado_civil` = '$estado_civil',
+			    `email` = '$email',
+			    `grado_academico` = '$grado_academico'
+				WHERE
+					`cedula` = '$cedula_actual';
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+		public function eliminar_persona() {
+			$conexion = conectarBD();
+
+			$cedula = $this->get_cedula();
+
+			$sql = "
+				DELETE
+				FROM
+					`personas`
+				WHERE
+				`cedula` = '$cedula';
 			";
 
 			// echo $sql;
@@ -77,9 +138,9 @@
 			$conexion = conectarBD();
 			$sql = "
 				SELECT
-			    *
+					*
 				FROM
-			    `personas`
+					`personas`
 			";
 
 			// echo $sql;

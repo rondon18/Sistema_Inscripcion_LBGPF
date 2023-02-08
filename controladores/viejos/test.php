@@ -46,7 +46,7 @@ foreach ($_POST as $key => $value) {
 	<input type="text" name="Cédula_Padre" value="">
 
 	<select name="A" id="">
-		<option value="" selected disabled>a</option>
+		<option value="" selected>a</option>
 		<option value="">b</option>
 	</select>
 

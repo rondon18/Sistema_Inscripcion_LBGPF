@@ -46,6 +46,32 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_datos_vivienda() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$condicion = $this->get_condicion();
+			$tipo = $this->get_tipo();
+			$tenencia = $this->get_tenencia();
+
+			$sql = "
+				UPDATE
+			    `datos_vivienda`
+				SET
+			    `condicion` = '$condicion',
+			    `tipo` = '$tipo',
+			    `tenencia` = '$tenencia'
+				WHERE
+			    `cedula_persona` = '$cedula_persona'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_persona() {
 			return $this->cedula_persona;

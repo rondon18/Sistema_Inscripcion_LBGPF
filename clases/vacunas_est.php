@@ -45,6 +45,50 @@
 			}
 		}
 
+		public function editar_vacunas_est() {
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$espec_vacuna = $this->get_espec_vacuna();
+			$estado_vacuna = $this->get_estado_vacuna();
+
+			// Verifica si no hay un registro previo para evitar excendentes
+			if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
+				$conexion = conectarBD();
+
+				$sql = "
+					UPDATE
+					  `vacunas_est`
+					SET
+					  `estado_vacuna` = 'estado_vacuna'
+					WHERE
+					  `cedula_estudiante` = 'cedula_estudiante' AND
+					  `espec_vacuna` = 'espec_vacuna'
+				";
+
+				// echo $sql;
+				
+				$conexion->query($sql) or die("error: ".$conexion->error);
+
+				desconectarBD($conexion);
+			}
+		}
+
+		public function consultar_vacunas_est() {
+			// Muestra todos los telefonos registrados
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+
+			$sql = "SELECT * FROM `vacunas_est` WHERE `cedula_estudiante` = '$cedula_estudiante'";
+
+			$consulta_telefonos = $conexion->query($sql) or die("error: ".$conexion->error);
+			$telefonos = $consulta_telefonos->fetch_all(MYSQLI_ASSOC);
+			
+			desconectarBD($conexion);
+
+			return $telefonos;
+		}
+
 		public function verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) {
 			$conexion = conectarBD();
 

@@ -1,19 +1,32 @@
 <?php
-if (!$_SESSION['login']) {
-	header('Location: ../../index.php');
-	exit();
-}
-if (!isset($_GET['sec'])) {
-	header('Location: index.php');
-}
+	if (!$_SESSION['login']) {
+		header('Location: ../../index.php');
+		exit();
+	}
+	if (!isset($_GET['sec'])) {
+		header('Location: index.php');
+	}
 
-require("../../clases/estudiantes.php");
-require("../../clases/representantes.php");
-require("../../clases/telefonos.php");
 
-$estudiantes = new estudiantes();
+	if (isset($_POST['orden'])) {
+		if ($_POST['orden'] == "eliminar") {
 
-$lista_estudiantes = $estudiantes->mostrar_estudiantes();
+			$_SESSION['orden'] = $_POST['orden'];
+			$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
+
+			header('Location: ../../controladores/control_registros.php');
+		}
+	}
+
+
+
+	require("../../clases/estudiantes.php");
+	require("../../clases/representantes.php");
+	require("../../clases/telefonos.php");
+
+	$estudiantes = new estudiantes();
+
+	$lista_estudiantes = $estudiantes->mostrar_estudiantes();
 
 
 ?>							
@@ -194,23 +207,23 @@ $lista_estudiantes = $estudiantes->mostrar_estudiantes();
 					</form>
 
 					<!-- Editar registro del estudiante -->
-					<form action="editar-estudiante/paso_1.php" method="post" style="display: inline-block;" target="_blank">
+					<form action="../editar-estudiante/index.php" method="post" style="display: inline-block;" target="_blank">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
 						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
 						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
 
-						<button class="btn btn-sm btn-primary" type="submit" name="Consultar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+						<button class="btn btn-sm btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 
 					</form>
 					<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 					
 					<!-- Eliminar registro de estudiante -->
-					<form action="../../controladores/control-registros.php" method="post" style="display: inline-block;">
+					<form action="#" method="post" style="display: inline-block;">
 
-						<input type="hidden" name="Cédula_Estudiante" value="<?php echo $estudiante['cedula'];?>">
-						<button class="btn btn-sm btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="Eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+						<button class="btn btn-sm btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
 
 					</form>
 					<?php endif;?>

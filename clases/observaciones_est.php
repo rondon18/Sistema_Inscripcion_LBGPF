@@ -58,6 +58,38 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_observaciones_est() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$social = $this->get_social();
+			$fisico = $this->get_fisico();
+			$personal = $this->get_personal();
+			$familiar = $this->get_familiar();
+			$academico = $this->get_academico();
+			$otra = $this->get_otra();
+
+			$sql = "
+				UPDATE
+			    `observaciones_est`
+				SET
+			    `social` = '$social',
+			    `fisico` = '$fisico',
+			    `personal` = '$personal',
+			    `familiar` = '$familiar',
+			    `academico` = '$academico',
+			    `otra` = '$otra'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 
 		// GETTERS
 		public function get_cedula_estudiante() {

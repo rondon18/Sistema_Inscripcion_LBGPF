@@ -46,6 +46,32 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_vac_covid19_est() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$vac_aplicada = $this->get_vac_aplicada();
+			$dosis = $this->get_dosis();
+			$lote = $this->get_lote();
+
+			$sql = "
+				UPDATE
+				  `vac_covid19_est`
+				SET
+				  `vac_aplicada` = '$vac_aplicada',
+				  `dosis` = '$dosis',
+				  `lote` = '$lote'
+				WHERE
+				  `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_estudiante() {
 			return $this->cedula_estudiante;

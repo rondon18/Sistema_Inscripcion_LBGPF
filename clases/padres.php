@@ -29,6 +29,28 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_padres() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$pais_residencia = $this->get_pais_residencia();
+
+			$sql = "
+				UPDATE
+			    `padres`
+				SET
+			    `pais_residencia` = '$pais_residencia'
+				WHERE
+			    `cedula_persona` = '$cedula_persona'
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		public function mostrar_padres() {
 			// Muestra todos los representantes registrados
 			$conexion = conectarBD();

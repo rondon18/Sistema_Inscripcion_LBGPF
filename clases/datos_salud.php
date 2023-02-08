@@ -79,6 +79,49 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_datos_salud() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$lateralidad = $this->get_lateralidad();
+			$tipo_sangre = $this->get_tipo_sangre();
+			$medicacion = $this->get_medicacion();
+			$dieta_especial = $this->get_dieta_especial();
+			$padecimiento = $this->get_padecimiento();
+			$impedimento_fisico = $this->get_impedimento_fisico();
+			$necesidad_educativa = $this->get_necesidad_educativa();
+			$condicion_vista = $this->get_condicion_vista();
+			$condicion_dental = $this->get_condicion_dental();
+			$institucion_medica = $this->get_institucion_medica();
+			$carnet_discapacidad = $this->get_carnet_discapacidad();
+
+			
+			$sql = "
+				UPDATE
+    			`datos_salud`
+				SET
+			    `lateralidad` = '$lateralidad',
+			    `tipo_sangre` = '$tipo_sangre',
+			    `medicacion` = '$medicacion',
+			    `dieta_especial` = '$dieta_especial',
+			    `padecimiento` = '$padecimiento',
+			    `impedimento_fisico` = '$impedimento_fisico',
+			    `necesidad_educativa` = '$necesidad_educativa',
+			    `condicion_vista` = '$condicion_vista',
+			    `condicion_dental` = '$condicion_dental',
+			    `institucion_medica` = '$institucion_medica',
+			    `carnet_discapacidad` = '$carnet_discapacidad'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_estudiante() {
 			return $this->cedula_estudiante;

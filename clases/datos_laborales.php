@@ -49,6 +49,34 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_datos_laborales() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$empleo = $this->get_empleo();
+			$lugar_trabajo = $this->get_lugar_trabajo();
+			$remuneracion = $this->get_remuneracion();
+			$tipo_remuneracion = $this->get_tipo_remuneracion();
+
+			$sql = "
+				UPDATE
+					`datos_laborales`
+				SET
+					`empleo` = '$empleo',
+					`lugar_trabajo` = '$lugar_trabajo',
+					`remuneracion` = '$remuneracion',
+					`tipo_remuneracion` = '$tipo_remuneracion'
+				WHERE
+					`cedula_persona` = '$cedula_persona'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_persona() {
 			return $this->cedula_persona;

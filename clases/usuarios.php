@@ -61,6 +61,34 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_usuarios() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$pregunta_seg_1 = $this->get_pregunta_seg_1();
+			$respuesta_1 = $this->get_respuesta_1();
+			$pregunta_seg_2 = $this->get_pregunta_seg_2();
+			$respuesta_2 = $this->get_respuesta_2();
+
+			$sql = "
+				UPDATE
+			    `usuarios`
+				SET
+			    `pregunta_seg_1` = '$pregunta_seg_1',
+			    `respuesta_1` = '$respuesta_1',
+			    `pregunta_seg_2` = '$pregunta_seg_2',
+			    `respuesta_2` = '$respuesta_2'
+				WHERE
+					`cedula_persona` = '$cedula_persona';
+			";
+
+			echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 
 		public function mostrar_usuarios() {
 			// Muestra todos los usuarios registrados

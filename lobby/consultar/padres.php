@@ -132,6 +132,8 @@ $lista_padres = $padres->mostrar_padres();
 						}
 						echo implode(',', $grados_hijos);
 
+						// echo $padres->contar_hijos();
+
 					?>
 				</td>
 
@@ -151,12 +153,14 @@ $lista_padres = $padres->mostrar_padres();
 						<button class="btn btn-sm btn-primary">Editar</button>
 					</form>
 
+					<?php if ($padres->contar_hijos() < 1): ?>
 					<!-- Eliminar el padre -->
-					<form action="#" method="post" target="_blank" class="d-inline-block">
+					<form action="../../controladores/control_representantes_padres.php" method="post" class="d-inline-block">
 						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
 						<input type="hidden" name="accion" value="eliminar">
 						<button class="btn btn-sm btn-danger">Eliminar</button>
 					</form>
+					<?php endif ?>
 
 				</td>
 

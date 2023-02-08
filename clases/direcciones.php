@@ -61,6 +61,40 @@
 
 			desconectarBD($conexion);
 		}
+
+		public function editar_direcciones() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$estado = $this->get_estado();
+			$municipio = $this->get_municipio();
+			$parroquia = $this->get_parroquia();
+			$sector = $this->get_sector();
+			$calle = $this->get_calle();
+			$nro_casa = $this->get_nro_casa();
+			$punto_referencia = $this->get_punto_referencia();
+			
+			$sql = "
+				UPDATE
+    			`direcciones`
+				SET
+			    `estado` = '$estado',
+			    `municipio` = '$municipio',
+			    `parroquia` = '$parroquia',
+			    `sector` = '$sector',
+			    `calle` = '$calle',
+			    `nro_casa` = '$nro_casa',
+			    `punto_referencia` = '$punto_referencia'
+				WHERE
+			    `cedula_persona` = '$cedula_persona'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
 		
 		// getters
 		public function get_cedula_persona() {

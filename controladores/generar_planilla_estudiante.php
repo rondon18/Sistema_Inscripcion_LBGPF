@@ -148,7 +148,7 @@
 	$pdf->Cell(0,6,utf8_decode('DATOS PERSONALES'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
 	$pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL Estudiantes: ' . $datos_estudiante['p_nombre'].' '.$datos_estudiante['s_nombre'].' '.$datos_estudiante['p_apellido'].' '.$datos_estudiante['s_apellido']),1,1);
-	$pdf->Cell(56,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $datos_estudiante['cedula']),1,0);
+	$pdf->Cell(70,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $datos_estudiante['cedula']),1,0);
 	$pdf->Cell(26,6,utf8_decode('EDAD: ' . calcular_edad($datos_estudiante['fecha_nacimiento'])." Años"),1,0);
 	// OJO: LA CANTIDAD DEL ARREGLO VARIA
 
@@ -529,7 +529,7 @@
 		$t_representante .= "  ";
 	}
 
-	$pdf->Cell(90,6,utf8_decode('TELÉFONOS: ' .  $t_representante),1,0);
+	$pdf->Cell(0,6,utf8_decode('TELÉFONOS: ' .  $t_representante),1,1);
 	$pdf->Cell(0,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $datos_representante['fecha_nacimiento']),1,1);
 	$pdf->SetFont('Arial','',7);
 	$pdf->Cell(90,6,utf8_decode('LUGAR DE NACIMIENTO: ' . $datos_representante['lugar_nacimiento']),1,0);

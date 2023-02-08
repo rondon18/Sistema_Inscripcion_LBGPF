@@ -50,6 +50,34 @@
 			
 			$conexion->query($sql) or die("error: ".$conexion->error);
 			desconectarBD($conexion);
+		}
+
+		public function editar_antropometria_est() {
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$estatura = $this->get_estatura();
+			$peso = $this->get_peso();
+			$indice_m_c = $this->get_indice_m_c();
+			$circ_braquial = $this->get_circ_braquial();
+
+			$conexion = conectarBD();
+
+			$sql = "
+				UPDATE
+			    `antropometria_est`
+				SET
+			    `estatura` = '$estatura',
+			    `peso` = '$peso',
+			    `indice_m_c` = '$indice_m_c',
+			    `circ_braquial` = '$circ_braquial'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			desconectarBD($conexion);
 		}		
 
 

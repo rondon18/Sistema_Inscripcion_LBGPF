@@ -16,6 +16,19 @@
 	$nombre_completo = $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['s_nombre']." ".$_SESSION['datos_login']['p_apellido']." ".$_SESSION['datos_login']['s_apellido'];
 
 	$nivel = 2;
+
+	if (isset($_POST['orden'])) {
+		if ($_POST['orden'] == "editar") {
+
+			$_SESSION['orden'] = $_POST['orden'];
+			$_SESSION['editar_usuario'] = $_SESSION['datos_login']['cedula'];
+			$_SESSION['datos_nuevos'] = $_POST;
+
+			header('Location: ../../controladores/control_usuarios.php');
+		}
+	}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +74,7 @@
 							<!-- Contenedor del formulario -->
 							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
 
-								<form id="registro" action="../../controladores/control-usuarios.php" method="post">
+								<form id="formulario_usuario" action="#" method="post">
 									<!-- Seccion de datos personales -->
 									<section id="seccion1" class="row">
 										<!-- Titulo de la seccion -->
@@ -84,7 +97,6 @@
 													name="p_nombre_u" 
 													placeholder="Primer nombre" 
 													minlength="3" 
-													pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" 
 													required 
 													value="<?php echo $_SESSION['datos_login']['p_nombre'] ?? NULL ?>"
 												>
@@ -98,7 +110,6 @@
 													name="s_nombre_u"  
 													placeholder="Segundo nombre"
 													minlength="3" 
-													pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" 
 													required 
 													value="<?php echo $_SESSION['datos_login']['s_nombre'] ?? NULL ?>"
 												>
@@ -118,52 +129,25 @@
 													name="p_apellido_u" 
 													placeholder="Primer apellido" 
 													minlength="3" 
-													pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" 
 													required 
 													value="<?php echo $_SESSION['datos_login']['p_apellido'] ?? NULL ?>"
 												>
 
 											</div>
 											<div class="col-12 col-lg-5">
-												<input id="s_apellido_u" class="form-control mb-2" type="text" name="s_apellido_u"  placeholder="Segundo apellido" minlength="3" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required value="<?php echo $_SESSION['datos_login']['s_apellido'] ?? NULL ?>">
+												<input id="s_apellido_u" 
+													class="form-control mb-2" 
+													type="text" 
+													name="s_apellido_u"  
+													placeholder="Segundo apellido" 
+													minlength="3" 
+													required 
+													value="<?php echo $_SESSION['datos_login']['s_apellido'] ?? NULL ?>"
+												>
 
 											</div>
 										</div>
 
-										<!-- Cédula -->
-										<div class="row mb-4">
-											<div class="col-12 col-lg-2">
-												<label class="form-label">Cédula:</label>
-											</div>
-
-											<?php
-												// Separa la cédula del caracter que indica si es venezolana o extranjera
-												$nacioNalidad = substr($_SESSION['datos_login']['cedula'],0,1);
-												$Cédula= substr($_SESSION['datos_login']['cedula'],1,strlen($_SESSION['datos_login']['cedula'])-1);
-										 	?>
-
-											<div class="col-12 col-lg-4">
-											
-													<select id="nacionalidad_u" class="form-select" name="nacionalidad_u" required>
-														<option disabled value="">Nacionalidad</option>
-														<option value="V" <?php if($nacioNalidad == "V") {echo "selected";}?>>V</option>
-														<option value="E" <?php if($nacioNalidad == "E") {echo "selected";}?>>E</option>
-													</select>
-											</div>
-											<div class="col-12 col-lg-6">
-													<input 
-														id="cedula_u" 
-														class="form-control" 
-														type="text"  name="cedula_u" 
-														pattern="[0-9]+" 
-														maxlength="8" 
-														minlength="7" 
-														required 
-														value="<?php echo $Cédula ?? NULL ?>"
-													>
-
-												</div>
-										</div>
 										
 										<!-- Fecha de nacimiento y genero -->
 										<div class="row mb-4">
@@ -260,7 +244,7 @@
 											<!-- Pregunta 1 -->
 											<div class="col-12 col-md-6">
 												<select name="pregunta_seg_1" class="form-select mb-2" required>
-													<option selected disabled value="">Seleccione una opción</option>
+													<option selected value="">Seleccione una opción</option>
 													<option value="Ciudad de tu luna de miel" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 													<option value="Ciudad donde naciste" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 													<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
@@ -291,7 +275,7 @@
 											<!-- Pregunta 2 -->
 											<div class="col-12 col-md-6">
 												<select name="pregunta_seg_2" class="form-select mb-2" required>
-													<option selected disabled value="">Seleccione una opción</option>
+													<option selected value="">Seleccione una opción</option>
 													<option value="Ciudad de tu luna de miel" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Ciudad de tu luna de miel"){echo "selected";}?>>Ciudad de tu luna de miel</option>
 													<option value="Ciudad donde naciste" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Ciudad donde naciste"){echo "selected";}?>>Ciudad donde naciste</option>
 													<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
@@ -318,7 +302,7 @@
 													value="<?php echo $_SESSION['datos_login']['respuesta_2'] ?? NULL ?>"
 												>
 												
-												<input type="hidden" name="orden" value="Editar">
+												<input type="hidden" name="orden" value="editar">
 
 											</div>
 										</div>								
@@ -329,15 +313,25 @@
 						</div>
 					</div>
 					<div class="card-footer d-flex">
-						<a class="btn btn-primary" href="index.php">
-							<i class="fa-solid fa-lg me-2 fa-backward"></i>		
-							Volver
+						<a class="btn btn-primary" href="../index.php">
+							<i class="fa-solid fa-xl me-2 fa-home"></i>
+							Volver al inicio
 						</a>
-						<button class="btn btn-primary ms-auto" type="submit" form="registro">
-							Guardar y continuar
-							<i class="fa-solid fa-lg ms-2 fa-floppy-disk"></i>
-						</button>
-					</div>		
+						<div class="ms-auto">
+							<button id="boton_anterior" class="btn btn-primary" type="button">
+								<i class="fa-solid fa-xl me-2 fa-backward"></i>
+								Anterior
+							</button>
+							<button id="boton_siguiente" class="btn btn-primary" type="button">
+								Siguiente
+								<i class="fa-solid fa-lg ms-2 fa-forward"></i>
+							</button>
+							<button id="boton_guardar" class="btn btn-primary" type="button" style="display:none;">
+								Guardar y continuar
+								<i class="fa-solid fa-lg ms-2 fa-floppy-disk"></i>
+							</button>
+						</div>
+					</div>	
 				</div>
 			
 		</div>

@@ -32,27 +32,61 @@
 
 			$sql = "
 				INSERT INTO `estudiantes`(
-			    `cedula_persona`,
-			    `cedula_escolar`,
-			    `plantel_proced`,
-			    `con_quien_vive`,
-			    `relacion_representante`,
-			    `cedula_padre`,
-			    `cedula_madre`,
-			    `cedula_representante`
+					`cedula_persona`,
+					`cedula_escolar`,
+					`plantel_proced`,
+					`con_quien_vive`,
+					`relacion_representante`,
+					`cedula_padre`,
+					`cedula_madre`,
+					`cedula_representante`
 				)
 				VALUES(
-			    '$cedula_persona',
-			    '$cedula_escolar',
-			    '$plantel_proced',
-			    '$con_quien_vive',
-			    '$relacion_representante',
-			    '$cedula_padre',
-			    '$cedula_madre',
-			    '$cedula_representante'
+					'$cedula_persona',
+					'$cedula_escolar',
+					'$plantel_proced',
+					'$con_quien_vive',
+					'$relacion_representante',
+					'$cedula_padre',
+					'$cedula_madre',
+					'$cedula_representante'
 				)
 				ON DUPLICATE KEY UPDATE
 				`cedula_persona` = `cedula_persona`;
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
+		public function editar_estudiantes() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$cedula_escolar = $this->get_cedula_escolar();
+			$plantel_proced = $this->get_plantel_proced();
+			$con_quien_vive = $this->get_con_quien_vive();
+			$relacion_representante = $this->get_relacion_representante();
+			$cedula_padre = $this->get_cedula_padre();
+			$cedula_madre = $this->get_cedula_madre();
+			$cedula_representante = $this->get_cedula_representante();
+
+			$sql = "
+				UPDATE
+			    `estudiantes`
+				SET
+			    `cedula_escolar` = '$cedula_escolar',
+			    `plantel_proced` = '$plantel_proced',
+			    `con_quien_vive` = '$con_quien_vive',
+			    `relacion_representante` = '$relacion_representante',
+			    `cedula_padre` = '$cedula_padre',
+			    `cedula_madre` = '$cedula_madre',
+			    `cedula_representante` = '$cedula_representante'
+				WHERE
+			    `cedula_persona` = '$cedula_persona'
 			";
 
 			// echo $sql;

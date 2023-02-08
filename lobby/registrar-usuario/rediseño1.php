@@ -100,7 +100,7 @@
 											<div class="col-12 col-lg-10">
 												<div class="input-group mb-2">
 													<select id="NacioNalidad_R" class="form-select" name="NacioNalidad_R" required>
-														<option selected disabled value="">Nacionalidad</option>
+														<option selected value="">Nacionalidad</option>
 														<option value="V">V</option>
 														<option value="E">E</option>
 													</select>
@@ -133,7 +133,7 @@
 
 											<div class="col-12 col-lg-5">
 												<select class="form-select" name="Estado_Civil_R" required>
-													<option selected disabled value="">Seleccione una opción</option>
+													<option selected value="">Seleccione una opción</option>
 													<option value="Soltero(a)">Soltero(a)</option>
 													<option value="Casado(a)">Casado(a)</option>
 													<option value="Divorciado(a)">Divorciado(a)</option>
@@ -372,7 +372,7 @@
 											<div class="col-12 col-lg-8">
 												<div class="input-group mb-2">
 													<select class="form-select" name="Tenencia_vivienda_R" required>
-														<option selected disabled value="">Seleccione una opción</option>
+														<option selected value="">Seleccione una opción</option>
 														<option value="Propia">Propia</option>
 														<option value="Alquilada">Alquilada</option>
 														<option value="Prestada">Prestada</option>
@@ -401,7 +401,7 @@
 											</div>
 											<div class="col-12 col-lg-10">
 												<select class="form-select" name="Banco" required>
-														<option selected disabled value="">Seleccione una opción</option>
+														<option selected value="">Seleccione una opción</option>
 														<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 														<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
 														<option value="Banco Mercantil, C.A">Banco Mercantil, C.A</option>

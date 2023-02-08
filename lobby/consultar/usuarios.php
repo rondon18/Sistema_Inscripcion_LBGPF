@@ -1,22 +1,34 @@
 <?php
-if (!$_SESSION['login']) {
-	header('Location: ../../index.php');
-	exit();
-}
 
-if (!isset($_GET['sec'])) {
-	header('Location: index.php');
-}
+	if (!$_SESSION['login']) {
+		header('Location: ../../index.php');
+		exit();
+	}
 
-//Devuelve al index del lobby si el usuario no es administrador
-if ($_SESSION['datos_login']['privilegios'] > 1) {
-	header('Location: ../index.php');
-}
-require("../../clases/personas.php");;
-require("../../clases/usuarios.php");;
+	if (!isset($_GET['sec'])) {
+		header('Location: index.php');
+	}
 
-$usuario = new Usuarios();
-$lista_usuarios = $usuario->mostrar_usuarios();
+	//Devuelve al index del lobby si el usuario no es administrador
+	if ($_SESSION['datos_login']['privilegios'] > 1) {
+		header('Location: ../index.php');
+	}
+	require("../../clases/personas.php");;
+	require("../../clases/usuarios.php");;
+
+	$usuario = new usuarios();
+	$lista_usuarios = $usuario->mostrar_usuarios();
+
+
+	if (isset($_POST['orden'])) {
+		if ($_POST['orden'] == "eliminar") {
+
+			$_SESSION['orden'] = $_POST['orden'];
+			$_SESSION['eliminar_usuario'] = $_POST['cedula'];
+
+			header('Location: ../../controladores/control_usuarios.php');
+		}
+	}
 
 ?>
 
@@ -60,7 +72,7 @@ $lista_usuarios = $usuario->mostrar_usuarios();
 						<button class="btn btn-sm btn-danger">Cambiar cargo</button>			
 					</form>
 
-					<?php if ($usuario['privilegios'] <= 1): ?>
+					<?php if ($usuario['privilegios'] < 2): ?>
 					<div class="d-inline-block">
 						<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
 							Eliminar Usuario
@@ -68,9 +80,9 @@ $lista_usuarios = $usuario->mostrar_usuarios();
 						</button>
 					</div>
 					<?php else: ?>
-					<form action="../controladores/control-usuarios.php" method="post">
-						<input type="hidden" name="idUsuario" value="<?php echo $usuario['Cédula_Persona'];?>">
-						<button class="btn btn-sm btn-danger" type="sumbit" name="orden" value="Eliminar" onclick="return confirmacion();">
+					<form action="#" method="post">
+						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
+						<button class="btn btn-sm btn-danger" type="submit" name="orden" value="eliminar" onclick="return confirmacion();">
 							Eliminar Usuario
 							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 						</button>

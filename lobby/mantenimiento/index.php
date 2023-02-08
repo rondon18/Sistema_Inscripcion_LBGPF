@@ -85,7 +85,7 @@ $nivel = 2;
 										</div>
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
-												<form id="respaldar-bd" method="post" action="../../controladores/control-mantenimiento.php">
+												<form id="respaldar-bd" method="post" action="../../controladores/control_mantenimiento.php">
 													<input type="hidden" name="orden" value="Respaldar">
 													<button id="boton-respaldar" class="btn btn-primary">
 													<i class="fas fa-database fa-lg me-2"></i>
@@ -114,10 +114,10 @@ $nivel = 2;
 										</div>
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
-												<form id="restaurar-bd" method="post" action="../../controladores/control-mantenimiento.php">
+												<form id="restaurar-bd" method="post" action="../../controladores/control_mantenimiento.php">
 													<div class="input-group">
 														<select name="respaldo" class="form-select" required>
-															<option class="small" value="" selected disabled>Seleccione un respaldo</option>
+															<option class="small" value="" selected>Seleccione un respaldo</option>
 															<?php foreach ($listado as $elemento): ?>
 
 															<option 

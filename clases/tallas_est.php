@@ -44,6 +44,33 @@
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
 			desconectarBD($conexion);
+		}		
+
+		public function editar_tallas_est() {
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$camisa = $this->get_camisa();
+			$pantalon = $this->get_pantalon();
+			$calzado = $this->get_calzado();
+
+			$conexion = conectarBD();
+
+			$sql = "
+				UPDATE
+			    `tallas_est`
+				SET
+			    `camisa` = '$camisa',
+			    `pantalon` = '$pantalon',
+			    `calzado` = '$calzado'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
 		}
 
 

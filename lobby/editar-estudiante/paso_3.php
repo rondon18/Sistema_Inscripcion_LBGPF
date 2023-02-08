@@ -18,7 +18,7 @@ else {
 	// Verificación al momento de enviar el formulario
 	if (isset($_POST['paso_3'])) {
 		// Check de que el paso fue completado
-		$_SESSION['orden'] = "insertar";
+		$_SESSION['orden'] = "editar";
 		$_SESSION['paso_3'] = $_POST['paso_3'];
 		
 
@@ -35,6 +35,61 @@ else {
 		header('Location: ../../controladores/control_registros.php');
 	}
 }
+
+function estado_vacuna($n_vacuna) {
+
+	switch ($n_vacuna) {
+		
+		case 'vph':
+			$i = 0;
+			break;
+		
+		case 'tdap':
+			$i = 1;
+			break;
+		
+		case 'menacwy':
+			$i = 2;
+			break;
+		
+		case 'hep_a':
+			$i = 3;
+			break;
+		
+		case 'hep_b':
+			$i = 4;
+			break;
+		
+		case 'ipv':
+			$i = 5;
+			break;
+		
+		case 'mmr':
+			$i = 6;
+			break;
+		
+		case 'varicela':
+			$i = 7;
+			break;
+		
+		case 'antiamarilica':
+			$i = 8;
+			break;
+		
+		case 'antigripal':
+			$i = 9;
+			break;
+		
+		default:
+			// code...
+			break;
+	}
+
+	if ($_SESSION['vacunas_estudiante'][$i]['estado_vacuna'] == "Aplicada") {
+		echo "checked";
+	}
+}
+
 
 $nivel = 2;
 
@@ -116,7 +171,7 @@ $nivel = 2;
 													name="primer_nombre_est" 
 													placeholder="Primer nombre" 
 													required
-													value="<?php echo dato_sesion_i("primer_nombre_est",3);?>"
+													value="<?php echo dato_input("p_nombre","de");?>"
 												>
 											</div>
 											<!-- Segundo nombre -->
@@ -127,7 +182,7 @@ $nivel = 2;
 													type="text" 
 													name="segundo_nombre_est"
 													placeholder="Segundo nombre" 
-													value="<?php echo dato_sesion_i("segundo_nombre_est",3);?>"
+													value="<?php echo dato_input("s_nombre","de");?>"
 												>
 											</div>
 										</div>
@@ -147,7 +202,7 @@ $nivel = 2;
 													name="primer_apellido_est"
 													placeholder="Primer apellido"
 													required 
-													value="<?php echo dato_sesion_i("primer_apellido_est",3);?>"
+													value="<?php echo dato_input("p_apellido","de");?>"
 												>
 											</div>
 											<!-- Segundo apellido -->
@@ -158,7 +213,7 @@ $nivel = 2;
 													name="segundo_apellido_est"
 													id="segundo_apellido_est" 
 													placeholder="Segundo apellido"
-													value="<?php echo dato_sesion_i("segundo_apellido_est",3);?>"
+													value="<?php echo dato_input("s_apellido","de");?>"
 												>
 											</div>
 										</div>
@@ -177,8 +232,13 @@ $nivel = 2;
 												<label class="form-label requerido">Cédula:</label>
 											</div>
 											
-											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (dato_sesion_i("usar_c_e",3) == "no_tiene") {} ?>>
+											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (strlen(dato_input("cedula","dp") > 10)) { echo "disabled";} ?>>
 												
+												<?php 
+													$nac = trim(dato_input("cedula","dp"),"123456789");
+													$nro_c = trim(dato_input("cedula","dp"),"VE");
+												?>
+
 												<div class="col-12 col-lg-4">
 														<!-- NacionalIdad -->
 														<select 
@@ -188,8 +248,8 @@ $nivel = 2;
 															required
 														>
 															<option selected value="">Nacionalidad</option>
-															<option <?php dato_sesion_opt("V","nacionalidad_est","s",3);?> value="V">V</option>
-															<option <?php dato_sesion_opt("E","nacionalidad_est","s",3);?> value="E">E</option>
+															<option value="V" <?php if ($nac == "V") {echo "selected";}?>>V</option>
+															<option value="E" <?php if ($nac == "E") {echo "selected";}?>>E</option>
 														</select>
 												</div>
 												<div class="col-12 col-lg-8">
@@ -203,7 +263,7 @@ $nivel = 2;
 															minlength="7"
 															placeholder="Número de cedula" 
 															required
-															value="<?php echo dato_sesion_i("cedula_est",3);?>"
+															value="<?php echo $nro_c;?>"
 														>
 												</div>
 
@@ -223,6 +283,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="usar_c_e" 
 														value="no_tiene" 
+														<?php if (strlen(dato_input("cedula","dp") > 10)) { echo "checked";} ?>
 													>
 													<label for="usar_c_e" class="form-label">
 														El estudiante no tiene cédula.
@@ -246,7 +307,7 @@ $nivel = 2;
 													maxlength="14" 
 													minlength="12"
 													placeholder="Número de cedula escolar" 
-													value="<?php echo dato_sesion_i("cedula_escolar_est",3);?>"
+													value="<?php echo dato_input("cedula_escolar","de");?>"
 												>
 											</div>
 											<div class="col-1">
@@ -344,7 +405,7 @@ $nivel = 2;
 														name="genero_est" 
 														value="F" 
 														required
-														<?php dato_sesion_opt("F","genero_est","rc",3);?>
+														<?php dato_option("F","genero","rc","de");?>
 													>
 													<label for="genero_est_f" class="form-label">Femenino</label>
 												</div>
@@ -357,7 +418,7 @@ $nivel = 2;
 														name="genero_est" 
 														value="M" 
 														required
-														<?php dato_sesion_opt("M","genero_est","rc",3);?>
+														<?php dato_option("M","genero","rc","de");?>
 													>
 													<label for="genero_est_m" class="form-label">Masculino</label>
 												</div>
@@ -377,7 +438,7 @@ $nivel = 2;
 													min="<?php echo date('Y')-19 .'-01-01'?>"
 													max="<?php echo date('Y')-10 .'-01-01'?>" 
 													required
-													value="<?php echo dato_sesion_i("fecha_nacimiento_est",3);?>"
+													value="<?php echo dato_input("fecha_nacimiento","de");?>"
 												>
 											</div>
 											<div class="col-12 col-lg-8">
@@ -389,7 +450,7 @@ $nivel = 2;
 													type="text" 
 													placeholder="Estado, ciudad." 
 													required
-													value="<?php echo dato_sesion_i("lugar_nacimiento_est",3);?>"
+													value="<?php echo dato_input("lugar_nacimiento","de");?>"
 												>
 											</div>
 										</div>
@@ -419,7 +480,7 @@ $nivel = 2;
 													type="email" 
 													name="correo_electronico_est"
 													placeholder="correo_ejemplo@dominio.com" 
-													value="<?php echo dato_sesion_i("correo_electronico_est",3);?>"
+													value="<?php echo dato_input("email","de");?>"
 												>
 											</div>
 										</div>
@@ -445,7 +506,7 @@ $nivel = 2;
 													minlength="4"
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo dato_sesion_i("prefijo_principal_est",3);?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][0]["prefijo"];?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-3">
@@ -458,7 +519,7 @@ $nivel = 2;
 													minlength="7" 
 													maxlength="7"
 													placeholder="Número telefonico" 
-													value="<?php echo dato_sesion_i("telefono_principal_est",3);?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][0]["numero"];?>"
 												>
 											</div>
 											<!-- Teléfono secundario -->
@@ -476,7 +537,7 @@ $nivel = 2;
 													minlength="4"
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo dato_sesion_i("prefijo_secundario_est",3);?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][1]["prefijo"];?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-3">
@@ -489,7 +550,7 @@ $nivel = 2;
 													minlength="7" 
 													maxlength="7"
 													placeholder="Número telefonico"
-													value="<?php echo dato_sesion_i("telefono_secundario_est",3);?>" 
+													value="<?php echo $_SESSION['tlfs_estudiante'][1]["numero"];?>"
 												>
 											</div>
 										</div>
@@ -530,7 +591,6 @@ $nivel = 2;
 														name="domicilio" 
 														value="representante"
 														required
-														<?php dato_sesion_opt("representante","domicilio","rc",3);?>
 													>
 													<label for="domicilio_representante" class="form-label">Representante </label>
 												</div>
@@ -543,7 +603,6 @@ $nivel = 2;
 														name="domicilio" 
 														value="padre"
 														required
-														<?php dato_sesion_opt("padre","domicilio","rc",3);?>
 													>
 													<label for="domicilio_padre" class="form-label">Padre </label>
 												</div>
@@ -556,7 +615,6 @@ $nivel = 2;
 														name="domicilio" 
 														value="madre"
 														required
-														<?php dato_sesion_opt("madre","domicilio","rc",3);?>
 													>
 													<label for="domicilio_madre" class="form-label">Madre </label>
 												</div>
@@ -569,7 +627,6 @@ $nivel = 2;
 														name="domicilio" 
 														value="otro"
 														required
-														<?php dato_sesion_opt("otro","domicilio","rc",3);?>
 													>
 													<label for="domicilio_otro" class="form-label">Otro </label>
 												</div>
@@ -581,14 +638,14 @@ $nivel = 2;
 											<div class="col-12 col-lg-4">
 												<label for="direccion_est" class="form-label requerido">Lugar de domicilio:</label>
 											</div>
+		
 											<div class="col-12 col-lg-8">
 												<input 
 													id="direccion_est"
 													class="form-control" 
 													name="direccion_est" 
 													required
-													<?php if (dato_sesion_i("domicilio",3) != "otro"){echo 'disabled';};?>
-													value="<?php echo dato_sesion_i("direccion_est",3);?>" 
+													disabled 
 												>
 											</div>
 										</div>
@@ -606,7 +663,7 @@ $nivel = 2;
 													type="text" 
 													name="con_quien_vive" 
 													required
-													value="<?php echo dato_sesion_i("con_quien_vive",3);?>" 
+													value="<?php echo dato_input("con_quien_vive","de");?>" 
 												>
 											</div>
 										</div>
@@ -627,7 +684,7 @@ $nivel = 2;
 														name="tiene_canaima" 
 														value="Si"
 														required
-														<?php dato_sesion_opt("Si","tiene_canaima","rc",3);?>
+														<?php dato_option("Si","tiene_canaima","rc","de");?>
 													>
 													<label for="tiene_canaima_si" class="form-label">Si </label>
 												</div>
@@ -640,7 +697,7 @@ $nivel = 2;
 														name="tiene_canaima" 
 														value="No"
 														required
-														<?php dato_sesion_opt("No","tiene_canaima","rc",3);?>
+														<?php dato_option("No","tiene_canaima","rc","de");?>
 													>
 													<label for="tiene_canaima_no" class="form-label">No </label>
 												</div>
@@ -660,13 +717,13 @@ $nivel = 2;
 													class="form-select mb-2" 
 													name="condiciones_canaima" 
 													required 
-													<?php if (dato_sesion_i("tiene_canaima",3) != "Si"){echo 'disabled';};?>
+													<?php if (dato_input("tiene_canaima","de") != "Si"){echo 'disabled';};?>
 												>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php dato_sesion_opt("Muy buenas Condiciones","condiciones_canaima","s",3);?> value="Muy buenas Condiciones">Muy buenas Condiciones</option>
-														<option <?php dato_sesion_opt("Buenas Condiciones","condiciones_canaima","s",3);?> value="Buenas Condiciones">Buenas Condiciones</option>
-														<option <?php dato_sesion_opt("Malas Condiciones","condiciones_canaima","s",3);?> value="Malas Condiciones">Malas Condiciones</option>
-														<option <?php dato_sesion_opt("Muy malas Condiciones","condiciones_canaima","s",3);?> value="Muy malas Condiciones">Muy malas Condiciones</option>
+														<option <?php dato_option("Muy buenas Condiciones","condicion_canaima","s","de");?> value="Muy buenas Condiciones">Muy buenas Condiciones</option>
+														<option <?php dato_option("Buenas Condiciones","condicion_canaima","s","de");?> value="Buenas Condiciones">Buenas Condiciones</option>
+														<option <?php dato_option("Malas Condiciones","condicion_canaima","s","de");?> value="Malas Condiciones">Malas Condiciones</option>
+														<option <?php dato_option("Muy malas Condiciones","condicion_canaima","s","de");?> value="Muy malas Condiciones">Muy malas Condiciones</option>
 													</select>
 											</div>
 										</div>
@@ -687,7 +744,7 @@ $nivel = 2;
 													placeholder="Codigo" 
 													minlength="10" 
 													maxlength="10"
-													value="<?php echo dato_sesion_i("codigo_carnet_patria_est",3);?>" 
+													value="<?php echo dato_input("codigo_carnet","de");?>" 
 												>
 											</div>
 											<!-- Serial del carnet de la patria -->
@@ -700,7 +757,7 @@ $nivel = 2;
 													placeholder="Serial" 
 													minlength="10" 
 													maxlength="10"
-													value="<?php echo dato_sesion_i("serial_carnet_patria_est",3);?>" 
+													value="<?php echo dato_input("serial_carnet","de");?>" 
 												>
 											</div>
 											<div class="col-12 col-lg-12">
@@ -723,7 +780,7 @@ $nivel = 2;
 														name="internet_vivienda" 
 														value="Si"
 														required
-														<?php dato_sesion_opt("Si","internet_vivienda","rc",3);?>
+														<?php dato_option("Si","acceso_internet","rc","de");?>
 													>
 													<label for="internet_vivienda_si" class="form-label">Si </label>
 												</div>
@@ -735,7 +792,7 @@ $nivel = 2;
 														name="internet_vivienda" 
 														value="No"
 														required
-														<?php dato_sesion_opt("No","internet_vivienda","rc",3);?>
+														<?php dato_option("No","acceso_internet","rc","de");?>
 													>
 													<label for="internet_vivienda_no" class="form-label">No </label>
 												</div>
@@ -764,11 +821,11 @@ $nivel = 2;
 											<div class="col-12 col-lg-8">
 												<select class="form-select mb-2" name="grado_a_cursar" required>
 													<option selected value="">Seleccione una opción</option>
-													<option <?php dato_sesion_opt("Primer año","grado_a_cursar","s",3);?> value="Primer año">Primer año</option>
-													<option <?php dato_sesion_opt("Segundo año","grado_a_cursar","s",3);?> value="Segundo año">Segundo año</option>
-													<option <?php dato_sesion_opt("Tercer año","grado_a_cursar","s",3);?> value="Tercer año">Tercer año</option>
-													<option <?php dato_sesion_opt("Cuarto año","grado_a_cursar","s",3);?> value="Cuarto año">Cuarto año</option>
-													<option <?php dato_sesion_opt("Quinto año","grado_a_cursar","s",3);?> value="Quinto año">Quinto año</option>
+													<option <?php dato_option("Primer año","grado_a_cursar","s","de");?> value="Primer año">Primer año</option>
+													<option <?php dato_option("Segundo año","grado_a_cursar","s","de");?> value="Segundo año">Segundo año</option>
+													<option <?php dato_option("Tercer año","grado_a_cursar","s","de");?> value="Tercer año">Tercer año</option>
+													<option <?php dato_option("Cuarto año","grado_a_cursar","s","de");?> value="Cuarto año">Cuarto año</option>
+													<option <?php dato_option("Quinto año","grado_a_cursar","s","de");?> value="Quinto año">Quinto año</option>
 												</select>
 											</div>
 										</div>
@@ -788,7 +845,7 @@ $nivel = 2;
 													name="plantel_procedencia" 
 													placeholder="Institucion en que cursó primaria" 
 													required
-													value="<?php echo dato_sesion_i("plantel_procedencia",3);?>"
+													value="<?php echo dato_input("plantel_proced","de");?>"
 												>
 											</div>
 										</div>
@@ -809,7 +866,7 @@ $nivel = 2;
 														name="repitente" 
 														value="Si" 
 														required
-														<?php dato_sesion_opt("Si","repitente","rc",3);?>
+														<?php if (!empty(dato_input("a_repetido"))) {echo "checked";}?>
 													>
 													<label for="repitente_si" class="form-label">Si</label>
 												</div>
@@ -822,7 +879,7 @@ $nivel = 2;
 														name="repitente" 
 														value="No" 
 														required
-														<?php dato_sesion_opt("No","repitente","rc",3);?>
+														<?php if (empty(dato_input("a_repetido"))) {echo "checked";}?>
 													>
 													<label for="repitente_no" class="form-label">No</label>
 												</div>
@@ -847,11 +904,11 @@ $nivel = 2;
 														required 
 													>
 														<option value="">Año repetido</option>
-														<option <?php dato_sesion_opt("Primer año","a_repetido","s",3);?> value="Primer año">Primer año</option>
-														<option <?php dato_sesion_opt("Segundo año","a_repetido","s",3);?> value="Segundo año">Segundo año</option>
-														<option <?php dato_sesion_opt("Tercer año","a_repetido","s",3);?> value="Tercer año">Tercer año</option>
-														<option <?php dato_sesion_opt("Cuarto año","a_repetido","s",3);?> value="Cuarto año">Cuarto año</option>
-														<option <?php dato_sesion_opt("Quinto año","a_repetido","s",3);?> value="Quinto año">Quinto año</option>
+														<option <?php dato_option("Primer año","a_repetido","s","de");?> value="Primer año">Primer año</option>
+														<option <?php dato_option("Segundo año","a_repetido","s","de");?> value="Segundo año">Segundo año</option>
+														<option <?php dato_option("Tercer año","a_repetido","s","de");?> value="Tercer año">Tercer año</option>
+														<option <?php dato_option("Cuarto año","a_repetido","s","de");?> value="Cuarto año">Cuarto año</option>
+														<option <?php dato_option("Quinto año","a_repetido","s","de");?> value="Quinto año">Quinto año</option>
 													</select>
 												</div>
 											</div>
@@ -868,7 +925,7 @@ $nivel = 2;
 														type="text" 
 														name="materias_repitente"
 														placeholder="¿Cuáles materias repite?"
-														value="<?php echo dato_sesion_i("materias_repitente",3);?>"
+														value="<?php echo dato_input("materias_repetidas","de");?>"
 													>
 												</div>
 											</div>
@@ -884,7 +941,7 @@ $nivel = 2;
 														type="text"
 														name="materias_pendientes" 
 														placeholder="¿Cuáles materias tiene pendientes?"
-														value="<?php echo dato_sesion_i("materias_pendientes",3);?>"
+														value="<?php echo dato_input("materias_pendientes","de");?>"
 													>
 												</div>
 											</div>
@@ -926,7 +983,7 @@ $nivel = 2;
 													min="60"
 													max="300"
 													step="1" 
-													value="<?php echo dato_sesion_i("talla",3);?>"
+													value="<?php echo dato_input("estatura","de");?>"
 												>
 											</div>
 											<!-- Peso -->
@@ -942,7 +999,7 @@ $nivel = 2;
 													min="20"
 													max="180"
 													step="0.5" 
-													value="<?php echo dato_sesion_i("peso",3);?>"
+													value="<?php echo dato_input("peso","de");?>"
 												>
 											</div>
 
@@ -958,7 +1015,7 @@ $nivel = 2;
 													maxlength="5"
 													min="0"
 													max="100" 
-													value="<?php echo dato_sesion_i("indice",3);?>"
+													value="<?php echo dato_input("indice_m_c","de");?>"
 												>
 											</div>
 
@@ -974,7 +1031,7 @@ $nivel = 2;
 													maxlength="5" 
 													max="30"
 													min="8"
-													value="<?php echo dato_sesion_i("c_braquial",3);?>"
+													value="<?php echo dato_input("circ_braquial","de");?>"
 												>
 											</div>
 
@@ -1003,7 +1060,7 @@ $nivel = 2;
 													name="talla_pantalon"
 													placeholder="Pantalon" 
 													maxlength="5" 
-													value="<?php echo dato_sesion_i("talla_pantalon",3);?>"
+													value="<?php echo dato_input("pantalon","de");?>"
 												>
 											</div>
 											<!-- Talla de camisa -->
@@ -1016,7 +1073,7 @@ $nivel = 2;
 													name="talla_camisa" 
 													placeholder="Camisa" 
 													maxlength="5" 
-													value="<?php echo dato_sesion_i("talla_camisa",3);?>"
+													value="<?php echo dato_input("camisa","de");?>"
 												>
 											</div>
 											<!-- Talla de zapatos -->
@@ -1029,7 +1086,7 @@ $nivel = 2;
 													name="talla_zapatos" 
 													placeholder="Zapatos" 
 													maxlength="5" 
-													value="<?php echo dato_sesion_i("talla_zapatos",3);?>"
+													value="<?php echo dato_input("calzado","de");?>"
 												>
 											</div>
 										</div>
@@ -1049,7 +1106,7 @@ $nivel = 2;
 													placeholder="Enfermedad que padece"
 													minlength="3"
 													maxlength="50" 
-													value="<?php echo dato_sesion_i("enfermedad",3);?>"
+													value="<?php echo dato_input("padecimiento","de");?>"
 												>
 											</div>
 											<div class="col-12 col-lg-12">
@@ -1071,7 +1128,7 @@ $nivel = 2;
 													placeholder="impedimento que padece"
 													minlength="3"
 													maxlength="50" 
-													value="<?php echo dato_sesion_i("impedimento",3);?>"
+													value="<?php echo dato_input("impedimento_fisico","de");?>"
 												>
 											</div>
 											<div class="col-12 col-lg-12">
@@ -1085,22 +1142,30 @@ $nivel = 2;
 											<div class="col-12 col-lg-4">
 												<label class="form-label requerido">Tipo de sangre:</label>
 											</div>
+
+											<?php 
+
+												$grupo_s = trim(dato_input("tipo_sangre","de"),"+-");
+												$fact_rhesus = substr(dato_input("tipo_sangre","de"),-1);
+
+											?>
+
 											<div class="col-12 col-lg-4">
 												<select class="form-select" name="grupo_sanguineo" required>
 													<option selected value="">Grupo sanguíneo</option>
-													<option <?php dato_sesion_opt("O","grupo_sanguineo","s",3);?> value="O">O</option>
-													<option <?php dato_sesion_opt("A","grupo_sanguineo","s",3);?> value="A">A</option>
-													<option <?php dato_sesion_opt("B","grupo_sanguineo","s",3);?> value="B">B</option>
-													<option <?php dato_sesion_opt("AB","grupo_sanguineo","s",3);?> value="AB">AB</option>
-													<option <?php dato_sesion_opt("NC","grupo_sanguineo","s",3);?> value="NC">No conocido</option>
+													<option <?php if ($grupo_s == "O") {echo "selected";}?> value="O">O</option>
+													<option <?php if ($grupo_s == "A") {echo "selected";}?> value="A">A</option>
+													<option <?php if ($grupo_s == "B") {echo "selected";}?> value="B">B</option>
+													<option <?php if ($grupo_s == "AB") {echo "selected";}?> value="AB">AB</option>
+													<option <?php if ($grupo_s == "NC") {echo "selected";}?> value="NC">No conocido</option>
 												</select>
 											</div>
 											<div class="col-12 col-lg-4">
 												<select class="form-select" name="factor_rhesus" required>
 													<option selected value="">Factor Rhesus</option>
-													<option <?php dato_sesion_opt("+","factor_rhesus","s",3);?> value="+">+</option>
-													<option <?php dato_sesion_opt("-","factor_rhesus","s",3);?> value="-">-</option>
-													<option <?php dato_sesion_opt("N","factor_rhesus","s",3);?> value="N">No conocido</option>
+													<option <?php if ($fact_rhesus == "+") {echo "selected";}?> value="+">+</option>
+													<option <?php if ($fact_rhesus == "-") {echo "selected";}?> value="-">-</option>
+													<option <?php if ($fact_rhesus == "N") {echo "selected";}?> value="N">No conocido</option>
 												</select>
 											</div>
 										</div>
@@ -1120,7 +1185,7 @@ $nivel = 2;
 														name="lateralidad"
 														value="Ambidextro" 
 														required
-														<?php dato_sesion_opt("Ambidextro","lateralidad","rc",3);?>
+														<?php dato_option("Ambidextro","lateralidad","rc","de");?>
 													>
 													<label for="lateralidad_a" class="form-label">Ambidextro</label>
 												</div>
@@ -1133,7 +1198,7 @@ $nivel = 2;
 														name="lateralidad" 
 														value="Diestro"
 														required
-														<?php dato_sesion_opt("Diestro","lateralidad","rc",3);?>
+														<?php dato_option("Diestro","lateralidad","rc","de");?>
 													>
 													<label for="lateralidad_d" class="form-label">Diestro</label>
 												</div>
@@ -1146,7 +1211,7 @@ $nivel = 2;
 														name="lateralidad" 
 														value="Zurdo"
 														required
-														<?php dato_sesion_opt("Zurdo","lateralidad","rc",3);?>
+														<?php dato_option("Zurdo","lateralidad","rc","de");?>
 													>
 													<label for="lateralidad_z" class="form-label">Zurdo</label>
 												</div>
@@ -1169,7 +1234,7 @@ $nivel = 2;
 														name="dentadura"
 														value="Buena"
 														required
-														<?php dato_sesion_opt("Buena","dentadura","rc",3);?>
+														<?php dato_option("Buena","condicion_dental","rc","de");?>
 													>
 													<label for="dentadura_b" class="form-label">Buena </label>
 												</div>
@@ -1181,7 +1246,7 @@ $nivel = 2;
 														name="dentadura"
 														value="Regular"
 														required
-														<?php dato_sesion_opt("Regular","dentadura","rc",3);?>
+														<?php dato_option("Regular","condicion_dental","rc","de");?>
 													>
 													<label for="dentadura_r" class="form-label">Regular </label>
 												</div>
@@ -1193,7 +1258,7 @@ $nivel = 2;
 														name="dentadura"
 														value="Mala"
 														required
-														<?php dato_sesion_opt("Mala","dentadura","rc",3);?>
+														<?php dato_option("Mala","condicion_dental","rc","de");?>
 													>
 													<label for="dentadura_m" class="form-label">Mala </label>
 												</div>
@@ -1216,7 +1281,7 @@ $nivel = 2;
 														name="vista"
 														value="Buena" 
 														required
-														<?php dato_sesion_opt("Buena","vista","rc",3);?>
+														<?php dato_option("Buena","condicion_vista","rc","de");?>
 													>
 													<label for="vista_b" class="form-label">Buena </label>
 												</div>
@@ -1228,7 +1293,7 @@ $nivel = 2;
 														name="vista"
 														value="Regular" 
 														required
-														<?php dato_sesion_opt("Regular","vista","rc",3);?>
+														<?php dato_option("Regular","condicion_vista","rc","de");?>
 													>
 													<label for="vista_r" class="form-label">Regular </label>
 												</div>
@@ -1240,7 +1305,7 @@ $nivel = 2;
 														name="vista"
 														value="Mala" 
 														required
-														<?php dato_sesion_opt("Mala","vista","rc",3);?>
+														<?php dato_option("Mala","condicion_vista","rc","de");?>
 													>
 													<label for="vista_m" class="form-label">Mala </label>
 												</div>
@@ -1253,6 +1318,7 @@ $nivel = 2;
 											<div class="col-12 col-lg-12">
 												<label class="form-label mb-3">¿Presenta alguna de estas condiciones?:</label>
 											</div>
+
 											<div class="row row-cols-1 row-cols-lg-4 px-5 justify-content-between">
 												<div class="col form-check form-check-inline">
 													<input 
@@ -1261,7 +1327,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_visual"
 														value="Visual"
-														<?php dato_sesion_opt("Visual","cond_visual","rc",3);?>
+														<?php dato_option("V","visual","rc","de");?>
 													>
 													<label for="cond_visual" class="form-label">Visual </label>
 												</div>
@@ -1272,7 +1338,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_motora"
 														value="Motora"
-														<?php dato_sesion_opt("Motora","cond_motora","rc",3);?>
+														<?php dato_option("M","motora","rc","de");?>
 													>
 													<label for="cond_motora" class="form-label">Motora </label>
 												</div>
@@ -1283,7 +1349,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_auditiva"
 														value="Auditiva"
-														<?php dato_sesion_opt("Auditiva","cond_auditiva","rc",3);?>
+														<?php dato_option("A","auditiva","rc","de");?>
 													>
 													<label for="cond_auditiva" class="form-label">Auditiva </label>
 												</div>
@@ -1294,7 +1360,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_escritura"
 														value="Escritura"
-														<?php dato_sesion_opt("Escritura","cond_escritura","rc",3);?>
+														<?php dato_option("E","escritura","rc","de");?>
 													>
 													<label for="cond_escritura" class="form-label">Escritura </label>
 												</div>
@@ -1305,7 +1371,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_lectura"
 														value="Lectura"
-														<?php dato_sesion_opt("Lectura","cond_lectura","rc",3);?>
+														<?php dato_option("L","lectura","rc","de");?>
 													>
 													<label for="cond_lectura" class="form-label">Lectura </label>
 												</div>
@@ -1316,7 +1382,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_lenguaje"
 														value="Lenguaje"
-														<?php dato_sesion_opt("Lenguaje","cond_lenguaje","rc",3);?>
+														<?php dato_option("L","lenguaje","rc","de");?>
 													>
 													<label for="cond_lenguaje" class="form-label">Lenguaje </label>
 												</div>
@@ -1327,7 +1393,7 @@ $nivel = 2;
 														type="checkbox" 
 														name="cond_embarazo"
 														value="Embarazo"
-														<?php dato_sesion_opt("Embarazo","cond_embarazo","rc",3);?>
+														<?php dato_option("E","embarazo","rc","de");?>
 													>
 													<label for="cond_embarazo" class="form-label">Embarazo </label>
 												</div>
@@ -1349,7 +1415,7 @@ $nivel = 2;
 													placeholder="¿Cuál necesidad educativa?"
 													minlength="3"
 													maxlength="180" 
-													value="<?php echo dato_sesion_i("necesidad_educativa",3);?>"
+													value="<?php echo dato_input("necesidad_educativa","de");?>"
 												>
 											</div>
 										</div>
@@ -1369,7 +1435,7 @@ $nivel = 2;
 													placeholder="¿Cuál institucion?"
 													minlength="3"
 													maxlength="180"
-													value="<?php echo dato_sesion_i("institucion_medica",3);?>"
+													value="<?php echo dato_input("institucion_medica","de");?>"
 												>
 											</div>
 										</div>
@@ -1393,14 +1459,15 @@ $nivel = 2;
 										</div>
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
+
 												<div class="form-check mb-2 mx-md-4">
 													<input 
 														id="vph"
 														class="form-check-input" 
 														name="vph" 
 														type="checkbox" 
-														value="vph" 
-														<?php dato_sesion_opt("vph","vph","rc",3);?>
+														value="vph"
+														<?php estado_vacuna("vph"); ?>
 													>
 													<label class="form-check-label" for="vph">
 														Vacuna contra Virus del papiloma humano, VPH
@@ -1413,7 +1480,7 @@ $nivel = 2;
 														name="tdap" 
 														type="checkbox" 
 														value="tdap" 
-														<?php dato_sesion_opt("tdap","tdap","rc",3);?>
+														<?php estado_vacuna("tdap"); ?>
 													>
 													<label class="form-check-label" for="tdap">
 														Vacuna contra Tétanos, difteria y tos ferina o pertussis (Tdap)
@@ -1426,7 +1493,7 @@ $nivel = 2;
 														name="menacwy" 
 														type="checkbox" 
 														value="menacwy" 
-														<?php dato_sesion_opt("menacwy","menacwy","rc",3);?>
+														<?php estado_vacuna("menacwy"); ?>
 													>
 													<label class="form-check-label" for="menacwy">
 														Vacuna contra Enfermedad meningococica (MenACWY)
@@ -1439,7 +1506,7 @@ $nivel = 2;
 														name="hep_a" 
 														type="checkbox" 
 														value="hep_a" 
-														<?php dato_sesion_opt("hep_a","hep_a","rc",3);?>
+														<?php estado_vacuna("hep_a"); ?>
 													>
 													<label class="form-check-label" for="hep_a">
 														Vacuna contra Hepatitis A (HepA)
@@ -1452,7 +1519,7 @@ $nivel = 2;
 														name="hep_b" 
 														type="checkbox" 
 														value="hep_b" 
-														<?php dato_sesion_opt("hep_b","hep_b","rc",3);?>
+														<?php estado_vacuna("hep_b"); ?>
 													>
 													<label class="form-check-label" for="hep_b">
 														Vacuna contra Hepatitis B (HepB)
@@ -1465,7 +1532,7 @@ $nivel = 2;
 														name="ipv" 
 														type="checkbox" 
 														value="ipv" 
-														<?php dato_sesion_opt("ipv","ipv","rc",3);?>
+														<?php estado_vacuna("ipv"); ?>
 													>
 													<label class="form-check-label" for="ipv">
 														Vacuna contra Poliomielitis (IPV)
@@ -1478,7 +1545,7 @@ $nivel = 2;
 														name="mmr" 
 														type="checkbox" 
 														value="mmr" 
-														<?php dato_sesion_opt("mmr","mmr","rc",3);?>
+														<?php estado_vacuna("mmr"); ?>
 													>
 													<label class="form-check-label" for="mmr">
 														Vacuna contra Sarampión, paperas, rubéola (MMR)
@@ -1491,7 +1558,7 @@ $nivel = 2;
 														name="varicela" 
 														type="checkbox" 
 														value="varicela" 
-														<?php dato_sesion_opt("varicela","varicela","rc",3);?>
+														<?php estado_vacuna("varicela"); ?>
 													>
 													<label class="form-check-label" for="varicela">
 														Vacuna contra Varicela
@@ -1504,7 +1571,7 @@ $nivel = 2;
 														name="antiamarilica" 
 														type="checkbox" 
 														value="antiamarilica" 
-														<?php dato_sesion_opt("antiamarilica","antiamarilica","rc",3);?>
+														<?php estado_vacuna("antiamarilica"); ?>
 													>
 													<label class="form-check-label" for="antiamarilica">
 														Vacuna Antiamarílica
@@ -1517,7 +1584,7 @@ $nivel = 2;
 														name="antigripal" 
 														type="checkbox" 
 														value="antigripal" 
-														<?php dato_sesion_opt("antigripal","antigripal","rc",3);?>
+														<?php estado_vacuna("antigripal"); ?>
 													>
 													<label class="form-check-label" for="antigripal">
 														Vacuna Antigripal
@@ -1540,24 +1607,52 @@ $nivel = 2;
 												<label for="vacuna" class="form-label">Vacuna aplicada:</label>
 											</div>
 											<div class="col-12 col-lg-5">
+
+												<?php 
+
+													$vacunas_e = [
+														"NV",
+														"Pfizer/BioNTech",
+														"Moderna",
+														"AztraZeneca",
+														"Janssen",
+														"Sinopharm",
+														"Sinovac",
+														"Bharat",
+														"CanSinoBIO",
+														"Valneva",
+														"Novavax",
+													];
+
+
+													if (in_array(dato_input("vac_aplicada","de"), $vacunas_e)) {
+														$vac_otra = true;
+													}
+													else{
+														$vac_otra = false;
+													}
+
+												?>
+
+
 												<select 
 													id="vacuna"
 													class="form-select" 
 													name="vacuna" 
 												>
 													<option class="small" value="" selected>Vacuna contra covid19 aplicada</option>
-													<option <?php dato_sesion_opt("NV","vacuna","s",3);?> class="small" value="NV">No vacunado</option>
-													<option <?php dato_sesion_opt("Pfizer/BioNTech","vacuna","s",3);?> class="small" value="Pfizer/BioNTech">Pfizer/BioNTech</option>
-													<option <?php dato_sesion_opt("Moderna","vacuna","s",3);?> class="small" value="Moderna">Moderna</option>
-													<option <?php dato_sesion_opt("AztraZeneca","vacuna","s",3);?> class="small" value="AztraZeneca">AztraZeneca</option>
-													<option <?php dato_sesion_opt("Janssen","vacuna","s",3);?> class="small" value="Janssen">Janssen</option>
-													<option <?php dato_sesion_opt("Sinopharm","vacuna","s",3);?> class="small" value="Sinopharm">Sinopharm</option>
-													<option <?php dato_sesion_opt("Sinovac","vacuna","s",3);?> class="small" value="Sinovac">Sinovac</option>
-													<option <?php dato_sesion_opt("Bharat","vacuna","s",3);?> class="small" value="Bharat">Bharat</option>
-													<option <?php dato_sesion_opt("CanSinoBIO","vacuna","s",3);?> class="small" value="CanSinoBIO">CanSinoBIO</option>
-													<option <?php dato_sesion_opt("Valneva","vacuna","s",3);?> class="small" value="Valneva">Valneva</option>
-													<option <?php dato_sesion_opt("Novavax","vacuna","s",3);?> class="small" value="Novavax">Novavax</option>
-													<option <?php dato_sesion_opt("Otra","vacuna","s",3);?> class="small" value="Otra">Otra</option>
+													<option <?php dato_option("NV","vac_aplicada","s","de");?> class="small" value="NV">No vacunado</option>
+													<option <?php dato_option("Pfizer/BioNTech","vac_aplicada","s","de");?> class="small" value="Pfizer/BioNTech">Pfizer/BioNTech</option>
+													<option <?php dato_option("Moderna","vac_aplicada","s","de");?> class="small" value="Moderna">Moderna</option>
+													<option <?php dato_option("AztraZeneca","vac_aplicada","s","de");?> class="small" value="AztraZeneca">AztraZeneca</option>
+													<option <?php dato_option("Janssen","vac_aplicada","s","de");?> class="small" value="Janssen">Janssen</option>
+													<option <?php dato_option("Sinopharm","vac_aplicada","s","de");?> class="small" value="Sinopharm">Sinopharm</option>
+													<option <?php dato_option("Sinovac","vac_aplicada","s","de");?> class="small" value="Sinovac">Sinovac</option>
+													<option <?php dato_option("Bharat","vac_aplicada","s","de");?> class="small" value="Bharat">Bharat</option>
+													<option <?php dato_option("CanSinoBIO","vac_aplicada","s","de");?> class="small" value="CanSinoBIO">CanSinoBIO</option>
+													<option <?php dato_option("Valneva","vac_aplicada","s","de");?> class="small" value="Valneva">Valneva</option>
+													<option <?php dato_option("Novavax","vac_aplicada","s","de");?> class="small" value="Novavax">Novavax</option>
+													<option <?php if (!$vac_otra) { echo "selected";}?> class="small" value="Otra">Otra</option>
 												</select>
 											</div>
 											
@@ -1571,8 +1666,11 @@ $nivel = 2;
 													placeholder="Otra vacuna" 
 													maxlength="15"
 													required 
-													<?php if (dato_sesion_i("vacuna",3) != "Otra"){echo 'disabled';};?>
-													value="<?php echo dato_sesion_i("vacuna_otra",3);?>"
+													<?php if (!$vac_otra): ?>
+													value="<?php echo dato_input("vacuna_otra","de");?>"
+													<?php else: ?>
+													disabled
+													<?php endif ?>
 												>
 											</div>
 										</div>
@@ -1591,8 +1689,8 @@ $nivel = 2;
 													min="0" 
 													max="10" 
 													step="1"
-													<?php if (dato_sesion_i("vacuna",3) == "NV" or empty(dato_sesion_i("vacuna",3))){echo 'disabled';};?>
-													value="<?php echo dato_sesion_i("dosis",3);?>"
+													<?php if (dato_input("vacuna","de") == "NV" or empty(dato_input("vacuna","de"))){echo 'disabled';};?>
+													value="<?php echo dato_input("dosis","de");?>"
 												>
 											</div>
 											<!-- Lote -->
@@ -1606,8 +1704,8 @@ $nivel = 2;
 													placeholder="Código de lote de vacuna" 
 													minlength="15"
 													maxlength="15"
-													<?php if (dato_sesion_i("vacuna",3) == "NV" or empty(dato_sesion_i("vacuna",3))){echo 'disabled';};?>
-													value="<?php echo dato_sesion_i("lote",3);?>"
+													<?php if (dato_input("vacuna","de") == "NV" or empty(dato_input("vacuna","de"))){echo 'disabled';};?>
+													value="<?php echo dato_input("lote","de");?>"
 												>
 											</div>
 										</div>
@@ -1633,7 +1731,7 @@ $nivel = 2;
 													placeholder="¿Que dieta?"
 													minlength="3"
 													maxlength="180"
-													value="<?php echo dato_sesion_i("dieta_especial",3);?>"
+													value="<?php echo dato_input("dieta_especial","de");?>"
 												>
 											</div>
 										</div>
@@ -1652,7 +1750,7 @@ $nivel = 2;
 													placeholder="¿Cuál?"
 													minlength="3"
 													maxlength="180"
-													value="<?php echo dato_sesion_i("medicacion",3);?>"
+													value="<?php echo dato_input("medicacion","de");?>"
 												>
 											</div>
 										</div>
@@ -1670,7 +1768,7 @@ $nivel = 2;
 													name="nro_carnet_discapacidad"
 													placeholder="Número de carnet" 
 													maxlength="25"
-													value="<?php echo dato_sesion_i("nro_carnet_discapacidad",3);?>"
+													value="<?php echo dato_input("carnet_discapacidad","de");?>"
 												>
 											</div>
 										</div>
@@ -1716,7 +1814,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_social",3);?></textarea>
+												><?php echo dato_input("social","de");?></textarea>
 											</div>
 										</div>
 
@@ -1734,7 +1832,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_fisico",3);?></textarea>
+												><?php echo dato_input("fisico","de");?></textarea>
 											</div>
 										</div>
 
@@ -1752,7 +1850,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_personal",3);?></textarea>
+												><?php echo dato_input("personal","de");?></textarea>
 											</div>
 										</div>
 
@@ -1770,7 +1868,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_familiar",3);?></textarea>
+												><?php echo dato_input("familiar","de");?></textarea>
 											</div>
 										</div>
 
@@ -1788,7 +1886,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_academico",3);?></textarea>
+												><?php echo dato_input("academico","de");?></textarea>
 											</div>
 										</div>
 
@@ -1806,7 +1904,7 @@ $nivel = 2;
 													cols="30" 
 													rows="2"
 													maxlength="150"
-												><?php echo dato_sesion_i("observaciones_otra",3);?></textarea>
+												><?php echo dato_input("otra","de");?></textarea>
 											</div>
 										</div>								
 									</section>

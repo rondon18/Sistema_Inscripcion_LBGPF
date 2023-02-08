@@ -61,6 +61,40 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_condiciones_est() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$visual = $this->get_visual();
+			$motora = $this->get_motora();
+			$auditiva = $this->get_auditiva();
+			$escritura = $this->get_escritura();
+			$lectura = $this->get_lectura();
+			$lenguaje = $this->get_lenguaje();
+			$embarazo = $this->get_embarazo();
+
+			$sql = "
+				UPDATE
+			    `condiciones_est`
+				SET
+			    `visual` = '$visual',
+			    `motora` = '$motora',
+			    `auditiva` = '$auditiva',
+			    `escritura` = '$escritura',
+			    `lectura` = '$lectura',
+			    `lenguaje` = '$lenguaje',
+			    `embarazo` = '$embarazo'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 
 		// GETTERS
 		public function get_cedula_estudiante() {

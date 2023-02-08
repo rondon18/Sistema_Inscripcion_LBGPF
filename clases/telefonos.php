@@ -49,6 +49,37 @@
 				desconectarBD($conexion);
 			}
 		}
+		
+
+		public function editar_telefono() {
+
+			$cedula_persona = $this->get_cedula_persona();
+			$relacion = $this->get_relacion();
+			$prefijo = $this->get_prefijo();
+			$numero = $this->get_numero();
+
+			// Verifica si no hay un registro previo para evitar excendentes
+			if ($this->verificar_telefono($cedula_persona,$relacion) < 1) {
+				$conexion = conectarBD();
+
+				$sql = "
+					UPDATE
+				    `telefonos`
+					SET
+				    `prefijo` = '$prefijo',
+				    `numero` = '$numero'
+					WHERE
+				    `cedula_persona` = '$cedula_persona',
+				    `relacion` = '$relacion',
+				";
+
+				// echo $sql;
+				
+				$conexion->query($sql) or die("error: ".$conexion->error);
+
+				desconectarBD($conexion);
+			}
+		}
 
 		public function verificar_telefono($cedula_persona,$relacion) {
 			$conexion = conectarBD();

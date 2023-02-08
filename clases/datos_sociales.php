@@ -46,6 +46,32 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_datos_sociales() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$tiene_canaima = $this->get_tiene_canaima();
+			$condicion_canaima = $this->get_condicion_canaima();
+			$acceso_internet = $this->get_acceso_internet();
+
+			$sql = "
+				UPDATE
+			    `datos_sociales`
+				SET
+			    `tiene_canaima` = '$tiene_canaima',
+			    `condicion_canaima` = '$condicion_canaima',
+			    `acceso_internet` = '$acceso_internet'
+				WHERE
+			    `cedula_estudiante` = '$cedula_estudiante'
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		// GETTERS
 		public function get_cedula_estudiante() {
 			return $this->cedula_estudiante;

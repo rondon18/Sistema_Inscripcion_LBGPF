@@ -46,6 +46,38 @@
 			desconectarBD($conexion);
 		}
 
+		public function editar_datos_academicos() {
+			$conexion = conectarBD();
+
+			$cedula_estudiante = $this->get_cedula_estudiante();
+			$a_repetido = $this->get_a_repetido();
+			$materias_repetidas = $this->get_materias_repetidas();
+			$materias_pendientes = $this->get_materias_pendientes();
+
+			$sql = "
+				INSERT INTO `datos_academicos`(
+			    `cedula_estudiante`,
+			    `a_repetido`,
+			    `materias_repetidas`,
+			    `materias_pendientes`
+				)
+				VALUES(
+			    '$cedula_estudiante',
+			    '$a_repetido',
+			    '$materias_repetidas',
+			    '$materias_pendientes'
+				)
+				ON DUPLICATE KEY UPDATE
+				`cedula_estudiante` = `cedula_estudiante`;
+			";
+
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 
 		// getters
 		public function get_cedula_estudiante() {

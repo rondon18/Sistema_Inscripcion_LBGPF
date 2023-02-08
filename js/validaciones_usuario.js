@@ -1,84 +1,124 @@
-$(document).ready(function(){
-  $("#link1, #link2, #link3, #link4, #link5, #link6").click(function(){
-    $("#seccion1, #seccion2, #seccion3, #seccion4, #seccion5, #seccion6").hide();
-    $("#link1, #link2, #link3, #link4, #link5, #link6").removeClass("active");
-  });
-});
+jQuery.validator.addMethod("pwcheck", function(value) {
+   return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+       && /[a-z]/.test(value) // has a lowercase letter
+       && /\d/.test(value) // has a digit
+}, "Debe incluir letras mayúsculas y minúsculas, y números");
 
-$(document).ready(function(){
-  $("#link1").click(function(){
-    $("#seccion1").show();
-    $("#link1").addClass("active");
-  });
-});
+jQuery.validator.addMethod("lettersonly", function(value, element) 
+{
+return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
+}, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
-$(document).ready(function(){
-  $("#link2").click(function(){
-    $("#seccion2").show();
-    $("#link2").addClass("active");
-  });
-});
-
-
-//validacion y envio
-$.fn.isValid = function(){
-  return this[0].checkValidity()
-}
-
-
-$(document).ready(function() {
-    $('#registro').submit(function(e) {
-        e.preventDefault();
-        // or return false;
-    });
-});
-
-$("#registro").validate({
+$("#formulario_usuario").validate({
   rules:{
-    nacionalidad: {
-      required: true,
+    p_nombre_u: {
+      lettersonly: true,
     },
-    cedula: {
+    s_nombre_u: {
+      lettersonly: true,
+    },
+    p_apellido_u: {
+      lettersonly: true,
+    },
+    s_apellido_u: {
+      lettersonly: true,
+    },
+    cedula_u: {
       digits: true,
-      minlength: 7,
-      maxlength: 8,
+    },
+  
+    respuesta_1: {
+      minlength: 3,
+      maxlength: 120,
+    },
+    respuesta_2: {
+      minlength: 3,
+      maxlength: 120,
     },
     clave: {
-      minlength: 5,
+      pwcheck: true,
     },
   },
   onfocusout: function(element) {
-       this.element(element); // triggers validation
-   },
-   onkeyup: function(element, event) {
-       this.element(element); // triggers validation
-   },
+    this.element(element); // triggers validation
+  },
+  onkeyup: function(element, event) {
+    this.element(element); // triggers validation
+  },
+
   submitHandler: function(form) {
     form.submit();
   },
 });
 
+// Manejo de las secciones
 
-// // Envío de formulario del usuario
-// $( "#B_enviar" ).click(function() {
-//      //Revela todas las secciones para prevenir el problema con los campos no visibles
-//   $("#seccion1, #seccion2").show();
-//   $("#link1, #link2").removeClass("active");
+var count_form_1 = 1;
 
-//   if ($( "#registro").isValid() == true) {
-//      // Envia el formulario si es valido
-//      $("#seccion2").hide();
-//      $("#link1").addClass("active");
-//           $( "#registro" ).submit();
-//   }
-//   else { 
-//      //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto
-//      Swal.fire(
-//       'Atención',
-//       'Faltan campos por llenar <br><br> <span class="form-text">Será regresado a la primera sección, pero se mantendrán los cambios.</span>',
-//       'info'
-//     );
-//      $("#seccion2").hide();
-//      $("#link1").addClass("active");
-//   }
-// });
+$("#boton_anterior").click(function() {
+  // Evita que se vaya a un valor por debajo de 1
+  if (count_form_1 > 1) {
+    if (count_form_1 == 2) {
+      $("#boton_siguiente").fadeIn();
+      $("#boton_guardar").hide();
+    }
+    count_form_1 = count_form_1 - 1;
+    // console.log(count_form_1);
+  }
+  // Oculta las secciones
+  $("#seccion1, #seccion2").hide();
+  // limpia los indicadores de seccion
+  $("#link1, #link2").removeClass("active");
+  
+  // Activa la seccion actual y su indicador
+  $("#seccion" + count_form_1).fadeIn();
+  $("#link" + count_form_1).addClass("active");
+});
+
+
+$("#boton_siguiente").click(function() {
+  if ($("#formulario_usuario").valid()) {
+    if (count_form_1 < 2) {
+      count_form_1 = count_form_1 + 1;
+    }
+    // Oculta las secciones
+    $("#seccion1, #seccion2").hide();
+    // limpia los indicadores de seccion
+    $("#link1, #link2").removeClass("active");
+    
+    // Activa la seccion actual y su indicador
+    $("#seccion" + count_form_1).fadeIn();
+    $("#link" + count_form_1).addClass("active");
+    // console.log(count_form_1);
+    
+    if (count_form_1 == 2) {
+      $("#boton_siguiente").hide();
+      $("#boton_guardar").fadeIn();
+    }
+  }
+  else {
+    // Muestra un mensaje de alerta para que el usuario revise los campos que le falten o sean invalidos
+    Swal.fire(
+      'Atención',
+      'Faltan campos por llenar <br><br> <span class="form-text">Verifiquelos antes de continuar.</span>',
+      'info'
+    );
+  }
+});
+
+
+$("#boton_guardar").click(function() {
+  $("#seccion1, #seccion2").fadeIn();
+  if ($("#formulario_usuario").valid()) {
+    $("#formulario_usuario").submit();
+  }
+  else {
+    // Muestra un mensaje de alerta para que el usuario revise los campos que le falten o sean invalidos
+    Swal.fire(
+      'Atención',
+      'Faltan campos por llenar <br><br> <span class="form-text">Verifiquelos antes de continuar.</span>',
+      'info'
+    );
+  }
+  $("#seccion1").hide();
+});
