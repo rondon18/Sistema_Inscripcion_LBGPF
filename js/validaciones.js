@@ -67,4 +67,4 @@ $('#Primer_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Segundo_Nombre_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Primer_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
 $('#Segundo_Apellido_U').validarIngreso('abcdefghijklmnñopqrstuvwxyzáéíóú ');
-$('#Cédula_U').validarIngreso('0123456789');
+$('#cedula_u').validarIngreso('0123456789');

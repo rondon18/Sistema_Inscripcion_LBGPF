@@ -41,7 +41,7 @@
 							<div class="accordion-body">
 						
 								<strong>Iniciar Sesión.</strong> 
-								Si eres un usuario ya registrado solo debes ingresar tu número de cédula, la clave que hayas colocado al momento del registro y hacer click en el botón "Ingresar". Por otro lado si eres un nuevo usuario debes hacer click en el botón "Registrarse", al hacerlo será enviado a una página donde debe llenar los datos solicicitados en cada pestaña, al completarlos debe hacer click al botón "Guardar y Continuar" de ahí será dirigido a la página para Ingresar al Sistema nuevamente donde podrá ingresar con sus datos.
+								Si eres un usuario ya registrado solo debes ingresar tu número de cédula, la clave que hayas colocado al momento del registro y hacer click en el botón "Ingresar". Por otro lado si eres un nuevo usuario debes hacer click en el botón "Registrarse", al hacerlo será enviado a una página donde debe llenar los datos solicitados en cada pestaña, al completarlos debe hacer click al botón "Guardar y Continuar" de ahí será dirigido a la página para Ingresar al Sistema nuevamente donde podrá ingresar con sus datos.
 						
 							</div>
 						
@@ -91,7 +91,7 @@
 							<div class="accordion-body">
 					
 								<strong>Ver Perfil.</strong> 
-								Esta sección le permite al usuario del sistema visualizar los datos de su perfil de usuario. Asímismo en esta sección se encuentra el botón "Editar perfil" el cual le da la opción de modificar los datos en su perfil.
+								Esta sección le permite al usuario del sistema visualizar los datos de su perfil de usuario. Asimismo en esta sección se encuentra el botón "Editar perfil" el cual le da la opción de modificar los datos en su perfil.
 					
 							</div>
 					
@@ -164,7 +164,7 @@
 						<div id="collapseMaintenance" class="accordion-collapse collapse" aria-labelledby="headingMaintenance" data-bs-parent="#accordionExample">
 						
 							<div class="accordion-body">
-								<strong>Funciones de mantenimiento.</strong> Las funciones de mantenimiento son exclusivas de los administradores del sistema. Estas son "Generar respaldo" y "Restaurar base de datos". La opción "Generar respaldo" le permite descargar un repaldo de todos los registros que se encuentran en la base de datos. por otro lado la opción "Restaurar base de datos" le permite restaurar la base de datos a un punto anterior.
+								<strong>Funciones de mantenimiento.</strong> Las funciones de mantenimiento son exclusivas de los administradores del sistema. Estas son "Generar respaldo" y "Restaurar base de datos". La opción "Generar respaldo" le permite descargar un respaldo de todos los registros que se encuentran en la base de datos. por otro lado la opción "Restaurar base de datos" le permite restaurar la base de datos a un punto anterior.
 							</div>
 						
 						</div>
@@ -186,82 +186,10 @@
 						<div id="collapseForms" class="accordion-collapse collapse" aria-labelledby="headingForms" data-bs-parent="#accordionExample">
 						
 							<div class="accordion-body">
-								<strong>Acerca de los formularios.</strong> Los formularios cuentan con una leyenda de color a modo de ayuda visual. La apariencia variará dependiendo de los requisitos del campo.
+								<strong>Acerca de los formularios.</strong> Los formularios cuentan con validaciones que le indicarán si algún dato tiene valores inválidos o . La leyenda variará dependiendo de los requisitos del campo. De igual manera, los campos se tornarán rojos de haber algún error o campo no llenado, y verdes si cumplen las condiciones.
 
 								<div class="row mt-3">
-								
-									<div class="col-md-6">
-										<label for="ayuda1" class="form-label">Campo opcional</label>
-										<input type="text" id="ayuda1" class="form-control mb-2" minlength="5">
-								
-									</div>
-								
-									<div class="col-md-6">
-								
-										<label for="ayuda2" class="form-label">Campo requerido (Vacio/Invalido)</label>
-										<input type="text" id="ayuda2" required class="form-control mb-2">
-								
-									</div>
-
-									<div class="col-md-6">
-								
-										<label for="ayuda3" class="form-label">Campo requerido valido</label>
-										<input type="text" id="ayuda3" required class="form-control mb-2" value="texto de muestra....">
-								
-									</div>
-								
-									<div class="col-md-6">
-								
-										<label for="ayuda4" class="form-label">Aplica a selectores</label>
-
-										<div class="row">
-								
-											<div class="col">
-								
-												<select id="ayuda4" class="form-select" required>
-													<option selected value="">Ejemplo invalido</option>
-													<option>Ejemplo valido</option>
-												</select>
-								
-											</div>
-								
-											<div class="col">
-								
-												<select id="ayuda4" class="form-select" required>
-													<option value="">Ejemplo invalido</option>
-													<option selected>Ejemplo valido</option>
-												</select>
-
-											</div>
-										
-										</div>
-
-									</div>
-									
-									<div class="col-md-6">
-										
-										<label for="ayuda5" class="form-label">Aplica a campos grandes</label>
-
-										<div class="row mb-2">
-											
-											<div class="col">
-												
-												<textarea id="ayuda5" rows="2" class="form-control"></textarea>
-												
-											</div>
-											
-											<div class="col">
-												
-												<textarea id="ayuda5" rows="2" class="form-control" required minlength="5">Texto de ejemplo</textarea>
-												
-											</div>
-										
-										</div>
-
-									</div>
-
-									<p>Formulario de muestra, no tiene funcionalidad.</p>
-							
+									<img src="img/ayuda_form.png" alt="">
 								</div>	
 								
 							</div>

@@ -1,114 +1,91 @@
 <?php
 
-require("conexion.php");
-require("../clases/personas.php");
-require("../clases/representantes.php");
-require("../clases/contactos-auxiliares.php");
-require("../clases/económicos-representantes.php");
-require("../clases/laborales.php");
-require("../clases/vivienda.php");
-require("../clases/Teléfonos.php");
-require("../clases/bitácora.php");
+	// Se llama conexion
+
+	require("conexion.php");
+
+	// Llama las clases
+	require_once('../clases/bitacora.php');
+	require_once('../clases/personas.php');
+	require_once('../clases/usuarios.php');
 
 
-// Inicio de sesión regular
-if (isset($_POST['Cédula'],$_POST['clave']) and ($_POST['Cédula'] != "" and $clave = $_POST['clave'] != "")) {
+	$bitacora = new bitacora();
+	$usuarios = new usuarios();
 
-	$Cédula = $_POST['Tipo_Cédula'].$_POST['Cédula'];
-	$clave = $_POST['clave'];
+	// Si los campos de cedula y contraseña fueron llenados
+	if (isset($_POST['cedula'],$_POST['contraseña'])) {
 
-	$conexion = conectarBD();
+		// Verifica que la cadena recibida no esté vacia
+		if (!empty($_POST['cedula']) and !empty($_POST['contraseña'])) {
 
-	//Consulto si la Cédula existe en la BD
-	$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$Cédula'";
+			$cedula = $_POST['nacionalidad'] . $_POST['cedula'];			
+			$contraseña = $_POST['contraseña'];
 
-	if ($consulta_persona = $conexion->query($sql)) {
+			$usuarios->set_cedula($cedula);
+			$usuarios->set_contraseña($contraseña);
 
-		$resultado_persona = $consulta_persona->fetch_assoc();
+			$chequeo_login = $usuarios->chequeo_login();
 
-		//consulto si la contraseña es correcta
-		$sql = "SELECT * FROM `usuarios` WHERE `Cédula_Persona` = '$Cédula' AND `Clave` = '$clave'";
+			// verifica que la base de datos no dé una respuesta nula
+			if ($chequeo_login) {
 
-		$registro_existe = $conexion->query($sql);
-		$resultado_usuario = $registro_existe->fetch_assoc();
+				session_start();
 
-		if ($resultado_usuario == NULL) {
-			header("Location: ../index.php?error");
+				$_SESSION['datos_login'] = $chequeo_login;
+				$_SESSION['login'] = true;
+
+				$bitacora->set_cedula_usuario($cedula);
+
+				$_SESSION['id_bitacora'] = $bitacora->iniciar_bitacora();
+				$_SESSION['acciones'] = "Inicia Sesión";
+
+				header('Location: ../lobby/index.php');
+
+			}
+
+			// en caso de retornar nulo regresa al menú
+			else {
+				// devuelve al menú por error de datos (usuario o clave errados)
+				header('Location: ../index.php?ed');
+			}
+
 		}
-		else{
-			session_start();
+		else {
+			// devuelve al menú por error de datos (usuario o clave errados)
+			header('Location: ../index.php?ed');
+		}
+	}
 
-			#se crea variable de Sesión con los datos del usuario
-			$_SESSION['usuario'] = $resultado_usuario;
+	// si se envia el formulario con las preguntas de seguridad
+	elseif (isset($_POST['cedula'],$_POST['respuesta_1'],$_POST['respuesta_2'])) {
+		
+		// verifica los datos del usuario
+		$usuarios->set_cedula($_POST['cedula']);
+		if ($datos_usuario = $usuarios->consultar_usuario()) {
+			// si al menos una de las dos preguntas admite el acceso
+			if (($_POST['respuesta_1'] == $datos_usuario['respuesta_1']) or ($_POST['respuesta_2'] == $datos_usuario['respuesta_2'])) {
+				session_start();
 
-			$bitácora = new bitácora();
+				$_SESSION['datos_login'] = $datos_usuario;
+				$_SESSION['login'] = true;
 
-			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
-			$_SESSION['acciones'] = "Inicia Sesión";
+				$bitacora->set_cedula_usuario($_POST['cedula']);
 
-			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante
-			$persona = new Personas();
-			$datos_persona = $persona->consultarPersona($Cédula);
+				$_SESSION['id_bitacora'] = $bitacora->iniciar_bitacora();
+				$_SESSION['acciones'] = "Inicia Sesión (inicio alterno)";
 
-			$_SESSION['persona'] = $datos_persona;
-			$_SESSION['login'] = "Sessión valida";
-
-			header('Location: ../lobby/index.php');
+				header('Location: ../lobby/index.php');
+			}
+			else {
+				header('Location: ../index.php?datos_invalidos');
+			}
+		}
+		else {
+			header('Location: ../index.php?datos_invalidos');
 		}
 	}
 	else {
-		header("Location: ../index.php");
+		header('Location: ../index.php?error');
 	}
-
-	desconectarBD($conexion);
-}
-
-// Inicio de sesión con pregunta de seguridad
-elseif (isset($_POST['Cédula'],$_POST['Respuesta1'],$_POST['Respuesta2'],$_POST['Recuperar_Clave'])) {
-
-	$Cédula = $_POST['Cédula'];
-
-	$Respuesta1 = $_POST['Respuesta1'];
-	$Respuesta2 = $_POST['Respuesta2'];
-
-	$conexion = conectarBD();
-
-	//Consulto si la Cédula existe en la BD
-	$sql = "SELECT * FROM `personas` WHERE `Cédula` = '$Cédula'";
-
-	if ($consulta_persona = $conexion->query($sql)) {
-
-		$resultado_persona = $consulta_persona->fetch_assoc();
-
-		//consulto si al menos una de las dos preguntas es correcta
-		$sql = "SELECT * FROM `usuarios` WHERE (`Respuesta_1` = '$Respuesta1' OR `Respuesta_2` = '$Respuesta2') AND `Cédula_Persona` = 'V27919566';";
-
-		$registro_existe = $conexion->query($Cédula);
-		$resultado_usuario = $registro_existe->fetch_assoc();
-
-		if ($resultado_usuario == NULL) {
-			header("Location: ../index.php?error_pregunta");
-		}
-		else{
-			session_start();
-
-			#se crea variable de Sesión con los datos del usuario
-			$_SESSION['usuario'] = $resultado_usuario;
-
-			$bitácora = new bitácora();
-
-			$_SESSION['idbitácora'] = $bitácora->guardar_bitácora($_SESSION['usuario']['idUsuarios']);
-			$_SESSION['acciones'] = "Inicia Sesión";
-
-			#Si los privilegios del usuario son de administrador solo se halan datos de persona, más no de representante
-			$persona = new Personas();
-			$datos_persona = $persona->consultarPersona($Cédula);
-
-			$_SESSION['persona'] = $datos_persona;
-			$_SESSION['login'] = "Sessión valida";
-
-			header('Location: ../lobby/index.php');
-		}
-	}
-}
 ?>

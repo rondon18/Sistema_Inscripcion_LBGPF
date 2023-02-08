@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Registrar nuevo estudiante</title>
@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
-	<link rel="icon" type="img/png" href="../../img/distintivo-LGPF.png">
+	<link rel="icon" type="img/png" href="../../img/icono.png">
 </head>
 <body>
 	<main style="max-height: 100vh; overflow-y: auto;">
@@ -55,7 +55,7 @@
 							
 							<!-- Contenedor del formulario -->
 							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
-								<form id="FormularioRepresentante" action="paso-2.php" method="POST">
+								<form id="FormularioRepresentante" action="paso_2.php" method="POST">
 									<!-- Seccion de datos personales -->
 									<section id="seccion1" class="row">
 										<!-- Titulo de la seccion -->
@@ -99,8 +99,8 @@
 
 											<div class="col-12 col-lg-10">
 												<div class="input-group mb-2">
-													<select id="Tipo_Cédula_R" class="form-select" name="Tipo_Cédula_R" required>
-														<option selected disabled value="">Tipo de cédula</option>
+													<select id="NacioNalidad_R" class="form-select" name="NacioNalidad_R" required>
+														<option selected value="">Nacionalidad</option>
 														<option value="V">V</option>
 														<option value="E">E</option>
 													</select>
@@ -133,7 +133,7 @@
 
 											<div class="col-12 col-lg-5">
 												<select class="form-select" name="Estado_Civil_R" required>
-													<option selected disabled value="">Seleccione una opción</option>
+													<option selected value="">Seleccione una opción</option>
 													<option value="Soltero(a)">Soltero(a)</option>
 													<option value="Casado(a)">Casado(a)</option>
 													<option value="Divorciado(a)">Divorciado(a)</option>
@@ -372,7 +372,7 @@
 											<div class="col-12 col-lg-8">
 												<div class="input-group mb-2">
 													<select class="form-select" name="Tenencia_vivienda_R" required>
-														<option selected disabled value="">Seleccione una opción</option>
+														<option selected value="">Seleccione una opción</option>
 														<option value="Propia">Propia</option>
 														<option value="Alquilada">Alquilada</option>
 														<option value="Prestada">Prestada</option>
@@ -401,7 +401,7 @@
 											</div>
 											<div class="col-12 col-lg-10">
 												<select class="form-select" name="Banco" required>
-														<option selected disabled value="">Seleccione una opción</option>
+														<option selected value="">Seleccione una opción</option>
 														<option value="Banco de Venezuela S.A.">Banco de Venezuela S.A.</option>
 														<option value="Venezolano de Crédito S.A.">Venezolano de Crédito S.A.</option>
 														<option value="Banco Mercantil, C.A">Banco Mercantil, C.A</option>
@@ -620,13 +620,13 @@
 		</div>
 
 		<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0" style="z-index: 100;">
-			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("y"); ?></span>
+			<span class="text-white">Sistema de inscripción L.B. G.P.F - <i class="far fa-copyright"></i> 2022-<?php echo date("Y"); ?></span>
 		</footer>
 		<?php include '../../ayuda.php'; ?>
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones-inscripcion.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/validaciones_inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

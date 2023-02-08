@@ -2,12 +2,16 @@
 	$(document).ready( function () {
 		var table = $('#estudiantes').DataTable({
 			
-			"order": [[ 0, "desc" ]],
+			"order": [[ 5, "asc" ],[ 0, "desc" ],],
 			"pagingType": "full",
 			"language": {"url": "../../js/datatables-español.json"},
 			
-			dom: 'Bfrtip',
+
+
+			dom: '<"nav nav-fill mb-2"<B><"ms-auto d-none d-md-inline-block"l><"ms-md-4"f>>rt<".nav"<"mx-auto m-md-0"i><"ms-md-auto"p>>',
+
 			buttons: [
+				
 				// Botones de exportación a excel
 				{
 					extend: 			'collection',
@@ -62,15 +66,26 @@
 							extend: 		'excelHtml5',
 							text: 			'<i class="fas fa-lg fa-clipboard-check me-2"></i>Todo',
 							exportOptions: {
-								columns: 	':not(:last-child)',
+								columns: 	':not(:last-child,:first-child)',
 							},
 							autoFilter: true,
 							filename: 	'Reporte general de estudiantes',
 							sheetName: 	'Reporte general de estudiantes',
 							messageTop: 'Reporte general de estudiantes',
-						}
+						},
+
+
 					]
-				}
+				},
+
+				// Boton parar ir a registrar un estudiante
+				{
+					className: 		'btn btn-secondary',
+					text: 				'Registrar estudiante<i class="fas fa-lg fa-user-plus ms-2"></i>',
+					action: function ( e, dt, button, config ) {
+						window.location = '../registrar-estudiante/paso_1.php';
+					}         
+				},
 				
 			],
 
@@ -81,14 +96,17 @@
           display: $.fn.dataTable.Responsive.display.modal( {
               header: function ( row ) {
                   var data = row.data();
-                  return 'Detalles de '+data[2];
+                  return 'Detalles de '+ data[1];
               }
           } ),
           renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
               tableClass: 'table table-borderless table-striped '
           })
         }
-      }
-
+      },
+      "lengthMenu": [
+				[5,10, 25],
+				[5,10, 25],
+			],
 		});
 	});
