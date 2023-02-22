@@ -406,7 +406,7 @@ if (isset($_POST['paso_1'])) {
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
-		<script type="text/javascript" src="../../js/validaciones_nuevo_usuario.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/validaciones_nuevo_usuario.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

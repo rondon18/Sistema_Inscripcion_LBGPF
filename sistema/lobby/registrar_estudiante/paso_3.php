@@ -32,7 +32,7 @@ else {
 		$_SESSION['datos_inscripcion']['datos_estudiante'] = $datos_estudiante;
 
 		// Redirecciona al paso 2
-		header('Location: ../../controladores/control_registros.php');
+		header('Location: ../../controladores/registros/control_registros.php');
 	}
 }
 
@@ -1850,7 +1850,7 @@ $nivel = 2;
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
-		<script type="text/javascript" src="../../js/validaciones_estudiante.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/validaciones_estudiante.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

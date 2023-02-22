@@ -870,7 +870,7 @@ INSERT INTO `per_academico`(`id_per_academico`, `inicio`, `fin`) VALUES ('202220
 
 -- 33 persona en total
 
-insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
+insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
 ('V28278648','Heriberto','Coraline','Truter','Fewster','1978-03-28','69 Granby Way','F','Viudo(a)','cfewster0@weebly.com','Primaria'),
 ('V9933359','Ambur','Willy','Voller','Shakshaft','1995-11-08','56292 Lighthouse Bay Hill','M','Viudo(a)','wshakshaft1@google.co.jp','Bachillerato'),
 ('V31950478','Sabrina','Torrence','Burcombe','Eddowis','1984-10-16','0 Marquette Pass','M','Soltero(a)','teddowis2@xing.com','Universitario'),
@@ -907,7 +907,7 @@ insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fech
 
 
 
-INSERT ignore INTO `representantes`(`cedula_persona`) VALUES 
+INSERT  INTO `representantes`(`cedula_persona`) VALUES 
 ('V28278648'),
 ('V9933359'),
 ('V31950478'),
@@ -943,7 +943,7 @@ INSERT ignore INTO `representantes`(`cedula_persona`) VALUES
 ('V33641397');
 
 
-insert ignore into telefonos (cedula_persona,relacion,prefijo,numero) values
+insert  into telefonos (cedula_persona,relacion,prefijo,numero) values
 ('V28278648','Principal',8507,4671140),
 ('V9933359','Principal',7134,6638885),
 ('V31950478','Principal',5385,1913649),
@@ -1078,7 +1078,7 @@ insert ignore into telefonos (cedula_persona,relacion,prefijo,numero) values
 ('V33641397','Trabajo',2202,9264428);
 
 
-insert ignore into datos_economicos (cedula_representante,banco,tipo_cuenta,nro_cuenta) values 
+insert  into datos_economicos (cedula_representante,banco,tipo_cuenta,nro_cuenta) values 
 ('V28278648','qdnvqvinhvfubf','jcfqlwiethcsks','40096411743168529536'),
 ('V9933359','kfzgypcalpffhm','gzcjjiftntwsyi','59220790020061719476'),
 ('V31950478','eibbflgzdbvqjj','wipjpcvwtcglyi','13928067292912938081'),
@@ -1116,7 +1116,7 @@ insert ignore into datos_economicos (cedula_representante,banco,tipo_cuenta,nro_
 
 
 
-insert ignore into contactos_aux (cedula_representante,nombre,apellido,prefijo_telefono,nro_telefono,relacion) values 
+insert  into contactos_aux (cedula_representante,nombre,apellido,prefijo_telefono,nro_telefono,relacion) values 
 ('V28278648','Nikos','Das','1097','7032642','vecino'),
 ('V9933359','Kristal','Madrell','0367','6134269','vecino'),
 ('V31950478','Vikky','Spurden','2610','8704153','tia'),
@@ -1153,7 +1153,7 @@ insert ignore into contactos_aux (cedula_representante,nombre,apellido,prefijo_t
 
 
 
-insert ignore into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
+insert  into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
 ('V28278648','Honduras','China','Joconal','Dinggou','Springview','78','0 Esker Parkway'),
 ('V9933359','Aland Islands','China','Lemland','Sanli','Daystar','72','5 Summerview Parkway'),
 ('V31950478','Czech Republic','Ukraine','Raškovice','Shchastya','Mccormick','66','68 Carey Alley'),
@@ -1188,7 +1188,7 @@ insert ignore into direcciones (cedula_persona,estado,municipio,parroquia,sector
 ('V20909176','Philippines','France','Guinticgan','Bordeaux','Pearson','98','78 Maple Wood Trail'),
 ('V33641397','Brazil','Indonesia','Castro','Tebingtinggi','Bobwhite','08','60211 Lakewood Gardens Way');
 
-insert ignore into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
+insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
 ('V28278648','Mala','Rancho','Alquilada'),
 ('V9933359','Regular','Apartamento','NC'),
 ('V31950478','Mala','Quinta','Propia'),
@@ -1224,44 +1224,39 @@ insert ignore into datos_vivienda (cedula_persona,condicion,tipo,tenencia) value
 ('V33641397','Mala','Casa','NC');
 
 
-insert ignore into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
-('V28278648','Pharmacist','7 Killdeer Court','Quincenal',16),
-('V9933359','Software Engineer III','2 Schmedeman Terrace','Semanal',22),
-('V31950478','Human Resources Manager','9882 Gina Court','Diaria',17),
-('V38590950','Web Designer III','713 Coolidge Circle','Diaria',20),
-('V18526161','Financial Analyst','59 Fallview Crossing','Diaria',14),
-('V33118292','Administrative Assistant I','62 Homewood Hill','Quincenal',10),
-('V28302608','Dental Hygienist','314 Jana Park','Diaria',6),
-('V18424188','Community Outreach Specialist','3930 Gina Trail','Diaria',1),
-('V32238738','Account Executive','31 Ridge Oak Hill','Quincenal',6),
-('V16561305','Research Associate','556 Dawn Alley','Semanal',9),
-('V11046976','Legal Assistant','23684 Scofield Road','Diaria',5),
-('V20568611','Marketing Manager','670 Leroy Lane','Semanal',10),
-('V27252225','Nurse','063 Coleman Parkway','Quincenal',25),
-('V22601755','Actuary','6168 Eliot Way','Mensual',10),
-('V33574387','Help Desk Technician','84333 Upham Road','Diaria',21),
-('V35634816','Engineer IV','76906 Sommers Place','Semanal',17),
-('V27717006','VP Sales','14 Oneill Road','Mensual',21),
-('V31694733','Tax Accountant','5380 Anhalt Hill','Semanal',1),
-('V18905517','Engineer I','67624 Jana Avenue','Quincenal',25),
-('V5714261','Web Developer II','7 Katie Terrace','Semanal',2),
-('V19987910','Structural Engineer','083 Commercial Junction','Semanal',21),
-('V4459062','Assistant Manager','1 Fisk Center','Quincenal',17),
-('V22177376','Quality Engineer','939 Eagle Crest Street','Diaria',21),
-('V35208115','Biostatistician III','734 Anthes Terrace','Mensual',15),
-('V32113794','Chief Design Engineer','94546 Shelley Trail','Quincenal',6),
-('V36732297','Engineer I','74 Annamark Park','Quincenal',6),
-('V5344562','Design Engineer','79 Roxbury Circle','Semanal',14),
-('V25050145','Administrative Assistant IV','9445 Surrey Street','Mensual',1),
-('V30196324','Operator','1146 Carioca Park','Diaria',23),
-('V21412330','Actuary','1 Corben Road','Diaria',23),
-('V28798356','Systems Administrator III','8664 Autumn Leaf Hill','Mensual',25),
-('V20909176','Structural Engineer','2 Veith Hill','Diaria',14),
-('V33641397','Software Consultant','2 Village Park','Mensual',14);
+insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
+('V28278648', 'Financial Analyst', '39 Rusk Junction', 18, 'Mensual'),
+('V9933359', 'Software Consultant', '5813 Iowa Parkway', 7, 'Quincenal'),
+('V31950478', 'Programmer Analyst III', '0 Erie Parkway', 4, 'Mensual'),
+('V38590950', 'Developer II', '19440 Prairieview Junction', 12, 'Semanal'),
+('V18526161', 'Executive Secretary', '2649 Crest Line Crossing', 7, 'Diaria'),
+('V33118292', 'Systems Administrator III', '42 Artisan Junction', 13, 'Diaria'),
+('V28302608', 'Registered Nurse', '67 6th Plaza', 5, 'Mensual'),
+('V18424188', 'Nurse Practicioner', '3 Fieldstone Circle', 20, 'Mensual'),
+('V32238738', 'Physical Therapy Assistant', '88976 Pennsylvania Street', 10, 'Mensual'),
+('V16561305', 'Office Assistant IV', '92 Northfield Alley', 17, 'Mensual'),
+('V11046976', 'Recruiter', '29 8th Junction', 11, 'Diaria'),
+('V20568611', 'Nurse Practicioner', '98192 Glacier Hill Parkway', 20, 'Quincenal'),
+('V27252225', 'Web Developer II', '85 Quincy Place', 13, 'Quincenal'),
+('V22601755', 'Analog Circuit Design manager', '6554 Butternut Crossing', 5, 'Quincenal'),
+('V33574387', 'Help Desk Operator', '323 Memorial Trail', 17, 'Semanal'),
+('V35634816', 'Recruiter', '4 Packers Avenue', 13, 'Semanal'),
+('V27717006', 'Geological Engineer', '362 Crownhardt Crossing', 4, 'Semanal'),
+('V31694733', 'Geological Engineer', '84338 Forest Dale Circle', 14, 'Quincenal'),
+('V18905517', 'Geologist IV', '07 Vidon Hill', 7, 'Quincenal'),
+('V5714261', 'Environmental Tech', '44 Maywood Street', 18, 'Diaria'),
+('V19987910', 'Civil Engineer', '994 Pierstorff Way', 16, 'Mensual'),
+('V4459062', 'Mechanical Systems Engineer', '72 Tennyson Avenue', 20, 'Diaria'),
+('V22177376', 'Clinical Specialist', '4 Sachtjen Junction', 25, 'Semanal'),
+('V35208115', 'Social Worker', '17965 Nancy Trail', 2, 'Mensual'),
+('V32113794', 'Structural Engineer', '0 Merrick Court', 22, 'Semanal'),
+('V36732297', 'GIS Technical Architect', '737 Iowa Junction', 21, 'Semanal'),
+('V5344562', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V25050145', 'Accounting Assistant IV', '24507 Straubel Plaza', 11, 'Quincenal');
 
 
 
-insert ignore into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
+insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
 ('V28278648','3088914649','0938828868'),
 ('V9933359','3052152932','3826866050'),
 ('V31950478','1760971017','7708357769'),
@@ -1304,7 +1299,7 @@ insert ignore into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) va
 -- V36515502,V14832231,V80920371,V27049463,V45072650,V41090241,V04667374,V75137320,V24992920,V97836554,V93029260,V66483433,V24055118,V95165912,V85321459,V99806340,V21227139,V02286258,V64765176,V77427358,V35386169,V36756164,V02288319,V81395335,V49593189,V50117141,V49469440,V13336593,V32952482,V15801593,V79112540,V53738892,V80812803,V87971733,V65612580,V23386453,V30926499,V10457386,V04388769,V60544306,V09838593,V06594327,V96168440,V69314620,V98673367,V86711817,V89673979,V98670740,V43206204,V43736580,V63368952,V32626329,V33854591,V48829993,V68542148,V99570421,V62990915,V11425279,V87727632,V55136102,V99392868,V82808667,V34714307,V70783876,V46631827,V56118810
 
 
-insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
+insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
 ('V36515502','Phillipe','Mohandis','Lockett','Corselles','1996-03-06','24706 Merrick Plaza','M','Viudo(a)','mcorselles0@gnu.org','Bachillerato'),
 ('V14832231','Caritta','Casi','Winslet','Garden','1991-07-10','9756 Longview Terrace','M','Soltero(a)','cgarden1@weather.com','Bachillerato'),
 ('V80920371','Erick','Roxanne','Doding','Fairnington','1970-10-22','03290 Northport Hill','F','Soltero(a)','rfairnington2@umn.edu','Universitario'),
@@ -1374,7 +1369,7 @@ insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fech
 
 
 
-insert ignore into padres (cedula_persona,pais_residencia) values 
+insert  into padres (cedula_persona,pais_residencia) values 
 ('V36515502','China'),
 ('V14832231','China'),
 ('V80920371','China'),
@@ -1443,7 +1438,208 @@ insert ignore into padres (cedula_persona,pais_residencia) values
 ('V56118810','Indonesia');
 
 
-insert ignore into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
+insert  into telefonos (cedula_persona , relacion, prefijo, numero) values 
+('V36515502', 'Principal', '3562', '93446467'),
+('V14832231', 'Principal', '8319', '06186451'),
+('V80920371', 'Principal', '3137', '29760640'),
+('V27049463', 'Principal', '1540', '73687102'),
+('V45072650', 'Principal', '2669', '71477292'),
+('V41090241', 'Principal', '6046', '36583868'),
+('V04667374', 'Principal', '2189', '09809334'),
+('V75137320', 'Principal', '9874', '27742808'),
+('V24992920', 'Principal', '7911', '01231931'),
+('V97836554', 'Principal', '2181', '36389797'),
+('V93029260', 'Principal', '5307', '13450585'),
+('V66483433', 'Principal', '7200', '29596530'),
+('V24055118', 'Principal', '6348', '81116094'),
+('V95165912', 'Principal', '7615', '66941574'),
+('V85321459', 'Principal', '9341', '79769211'),
+('V99806340', 'Principal', '3142', '37910699'),
+('V21227139', 'Principal', '3447', '32757374'),
+('V02286258', 'Principal', '9551', '94804950'),
+('V64765176', 'Principal', '3035', '39493848'),
+('V77427358', 'Principal', '5053', '42878361'),
+('V35386169', 'Principal', '3485', '01361285'),
+('V36756164', 'Principal', '8216', '29058273'),
+('V02288319', 'Principal', '8586', '81164042'),
+('V81395335', 'Principal', '6552', '77889540'),
+('V49593189', 'Principal', '4227', '50442510'),
+('V50117141', 'Principal', '0173', '28786374'),
+('V49469440', 'Principal', '4538', '85522280'),
+('V13336593', 'Principal', '1171', '18726185'),
+('V32952482', 'Principal', '3593', '12019325'),
+('V15801593', 'Principal', '3864', '61489221'),
+('V79112540', 'Principal', '0741', '47501011'),
+('V53738892', 'Principal', '5257', '61141329'),
+('V80812803', 'Principal', '9515', '05616955'),
+('V87971733', 'Principal', '3731', '50969247'),
+('V65612580', 'Principal', '8756', '38741762'),
+('V23386453', 'Principal', '8084', '42530058'),
+('V30926499', 'Principal', '2206', '24179684'),
+('V10457386', 'Principal', '8513', '63437022'),
+('V04388769', 'Principal', '0235', '34427881'),
+('V60544306', 'Principal', '8352', '19059639'),
+('V09838593', 'Principal', '5278', '24098743'),
+('V06594327', 'Principal', '2293', '57610059'),
+('V96168440', 'Principal', '7583', '85416748'),
+('V69314620', 'Principal', '1566', '37657554'),
+('V98673367', 'Principal', '6215', '72009219'),
+('V86711817', 'Principal', '0173', '64704155'),
+('V89673979', 'Principal', '3237', '91916662'),
+('V98670740', 'Principal', '5389', '42350924'),
+('V43206204', 'Principal', '6572', '19832653'),
+('V43736580', 'Principal', '6126', '29339989'),
+('V63368952', 'Principal', '3363', '20107243'),
+('V32626329', 'Principal', '5880', '46084121'),
+('V33854591', 'Principal', '8411', '60721086'),
+('V48829993', 'Principal', '7200', '79767155'),
+('V68542148', 'Principal', '3365', '56493008'),
+('V99570421', 'Principal', '1855', '71798019'),
+('V62990915', 'Principal', '8845', '26105992'),
+('V11425279', 'Principal', '3325', '54725387'),
+('V87727632', 'Principal', '5043', '89779239'),
+('V55136102', 'Principal', '5003', '46117214'),
+('V99392868', 'Principal', '4017', '94107323'),
+('V82808667', 'Principal', '0217', '98199195'),
+('V34714307', 'Principal', '1187', '56210213'),
+('V70783876', 'Principal', '6460', '43668731'),
+('V46631827', 'Principal', '9623', '72274655'),
+('V56118810', 'Principal', '3344', '71563478'),
+('V36515502', 'Secundario', '9936', '67226588'),
+('V14832231', 'Secundario', '1877', '31503019'),
+('V80920371', 'Secundario', '4317', '48227038'),
+('V27049463', 'Secundario', '6681', '01407106'),
+('V45072650', 'Secundario', '7587', '66944776'),
+('V41090241', 'Secundario', '8766', '48846965'),
+('V04667374', 'Secundario', '6462', '94731782'),
+('V75137320', 'Secundario', '3735', '79619140'),
+('V24992920', 'Secundario', '3924', '25622188'),
+('V97836554', 'Secundario', '0755', '10270493'),
+('V93029260', 'Secundario', '1774', '31220767'),
+('V66483433', 'Secundario', '6864', '71777194'),
+('V24055118', 'Secundario', '4296', '73500427'),
+('V95165912', 'Secundario', '0134', '46059384'),
+('V85321459', 'Secundario', '1087', '56025572'),
+('V99806340', 'Secundario', '4082', '46570414'),
+('V21227139', 'Secundario', '4759', '35924301'),
+('V02286258', 'Secundario', '0963', '05651772'),
+('V64765176', 'Secundario', '9317', '08689466'),
+('V77427358', 'Secundario', '6668', '14046544'),
+('V35386169', 'Secundario', '0695', '62154641'),
+('V36756164', 'Secundario', '0467', '76152320'),
+('V02288319', 'Secundario', '7181', '88107145'),
+('V81395335', 'Secundario', '5280', '47580964'),
+('V49593189', 'Secundario', '2663', '32585552'),
+('V50117141', 'Secundario', '5126', '17528625'),
+('V49469440', 'Secundario', '1083', '01754004'),
+('V13336593', 'Secundario', '0050', '72578128'),
+('V32952482', 'Secundario', '9871', '17678505'),
+('V15801593', 'Secundario', '6188', '28660613'),
+('V79112540', 'Secundario', '2034', '63630898'),
+('V53738892', 'Secundario', '2998', '11294462'),
+('V80812803', 'Secundario', '5269', '14306505'),
+('V87971733', 'Secundario', '6387', '53534439'),
+('V65612580', 'Secundario', '6719', '54789654'),
+('V23386453', 'Secundario', '2825', '75004019'),
+('V30926499', 'Secundario', '1630', '46379019'),
+('V10457386', 'Secundario', '2968', '37980928'),
+('V04388769', 'Secundario', '0490', '95267786'),
+('V60544306', 'Secundario', '7882', '34589535'),
+('V09838593', 'Secundario', '7750', '58099535'),
+('V06594327', 'Secundario', '4705', '24976497'),
+('V96168440', 'Secundario', '4999', '97021328'),
+('V69314620', 'Secundario', '7517', '86100384'),
+('V98673367', 'Secundario', '0972', '28060709'),
+('V86711817', 'Secundario', '8444', '86606846'),
+('V89673979', 'Secundario', '3674', '90394556'),
+('V98670740', 'Secundario', '7517', '67539856'),
+('V43206204', 'Secundario', '2626', '91635174'),
+('V43736580', 'Secundario', '4072', '79724445'),
+('V63368952', 'Secundario', '9143', '77661605'),
+('V32626329', 'Secundario', '0544', '64951678'),
+('V33854591', 'Secundario', '6210', '47664923'),
+('V48829993', 'Secundario', '9966', '08833759'),
+('V68542148', 'Secundario', '4898', '88824472'),
+('V99570421', 'Secundario', '1217', '44828528'),
+('V62990915', 'Secundario', '8139', '04025369'),
+('V11425279', 'Secundario', '2652', '03605185'),
+('V87727632', 'Secundario', '7698', '10080928'),
+('V55136102', 'Secundario', '0201', '14015486'),
+('V99392868', 'Secundario', '8317', '98358255'),
+('V82808667', 'Secundario', '3760', '58947120'),
+('V34714307', 'Secundario', '8943', '99195400'),
+('V70783876', 'Secundario', '3542', '82762127'),
+('V46631827', 'Secundario', '7614', '97842808'),
+('V56118810', 'Secundario', '8706', '24275084'),
+('V36515502', 'Trabajo', '0462', '95588068'),
+('V14832231', 'Trabajo', '7101', '41947211'),
+('V80920371', 'Trabajo', '5707', '56224735'),
+('V27049463', 'Trabajo', '3555', '84349254'),
+('V45072650', 'Trabajo', '0851', '04800453'),
+('V41090241', 'Trabajo', '4472', '91429948'),
+('V04667374', 'Trabajo', '6934', '69964677'),
+('V75137320', 'Trabajo', '1100', '66503906'),
+('V24992920', 'Trabajo', '6285', '62811067'),
+('V97836554', 'Trabajo', '9323', '94185610'),
+('V93029260', 'Trabajo', '0299', '59928929'),
+('V66483433', 'Trabajo', '1600', '94824062'),
+('V24055118', 'Trabajo', '8759', '63294454'),
+('V95165912', 'Trabajo', '9313', '66372114'),
+('V85321459', 'Trabajo', '0374', '12255112'),
+('V99806340', 'Trabajo', '2769', '71458714'),
+('V21227139', 'Trabajo', '2928', '29405967'),
+('V02286258', 'Trabajo', '4996', '11554712'),
+('V64765176', 'Trabajo', '0128', '74002199'),
+('V77427358', 'Trabajo', '4037', '29748631'),
+('V35386169', 'Trabajo', '1973', '75582393'),
+('V36756164', 'Trabajo', '6223', '08458756'),
+('V02288319', 'Trabajo', '1249', '45550754'),
+('V81395335', 'Trabajo', '2069', '49782025'),
+('V49593189', 'Trabajo', '9843', '52332850'),
+('V50117141', 'Trabajo', '0533', '34562655'),
+('V49469440', 'Trabajo', '9909', '41141286'),
+('V13336593', 'Trabajo', '2275', '39995713'),
+('V32952482', 'Trabajo', '7503', '03061838'),
+('V15801593', 'Trabajo', '3120', '00129399'),
+('V79112540', 'Trabajo', '9020', '45349324'),
+('V53738892', 'Trabajo', '7940', '44217334'),
+('V80812803', 'Trabajo', '7942', '85812799'),
+('V87971733', 'Trabajo', '9898', '16268467'),
+('V65612580', 'Trabajo', '2706', '26337387'),
+('V23386453', 'Trabajo', '4122', '55960458'),
+('V30926499', 'Trabajo', '8180', '33748724'),
+('V10457386', 'Trabajo', '3626', '39528982'),
+('V04388769', 'Trabajo', '5117', '25935743'),
+('V60544306', 'Trabajo', '4158', '31756768'),
+('V09838593', 'Trabajo', '1409', '95606604'),
+('V06594327', 'Trabajo', '1575', '63456759'),
+('V96168440', 'Trabajo', '2902', '21181142'),
+('V69314620', 'Trabajo', '2771', '09615243'),
+('V98673367', 'Trabajo', '6227', '24347682'),
+('V86711817', 'Trabajo', '0155', '61375375'),
+('V89673979', 'Trabajo', '4602', '27164555'),
+('V98670740', 'Trabajo', '9961', '19100584'),
+('V43206204', 'Trabajo', '5737', '17171466'),
+('V43736580', 'Trabajo', '1375', '76667229'),
+('V63368952', 'Trabajo', '5084', '24572668'),
+('V32626329', 'Trabajo', '4685', '13210141'),
+('V33854591', 'Trabajo', '5469', '09740011'),
+('V48829993', 'Trabajo', '3011', '88855791'),
+('V68542148', 'Trabajo', '9453', '68733828'),
+('V99570421', 'Trabajo', '9463', '76220236'),
+('V62990915', 'Trabajo', '1093', '47167885'),
+('V11425279', 'Trabajo', '2116', '03082079'),
+('V87727632', 'Trabajo', '4192', '61113243'),
+('V55136102', 'Trabajo', '1060', '14644552'),
+('V99392868', 'Trabajo', '2099', '02442899'),
+('V82808667', 'Trabajo', '3098', '02386185'),
+('V34714307', 'Trabajo', '5501', '62074322'),
+('V70783876', 'Trabajo', '5283', '09243743'),
+('V46631827', 'Trabajo', '5815', '36676917'),
+('V56118810', 'Trabajo', '2736', '13004739');
+
+
+insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
 ('V36515502','Regular','Rancho','NC'),
 ('V14832231','Buena','Rancho','Prestada'),
 ('V80920371','Regular','Casa','Propia'),
@@ -1513,80 +1709,79 @@ insert ignore into datos_vivienda (cedula_persona,condicion,tipo,tenencia) value
 
 
 
-insert ignore into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
-('V36515502','Safety Technician II','619 Corry Hill','Semanal',10),
-('V14832231','Pharmacist','13599 Hollow Ridge Terrace','Diaria',15),
-('V80920371','Computer Systems Analyst IV','510 Marcy Road','Mensual',24),
-('V27049463','VP Sales','42 Brentwood Avenue','Diaria',20),
-('V45072650','Accounting Assistant I','46 Trailsway Parkway','Diaria',5),
-('V41090241','Legal Assistant','3674 Mendota Hill','Mensual',19),
-('V04667374','Geological Engineer','0168 Gina Way','Semanal',8),
-('V75137320','Safety Technician II','1 Trailsway Street','Mensual',9),
-('V24992920','Assistant Media Planner','89165 American Ash Parkway','Quincenal',16),
-('V97836554','Recruiter','72416 Lotheville Junction','Semanal',11),
-('V93029260','Research Nurse','48 3rd Hill','Mensual',22),
-('V66483433','Nurse Practicioner','74 Upham Parkway','Diaria',10),
-('V24055118','Actuary','4958 Columbus Crossing','Mensual',17),
-('V95165912','Senior Developer','0 Monument Park','Quincenal',8),
-('V85321459','Quality Control Specialist','9609 Bayside Road','Quincenal',8),
-('V99806340','Engineer I','0327 Schlimgen Plaza','Semanal',23),
-('V21227139','General Manager','33 Jenifer Junction','Mensual',20),
-('V02286258','Actuary','96467 Eastlawn Pass','Diaria',9),
-('V64765176','Operator','33555 Menomonie Crossing','Quincenal',6),
-('V77427358','Senior Developer','85607 Manley Terrace','Diaria',2),
-('V35386169','Help Desk Technician','81 Sachs Lane','Mensual',16),
-('V36756164','Research Assistant IV','26458 Esch Point','Semanal',21),
-('V02288319','Quality Control Specialist','1 Scoville Way','Mensual',13),
-('V81395335','Environmental Specialist','4 Pankratz Crossing','Diaria',8),
-('V49593189','Product Engineer','37 Di Loreto Trail','Diaria',15),
-('V50117141','Structural Engineer','2937 Brentwood Junction','Mensual',19),
-('V49469440','Professor','6637 Elka Circle','Quincenal',12),
-('V13336593','Professor','6720 Crescent Oaks Hill','Quincenal',5),
-('V32952482','Nurse Practicioner','36688 International Junction','Mensual',20),
-('V15801593','Product Engineer','964 Eastwood Terrace','Diaria',7),
-('V79112540','Marketing Assistant','9492 Sycamore Parkway','Quincenal',16),
-('V53738892','VP Product Management','58146 Manitowish Terrace','Quincenal',12),
-('V80812803','VP Marketing','21 Kedzie Street','Semanal',20),
-('V87971733','Desktop Support Technician','22285 Mccormick Plaza','Quincenal',21),
-('V65612580','Physical Therapy Assistant','19 Nova Hill','Quincenal',4),
-('V23386453','Web Designer I','7 Tomscot Lane','Quincenal',7),
-('V30926499','Human Resources Assistant I','675 Ludington Pass','Quincenal',8),
-('V10457386','Account Coordinator','404 Utah Court','Diaria',11),
-('V04388769','Programmer Analyst II','310 School Drive','Quincenal',24),
-('V60544306','Information Systems Manager','0 Dahle Alley','Mensual',9),
-('V09838593','Design Engineer','08 Hazelcrest Parkway','Quincenal',10),
-('V06594327','Media Manager IV','9 Orin Parkway','Mensual',21),
-('V96168440','Senior Financial Analyst','438 Dottie Parkway','Quincenal',23),
-('V69314620','Staff Accountant IV','63755 Trailsway Park','Semanal',24),
-('V98673367','Staff Scientist','1 Reinke Center','Semanal',9),
-('V86711817','Systems Administrator I','67 Alpine Pass','Semanal',24),
-('V89673979','Staff Scientist','1 Reindahl Drive','Semanal',7),
-('V98670740','Programmer III','49558 Hintze Circle','Mensual',11),
-('V43206204','Director of Sales','9894 Ramsey Terrace','Diaria',1),
-('V43736580','Technical Writer','3812 Loeprich Parkway','Mensual',13),
-('V63368952','Design Engineer','4 Washington Road','Quincenal',13),
-('V32626329','Pharmacist','8 Tony Crossing','Quincenal',13),
-('V33854591','Safety Technician II','067 Bonner Terrace','Semanal',23),
-('V48829993','Librarian','680 Vidon Avenue','Diaria',20),
-('V68542148','Senior Quality Engineer','7296 Montana Hill','Mensual',17),
-('V99570421','General Manager','04511 Heffernan Place','Semanal',14),
-('V62990915','Chief Design Engineer','16 Anhalt Plaza','Semanal',14),
-('V11425279','Assistant Professor','37 Ridgeway Lane','Mensual',4),
-('V87727632','Graphic Designer','7172 Portage Junction','Diaria',10),
-('V55136102','Research Nurse','68 Westridge Junction','Mensual',17),
-('V99392868','Teacher','4225 Hallows Avenue','Semanal',11),
-('V82808667','Teacher','15 Aberg Junction','Semanal',25),
-('V34714307','Data Coordiator','61967 Vidon Lane','Semanal',2),
-('V70783876','Product Engineer','8729 1st Trail','Quincenal',22),
-('V46631827','Software Test Engineer III','18 Erie Junction','Mensual',8),
-('V56118810','Assistant Professor','0544 Old Gate Plaza','Semanal',19);
-
+insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
+('V36515502', 'Occupational Therapist', '9 Mcguire Junction', 8, 'Mensual'),
+('V14832231', 'Health Coach IV', '0666 Sutteridge Circle', 11, 'Quincenal'),
+('V80920371', 'Civil Engineer', '9538 Towne Park', 20, 'Semanal'),
+('V27049463', 'Senior Financial Analyst', '282 Dovetail Lane', 9, 'Mensual'),
+('V45072650', 'Speech Pathologist', '929 American Ash Circle', 22, 'Semanal'),
+('V41090241', 'Senior Developer', '21 Ruskin Lane', 11, 'Diaria'),
+('V04667374', 'Junior Executive', '1 Weeping Birch Way', 19, 'Semanal'),
+('V75137320', 'Clinical Specialist', '96 Melby Place', 2, 'Semanal'),
+('V24992920', 'Tax Accountant', '9821 Dryden Hill', 10, 'Diaria'),
+('V97836554', 'Developer I', '6 Truax Way', 25, 'Diaria'),
+('V93029260', 'Research Associate', '44774 Evergreen Court', 17, 'Diaria'),
+('V66483433', 'Marketing Assistant', '5636 Continental Lane', 5, 'Semanal'),
+('V24055118', 'Human Resources Assistant III', '64693 Clyde Gallagher Street', 5, 'Mensual'),
+('V95165912', 'Software Consultant', '50 Dennis Point', 25, 'Mensual'),
+('V85321459', 'Automation Specialist I', '40 Bunker Hill Junction', 17, 'Quincenal'),
+('V99806340', 'Senior Cost Accountant', '264 Scott Road', 12, 'Semanal'),
+('V21227139', 'Human Resources Manager', '8055 Dapin Junction', 24, 'Semanal'),
+('V02286258', 'Chemical Engineer', '748 Northland Pass', 3, 'Quincenal'),
+('V64765176', 'Administrative Officer', '3 Comanche Plaza', 4, 'Diaria'),
+('V77427358', 'Media Manager I', '72 Express Circle', 8, 'Quincenal'),
+('V35386169', 'Web Designer III', '9387 Starling Center', 10, 'Diaria'),
+('V36756164', 'Statistician IV', '7 Cody Pass', 15, 'Semanal'),
+('V02288319', 'Web Developer II', '3 Anthes Junction', 1, 'Diaria'),
+('V81395335', 'Civil Engineer', '56 Sycamore Street', 11, 'Quincenal'),
+('V49593189', 'VP Marketing', '46823 Pleasure Terrace', 14, 'Mensual'),
+('V50117141', 'Accounting Assistant IV', '1885 Judy Circle', 1, 'Quincenal'),
+('V49469440', 'Business Systems Development Analyst', '10496 Merchant Plaza', 12, 'Semanal'),
+('V13336593', 'Health Coach I', '2206 Lakewood Center', 23, 'Mensual'),
+('V32952482', 'Teacher', '9318 Welch Pass', 14, 'Quincenal'),
+('V15801593', 'Help Desk Operator', '2870 Luster Way', 14, 'Quincenal'),
+('V79112540', 'Software Engineer III', '3 Fordem Trail', 8, 'Quincenal'),
+('V53738892', 'Nurse Practicioner', '4988 Caliangt Way', 3, 'Semanal'),
+('V80812803', 'Mechanical Systems Engineer', '10662 4th Crossing', 14, 'Quincenal'),
+('V87971733', 'Electrical Engineer', '422 Reindahl Lane', 21, 'Diaria'),
+('V65612580', 'Junior Executive', '11813 Valley Edge Plaza', 2, 'Quincenal'),
+('V23386453', 'Cost Accountant', '46 Paget Terrace', 5, 'Mensual'),
+('V30926499', 'Research Assistant IV', '9 Division Trail', 21, 'Mensual'),
+('V10457386', 'Registered Nurse', '63 Sloan Court', 2, 'Semanal'),
+('V04388769', 'Software Test Engineer II', '6562 Melby Terrace', 10, 'Diaria'),
+('V60544306', 'Programmer III', '32 Hintze Alley', 25, 'Mensual'),
+('V09838593', 'Pharmacist', '9391 Spohn Park', 16, 'Quincenal'),
+('V06594327', 'Accountant IV', '1635 Hovde Plaza', 2, 'Semanal'),
+('V96168440', 'Information Systems Manager', '7 Jana Alley', 17, 'Semanal'),
+('V69314620', 'Human Resources Assistant IV', '627 Blackbird Hill', 13, 'Diaria'),
+('V98673367', 'Office Assistant III', '67434 Victoria Terrace', 8, 'Semanal'),
+('V86711817', 'Marketing Manager', '02163 Northview Center', 18, 'Mensual'),
+('V89673979', 'Sales Representative', '65742 Merchant Point', 10, 'Mensual'),
+('V98670740', 'Cost Accountant', '6150 Gina Way', 24, 'Mensual'),
+('V43206204', 'Budget/Accounting Analyst I', '08095 Sutteridge Lane', 16, 'Mensual'),
+('V43736580', 'Compensation Analyst', '77 Center Lane', 6, 'Mensual'),
+('V63368952', 'Media Manager IV', '971 Mayfield Circle', 13, 'Quincenal'),
+('V32626329', 'Safety Technician II', '5 Village Green Junction', 23, 'Diaria'),
+('V33854591', 'Senior Editor', '2893 Riverside Point', 7, 'Diaria'),
+('V48829993', 'Physical Therapy Assistant', '738 Huxley Trail', 15, 'Diaria'),
+('V68542148', 'Legal Assistant', '70 International Crossing', 4, 'Diaria'),
+('V99570421', 'Staff Accountant II', '1788 Bluestem Pass', 11, 'Mensual'),
+('V62990915', 'Software Consultant', '96 Helena Pass', 15, 'Diaria'),
+('V11425279', 'Actuary', '5453 Messerschmidt Pass', 9, 'Diaria'),
+('V87727632', 'Developer IV', '2660 Steensland Hill', 16, 'Semanal'),
+('V55136102', 'Human Resources Assistant II', '8813 Annamark Circle', 4, 'Diaria'),
+('V99392868', 'Accountant II', '77897 Crest Line Circle', 7, 'Diaria'),
+('V82808667', 'Computer Systems Analyst IV', '53 Del Mar Point', 15, 'Quincenal'),
+('V34714307', 'Statistician II', '1130 Prairieview Place', 8, 'Diaria'),
+('V70783876', 'Project Manager', '767 Luster Alley', 7, 'Quincenal'),
+('V46631827', 'Research Nurse', '0 Clemons Trail', 11, 'Diaria'),
+('V56118810', 'Financial Analyst', '1314 Loftsgordon Circle', 5, 'Semanal');
 
 
 
 -- direcciones
 
-insert ignore into direcciones (cedula_persona, estado, municipio, parroquia, sector, calle, nro_casa, punto_referencia) values 
+insert  into direcciones (cedula_persona, estado, municipio, parroquia, sector, calle, nro_casa, punto_referencia) values 
 ('V36515502', 'South Africa', 'Indonesia', 'Bergvliet', 'Soe', 'Brown', '32', '3 Dottie Parkway'),
 ('V14832231', 'Brazil', 'Iran', 'Imbituba', 'Namīn', 'Heffernan', '78', '8959 Lake View Drive'),
 ('V80920371', 'Dominican Republic', 'Russia', 'Las Matas de Farfán', 'Vydreno', 'Monterey', '18', '6904 Mariners Cove Crossing'),
@@ -1665,7 +1860,7 @@ insert ignore into direcciones (cedula_persona, estado, municipio, parroquia, se
 
 -- personas
 
-insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
+insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
 ('V34912585','Dagmar','Welbie','Caskey','Spence','2005-11-26','162 Texas Trail','M','','wspence0@economist.com',''),
 ('V37749936','Rutherford','Mae','Stannering','Ockland','2005-07-18','455 Scoville Crossing','F','','mockland1@networkadvertising.org',''),
 ('V33245132','Marketa','Kimberlee','Siddens','Triggle','2005-07-10','432 Nevada Point','M','','ktriggle2@cornell.edu',''),
@@ -1702,7 +1897,7 @@ insert ignore into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fech
 
 -- telefonos
 
-insert ignore into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
+insert  into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
 ('V34912585','China','Philippines','Zhongwei','Tiniguiban','Di Loreto','63','01764 Green Circle'),
 ('V37749936','Serbia','Ukraine','Užice','Drahovo','Elmside','82','66567 Crescent Oaks Drive'),
 ('V33245132','South Korea','Indonesia','Hwasun','Lokokrangan','Warbler','92','69 Pearson Junction'),
@@ -1740,7 +1935,7 @@ insert ignore into direcciones (cedula_persona,estado,municipio,parroquia,sector
 
 
 
-insert ignore into telefonos (cedula_persona ,relacion,prefijo,numero) values 
+insert  into telefonos (cedula_persona ,relacion,prefijo,numero) values 
 ('V34912585','Principal','3351','22462090'),
 ('V37749936','Principal','6412','81758532'),
 ('V33245132','Principal','0463','49971945'),
@@ -1812,7 +2007,7 @@ insert ignore into telefonos (cedula_persona ,relacion,prefijo,numero) values
 
 -- carnet de la patria
 
-insert ignore into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
+insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
 ('V34912585','8058117395','2621466408'),
 ('V37749936','0751437264','0711745037'),
 ('V33245132','8822653051','8338663066'),
@@ -1851,7 +2046,7 @@ insert ignore into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) va
 
 -- estudiantes
 
-insert ignore into estudiantes (cedula_persona,cedula_escolar,plantel_proced,con_quien_vive,relacion_representante,cedula_padre,cedula_madre,cedula_representante) values 
+insert  into estudiantes (cedula_persona,cedula_escolar,plantel_proced,con_quien_vive,relacion_representante,cedula_padre,cedula_madre,cedula_representante) values 
 ('V34912585','V238729707678','Hahn,Weber and Botsford','ac tellus semper interdum mauris','Tio','V36515502','V87971733','V28278648'),
 ('V37749936','V439514146382','Turner LLC','tincidunt eget tempus vel pede morbi porttitor','Tio','V14832231','V65612580','V9933359'),
 ('V33245132','V950745894182','Mitchell and Sons','ante ipsum primis in','Tia','V80920371','V23386453','V31950478'),
@@ -1892,7 +2087,7 @@ insert ignore into estudiantes (cedula_persona,cedula_escolar,plantel_proced,con
 
 -- datos de salud
 
-insert ignore into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medicacion,dieta_especial,padecimiento,impedimento_fisico,necesidad_educativa,condicion_vista,condicion_dental,institucion_medica,carnet_discapacidad) values
+insert  into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medicacion,dieta_especial,padecimiento,impedimento_fisico,necesidad_educativa,condicion_vista,condicion_dental,institucion_medica,carnet_discapacidad) values
 ('V34912585', 'Ambidextro', 'A+', 'enim lorem ipsum dolor sit amet consectetuer adipiscing', 'convallis eget eleifend luctus ultricies eu nibh', 'amet eros suspendisse accumsan tortor quis turpis sed ante vivamus', 'eleifend pede libero quis orci nullam molestie', 'vel nulla eget eros elementum pellentesque quisque porta', 'Mala', 'Mala', 'non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus', '2749022871'),
 ('V37749936', 'Zurdo', 'B+', 'mauris sit amet eros suspendisse accumsan tortor quis', 'semper est quam pharetra magna ac consequat metus sapien ut', 'quis justo maecenas rhoncus aliquam lacus morbi quis', 'interdum in ante vestibulum ante ipsum', 'nibh in quis justo maecenas rhoncus aliquam', 'Buena', 'Buena', 'tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris', '3700669992'),
 ('V33245132', 'Zurdo', 'O-', 'sit amet nunc viverra dapibus nulla suscipit ligula', 'odio odio elementum eu interdum eu tincidunt in leo', 'in felis donec semper sapien', 'diam cras pellentesque volutpat dui maecenas tristique est', 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam', 'Buena', 'Mala', 'massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum', '9166392866'),
@@ -1928,7 +2123,7 @@ insert ignore into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medic
 ('V35145513', 'Zurdo', 'A+', 'nam dui proin leo odio porttitor id consequat in', 'vulputate vitae nisl aenean lectus pellentesque eget nunc donec', 'aliquam erat volutpat in congue', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit', 'tellus nisi eu orci mauris lacinia sapien quis libero', 'Regular', 'Buena', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '8236774791');
 
 
-insert ignore into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) values 
+insert  into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) values 
 
 ('V34912585','vph','Aplicada'),
 ('V34912585','tdap','No aplicada'),
@@ -2295,7 +2490,7 @@ insert ignore into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) va
 
 
 
-insert ignore into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) values 
+insert  into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) values 
 ('V34912585','CanSinoBIO',2,'W4611791'),
 ('V37749936','Janssen',2,'M9987150'),
 ('V33245132','Novavax',1,'P1510795'),
@@ -2333,7 +2528,7 @@ insert ignore into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) 
 
 
 
-insert ignore into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values 
+insert  into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values 
 ('V34912585','3XL','XS',44),
 ('V37749936','L','2XL',40),
 ('V33245132','3XL','S',34),
@@ -2369,7 +2564,7 @@ insert ignore into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values
 ('V35145513','3XL','2XL',33);
 
 
-insert ignore into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c,circ_braquial) values 
+insert  into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c,circ_braquial) values 
 ('V34912585',173,24,20,20),
 ('V37749936',182,36,22,14),
 ('V33245132',63,45,23,15),
@@ -2405,7 +2600,7 @@ insert ignore into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c
 ('V35145513',149,61,19,23);
 
 
-insert ignore into observaciones_est (cedula_estudiante,social,fisico,personal,familiar,academico,otra) values 
+insert  into observaciones_est (cedula_estudiante,social,fisico,personal,familiar,academico,otra) values 
 ('V34912585','quis orci','nunc nisl duis bibendum felis sed interdum venenatis turpis enim','sit amet eleifend pede libero quis orci nullam','','ac neque duis bibendum morbi non quam nec dui','vitae ipsum aliquam non mauris morbi non'),
 ('V37749936','amet nunc viverra dapibus nulla suscipit ligula','vestibulum sed magna at nunc commodo placerat praesent','','ut ultrices vel augue vestibulum ante ipsum primis in faucibus','ipsum praesent blandit lacinia erat vestibulum sed magna','erat vestibulum sed magna at nunc commodo placerat praesent blandit'),
 ('V33245132','enim sit amet nunc viverra dapibus','tellus nisi eu orci mauris lacinia sapien quis','feugiat et eros vestibulum ac est lacinia nisi venenatis tristique','leo pellentesque ultrices mattis odio donec vitae','pede malesuada in imperdiet et','tristique in tempus sit amet sem fusce consequat'),
@@ -2443,7 +2638,7 @@ insert ignore into observaciones_est (cedula_estudiante,social,fisico,personal,f
 
 
 
-insert ignore into datos_academicos (cedula_estudiante,a_repetido,materias_repetidas,materias_pendientes) values 
+insert  into datos_academicos (cedula_estudiante,a_repetido,materias_repetidas,materias_pendientes) values 
 ('V34912585','Tercer año','','proin'),
 ('V37749936','Primer año','',''),
 ('V33245132','Cuarto año','eget massa tempor','ante ipsum primis in faucibus'),
@@ -2482,7 +2677,7 @@ insert ignore into datos_academicos (cedula_estudiante,a_repetido,materias_repet
 
 
 
-insert ignore into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,acceso_internet) values 
+insert  into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,acceso_internet) values 
 ('V34912585','No','','No'),
 ('V37749936','No','','No'),
 ('V33245132','No','','Si'),
@@ -2518,7 +2713,7 @@ insert ignore into datos_sociales (cedula_estudiante,tiene_canaima,condicion_can
 ('V35145513','No','','No');
 
 
-insert ignore into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,id_per_academico) values 
+insert  into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,id_per_academico) values 
 ('V34912585','Primer año','20222023'),
 ('V37749936','Segundo año','20222023'),
 ('V33245132','Segundo año','20222023'),
@@ -2555,7 +2750,7 @@ insert ignore into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,id_per_a
 
 
 
-insert ignore into condiciones_est (cedula_estudiante, visual, motora, auditiva, escritura, lectura, lenguaje, embarazo) values 
+insert  into condiciones_est (cedula_estudiante, visual, motora, auditiva, escritura, lectura, lenguaje, embarazo) values 
 ('V34912585', 'visual', '', '', '', 'lectura', '', ''),
 ('V37749936', '', 'motora', '', 'escritura', '', 'lenguaje', ''),
 ('V33245132', '', '', 'auditiva', '', '', 'lenguaje', ''),
@@ -2629,7 +2824,7 @@ insert ignore into condiciones_est (cedula_estudiante, visual, motora, auditiva,
 -- V35145513,
 
 
-INSERT INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`, `cedula_estudiante`) VALUES 
+INSERT  INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`, `cedula_estudiante`) VALUES 
 (null,'2023-02-17','19:47:00','V27919566','V34912585'),
 (null,'2023-02-17','19:47:00','V27919566','V37749936'),
 (null,'2023-02-17','19:47:00','V27919566','V33245132'),

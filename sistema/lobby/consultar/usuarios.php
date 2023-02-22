@@ -96,4 +96,4 @@
 </div>
 							
 <script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consulta-usuarios.js"></script>
+<script src="../../js/consultas/consulta_usuarios.js"></script>

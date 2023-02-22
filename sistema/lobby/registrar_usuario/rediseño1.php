@@ -626,7 +626,7 @@
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../js/validaciones_inscripcion.js"></script>
+<script type="text/javascript" src="../../js/validaciones/validaciones_inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

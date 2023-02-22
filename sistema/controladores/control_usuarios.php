@@ -110,7 +110,7 @@
 			$personas->set_fecha_nacimiento($_SESSION['datos_nuevos']["fecha_nacimiento_u"]);
 			$personas->set_genero($_SESSION['datos_nuevos']["genero_u"]);
 			$personas->set_email($_SESSION['datos_nuevos']["email_u"]);
-			$personas->editar_persona();
+			$personas->editar_persona($c_actual);
 
 			// Inserta la persona
 

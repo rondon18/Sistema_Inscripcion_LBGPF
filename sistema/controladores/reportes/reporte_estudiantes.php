@@ -1,11 +1,13 @@
 <?php  
 
-	require("../../vendor/autoload.php");
+	require("../../../vendor/autoload.php");
 
 	// incluir PhpSpreadsheet
 
 	use PhpOffice\PhpSpreadsheet\Spreadsheet;
 	use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+	use PhpOffice\PhpSpreadsheet\Style\Color;
+	use PhpOffice\PhpSpreadsheet\Style\Border;
 
 	$documento = new Spreadsheet();
 	
@@ -15,14 +17,14 @@
 		->setLastModifiedBy('Sistema de inscripción L.B. "Gonzalo Picón Febres"')
 		->setTitle('Reporte de estudiantes')
 		->setDescription('Reporte generado mediante el modulo de reportes.');
-
-	// cabecera de la tabla
 	
+	// cabecera de la tabla
 	// empezar el encabezado solo con datos personales
 	$encabezado = [];
 
 	// Incluye los datos personales
 	$encabezado = array_merge(
+		
 		$encabezado,
 		[
 			"Cédula del estudiante",
@@ -33,25 +35,33 @@
 			"Lugar de nacimiento",
 			"Género",
 		]
+
 	);
 
 	// Incluye direccion
 	if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
+		
 		$encabezado = array_merge($encabezado,["Dirección","Con quien vive"]);
+
 	}
 
 	// Incluye Correo electrónico
 	if (isset($_POST['incluir_email']) and $_POST['incluir_email'] == "on") {
+		
 		$encabezado = array_merge($encabezado,["Correo electrónico"]);
+
 	}
 
 	// Incluye Teléfonos
 	if (isset($_POST['incluir_telefonos']) and $_POST['incluir_telefonos'] == "on") {
+		
 		$encabezado = array_merge($encabezado,["Teléfonos"]);
+
 	}
 
 	// Incluye observaciones
 	if (isset($_POST['incluir_observaciones']) and $_POST['incluir_observaciones'] == "on") {
+		
 		$encabezado = array_merge(
 			$encabezado,
 			[
@@ -63,11 +73,13 @@
 				"Otras observaciones",
 			]
 		);
+
 	}
 
 
 	// Incluye datos sociales
 	if (isset($_POST['incluir_d_sociales']) and $_POST['incluir_d_sociales'] == "on") {
+		
 		$encabezado = array_merge(
 			$encabezado,
 			[
@@ -76,11 +88,13 @@
 				"Tiene conexión a internet",
 			]
 		);
+
 	}
 
 
 	// Incluye Datos académicos
 	if (isset($_POST['incluir_d_academicos']) and $_POST['incluir_d_academicos'] == "on") {
+		
 		$encabezado = array_merge(
 			$encabezado,
 			[
@@ -89,6 +103,7 @@
 				"Materias pendientes",
 			]
 		);
+
 	}
 
 
@@ -208,39 +223,35 @@
 			]
 		);
 
-		// 
-		// hoja adicional para el representante
-		// 
+	}
 
-		// Incluye datos del representante
-		if (isset($_POST['incluir_d_representante']) and $_POST['incluir_d_representante'] == "on") {
-		
-			// empezar el encabezado solo con datos personales
-			$encabezado_representante = [];
+	// 
+	// hoja adicional para el representante
+	// 
 
-			// Incluye los datos que identifican al estudiante
-			$encabezado_representante = array_merge(
-				$encabezado_representante,
-				[
-					"Cédula del estudiante",
-					"Nombres",
-					"Apellidos",
-				]
-			);
+	// Incluye datos del representante
+	if (isset($_POST['incluir_d_representante']) and $_POST['incluir_d_representante'] == "on") {
+	
+		// empezar el encabezado solo con datos personales
+		$encabezado_representante = [];
 
-			// Incluye los datos personales del representante
-			$encabezado_representante = array_merge(
-				$encabezado_representante,
-				[
-					"Cédula del representante",
-					"Nombres",
-					"Apellidos",
-					"Dirección",
-					"Correo electrónico",
-					"Teléfonos"
-				]
-			);
-		}
+		// Incluye los datos que identifican al estudiante
+		$encabezado_representante = array_merge(
+			$encabezado_representante,
+			[
+				"Cédula del estudiante",
+				"Nombres",
+				"Apellidos",
+				"Cédula del representante",
+				"Nombres",
+				"Apellidos",
+				"Dirección",
+				"Correo electrónico",
+				"Teléfonos"
+			]
+		);
+
+	}
 
 		// 
 		// hoja adicional para los padres
@@ -280,7 +291,6 @@
 				]
 			);
 		}
-	}
 
 	// 
 	// Realizacion de la consulta en la base de datos
@@ -306,11 +316,36 @@
 	$hoja_estudiantes = $documento->getActiveSheet();
 	$hoja_estudiantes->setTitle("Estudiantes");
 
-	$hoja_estudiantes->getDefaultColumnDimension()->setWidth(150, 'pt');
+	$imagen = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 	
-	$hoja_estudiantes->fromArray($encabezado, null, 'A1');
+	$imagen->setName('Banner');
+	$imagen->setDescription('Banner');
+	$imagen->setPath('../../img/banner-gobierno.png'); /* put your path and image here */
+	$imagen->setCoordinates('A1');
+	$imagen->setOffsetX(0);
+	$imagen->setRotation(0);
+	$imagen->setHeight(36);
+	$imagen->getShadow()->setVisible(true);
+	$imagen->getShadow()->setDirection(45);
+	$imagen->setWorksheet($hoja_estudiantes);
 
-	$i = 2;
+	$imagen = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+	$imagen->setName('Banner2');
+	$imagen->setDescription('Banner2');
+	$imagen->setPath('../../img/banner-LGPF.png'); /* put your path and image here */
+	$imagen->setCoordinates('B1');
+	$imagen->setOffsetX(0);
+	$imagen->setRotation(0);
+	$imagen->setHeight(36);
+	$imagen->getShadow()->setVisible(true);
+	$imagen->getShadow()->setDirection(45);
+	$imagen->setWorksheet($hoja_estudiantes);
+
+
+	$hoja_estudiantes->fromArray($encabezado, null, 'A2');
+
+
+	$i = 3;
 
 	// muestra los datos e incrementa la fila en 1
 	foreach ($lista_estudiantes as $estudiante) {
@@ -497,45 +532,56 @@
 			}
 
 
-		// 	// Incluye vacunas generales
-		// 	if (isset($_POST['incluir_vacunas']) and $_POST['incluir_vacunas'] == "on") {
-		// 		$datos_estudiante = array_merge(
-		// 			$datos_estudiante,
-		// 			[
-		// 				"Vacuna VPH",
-		// 				"Vacuna TDAP",
-		// 				"Vacuna MENACWY",
-		// 				"Vacuna hepatitis A",
-		// 				"Vacuna hepatitis B",
-		// 				"Vacuna IPV",
-		// 				"Vacuna MMR",
-		// 				"Vacuna varicela",
-		// 				"Vacuna antiamarilica",
-		// 				"Vacuna antigripal",
-		// 			]
-		// 		);
-		// 	}
+			// Incluye vacunas generales
+			if (isset($_POST['incluir_vacunas']) and $_POST['incluir_vacunas'] == "on") {
+				$datos_estudiante = array_merge(
+					$datos_estudiante,
+					[
+						"vph",
+						"tdap",
+						"menacwy",
+						"hep_a",
+						"hep_a",
+						"ipv",
+						"mmr",
+						"varicela",
+						"antiamarilica",
+						"antigripal",
+					]
+				);
+
+				// consulta las vacunas del estudiante
+				$vacunas_est->set_cedula_estudiante($estudiante['cedula_estudiante']);
+				$vacunas_estudiante = $vacunas_est->consultar_vacunas_est();
+
+				$vacunas = [];
+
+				foreach ($vacunas_estudiante as $vac) {
+					$estudiante[$vac['espec_vacuna']] = $vac['estado_vacuna'];
+				}
+			}
 
 
-		// 	// Incluye vacunacion contra el covid-19
-		// 	if (isset($_POST['incluir_vac_covid_19']) and $_POST['incluir_vac_covid_19'] == "on") {
-		// 		$datos_estudiante = array_merge(
-		// 			$datos_estudiante,
-		// 			[
-		// 				"Vacuna contra el covid-19 aplicada",
-		// 				"Dosis recibidas",
-		// 				"lote de vacuna",
-		// 			]
-		// 		);
-		// 	}
+			// Incluye vacunacion contra el covid-19
+			if (isset($_POST['incluir_vac_covid_19']) and $_POST['incluir_vac_covid_19'] == "on") {
+				$datos_estudiante = array_merge(
+					$datos_estudiante,
+					[
+						 "vac_aplicada",
+						 "dosis",
+						 "lote",
+					]
+				);
+			}
 
-		// 	$datos_estudiante = array_merge(
-		// 		$datos_estudiante,
-		// 		[
-		// 			"Año que cursa",
-		// 			"Periodo académico que cursa",
-		// 		]
-		// 	);
+			$datos_estudiante = array_merge(
+				$datos_estudiante,
+				[
+					"plantel_proced",
+					"grado_a_cursar",
+					"id_per_academico",
+				]
+			);
 		}
 		foreach ($datos_estudiante as $dato) {
 			$fila[] = $estudiante[$dato];
@@ -547,26 +593,276 @@
 	unset($i);
 
 
-	// hoja_representantes
-	$documento->createSheet();
-	
-	$documento->setActiveSheetIndex(1);
-	$hoja_representantes = $documento->getActiveSheet();
-	$hoja_representantes->setTitle("Representantes");
-	
-	$hoja_representantes->fromArray($encabezado_representante, null, 'A1');
+	// Estilos posteriores al llenado
 
 
-	// hoja_padres
-	$documento->createSheet();
-	
-	$documento->setActiveSheetIndex(2);
-	$hoja_padres = $documento->getActiveSheet();
-	$hoja_padres->setTitle("Padres");
+	$max_col = $hoja_estudiantes->getHighestColumn();
+	$fila_encabezado = ("A2:". $max_col ."2");
+	$max_col++;
 
-	$hoja_padres->fromArray($encabezado_padres, null, 'A1');
 
-	// $hoja_padres->getColumnDimension('B')->setAutoSize(true);
+	for ($j= "A"; $j != $max_col; $j++) { 
+		// Color de fondo de la cabecera
+
+		$hoja_estudiantes
+			->getStyle($j."2")
+			->getFont()->setBold(true);
+
+		$hoja_estudiantes
+		->getStyle($j."2")
+		->getFill()
+		->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+		->getStartColor()
+		->setARGB('6CBFEB');
+
+		$hoja_estudiantes->getColumnDimension($j)->setWidth(150, 'pt');
+
+		$hoja_estudiantes->setAutoFilter($fila_encabezado);
+	}
+
+	// alto de la fila con los banners
+	$hoja_estudiantes->getRowDimension('1')->setRowHeight(30);
+
+	// var_dump($encabezado_representante);
+
+
+
+
+	if (isset($_POST['incluir_d_representante']) and $_POST['incluir_d_representante'] == "on"){
+
+		// hoja_representantes
+		$documento->createSheet();
+		
+		$documento->setActiveSheetIndex(1);
+		$hoja_representantes = $documento->getActiveSheet();
+		$hoja_representantes->setTitle("Representantes");
+		
+		$hoja_representantes->fromArray($encabezado_representante, null, 'A1');
+
+		$i = 2;
+
+		foreach ($lista_estudiantes as $estudiante) {
+			$datos_representante = [];
+
+			$representantes->set_cedula_persona($estudiante['cedula_representante']);
+			$representante = $representantes->consultar_representantes();
+
+			$direccion = 
+			[
+				$representante["municipio"],
+				$representante["parroquia"],
+				$representante["sector"],
+				$representante["calle"],
+				$representante["nro_casa"],
+				$representante["punto_referencia"],
+			];
+
+
+			// consulta los telefonos del estudiante
+			$telefonos->set_cedula_persona($estudiante['cedula_representante']);
+			$telefonos_representante = $telefonos->consultar_telefonos();
+
+			$tels = [];
+
+			foreach ($telefonos_representante as $tel) {
+				$tels[] = $tel['prefijo']."-".$tel['numero'];
+			}
+
+			// Incluye los datos personales del estudiante
+			$datos_representante = array_merge(
+				$datos_representante,
+				[
+					$estudiante["cedula_estudiante"],
+					$estudiante["nombres"],
+					$estudiante["apellidos"],
+					$representante["cedula"],
+					$representante["p_nombre"] . " " . $representante["s_nombre"],
+					$representante["p_apellido"] . " " . $representante["s_apellido"],
+					implode(" ", $direccion), // Direccion completa
+					$representante["email"],
+					implode(" / ", $tels), // Telefonos
+				]
+			);
+
+			$hoja_representantes->fromArray($datos_representante, null, 'A'.$i);
+			$i++;
+		}
+
+		unset($i);
+
+
+		$max_col = $hoja_representantes->getHighestColumn();
+		$fila_encabezado = ("A1:". $max_col ."1");
+		$max_col++;
+
+
+		for ($j= "A"; $j != $max_col; $j++) { 
+			// Color de fondo de la cabecera
+
+			$hoja_representantes
+				->getStyle($j."1")
+				->getFont()->setBold(true);
+
+			$hoja_representantes
+			->getStyle($j."1")
+			->getFill()
+			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+			->getStartColor()
+			->setARGB('6CBFEB');
+
+			$hoja_representantes->getColumnDimension($j)->setWidth(150, 'pt');
+
+			$hoja_representantes->setAutoFilter($fila_encabezado);
+		}
+
+	}
+
+
+
+
+	if (isset($_POST['incluir_d_padres']) and $_POST['incluir_d_padres'] == "on") {
+		// hoja_padres
+		$documento->createSheet();
+		
+		$documento->setActiveSheetIndex(2);
+		$hoja_padres = $documento->getActiveSheet();
+		$hoja_padres->setTitle("Padres");
+
+		$hoja_padres->fromArray($encabezado_padres, null, 'A1');
+
+
+		$i = 2;
+
+		foreach ($lista_estudiantes as $estudiante) {
+			// Arreglo con los datos de padre y madre juntos
+			$datos_padres = [];
+
+			// 
+			// Datos del padre
+			// 
+
+			// consulta el padre del estudiante
+			$padres->set_cedula_persona($estudiante['cedula_padre']);
+			$padre = $padres->consultar_padres();
+
+			// concatena la direccion larga
+			$direccion = 
+			[
+				$padre["municipio"],
+				$padre["parroquia"],
+				$padre["sector"],
+				$padre["calle"],
+				$padre["nro_casa"],
+				$padre["punto_referencia"],
+			];
+
+
+			// consulta los telefonos del padre
+			$telefonos->set_cedula_persona($estudiante['cedula_padre']);
+			$telefonos_padre = $telefonos->consultar_telefonos();
+
+			// incluye los telefonos obtenidos como un arreglo
+			$tels = [];
+			foreach ($telefonos_padre as $tel) {
+				// concatena prefijo y número telefonico
+				$tels[] = $tel['prefijo']."-".$tel['numero'];
+			}
+			
+			// Incluye los datos personales del padre
+			$datos_padres = array_merge(
+				$datos_padres,
+				[
+					$estudiante["cedula_estudiante"],
+					$estudiante["nombres"],
+					$estudiante["apellidos"],
+					$padre["cedula"],
+					$padre["p_nombre"] . " " . $padre["s_nombre"],
+					$padre["p_apellido"] . " " . $padre["s_apellido"],
+					implode(" ", $direccion), // Direccion completa
+					$padre["email"],
+					implode(" / ", $tels), // Telefonos
+				]
+			);
+
+			// 
+			// Datos de la madre
+			// 
+
+			// consulta el padre del estudiante
+			$padres->set_cedula_persona($estudiante['cedula_madre']);
+			$madre = $padres->consultar_padres();
+
+			// concatena la direccion larga
+			$direccion = 
+			[
+				$madre["municipio"],
+				$madre["parroquia"],
+				$madre["sector"],
+				$madre["calle"],
+				$madre["nro_casa"],
+				$madre["punto_referencia"],
+			];
+
+
+			// consulta los telefonos del padre
+			$telefonos->set_cedula_persona($estudiante['cedula_madre']);
+			$telefonos_madre = $telefonos->consultar_telefonos();
+
+			// incluye los telefonos obtenidos como un arreglo
+			$tels = [];
+			foreach ($telefonos_madre as $tel) {
+				// concatena prefijo y número telefonico
+				$tels[] = $tel['prefijo']."-".$tel['numero'];
+			}
+			
+			// Incluye los datos personales del padre
+			$datos_padres = array_merge(
+				$datos_padres,
+				[
+					$madre["cedula"],
+					$madre["p_nombre"] . " " . $madre["s_nombre"],
+					$madre["p_apellido"] . " " . $madre["s_apellido"],
+					implode(" ", $direccion), // Direccion completa
+					$madre["email"],
+					implode(" / ", $tels), // Telefonos
+				]
+			);
+
+
+			$hoja_padres->fromArray($datos_padres, null, 'A'.$i);
+			$i++;
+		}
+
+		unset($i);
+
+
+		$max_col = $hoja_padres->getHighestColumn();
+		$fila_encabezado = ("A1:". $max_col ."1");
+		$max_col++;
+
+
+		for ($j= "A"; $j != $max_col; $j++) { 
+			// Color de fondo de la cabecera
+
+			$hoja_padres
+				->getStyle($j."1")
+				->getFont()->setBold(true);
+
+			$hoja_padres
+			->getStyle($j."1")
+			->getFill()
+			->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+			->getStartColor()
+			->setARGB('6CBFEB');
+
+			$hoja_padres->getColumnDimension($j)->setWidth(150, 'pt');
+
+			$hoja_padres->setAutoFilter($fila_encabezado);
+		}
+
+
+
+	}
 
 	// pone el foco en la primera página
 	$documento->setActiveSheetIndex(0);
@@ -576,27 +872,11 @@
 	$escritor = new Xlsx($documento);
 
 	// Guardado
-	// $escritor->save("test_reporte.xlsx");
+	$escritor->save("test_reporte.xlsx");
 
 	// Descarga
-	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
-	$writer->save('php://output');
-
-
-
-	// // verifica que haya al menos un registro para evitar un excel vacio
-	// if (count($lista_estudiantes) > 0) {
-
-	// 	// comenzar a generar el excel
-
-
-	// 	// Cabecera
-
-
-	// }
-	// else {
-	// 	echo "No existen registros con esas caracteristicas";
-	// }
+	// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	// header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
+	// $writer->save('php://output');
 
 ?>

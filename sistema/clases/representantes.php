@@ -45,6 +45,78 @@
 			return $lista_representantes;
 		}
 
+
+		public function filtrar_representantes() {
+			// Muestra todos los representantes registrados
+			$conexion = conectarBD();
+
+			$sql = "
+				SELECT
+					`cedula`,
+					`p_nombre`,
+					`s_nombre`,
+					`p_apellido`,
+					`s_apellido`,
+					date_format(`fecha_nacimiento`, '%d-%m-%Y') as fecha_nacimiento,
+					`lugar_nacimiento`,
+					`genero`,
+					`estado_civil`,
+					`email`,
+					CONCAT(
+						`estado`,
+						' ',
+						`municipio`,
+						' ',
+						`parroquia`,
+						' ',
+						`sector`,
+						' ',
+						`calle`,
+						' ',
+						`nro_casa`,
+						' ',
+						`punto_referencia`
+					) AS direccion,
+					CONCAT(
+						`codigo_carnet`,
+						' - ',
+						`serial_carnet`
+					) AS carnet_patria,
+					`grado_academico`,
+					`empleo`,
+					`lugar_trabajo`,
+					`remuneracion`,
+					`tipo_remuneracion`,
+					`condicion`,
+					`tipo`,
+					`tenencia`,
+					`banco`,
+					`tipo_cuenta`,
+					`nro_cuenta`,
+					CONCAT(
+						`nombre_aux`,
+						' ',
+						`apellido_aux`
+					) AS nombres_aux,
+					`relacion_aux`,
+					CONCAT(
+						`pref_aux`,
+						'-',
+						`numero_aux`
+					) AS tlf_auxiliar
+				FROM
+					`vista_representantes`
+			";
+
+			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
+			
+			$lista_representantes = $resultado->fetch_all(MYSQLI_ASSOC);
+			
+			desconectarBD($conexion);
+
+			return $lista_representantes;
+		}
+
 		public function consultar_representantes() {
 			// Muestra todos los estudiantes registrados
 			$conexion = conectarBD();
@@ -69,13 +141,13 @@
 
 			$sql = "
 			SELECT
-		    `cedula`,
-		    `p_nombre`,
-		    `grado_a_cursar`
+				`cedula`,
+				`p_nombre`,
+				`grado_a_cursar`
 			FROM
-		    `vista_estudiantes`
+				`vista_estudiantes`
 			WHERE
-		    cedula_representante = '$cedula_persona';";
+				cedula_representante = '$cedula_persona';";
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			
@@ -93,11 +165,11 @@
 
 			$sql = "
 			SELECT
-		    *
+				*
 			FROM
-		    `vista_estudiantes`
+				`vista_estudiantes`
 			WHERE
-		    cedula_representante = '$cedula_persona';";
+				cedula_representante = '$cedula_persona';";
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			desconectarBD($conexion);

@@ -155,7 +155,7 @@ $lista_padres = $padres->mostrar_padres();
 
 					<?php if ($padres->contar_hijos() < 1): ?>
 					<!-- Eliminar el padre -->
-					<form action="../../controladores/control_representantes_padres.php" method="post" class="d-inline-block">
+					<form action="../../controladores/registros/control_representantes_padres.php" method="post" class="d-inline-block">
 						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
 						<input type="hidden" name="accion" value="eliminar">
 						<button class="btn btn-sm btn-danger">Eliminar</button>
@@ -173,4 +173,4 @@ $lista_padres = $padres->mostrar_padres();
 
 <link rel="stylesheet" href="../../datatables/datatables.min.css">
 <script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consulta-padres.js"></script>
+<script src="../../js/consultas/consulta_padres.js"></script>

@@ -7,7 +7,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form id="reporte_estudiantes" action="../../controladores/control_reportes.php" method="post">
+				<form id="reporte_estudiantes" action="../../controladores/reportes/control_reportes.php" method="post">
 					<p class="h5 mb-3">
 						¿Qué datos quiere incluir en el reporte?
 					</p>
@@ -93,7 +93,7 @@
 
 
 					<!-- Datos sociales -->
-					<div class="form-check form-switch mb-2">
+					<div class="form-check form-switch">
 						<input 
 							id="incluir_d_sociales" 
 							name="incluir_d_sociales" 
@@ -106,7 +106,7 @@
 
 
 					<!-- Datos académicos -->
-					<div class="form-check form-switch mb-2">
+					<div class="form-check form-switch">
 						<input 
 							id="incluir_d_academicos" 
 							name="incluir_d_academicos" 
@@ -138,7 +138,7 @@
 							<input 
 								id="incluir_f_medica" 
 								name="incluir_f_medica" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -153,7 +153,7 @@
 							<input 
 								id="incluir_tallas" 
 								name="incluir_tallas" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -168,7 +168,7 @@
 							<input 
 								id="incluir_antropometria" 
 								name="incluir_antropometria" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -183,7 +183,7 @@
 							<input 
 								id="incluir_cond_salud" 
 								name="incluir_cond_salud" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -198,7 +198,7 @@
 							<input 
 								id="incluir_vacunas" 
 								name="incluir_vacunas" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -213,7 +213,7 @@
 							<input 
 								id="incluir_vac_covid_19" 
 								name="incluir_vac_covid_19" 
-								class="form-check-input" 
+								class="form-check-input filtros-salud" 
 								type="checkbox" 
 								checked
 							>
@@ -296,7 +296,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-				<button type="submit" class="btn btn-success" form="reporte_estudiantes">
+				<button id="b_r_estudiantes" type="submit" class="btn btn-success" form="reporte_estudiantes">
 					Generar Reporte
 					<i class="fa-solid fa-file-excel fa-lg ms-2"></i>
 				</button>

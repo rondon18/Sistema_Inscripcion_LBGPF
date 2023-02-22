@@ -1630,7 +1630,7 @@ $nivel = 2;
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
-		<script type="text/javascript" src="../../js/validaciones_padres.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/validaciones_padres.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

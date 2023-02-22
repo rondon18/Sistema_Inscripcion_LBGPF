@@ -194,7 +194,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 
 					<?php if ($representantes->contar_representados() < 1): ?>
 					<!-- Eliminar el representante -->
-					<form action="../../controladores/control_representantes_padres.php" method="post" target="_blank" class="d-inline-block">
+					<form action="../../controladores/registros/control_representantes_padres.php" method="post" target="_blank" class="d-inline-block">
 						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
 						<input type="hidden" name="accion" value="eliminar">
 						<button class="btn btn-sm btn-danger">Eliminar</button>
@@ -209,4 +209,4 @@ $lista_representantes = $representantes->mostrar_representantes();
 </div>
 
 <script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consulta-representantes.js"></script>
+<script src="../../js/consultas/consulta_representantes.js"></script>

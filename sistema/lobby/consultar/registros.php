@@ -89,4 +89,4 @@
 </div>
 							
 <script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consulta-bitacora.js"></script>
+<script src="../../js/consultas/consulta_bitacora.js"></script>

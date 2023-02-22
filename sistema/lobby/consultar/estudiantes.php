@@ -14,7 +14,7 @@
 			$_SESSION['orden'] = $_POST['orden'];
 			$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
 
-			header('Location: ../../controladores/control_registros.php');
+			header('Location: ../../controladores/registros/control_registros.php');
 		}
 	}
 
@@ -235,4 +235,4 @@
 </div>
 							
 <script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consulta-estudiantes.js"></script>
+<script src="../../js/consultas/consulta_estudiantes.js"></script>
