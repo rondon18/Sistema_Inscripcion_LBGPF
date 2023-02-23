@@ -384,11 +384,17 @@
 
 
 
-	// Crear un "escritor"
-	$escritor = new Xlsx($documento);
+	// // Crear un "escritor"
+	// $escritor = new Xlsx($documento);
 
-	// Guardado
-	$escritor->save("test_reporte_r.xlsx");
+	// // Guardado
+	// $escritor->save("test_reporte_r.xlsx");
+
+
+	// Descarga
+	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	header('Content-Disposition: attachment; filename="'. urlencode("test_reporte_r.xlsx").'"');
+	$writer->save('php://output');
 
 
 	// 'cedula',

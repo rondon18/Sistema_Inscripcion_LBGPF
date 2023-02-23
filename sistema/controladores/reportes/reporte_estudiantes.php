@@ -868,15 +868,15 @@
 	$documento->setActiveSheetIndex(0);
 
 
-	// Crear un "escritor"
-	$escritor = new Xlsx($documento);
+	// // Crear un "escritor"
+	// $escritor = new Xlsx($documento);
 
-	// Guardado
-	$escritor->save("test_reporte.xlsx");
+	// // Guardado
+	// $escritor->save("test_reporte.xlsx");
 
 	// Descarga
-	// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	// header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
-	// $writer->save('php://output');
+	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
+	$writer->save('php://output');
 
 ?>

@@ -1252,7 +1252,12 @@ insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,t
 ('V32113794', 'Structural Engineer', '0 Merrick Court', 22, 'Semanal'),
 ('V36732297', 'GIS Technical Architect', '737 Iowa Junction', 21, 'Semanal'),
 ('V5344562', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
-('V25050145', 'Accounting Assistant IV', '24507 Straubel Plaza', 11, 'Quincenal');
+('V25050145', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V30196324', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V21412330', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V28798356', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V20909176', 'Software Test Engineer IV', '32 Veith Circle', 3, 'Quincenal'),
+('V33641397', 'Accounting Assistant IV', '24507 Straubel Plaza', 11, 'Quincenal');
 
 
 
