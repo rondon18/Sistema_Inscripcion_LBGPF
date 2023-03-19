@@ -497,6 +497,7 @@ DROP TABLE IF EXISTS `base_proyecto_nueva`.`grado_a_cursar_est` ;
 CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`grado_a_cursar_est` (
   `cedula_estudiante` VARCHAR(45) NOT NULL,
   `grado_a_cursar` VARCHAR(45) NOT NULL,
+  `seccion` VARCHAR(50) NOT NULL,
   `id_per_academico` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cedula_estudiante`, `id_per_academico`),
   CONSTRAINT `fk_grado_a_cursar_est_estudiantes1`
@@ -588,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_usuarios` (`cedula` INT,
 -- -----------------------------------------------------
 -- Placeholder table for view `base_proyecto_nueva`.`vista_estudiantes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_estudiantes` (`cedula` INT, `p_nombre` INT, `s_nombre` INT, `p_apellido` INT, `s_apellido` INT, `fecha_nacimiento` INT, `lugar_nacimiento` INT, `genero` INT, `email` INT, `estado` INT, `municipio` INT, `parroquia` INT, `sector` INT, `calle` INT, `nro_casa` INT, `punto_referencia` INT, `codigo_carnet` INT, `serial_carnet` INT, `cedula_escolar` INT, `plantel_proced` INT, `con_quien_vive` INT, `relacion_representante` INT, `cedula_padre` INT, `cedula_madre` INT, `cedula_representante` INT, `lateralidad` INT, `tipo_sangre` INT, `medicacion` INT, `dieta_especial` INT, `padecimiento` INT, `impedimento_fisico` INT, `necesidad_educativa` INT, `condicion_vista` INT, `condicion_dental` INT, `institucion_medica` INT, `carnet_discapacidad` INT, `vac_aplicada` INT, `dosis` INT, `lote` INT, `camisa` INT, `pantalon` INT, `calzado` INT, `estatura` INT, `peso` INT, `indice_m_c` INT, `circ_braquial` INT, `visual` INT, `motora` INT, `auditiva` INT, `escritura` INT, `lectura` INT, `lenguaje` INT, `embarazo` INT, `social` INT, `fisico` INT, `personal` INT, `familiar` INT, `academico` INT, `otra` INT, `grado_repetido` INT, `materias_repetidas` INT, `materias_pendientes` INT, `tiene_canaima` INT, `condicion_canaima` INT, `acceso_internet` INT, `grado_a_cursar` INT, `id_per_academico` INT);
+CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_estudiantes` (`cedula` INT, `p_nombre` INT, `s_nombre` INT, `p_apellido` INT, `s_apellido` INT, `fecha_nacimiento` INT, `lugar_nacimiento` INT, `genero` INT, `email` INT, `estado` INT, `municipio` INT, `parroquia` INT, `sector` INT, `calle` INT, `nro_casa` INT, `punto_referencia` INT, `codigo_carnet` INT, `serial_carnet` INT, `cedula_escolar` INT, `plantel_proced` INT, `con_quien_vive` INT, `relacion_representante` INT, `cedula_padre` INT, `cedula_madre` INT, `cedula_representante` INT, `lateralidad` INT, `tipo_sangre` INT, `medicacion` INT, `dieta_especial` INT, `padecimiento` INT, `impedimento_fisico` INT, `necesidad_educativa` INT, `condicion_vista` INT, `condicion_dental` INT, `institucion_medica` INT, `carnet_discapacidad` INT, `vac_aplicada` INT, `dosis` INT, `lote` INT, `camisa` INT, `pantalon` INT, `calzado` INT, `estatura` INT, `peso` INT, `indice_m_c` INT, `circ_braquial` INT, `visual` INT, `motora` INT, `auditiva` INT, `escritura` INT, `lectura` INT, `lenguaje` INT, `embarazo` INT, `social` INT, `fisico` INT, `personal` INT, `familiar` INT, `academico` INT, `otra` INT, `grado_repetido` INT, `materias_repetidas` INT, `materias_pendientes` INT, `tiene_canaima` INT, `condicion_canaima` INT, `acceso_internet` INT, `grado_a_cursar` INT, `seccion` INT, `id_per_academico` INT);
 
 -- -----------------------------------------------------
 -- Placeholder table for view `base_proyecto_nueva`.`vista_representantes`
@@ -692,6 +693,7 @@ SELECT
     `datos_sociales`.`condicion_canaima`,
     `datos_sociales`.`acceso_internet`,
     `grado_a_cursar_est`.`grado_a_cursar`,
+    `grado_a_cursar_est`.`seccion`,
     `grado_a_cursar_est`.`id_per_academico`
 FROM
     `personas`,

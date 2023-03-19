@@ -11,7 +11,7 @@
 			buttons: [{
 				extend: 		'excelHtml5',
 				autoFilter: true,
-				className: 	'btn btn-secondary',
+				className: 	'btn btn-sm btn-secondary',
 				filename: 	'Reporte de representantes',
 				sheetName: 	'Reporte de representantes',
 				messageTop: 'Reporte de representantes',

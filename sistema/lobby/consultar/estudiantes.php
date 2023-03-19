@@ -26,10 +26,101 @@
 
 	$estudiantes = new estudiantes();
 
-	$lista_estudiantes = $estudiantes->mostrar_estudiantes();
+
+	if (isset($_POST['filtros_estudiantes'])) {
+
+		$filtro_anio = $_POST['filtro_anio'];
+		$filtro_seccion = $_POST['filtro_seccion'];
+		$filtro_genero = $_POST['filtro_genero'];
+
+		$lista_estudiantes = $estudiantes->filtrar_estudiantes($filtro_anio,$filtro_seccion,$filtro_genero);
+	
+	}
+	else {
+		$lista_estudiantes = $estudiantes->mostrar_estudiantes();
+	}
 
 
-?>							
+
+?>						
+
+<!-- Modal -->
+<div class="modal fade" id="modal_filtros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filtrar consulta de estudiantes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form id="filtros_estudiantes" action="#" method="post">
+       	
+
+       	<div class="row mb-3">
+       		<div class="col-5">
+       			<label for="filtro_anio">
+		       		Año que cursan	
+		       	</label>
+       		</div>
+       		<div class="col-7">
+       			<select class="form-select" name="filtro_anio" id="filtro_anio">
+		       		<option value="Cualquiera">Cualquiera</option>
+		       		<option value="Primer año">Primer año</option>
+		       		<option value="Segundo año">Segundo año</option>
+		       		<option value="Tercer año">Tercer año</option>
+		       		<option value="Cuarto año">Cuarto año</option>
+		       		<option value="Quinto año">Quinto año</option>
+		       	</select>
+       		</div>
+       	</div>
+
+
+       	<div class="row mb-3">
+       		<div class="col-5">
+       			<label for="filtro_seccion">
+		       		Sección actual	
+		       	</label>
+       		</div>
+       		<div class="col-7">
+       			<select class="form-select" name="filtro_seccion" id="filtro_seccion">
+		       		<option value="Cualquiera">Cualquiera</option>
+		       		<option value="A">A</option>
+		       		<option value="B">B</option>
+		       		<option value="C">C</option>
+		       		<option value="D">D</option>
+		       	</select>
+       		</div>
+       	</div>
+
+
+       	<div class="row mb-3">
+       		<div class="col-5">
+       			<label for="filtro_genero">
+		       		Género	
+		       	</label>
+       		</div>
+       		<div class="col-7">
+       			<select class="form-select" name="filtro_genero" id="filtro_genero">
+		       		<option value="Cualquiera">Cualquiera</option>
+		       		<option value="F">Hembras</option>
+		       		<option value="M">Varones</option>
+		       	</select>
+       		</div>
+       	</div>
+
+       	<input type="hidden" name="filtros_estudiantes">
+
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" form="filtros_estudiantes">Aplicar filtros</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Tabla volcada -->
 <div class="table-responsive">
 	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
@@ -45,6 +136,7 @@
 				<th>Fecha de nacimiento</th>
 				<th>Edad</th>
 				<th>Año a cursar</th>
+				<th>Sección</th>
 				<th>Género</th>
 				<th>Correo electrónico</th>
 				<th>Dirección de residencia</th>
@@ -84,6 +176,7 @@
 				<td><?php echo $estudiante['fecha_nacimiento'];?></td>
 				<td><?php echo comprobar_vacio(calcular_edad($estudiante['fecha_nacimiento']),"E");?></td>
 				<td><?php echo $estudiante['grado_a_cursar'];?></td>
+				<td><?php echo $estudiante['seccion'];?></td>
 				<td><?php echo genero($estudiante['genero']);?></td>
 				<td><?php echo $estudiante['email'];?></td>
 
@@ -174,7 +267,7 @@
 				<!-- Acciones -->
 				<td>
 					<!--Generar planilla de inscripción-->
-					<form action="../../controladores/generar_planilla_estudiante.php" method="POST" style="display: inline-block;" target="_blank">
+					<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;" target="_blank">
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
 						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
@@ -185,7 +278,7 @@
 					</form>
 					
 					<!--Generar acta de compromiso-->
-					<form action="../../controladores/generar_compromiso_representante.php" method="POST" style="display: inline-block;" target="_blank">
+					<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;" target="_blank">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
@@ -207,7 +300,7 @@
 					</form>
 
 					<!-- Editar registro del estudiante -->
-					<form action="../editar-estudiante/index.php" method="post" style="display: inline-block;" target="_blank">
+					<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;" target="_blank">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">

@@ -497,6 +497,7 @@ DROP TABLE IF EXISTS `base_proyecto_nueva`.`grado_a_cursar_est` ;
 CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`grado_a_cursar_est` (
   `cedula_estudiante` VARCHAR(45) NOT NULL,
   `grado_a_cursar` VARCHAR(45) NOT NULL,
+  `seccion` VARCHAR(50) NOT NULL,
   `id_per_academico` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`cedula_estudiante`, `id_per_academico`),
   CONSTRAINT `fk_grado_a_cursar_est_estudiantes1`
@@ -588,7 +589,7 @@ CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_usuarios` (`cedula` INT,
 -- -----------------------------------------------------
 -- Placeholder table for view `base_proyecto_nueva`.`vista_estudiantes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_estudiantes` (`cedula` INT, `p_nombre` INT, `s_nombre` INT, `p_apellido` INT, `s_apellido` INT, `fecha_nacimiento` INT, `lugar_nacimiento` INT, `genero` INT, `email` INT, `estado` INT, `municipio` INT, `parroquia` INT, `sector` INT, `calle` INT, `nro_casa` INT, `punto_referencia` INT, `codigo_carnet` INT, `serial_carnet` INT, `cedula_escolar` INT, `plantel_proced` INT, `con_quien_vive` INT, `relacion_representante` INT, `cedula_padre` INT, `cedula_madre` INT, `cedula_representante` INT, `lateralidad` INT, `tipo_sangre` INT, `medicacion` INT, `dieta_especial` INT, `padecimiento` INT, `impedimento_fisico` INT, `necesidad_educativa` INT, `condicion_vista` INT, `condicion_dental` INT, `institucion_medica` INT, `carnet_discapacidad` INT, `vac_aplicada` INT, `dosis` INT, `lote` INT, `camisa` INT, `pantalon` INT, `calzado` INT, `estatura` INT, `peso` INT, `indice_m_c` INT, `circ_braquial` INT, `visual` INT, `motora` INT, `auditiva` INT, `escritura` INT, `lectura` INT, `lenguaje` INT, `embarazo` INT, `social` INT, `fisico` INT, `personal` INT, `familiar` INT, `academico` INT, `otra` INT, `grado_repetido` INT, `materias_repetidas` INT, `materias_pendientes` INT, `tiene_canaima` INT, `condicion_canaima` INT, `acceso_internet` INT, `grado_a_cursar` INT, `id_per_academico` INT);
+CREATE TABLE IF NOT EXISTS `base_proyecto_nueva`.`vista_estudiantes` (`cedula` INT, `p_nombre` INT, `s_nombre` INT, `p_apellido` INT, `s_apellido` INT, `fecha_nacimiento` INT, `lugar_nacimiento` INT, `genero` INT, `email` INT, `estado` INT, `municipio` INT, `parroquia` INT, `sector` INT, `calle` INT, `nro_casa` INT, `punto_referencia` INT, `codigo_carnet` INT, `serial_carnet` INT, `cedula_escolar` INT, `plantel_proced` INT, `con_quien_vive` INT, `relacion_representante` INT, `cedula_padre` INT, `cedula_madre` INT, `cedula_representante` INT, `lateralidad` INT, `tipo_sangre` INT, `medicacion` INT, `dieta_especial` INT, `padecimiento` INT, `impedimento_fisico` INT, `necesidad_educativa` INT, `condicion_vista` INT, `condicion_dental` INT, `institucion_medica` INT, `carnet_discapacidad` INT, `vac_aplicada` INT, `dosis` INT, `lote` INT, `camisa` INT, `pantalon` INT, `calzado` INT, `estatura` INT, `peso` INT, `indice_m_c` INT, `circ_braquial` INT, `visual` INT, `motora` INT, `auditiva` INT, `escritura` INT, `lectura` INT, `lenguaje` INT, `embarazo` INT, `social` INT, `fisico` INT, `personal` INT, `familiar` INT, `academico` INT, `otra` INT, `grado_repetido` INT, `materias_repetidas` INT, `materias_pendientes` INT, `tiene_canaima` INT, `condicion_canaima` INT, `acceso_internet` INT, `grado_a_cursar` INT, `seccion` INT, `id_per_academico` INT);
 
 -- -----------------------------------------------------
 -- Placeholder table for view `base_proyecto_nueva`.`vista_representantes`
@@ -692,6 +693,7 @@ SELECT
     `datos_sociales`.`condicion_canaima`,
     `datos_sociales`.`acceso_internet`,
     `grado_a_cursar_est`.`grado_a_cursar`,
+    `grado_a_cursar_est`.`seccion`,
     `grado_a_cursar_est`.`id_per_academico`
 FROM
     `personas`,
@@ -855,9 +857,6 @@ USE `base_proyecto_nueva`;
 INSERT INTO `base_proyecto_nueva`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V27919566', 'Desarrollador', '0', '12345', 'Color favorito', 'Azúl', 'Nombre de mascota', 'Mia');
 INSERT INTO `base_proyecto_nueva`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V28636530', 'Desarrollador', '0', 'Gab_952', 'Color favorito', 'Azúl', DEFAULT, DEFAULT);
 INSERT INTO `base_proyecto_nueva`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V26985572', 'Desarrollador', '0', '12345', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
-
-
-
 
 -- Insercion de datos de pruebas
 
@@ -2718,116 +2717,77 @@ insert  into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,a
 ('V35145513','No','','No');
 
 
-insert  into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,id_per_academico) values 
-('V34912585','Primer año','20222023'),
-('V37749936','Segundo año','20222023'),
-('V33245132','Segundo año','20222023'),
-('V34523902','Primer año','20222023'),
-('V39710197','Segundo año','20222023'),
-('V34168455','Quinto año','20222023'),
-('V30676984','Primer año','20222023'),
-('V30617930','Primer año','20222023'),
-('V32443424','Primer año','20222023'),
-('V30548966','Quinto año','20222023'),
-('V34459825','Cuarto año','20222023'),
-('V36684060','Tercer año','20222023'),
-('V32204799','Segundo año','20222023'),
-('V30522071','Cuarto año','20222023'),
-('V34945013','Segundo año','20222023'),
-('V30439025','Tercer año','20222023'),
-('V31719804','Primer año','20222023'),
-('V34396526','Tercer año','20222023'),
-('V33695137','Tercer año','20222023'),
-('V36533048','Tercer año','20222023'),
-('V39749877','Primer año','20222023'),
-('V36739965','Primer año','20222023'),
-('V31570581','Quinto año','20222023'),
-('V38391590','Cuarto año','20222023'),
-('V39675679','Tercer año','20222023'),
-('V33815733','Segundo año','20222023'),
-('V31468288','Cuarto año','20222023'),
-('V33934992','Cuarto año','20222023'),
-('V34646106','Cuarto año','20222023'),
-('V33012705','Segundo año','20222023'),
-('V37787295','Cuarto año','20222023'),
-('V35130922','Cuarto año','20222023'),
-('V35145513','Cuarto año','20222023');
+insert  into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,seccion,id_per_academico) values 
+('V34912585', 'Quinto año', 'C', '20222023'),
+('V37749936', 'Segundo año', 'C', '20222023'),
+('V33245132', 'Primer año', 'A', '20222023'),
+('V34523902', 'Segundo año', 'D', '20222023'),
+('V39710197', 'Segundo año', 'B', '20222023'),
+('V34168455', 'Segundo año', 'A', '20222023'),
+('V30676984', 'Tercer año', 'A', '20222023'),
+('V30617930', 'Quinto año', 'B', '20222023'),
+('V32443424', 'Segundo año', 'A', '20222023'),
+('V30548966', 'Tercer año', 'B', '20222023'),
+('V34459825', 'Quinto año', 'C', '20222023'),
+('V36684060', 'Tercer año', 'C', '20222023'),
+('V32204799', 'Primer año', 'D', '20222023'),
+('V30522071', 'Primer año', 'B', '20222023'),
+('V34945013', 'Cuarto año', 'D', '20222023'),
+('V30439025', 'Segundo año', 'A', '20222023'),
+('V31719804', 'Segundo año', 'C', '20222023'),
+('V34396526', 'Cuarto año', 'B', '20222023'),
+('V33695137', 'Quinto año', 'D', '20222023'),
+('V36533048', 'Tercer año', 'C', '20222023'),
+('V39749877', 'Cuarto año', 'A', '20222023'),
+('V36739965', 'Cuarto año', 'C', '20222023'),
+('V31570581', 'Primer año', 'A', '20222023'),
+('V38391590', 'Tercer año', 'B', '20222023'),
+('V39675679', 'Quinto año', 'C', '20222023'),
+('V33815733', 'Segundo año', 'C', '20222023'),
+('V31468288', 'Primer año', 'B', '20222023'),
+('V33934992', 'Cuarto año', 'B', '20222023'),
+('V34646106', 'Segundo año', 'B', '20222023'),
+('V33012705', 'Quinto año', 'B', '20222023'),
+('V37787295', 'Segundo año', 'C', '20222023'),
+('V35130922', 'Primer año', 'A', '20222023'),
+('V35145513', 'Quinto año', 'B', '20222023');
 
 
 
 insert  into condiciones_est (cedula_estudiante, visual, motora, auditiva, escritura, lectura, lenguaje, embarazo) values 
-('V34912585', 'visual', '', '', '', 'lectura', '', ''),
-('V37749936', '', 'motora', '', 'escritura', '', 'lenguaje', ''),
-('V33245132', '', '', 'auditiva', '', '', 'lenguaje', ''),
-('V34523902', 'visual', 'motora', '', '', 'lectura', '', 'embarazo'),
-('V39710197', 'visual', 'motora', 'auditiva', 'escritura', '', '', 'embarazo'),
-('V34168455', 'visual', 'motora', 'auditiva', '', 'lectura', 'lenguaje', ''),
-('V30676984', '', 'motora', '', 'escritura', 'lectura', '', ''),
-('V30617930', 'visual', 'motora', '', 'escritura', '', '', 'embarazo'),
-('V32443424', 'visual', '', 'auditiva', 'escritura', 'lectura', '', ''),
-('V30548966', '', 'motora', 'auditiva', 'escritura', '', 'lenguaje', 'embarazo'),
-('V34459825', '', 'motora', 'auditiva', 'escritura', '', 'lenguaje', ''),
-('V36684060', '', 'motora', 'auditiva', '', '', '', 'embarazo'),
+('V34912585', 'VISUAL', '', '', '', 'LECTURA', '', ''),
+('V37749936', '', 'MOTORA', '', 'ESCRITURA', '', 'LENGUAJE', ''),
+('V33245132', '', '', 'AUDITIVA', '', '', 'LENGUAJE', ''),
+('V34523902', 'VISUAL', 'MOTORA', '', '', 'LECTURA', '', 'EMBARAZO'),
+('V39710197', 'VISUAL', 'MOTORA', 'AUDITIVA', 'ESCRITURA', '', '', 'EMBARAZO'),
+('V34168455', 'VISUAL', 'MOTORA', 'AUDITIVA', '', 'LECTURA', 'LENGUAJE', ''),
+('V30676984', '', 'MOTORA', '', 'ESCRITURA', 'LECTURA', '', ''),
+('V30617930', 'VISUAL', 'MOTORA', '', 'ESCRITURA', '', '', 'EMBARAZO'),
+('V32443424', 'VISUAL', '', 'AUDITIVA', 'ESCRITURA', 'LECTURA', '', ''),
+('V30548966', '', 'MOTORA', 'AUDITIVA', 'ESCRITURA', '', 'LENGUAJE', 'EMBARAZO'),
+('V34459825', '', 'MOTORA', 'AUDITIVA', 'ESCRITURA', '', 'LENGUAJE', ''),
+('V36684060', '', 'MOTORA', 'AUDITIVA', '', '', '', 'EMBARAZO'),
 ('V32204799', '', '', '', '', '', '', ''),
-('V30522071', 'visual', '', '', '', 'lectura', '', ''),
-('V34945013', 'visual', '', 'auditiva', '', 'lectura', '', 'embarazo'),
-('V30439025', 'visual', '', 'auditiva', '', 'lectura', 'lenguaje', ''),
-('V31719804', '', 'motora', 'auditiva', 'escritura', '', '', ''),
-('V34396526', 'visual', 'motora', 'auditiva', 'escritura', '', 'lenguaje', 'embarazo'),
-('V33695137', 'visual', '', '', 'escritura', 'lectura', 'lenguaje', ''),
-('V36533048', '', '', 'auditiva', '', 'lectura', '', ''),
-('V39749877', '', '', 'auditiva', '', '', 'lenguaje', 'embarazo'),
-('V36739965', 'visual', 'motora', '', '', 'lectura', 'lenguaje', ''),
-('V31570581', 'visual', 'motora', 'auditiva', '', '', '', 'embarazo'),
-('V38391590', 'visual', 'motora', 'auditiva', '', 'lectura', 'lenguaje', 'embarazo'),
-('V39675679', '', 'motora', '', 'escritura', '', '', ''),
-('V33815733', '', '', 'auditiva', '', '', 'lenguaje', 'embarazo'),
-('V31468288', 'visual', 'motora', '', '', 'lectura', 'lenguaje', ''),
-('V33934992', 'visual', '', '', '', 'lectura', 'lenguaje', 'embarazo'),
-('V34646106', '', 'motora', '', '', 'lectura', 'lenguaje', 'embarazo'),
-('V33012705', '', '', '', '', '', 'lenguaje', ''),
-('V37787295', 'visual', '', 'auditiva', '', 'lectura', '', 'embarazo'),
-('V35130922', '', '', '', 'escritura', '', '', ''),
-('V35145513', 'visual', 'motora', 'auditiva', '', 'lectura', 'lenguaje', 'embarazo');
-
-
-
-
-
--- V34912585,
--- V37749936,
--- V33245132,
--- V34523902,
--- V39710197,
--- V34168455,
--- V30676984,
--- V30617930,
--- V32443424,
--- V30548966,
--- V34459825,
--- V36684060,
--- V32204799,
--- V30522071,
--- V34945013,
--- V30439025,
--- V31719804,
--- V34396526,
--- V33695137,
--- V36533048,
--- V39749877,
--- V36739965,
--- V31570581,
--- V38391590,
--- V39675679,
--- V33815733,
--- V31468288,
--- V33934992,
--- V34646106,
--- V33012705,
--- V37787295,
--- V35130922,
--- V35145513,
-
+('V30522071', 'VISUAL', '', '', '', 'LECTURA', '', ''),
+('V34945013', 'VISUAL', '', 'AUDITIVA', '', 'LECTURA', '', 'EMBARAZO'),
+('V30439025', 'VISUAL', '', 'AUDITIVA', '', 'LECTURA', 'LENGUAJE', ''),
+('V31719804', '', 'MOTORA', 'AUDITIVA', 'ESCRITURA', '', '', ''),
+('V34396526', 'VISUAL', 'MOTORA', 'AUDITIVA', 'ESCRITURA', '', 'LENGUAJE', 'EMBARAZO'),
+('V33695137', 'VISUAL', '', '', 'ESCRITURA', 'LECTURA', 'LENGUAJE', ''),
+('V36533048', '', '', 'AUDITIVA', '', 'LECTURA', '', ''),
+('V39749877', '', '', 'AUDITIVA', '', '', 'LENGUAJE', 'EMBARAZO'),
+('V36739965', 'VISUAL', 'MOTORA', '', '', 'LECTURA', 'LENGUAJE', ''),
+('V31570581', 'VISUAL', 'MOTORA', 'AUDITIVA', '', '', '', 'EMBARAZO'),
+('V38391590', 'VISUAL', 'MOTORA', 'AUDITIVA', '', 'LECTURA', 'LENGUAJE', 'EMBARAZO'),
+('V39675679', '', 'MOTORA', '', 'ESCRITURA', '', '', ''),
+('V33815733', '', '', 'AUDITIVA', '', '', 'LENGUAJE', 'EMBARAZO'),
+('V31468288', 'VISUAL', 'MOTORA', '', '', 'LECTURA', 'LENGUAJE', ''),
+('V33934992', 'VISUAL', '', '', '', 'LECTURA', 'LENGUAJE', 'EMBARAZO'),
+('V34646106', '', 'MOTORA', '', '', 'LECTURA', 'LENGUAJE', 'EMBARAZO'),
+('V33012705', '', '', '', '', '', 'LENGUAJE', ''),
+('V37787295', 'VISUAL', '', 'AUDITIVA', '', 'LECTURA', '', 'EMBARAZO'),
+('V35130922', '', '', '', 'ESCRITURA', '', '', ''),
+('V35145513', 'VISUAL', 'MOTORA', 'AUDITIVA', '', 'LECTURA', 'LENGUAJE', 'EMBARAZO');
 
 INSERT  INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`, `cedula_estudiante`) VALUES 
 (null,'2023-02-17','19:47:00','V27919566','V34912585'),
@@ -2863,6 +2823,7 @@ INSERT  INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`
 (null,'2023-02-17','19:47:00','V27919566','V37787295'),
 (null,'2023-02-17','19:47:00','V27919566','V35130922'),
 (null,'2023-02-17','19:47:00','V27919566','V35145513');
+
 
 
 COMMIT;

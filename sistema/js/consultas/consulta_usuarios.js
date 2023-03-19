@@ -12,7 +12,7 @@
 			{
 				extend: 		'excelHtml5',
 				autoFilter: true,
-				className: 	'btn btn-secondary',
+				className: 	'btn btn-sm btn-secondary',
 				filename: 	'Reporte de usuarios',
 				sheetName: 	'Reporte de usuarios',
 				messageTop: 'Reporte de usuarios',
@@ -23,7 +23,7 @@
 			},
 			// Boton parar ir a registrar un estudiante
 			{
-				className: 		'btn btn-secondary',
+				className: 		'btn btn-sm btn-secondary',
 				text: 				'Registrar usuario<i class="fas fa-lg fa-user-plus ms-2"></i>',
 				action: function ( e, dt, button, config ) {
 					window.location = '../registrar_usuario/index.php';

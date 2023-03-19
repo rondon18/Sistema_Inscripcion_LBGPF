@@ -140,13 +140,12 @@
 										<i class="fa-solid fa-users fa-2xl m-2"></i>
 										<div class="px-2 w-100">
 											<h6 class="card-title mb-2">Usuarios.</h6>
-											<a 
-												href="#" 
-												class="btn btn-primary w-100 btn-sm stretched-link"
-												data-bs-toggle="modal" 
-												data-bs-target="#exampleModal"
-											>
-												Generar reporte
+											<form  action="../../controladores/reportes/control_reportes.php" method="post">
+												<input type="hidden" name="reporte" value="usuarios">
+												<button type="submit" class="btn btn-primary w-100 btn-sm stretched-link">
+													Generar reporte
+												</button>
+											</form>
 											</a>
 										</div>
 									</div>
@@ -211,6 +210,14 @@
 	      'Exito',
 	      'Reporte generado correctamente',
 	      'success'
+	    )
+		</script>
+	<?php elseif (isset($_GET['err_con'])): ?>
+		<script type="text/javascript">
+			Swal.fire(
+	      'Error',
+	      'No existe ningún registro que coincida con los filtross seleccionados',
+	      'error'
 	    )
 		</script>
 	<?php endif ?>

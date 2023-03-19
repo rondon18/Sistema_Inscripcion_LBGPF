@@ -177,7 +177,7 @@
 												<label class="form-label requerido">Cédula:</label>
 											</div>
 											<?php 
-												$nac = trim(dato_input("cedula","dr"),"123456789");
+												$nac = trim(dato_input("cedula","dr"),"0123456789");
 												$nro_c = trim(dato_input("cedula","dr"),"VE");
 											?>
 											<div class="col-12 col-lg-3">
@@ -360,6 +360,8 @@
 												<label class="form-label requerido">Vínculo con el estudiante:</label>
 											</div>
 
+											<?php $vinculos = ["Madre","Padre","Tío(a)","Abuelo(a)"]; ?>
+
 											<div class="col-12 col-lg-3">
 												<select name="vinculo_r" id="" class="form-select" required>
 													<option value="">Vínculo</option>
@@ -367,9 +369,12 @@
 													<option value="Padre" <?php dato_option("Padre","relacion_representante","s","de");?>>Padre</option>
 													<option value="Tío(a)" <?php dato_option("Tío(a)","relacion_representante","s","de");?>>Tío(a)</option>
 													<option value="Abuelo(a)" <?php dato_option("Abuelo(a)","relacion_representante","s","de");?>>Abuelo(a)</option>
-													<option value="Otro" <?php dato_option("Otro","relacion_representante","s","de");?>>Otro</option>
+													<option value="Otro" <?php if (!in_array(dato_input("relacion_representante", "de"), $vinculos)) {echo "selected";}?>>Otro</option>
 												</select>
 											</div>
+
+
+
 											<div class="col-12 col-lg-5">
 												<input 
 												id="vinculo_otro" 
@@ -378,10 +383,10 @@
 												class="form-control" 
 												placeholder="En caso de ser otro, especifique" 
 												required 
-												<?php if (dato_input("relacion_representante") != "Otro"): ?>
+												<?php if (in_array(dato_input("relacion_representante", "de"), $vinculos)): ?>
 												disabled
 												<?php else: ?>
-												value="<?php echo dato_input("vinculo_otro");?>"
+												value="<?php echo dato_input("relacion_representante","de");?>"
 												<?php endif ?>
 												>
 											</div>
@@ -856,7 +861,7 @@
 													class="mb-2 form-control" 
 													type="email" 
 													name="correo_electronico_r" 
-													minlength="15" 
+													minlength="10" 
 													placeholder="correo.ejemplo_1@dominio.com" 
 													value="<?php echo dato_input("email","dr");?>" 
 												>
@@ -1007,6 +1012,9 @@
 											<div class="col-12 col-lg-4">
 												<label class="form-label requerido">Tenencia de la vivienda:</label>
 											</div>
+
+											<?php $tenencias = ["Propia","Alquilada","Prestada"]; ?>
+
 											<div class="col-12 col-lg-4">
 												<!-- Tenencia de vivienda -->
 												<select 
@@ -1015,12 +1023,11 @@
 													name="tenencia_vivienda_r" 
 													required
 												>
-													<?php dato_option("F","tenencia_vivienda_r","s","dr");?>
 													<option value="">Seleccione una opción</option>
 													<option <?php dato_option("Propia","tenencia","s","dr");?> value="Propia">Propia</option>
 													<option <?php dato_option("Alquilada","tenencia","s","dr");?> value="Alquilada">Alquilada</option>
 													<option <?php dato_option("Prestada","tenencia","s","dr");?> value="Prestada">Prestada</option>
-													<option <?php dato_option("Otro","tenencia","s","dr");?> value="Otro">Otro</option>
+													<option <?php if (!in_array(dato_input("tenencia", "dr"), $tenencias)) {echo "selected";}?> value="Otro">Otro</option>
 												</select>
 											</div>
 											<div class="col-12 col-lg-4">
@@ -1034,8 +1041,10 @@
 													minlength="3" 
 													placeholder="En caso de ser otro, especifique"
 													required 
-													<?php if (dato_input("tenencia") != "Otro"): ?>
+													<?php if (in_array(dato_input("tenencia", "dr"), $tenencias)): ?>
 													disabled
+													<?php else: ?>
+													value="<?php echo dato_input("tenencia", "dr");?>"
 													<?php endif ?>
 												>
 											</div>

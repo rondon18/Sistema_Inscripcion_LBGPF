@@ -52,7 +52,7 @@
 		}
 
 		public function mostrar_padres() {
-			// Muestra todos los representantes registrados
+			// Muestra todos los padres registrados
 			$conexion = conectarBD();
 
 			$sql = "SELECT * FROM `vista_padres`";
@@ -129,6 +129,182 @@
 			desconectarBD($conexion);
 			
 			return $resultado->num_rows;
+		}
+
+
+
+
+		// 
+		// calculos para estadisticas
+		// 
+
+
+		/*	
+
+			El calculo de porcentajes se encuentra separado de las cantidades directas
+			
+			En el caso de opuestos aplicar (total_padres - nro_obtenido) por ejemplo
+			para estudiantes que no tengan canaima 
+
+			Se pueden llamar estas funciones sin parametros, pero si se agregan, deben ir todos
+
+		*/
+
+	
+		// Retorna el porcentaje al que equivale la muestra en base al total de padres
+		public function get_porcentaje($muestra) {
+			// la poblacion es el total de representante
+
+			$poblacion = $this->get_nro_padres();
+			$porcentaje = ( $muestra / $poblacion ) * 100;
+
+			return round($porcentaje) . "%";
+		}
+
+
+		// Retorna el número de padres registrados (Se puede filtrar)
+		public function get_nro_padres() {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_padres FROM `vista_padres`";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_padres = $representante["nro_padres"];
+		}
+
+
+		// Retorna el número de padres inscritos (Se puede filtrar)
+		public function get_nro_p_empleados() {
+			
+			$conexion = conectarBD();
+
+			// Muestra todos los padres que cuenten con un empleo
+			$sql = "SELECT COUNT(*) as nro_p_empleados FROM `vista_padres` WHERE `empleo` != ''";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_p_empleados = $representante["nro_p_empleados"];
+		}
+
+
+		// Retorna el número de padres con cierto grado académico (Se puede filtrar)
+		public function get_nro_p_g_academico($g_academico) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_p_g_academico FROM `vista_padres` WHERE `grado_academico` = '$g_academico'";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_p_g_academico = $representante["nro_p_g_academico"];
+		}
+
+
+		// Retorna el número de estudiantes en el rango de sueldos minimos que ganan (Se puede filtrar por año y por seccion) 
+		public function get_nro_sueldos_rem($sueldos = 1) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_sueldos_rem FROM `vista_padres` WHERE `remuneracion` >= 0";
+
+			// filtra para aquellos padres que tengan una remuneracion mayor y igual a la especificada
+			// siempre y cuando sea mayor a 1
+			if ($sueldos > 1) {
+				
+				$sql .= " AND ";
+				$filtros = [];
+
+				// anexar los filtros con array_merge()
+
+				$filtro_nro_sueldos = "`remuneracion` >= $sueldos";
+				$filtros = array_merge($filtros,[$filtro_nro_sueldos]);
+
+				// agregará un AND entre cada condicion siempre que haya más de una
+				$sql .= implode(" AND ", $filtros);
+
+			}
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_sueldos_rem = $representante["nro_sueldos_rem"];
+		}
+
+
+		// Retorna el número de padres con cierto tipo de remuneracion (Se puede filtrar por año y por seccion) 
+		public function get_nro_frec_rem($f_remuneracion = "Mensual") {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_frec_rem FROM `vista_padres` WHERE `tipo_remuneracion` = '$f_remuneracion'";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_frec_rem = $representante["nro_frec_rem"];
+		}
+
+		
+		// Retorna el número de padres con cierto tipo de vivienda (Se puede filtrar)
+		public function get_nro_tipo_v($tipo_v) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_tipo_v FROM `vista_padres` WHERE `tipo` = '$tipo_v'";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_tipo_v = $representante["nro_tipo_v"];
+		}
+
+		
+		// Retorna el número de padres con cierta condicion de vivienda (Se puede filtrar)
+		public function get_nro_condicion_v($condicion_v) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_condicion_v FROM `vista_padres` WHERE `condicion` = '$condicion_v'";
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_condicion_v = $representante["nro_condicion_v"];
+		}
+
+		
+		// Retorna el número de padres con cierta tenencia de vivienda (Se puede filtrar)
+		public function get_nro_tenencia_v($tenencia) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_tenencia_v FROM `vista_padres`";
+
+			if ($tenencia == "Otra") {
+				$sql .= "WHERE `tenencia` NOT IN ('Propia','Alquilada','Prestada')";
+			}
+			else {
+				$sql .= "WHERE `tenencia` = '$tenencia'";
+			}
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_tenencia_v = $representante["nro_tenencia_v"];
 		}
 
 

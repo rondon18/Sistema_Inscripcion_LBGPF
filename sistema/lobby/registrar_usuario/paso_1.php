@@ -227,7 +227,7 @@ if (isset($_POST['paso_1'])) {
 													class="form-control mb-2" 
 													type="email" 
 													name="email_u" 
-													minlength="15" 
+													minlength="10" 
 													required 
 												>
 											</div>	

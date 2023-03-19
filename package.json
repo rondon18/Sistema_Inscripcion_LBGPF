@@ -1,0 +1,22 @@
+{
+  "name": "sistema_proyecto",
+  "version": "1.0.0",
+  "description": "<p>Sistema de información desarrollado para satisfacer las necesidades tecnológicas asociadas al proceso de incripcioón dendro del Liceo Bolivariano \"Gonzalo Picón Febres\".</p>\r <p>Permite funciones como:</p>\r <ul>\r   <li>Registrar y gestionar estudiantes.</li>\r   <li>Gestionar usuarios dentro de este.</li>\r   <li>Generar reportes bajo distintos criterios.</li>\r   <li>Generar las planillas necesarias para el proceso de inscripción</li>\r </ul>\r <p>Actualmente se encuentra en desarrollo bajo el uso de PHP 8.1, junto al uso de HTML, Javascript y Bootstrap 5 para el apartado visual. Y la inclusión de librerias como Datatables, Jquery y Sweetalert2 para proporcionar dinamismo a la experiencia del usuario.</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rondon18/Sistema_Inscripcion_LBGPF.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rondon18/Sistema_Inscripcion_LBGPF/issues"
+  },
+  "homepage": "https://github.com/rondon18/Sistema_Inscripcion_LBGPF#readme",
+  "dependencies": {
+    "chart.js": "^4.2.1"
+  }
+}

@@ -11,7 +11,7 @@
 			buttons: [{
 				extend: 		'excelHtml5',
 				autoFilter: true,
-				className: 	'btn btn-secondary',
+				className: 	'btn btn-sm btn-secondary',
 				filename: 	'Reporte de padres',
 				sheetName: 	'Reporte de padres',
 				messageTop: 'Reporte de padres',

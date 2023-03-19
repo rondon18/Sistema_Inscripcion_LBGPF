@@ -6,7 +6,7 @@
 
 
 		// funciones usadas durante el proceso de registro
-		require("../lobby/registrar_estudiante/funciones.php");
+		require("../../lobby/registrar_estudiante/funciones.php");
 
 		/*
 
@@ -646,6 +646,7 @@
 		// grado_a_cursar_est
 
 		$grado_a_cursar_est->set_grado_a_cursar(dato_sesion_i("grado_a_cursar",3));
+		$grado_a_cursar_est->set_seccion(dato_sesion_i("seccion_a_cursar",3));
 		$grado_a_cursar_est->set_cedula_estudiante($cedula_estudiante);
 		$grado_a_cursar_est->set_id_per_academico($per_academico->get_id_per_academico());
 		$grado_a_cursar_est->insertar_grado_a_cursar_est();

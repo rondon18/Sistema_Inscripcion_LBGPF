@@ -87,9 +87,9 @@
 
 	// var_dump($_POST);
 
-	foreach ($_POST as $key => $value) {
-		echo $key."-->".$value."<br>";
-	}
+	// foreach ($_POST as $key => $value) {
+	// 	echo $key." --> ".$value."<br>";
+	// }
 
 	// Verifica que se ha solicitado un reporte
 	if (isset($_POST['reporte'])) {
@@ -107,7 +107,6 @@
 			case 'representantes':
 				
 				require("reporte_representantes.php");
-				echo "bitacora: representantes";
 				header('Location: ../../lobby/reportes/index.php?exito');
 
 				break;
@@ -115,18 +114,17 @@
 			case 'padres':
 				
 				require("reporte_padres.php");
-				echo "bitacora: padres";
-				// header('Location: ../../lobby/reportes/index.php?exito');
+				header('Location: ../../lobby/reportes/index.php?exito');
 
 				break;
 
 			case 'usuarios':
 
 				// Verifica el que usuario tenga los privilegios necesarios
-				if (condition) {
+				if ($_SESSION['datos_login']['privilegios'] < 2) {
 					require("reporte_usuarios.php");
 					echo "bitacora: usuarios";
-					// header('Location: ../../lobby/reportes/index.php?exito');
+					header('Location: ../../lobby/reportes/index.php?exito');
 				}
 
 				// Si no, regresa y muestra un mensaje de permisos insuficientes

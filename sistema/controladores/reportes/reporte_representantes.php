@@ -28,6 +28,17 @@
 		// Personales
 		$encabezado,
 		[
+			// Estudiante
+			'Cédula del estudiante',
+			'Nombres',
+			'Apellidos',
+			'Fecha de nacimiento',
+			'Género',
+			'Grado que cursa',
+			'Sección que cursa',
+			'Relación con el representante',
+
+			// Representante
 			'Cédula del representante',
 			'Nombres',
 			'Apellidos',
@@ -177,23 +188,57 @@
 
 
 	// retorno de los datos como array de arrays
-	$lista_representantes = $representantes->filtrar_representantes();
+
+	$filtro_anio 		= $_POST['filtro_anio'];
+	$filtro_seccion = $_POST['filtro_seccion'];
+	$filtro_genero 	= "Cualquiera";
+
+	$lista_estudiantes = $estudiantes->filtrar_estudiantes($filtro_anio, $filtro_seccion, $filtro_genero);
 
 	// Numero de fila actual
 	$i = 3;
 
+	$lineas = 0;
 
-	// Imprime la lista de representantes
-	foreach ($lista_representantes as $representante) {
+	foreach ($lista_estudiantes as $estudiante) {
 		
-		$datos_representante = [];
+		// Cedula, nombres, apellidos, grado y sección del estudiante
 
+		$datos_fila = [];
 
-		// Incluye los datos personales
-		$datos_representante = array_merge(
+		
+
+		$datos_fila = array_merge(
 
 			// Personales
-			$datos_representante,
+			$datos_fila,
+			[
+				$estudiante["cedula"],
+				$estudiante["p_nombre"]. " " .$estudiante["s_nombre"],
+				$estudiante["p_apellido"]. " " .$estudiante["s_apellido"],
+				$estudiante["fecha_nacimiento"],
+				$estudiante["genero"],
+				$estudiante["grado_a_cursar"],
+				'Sección "' . $estudiante["seccion"] . '"',
+				$estudiante["relacion_representante"],
+			],
+
+		);
+
+		// Datos del representante
+
+		$representantes->set_cedula_persona($estudiante["cedula_representante"]);
+		$representante = $representantes->consultar_representantes();
+
+		// var_dump($representante);
+
+		// echo "<br><br><br>";
+
+		// Incluye los datos personales
+		$datos_fila = array_merge(
+
+			// Personales
+			$datos_fila,
 			[
 				$representante["cedula"],
 				$representante["p_nombre"]. " " .$representante["s_nombre"],
@@ -209,18 +254,29 @@
 
 
 		// 
-		// Filtros aplicados para mostrar columnas en el datos_representante	
+		// Filtros aplicados para mostrar columnas en el datos_fila	
 		// 
 
 		// Incluye incluir_direccion del representante
 		if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
-			$datos_representante = array_merge($datos_representante,[$representante["direccion"],]);
+			
+			$direccion = 
+			[
+				$representante["municipio"],
+				$representante["parroquia"],
+				$representante["sector"],
+				$representante["calle"],
+				$representante["nro_casa"],
+				$representante["punto_referencia"],
+			];
+
+			$datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
 		}
 
 
 		// Incluye incluir_email del representante
 		if (isset($_POST['incluir_email']) and $_POST['incluir_email'] == "on") {
-			$datos_representante = array_merge($datos_representante,[$representante["email"],]);
+			$datos_fila = array_merge($datos_fila,[$representante["email"],]);
 		}
 
 
@@ -236,24 +292,29 @@
 			foreach ($telefonos_representante as $tel) {
 				$tels[] = $tel['prefijo']."-".$tel['numero'];
 			}
-			$datos_representante = array_merge($datos_representante,[implode(" / ", $tels),]);
+			$datos_fila = array_merge($datos_fila,[implode(" / ", $tels),]);
 		
 		}
 
 
 		// Incluye incluir_c_patria del representante
 		if (isset($_POST['incluir_c_patria']) and $_POST['incluir_c_patria'] == "on") {
-			$datos_representante = array_merge($datos_representante,[$representante["carnet_patria"]]);
+			$datos_fila = array_merge(
+				$datos_fila,
+				[
+					$representante["codigo_carnet"]. " - " .$representante["serial_carnet"]
+				]
+			);
 		}
 
 
 		// Incluye incluir_d_laborales del representante
 		if (isset($_POST['incluir_d_laborales']) and $_POST['incluir_d_laborales'] == "on") {
 			// Incluye los datos laborales
-			$datos_representante = array_merge(
+			$datos_fila = array_merge(
 			
 				// Laborales
-				$datos_representante,
+				$datos_fila,
 				[
 					$representante["empleo"],
 					$representante["lugar_trabajo"],
@@ -268,10 +329,10 @@
 		// Incluye incluir_d_vivienda del representante
 		if (isset($_POST['incluir_d_vivienda']) and $_POST['incluir_d_vivienda'] == "on") {
 			// Incluye los datos de vivienda
-			$datos_representante = array_merge(
+			$datos_fila = array_merge(
 			
 				// Vivienda
-				$datos_representante,
+				$datos_fila,
 				[
 					$representante["tipo"],
 					$representante["tenencia"],
@@ -285,10 +346,10 @@
 		// Incluye incluir_d_economicos del representante
 		if (isset($_POST['incluir_d_economicos']) and $_POST['incluir_d_economicos'] == "on") {
 			// Incluye los datos económicos
-			$datos_representante = array_merge(
+			$datos_fila = array_merge(
 			
 				// Vivienda
-				$datos_representante,
+				$datos_fila,
 				[
 					$representante["banco"],
 					$representante["tipo_cuenta"],
@@ -301,61 +362,66 @@
 		// Incluye incluir_c_aux del representante
 		if (isset($_POST['incluir_c_aux']) and $_POST['incluir_c_aux'] == "on") {
 			// Incluye los datos económicos
-			$datos_representante = array_merge(
+			$datos_fila = array_merge(
 			
 				// Vivienda
-				$datos_representante,
+				$datos_fila,
 				[
-					$representante["nombres_aux"],
+					$representante["nombre_aux"] . " " . $representante["apellido_aux"],
 					$representante["relacion_aux"],
-					$representante["tlf_auxiliar"],
+					$representante["pref_aux"] . "-" . $representante["numero_aux"],
 				]
 
 			);
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-		// // consulta los telefonos del representante
-		// $telefonos->set_cedula_persona($representante['cedula']);
-		// $telefonos_representante = $telefonos->consultar_telefonos();
-
-		// $tels = [];
-
-		// foreach ($telefonos_representante as $tel) {
-		// 	$tels[] = $tel['prefijo']."-".$tel['numero'];
+		// foreach ($datos_fila as $key => $value) {
+		// 	echo "$key -> $value";
+		// 	echo "<br>";
 		// }
 
-		// // Incluye los datos personales del estudiante
-		// $datos_representante = array_merge(
-		// 	$datos_representante,
-		// 	[
-		// 		$representante["cedula"],
-		// 		$representante["p_nombre"] . " " . $representante["s_nombre"],
-		// 		$representante["p_apellido"] . " " . $representante["s_apellido"],
-		// 		$representante["direccion"],
-		// 		$representante["email"],
-		// 		implode(" / ", $tels), // Telefonos
-		// 	]
-		// );
+		// Si el filtro es distinto a cualquiera se especifican
+		if (isset($_POST['filtro_relacion']) and $_POST['filtro_relacion'] != "Cualquiera") {
+			
+			if ($_POST['filtro_relacion'] == "Padre" or $_POST['filtro_relacion'] == "padre") {
+				$fil = ["Padre","padre"];
+				if (in_array($estudiante["relacion_representante"], $fil)) {
+					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$i++;
+					$lineas++;
+				}
+			}
 
-		$hoja->fromArray($datos_representante, null, 'A'.$i);
-		$i++;
+			elseif ($_POST['filtro_relacion'] == "Madre" or $_POST['filtro_relacion'] == "madre") {
+				$fil = ["Madre","madre"];
+				if (in_array($estudiante["relacion_representante"], $fil)) {
+					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$i++;
+					$lineas++;
+				}
+			}
+
+			elseif ($_POST['filtro_relacion'] == "Otro" or $_POST['filtro_relacion'] == "otro") {
+				$fil = ["Padre","Madre","padre","madre"];
+				if (!in_array($estudiante["relacion_representante"], $fil)) {
+					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$i++;
+					$lineas++;
+				}
+			}
+		}
+		// Si el filtro marca cualquiera se muestra la fila
+		else {
+			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$i++;
+			$lineas++;
+		}
+
 	}
 
+	echo $lineas;
 
-
-
+	// Estilos de la cabecera
 	$max_col = $hoja->getHighestColumn();
 	$fila_encabezado = ("A2:". $max_col ."2");
 	$max_col++;
@@ -382,48 +448,26 @@
 
 	$hoja->getRowDimension('1')->setRowHeight(30);
 
+	if ($lineas >= 1) {
+
+		// Crear un "escritor"
+		$escritor = new Xlsx($documento);
+
+		$n_archivo = "reporte_representante.xlsx";
+
+		// Guardado
+		$escritor->save($n_archivo);
 
 
-	// // Crear un "escritor"
-	// $escritor = new Xlsx($documento);
+		// // Descarga
+		// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		// header('Content-Disposition: attachment; filename="'. urlencode($n_archivo).'"');
+		// $writer->save('php://output');
 
-	// // Guardado
-	// $escritor->save("test_reporte_r.xlsx");
+	}
+	else {
+		header('Location: ../../lobby/reportes/index.php?err_con');
+	}
 
-
-	// Descarga
-	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment; filename="'. urlencode("test_reporte_r.xlsx").'"');
-	$writer->save('php://output');
-
-
-	// 'cedula',
-	// 'p_nombre',
-	// 's_nombre',
-	// 'p_apellido',
-	// 's_apellido',
-	// 'fecha_nacimiento',
-	// 'lugar_nacimiento',
-	// 'genero',
-	// 'estado_civil',
-	// 'email',
-	// 'grado_academico',
-	// 'estado',
-	// 'municipio',
-	// 'parroquia',
-	// 'sector',
-	// 'calle',
-	// 'nro_casa',
-	// 'punto_referencia',
-	// 'codigo_carnet',
-	// 'serial_carnet',
-	// 'empleo',
-	// 'lugar_trabajo',
-	// 'remuneracion',
-	// 'tipo_remuneracion',
-	// 'condicion',
-	// 'tipo',
-	// 'tenencia',
-	// 'banco',
 
 ?>

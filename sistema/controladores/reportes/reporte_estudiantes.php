@@ -121,8 +121,8 @@
 					"Padecimiento",
 					"Impedimento físico",
 					"Necesidad educativa especial",
-					"Condicion de la vista",
-					"Condicion de la dentadura",
+					"Condición de la vista",
+					"Condición de la dentadura",
 					"Institucion medica de la que recibe atención",
 					"Carnet de discapacidad"
 				]
@@ -161,12 +161,12 @@
 			$encabezado = array_merge(
 				$encabezado,
 				[
-					"Condicion visual",
-					"Condicion motora",
-					"Condicion auditiva",
-					"Condicion de escritura",
-					"Condicion de lectura",
-					"Condicion de lenguaje",
+					"Condición visual",
+					"Condición motora",
+					"Condición auditiva",
+					"Condición de escritura",
+					"Condición de lectura",
+					"Condición de lenguaje",
 				]
 			);
 
@@ -219,6 +219,7 @@
 			[
 				"Plantel de procedencia",
 				"Año que cursa",
+				"Sección que cursa",
 				"Periodo académico que cursa",
 			]
 		);
@@ -299,10 +300,11 @@
 
 	// filtros de la consulta
 	$anio = $_POST['filtro_anio'];
+	$seccion = $_POST['filtro_seccion'];
 	$genero = $_POST['filtro_genero'];
 
 	// retorno de los datos como array de arrays
-	$lista_estudiantes = $estudiantes->filtrar_estudiantes($anio,$genero);
+	$lista_estudiantes = $estudiantes->filtrar_estudiantes($anio,$seccion,$genero);
 
 	// 
 	// generacion del excel
@@ -350,37 +352,47 @@
 	// muestra los datos e incrementa la fila en 1
 	foreach ($lista_estudiantes as $estudiante) {
 		$datos_estudiante = [];
-		$fila = [];
 
 		// Incluye los datos personales del estudiante
 		$datos_estudiante = array_merge(
 			$datos_estudiante,
 			[
-				"cedula_estudiante",
-				"cedula_escolar",
-				"nombres",
-				"apellidos",
-				"fecha_nacimiento",
-				"lugar_nacimiento",
-				"genero",
+				$estudiante["cedula"],
+				$estudiante["cedula_escolar"],
+				$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
+				$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
+				$estudiante["fecha_nacimiento"],
+				$estudiante["lugar_nacimiento"],
+				$estudiante["genero"],
 			]
 		);
 
 		// Incluye direccion
 		if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
-			$datos_estudiante = array_merge($datos_estudiante,["direccion","con_quien_vive",]);
+			$datos_estudiante = array_merge(
+				$datos_estudiante,
+				[
+					$estudiante["direccion"],
+					$estudiante["con_quien_vive"],
+				]
+			);
 		}
 
 		// Incluye Correo electrónico
 		if (isset($_POST['incluir_email']) and $_POST['incluir_email'] == "on") {
-			$datos_estudiante = array_merge($datos_estudiante,["email"]);
+			$datos_estudiante = array_merge(
+				$datos_estudiante,
+				[
+					$estudiante["email"],
+				]
+			);
 		}
 
 		// Incluye Teléfonos
 		if (isset($_POST['incluir_telefonos']) and $_POST['incluir_telefonos'] == "on") {
 				
 			// consulta los telefonos del estudiante
-			$telefonos->set_cedula_persona($estudiante['cedula_estudiante']);
+			$telefonos->set_cedula_persona($estudiante['cedula']);
 			$telefonos_estudiante = $telefonos->consultar_telefonos();
 
 			$tels = [];
@@ -389,10 +401,7 @@
 				$tels[] = $tel['prefijo']."-".$tel['numero'];
 			}
 
-			$estudiante['telefonos'] = implode(" / ", $tels);
-
-
-			$datos_estudiante = array_merge($datos_estudiante,["telefonos"]);
+			$datos_estudiante = array_merge($datos_estudiante,[implode(" / ", $tels)]);
 		}
 
 		// Incluye observaciones
@@ -400,12 +409,12 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					"social",
-					"fisico",
-					"personal",
-					"familiar",
-					"academico",
-					"otra",
+					$estudiante["social"],
+					$estudiante["fisico"],
+					$estudiante["personal"],
+					$estudiante["familiar"],
+					$estudiante["academico"],
+					$estudiante["otra"],
 				]
 			);
 		}
@@ -416,9 +425,9 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					"tiene_canaima",
-					"condicion_canaima",
-					"acceso_internet",
+					$estudiante["tiene_canaima"],
+					$estudiante["condicion_canaima"],
+					$estudiante["acceso_internet"],
 				]
 			);
 		}
@@ -429,9 +438,9 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					"grado_repetido",
-					"materias_repetidas",
-					"materias_pendientes",
+					$estudiante["grado_repetido"],
+					$estudiante["materias_repetidas"],
+					$estudiante["materias_pendientes"],
 				]
 			);
 		}
@@ -444,17 +453,17 @@
 				$datos_estudiante = array_merge(
 					$datos_estudiante,
 					[
-						"lateralidad",
-						"tipo_sangre",
-						"medicacion",
-						"dieta_especial",
-						"padecimiento",
-						"impedimento_fisico",
-						"necesidad_educativa",
-						"condicion_vista",
-						"condicion_dental",
-						"institucion_medica",
-						"carnet_discapacidad",
+						$estudiante["lateralidad"],
+						$estudiante["tipo_sangre"],
+						$estudiante["medicacion"],
+						$estudiante["dieta_especial"],
+						$estudiante["padecimiento"],
+						$estudiante["impedimento_fisico"],
+						$estudiante["necesidad_educativa"],
+						$estudiante["condicion_vista"],
+						$estudiante["condicion_dental"],
+						$estudiante["institucion_medica"],
+						$estudiante["carnet_discapacidad"],
 					]
 				);
 			}
@@ -465,9 +474,9 @@
 				$datos_estudiante = array_merge(
 					$datos_estudiante,
 					[
-						"camisa",
-						"pantalon",
-						"calzado",
+						$estudiante["camisa"],
+						$estudiante["pantalon"],
+						$estudiante["calzado"],
 					]
 				);
 			}
@@ -478,30 +487,27 @@
 				$datos_estudiante = array_merge(
 					$datos_estudiante,
 					[
-						"estatura",
-						"peso",
-						"indice_m_c",
-						"circ_braquial",
+						$estudiante["estatura"] 	. "cm",
+						$estudiante["peso"] 			. "kg",
+						$estudiante["indice_m_c"] . "cm",
+						$estudiante["circ_braquial"],
 					]
 				);
-				$estudiante['estatura'] .= "cm";
-				$estudiante['peso'] .= "kg";
-				$estudiante['circ_braquial'] .= "cm";
 			}
 
 			// Incluye condiciones de salud
 			if (isset($_POST['incluir_cond_salud']) and $_POST['incluir_cond_salud'] == "on") {
-				$datos_estudiante = array_merge(
-					$datos_estudiante,
-					[
-						"visual",
-						"motora",
-						"auditiva",
-						"escritura",
-						"lectura",
-						"lenguaje",
-					]
-				);
+				// $datos_estudiante = array_merge(
+				// 	$datos_estudiante,
+				// 	[
+				// 		$estudiante["visual"],
+				// 		$estudiante["motora"],
+				// 		$estudiante["auditiva"],
+				// 		$estudiante["escritura"],
+				// 		$estudiante["lectura"],
+				// 		$estudiante["lenguaje"],
+				// 	]
+				// );
 
 				$condiciones = ["visual","motora","auditiva","escritura","lectura","lenguaje"];
 				foreach ($condiciones as $cond) {
@@ -511,6 +517,12 @@
 					else {
 						$estudiante[$cond] = "No";
 					}
+					$datos_estudiante = array_merge(
+						$datos_estudiante,
+						[
+							$estudiante["visual"],
+						]
+					);
 				} 
 						
 				// Embarazo no se muestra si se seleccionan solo estudiantes varones
@@ -518,7 +530,7 @@
 					$datos_estudiante = array_merge(
 						$datos_estudiante,
 						[
-							"embarazo",
+							$estudiante["embarazo"],
 						]
 					);
 					if (!empty($estudiante["embarazo"])) {
@@ -534,24 +546,10 @@
 
 			// Incluye vacunas generales
 			if (isset($_POST['incluir_vacunas']) and $_POST['incluir_vacunas'] == "on") {
-				$datos_estudiante = array_merge(
-					$datos_estudiante,
-					[
-						"vph",
-						"tdap",
-						"menacwy",
-						"hep_a",
-						"hep_a",
-						"ipv",
-						"mmr",
-						"varicela",
-						"antiamarilica",
-						"antigripal",
-					]
-				);
+
 
 				// consulta las vacunas del estudiante
-				$vacunas_est->set_cedula_estudiante($estudiante['cedula_estudiante']);
+				$vacunas_est->set_cedula_estudiante($estudiante['cedula']);
 				$vacunas_estudiante = $vacunas_est->consultar_vacunas_est();
 
 				$vacunas = [];
@@ -559,6 +557,24 @@
 				foreach ($vacunas_estudiante as $vac) {
 					$estudiante[$vac['espec_vacuna']] = $vac['estado_vacuna'];
 				}
+
+				$datos_estudiante = array_merge(
+					$datos_estudiante,
+					[
+						$estudiante["vph"],
+						$estudiante["tdap"],
+						$estudiante["menacwy"],
+						$estudiante["hep_a"],
+						$estudiante["hep_a"],
+						$estudiante["ipv"],
+						$estudiante["mmr"],
+						$estudiante["varicela"],
+						$estudiante["antiamarilica"],
+						$estudiante["antigripal"],
+					]
+				);
+
+				// var_dump($estudiante);
 			}
 
 
@@ -567,9 +583,9 @@
 				$datos_estudiante = array_merge(
 					$datos_estudiante,
 					[
-						 "vac_aplicada",
-						 "dosis",
-						 "lote",
+						 $estudiante["vac_aplicada"],
+						 $estudiante["dosis"],
+						 $estudiante["lote"],
 					]
 				);
 			}
@@ -577,16 +593,14 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					"plantel_proced",
-					"grado_a_cursar",
-					"id_per_academico",
+					$estudiante["plantel_proced"],
+					$estudiante["grado_a_cursar"],
+					'Sección "' . $estudiante["seccion"]. '"',
+					$estudiante["id_per_academico"],
 				]
 			);
 		}
-		foreach ($datos_estudiante as $dato) {
-			$fila[] = $estudiante[$dato];
-		}
-		$hoja_estudiantes->fromArray($fila, null, 'A'.$i);
+		$hoja_estudiantes->fromArray($datos_estudiante, null, 'A'.$i);
 		$i++;
 	}
 
@@ -672,9 +686,9 @@
 			$datos_representante = array_merge(
 				$datos_representante,
 				[
-					$estudiante["cedula_estudiante"],
-					$estudiante["nombres"],
-					$estudiante["apellidos"],
+					$estudiante["cedula"],
+					$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
+					$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
 					$representante["cedula"],
 					$representante["p_nombre"] . " " . $representante["s_nombre"],
 					$representante["p_apellido"] . " " . $representante["s_apellido"],
@@ -772,9 +786,9 @@
 			$datos_padres = array_merge(
 				$datos_padres,
 				[
-					$estudiante["cedula_estudiante"],
-					$estudiante["nombres"],
-					$estudiante["apellidos"],
+					$estudiante["cedula"],
+					$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
+					$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
 					$padre["cedula"],
 					$padre["p_nombre"] . " " . $padre["s_nombre"],
 					$padre["p_apellido"] . " " . $padre["s_apellido"],
@@ -868,15 +882,15 @@
 	$documento->setActiveSheetIndex(0);
 
 
-	// // Crear un "escritor"
-	// $escritor = new Xlsx($documento);
+	// Crear un "escritor"
+	$escritor = new Xlsx($documento);
 
-	// // Guardado
-	// $escritor->save("test_reporte.xlsx");
+	// Guardado
+	$escritor->save("test_reporte.xlsx");
 
 	// Descarga
-	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
-	$writer->save('php://output');
+	// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	// header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
+	// $writer->save('php://output');
 
 ?>

@@ -299,7 +299,7 @@
 												<label class="form-label">Correo electrónico:</label>
 											</div>
 											<div class="col-12 col-lg-9">
-												<input id="Correo_electrónico_R" class="mb-2 form-control" type="email" name="Correo_electrónico_R"  minlength="15" required>
+												<input id="Correo_electrónico_R" class="mb-2 form-control" type="email" name="Correo_electrónico_R"  minlength="10" required>
 											</div>
 										</div>
 									</section>

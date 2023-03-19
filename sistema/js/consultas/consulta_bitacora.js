@@ -11,7 +11,7 @@
 			buttons: [{
 				extend: 		'excelHtml5',
 				autoFilter: true,
-				className: 	'btn btn-secondary',
+				className: 	'btn btn-sm btn-secondary',
 				filename: 	'Reporte de bitácora',
 				sheetName: 	'Reporte de bitácora',
 				messageTop: 'Reporte de bitácora',

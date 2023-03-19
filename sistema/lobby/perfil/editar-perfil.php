@@ -188,7 +188,7 @@
 													class="form-control mb-2" 
 													type="email" 
 													name="email_u" 
-													minlength="15" 
+													minlength="10" 
 													required 
 													value="<?php echo $_SESSION['datos_login']['email'] ?? NULL ?>"
 												>

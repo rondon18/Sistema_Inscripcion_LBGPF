@@ -44,7 +44,7 @@
 					<div class="card-header text-center">
 						<b class="fs-4">Menú principal</b>
 					</div>
-					<div class="card-body">
+					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
 						<section class="px-3 px-md-5 py-4 d-flex align-items-center">
 							<img class="me-5" src="../img/icono.png" alt="Icono del sistema" width="100">
 							<div>
@@ -93,6 +93,20 @@
 										<div class="px-2 w-100">
 											<h6 class="card-title mb-2">Generar reporte.</h6>
 											<a href="reportes/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Ver opciones</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<!-- Generar reporte -->
+							<div class="col px-2 px-md-4 py-2">
+								<div class="card bg-light">
+									<div class="card-body d-flex align-items-center">
+										<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
+										<div class="px-2 w-100">
+											<h6 class="card-title mb-2">Consultar estadisticas.</h6>
+											<a href="estadistica/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Visitar seccion</a>
 										</div>
 									</div>
 								</div>

@@ -275,8 +275,26 @@
 					</div>
 
 
-					<!-- Género -->
 					<div class="row mb-2">
+	       		<div class="col-5">
+	       			<label for="filtro_seccion">
+			       		Sección actual	
+			       	</label>
+	       		</div>
+	       		<div class="col-7">
+	       			<select class="form-select" name="filtro_seccion" id="filtro_seccion">
+			       		<option value="Cualquiera">Cualquiera</option>
+			       		<option value="A">A</option>
+			       		<option value="B">B</option>
+			       		<option value="C">C</option>
+			       		<option value="D">D</option>
+			       	</select>
+	       		</div>
+	       	</div>
+
+
+					<!-- Género -->
+					<div class="row">
 						<div class="col-12 col-md-5">
 							<label class="form-label" for="filtro_genero">Género:</label>
 						</div>

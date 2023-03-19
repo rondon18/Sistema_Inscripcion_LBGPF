@@ -7,34 +7,34 @@
 		exit();
 	}
 
-	require('../fpdf/fpdf.php');
+	require('../../fpdf/fpdf.php');
 
-	require('../lobby/consultar/funciones.php');
+	require('../../lobby/consultar/funciones.php');
 
-	require('../controladores/conexion.php');
-	require('../clases/bitacora.php');
+	require('../../controladores/conexion.php');
+	require('../../clases/bitacora.php');
 
-	require('../clases/antropometria_est.php');
-	require('../clases/carnet_patria.php');
-	require('../clases/condiciones_est.php');
-	require('../clases/contactos_aux.php');
-	require('../clases/datos_economicos.php');
-	require('../clases/datos_laborales.php');
-	require('../clases/datos_salud.php');
-	require('../clases/datos_sociales.php');
-	require('../clases/datos_vivienda.php');
-	require('../clases/direcciones.php');
-	require('../clases/estudiantes.php');
-	require('../clases/grado_a_cursar_est.php');
-	require('../clases/observaciones_est.php');
-	require('../clases/padres.php');
-	require('../clases/per_academico.php');
-	require('../clases/personas.php');
-	require('../clases/representantes.php');
-	require('../clases/tallas_est.php');
-	require('../clases/telefonos.php');
-	require('../clases/vac_covid19_est.php');
-	require('../clases/vacunas_est.php');
+	require('../../clases/antropometria_est.php');
+	require('../../clases/carnet_patria.php');
+	require('../../clases/condiciones_est.php');
+	require('../../clases/contactos_aux.php');
+	require('../../clases/datos_economicos.php');
+	require('../../clases/datos_laborales.php');
+	require('../../clases/datos_salud.php');
+	require('../../clases/datos_sociales.php');
+	require('../../clases/datos_vivienda.php');
+	require('../../clases/direcciones.php');
+	require('../../clases/estudiantes.php');
+	require('../../clases/grado_a_cursar_est.php');
+	require('../../clases/observaciones_est.php');
+	require('../../clases/padres.php');
+	require('../../clases/per_academico.php');
+	require('../../clases/personas.php');
+	require('../../clases/representantes.php');
+	require('../../clases/tallas_est.php');
+	require('../../clases/telefonos.php');
+	require('../../clases/vac_covid19_est.php');
+	require('../../clases/vacunas_est.php');
 
 	$antropometria_est = new antropometria_est();
 	$bitacora = new bitacora();
@@ -109,14 +109,14 @@
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','',18);
-	$pdf->Image('../img/logo.jpg',30,5,150,20);
+	$pdf->Image('../../img/logo.jpg',30,5,150,20);
 	$pdf->Ln(15);
 	$pdf->Cell(0,6,utf8_decode('INSCRIPCIÓN AÑO ESCOLAR ' . $per_academico->get_inicio() . '-' . $per_academico->get_fin()),0,1,'C');
 	$pdf->SetFont('Arial','',14);
 
 	// #PARTE DEL ESTUDIANTE
 
-	$pdf->Image('../img/foto.jpg',170,44,32,0);
+	$pdf->Image('../../img/foto.jpg',170,44,32,0);
 	$pdf->Cell(0,20,utf8_decode('PLANILLA DEL ESTUDIANTE'),0,1,'C');
 	$pdf->SetFont('Arial','',8);
 	$pdf->SetXY(50.1,44);

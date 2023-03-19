@@ -15,8 +15,9 @@
 				// Botones de exportación a excel
 				{
 						// Reporte general de estudiantes
+							className: 		'btn btn-sm btn-success',
 							extend: 		'excelHtml5',
-							text: 			'Generar reporte rápido <i class="fas fa-lg fa-file-excel me-2"></i>',
+							text: 			'Generar reporte <i class="fas fa-lg fa-file-excel me-2"></i>',
 							exportOptions: {
 								columns: 	':not(:last-child)',
 							},
@@ -26,15 +27,24 @@
 							messageTop: 'Reporte de estudiantes',
 				},
 
+				// filtros de consulta
+				{
+					className: 		'btn btn-sm btn-primary',
+					text: 'Filtrar<i class="fas fa-lg fa-search ms-2"></i>',
+	        action: function (e, node, config){
+	        	$('#modal_filtros').modal('show')
+	        },
+				},
+
 				// Boton parar ir a registrar un estudiante
 				{
-					className: 		'btn btn-secondary',
+					className: 		'btn btn-sm btn-primary',
 					text: 				'Registrar estudiante<i class="fas fa-lg fa-user-plus ms-2"></i>',
 					action: function ( e, dt, button, config ) {
 						window.location = '../registrar_estudiante/paso_1.php';
 					}         
 				},
-				
+
 			],
 
 			responsive: 	

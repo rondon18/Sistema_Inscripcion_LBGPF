@@ -848,7 +848,7 @@ if (isset($_POST['paso_1'])) {
 													class="mb-2 form-control" 
 													type="email" 
 													name="correo_electronico_r" 
-													minlength="15" 
+													minlength="10" 
 													placeholder="correo.ejemplo_1@dominio.com" 
 													value="<?php echo dato_sesion_i("correo_electronico_r");?>" 
 												>
@@ -1412,11 +1412,11 @@ if (isset($_POST['paso_1'])) {
 
 										<!-- Nombres del contacto auxiliar -->
 										<div class="row mb-4">
-											<div class="col-12 col-lg-2">
-												<label class="form-label requerido">Nombres:</label>
+											<div class="col-12 col-lg-4">
+												<label class="form-label requerido">Nombre:</label>
 											</div>
 											<!-- Primer nombre -->
-											<div class="col-12 col-lg-5">
+											<div class="col-12 col-lg-8">
 												<input 
 													id="primer_nombre_aux" 
 													class="mb-2 form-control" 
@@ -1429,27 +1429,14 @@ if (isset($_POST['paso_1'])) {
 													value="<?php echo dato_sesion_i("primer_nombre_aux");?>"
 												>
 											</div>
-											<!-- Segundo nombre -->
-											<div class="col-12 col-lg-5">
-												<input 
-													id="segundo_nombre_aux" 
-													class="mb-2 form-control" 
-													type="text" 
-													name="segundo_nombre_aux" 
-													placeholder="Segundo nombre" 
-													minlength="3" 
-													maxlength="40" 
-													value="<?php echo dato_sesion_i("segundo_nombre_aux");?>"
-												>
-											</div>
 										</div>
 										<!-- Apellidos del contacto auxiliar -->
 										<div class="row mb-4">
-											<div class="col-12 col-lg-2">
-												<label class="form-label requerido">Apellidos:</label>
+											<div class="col-12 col-lg-4">
+												<label class="form-label requerido">Apellido:</label>
 											</div>
 											<!-- Primer apellido -->
-											<div class="col-12 col-lg-5">
+											<div class="col-12 col-lg-8">
 												<input 
 													id="primer_apellido_aux" 
 													class="mb-2 form-control" 
@@ -1460,19 +1447,6 @@ if (isset($_POST['paso_1'])) {
 													maxlength="40" 
 													required
 													value="<?php echo dato_sesion_i("primer_apellido_aux");?>"
-												>
-											</div>
-											<!-- Segundo apellido -->
-											<div class="col-12 col-lg-5">
-												<input 
-													id="segundo_apellido_aux" 
-													class="mb-2 form-control" 
-													type="text" 
-													name="segundo_apellido_aux" 
-													placeholder="Segundo apellido" 
-													minlength="3"
-													maxlength="40"  
-													value="<?php echo dato_sesion_i("segundo_apellido_aux");?>"
 												>
 											</div>
 										</div>
