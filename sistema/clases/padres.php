@@ -308,6 +308,85 @@
 		}
 
 
+		// Retorna el número de de representantes con cierto numero de representados (Se puede filtrar)
+		public function get_nro_hijos($nro_hijos = 1,$anio = NULL,$seccion = NULL) {
+			// Muestra todos los estudiantes registrados
+			$conexion = conectarBD();
+
+			// Consulta que representantes tienen más de un representado
+			
+			$aux = [
+				"`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` OR`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`"];
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				if ($anio != NULL) {
+					$aux[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$aux[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+			}
+
+			$aux = implode(" AND ", $aux);
+
+			$sub_con = "
+				SELECT
+					COUNT(
+						`vista_estudiantes`.`cedula_representante`
+					) AS nro_hijos,
+					`vista_padres`.`cedula`
+				FROM
+					`vista_estudiantes`,
+					`vista_padres`
+				WHERE
+					$aux
+				GROUP BY
+					`vista_padres`.`cedula`
+			";
+
+			// Consulta cuantos representantes tienen más de un representado
+			$sql = "SELECT COUNT(*) as `nro_hijos` FROM ($sub_con) as subcon WHERE";
+
+			// cuando tengan solo un reprentado
+			if ($nro_hijos <= 1 and $nro_hijos < 2) {
+				$sql .= "`nro_hijos` = '$nro_hijos'";
+			}
+			// siempre que tengan al menos el número indicado
+			elseif ($nro_hijos > 1) {
+				$sql .= "`nro_hijos` >= '$nro_hijos'";
+			}
+
+			// echo $sql;
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_hijos = $representante["nro_hijos"];
+		}
+
+
+		// Retorna el número de padres con cierta tenencia de vivienda (Se puede filtrar)
+		public function get_nro_pais($tenencia) {
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_tenencia_v FROM `vista_padres` WHERE `pais_residencia` != ''";
+
+
+			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
+			$representante = $consulta_representante->fetch_assoc();
+			
+			desconectarBD($conexion);
+
+			return $nro_tenencia_v = $representante["nro_tenencia_v"];
+		}
+
+
 		public function get_cedula_persona() {
 			return $this->cedula_persona;
 		}

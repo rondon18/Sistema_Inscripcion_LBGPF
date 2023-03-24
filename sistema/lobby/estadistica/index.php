@@ -114,6 +114,7 @@
 										</div>
 									</div>
 
+									<?php include('padres.php');?>
 									<!-- Gestionar registros -->
 									<div class="col px-2 py-2">
 										<div class="card bg-light">
@@ -121,7 +122,7 @@
 												<i class="fa-solid fa-chart-pie fa-2xl m-2"></i>
 												<div class="px-2 w-100">
 													<h6 class="card-title mb-2">Padres.</h6>
-													<a href="#" type="button" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+													<a href="#" type="button" class="btn btn-primary w-100 btn-sm stretched-link" data-bs-toggle="modal" data-bs-target="#filtros_estadistica_pad">Consultar</a>
 												</div>
 											</div>
 										</div>

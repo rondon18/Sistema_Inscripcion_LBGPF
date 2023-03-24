@@ -885,12 +885,14 @@
 	// Crear un "escritor"
 	$escritor = new Xlsx($documento);
 
+	$n_archivo = "Reporte_de_estudiantes.xlsx";
+
 	// Guardado
-	$escritor->save("test_reporte.xlsx");
+	// $escritor->save($n_archivo);
 
 	// Descarga
-	// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	// header('Content-Disposition: attachment; filename="'. urlencode("test_reporte.xlsx").'"');
-	// $writer->save('php://output');
+	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	header('Content-Disposition: attachment; filename="'. urlencode($n_archivo).'"');
+	$escritor->save('php://output');
 
 ?>

@@ -1,62 +1,42 @@
-
-<!-- Contenedor con la grafica y tabla de valores de : -->
-<div class="row">
-	<div class="col-3">
-		<canvas id="grafico1" class="mx-auto"></canvas>
-	</div>
-	<div class="col-9">
-		<p class="h5">Población académica por género.</p>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>item 1</th>
-					<th>item 2</th>
-					<th>item 3</th>
-					<th>item 4</th>
-					<th>item 5</th>
-					<th>item 6</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>item 1</td>
-					<td>item 2</td>
-					<td>item 3</td>
-					<td>item 4</td>
-					<td>item 5</td>
-					<td>item 6</td>
-				</tr>
-				<tr>
-					<td>item 1</td>
-					<td>item 2</td>
-					<td>item 3</td>
-					<td>item 4</td>
-					<td>item 5</td>
-					<td>item 6</td>
-				</tr>
-				<?php var_dump($estudiantes->get_nro_hembras("Cualquiera","Cualquiera")) ?>
-				<?php var_dump($estudiantes->get_nro_varones("Cualquiera","Cualquiera")) ?>
-			</tbody>
-		</table>
+<!-- Modal -->
+<div class="modal fade" id="filtros_estadistica_pad" tabindex="-1" aria-labelledby="filtros_pad_label" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="filtros_estadistica_pad_label">Opciones de estadistica de padres</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="opciones_estadistica_pad" action="ver_estadisticas.php" method="post">
+					<div class="mb-3">
+						<label for="estadistica_pad" class="form-label">Estadistica a consultar:</label>
+						<select class="form-select" id="estadistica_pad" name="estadistica_pad" required>
+							<option>Estadisticas generales</option>
+							<option>Estadisticas sociales</option>
+							<option>Estadisticas económicas</option>
+						</select>
+					 </div>
+					 <div class="mb-3">
+						<label for="anio_pad" class="form-label">Año a consultar:</label>
+						<select class="form-select" id="anio_pad" name="anio_pad" required>
+							<option>Global</option>
+							<option>Primer año</option>
+							<option>Segundo año</option>
+							<option>Tercer año</option>
+							<option>Cuarto año</option>
+							<option>Quinto año</option>
+						</select>
+					 </div>
+					 <input type="hidden" name="estadistica" value="padres">
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				<button type="submit" class="btn btn-primary" form="opciones_estadistica_pad">Consultar</button>
+			</div>
+		</div>
 	</div>
 </div>
+<script defer>
 
-<!-- datos de la gráfica -->
-<script type="text/javascript" defer>
-	const ctx = document.getElementById('grafico1');
-
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-    	responsive: true,
-    }
-  });
 </script>

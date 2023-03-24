@@ -287,35 +287,100 @@
 
 		// Cuando la estadistica solicitada sea de padres
 		case 'padres':
-			switch ($_POST["estadistica_est"]) {
-				case 'value':
-					// code...
+
+			$titulo = $_POST['estadistica_pad'];
+
+			if ($_POST['anio_pad'] != "Global") {
+				$titulo .= " (". $_POST['anio_pad'] .")";
+			}
+
+			require("padres.php");
+
+			echo "
+		    <ul class='nav'>
+	        <li class='nav-item'><p class='h4'>$titulo</p></li>
+		     	<li class='nav-item ms-auto'><a hrer='#' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#filtros_estadistica_pad'>Cambiar estadisticas</a></li>
+		    </ul>
+			";
+
+			switch ($_POST["estadistica_pad"]) {
+
+
+				case 'Estadisticas generales':
+
+					if ($_POST["anio_pad"] == "Global") {
+
+						require("padres/g_instruccion.php");
+						require("padres/nro_hijos.php");
+						require("padres/paises.php");
+
+					} 
+
+					else {
+						
+						$anio = $_POST["anio_pad"];
+						$seccion = NULL;
+
+						require("padres/g_instruccion_filtrado.php");
+						require("padres/nro_hijos_filtrado.php");
+						require("padres/paises.php");
+
+					}
+				
 					break;
-				case 'value':
-					// code...
+
+
+				case 'Estadisticas sociales':
+
+					if ($_POST["anio_pad"] == "Global") {
+
+						require("padres/carnet_patria.php");
+						require("padres/vivienda.php");
+
+					} 
+
+					else {
+						
+						$anio = $_POST["anio_pad"];
+						$seccion = NULL;
+
+						require("padres/carnet_patria_filtrado.php");
+						require("padres/vivienda_filtrado.php");
+
+					}	
+
 					break;
-				case 'value':
-					// code...
-					break;
-				case 'value':
-					// code...
-					break;
-				case 'value':
-					// code...
+
+
+				case 'Estadisticas económicas':
+
+					if ($_POST["anio_pad"] == "Global") {
+
+						require("padres/laborales.php");
+
+					} 
+
+					else {
+						
+						$anio = $_POST["anio_pad"];
+						$seccion = NULL;
+
+						require("padres/laborales_filtrado.php");
+
+					}
+
+
 					break;
 				
+
 				default:
 					// code...
 					break;
+
+
 			}
 			break;
-		
-
-		
-		// Cuando no cumpla con ninguna de las anteriores
-		default:
-			header('Location: index.php');
-			break;
+			
 	}
 ?>
 						</div>

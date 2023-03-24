@@ -456,13 +456,13 @@
 		$n_archivo = "reporte_representante.xlsx";
 
 		// Guardado
-		$escritor->save($n_archivo);
+		// $escritor->save($n_archivo);
 
 
 		// // Descarga
-		// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		// header('Content-Disposition: attachment; filename="'. urlencode($n_archivo).'"');
-		// $writer->save('php://output');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="'. urlencode($n_archivo).'"');
+		$escritor->save('php://output');
 
 	}
 	else {
