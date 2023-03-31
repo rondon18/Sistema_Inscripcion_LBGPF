@@ -830,6 +830,22 @@ $nivel = 2;
 											</div>
 										</div>
 
+										<!-- Año a cursar -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-4">
+												<label for="seccion_a_cursar" class="form-label requerido">¿Que sección va a cursar?:</label>
+											</div>
+											<div class="col-12 col-lg-8">
+												<select class="form-select mb-2" name="seccion_a_cursar" required>
+													<option selected value="">Seleccione una opción</option>
+													<option <?php dato_option("A","seccion","s","de");?> value="A">Sección "A"</option>
+													<option <?php dato_option("B","seccion","s","de");?> value="B">Sección "B"</option>
+													<option <?php dato_option("C","seccion","s","de");?> value="C">Sección "C"</option>
+													<option <?php dato_option("D","seccion","s","de");?> value="D">Sección "D"</option>
+												</select>
+											</div>
+										</div>
+
 										<!-- Plantel de procedencia -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-4">

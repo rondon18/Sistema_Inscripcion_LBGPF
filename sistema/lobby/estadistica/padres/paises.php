@@ -3,175 +3,47 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por municipio</p>
+			<p class="h6">Representantes por país en que residen</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
 			<div class="row">
 				<div class="col-12 col-md-4 mx-auto mb-3">
-					<canvas id="locaciones" class="mx-auto"></canvas>
+					<canvas id="paises" class="mx-auto"></canvas>
 				</div>
 				<div class="col-12 col-md-8">
 					<div class="table-responsive">
-						<table id="tabla_locaciones" class="table table-sm table-bordered table-striped">
+						<table id="tabla_paises" class="table table-sm table-bordered table-striped">
 							<thead class="text-nowrap">
 								<tr>
-									<th class="text-center">Municipio</th>
+									<th class="text-center">País</th>
 									<th class="text-center">Número de representantes</th>
 								</tr>
 							</thead>
 
 							<tbody class="text-nowrap">
-								<tr>
-									<th><span class="badge" style="background: #36a2eb;"> </span> Alberto Adriani</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Alberto Adriani");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #ff6384;"> </span> Andrés Bello</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Andrés Bello");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #ff9f40;"> </span> Antonio Pinto Salinas</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Antonio Pinto Salinas");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #ffcd56;"> </span> Aricagua</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Aricagua");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #4bc0c0;"> </span> Arzobispo Chacón</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Arzobispo Chacón");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #9966ff;"> </span> Campo Elías</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Campo Elías");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #c9cbcf;"> </span> Caracciolo Parra Olmedo</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Caracciolo Parra Olmedo");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #a05d89;"> </span> Cardenal Quintero</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Cardenal Quintero");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #2f9cb9;"> </span> Guaraque</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Guaraque");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #ff6f69;"> </span> Julio César Salas</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Julio César Salas");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #77c9d4;"> </span> Justo Briceño</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Justo Briceño");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #b3d3c6;"> </span> Libertador</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Libertador");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #35518f;"> </span> Miranda</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Miranda");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #669bbc;"> </span> Obispo Ramos de Lora</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Obispo Ramos de Lora");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #3d3e3e;"> </span> Padre Noguera</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Padre Noguera");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #7dbbc3;"> </span> Pueblo Llano</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Pueblo Llano");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #a64b3c;"> </span> Rangel</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Rangel");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #f5e6ca;"> </span> Rivas Dávila</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Rivas Dávila");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #029386;"> </span> Santos Marquina</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Santos Marquina");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #ff00cc;"> </span> Sucre</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Sucre");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #8a3cc3;"> </span> Tovar</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Tovar");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #d98247;"> </span> Tulio Febres Cordero</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Tulio Febres Cordero");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #41ab7b;"> </span> Zea</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Zea");?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="badge" style="background: #5452ff;"> </span> Otro</th>
-									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Otro");?>
-									</td>
-								</tr>
+								<?php 
+									$lista_paises = $padres->get_nro_p_paises(); 
+									$i = 0;
+								?>
+								<?php foreach ($lista_paises as $pais): ?>
+									<tr>
+										<th>
+											<span class="badge" style="background: <?php echo $array_colores[$i];?>;"> </span> 
+											<?php echo $pais['pais_residencia']; ?>
+										</th>
+										<td class="text-center">
+											<?php echo $pais['nro_padres'];?>
+										</td>
+									</tr>
+									<?php $i++; ?>
+								<?php endforeach ?>
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Total de representantes</th>
+									<th>Total de padres</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_representantes();?>
+										<?php echo $padres->get_nro_padres();?>
 									</td>
 								</tr>
 							</tfoot>
@@ -184,66 +56,33 @@
 			<!-- datos de la gráfica -->
 			<script type="text/javascript" defer>
 
-				const locaciones = document.getElementById('locaciones');
+				const paises = document.getElementById('paises');
 
-			  new Chart(locaciones, {
+			  new Chart(paises, {
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
 			        label: 'Nro. de representantes',
 			        data: [
-								<?php echo $representantes->get_nro_r_municipio("Alberto Adriani");?>,
-								<?php echo $representantes->get_nro_r_municipio("Andrés Bello");?>,
-								<?php echo $representantes->get_nro_r_municipio("Antonio Pinto Salinas");?>,
-								<?php echo $representantes->get_nro_r_municipio("Aricagua");?>,
-								<?php echo $representantes->get_nro_r_municipio("Arzobispo Chacón");?>,
-								<?php echo $representantes->get_nro_r_municipio("Campo Elías");?>,
-								<?php echo $representantes->get_nro_r_municipio("Caracciolo Parra Olmedo");?>,
-								<?php echo $representantes->get_nro_r_municipio("Cardenal Quintero");?>,
-								<?php echo $representantes->get_nro_r_municipio("Guaraque");?>,
-								<?php echo $representantes->get_nro_r_municipio("Julio César Salas");?>,
-								<?php echo $representantes->get_nro_r_municipio("Justo Briceño");?>,
-								<?php echo $representantes->get_nro_r_municipio("Libertador");?>,
-								<?php echo $representantes->get_nro_r_municipio("Miranda");?>,
-								<?php echo $representantes->get_nro_r_municipio("Obispo Ramos de Lora");?>,
-								<?php echo $representantes->get_nro_r_municipio("Padre Noguera");?>,
-								<?php echo $representantes->get_nro_r_municipio("Pueblo Llano");?>,
-								<?php echo $representantes->get_nro_r_municipio("Rangel");?>,
-								<?php echo $representantes->get_nro_r_municipio("Rivas Dávila");?>,
-								<?php echo $representantes->get_nro_r_municipio("Santos Marquina");?>,
-								<?php echo $representantes->get_nro_r_municipio("Sucre");?>,
-								<?php echo $representantes->get_nro_r_municipio("Tovar");?>,
-								<?php echo $representantes->get_nro_r_municipio("Tulio Febres Cordero");?>,
-								<?php echo $representantes->get_nro_r_municipio("Zea");?>,
-								<?php echo $representantes->get_nro_r_municipio("Otro");?>,
+			        	<?php $i = 0; ?>
+			        	<?php foreach ($lista_paises as $pais): ?>
+									<?php echo $pais['nro_padres'];?>,
+									<?php $i++; ?>
+								<?php endforeach ?>
 			  	],
 			        borderWidth: 1,
 			        // se establecen manualmente dado que a partir del octavo valor se repiten los colores del primero
 			      	backgroundColor: [
-								"#36a2eb",
-								"#ff6384",
-								"#ff9f40",
-								"#ffcd56",
-								"#4bc0c0",
-								"#9966ff",
-								"#c9cbcf",
-								"#a05d89",
-								"#2f9cb9",
-								"#ff6f69",
-								"#77c9d4",
-								"#b3d3c6",
-								"#35518f",
-								"#669bbc",
-								"#3d3e3e",
-								"#7dbbc3",
-								"#a64b3c",
-								"#f5e6ca",
-								"#029386",
-								"#ff00cc",
-								"#8a3cc3",
-								"#d98247",
-								"#41ab7b",
-								"#5452ff",
+			      		<?php
+
+			      			$j = 0;
+
+			      			while ($j <= $i) {
+			      				echo '"' . $array_colores[$j]. '"' . ',';
+			      				$j++;
+			      			}
+
+			      		?>
 			      	],
 			      }]
 			    },
@@ -253,13 +92,13 @@
 			  });
 
 				$(document).ready(function() {
-			    $('#tabla_locaciones').DataTable({
-			    		"order": [1, 'desc'],
-			        "paging": true,
-			        "searching": true,
-			        "pageLength": 5,
-			        "lengthChange": false,
-			        "language": {"url": "../../js/datatables-español.json"},
+			    $('#tabla_paises').DataTable({
+		    		"order": [1, 'desc'],
+		        "paging": true,
+		        "searching": true,
+		        "pageLength": 5,
+		        "lengthChange": false,
+		        "language": {"url": "../../js/datatables-español.json"},
 			    });
 				} );
 			</script>

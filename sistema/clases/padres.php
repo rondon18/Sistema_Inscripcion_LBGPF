@@ -14,8 +14,8 @@
 
 			$sql = "
 				INSERT INTO `padres`(
-			    `cedula_persona`,
-			    `pais_residencia`
+					`cedula_persona`,
+					`pais_residencia`
 				)
 				VALUES('$cedula_persona', '$pais_residencia')
 				ON DUPLICATE KEY UPDATE
@@ -37,11 +37,11 @@
 
 			$sql = "
 				UPDATE
-			    `padres`
+					`padres`
 				SET
-			    `pais_residencia` = '$pais_residencia'
+					`pais_residencia` = '$pais_residencia'
 				WHERE
-			    `cedula_persona` = '$cedula_persona'
+					`cedula_persona` = '$cedula_persona'
 			";
 
 			// echo $sql;
@@ -91,15 +91,15 @@
 
 			$sql = "
 			SELECT
-		    `cedula`,
-		    `p_nombre`,
-		    `grado_a_cursar`
+				`cedula`,
+				`p_nombre`,
+				`grado_a_cursar`
 			FROM
-		    `vista_estudiantes`
+				`vista_estudiantes`
 			WHERE
-		    cedula_padre = '$cedula_persona' OR
-		    cedula_madre = '$cedula_persona'
-		    ";
+				cedula_padre = '$cedula_persona' OR
+				cedula_madre = '$cedula_persona'
+				";
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			
@@ -117,13 +117,13 @@
 
 			$sql = "
 			SELECT
-		    *
+				*
 			FROM
-		    `vista_estudiantes`
+				`vista_estudiantes`
 			WHERE
-		    cedula_padre = '$cedula_persona' OR
-		    cedula_madre = '$cedula_persona'
-	    ";
+				cedula_padre = '$cedula_persona' OR
+				cedula_madre = '$cedula_persona'
+			";
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			desconectarBD($conexion);
@@ -163,49 +163,114 @@
 
 
 		// Retorna el número de padres registrados (Se puede filtrar)
-		public function get_nro_padres() {
+		public function get_nro_padres($anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_padres FROM `vista_padres`";
+			$sub_con = "
+				SELECT
+					`vista_padres`.`cedula`
+				FROM
+					`vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+			";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " WHERE ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+
+			$sql = "SELECT COUNT(*) as nro_padres FROM ($sub_con) as sub_con";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_padres = $representante["nro_padres"];
+			return $nro_padres = $padre["nro_padres"];
 		}
 
 
 		// Retorna el número de padres inscritos (Se puede filtrar)
-		public function get_nro_p_empleados() {
+		public function get_nro_p_empleados($anio = NULL,$seccion = NULL) {
 			
 			$conexion = conectarBD();
 
 			// Muestra todos los padres que cuenten con un empleo
 			$sql = "SELECT COUNT(*) as nro_p_empleados FROM `vista_padres` WHERE `empleo` != ''";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_p_empleados = $representante["nro_p_empleados"];
+			return $nro_p_empleados = $padre["nro_p_empleados"];
 		}
 
 
 		// Retorna el número de padres con cierto grado académico (Se puede filtrar)
-		public function get_nro_p_g_academico($g_academico) {
+		public function get_nro_p_g_academico($g_academico,$anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_p_g_academico FROM `vista_padres` WHERE `grado_academico` = '$g_academico'";
+			$sub_con = "
+				SELECT
+					`vista_padres`.`cedula`
+				FROM
+					`vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`vista_padres`.`grado_academico` = '$g_academico'
+			";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+			$sql = "SELECT COUNT(*) as `nro_p_g_academico` FROM ($sub_con) as `sub_con`";
+
+			// echo $sql."<br>";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_p_g_academico = $representante["nro_p_g_academico"];
+			return $nro_p_g_academico = $padre["nro_p_g_academico"];
 		}
 
 
@@ -232,12 +297,12 @@
 
 			}
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_sueldos_rem = $representante["nro_sueldos_rem"];
+			return $nro_sueldos_rem = $padre["nro_sueldos_rem"];
 		}
 
 
@@ -247,64 +312,157 @@
 
 			$sql = "SELECT COUNT(*) as nro_frec_rem FROM `vista_padres` WHERE `tipo_remuneracion` = '$f_remuneracion'";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_frec_rem = $representante["nro_frec_rem"];
+			return $nro_frec_rem = $padre["nro_frec_rem"];
 		}
 
 		
 		// Retorna el número de padres con cierto tipo de vivienda (Se puede filtrar)
-		public function get_nro_tipo_v($tipo_v) {
+		public function get_nro_tipo_v($tipo_v,$anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_tipo_v FROM `vista_padres` WHERE `tipo` = '$tipo_v'";
+			$sub_con = "
+				SELECT
+					`vista_padres`.`cedula`
+				FROM
+					`vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`vista_padres`.`tipo` = '$tipo_v'
+			";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+			$sql = "SELECT COUNT(*) as `nro_tipo_v` FROM ($sub_con) as `sub_con`";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_tipo_v = $representante["nro_tipo_v"];
+			return $nro_tipo_v = $padre["nro_tipo_v"];
 		}
 
 		
 		// Retorna el número de padres con cierta condicion de vivienda (Se puede filtrar)
-		public function get_nro_condicion_v($condicion_v) {
+		public function get_nro_condicion_v($condicion_v,$anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_condicion_v FROM `vista_padres` WHERE `condicion` = '$condicion_v'";
+			$sub_con = "
+				SELECT
+					`vista_padres`.`cedula`
+				FROM
+					`vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`vista_padres`.`condicion` = '$condicion_v'
+			";
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+			$sql = "SELECT COUNT(*) as `nro_condicion_v` FROM ($sub_con) as `sub_con`";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_condicion_v = $representante["nro_condicion_v"];
+			return $nro_condicion_v = $padre["nro_condicion_v"];
 		}
 
 		
 		// Retorna el número de padres con cierta tenencia de vivienda (Se puede filtrar)
-		public function get_nro_tenencia_v($tenencia) {
+		public function get_nro_tenencia_v($tenencia,$anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_tenencia_v FROM `vista_padres`";
+			$sub_con = "
+				SELECT
+					`vista_padres`.`cedula`
+				FROM
+					`vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+			";
 
 			if ($tenencia == "Otra") {
-				$sql .= "WHERE `tenencia` NOT IN ('Propia','Alquilada','Prestada')";
+				$sub_con .= "WHERE `tenencia` NOT IN ('Propia','Alquilada','Prestada')";
 			}
 			else {
-				$sql .= "WHERE `tenencia` = '$tenencia'";
+				$sub_con .= "WHERE `tenencia` = '$tenencia'";
 			}
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+			$sql = "SELECT COUNT(*) as `nro_tenencia_v` FROM ($sub_con) as `sub_con`";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_tenencia_v = $representante["nro_tenencia_v"];
+			return $nro_tenencia_v = $padre["nro_tenencia_v"];
 		}
 
 
@@ -362,29 +520,79 @@
 
 			// echo $sql;
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_hijos = $representante["nro_hijos"];
+			return $nro_hijos = $padre["nro_hijos"];
 		}
 
 
 		// Retorna el número de padres con cierta tenencia de vivienda (Se puede filtrar)
-		public function get_nro_pais($tenencia) {
+		public function get_nro_res_pais() {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_tenencia_v FROM `vista_padres` WHERE `pais_residencia` != ''";
+			$sql = "SELECT COUNT(*) as get_nro_res_pais FROM `vista_padres` WHERE `pais_residencia` != ''";
 
 
-			$consulta_representante = $conexion->query($sql) or die("error: ".$conexion->error);
-			$representante = $consulta_representante->fetch_assoc();
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_assoc();
 			
 			desconectarBD($conexion);
 
-			return $nro_tenencia_v = $representante["nro_tenencia_v"];
+			return $nro_tenencia_v = $padre["nro_tenencia_v"];
 		}
+
+
+		// Retorna el número de padres con cierta tenencia de vivienda (Se puede filtrar)
+		public function get_nro_p_paises($anio = NULL,$seccion = NULL) {
+			$conexion = conectarBD();
+
+
+			$sql = "
+				SELECT
+			    `vista_padres`.`pais_residencia`,
+			    COUNT(*) as `nro_padres`
+				FROM
+			    `vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` OR 
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				
+			";
+
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sql .= " WHERE ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sql .= implode(" AND ", $fil);
+
+			}
+
+			$sql .= "GROUP BY `vista_padres`.`pais_residencia`;";
+
+			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
+			$padre = $consulta_padre->fetch_all(MYSQLI_ASSOC);
+			
+			desconectarBD($conexion);
+
+			return $nro_p_pais = $padre;
+		}
+
+
 
 
 		public function get_cedula_persona() {

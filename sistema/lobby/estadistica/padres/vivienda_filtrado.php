@@ -4,7 +4,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tipo de vivienda</p>
+			<p class="h6">Padres por tipo de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -27,12 +27,12 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_tipo_v("Casa",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Apartamento",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Rancho",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Quinta",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Habitación",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Casa",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Apartamento",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Rancho",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Quinta",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Habitación",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -49,13 +49,13 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_tipo_v("Casa",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Apartamento",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Rancho",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Quinta",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Habitación",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tipo_v("Casa",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tipo_v("Apartamento",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tipo_v("Rancho",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tipo_v("Quinta",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tipo_v("Habitación",$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -73,7 +73,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por condición de vivienda</p>
+			<p class="h6">Padres por condición de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -94,10 +94,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_condicion_v("Buena",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_condicion_v("Regular",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_condicion_v("Mala",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Buena",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Regular",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Mala",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -114,11 +114,11 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_condicion_v("Buena",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_condicion_v("Regular",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_condicion_v("Mala",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_condicion_v("Buena",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_condicion_v("Regular",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_condicion_v("Mala",$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -136,7 +136,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tenencia de vivienda</p>
+			<p class="h6">Padres por tenencia de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -158,11 +158,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_tenencia_v("Propia",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Alquilada",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Prestada",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Otra",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Propia",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Alquilada",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Prestada",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Otra",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -179,12 +179,12 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_tenencia_v("Propia",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Alquilada",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Prestada",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Otra",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Propia",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Alquilada",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Prestada",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Otra",$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]

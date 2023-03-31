@@ -3,7 +3,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por grado de instrucción</p>
+			<p class="h6">Padres por grado de instrucción</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -24,10 +24,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_r_g_academico("Primaria",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_r_g_academico("Bachillerato",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_r_g_academico("Universitario",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_g_academico("Primaria",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_g_academico("Bachillerato",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_g_academico("Universitario",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -44,11 +44,11 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_r_g_academico("Primaria",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_r_g_academico("Bachillerato",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_r_g_academico("Universitario",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_p_g_academico("Primaria",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_p_g_academico("Bachillerato",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_p_g_academico("Universitario",$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]

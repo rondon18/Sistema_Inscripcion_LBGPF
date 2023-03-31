@@ -112,6 +112,8 @@
 			$valor = NULL;
 		}
 
+		var_dump($ret);
+
 		echo $ret;
 
 

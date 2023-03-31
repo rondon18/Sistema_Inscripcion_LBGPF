@@ -4,7 +4,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tipo de vivienda</p>
+			<p class="h6">Padres por tipo de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -27,12 +27,12 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_tipo_v("Casa");?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Apartamento");?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Rancho");?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Quinta");?></td>
-								<td><?php echo $representantes->get_nro_tipo_v("Habitación");?></td>
-								<td><?php echo $representantes->get_nro_representantes();?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Casa");?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Apartamento");?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Rancho");?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Quinta");?></td>
+								<td><?php echo $padres->get_nro_tipo_v("Habitación");?></td>
+								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -49,13 +49,13 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_tipo_v("Casa");?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Apartamento");?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Rancho");?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Quinta");?>,
-			        	<?php echo $representantes->get_nro_tipo_v("Habitación");?>,
+			        	<?php echo $padres->get_nro_tipo_v("Casa");?>,
+			        	<?php echo $padres->get_nro_tipo_v("Apartamento");?>,
+			        	<?php echo $padres->get_nro_tipo_v("Rancho");?>,
+			        	<?php echo $padres->get_nro_tipo_v("Quinta");?>,
+			        	<?php echo $padres->get_nro_tipo_v("Habitación");?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -73,7 +73,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por condición de vivienda</p>
+			<p class="h6">Padres por condición de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -94,10 +94,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_condicion_v("Buena");?></td>
-								<td><?php echo $representantes->get_nro_condicion_v("Regular");?></td>
-								<td><?php echo $representantes->get_nro_condicion_v("Mala");?></td>
-								<td><?php echo $representantes->get_nro_representantes();?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Buena");?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Regular");?></td>
+								<td><?php echo $padres->get_nro_condicion_v("Mala");?></td>
+								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -114,11 +114,11 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_condicion_v("Buena");?>,
-			        	<?php echo $representantes->get_nro_condicion_v("Regular");?>,
-			        	<?php echo $representantes->get_nro_condicion_v("Mala");?>,
+			        	<?php echo $padres->get_nro_condicion_v("Buena");?>,
+			        	<?php echo $padres->get_nro_condicion_v("Regular");?>,
+			        	<?php echo $padres->get_nro_condicion_v("Mala");?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -136,7 +136,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tenencia de vivienda</p>
+			<p class="h6">Padres por tenencia de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -158,11 +158,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_tenencia_v("Propia");?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Alquilada");?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Prestada");?></td>
-								<td><?php echo $representantes->get_nro_tenencia_v("Otra");?></td>
-								<td><?php echo $representantes->get_nro_representantes();?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Propia");?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Alquilada");?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Prestada");?></td>
+								<td><?php echo $padres->get_nro_tenencia_v("Otra");?></td>
+								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -179,12 +179,12 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_tenencia_v("Propia");?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Alquilada");?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Prestada");?>,
-			        	<?php echo $representantes->get_nro_tenencia_v("Otra");?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Propia");?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Alquilada");?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Prestada");?>,
+			        	<?php echo $padres->get_nro_tenencia_v("Otra");?>,
 			      	],
 			        borderWidth: 1
 			      }]
