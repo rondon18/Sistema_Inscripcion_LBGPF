@@ -252,8 +252,6 @@
 							}
 
 
-							// include("inform+acion/inicio_sesion.php");
-
 						?>
 
 					</div>
