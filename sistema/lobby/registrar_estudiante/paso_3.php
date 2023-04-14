@@ -776,7 +776,7 @@ $nivel = 2;
 										<!-- Año a cursar -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-4">
-												<label for="seccion_a_cursar" class="form-label requerido">¿Que seccion va a cursar?:</label>
+												<label for="seccion_a_cursar" class="form-label requerido">¿Que sección va a cursar?:</label>
 											</div>
 											<div class="col-12 col-lg-8">
 												<select class="form-select mb-2" name="seccion_a_cursar" required>

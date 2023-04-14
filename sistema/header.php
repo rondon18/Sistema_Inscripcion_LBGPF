@@ -9,8 +9,6 @@ for ($i=0; $i < $nivel; $i++) {
 	$ruta_header .= "../";
 }
 
-
-
 ?>
 
 <!--Banner-->

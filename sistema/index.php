@@ -1,6 +1,13 @@
 <?php
 
-$nivel = 0;
+	session_start();
+
+	$nivel = 0;
+
+	// evitar que el usuario vaya al index si no cierra sesión
+	if (isset($_SESSION['login'])) {
+		header('Location: lobby/index.php');	
+	}
 
 ?>
 <!DOCTYPE html>
