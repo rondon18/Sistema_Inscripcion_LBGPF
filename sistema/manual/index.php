@@ -252,7 +252,7 @@
 							}
 
 
-							// include("informacion/inicio_sesion.php");
+							// include("inform+acion/inicio_sesion.php");
 
 						?>
 
