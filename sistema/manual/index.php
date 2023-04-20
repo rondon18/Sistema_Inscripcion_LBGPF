@@ -103,143 +103,144 @@
 
 									// bloques de información especificos dentro de su sección
 
-									// Login
+									// sesiones
 									case 'a1':
+										require("informacion/sesiones/inicio_sesion.php");
 										$sub_menu = "a";
 										break;
 									case 'a2':
-										$sub_menu = "a";
-										break;
-									case 'a3':
-										$sub_menu = "a";
-										break;
-									case 'a4':
-										$sub_menu = "a";
-										break;
-									case 'a5':
-										$sub_menu = "a";
-										break;
-									case 'a6':
+										require("informacion/sesiones/inicio_sesion_auxiliar.php");
 										$sub_menu = "a";
 										break;
 
-
+									// registros
 									case 'b1':
+										require("informacion/registros/realizar_inscripcion.php");
 										$sub_menu = "b";
 										break;
 									case 'b2':
+										require("informacion/registros/actualizar_inscripcion.php");
 										$sub_menu = "b";
 										break;
 									case 'b3':
+										require("informacion/registros/eliminar_registros.php");
 										$sub_menu = "b";
 										break;
 									case 'b4':
+										require("informacion/registros/consultar_registros.php");
 										$sub_menu = "b";
 										break;
 									case 'b5':
+										require("informacion/registros/reportes_rapidos.php");
 										$sub_menu = "b";
 										break;
 									case 'b6':
+										require("informacion/registros/generacion_planillas.php");
 										$sub_menu = "b";
 										break;
 
 
+									// reportes
 									case 'c1':
+										require("informacion/reportes/estudiantes.php");
 										$sub_menu = "c";
 										break;
 									case 'c2':
+										require("informacion/reportes/representantes.php");
 										$sub_menu = "c";
 										break;
 									case 'c3':
+										require("informacion/reportes/padres.php");
 										$sub_menu = "c";
 										break;
 									case 'c4':
-										$sub_menu = "c";
-										break;
-									case 'c5':
-										$sub_menu = "c";
-										break;
-									case 'c6':
+										require("informacion/reportes/acerca_de.php");
 										$sub_menu = "c";
 										break;
 
-
+									// estadisticas
 									case 'd1':
+										require("informacion/estadistica/estudiantes.php");
 										$sub_menu = "d";
 										break;
 									case 'd2':
+										require("informacion/estadistica/representantes.php");
 										$sub_menu = "d";
 										break;
 									case 'd3':
+										require("informacion/estadistica/padres.php");
 										$sub_menu = "d";
 										break;
 									case 'd4':
-										$sub_menu = "d";
-										break;
-									case 'd5':
-										$sub_menu = "d";
-										break;
-									case 'd6':
+										require("informacion/estadistica/acerca_de.php");
 										$sub_menu = "d";
 										break;
 
 
+									// area de usuarios / adminitradores / desarrolladores
 									case 'e1':
+										require("informacion/area_usuarios/perfil.php");
 										$sub_menu = "e";
 										break;
 									case 'e2':
+										require("informacion/area_usuarios/darse_baja.php");
 										$sub_menu = "e";
 										break;
 									case 'e3':
+										require("informacion/area_usuarios/editar_perfil.php");
 										$sub_menu = "e";
 										break;
 									case 'e4':
+										require("informacion/area_usuarios/rol_adminitrador.php");
 										$sub_menu = "e";
 										break;
 									case 'e5':
+										require("informacion/area_usuarios/rol_desarrollador.php");
 										$sub_menu = "e";
 										break;
 									case 'e6':
+										require("informacion/area_usuarios/rol_usuario.php");
 										$sub_menu = "e";
 										break;
 
 
+									// area de mantenimiento
 									case 'f1':
+										require("informacion/mantenimiento/respaldos.php");
 										$sub_menu = "f";
 										break;
 									case 'f2':
-										$sub_menu = "f";
-										break;
-									case 'f3':
-										$sub_menu = "f";
-										break;
-									case 'f4':
-										$sub_menu = "f";
-										break;
-									case 'f5':
-										$sub_menu = "f";
-										break;
-									case 'f6':
+										require("informacion/mantenimiento/restauraciones.php");
 										$sub_menu = "f";
 										break;
 
 
+									// acerca del sistema
 									case 'g1':
+										require("informacion/info_sistema/info_sistema.php");
 										$sub_menu = "g";
 										break;
 									case 'g2':
+										require("informacion/info_sistema/desarrolladores.php");
 										$sub_menu = "g";
 										break;
 									case 'g3':
-										$sub_menu = "g";
-										break;
-									case 'g4':
-										$sub_menu = "g";
-										break;
-									case 'g5':
-										$sub_menu = "g";
-										break;
-									case 'g6':
+										
+										// Descarga el manual completo
+										if (isset($_SESSION['login']) and $_SESSION['datos_login']['privilegios'] < 2) {
+											header("Location: ../docs/Manual_de_usuario.pdf");
+										}
+
+										// Descarga el manual regular
+										elseif (isset($_SESSION['login']) and $_SESSION['datos_login']['privilegios'] >= 2) {
+											header("Location: ../docs/Manual_de_usuario.pdf");
+										}
+
+										// En caso de que se trate de un usuario no logeado
+										else {
+											require("menus/menu_principal.php");
+										}
+
 										$sub_menu = "g";
 										break;
 									

@@ -408,5 +408,6 @@ if (isset($_POST['paso_1'])) {
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_nuevo_usuario.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 	</body>
 </html>

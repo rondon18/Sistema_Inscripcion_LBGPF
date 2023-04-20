@@ -61,6 +61,9 @@
 							<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 							<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 							<script type="text/javascript" src="../../datatables/datatables.min.js"></script>
+							
+							<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+							<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 
 
 <?php 
@@ -439,7 +442,5 @@
 		<?php include('../../footer.php');?>
 		<?php include '../../ayuda.php';?>
 	</main>
-
-	
 </body>
 </html>

@@ -339,8 +339,9 @@
 		<?php include('../../footer.php');?>
 		<?php include('../../ayuda.php');?>
 	</main>
-<script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 <script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../../js/messages_es.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones/validaciones_usuario.js"></script>

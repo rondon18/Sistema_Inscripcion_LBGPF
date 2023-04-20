@@ -155,6 +155,7 @@
 	<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 	<script type="text/javascript" src="../../js/sweetalert2.js"></script>
 	<script type="text/javascript" src="../../js/reportes.js"></script>
+	<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 
 	<?php if (isset($_GET['exito'])): ?>
 		<script type="text/javascript">

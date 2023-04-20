@@ -16,7 +16,7 @@
 				<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Estadíticas de estudiantes.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=d1" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 				<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Estadísticas de representantes.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=d2" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 				<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Estadísticas de padres.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=d3" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
 				<i class="fa-solid fa-info-circle fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Acerca de las estadísticas.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=d4" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>

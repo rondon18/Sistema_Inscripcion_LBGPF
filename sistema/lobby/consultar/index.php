@@ -206,6 +206,11 @@
 		<?php include '../../ayuda.php'; ?>
 	</main>
 </div>
+
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
+
 <script type="text/javascript" defer>
 	function confirmacion() {
 		//Pregunta si desea realizar la acción la cancela si selecciona NO

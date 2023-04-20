@@ -1573,5 +1573,6 @@
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_representante.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 	</body>
 </html>

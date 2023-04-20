@@ -15,7 +15,7 @@
 				<i class="fa-solid fa-clipboard-list fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Inicio de sesión.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=a1" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 				<i class="fa-solid fa-file-export fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Inicio auxiliar.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=a2" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>

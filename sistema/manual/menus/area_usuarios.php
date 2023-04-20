@@ -16,7 +16,7 @@
 				<i class="fa-solid fa-user fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">El perfil.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e1" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 				<i class="fa-solid fa-user-pen fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Edición del perfil.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e2" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 				<i class="fa-solid fa-user-minus fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Darse de baja.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e3" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 				<i class="fa-solid fa-user-shield fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Rol como desarrollador.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e4" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 				<i class="fa-solid fa-user fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Rol como administrador.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e5" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 				<i class="fa-solid fa-user fa-2xl m-2"></i>
 				<div class="px-2 w-100">
 					<h6 class="card-title mb-2">Rol como usuario.</h6>
-					<a href="#" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<a href="?con=e6" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
 				</div>
 			</div>
 		</div>

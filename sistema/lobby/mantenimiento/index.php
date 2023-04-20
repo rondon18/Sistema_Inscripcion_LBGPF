@@ -163,10 +163,14 @@ $nivel = 2;
 			<?php include('../../ayuda.php'); ?>
 		</main>
 	</body>
-<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
+<script type="text/javascript" src="../../js/mantenimiento.js" defer></script>
+
+
 <?php if (isset($_GET['exito'])): ?>
 <script type="text/javascript">
 	let timerInterval
