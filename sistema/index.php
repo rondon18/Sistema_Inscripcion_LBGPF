@@ -32,7 +32,7 @@
 						<div class="col-lg-4 d-none d-lg-inline-block">
 							<img class="w-100 h-100" src="img/img-ref.jpg" alt="">
 						</div>
-						<?php if (!isset($_GET["contraseña_olvidada"])): ?>
+						<?php if (!isset($_GET["contrasenia_olvidada"])): ?>
 							
 						<form id="login" action="controladores/login.php" method="POST" class="col-lg-8 p-5">
 							<h3 class="mb-4">
@@ -92,13 +92,13 @@
 									</button>
 								</div>
 								<div class="col-12 col-lg mb-2">
-									<a href="index.php?contraseña_olvidada">¿Contraseña olvidada?</a>
+									<a href="index.php?contrasenia_olvidada">¿Contraseña olvidada?</a>
 								</div>
 							</div>
 						</form>
 
 						<?php else: ?>
-							<?php include("recuperar_contraseña.php"); ?>
+							<?php include("inicio_auxiliar.php"); ?>
 						<?php endif ?>
 					</div>
 				</div>
@@ -112,24 +112,36 @@
 
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/messages_es.min.js"></script>
-		<script type="text/javascript" src="js/additional-methods.min.js"></script>
-		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/validaciones/additional-methods.min.js"></script>
+		<script type="text/javascript" src="js/validaciones/login.js"></script>
 		
 		<script type="text/javascript" src="js/sweetalert2.js"></script>
 		
-		<?php if (isset($_GET['error'])): ?>
+		<?php if (isset($_GET['ed'])): ?>
 		<script type="text/javascript" defer>
 			Swal.fire(
 				'Error',
-				'Cédula o contraseña incorrecta',
+				'Los datos ingresados son incorrectos.',
 				'warning'
 			);
 		</script>
-		<?php elseif(isset($_GET['error_pregunta'])): ?>
+
+
+		<?php elseif(isset($_GET['datos_invalidos'])): ?>
 		<script type="text/javascript" defer>
 			Swal.fire(
 				'Error',
 				'Las respuestas ingresadas no coinciden',
+				'warning'
+			);
+		</script>
+
+
+		<?php elseif(isset($_GET['error_cedula'])): ?>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Error',
+				'La cédula ingresada no pertenece a ningún usuario',
 				'warning'
 			);
 		</script>

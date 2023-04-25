@@ -1,5 +1,7 @@
 // Deja una ventana de 10 minutos por si el usuario deja el equipo por momentos
-var segundos = 10;
+
+var minutos = 15;
+var segundos = minutos * 60;
 
 var inactivityTime = segundos * 1000; 
 var timeoutId;

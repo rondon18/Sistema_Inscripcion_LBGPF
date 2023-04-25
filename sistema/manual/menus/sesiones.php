@@ -8,7 +8,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Pantalla de inicio de sesión."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -26,7 +26,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Incio de sesión con preguntas de seguridad."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">

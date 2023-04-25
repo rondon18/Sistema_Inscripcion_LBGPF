@@ -19,15 +19,15 @@
 			// $respuesta_2 = $datos_usuario['respuesta_2'];
 		}
 		else {
-			header('Location: index.php?error');
+			header('Location: index.php?error_cedula');
 		}
 	}
 ?>
 
-<?php if (isset($_GET["contraseña_olvidada"])): ?>
+<?php if (isset($_GET["contrasenia_olvidada"])): ?>
 	<?php if (!isset($_POST['nacionalidad'],$_POST['cedula'])): ?>
 		
-		<form id="login" action="index.php?contraseña_olvidada" method="POST" class="col-lg-8 p-5">
+		<form id="login" action="index.php?contrasenia_olvidada" method="POST" class="col-lg-8 p-5">
 				
 			<h3 class="mb-5">
 				<i class="fa-solid fa-lg fa-lock me-2"></i>
