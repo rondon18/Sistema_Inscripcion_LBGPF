@@ -172,5 +172,5 @@ $lista_padres = $padres->mostrar_padres();
 </div>
 
 <link rel="stylesheet" href="../../datatables/datatables.min.css">
-<script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consultas/consulta_padres.js"></script>
+<script src="../../datatables/datatables.min.js" defer></script>
+<script src="../../js/consultas/consulta_padres.js" defer></script>

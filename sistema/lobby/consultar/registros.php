@@ -88,5 +88,5 @@
 	</table>
 </div>
 							
-<script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consultas/consulta_bitacora.js"></script>
+<script src="../../datatables/datatables.min.js" defer></script>
+<script src="../../js/consultas/consulta_bitacora.js" defer></script>

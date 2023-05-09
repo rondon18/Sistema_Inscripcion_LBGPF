@@ -503,7 +503,7 @@
 		// Crear un "escritor"
 		$escritor = new Xlsx($documento);
 
-		$n_archivo = "reporte_padre.xlsx";
+		$n_archivo = "Reporte_de_padres.xlsx";
 
 		// Guardado
 		// $escritor->save($n_archivo);

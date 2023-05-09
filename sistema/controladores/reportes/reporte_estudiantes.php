@@ -489,7 +489,7 @@
 					[
 						$estudiante["estatura"] 	. "cm",
 						$estudiante["peso"] 			. "kg",
-						$estudiante["indice_m_c"] . "cm",
+						$estudiante["indice_m_c"],
 						$estudiante["circ_braquial"],
 					]
 				);

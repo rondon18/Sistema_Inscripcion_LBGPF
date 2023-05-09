@@ -166,7 +166,7 @@
 		// Crear un "escritor"
 		$escritor = new Xlsx($documento);
 
-		$n_archivo = "reporte_usuario.xlsx";
+		$n_archivo = "Reporte_de_usuario.xlsx";
 
 		// Guardado
 		$escritor->save($n_archivo);

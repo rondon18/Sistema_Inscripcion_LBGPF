@@ -167,6 +167,8 @@ $("#formulario_padres").validate({
 		cedula_p: {
 			digits: true,
 			maxlength:11,
+			min: 8000000,
+			max: 30000000,
 		},
 		codigo_carnet_patria_p: {
 			digits: true,
@@ -241,6 +243,8 @@ $("#formulario_padres").validate({
 		cedula_m: {
 			digits: true,
 			maxlength:11,
+min: 8000000,
+			max: 30000000,
 		},
 		codigo_carnet_matria_m: {
 			digits: true,

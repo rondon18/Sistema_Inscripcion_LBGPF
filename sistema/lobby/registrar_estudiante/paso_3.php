@@ -214,22 +214,6 @@ $nivel = 2;
 											</div>
 										</div>
 
-										<div class="row mb-5">
-											<div class="col-12 mb-4">
-												<div class="form-check form-switch form-check-inline">
-													<input 
-														id="usar_c_e" 
-														class="form-check-input" 
-														type="checkbox" 
-														name="usar_c_e" 
-														value="no_tiene" 
-													>
-													<label for="usar_c_e" class="form-label">
-														El estudiante no tiene cédula.
-													</label>
-												</div>
-										</div>
-
 										<!-- Cédula escolar -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-4">
@@ -326,13 +310,30 @@ $nivel = 2;
 											</div>
 										</div>
 
+										<div class="row mb-5">
+											<div class="col-12 mb-4">
+												<div class="form-check form-switch form-check-inline">
+													<input 
+														id="usar_c_e" 
+														class="form-check-input" 
+														type="checkbox" 
+														name="usar_c_e" 
+														value="no_tiene" 
+													>
+													<label for="usar_c_e" class="form-label">
+														El estudiante no tiene cédula.
+													</label>
+												</div>
+										</div>
+
+
 										
 
 
-										<!-- Genero -->
+										<!-- Género -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-2">
-												<label class="form-label requerido">Genero:</label>
+												<label class="form-label requerido">Género:</label>
 											</div>
 											<div class="col-12 col-lg-10">
 												<!-- Femenino -->
@@ -931,7 +932,7 @@ $nivel = 2;
 										<div class="row mb-4">
 											<!-- Talla (Estatura) -->
 											<div class="col-12 col-lg-6 mb-3">
-												<label for="talla" class="form-label">Talla (Estatura):</label>
+												<label for="talla" class="form-label">Talla (Estatura en cm):</label>
 												<input 
 													id="talla"
 													class="form-control" 
@@ -947,7 +948,7 @@ $nivel = 2;
 											</div>
 											<!-- Peso -->
 											<div class="col-12 col-lg-6 mb-3">
-												<label for="peso" class="form-label">Peso:</label>
+												<label for="peso" class="form-label">Peso (kg):</label>
 												<input 
 													id="peso"
 													class="form-control" 
@@ -971,11 +972,12 @@ $nivel = 2;
 													type="number" 
 													name="indice" 
 													placeholder="Índice" 
-													maxlength="5"
+													maxlength="7"
 													min="0"
 													max="100" 
 													value="<?php echo dato_sesion_i("indice",3);?>"
-												>
+													readonly
+													>
 											</div>
 
 											<!-- Circunferencia braquial -->

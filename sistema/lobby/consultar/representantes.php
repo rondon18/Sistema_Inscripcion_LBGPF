@@ -208,5 +208,5 @@ $lista_representantes = $representantes->mostrar_representantes();
 	</table>
 </div>
 
-<script src="../../datatables/datatables.min.js"></script>
-<script src="../../js/consultas/consulta_representantes.js"></script>
+<script src="../../datatables/datatables.min.js" defer></script>
+<script src="../../js/consultas/consulta_representantes.js" defer></script>
