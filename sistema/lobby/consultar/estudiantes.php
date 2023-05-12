@@ -267,7 +267,7 @@
 				<!-- Acciones -->
 				<td>
 					<!--Generar planilla de inscripción-->
-					<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;" target="_blank">
+					<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;">
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
 						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
@@ -278,7 +278,7 @@
 					</form>
 					
 					<!--Generar acta de compromiso-->
-					<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;" target="_blank">
+					<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
@@ -300,7 +300,7 @@
 					</form>
 
 					<!-- Editar registro del estudiante -->
-					<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;" target="_blank">
+					<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">

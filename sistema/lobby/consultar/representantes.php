@@ -60,9 +60,6 @@ $lista_representantes = $representantes->mostrar_representantes();
 			<th>Datos economicos</th>
 			<th>Banco de la cuenta</th>
 
-			<!-- Acciones -->
-			<th>Acciones</th>
-
 		</thead>
 		<tbody>
 			<?php foreach ($lista_representantes as $representante): ?>
@@ -177,20 +174,6 @@ $lista_representantes = $representantes->mostrar_representantes();
 				<td><?php echo $representante['banco'];?></td>
 
 				<td>
-
-					<!-- Consultar el representante -->
-					<form action="#" method="post" target="_blank" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
-						<input type="hidden" name="accion" value="consultar">
-						<button class="btn btn-sm btn-primary">Consultar</button>
-					</form>
-
-					<!-- Editar el representante -->
-					<form action="#" method="post" target="_blank" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
-						<input type="hidden" name="accion" value="editar">
-						<button class="btn btn-sm btn-primary">Editar</button>
-					</form>
 
 					<?php if ($representantes->contar_representados() < 1): ?>
 					<!-- Eliminar el representante -->

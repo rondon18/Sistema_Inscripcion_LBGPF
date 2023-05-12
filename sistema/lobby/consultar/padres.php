@@ -33,7 +33,6 @@ $lista_padres = $padres->mostrar_padres();
 			<th>Dirección</th>
 			<th>Estado Civil</th>
 			<th>Hijos en el plantel</th>
-			<th>Acciones</th>
 		</thead>
 		<tbody>
 
@@ -138,20 +137,6 @@ $lista_padres = $padres->mostrar_padres();
 				</td>
 
 				<td>
-
-					<!-- Consultar el padre -->
-					<form action="#" method="post" target="_blank" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
-						<input type="hidden" name="accion" value="consultar">
-						<button class="btn btn-sm btn-primary">Consultar</button>
-					</form>
-
-					<!-- Editar el padre -->
-					<form action="#" method="post" target="_blank" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
-						<input type="hidden" name="accion" value="editar">
-						<button class="btn btn-sm btn-primary">Editar</button>
-					</form>
 
 					<?php if ($padres->contar_hijos() < 1): ?>
 					<!-- Eliminar el padre -->

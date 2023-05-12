@@ -49,14 +49,92 @@
 		 
 		    <h2 class="accordion-header" id="flush-headingOne">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-		        Paso 1: Datos del estudiante.
+		        Paso 1: Datos del representante.
 		      </button>
 		    </h2>
 		  
 		    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 		      
 		      <div class="accordion-body">
-		      	Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.
+		      	
+		      	<p>
+		      		Este paso cuenta con 4 secciones a completar:
+		      	</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos personales.
+							</u>
+						</h6>
+
+						<p>
+							Abarca la información personal del representante: nombres, apellidos, cédula, género, fecha y lugar de nacimiento, vinculo con el estudiante y carnet de la patria.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos de contacto.
+							</u>
+						</h6>
+
+						<p>
+							Abarca la información de dirección y contacto del representante:  
+						</p>
+
+						<ul>
+							
+							<li>
+								Una dirección compuesta por municipio y parroquia correspondientes, sector, calle, número de casa.
+							</li>
+							
+							<li>
+								En cuanto a medios de contacto, números de teléfono (entre 1 y 3) y correo electrónico.
+							</li>
+
+						</ul>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos vivienda.
+							</u>
+						</h6>
+
+						<p>
+							Incluye la condición, el tipo y la tenencia de la vivienda.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos económicos.
+							</u>
+						</h6>
+
+						<p>
+							Esta sección se divide en dos partes. Ambas son opcionales y pueden omitirse marcando la opción <b><i>NO</i></b> respectiva.
+						</p>
+		      	
+		      	<ul>
+		      		
+		      		<li>
+		      			Datos laborales: incluye el cargo que ocupa, el teléfono del trabajo, lugar donde trabaja, la remuneración en sueldos mínimos y con que frecuencia recibe esta.
+		      		</li>
+		      		
+		      		<li>
+		      			Datos económicos: incluye el banco, la cuenta bancaria y el tipo de cuenta.
+		      		</li>
+
+		      	</ul>
+
+		      	<h6 class="mt-2">
+							<u>
+								Contacto auxiliar.
+							</u>
+						</h6>
+
+						<p>
+							Abarca nombres, apellidos, número de teléfono y relación con el representante.
+						</p>
+		      
 		      </div>
 
 		    </div>
@@ -68,14 +146,76 @@
 		    
 		    <h2 class="accordion-header" id="flush-headingTwo">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-		        Paso 2: Datos del representante.
+		        Paso 2: Datos de los padres.
 		      </button>
 		    </h2>
 		    
 		    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
 		     
 		      <div class="accordion-body">
-		      	Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.
+		      	
+		      	<p>
+		      		En este paso se ingresan los datos tanto del padre como de la madre, teniendo estos dos los mismos campos disponibles:
+		      	</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos personales.
+							</u>
+						</h6>
+
+						<p>
+							Abarca la información personal de los padres: nombres, apellidos, cédula, género, fecha y lugar de nacimiento.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos de contacto.
+							</u>
+						</h6>
+
+						<p>
+							Abarca la información de dirección y contacto de los padres:  
+						</p>
+
+						<ul>
+							
+							<li>
+								País en que reside(de encontrarse en el extranjero) y dirección de residencia.
+							</li>
+							
+							<li>
+								En cuanto a medios de contacto, números de teléfono (entre 1 y 3) y correo electrónico.
+							</li>
+
+						</ul>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos vivienda.
+							</u>
+						</h6>
+
+						<p>
+							Incluye la condición, el tipo y la tenencia de la vivienda.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos económicos.
+							</u>
+						</h6>
+
+						<p>
+	      			Datos laborales: incluye el cargo que ocupa, el teléfono del trabajo, lugar donde trabaja, la remuneración en sueldos mínimos y con que frecuencia recibe esta.
+
+						</p>
+
+
+						<p>
+							<b>IMPORTANTE</b>: si al momento de llenar el paso 1 se especifica que el representantes es el padre o la madre<a href="#imagen3"><i>Ver imagen 3</i></a>).
+						</p>
+		      	
 		      </div>
 
 		    </div>
@@ -87,14 +227,68 @@
 
 		    <h2 class="accordion-header" id="flush-headingThree">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-		        Paso 3: Datos de los padres.
+		        Paso 3: Datos del estudiante.
 		      </button>
 		    </h2>
 
 		    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
 
 		      <div class="accordion-body">
-		      	Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
+		      	
+		      	<p>
+		      		Este paso cuenta con 4 secciones a completar:
+		      	</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos personales.
+							</u>
+						</h6>
+
+						<p>
+							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos de contacto.
+							</u>
+						</h6>
+
+						<p>
+							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos vivienda.
+							</u>
+						</h6>
+
+						<p>
+							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Datos económicos.
+							</u>
+						</h6>
+
+						<p>
+							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+						</p>
+		      	
+		      	<h6 class="mt-2">
+							<u>
+								Contacto auxiliar.
+							</u>
+						</h6>
+
+						<p>
+							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+						</p>
+		      
 		      </div>
 
 		    </div>
@@ -103,51 +297,6 @@
 
 
 		</div>
-
-
-
-
-
-
-
-		<article id="seccion1">
-			
-			<h4 class="mt-4">
-				<u>
-					
-				</u>
-			</h4>
-
-			<h5 class="mt-2">
-				<u>
-					Datos personales.
-				</u>
-			</h5>
-			
-		</article>
-
-
-		<article id="seccion2">
-			
-			<h4 class="mt-4">
-				<u>
-					
-				</u>
-			</h4>
-
-		</article>
-
-
-		<article id="seccion3">
-			
-			<h4 class="mt-4">
-				<u>
-					
-				</u>
-			</h4>
-
-		</article>
-
 
 
 
@@ -161,6 +310,210 @@
 		</h4>
 
 		<div class="row row-cols-1 row-cols-md-4">
+
+			<!-- Imagen 1: Pantalla de inicio de sesión -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen1" 
+							src="../img/manual/login_auxiliar_1.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen2" 
+							src="../img/manual/login_auxiliar_2.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen3" 
+							src="../img/manual/login_auxiliar_3.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
+				</figure>
+			</div>
+
+			<!-- Imagen 1: Pantalla de inicio de sesión -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen1" 
+							src="../img/manual/login_auxiliar_1.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen2" 
+							src="../img/manual/login_auxiliar_2.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen3" 
+							src="../img/manual/login_auxiliar_3.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
+				</figure>
+			</div>
+
+			<!-- Imagen 1: Pantalla de inicio de sesión -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen1" 
+							src="../img/manual/login_auxiliar_1.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen2" 
+							src="../img/manual/login_auxiliar_2.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen3" 
+							src="../img/manual/login_auxiliar_3.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
+				</figure>
+			</div>
+
+			<!-- Imagen 1: Pantalla de inicio de sesión -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen1" 
+							src="../img/manual/login_auxiliar_1.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen2" 
+							src="../img/manual/login_auxiliar_2.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
+				</figure>
+			</div>
+
+			<!-- Descripcion de la imagen -->
+			<div class="col p-2">
+				<figure class="text-center small">
+					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
+					  <img 
+							id="imagen3" 
+							src="../img/manual/login_auxiliar_3.png" 
+							class="img-fluid img-thumbnail"
+							data-bs-toggle="tooltip" 
+							data-bs-placement="top" 
+							title="Haga click para visualizar la imagen en tamaño completo."
+						>
+					</a>
+				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
+				</figure>
+			</div>
 
 			<!-- Imagen 1: Pantalla de inicio de sesión -->
 			<div class="col p-2">
