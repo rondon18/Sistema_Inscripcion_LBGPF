@@ -3,21 +3,15 @@
 <section class="row row-cols-1">
 
 	
+	<h1>Registros</h1>
+  <p class="lead">Consulta de registros de estudiantes</p>
+
 	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius obcaecati repellendus ut libero vero possimus soluta voluptatibus aspernatur laudantium qui repudiandae, quidem perspiciatis quo odio reprehenderit debitis provident magnam maiores.
+		Para eliminar un registro de estudiante, deberá acceder al modulo de consulta (<a href="./?con=b4">véase este</a>). Una vez en este, debe seleccionar el estudiante que desee eliminar y haga click sobre este
 	</p>
 
-	<dl class="row">
-		<dt class="col-sm-3">User Agent</dt>
-		<dd class="col-sm-9">An HTML user agent is any device that interprets HTML documents.</dd>
-		
-		<dt class="col-sm-3 text-truncate">Client-side Scripting</dt>
-		<dd class="col-sm-9">
-			Client-side scripting generally refers to the category of computer programs on the web that are executed by the user's web browser.
-		</dd>
-
-		<dt class="col-sm-3">Document Tree</dt>
-		<dd class="col-sm-9">The tree of elements encoded in the source document.</dd>
-	</dl>
+	<p>
+		Se desplegará un menú con distintas opciones, en este caso, seleccione la opción eliminar. Una vez hecho esto, se le mostrará un mensaje solicitando conformación para hacer esta acción, para prevenir que se eliminen de manera accidental los registros.
+	</p>
 
 </section>

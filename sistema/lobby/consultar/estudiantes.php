@@ -288,7 +288,7 @@
 					</form>
 
 					<!-- Consultar información completa del estudiante -->
-					<form action="consultar-estudiante.php" method="post" style="display: inline-block;">
+					<form action="consultar_estudiante.php" method="post" style="display: inline-block;">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">

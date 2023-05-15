@@ -52,7 +52,6 @@ $( "#boton-respaldar" ).click(function( event ) {
 			Swal.fire({
 				title: '¡Accion cancelada!',
 				icon: 'error',
-				text: 'Se generará un nuevo punto de respaldo.',
 				timer: 1000,
 				timerProgressBar: true,
 				didOpen: () => {

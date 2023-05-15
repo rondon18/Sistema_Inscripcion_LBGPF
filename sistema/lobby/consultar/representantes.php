@@ -173,18 +173,6 @@ $lista_representantes = $representantes->mostrar_representantes();
 				<td></td>
 				<td><?php echo $representante['banco'];?></td>
 
-				<td>
-
-					<?php if ($representantes->contar_representados() < 1): ?>
-					<!-- Eliminar el representante -->
-					<form action="../../controladores/registros/control_representantes_padres.php" method="post" target="_blank" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
-						<input type="hidden" name="accion" value="eliminar">
-						<button class="btn btn-sm btn-danger">Eliminar</button>
-					</form>
-					<?php endif ?>
-
-				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

@@ -136,19 +136,6 @@ $lista_padres = $padres->mostrar_padres();
 					?>
 				</td>
 
-				<td>
-
-					<?php if ($padres->contar_hijos() < 1): ?>
-					<!-- Eliminar el padre -->
-					<form action="../../controladores/registros/control_representantes_padres.php" method="post" class="d-inline-block">
-						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
-						<input type="hidden" name="accion" value="eliminar">
-						<button class="btn btn-sm btn-danger">Eliminar</button>
-					</form>
-					<?php endif ?>
-
-				</td>
-
 			</tr>
 			<?php endforeach; ?>
 

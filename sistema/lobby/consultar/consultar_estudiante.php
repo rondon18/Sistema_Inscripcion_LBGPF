@@ -89,6 +89,8 @@
 	$tlfs_madre = $telefonos->consultar_telefonos();
 
 
+	$nivel = 2;
+
 ?>
 
 <!DOCTYPE html>
@@ -103,22 +105,20 @@
 	<link rel="icon" type="img/png" href="../../img/icono.png">
 </head>
 <body>
-	<!--Banner-->
-	<header class="w-100 bg-white d-flex justify-content-center justify-content-md-between shadow p-1 position-fixed top-0" style="z-index:1000;">
 
-		<div>
-			<img src="../../img/banner-gobierno.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-			<img src="../../img/banner-MPPE.png" alt=""  height="42" class="d-none d-md-inline-block align-text-top">
-		</div>
-		<img src="../../img/banner-LGPF.png" alt=""  height="42" class="d-inline-block align-text-top">
-	</header>
-	<div class="card" style="width: 80%; margin: 60px auto;">
-		<div class="card-header">
-			<h3>Datos de inscripción del Estudiante</h3>
-		</div>
-		<div class="card-body">
 
-			<table id="Estudiante" class="table table-bordered table-striped table-hover" style="max-width:100%;">
+	<main class="d-flex flex-column justify-content-between vh-100">
+			
+			<?php include('../../header.php'); ?>
+			
+			<div class="container-md">
+				<div class="card w-100">
+					<div class="card-header text-center">
+						<b class="fs-4">Consulta de registros</b>
+					</div>
+					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
+
+						<table id="Estudiante" class="table table-bordered table-striped table-hover" style="max-width:100%;">
 				<tbody>
 					<tr class="table-primary">
 						<th colspan="4">Datos del Estudiante</th>
@@ -855,16 +855,86 @@
 					</tr>
 				</tbody>
 			</table>
+
+
+						<div style="max-height 70vh;min-height 60vh; overflow-y: auto;">
+
+						</div>
+
+					</div>
+
+					<div class="card-footer">
+						<a href="../index.php" class="btn btn-primary">
+							<i class="fa-solid fa-lg me-2 fa-home"></i>
+							Menú principal
+						</a>
+
+						<!--Generar planilla de inscripción-->
+						<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;">
+							
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $datos_padre['cedula'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $datos_madre['cedula'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+
+							<button class="btn btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+
+						</form>
+						
+						<!--Generar acta de compromiso-->
+						<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;">
+
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+
+							<button class="btn btn-danger" type="submit" name="Generar planilla de Compromiso">Generar planilla de compromiso <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+
+						</form>
+
+						<!-- Editar registro del estudiante -->
+						<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
+
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $datos_padre['cedula'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $datos_madre['cedula'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+
+							<button class="btn btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+
+						</form>
+						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
+						
+						<!-- Eliminar registro de estudiante -->
+						<form action="#" method="post" style="display: inline-block;">
+
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+							<button class="btn btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+
+						</form>
+						<?php endif;?>
+
+					</div>
+					
+				</div>
+			</div>
 		</div>
-		<div class="card-footer">
-			<a class="btn btn-primary" href="index.php">Volver a consultar</a>
-		</div>
-	</div>
-	<!--Footer-->
-	<footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2 position-fixed bottom-0">
-		<span class="text-white">Sistema de inscripción L.B. G.P.F <i class="far fa-copyright"></i> 2022 - <?php echo date("Y"); ?></span>
-	</footer>
-	<?php include '../../ayuda.php'; ?>
+		<?php include('../../footer.php'); ?>
+		<?php include '../../ayuda.php'; ?>
+	</main>
+
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" defer>
+	function confirmacion() {
+		//Pregunta si desea realizar la acción la cancela si selecciona NO
+		if(confirm("¿Desea realizar esta accion?")) {
+			alert("Acción ejecutada");
+			return true;
+		}
+		else {
+			alert("Acción cancelada");
+			return false;
+		}
+	}
+</script>
 </body>
 </html>

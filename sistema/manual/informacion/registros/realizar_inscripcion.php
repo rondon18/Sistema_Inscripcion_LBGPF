@@ -20,29 +20,16 @@
 
 
 		<p>
-			Al ingresar a esta pantalla verá un par de campos para completar: la nacionalidad y la cédula (<a href="#imagen1"><i>Ver imagen 1</i></a>), los cuales deberá llenar antes de pulsar el botón de verificar datos.
+			Al ingresar a esta pantalla se comenzará el proceso de inscripción el cual consta de tres secciones principales: representantes, padres y estudiantes; cada una de estos cuenta con secciones propias, las cuales se describen a continuación.
 		</p>
-
 
 		<p>
-			Una vez ingresados los datos que se solicitan, presione el botón <i>Verificar datos</i>, 
-			(<a href="#imagen2"><i>Ver imagen 2</i></a>). Luego de esto, se mostrará un nuevo formulario con las preguntas de seguridad correspondientes al usuario.
-		</p>
-
-
-		<p>
-			Complete los campos de las respuestas a las preguntas de seguridad y presione el botón <i>Verificar respuestas</i>. 
-			Debe tener en consideración que la respuesta toma en cuenta el uso de mayúsculas, acentos y símbolos al momento de verificarse 
-		</p>
-
-
-		<p>
-			<b>IMPORTANTE</b>: para hacer uso de esta función del sistema, el administrador debe haberle asignado un usuario con el cual trabajar. Ya que los datos ingresados serán validados, si estos coinciden con su usuario será enviado al menú principal, en caso contrario, será retornado a la pantalla de inicio de sesión con un mensaje que indica que los datos no son correctos (No se especifica cuál es correcto y cuál no)(<a href="#imagen3"><i>Ver imagen 3</i></a>).
+			<b>IMPORTANTE</b>: debe tomar en cuenta el tiempo de inactividad a la hora de llenar el formulario, puesto a que al pasar mucho tiempo inactivo continuo en la pestaña, se cerrará automáticamente su sesión y los datos ingresados se perderán.
 		</p>
 
 
 
-		<div class="accordion" id="accordionFlushExample">
+		<div class="accordion" id="secciones_formulario">
 
 
 		  <div class="accordion-item">
@@ -53,7 +40,7 @@
 		      </button>
 		    </h2>
 		  
-		    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+		    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#secciones_formulario">
 		      
 		      <div class="accordion-body">
 		      	
@@ -150,7 +137,7 @@
 		      </button>
 		    </h2>
 		    
-		    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+		    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#secciones_formulario">
 		     
 		      <div class="accordion-body">
 		      	
@@ -231,7 +218,7 @@
 		      </button>
 		    </h2>
 
-		    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+		    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#secciones_formulario">
 
 		      <div class="accordion-body">
 		      	
@@ -246,7 +233,7 @@
 						</h6>
 
 						<p>
-							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+							Abarca la información personal del estudiante: nombres, apellidos, cédula, cédula escolar, género, fecha y lugar de nacimiento.
 						</p>
 		      	
 		      	<h6 class="mt-2">
@@ -256,45 +243,90 @@
 						</h6>
 
 						<p>
-							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+							Incluye los medios de contacto con el estudiante, correo electrónico y números de teléfono.
 						</p>
 		      	
 		      	<h6 class="mt-2">
 							<u>
-								Datos vivienda.
+								Datos sociales.
 							</u>
 						</h6>
 
 						<p>
-							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+							Esta información abarca con quien vive el estudiante, con quienes vive en su hogar, si tiene canaima, su estado, si tiene conexión a internet y si tiene carnet de la patria.
 						</p>
 		      	
 		      	<h6 class="mt-2">
 							<u>
-								Datos económicos.
+								Datos académicos.
 							</u>
 						</h6>
 
 						<p>
-							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+							Comprende datos como el año y sección a cursar, y el plantel de procedencia. Además lo datos de repitencia, si el estudiante repite, que año repite y si tiene materias pendientes.
 						</p>
 		      	
 		      	<h6 class="mt-2">
 							<u>
-								Contacto auxiliar.
+								Datos de salud.
 							</u>
 						</h6>
 
 						<p>
-							Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Omnis maxime consectetur veniam aut ratione laborum aliquid a nostrum voluptatem nobis iure dolorem, eligendi? Libero possimus porro dolorem molestiae sunt ab.
+							Esta sección abarca distintos aspectos con respecto a la salud y condiciones del estudiante.
 						</p>
-		      
+
+						<ul>
+
+							<li>
+								Medidas corporales o antropometricas como estatura, peso y circunferencia braquial.
+							</li>
+
+							<li>
+								Enfermedades e impedimentos físicos.
+							</li>
+
+							<li>
+								Tipo de sangre y lateralidad.
+							</li>
+
+							<li>
+								Condiciones de la dentadura y de la vista.
+							</li>
+
+							<li>
+								Condiciones de salud (físicas, de aprendizaje, etc.).
+							</li>
+
+							<li>
+								Vacunas aplicadas.
+							</li>
+							
+							<li>
+								Vacunación contra el Covid-19.
+							</li>
+
+							<li>
+								Dietas, carnet de discapacidad e instituciones externas de las que reciba atención.
+							</li>
+
+						</ul>
+
+						<h6 class="mt-2">
+							<u>
+								Observaciones.
+							</u>
+						</h6>
+
+						<p>
+							Consta de las distintas observaciones que pueda hacer el representante del estudiante: físicas, sociales, personales, familiares y académicas. 
+						</p>
+
 		      </div>
 
 		    </div>
 
 		  </div>
-
 
 		</div>
 
@@ -311,260 +343,48 @@
 
 		<div class="row row-cols-1 row-cols-md-4">
 
-			<!-- Imagen 1: Pantalla de inicio de sesión -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen1" 
-							src="../img/manual/login_auxiliar_1.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
-				</figure>
-			</div>
 
+			<?php  
+
+				// Descripciones de las imágenes
+
+				$descripciones = [
+					"Vista de la sección de datos personales del representante",
+					"Vista de la sección de datos de contacto del representante",
+					"Vista de la sección de datos de vivienda del representante",
+					"Vista de la sección de datos económicos del representante",
+					"Vista de la sección de datos del contacto auxiliar del representante",
+					"Vista de la sección de datos de los padres",
+					"Vista del mensaje mostrado cuando un representante es padre o madre del estudiante",
+					"Vista de la sección de datos personales del estudiante",
+					"Vista de la sección de datos de contacto del estudiante",
+					"Vista de la sección de datos sociales del estudiante",
+					"Vista de la sección de datos académicos del estudiante",
+					"Vista de la sección de datos de salud del estudiante",
+					"Vista de la sección de observaciones del estudiante",
+					"Alerta visual en caso de haber olvidado un campo o tenga datos inválidos",
+				];
+
+			?>
+
+			<?php foreach ($descripciones as $key => $value): ?>
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/registrar_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
-							id="imagen2" 
-							src="../img/manual/login_auxiliar_2.png" 
+							id="imagen<?php echo $key;?>" 
+							src="../img/manual/registrar_<?php echo $key;?>.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 
 							title="Haga click para visualizar la imagen en tamaño completo."
 						>
 					</a>
-				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
+				  <figcaption><?php echo $key+1 . ". " . $value; ?>. </figcaption>
 				</figure>
 			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen3" 
-							src="../img/manual/login_auxiliar_3.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
-				</figure>
-			</div>
-
-			<!-- Imagen 1: Pantalla de inicio de sesión -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen1" 
-							src="../img/manual/login_auxiliar_1.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen2" 
-							src="../img/manual/login_auxiliar_2.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen3" 
-							src="../img/manual/login_auxiliar_3.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
-				</figure>
-			</div>
-
-			<!-- Imagen 1: Pantalla de inicio de sesión -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen1" 
-							src="../img/manual/login_auxiliar_1.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen2" 
-							src="../img/manual/login_auxiliar_2.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen3" 
-							src="../img/manual/login_auxiliar_3.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
-				</figure>
-			</div>
-
-			<!-- Imagen 1: Pantalla de inicio de sesión -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen1" 
-							src="../img/manual/login_auxiliar_1.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen2" 
-							src="../img/manual/login_auxiliar_2.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen3" 
-							src="../img/manual/login_auxiliar_3.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
-				</figure>
-			</div>
-
-			<!-- Imagen 1: Pantalla de inicio de sesión -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_1.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen1" 
-							src="../img/manual/login_auxiliar_1.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>1. Primer formulario con el usuario a consultar</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_2.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen2" 
-							src="../img/manual/login_auxiliar_2.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>2. Ejemplo del segundo formulario con las preguntas de seguridad</figcaption>
-				</figure>
-			</div>
-
-			<!-- Descripcion de la imagen -->
-			<div class="col p-2">
-				<figure class="text-center small">
-					<a href="../img/manual/login_auxiliar_3.png" target="_blank" style="cursor: zoom-in;">
-					  <img 
-							id="imagen3" 
-							src="../img/manual/login_auxiliar_3.png" 
-							class="img-fluid img-thumbnail"
-							data-bs-toggle="tooltip" 
-							data-bs-placement="top" 
-							title="Haga click para visualizar la imagen en tamaño completo."
-						>
-					</a>
-				  <figcaption>3. Mensaje de error en caso de ingresar una respuesta incorrecta</figcaption>
-				</figure>
-			</div>
+			<?php endforeach ?>
 
 		</div>
 

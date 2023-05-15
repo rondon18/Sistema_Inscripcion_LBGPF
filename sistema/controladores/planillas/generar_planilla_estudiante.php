@@ -59,45 +59,45 @@
 	$vac_covid19_est = new vac_covid19_est();
 	$vacunas_est = new vacunas_est();
 
-	if (!isset($_SESSION['var_planilla'])) {
-		$_SESSION['var_planilla'] = [];
-		foreach ($_POST as $dato => $valor) {
-			$_SESSION['var_planilla'][$dato] = $valor;
-		}
-	}
+	// if (!isset($_SESSION['var_planilla'])) {
+	// 	$_SESSION['var_planilla'] = [];
+	// 	foreach ($_POST as $dato => $valor) {
+	// 		$_SESSION['var_planilla'][$dato] = $valor;
+	// 	}
+	// }
 
 	// var_dump($_SESSION['var_planilla']);
 
 
 	// estudiante
-	$estudiantes->set_cedula_persona($_SESSION['var_planilla']['cedula']);
+	$estudiantes->set_cedula_persona($_POST['cedula']);
 	$datos_estudiante = $estudiantes->consultar_estudiantes();
 
-	$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula']);
+	$telefonos->set_cedula_persona($_POST['cedula']);
 	$tlfs_estudiante = $telefonos->consultar_telefonos();
 
 	
 	// representante
-	$representantes->set_cedula_persona($_SESSION['var_planilla']['cedula_representante']);
+	$representantes->set_cedula_persona($_POST['cedula_representante']);
 	$datos_representante = $representantes->consultar_representantes();
 
-	$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_representante']);
+	$telefonos->set_cedula_persona($_POST['cedula_representante']);
 	$tlfs_representante = $telefonos->consultar_telefonos();
 
 	
 	// padre
-	$padres->set_cedula_persona($_SESSION['var_planilla']['cedula_padre']);
+	$padres->set_cedula_persona($_POST['cedula_padre']);
 	$datos_padre = $padres->consultar_padres();
 
-	$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_padre']);
+	$telefonos->set_cedula_persona($_POST['cedula_padre']);
 	$tlfs_padre = $telefonos->consultar_telefonos();
 
 
 	// madre
-	$padres->set_cedula_persona($_SESSION['var_planilla']['cedula_madre']);
+	$padres->set_cedula_persona($_POST['cedula_madre']);
 	$datos_madre = $padres->consultar_padres();
 
-	$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_madre']);
+	$telefonos->set_cedula_persona($_POST['cedula_madre']);
 	$tlfs_madre = $telefonos->consultar_telefonos();
 
 	class PDF extends FPDF

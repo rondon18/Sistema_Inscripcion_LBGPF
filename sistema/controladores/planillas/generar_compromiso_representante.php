@@ -7,34 +7,34 @@
 				exit();
 		}
 
-		require('../fpdf/fpdf.php');
+		require('../../fpdf/fpdf.php');
 
-		require('../lobby/consultar/funciones.php');
+		require('../../lobby/consultar/funciones.php');
 
-		require('../controladores/conexion.php');
-		require('../clases/bitacora.php');
+		require('../conexion.php');
+		require('../../clases/bitacora.php');
 
-		require('../clases/antropometria_est.php');
-		require('../clases/carnet_patria.php');
-		require('../clases/condiciones_est.php');
-		require('../clases/contactos_aux.php');
-		require('../clases/datos_economicos.php');
-		require('../clases/datos_laborales.php');
-		require('../clases/datos_salud.php');
-		require('../clases/datos_sociales.php');
-		require('../clases/datos_vivienda.php');
-		require('../clases/direcciones.php');
-		require('../clases/estudiantes.php');
-		require('../clases/grado_a_cursar_est.php');
-		require('../clases/observaciones_est.php');
-		require('../clases/padres.php');
-		require('../clases/per_academico.php');
-		require('../clases/personas.php');
-		require('../clases/representantes.php');
-		require('../clases/tallas_est.php');
-		require('../clases/telefonos.php');
-		require('../clases/vac_covid19_est.php');
-		require('../clases/vacunas_est.php');
+		require('../../clases/antropometria_est.php');
+		require('../../clases/carnet_patria.php');
+		require('../../clases/condiciones_est.php');
+		require('../../clases/contactos_aux.php');
+		require('../../clases/datos_economicos.php');
+		require('../../clases/datos_laborales.php');
+		require('../../clases/datos_salud.php');
+		require('../../clases/datos_sociales.php');
+		require('../../clases/datos_vivienda.php');
+		require('../../clases/direcciones.php');
+		require('../../clases/estudiantes.php');
+		require('../../clases/grado_a_cursar_est.php');
+		require('../../clases/observaciones_est.php');
+		require('../../clases/padres.php');
+		require('../../clases/per_academico.php');
+		require('../../clases/personas.php');
+		require('../../clases/representantes.php');
+		require('../../clases/tallas_est.php');
+		require('../../clases/telefonos.php');
+		require('../../clases/vac_covid19_est.php');
+		require('../../clases/vacunas_est.php');
 
 		$antropometria_est = new antropometria_est();
 		$bitacora = new bitacora();
@@ -59,46 +59,46 @@
 		$vac_covid19_est = new vac_covid19_est();
 		$vacunas_est = new vacunas_est();
 
-		if (!isset($_SESSION['var_planilla'])) {
-				$_SESSION['var_planilla'] = [];
-				foreach ($_POST as $dato => $valor) {
-					$_SESSION['var_planilla'][$dato] = $valor;
-				}
-		}
+		// if (!isset($_SESSION['var_planilla'])) {
+		// 		$_SESSION['var_planilla'] = [];
+		// 		foreach ($_POST as $dato => $valor) {
+		// 			$_SESSION['var_planilla'][$dato] = $valor;
+		// 		}
+		// }
 
 		// var_dump($_SESSION['var_planilla']);
 
 
 		// estudiante
-		$estudiantes->set_cedula_persona($_SESSION['var_planilla']['cedula']);
+		$estudiantes->set_cedula_persona($_POST['cedula']);
 		$datos_estudiante = $estudiantes->consultar_estudiantes();
 
-		$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula']);
+		$telefonos->set_cedula_persona($_POST['cedula']);
 		$tlfs_estudiante = $telefonos->consultar_telefonos();
 
 		
 		// representante
-		$representantes->set_cedula_persona($_SESSION['var_planilla']['cedula_representante']);
+		$representantes->set_cedula_persona($_POST['cedula_representante']);
 		$datos_representante = $representantes->consultar_representantes();
 
-		$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_representante']);
+		$telefonos->set_cedula_persona($_POST['cedula_representante']);
 		$tlfs_representante = $telefonos->consultar_telefonos();
 
 		
-		// padre
-		$padres->set_cedula_persona($_SESSION['var_planilla']['cedula_padre']);
-		$datos_padre = $padres->consultar_padres();
+		// // padre
+		// $padres->set_cedula_persona($_POST['cedula_padre']);
+		// $datos_padre = $padres->consultar_padres();
 
-		$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_padre']);
-		$tlfs_padre = $telefonos->consultar_telefonos();
+		// $telefonos->set_cedula_persona($_POST['cedula_padre']);
+		// $tlfs_padre = $telefonos->consultar_telefonos();
 
 
-		// madre
-		$padres->set_cedula_persona($_SESSION['var_planilla']['cedula_madre']);
-		$datos_madre = $padres->consultar_padres();
+		// // madre
+		// $padres->set_cedula_persona($_POST['cedula_madre']);
+		// $datos_madre = $padres->consultar_padres();
 
-		$telefonos->set_cedula_persona($_SESSION['var_planilla']['cedula_madre']);
-		$tlfs_madre = $telefonos->consultar_telefonos();
+		// $telefonos->set_cedula_persona($_POST['cedula_madre']);
+		// $tlfs_madre = $telefonos->consultar_telefonos();
 
 
 
@@ -111,14 +111,14 @@
 		$pdf->AliasNbPages();
 		$pdf->SetMargins(10,5,10);
 		$pdf->AddPage();
-		$pdf->Image('../img/logo.jpg',30,2,150,10);
+		$pdf->Image('../..//img/logo.jpg',30,2,150,10);
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Ln(10);
 		$pdf->Cell(0,6,utf8_decode('COMPROMISO DEL REPRESENTANTE'),0,1,'C');
 		$pdf->Ln(15);
 		$pdf->SetFont('Arial','',9);
 
-		$pdf->MultiCell(0,5.5,utf8_decode('Yo, ' . $datos_representante['p_nombre'] . ' ' . $datos_representante['p_apellido'] . ' ' . 'C.I: ' . $datos_representante['cedula'] . ' como representante del estudiante ' . $datos_estudiante['p_nombre'] . ' ' . $datos_estudiante['s_nombre'] . ' ' . $datos_estudiante['p_apellido'] . ' ' . $datos_estudiante['s_apellido'] . ' del año: ' . $datos_estudiante['grado_a_cursar'] .' sección:_____, me comprometo a cumplir con lo siguiente:'),0,1);
+		$pdf->MultiCell(0,5.5,utf8_decode('Yo, ' . $datos_representante['p_nombre'] . ' ' . $datos_representante['p_apellido'] . ' ' . 'C.I: ' . $datos_representante['cedula'] . ' como representante del estudiante ' . $datos_estudiante['p_nombre'] . ' ' . $datos_estudiante['s_nombre'] . ' ' . $datos_estudiante['p_apellido'] . ' ' . $datos_estudiante['s_apellido'] . ' del año: ' . $datos_estudiante['grado_a_cursar'] .' sección: '. $datos_estudiante['seccion'] .', me comprometo a cumplir con lo siguiente:'),0,1);
 		$pdf->Ln(3);
 
 		$pdf->SetFont('Arial','',8,5);
@@ -165,7 +165,7 @@
 		$marca = strtotime($fecha_actual);
 
 
-		$fecha_expedicion = ucfirst(utf8_encode(strftime('%A'))).strftime('%e de %B de %Y', $marca);
+		$fecha_expedicion = ucfirst(utf8_encode(strftime('%A'))). ", " .strftime('%e de %B de %Y', $marca);
 
 		$pdf->Cell(0,6,utf8_decode('Fecha del compromiso: ' . $fecha_expedicion),0,1);
 		$pdf->Cell(0,6,utf8_decode('Coordinación de ' . $datos_estudiante['grado_a_cursar'] . ''),0,1,'C');
