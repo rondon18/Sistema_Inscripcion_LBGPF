@@ -1,8 +1,7 @@
-jQuery.validator.addMethod("pwcheck", function(value) {
-   return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
-       && /[a-z]/.test(value) // has a lowercase letter
-       && /\d/.test(value) // has a digit
-}, "Debe incluir letras mayúsculas y minúsculas, y números");
+
+$.validator.addMethod("pwcheck", function(value, element) {
+  return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/i.test(value);
+}, "La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (!@#$%^&*)");
 
 jQuery.validator.addMethod("lettersonly", function(value, element) 
 {

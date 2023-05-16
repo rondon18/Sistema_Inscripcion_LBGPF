@@ -1,36 +1,48 @@
 <?php
 
-session_start();
+	session_start();
 
-if (!$_SESSION['login']) {
-	header('Location: ../index.php');
-	exit();
-}
-
-$nivel = 2;
-
-// El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
-
-// Verificación al momento de enviar el formulario
-if (isset($_POST['paso_1'])) {
-	// Check de que el paso fue completado
-	$_SESSION['orden'] = "insertar";
-	$_SESSION['paso_1'] = $_POST['paso_1'];
-	
-
-	// Se almacenan los datos del formulario en un arreglo
-	$datos_usuario_nuevo = [];
-	foreach ($_POST as $indice => $valor) {
-		$datos_usuario_nuevo[$indice]= $valor;
+	if (!$_SESSION['login']) {
+		header('Location: ../index.php');
+		exit();
 	}
 
-	// Se anexan como arreglo de arreglos en una variable de sesión
-	$_SESSION['datos_usuario_nuevo'] = $datos_usuario_nuevo;
+	$nivel = 2;
 
-	// Redirecciona al paso 2
-	header('Location: ../../controladores/control_usuarios.php');
+	require("../../controladores/conexion.php");
+	require("../../clases/personas.php");
+	require("../../clases/usuarios.php");
 
-}
+	$usuario = new Usuarios();
+
+	$usuario->set_cedula_persona($_POST["cedula"]);
+	$datos_usuario = $usuario->consultar_usuario();
+
+
+	// El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
+
+	// Verificación al momento de enviar el formulario
+	if (isset($_POST['paso_1'])) {
+		// Check de que el paso fue completado
+		$_SESSION['orden'] = "editar_externo";
+		
+
+		// Se almacenan los datos del formulario en un arreglo
+		$datos_usuario_nuevos = [];
+		foreach ($_POST as $indice => $valor) {
+			$datos_usuario_nuevos[$indice]= $valor;
+		}
+
+		// Se anexan como arreglo de arreglos en una variable de sesión
+		$_SESSION['datos_usuario_nuevos'] = $datos_usuario_nuevos;
+
+		// Redirecciona al paso 2
+		header('Location: ../../controladores/control_usuarios.php');
+
+		var_dump($_SESSION['datos_usuario_nuevo']);
+
+	}
+
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +105,8 @@ if (isset($_POST['paso_1'])) {
 													name="p_nombre_u" 
 													placeholder="Primer nombre" 
 													minlength="3" 
-													required 
+													required
+													value="<?php echo $datos_usuario["p_nombre"];?>" 
 												>
 
 											</div>
@@ -105,6 +118,7 @@ if (isset($_POST['paso_1'])) {
 													name="s_nombre_u"  
 													placeholder="Segundo nombre"
 													minlength="3" 
+													value="<?php echo $datos_usuario["s_nombre"];?>" 
 												>
 											</div>
 										</div>
@@ -122,7 +136,8 @@ if (isset($_POST['paso_1'])) {
 													name="p_apellido_u" 
 													placeholder="Primer apellido" 
 													minlength="3" 
-													required 
+													required
+													value="<?php echo $datos_usuario["p_apellido"];?>" 
 												>
 
 											</div>
@@ -134,9 +149,15 @@ if (isset($_POST['paso_1'])) {
 													name="s_apellido_u" 
 													placeholder="Segundo apellido" 
 													minlength="3" 
+													value="<?php echo $datos_usuario["s_apellido"];?>" 
 												>
 											</div>
 										</div>
+
+										<?php 
+											$nacionalidad = trim($datos_usuario["cedula"],"123456789");
+											$cedula = trim($datos_usuario["cedula"],"VE"); 
+										?>
 
 										<!-- Cédula -->
 										<div class="row mb-4">
@@ -145,23 +166,30 @@ if (isset($_POST['paso_1'])) {
 											</div>
 
 											<div class="col-12 col-lg-4">
-													<select id="nacionalidad_u" class="form-select" name="nacionalidad_u" required>
-														<option value="">Nacionalidad</option>
-														<option value="V">V</option>
-														<option value="E">E</option>
-													</select>
+												<input 
+													id="nacionalidad_u" 
+													class="form-control" 
+													name="nacionalidad_u" 
+													required
+													value="<?php echo $nacionalidad;?>"
+													readonly
+												>
 											</div>
-											<div class="col-12 col-lg-6">
-													<input 
-														id="cedula_u" 
-														class="form-control" 
-														type="text"  name="cedula_u" 
-														maxlength="8" 
-														minlength="7" 
-														required 
-													>
 
-												</div>
+											<div class="col-12 col-lg-6">
+
+												<input 
+													id="cedula_u" 
+													class="form-control" 
+													type="text"  name="cedula_u" 
+													maxlength="8" 
+													minlength="7" 
+													required
+													value="<?php echo $cedula;?>" 
+													readonly
+												>
+
+											</div>
 										</div>
 										
 										<!-- Fecha de nacimiento y genero -->
@@ -180,7 +208,8 @@ if (isset($_POST['paso_1'])) {
 												min="<?php echo date('Y')-100 .'-01-01'?>" 
 												max="<?php echo date('Y')-18 .'-01-01'?>" 
 												title="Debe tener al menos 18 años." 
-												required 
+												required
+												value="<?php echo $datos_usuario["fecha_nacimiento"];?>" 
 											>
 											</div>	
 
@@ -199,6 +228,7 @@ if (isset($_POST['paso_1'])) {
 														name="genero_u" 
 														value="F" 
 														required
+														<?php if($datos_usuario["genero"] == "F") {echo "checked";} ?>
 													>
 												</div>
 												<div class="form-check form-check-inline">
@@ -210,6 +240,7 @@ if (isset($_POST['paso_1'])) {
 														name="genero_u" 
 														value="M" 
 														required
+														<?php if($datos_usuario["genero"] == "M") {echo "checked";} ?>
 													>
 												</div>
 												<label id="genero_u-error" class="error w-100" for="genero_u" style="display:none;"></label>
@@ -228,7 +259,8 @@ if (isset($_POST['paso_1'])) {
 													type="email" 
 													name="email_u" 
 													minlength="10" 
-													required 
+													required
+													value="<?php echo $datos_usuario["email"];?>" 
 												>
 											</div>	
 										</div>
@@ -253,32 +285,19 @@ if (isset($_POST['paso_1'])) {
 												</p>
 											</div>
 											<div class="col-12 col-md-8">
-												<select name="rol_sistema" class="form-select mb-2" required>
+												<select name="rol_sistema" class="form-select mb-2" required
+												value="<?php echo $datos_usuario[""];?>">
 													<option selected value="">Seleccione una opción</option>
-													<option value="Secretario(a)">Secretario(a)</option>
-													<option value="Coordinador(a) de primer año">Coordinador(a) de primer año</option>
-													<option value="Coordinador(a) de segundo año">Coordinador(a) de segundo año</option>
-													<option value="Coordinador(a) de tercer año">Coordinador(a) de tercer año</option>
-													<option value="Coordinador(a) de cuarto año">Coordinador(a) de cuarto año</option>
-													<option value="Coordinador(a) de quinto año">Coordinador(a) de quinto año</option>
-													<option value="Docente">Docente</option>
-													<option value="Director(a)">Director(a)</option>
-													<option value="Subdirector(a)">Subdirector(a)</option>
+													<option <?php if($datos_usuario["rol"] == "Secretario(a)") { echo "selected";}?> value="Secretario(a)">Secretario(a)</option>
+													<option <?php if($datos_usuario["rol"] == "Coordinador(a) de primer año") { echo "selected";}?> value="Coordinador(a) de primer año">Coordinador(a) de primer año</option>
+													<option <?php if($datos_usuario["rol"] == "Coordinador(a) de segundo año") { echo "selected";}?> value="Coordinador(a) de segundo año">Coordinador(a) de segundo año</option>
+													<option <?php if($datos_usuario["rol"] == "Coordinador(a) de tercer año") { echo "selected";}?> value="Coordinador(a) de tercer año">Coordinador(a) de tercer año</option>
+													<option <?php if($datos_usuario["rol"] == "Coordinador(a) de cuarto año") { echo "selected";}?> value="Coordinador(a) de cuarto año">Coordinador(a) de cuarto año</option>
+													<option <?php if($datos_usuario["rol"] == "Coordinador(a) de quinto año") { echo "selected";}?> value="Coordinador(a) de quinto año">Coordinador(a) de quinto año</option>
+													<option <?php if($datos_usuario["rol"] == "Docente") { echo "selected";}?> value="Docente">Docente</option>
+													<option <?php if($datos_usuario["rol"] == "Director(a)") { echo "selected";}?> value="Director(a)">Director(a)</option>
+													<option <?php if($datos_usuario["rol"] == "Subdirector(a)") { echo "selected";}?> value="Subdirector(a)">Subdirector(a)</option>
 												</select>
-											</div>
-										</div>
-
-										<!-- Privilegios sobre el sistema -->
-										<div class="row mb-2">
-											<div class="col-12 col-md-4">
-												<p class="h6">
-													Privilegios:
-												</p>
-											</div>
-											<div class="col-12 col-md-8">
-												<p>
-													
-												</p>
 											</div>
 										</div>
 
@@ -290,20 +309,21 @@ if (isset($_POST['paso_1'])) {
 
 											<!-- Pregunta 1 -->
 											<div class="col-12 col-md-6">
-												<select name="pregunta_seg_1" class="form-select mb-2" required>
+												<select name="pregunta_seg_1" class="form-select mb-2" required
+												value="<?php echo $datos_usuario[""];?>">
 													<option selected value="">Seleccione una opción</option>
-													<option value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
-													<option value="Ciudad donde naciste">Ciudad donde naciste</option>
-													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
-													<option value="Color que más te gusta">Color que más te gusta</option>
-													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
-													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
-													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
-													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
-													<option value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
-													<option value="Fecha de tu graduación">Fecha de tu graduación</option>
-													<option value="Fruta favorita">Fruta favorita</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Ciudad de tu luna de miel") { echo "selected";}?> value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Ciudad donde naciste") { echo "selected";}?> value="Ciudad donde naciste">Ciudad donde naciste</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Ciudad preferida de vacaciones") { echo "selected";}?> value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Color que más te gusta") { echo "selected";}?> value="Color que más te gusta">Color que más te gusta</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "¿Cuál es tu comida favorita?") { echo "selected";}?> value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "¿Cuál es tu heroe favorito?") { echo "selected";}?> value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "¿Cuál fue tu primer número de Teléfono?") { echo "selected";}?> value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Equipo deportivo preferido") { echo "selected";}?> value="Equipo deportivo preferido">Equipo deportivo preferido</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Fecha de aniversario de bodas") { echo "selected";}?> value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Fecha de nacimiento de tu padre") { echo "selected";}?> value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Fecha de tu graduación") { echo "selected";}?> value="Fecha de tu graduación">Fecha de tu graduación</option>
+													<option <?php if($datos_usuario["pregunta_seg_1"] == "Fruta favorita") { echo "selected";}?> value="Fruta favorita">Fruta favorita</option>
 												</select>
 											</div>
 											<div class="col-12 col-md-6">
@@ -314,26 +334,28 @@ if (isset($_POST['paso_1'])) {
 													placeholder="Respuesta a la pregunta" 
 													minlength="3" 
 													maxlength="50" 
-													required 
+													required
+													value="<?php echo $datos_usuario["respuesta_1"];?>" 
 												>
 											</div>
 											
 											<!-- Pregunta 2 -->
 											<div class="col-12 col-md-6">
-												<select name="pregunta_seg_2" class="form-select mb-2" required>
+												<select name="pregunta_seg_2" class="form-select mb-2" required
+												value="<?php echo $datos_usuario[""];?>">
 													<option selected value="">Seleccione una opción</option>
-													<option value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
-													<option value="Ciudad donde naciste">Ciudad donde naciste</option>
-													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
-													<option value="Color que más te gusta">Color que más te gusta</option>
-													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
-													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
-													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
-													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
-													<option value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
-													<option value="Fecha de tu graduación">Fecha de tu graduación</option>
-													<option value="Fruta favorita">Fruta favorita</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Ciudad de tu luna de miel") { echo "selected";}?> value="Ciudad de tu luna de miel">Ciudad de tu luna de miel</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Ciudad donde naciste") { echo "selected";}?> value="Ciudad donde naciste">Ciudad donde naciste</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Ciudad preferida de vacaciones") { echo "selected";}?> value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Color que más te gusta") { echo "selected";}?> value="Color que más te gusta">Color que más te gusta</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "¿Cuál es tu comida favorita?") { echo "selected";}?> value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "¿Cuál es tu heroe favorito?") { echo "selected";}?> value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "¿Cuál fue tu primer número de Teléfono?") { echo "selected";}?> value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Equipo deportivo preferido") { echo "selected";}?> value="Equipo deportivo preferido">Equipo deportivo preferido</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Fecha de aniversario de bodas") { echo "selected";}?> value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Fecha de nacimiento de tu padre") { echo "selected";}?> value="Fecha de nacimiento de tu padre">Fecha de nacimiento de tu padre</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Fecha de tu graduación") { echo "selected";}?> value="Fecha de tu graduación">Fecha de tu graduación</option>
+													<option <?php if($datos_usuario["pregunta_seg_2"] == "Fruta favorita") { echo "selected";}?> value="Fruta favorita">Fruta favorita</option>
 												</select>
 											</div>
 											<div class="col-12 col-md-6">
@@ -344,7 +366,8 @@ if (isset($_POST['paso_1'])) {
 													placeholder="Respuesta a la pregunta" 
 													minlength="3" 
 													maxlength="50" 
-													required 
+													required
+													value="<?php echo $datos_usuario["respuesta_2"];?>" 
 												>
 											</div>
 										</div>
@@ -352,7 +375,7 @@ if (isset($_POST['paso_1'])) {
 										<!-- Contraseña -->
 										<div class="row mb-2">
 											<div class="col-12 col-md-4">
-												<p class="h5 mb-4">Contraseña:</p>
+												<p class="h5 mb-4">Contraseña nueva:</p>
 											</div>
 
 											<div class="col-12 col-md-8">
@@ -360,17 +383,18 @@ if (isset($_POST['paso_1'])) {
 													class="form-control mb-4 mb-md-2" 
 													name="clave" 
 													type="text" 
-													placeholder="Respuesta a la pregunta" 
+													placeholder="Contraseña nueva" 
 													minlength="8" 
 													maxlength="22" 
-													required 
+													required
 												>
 											</div>
-										</div>								
+										</div>
+										<span class="form-text">La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (!@#$%^&*).</span>								
 									</section>
 
 									<input type="hidden" name="paso_1" value="paso_1">
-									<input type="hidden" name="orden" value="insertar">
+									<input type="hidden" name="orden" value="actualizar">
 								</form>
 							</div>
 						</div>

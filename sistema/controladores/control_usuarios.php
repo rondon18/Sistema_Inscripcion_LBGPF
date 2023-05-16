@@ -83,7 +83,7 @@
 				}
 
 				$usuarios->set_privilegios($privilegios);
-				$usuarios->set_contraseña($_SESSION['datos_usuario_nuevo']['clave']);
+				$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevo']['clave']);
 				$usuarios->set_pregunta_seg_1($_SESSION['datos_usuario_nuevo']['pregunta_seg_1']);
 				$usuarios->set_respuesta_1($_SESSION['datos_usuario_nuevo']['respuesta_1']);
 				$usuarios->set_pregunta_seg_2($_SESSION['datos_usuario_nuevo']['pregunta_seg_2']);
@@ -96,6 +96,7 @@
 		}
 		
 
+		// De editar perfil. Se debe cambiar
 		elseif ($_SESSION['orden'] == "editar") {
 
 			// cedula actual
@@ -139,6 +140,47 @@
 			$_SESSION['datos_login']['respuesta_1'] = $usuarios->get_respuesta_1();
 			$_SESSION['datos_login']['pregunta_seg_2'] = $usuarios->get_pregunta_seg_2();
 			$_SESSION['datos_login']['respuesta_2'] = $usuarios->get_respuesta_2();
+
+			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);
+
+			header('Location: ../lobby/index.php');
+
+		}
+		
+		// De editar perfil. Se debe cambiar
+		elseif ($_SESSION['orden'] == "editar_externo") {
+
+			var_dump($_SESSION["datos_usuario_nuevos"]);
+
+			// Datos de persona	
+
+			$cedula = $_SESSION['datos_usuario_nuevos']["nacionalidad_u"].$_SESSION['datos_usuario_nuevos']["cedula_u"];
+
+			$personas->set_cedula($cedula);
+			$personas->set_p_nombre($_SESSION['datos_usuario_nuevos']["p_nombre_u"]);
+			$personas->set_s_nombre($_SESSION['datos_usuario_nuevos']["s_nombre_u"]);
+			$personas->set_p_apellido($_SESSION['datos_usuario_nuevos']["p_apellido_u"]);
+			$personas->set_s_apellido($_SESSION['datos_usuario_nuevos']["s_apellido_u"]);
+			$personas->set_fecha_nacimiento($_SESSION['datos_usuario_nuevos']["fecha_nacimiento_u"]);
+			$personas->set_genero($_SESSION['datos_usuario_nuevos']["genero_u"]);
+			$personas->set_email($_SESSION['datos_usuario_nuevos']["email_u"]);
+			$personas->editar_persona($cedula);
+
+			// Inserta la persona
+
+
+			// datos de usuario
+
+			$usuarios->set_cedula_persona($personas->get_cedula());
+
+			$usuarios->set_pregunta_seg_1($_SESSION['datos_usuario_nuevos']['pregunta_seg_1']);
+			$usuarios->set_respuesta_1($_SESSION['datos_usuario_nuevos']['respuesta_1']);
+			$usuarios->set_pregunta_seg_2($_SESSION['datos_usuario_nuevos']['pregunta_seg_2']);
+			$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevos']['respuesta_2']);
+			$usuarios->editar_usuarios();
+
+			$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevos']['clave']);
+			$usuarios->editar_contrasenia();
 
 			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);
 

@@ -7,7 +7,7 @@
 		private $cedula_persona;
 		private $rol;
 		private $privilegios;
-		private $contraseña;
+		private $contrasenia;
 		private $pregunta_seg_1;
 		private $respuesta_1;
 		private $pregunta_seg_2;
@@ -23,7 +23,7 @@
 			$cedula_persona = $this->get_cedula_persona();
 			$rol = $this->get_rol();
 			$privilegios = $this->get_privilegios();
-			$contraseña = $this->get_contraseña();
+			$contrasenia = $this->get_contrasenia();
 			$pregunta_seg_1 = $this->get_pregunta_seg_1();
 			$respuesta_1 = $this->get_respuesta_1();
 			$pregunta_seg_2 = $this->get_pregunta_seg_2();
@@ -44,7 +44,7 @@
 			    '$cedula_persona',
 			    '$rol',
 			    '$privilegios',
-			    '$contraseña',
+			    '$contrasenia',
 			    '$pregunta_seg_1',
 			    '$respuesta_1',
 			    '$pregunta_seg_2',
@@ -90,6 +90,28 @@
 		}
 
 
+		public function editar_contrasenia() {
+			$conexion = conectarBD();
+
+			$cedula_persona = $this->get_cedula_persona();
+			$contrasenia = $this->get_contrasenia();
+
+			$sql = "
+				UPDATE
+			    `usuarios`
+				SET
+			    `contraseña` = '$contrasenia'
+				WHERE
+					`cedula_persona` = '$cedula_persona';
+			";
+
+			echo $sql;
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
+		}
+
 		public function mostrar_usuarios() {
 			// Muestra todos los usuarios registrados
 			$conexion = conectarBD();
@@ -110,7 +132,7 @@
 
 			$conexion = conectarBD();
 
-			$cedula = $this->get_cedula();;
+			$cedula = $this->get_cedula_persona();
 
 			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula';";
 
@@ -127,9 +149,9 @@
 			$conexion = conectarBD();
 
 			$cedula = $this->get_cedula();
-			$contraseña = $this->get_contraseña();
+			$contrasenia = $this->get_contrasenia();
 
-			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula' and contraseña = '$contraseña';";
+			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula' and contraseña = '$contrasenia';";
 
 			$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
 			$usuario = $consulta_usuario->fetch_assoc();
@@ -152,7 +174,7 @@
 			return $this->privilegios;
 		}
 		
-		public function get_contraseña() {
+		public function get_contrasenia() {
 			return $this->contraseña;
 		}
 		
@@ -186,8 +208,8 @@
 			$this->privilegios = $privilegios;
 		}
 		
-		public function set_contraseña($contraseña) {
-			$this->contraseña = $contraseña;
+		public function set_contrasenia($contrasenia) {
+			$this->contraseña = $contrasenia;
 		}
 		
 		public function set_pregunta_seg_1($pregunta_seg_1) {

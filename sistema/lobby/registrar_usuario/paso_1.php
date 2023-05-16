@@ -360,13 +360,14 @@ if (isset($_POST['paso_1'])) {
 													class="form-control mb-4 mb-md-2" 
 													name="clave" 
 													type="text" 
-													placeholder="Respuesta a la pregunta" 
+													placeholder="Contraseña" 
 													minlength="8" 
 													maxlength="22" 
 													required 
 												>
 											</div>
-										</div>								
+										</div>
+										<span class="form-text">La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (!@#$%^&*).</span>								
 									</section>
 
 									<input type="hidden" name="paso_1" value="paso_1">

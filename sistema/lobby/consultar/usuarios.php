@@ -65,28 +65,43 @@
 					
 				
 				<td style="min-width: 100vw;">
-					<form class="d-inline-block" action="">
-						<button class="btn btn-sm btn-danger">Editar</button>
-					</form>
-					<form class="d-inline-block" action="">
-						<button class="btn btn-sm btn-danger">Cambiar cargo</button>			
-					</form>
+
+					
 
 					<?php if ($usuario['privilegios'] < 2): ?>
+					
+					<div class="d-inline-block">
+						<button class="btn btn-sm btn-danger" title="No se pueden editar otros Administradores" disabled style="cursor:no-drop;">
+							Editar
+							<i class="fa-solid fa-user-edit fa-lg ms-2"></i>
+						</button>
+					</div>
+
 					<div class="d-inline-block">
 						<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
 							Eliminar Usuario
 							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 						</button>
 					</div>
+
 					<?php else: ?>
-					<form action="#" method="post">
+
+					<form class="d-inline-block" action="../editar_usuario/paso_1.php" method="post">
+						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
+						<button class="btn btn-sm btn-danger">
+							<i class="fa-solid fa-user-edit"></i>
+							Editar
+						</button>
+					</form>
+
+					<form class="d-inline-block" action="#" method="post">
 						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
 						<button class="btn btn-sm btn-danger" type="submit" name="orden" value="eliminar" onclick="return confirmacion();">
 							Eliminar Usuario
 							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 						</button>
 					</form>
+
 					<?php endif;?>
 				</td>
 			</tr>

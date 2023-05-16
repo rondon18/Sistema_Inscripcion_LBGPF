@@ -14,16 +14,16 @@
 	$usuarios = new usuarios();
 
 	// Si los campos de cedula y contraseña fueron llenados
-	if (isset($_POST['cedula'],$_POST['contraseña'])) {
+	if (isset($_POST['cedula'],$_POST['contrasenia'])) {
 
 		// Verifica que la cadena recibida no esté vacia
-		if (!empty($_POST['cedula']) and !empty($_POST['contraseña'])) {
+		if (!empty($_POST['cedula']) and !empty($_POST['contrasenia'])) {
 
 			$cedula = $_POST['nacionalidad'] . $_POST['cedula'];			
-			$contraseña = $_POST['contraseña'];
+			$contrasenia = $_POST['contrasenia'];
 
 			$usuarios->set_cedula($cedula);
-			$usuarios->set_contraseña($contraseña);
+			$usuarios->set_contrasenia($contrasenia);
 
 			$chequeo_login = $usuarios->chequeo_login();
 
