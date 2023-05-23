@@ -353,7 +353,7 @@
 				// Descripciones de las imágenes
 
 				$descripciones = [
-					"Vita del módulo de consulta de estudiantes",
+					"Vista del módulo de consulta de estudiantes",
 					"Opción de editar resaltada una vez seleccionado el estudiante",
 					"Vista de la sección de datos personales del representante",
 					"Vista de la sección de datos de contacto del representante",
@@ -377,10 +377,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/actualizar_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/actualizar/actualizar_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen<?php echo $key;?>" 
-							src="../img/manual/actualizar_<?php echo $key;?>.png" 
+							src="../img/manual/actualizar/actualizar_<?php echo $key;?>.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 

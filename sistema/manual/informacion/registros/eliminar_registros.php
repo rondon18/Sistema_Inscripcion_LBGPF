@@ -41,10 +41,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/eliminar_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/eliminar/eliminar_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen<?php echo $key;?>" 
-							src="../img/manual/eliminar_<?php echo $key;?>.png" 
+							src="../img/manual/eliminar/eliminar_<?php echo $key;?>.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 

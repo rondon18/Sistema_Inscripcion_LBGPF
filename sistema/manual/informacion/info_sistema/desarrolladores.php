@@ -21,3 +21,12 @@
 	</dl>
 
 </section>
+Los autores de este software de inscripción son un equipo de estudiantes universitarios compuesto por:
+
+    Juan Pérez: juan.perez@desarrollador.com
+
+    Ana García: cuenta de Twitter @anagsistemas
+
+    Luis Gómez: luis.gomez@desarrollador.com
+
+Estos jóvenes desarrolladores tienen experiencia en el campo del desarrollo de software y han creado un programa de inscripción altamente efectivo y fácil de usar. Si necesitas contactarlos, puedes utilizar la información proporcionada anteriormente.

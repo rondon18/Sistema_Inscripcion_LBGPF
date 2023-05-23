@@ -56,7 +56,7 @@
 								<span class="text-muted">Presione para mostrar las opciones del reporte</span>
 							</div>
 						</section>
-						<section class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+						<section class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
 
 							
 							<?php include("filtros_estudiantes.php");?>

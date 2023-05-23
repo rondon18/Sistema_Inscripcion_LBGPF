@@ -419,7 +419,7 @@
 
 	}
 
-	echo $lineas;
+	// echo $lineas;
 
 	// Estilos de la cabecera
 	$max_col = $hoja->getHighestColumn();

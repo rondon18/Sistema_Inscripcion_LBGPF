@@ -1,14 +1,14 @@
 
 <?php if (isset($manual)): ?>
 	
-<section class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+<section class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
 
 	<!-- Reporte de estudiantes -->
 	<div 
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos y opciones sobre el reporte."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -26,7 +26,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos y opciones sobre el reporte."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -44,7 +44,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos y opciones sobre el reporte."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -62,7 +62,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Información para abrir los reportes."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">

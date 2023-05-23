@@ -14,13 +14,13 @@
 	$usuarios = new usuarios();
 
 	// Si los campos de cedula y contraseña fueron llenados
-	if (isset($_POST['cedula'],$_POST['contrasenia'])) {
+	if (isset($_POST['cedula'],$_POST['contraseña'])) {
 
 		// Verifica que la cadena recibida no esté vacia
-		if (!empty($_POST['cedula']) and !empty($_POST['contrasenia'])) {
+		if (!empty($_POST['cedula']) and !empty($_POST['contraseña'])) {
 
 			$cedula = $_POST['nacionalidad'] . $_POST['cedula'];			
-			$contrasenia = $_POST['contrasenia'];
+			$contrasenia = $_POST['contraseña'];
 
 			$usuarios->set_cedula($cedula);
 			$usuarios->set_contrasenia($contrasenia);

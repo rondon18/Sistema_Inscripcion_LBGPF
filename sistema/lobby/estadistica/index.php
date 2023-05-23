@@ -83,7 +83,7 @@
 							<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 							<script type="text/javascript" src="../../../node_modules/chart.js/dist/chart.umd.js"></script>
 								
-								<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+								<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
 
 									<?php include('estudiantes.php');?>
 									<!-- Gestionar registros -->
