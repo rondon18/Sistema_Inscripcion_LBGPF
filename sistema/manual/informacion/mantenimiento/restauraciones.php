@@ -9,7 +9,7 @@
 	<div class="px-3">
   	
 	  <p>
-		  Pararespaldar la base de datos del sistema, deberá entrar en el apartado <b><i>Gestionar sistema.</i></b> en el menú principal.
+		  Para respaldar la base de datos del sistema, deberá entrar en el apartado <b><i>Gestionar sistema.</i></b> en el menú principal.
 	  </p>
 
 	  <p>
