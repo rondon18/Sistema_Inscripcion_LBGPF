@@ -13,7 +13,7 @@
 	  </p>
 
 	  <p>
-		  Una vez en este deberá pulsar la opción de Generar respaldo, al pulsarla	se desplegará un mensaje solicitando confirmación para generar el respaldo, si se confirma que se desea generar el respado entoces este se generará y será descargado (dependiendo del navegador). También será almacenado en el sistema.
+		  Una vez en este deberá pulsar la opción de Generar respaldo, al pulsarla	se desplegará un mensaje solicitando confirmación para generar el respaldo, si se confirma que se desea generar el respaldo entoces este se generará y será descargado (dependiendo del navegador). También será almacenado en el sistema.
 	  </p>
 
 	  
