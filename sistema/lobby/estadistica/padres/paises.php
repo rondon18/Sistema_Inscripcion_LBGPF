@@ -3,7 +3,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por país en que residen</p>
+			<p class="h6">Padres por país en que residen</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -17,7 +17,7 @@
 							<thead class="text-nowrap">
 								<tr>
 									<th class="text-center">País</th>
-									<th class="text-center">Número de representantes</th>
+									<th class="text-center">Número de padres</th>
 								</tr>
 							</thead>
 
@@ -62,7 +62,7 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
 			        	<?php $i = 0; ?>
 			        	<?php foreach ($lista_paises as $pais): ?>

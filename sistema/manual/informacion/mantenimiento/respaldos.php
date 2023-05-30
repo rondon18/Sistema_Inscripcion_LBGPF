@@ -31,11 +31,10 @@
 			  // Descripciones de las imágenes
 
 			  $descripciones = [
-				  "Vista principal del módulo de mantenimiento",
-				  "Mensaje de solicitud de confirmación para generar respaldo",
-				  "Mensaje de confirmación de generación del respaldo",
-				  "Reporte descargado",
-				  "Mensaje de cancelación"
+				  "Vista general del módulo de mantenimiento",
+				  "Menú de respaldos disponibles",
+				  "Respaldo seleccionado",
+				  "Notificación de que se restaurará la base de datos",
 			  ];
 
 		  ?>
@@ -44,10 +43,10 @@
 		  <!-- Descripcion de la imagen -->
 		  <div class="col p-2">
 			  <figure class="text-center small">
-				  <a href="../img/manual/reportes/estudiantes_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
+				  <a href="../img/manual/mantenimiento/respaldo_<?php echo $key;?>.jpg" target="_blank" style="cursor: zoom-in;">
 					<img 
 						  id="imagen<?php echo $key;?>" 
-						  src="../img/manual/reportes/estudiantes_<?php echo $key;?>.png" 
+						  src="../img/manual/mantenimiento/respaldo_<?php echo $key;?>.jpg" 
 						  class="img-fluid img-thumbnail"
 						  data-bs-toggle="tooltip" 
 						  data-bs-placement="top" 

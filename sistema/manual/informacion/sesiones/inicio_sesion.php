@@ -65,10 +65,10 @@
 			<!-- Imagen 1: Pantalla de inicio de sesión -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/pantalla_login_1.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/login/pantalla_login_1.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen1" 
-							src="../img/manual/pantalla_login_1.png" 
+							src="../img/manual/login/pantalla_login_1.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 
@@ -82,10 +82,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/pantalla_login_2.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/login/pantalla_login_2.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen2" 
-							src="../img/manual/pantalla_login_2.png" 
+							src="../img/manual/login/pantalla_login_2.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 
@@ -99,10 +99,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/pantalla_login_3.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/login/pantalla_login_3.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen3" 
-							src="../img/manual/pantalla_login_3.png" 
+							src="../img/manual/login/pantalla_login_3.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 
@@ -116,10 +116,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/pantalla_login_4.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/login/pantalla_login_4.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen4" 
-							src="../img/manual/pantalla_login_4.png" 
+							src="../img/manual/login/pantalla_login_4.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 
@@ -133,10 +133,10 @@
 			<!-- Descripcion de la imagen -->
 			<div class="col p-2">
 				<figure class="text-center small">
-					<a href="../img/manual/pantalla_login_5.png" target="_blank" style="cursor: zoom-in;">
+					<a href="../img/manual/login/pantalla_login_5.png" target="_blank" style="cursor: zoom-in;">
 					  <img 
 							id="imagen5" 
-							src="../img/manual/pantalla_login_5.png" 
+							src="../img/manual/login/pantalla_login_5.png" 
 							class="img-fluid img-thumbnail"
 							data-bs-toggle="tooltip" 
 							data-bs-placement="top" 

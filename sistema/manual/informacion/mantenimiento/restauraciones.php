@@ -43,10 +43,10 @@
 		  <!-- Descripcion de la imagen -->
 		  <div class="col p-2">
 			  <figure class="text-center small">
-				  <a href="../img/manual/reportes/estudiantes_<?php echo $key;?>.png" target="_blank" style="cursor: zoom-in;">
+				  <a href="../img/manual/mantenimiento/restauracion_<?php echo $key;?>.jpg" target="_blank" style="cursor: zoom-in;">
 					<img 
 						  id="imagen<?php echo $key;?>" 
-						  src="../img/manual/reportes/estudiantes_<?php echo $key;?>.png" 
+						  src="../img/manual/mantenimiento/restauracion_<?php echo $key;?>.jpg" 
 						  class="img-fluid img-thumbnail"
 						  data-bs-toggle="tooltip" 
 						  data-bs-placement="top" 

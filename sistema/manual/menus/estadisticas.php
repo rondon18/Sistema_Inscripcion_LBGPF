@@ -9,7 +9,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos visibles, funcion y uso."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -27,7 +27,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos visibles, funcion y uso."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -45,7 +45,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos visibles, funcion y uso."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -63,7 +63,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Datos visibles, funcion y uso."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
