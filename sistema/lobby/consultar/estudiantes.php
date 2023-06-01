@@ -313,10 +313,11 @@
 					<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 					
 					<!-- Eliminar registro de estudiante -->
-					<form action="#" method="post" style="display: inline-block;">
+					<form action="#" method="post" style="display: inline-block;" onsubmit="confirmar_envio(event)">
 
 						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<button class="btn btn-sm btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+						<input type="hidden" name="orden" value="eliminar">
+						<button class="btn btn-sm btn-primary" type="submit">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
 
 					</form>
 					<?php endif;?>

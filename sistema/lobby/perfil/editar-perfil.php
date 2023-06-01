@@ -109,8 +109,7 @@
 													type="text"  
 													name="s_nombre_u"  
 													placeholder="Segundo nombre"
-													minlength="3" 
-													required 
+													minlength="3"  
 													value="<?php echo $_SESSION['datos_login']['s_nombre'] ?? NULL ?>"
 												>
 											</div>
@@ -141,7 +140,6 @@
 													name="s_apellido_u"  
 													placeholder="Segundo apellido" 
 													minlength="3" 
-													required 
 													value="<?php echo $_SESSION['datos_login']['s_apellido'] ?? NULL ?>"
 												>
 

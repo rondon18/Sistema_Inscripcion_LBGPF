@@ -1,23 +1,70 @@
 
+
 	
 <section class="row row-cols-1">
 
 	
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius obcaecati repellendus ut libero vero possimus soluta voluptatibus aspernatur laudantium qui repudiandae, quidem perspiciatis quo odio reprehenderit debitis provident magnam maiores.
-	</p>
+	<h1>Área del usuario</h1>
+  <p class="lead">Rol del usuario</p>
 
-	<dl class="row">
-		<dt class="col-sm-3">User Agent</dt>
-		<dd class="col-sm-9">An HTML user agent is any device that interprets HTML documents.</dd>
-		
-		<dt class="col-sm-3 text-truncate">Client-side Scripting</dt>
-		<dd class="col-sm-9">
-			Client-side scripting generally refers to the category of computer programs on the web that are executed by the user's web browser.
-		</dd>
 
-		<dt class="col-sm-3">Document Tree</dt>
-		<dd class="col-sm-9">The tree of elements encoded in the source document.</dd>
-	</dl>
+	<div class="px-3">
+
+
+		<!-- información del módulo -->
+
+		<h4>
+			<u>
+				Acerca del usuario regular.
+			</u>
+		</h4>
+
+		<p>
+			Como usuario regular, sea ya un(a) secretario(a) o algún otro rol de nivel 2. Tendrá funciones básicas del sistema, entre ellas:
+		</p>
+
+		<ul>
+			<li>
+				Realizar el proceso de inscripción y edición de estudiantes.
+				<ul>
+					<li>
+						No se cuentan con permisos para eliminar estudiantes.
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				Generar planillas de inscripción.
+			</li>
+
+			<li>
+				Generar planillas de acta de compromiso.
+			</li>
+
+			<li>
+				Consultar los datos de los estudiantes, padres y representantes.
+			</li>
+
+			<li>
+				Consultar las estadísticas.
+			</li>
+
+			<li>
+				Generar reportes rápidos y reportes con filtros desde el módulo.
+			</li>
+
+			<li>
+				Consultar y modificar los datos de su perfil.
+			</li>
+
+			<li>
+				Darse de baja del sistema.
+			</li>
+
+		</ul>
+
+	</div>
+
+
 
 </section>

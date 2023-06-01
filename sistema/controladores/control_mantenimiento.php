@@ -17,11 +17,12 @@ if (isset($_POST['orden']) and $_POST['orden']) {
 	$orden = $_POST['orden'];
 		
 	if ($orden == "Respaldar") {
-		$mantenimiento->respaldarBD();
+		$mantenimiento->respaldar_bd();
 	}
 	
 	elseif ($orden == "Restaurar") {
-		$mantenimiento->restaurarBD($_POST['respaldo']);
+		$mantenimiento->respaldar_bd(false);
+		$mantenimiento->restaurar_bd($_POST['respaldo']);
 		header('Location: ../lobby/mantenimiento/index.php?exito');
 	}
 }

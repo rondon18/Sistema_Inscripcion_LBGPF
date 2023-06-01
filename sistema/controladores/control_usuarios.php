@@ -3,7 +3,7 @@
 	session_start();
 
 	if (!$_SESSION['login']) {
-		header('Location: ../index.php');
+		header('Location: ../index.php?exito');
 		exit();
 	}
 
@@ -90,7 +90,7 @@
 				$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevo']['respuesta_2']);
 				$usuarios->insertar_usuarios();
 
-				header('Location: ../lobby/consultar/index.php');
+				header('Location: ../lobby/consultar/index.php?exito');
 			}
 
 		}
@@ -143,7 +143,7 @@
 
 			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);
 
-			header('Location: ../lobby/index.php');
+			header('Location: ../lobby/index.php?exito');
 
 		}
 		
@@ -184,7 +184,7 @@
 
 			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);
 
-			header('Location: ../lobby/index.php');
+			header('Location: ../lobby/index.php?exito');
 
 		}
 		
@@ -195,7 +195,17 @@
 				$personas->set_cedula($_SESSION['eliminar_usuario']);
 				$personas->eliminar_persona();
 
-				header('Location: ../lobby/consultar/index.php?sec=usu');
+				header('Location: ../lobby/consultar/index.php?sec=usu&exito');
+			}
+		}
+
+		elseif ($_SESSION['orden'] == "baja") {
+			if (isset($_SESSION['eliminar_usuario'])) {
+			
+				$personas->set_cedula($_SESSION['eliminar_usuario']);
+				$personas->eliminar_persona();
+
+				header('Location: logout.php');
 			}
 		}
 		

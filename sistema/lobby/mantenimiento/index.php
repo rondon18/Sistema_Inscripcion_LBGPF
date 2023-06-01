@@ -124,7 +124,19 @@ $nivel = 2;
 																class="small" 
 																value="<?php echo substr($elemento, 16); ?>"
 															>
-															<?php echo substr($elemento, 16,-4);?>
+
+															<?php 
+															
+																// Formatea la fecha y hora del respaldo en algo más legible
+
+																$date = explode("__", substr($elemento, 16,-4));
+
+																$fecha = str_replace("-", "/", $date[1]);
+																$hora = str_replace("-", ":", $date[2]);
+
+																echo "Respaldo del " . $fecha . " a las " . $hora;
+
+															?>
 															</option>
 															
 															<?php endforeach ?>
@@ -195,6 +207,7 @@ $nivel = 2;
 			console.log("Cerrado por el temporizador")
 		}
 	})
+	
 </script>
 <?php endif ?>
 </html>

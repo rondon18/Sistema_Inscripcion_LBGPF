@@ -4,7 +4,7 @@
 
 		public function __construct(){}
 
-		public function respaldarBD() {
+		public function respaldar_bd($descarga = true) {
 			$conexion = conectarBD();
 
 			$nombre_respaldo 	= "respaldo";
@@ -25,9 +25,14 @@
 
 			// Registro del respaldo generado
 
-			header("Location: ../respaldos/$respaldo");
+			if ($descarga == true) {
+				header("Location: ../respaldos/$respaldo");
+			}
+
 		}
-		public function restaurarBD($respaldo) {
+
+
+		public function restaurar_bd($respaldo) {
 			#Devuelve la base de datos a un estado anterior o a su estado inicial
 
 			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost base_proyecto_nueva < ../respaldos/".$respaldo;

@@ -21,6 +21,18 @@
 	$nombre_completo = $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['s_nombre']." ".$_SESSION['datos_login']['p_apellido']." ".$_SESSION['datos_login']['s_apellido'];
 
 	$nivel = 2;
+
+	if (isset($_POST['orden'])) {
+		if ($_POST['orden'] == "baja") {
+
+			$_SESSION['orden'] = $_POST['orden'];
+			$_SESSION['eliminar_usuario'] = $_POST['cedula'];
+
+			header('Location: ../../controladores/control_usuarios.php');
+		}
+	}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -73,10 +85,18 @@
 												Editar perfil
 											</a>
 											
-											<a class="btn btn-sm btn-primary" href="#">
-												<i class="fa-solid me-2 fa-user-minus"></i>
-												Darse de baja
-											</a>
+											<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
+												
+												<input type="hidden" name="orden" value="baja">
+												<input type="hidden" name="cedula" value="<?php echo $_SESSION['datos_login']['cedula']; ?>">
+
+												<button class="btn btn-sm btn-primary" type="submit">
+													<i class="fa-solid me-2 fa-user-minus"></i>
+													Darse de baja
+												</button>
+
+											</form>
+
 
 										</div>
 									</div>
@@ -176,7 +196,7 @@
 												</p>
 											</div>
 											<div class="col-12 col-lg-8">
-												<p><?php echo testRol();?></p>
+												<p><?php echo $_SESSION['datos_login']['rol'];?></p>
 											</div>
 										</div>
 
@@ -243,6 +263,27 @@
 	</main>
 	<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 	<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+	<script>
+	  function confirmar_envio(event) {
+	    event.preventDefault(); // Detiene la acción predeterminada del evento onSubmit
+	    
+	    Swal.fire({
+	      title: '¿Estás seguro?',
+	      text: '¿Deseas darse se baja como usuario?',
+	      icon: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Sí',
+	      cancelButtonText: 'No'
+	    }).then((result) => {
+	      if (result.isConfirmed) {
+	        // Si el usuario confirma la acción, se envía el formulario
+	        event.target.submit();
+	      }
+	    });
+	  }
+	</script>
 	<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>

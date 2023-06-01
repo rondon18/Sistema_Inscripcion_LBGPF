@@ -183,19 +183,19 @@
 										$sub_menu = "e";
 										break;
 									case 'e2':
-										require("informacion/area_usuarios/darse_baja.php");
-										$sub_menu = "e";
-										break;
-									case 'e3':
 										require("informacion/area_usuarios/editar_perfil.php");
 										$sub_menu = "e";
 										break;
+									case 'e3':
+										require("informacion/area_usuarios/darse_baja.php");
+										$sub_menu = "e";
+										break;
 									case 'e4':
-										require("informacion/area_usuarios/rol_adminitrador.php");
+										require("informacion/area_usuarios/rol_desarrollador.php");
 										$sub_menu = "e";
 										break;
 									case 'e5':
-										require("informacion/area_usuarios/rol_desarrollador.php");
+										require("informacion/area_usuarios/rol_adminitrador.php");
 										$sub_menu = "e";
 										break;
 									case 'e6':

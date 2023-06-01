@@ -100,7 +100,7 @@
 		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 		$bitacora->actualizar_bitacora();
 
-		header('Location: ../../lobby/consultar/index.php');
+		header('Location: ../../lobby/consultar/index.php?exito');
 
 	}
 
@@ -114,7 +114,7 @@
 		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 		$bitacora->actualizar_bitacora();
 		
-		header('Location: ../../lobby/consultar/index.php');
+		header('Location: ../../lobby/consultar/index.php?exito');
 
 	}
 
@@ -128,7 +128,7 @@
 		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 		$bitacora->actualizar_bitacora();
 		
-		header('Location: ../../lobby/consultar/index.php?sec=est');
+		header('Location: ../../lobby/consultar/index.php?sec=est&exito');
 
 	}
 

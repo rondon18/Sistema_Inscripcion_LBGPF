@@ -186,6 +186,17 @@
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
 	<script type="text/javascript" src="../js/sweetalert2.js"></script>
+	<script type="text/javascript">
+		<?php if (isset($_GET['exito'])): ?>
+		Swal.fire({
+		  icon: 'success',
+		  title: 'Proceso exitoso',
+		  showConfirmButton: false,
+		  toast: true,
+		  timer: 2000 // tiempo en milisegundos (en este caso, 2 segundos)
+		})
+		<?php endif ?>
+	</script>
 	<script type="text/javascript" src="../js/logout_inactividad.js"></script>
 
 </html>

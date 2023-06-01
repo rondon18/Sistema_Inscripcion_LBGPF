@@ -21,6 +21,7 @@
 
 
 	if (isset($_POST['orden'])) {
+
 		if ($_POST['orden'] == "eliminar") {
 
 			$_SESSION['orden'] = $_POST['orden'];
@@ -94,9 +95,10 @@
 						</button>
 					</form>
 
-					<form class="d-inline-block" action="#" method="post">
+					<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
 						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
-						<button class="btn btn-sm btn-danger" type="submit" name="orden" value="eliminar" onclick="return confirmacion();">
+						<input type="hidden" name="orden" value="eliminar">
+						<button class="btn btn-sm btn-danger" type="submit">
 							Eliminar Usuario
 							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
 						</button>

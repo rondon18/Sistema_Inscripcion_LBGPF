@@ -212,17 +212,36 @@
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 
 <script type="text/javascript" defer>
-	function confirmacion() {
-		//Pregunta si desea realizar la acción la cancela si selecciona NO
-		if(confirm("¿Desea realizar esta accion?")) {
-			alert("Acción ejecutada");
-			return true;
-		}
-		else {
-			alert("Acción cancelada");
-			return false;
-		}
-	}
+
+  function confirmar_envio(event) {
+    event.preventDefault(); // Detiene la acción predeterminada del evento onSubmit
+    
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas realizar esta acción?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, continua',
+      cancelButtonText: 'No, detente'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si el usuario confirma la acción, se envía el formulario
+        event.target.submit();
+      }
+    });
+  }
+
+	<?php if (isset($_GET['exito'])): ?>
+	Swal.fire({
+	  icon: 'success',
+	  title: 'Proceso exitoso',
+	  showConfirmButton: false,
+	  toast: true,
+	  timer: 2000 // tiempo en milisegundos (en este caso, 2 segundos)
+	})
+	<?php endif ?>
 </script>
 </body>
 </html>

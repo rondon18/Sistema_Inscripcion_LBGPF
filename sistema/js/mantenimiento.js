@@ -106,7 +106,7 @@ $( "#boton-restaurar" ).click(function( event ) {
      //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto
      Swal.fire(
       'Atención',
-      'Faltan campos por llenar <br><br> <span class="form-text">Será regresado a la primera sección, pero se mantendrán los cambios.</span>',
+      'Seleccione un punto de respaldo ante de continuar',
       'info'
     );
   }

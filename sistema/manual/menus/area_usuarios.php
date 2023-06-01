@@ -9,7 +9,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Acerca del módulo del perfil de usuario."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -27,7 +27,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Gestión de los datos de su perfil de usuario."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -45,7 +45,7 @@
 		class="col px-2 px-md-4 py-2"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
+		title="Eliminación de su usuario."
 	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
@@ -98,7 +98,12 @@
 		
 	<?php elseif (isset($_SESSION['login']) and $_SESSION['datos_login']['privilegios'] >= 2): ?>
 	<!-- Capacidades como usuario -->
-	<div class="col px-2 px-md-4 py-2">
+	<div 
+		class="col px-2 px-md-4 py-2"
+		data-bs-toggle="tooltip" 
+		data-bs-placement="top" 
+		title="Perfiles, capacidades y acciones posibles."
+	>
 		<div class="card bg-light">
 			<div class="card-body d-flex align-items-center">
 				<i class="fa-solid fa-user fa-2xl m-2"></i>
