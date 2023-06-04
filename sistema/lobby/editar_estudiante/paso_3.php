@@ -232,11 +232,11 @@ $nivel = 2;
 												<label class="form-label requerido">Cédula:</label>
 											</div>
 											
-											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (strlen(dato_input("cedula","dp") > 10)) { echo "disabled";} ?>>
+											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (strlen(dato_input("cedula","de") > 10)) { echo "disabled";} ?>>
 												
 												<?php 
-													$nac = trim(dato_input("cedula","dp"),"123456789");
-													$nro_c = trim(dato_input("cedula","dp"),"VE");
+													$nac = trim(dato_input("cedula","de"),"123456789");
+													$nro_c = trim(dato_input("cedula","de"),"VE");
 												?>
 
 												<div class="col-12 col-lg-4">

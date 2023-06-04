@@ -90,19 +90,19 @@
 
 			$sql = "
 				UPDATE
-			    `personas`
+					`personas`
 				SET
 					`cedula` = '$cedula',
-			    `p_nombre` = '$p_nombre',
-			    `s_nombre` = '$s_nombre',
-			    `p_apellido` = '$p_apellido',
-			    `s_apellido` = '$s_apellido',
-			    `fecha_nacimiento` = '$fecha_nacimiento',
-			    `lugar_nacimiento` = '$lugar_nacimiento',
-			    `genero` = '$genero',
-			    `estado_civil` = '$estado_civil',
-			    `email` = '$email',
-			    `grado_academico` = '$grado_academico'
+					`p_nombre` = '$p_nombre',
+					`s_nombre` = '$s_nombre',
+					`p_apellido` = '$p_apellido',
+					`s_apellido` = '$s_apellido',
+					`fecha_nacimiento` = '$fecha_nacimiento',
+					`lugar_nacimiento` = '$lugar_nacimiento',
+					`genero` = '$genero',
+					`estado_civil` = '$estado_civil',
+					`email` = '$email',
+					`grado_academico` = '$grado_academico'
 				WHERE
 					`cedula` = '$cedula_actual';
 			";
@@ -202,23 +202,48 @@
 
 		// SETTERS
 		public function set_cedula($cedula) {
-			$this->cedula = $cedula;
+			if (ctype_alnum($cedula) and (strlen($cedula) >= 3 && strlen($cedula) <= 15)) {
+				$this->cedula = $cedula;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfanumérico");
+			}
 		}
 		
 		public function set_p_nombre($p_nombre) {
-			$this->p_nombre = $p_nombre;
+			if (ctype_alpha($p_nombre) and (strlen($p_nombre) >= 3 && strlen($p_nombre) <= 25)) {
+				$this->p_nombre = $p_nombre;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfabético");
+			}
 		}
 		
 		public function set_s_nombre($s_nombre) {
-			$this->s_nombre = $s_nombre;
+			if (ctype_alpha($s_nombre) and (strlen($s_nombre) >= 3 && strlen($s_nombre) <= 25)) {
+				$this->s_nombre = $s_nombre;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfabético");
+			}
 		}
 		
 		public function set_p_apellido($p_apellido) {
-			$this->p_apellido = $p_apellido;
+			if (ctype_alpha($p_apellido) and (strlen($p_apellido) >= 3 && strlen($p_apellido) <= 25)) {
+				$this->p_apellido = $p_apellido;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfabético");
+			}
 		}
 		
 		public function set_s_apellido($s_apellido) {
-			$this->s_apellido = $s_apellido;
+			if (ctype_alpha($s_apellido) and (strlen($s_apellido) >= 3 && strlen($s_apellido) <= 25)) {
+				$this->s_apellido = $s_apellido;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfabético");
+			}
 		}
 		
 		public function set_fecha_nacimiento($fecha_nacimiento) {
@@ -226,11 +251,22 @@
 		}
 		
 		public function set_lugar_nacimiento($lugar_nacimiento) {
-			$this->lugar_nacimiento = $lugar_nacimiento;
+			if (ctype_alnum($lugar_nacimiento) and (strlen($lugar_nacimiento) >= 3 && strlen($lugar_nacimiento) <= 300)) {
+				$this->lugar_nacimiento = $lugar_nacimiento;
+			}
+			else {
+				throw new Exception("Se ingresó un valor no alfanumérico");
+			}
 		}
 		
 		public function set_genero($genero) {
-			$this->genero = $genero;
+			
+			if (ctype_alpha($genero)) {
+				$this->genero = $genero;
+			}
+			else {
+				
+			}
 		}
 		
 		public function set_estado_civil($estado_civil) {
@@ -238,7 +274,15 @@
 		}
 		
 		public function set_email($email) {
-			$this->email = $email;
+
+
+			if (filter_var($email, FILTER_VALIDATE_EMAIL) or empty($email)) {
+				$this->email = $email;
+			} 
+			else {
+				throw new Exception("No es un correo valido");
+			}
+
 		}
 		
 		public function set_grado_academico($grado_academico) {

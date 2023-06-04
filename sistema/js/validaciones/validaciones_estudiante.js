@@ -186,6 +186,11 @@ $("#formulario_estudiantes").validate({
 			minlength: 7,
 			maxlength: 7,
 		},
+
+		impedimento: {
+			minlength: 3,
+			maxlength: 120,
+		},
 	},
 	onfocusout: function(element) {
 		this.element(element); // triggers validation

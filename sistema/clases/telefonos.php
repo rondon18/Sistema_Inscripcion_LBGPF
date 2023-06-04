@@ -58,27 +58,24 @@
 			$prefijo = $this->get_prefijo();
 			$numero = $this->get_numero();
 
-			// Verifica si no hay un registro previo para evitar excendentes
-			if ($this->verificar_telefono($cedula_persona,$relacion) < 1) {
-				$conexion = conectarBD();
+			$conexion = conectarBD();
 
-				$sql = "
-					UPDATE
-				    `telefonos`
-					SET
-				    `prefijo` = '$prefijo',
-				    `numero` = '$numero'
-					WHERE
-				    `cedula_persona` = '$cedula_persona',
-				    `relacion` = '$relacion',
-				";
+			$sql = "
+				UPDATE
+			    `telefonos`
+				SET
+			    `prefijo` = '$prefijo',
+			    `numero` = '$numero'
+				WHERE
+			    `cedula_persona` = '$cedula_persona' AND
+			    `relacion` = '$relacion'
+			";
 
-				// echo $sql;
-				
-				$conexion->query($sql) or die("error: ".$conexion->error);
+			// echo $sql;
+			
+			$conexion->query($sql) or die("error: ".$conexion->error);
 
-				desconectarBD($conexion);
-			}
+			desconectarBD($conexion);
 		}
 
 		public function verificar_telefono($cedula_persona,$relacion) {

@@ -6,7 +6,7 @@
 
 
 		// funciones usadas durante el proceso de registro
-		require("../lobby/registrar_estudiante/funciones.php");
+		require("../../lobby/registrar_estudiante/funciones.php");
 
 		/*
 
@@ -16,7 +16,6 @@
 
 		
 		// Se debe usar la cédula actual al editar la persona
-
 
 
 		// Persona
@@ -50,6 +49,7 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_principal_r"));
 		$telefonos->set_numero(dato_sesion_i("telefono_principal_r"));
 		$telefonos->editar_telefono();
+
 
 		// Telefono secundario
 		$telefonos->set_cedula_persona($cedula_representante);

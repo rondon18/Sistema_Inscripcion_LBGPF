@@ -208,7 +208,7 @@ $nivel = 2;
 														type="text" 
 														name="cedula_p" 
 														maxlength="8" 
-														minlength="7"
+														minlength="3"
 														placeholder="Número de cedula" 
 														required 
 														value="<?php echo $nro_c;?>"
@@ -956,7 +956,7 @@ $nivel = 2;
 														type="text" 
 														name="cedula_m" 
 														maxlength="8" 
-														minlength="7"
+														minlength="3"
 														placeholder="Número de cedula" 
 														required 
 														value="<?php echo $nro_c;?>"
@@ -1630,7 +1630,7 @@ $nivel = 2;
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
-		<script type="text/javascript" src="../../js/validaciones/validaciones_padres.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/validaciones_padres_edit.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 		<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 	</body>
