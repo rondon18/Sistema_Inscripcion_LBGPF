@@ -220,7 +220,7 @@
 		}
 		
 		public function set_s_nombre($s_nombre) {
-			if (ctype_alpha($s_nombre) and (strlen($s_nombre) >= 3 && strlen($s_nombre) <= 25)) {
+			if (ctype_alpha($s_nombre) and (strlen($s_nombre) <= 25)) {
 				$this->s_nombre = $s_nombre;
 			}
 			else {
@@ -238,7 +238,7 @@
 		}
 		
 		public function set_s_apellido($s_apellido) {
-			if (ctype_alpha($s_apellido) and (strlen($s_apellido) >= 3 && strlen($s_apellido) <= 25)) {
+			if (ctype_alpha($s_apellido) and (strlen($s_apellido) <= 25)) {
 				$this->s_apellido = $s_apellido;
 			}
 			else {

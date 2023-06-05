@@ -118,29 +118,6 @@
 
 				break;
 
-			case 'usuarios':
-
-				// Verifica el que usuario tenga los privilegios necesarios
-				if ($_SESSION['datos_login']['privilegios'] < 2) {
-					require("reporte_usuarios.php");
-					echo "bitacora: usuarios";
-					header('Location: ../../lobby/reportes/index.php?exito');
-				}
-
-				// Si no, regresa y muestra un mensaje de permisos insuficientes
-				else {
-					header('Location: ../../lobby/reportes/index.php?denegado');
-				}
-				
-				break;
-
-			case 'estadistica':
-				
-				require("reporte_estadistica.php");
-				echo "bitacora: estadistica";
-				// header('Location: ../../lobby/reportes/index.php?exito');
-
-				break;
 			
 			default:
 				
