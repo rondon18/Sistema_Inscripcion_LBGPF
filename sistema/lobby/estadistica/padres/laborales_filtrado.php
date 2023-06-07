@@ -4,7 +4,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes que cuentan con empleo</p>
+			<p class="h6">Padres que cuentan con empleo</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -24,9 +24,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_r_empleados($anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion) - $representantes->get_nro_r_empleados($anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_representantes($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_empleados($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion) - $padres->get_nro_p_empleados($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -43,10 +43,10 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-								<?php echo $representantes->get_nro_r_empleados($anio,$seccion);?>,
-								<?php echo $representantes->get_nro_representantes($anio,$seccion) - $representantes->get_nro_r_empleados($anio,$seccion);?>,
+								<?php echo $padres->get_nro_p_empleados($anio,$seccion);?>,
+								<?php echo $padres->get_nro_padres($anio,$seccion) - $padres->get_nro_p_empleados($anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -64,7 +64,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por remuneración</p>
+			<p class="h6">Padres según la remuneración que reciben</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -85,10 +85,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_sueldos_rem(0,true,$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_sueldos_rem(1,true,$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_sueldos_rem(2,false,$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_r_empleados($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_sueldos_rem(0,true,$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_sueldos_rem(1,true,$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_sueldos_rem(2,false,$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_empleados($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -105,11 +105,11 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_sueldos_rem(1,true,$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_sueldos_rem(2,true,$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_sueldos_rem(3,false,$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_sueldos_rem(1,true,$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_sueldos_rem(2,true,$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_sueldos_rem(3,false,$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -127,7 +127,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tipo de remuneración</p>
+			<p class="h6">Padres según su la frecuencia de su remuneración</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -149,11 +149,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $representantes->get_nro_frec_rem("Diaria",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_frec_rem("Semanal",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_frec_rem("Quincenal",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_frec_rem("Mensual",$anio,$seccion);?></td>
-								<td><?php echo $representantes->get_nro_r_empleados($anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_frec_rem("Diaria",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_frec_rem("Semanal",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_frec_rem("Quincenal",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_frec_rem("Mensual",$anio,$seccion);?></td>
+								<td><?php echo $padres->get_nro_p_empleados($anio,$seccion);?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -170,12 +170,12 @@
 			    type: 'doughnut',
 			    data: {
 			      datasets: [{
-			        label: 'Nro. de representantes',
+			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $representantes->get_nro_frec_rem("Diaria",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_frec_rem("Semanal",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_frec_rem("Quincenal",$anio,$seccion);?>,
-			        	<?php echo $representantes->get_nro_frec_rem("Mensual",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_frec_rem("Diaria",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_frec_rem("Semanal",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_frec_rem("Quincenal",$anio,$seccion);?>,
+			        	<?php echo $padres->get_nro_frec_rem("Mensual",$anio,$seccion);?>,
 			      	],
 			        borderWidth: 1
 			      }]

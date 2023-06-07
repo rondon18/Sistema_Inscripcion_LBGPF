@@ -5,7 +5,7 @@
 		
 		$servidor 	= "localhost";
 		$usuario		= "root";	
-		$bd       	= "base_proyecto_nueva";
+		$bd       	= "sis_reg_lb_gpf_v2";
 		$clave		= "";
 		
 		//instancia la clase mysqli y se conecta a la base de datos

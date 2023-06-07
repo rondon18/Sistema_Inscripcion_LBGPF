@@ -4,12 +4,11 @@
 	$anio_seccion = strtolower(str_replace(" ", "_", $anio)."_".$seccion);
 	
 ?>
-
 <!-- Estudiantes por género (general) -->
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Población académica por género (Global).</p>
+			<p class="h6">Población académica por género.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">

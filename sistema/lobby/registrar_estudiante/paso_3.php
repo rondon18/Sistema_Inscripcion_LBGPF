@@ -170,6 +170,65 @@ $nivel = 2;
 											</div>
 										</div>
 
+										<div class="row mb-5">
+											<div class="col-12 mb-4">
+												<div class="form-check form-switch form-check-inline">
+													<input 
+														id="usar_c_e" 
+														class="form-check-input" 
+														type="checkbox" 
+														name="usar_c_e" 
+														value="no_tiene" 
+													>
+													<label for="usar_c_e" class="form-label">
+														El estudiante no tiene cédula.
+													</label>
+												</div>
+										</div>
+
+										<!-- Cédula -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-2">
+												<label class="form-label requerido">Cédula:</label>
+											</div>
+											
+											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (dato_sesion_i("usar_c_e",3) == "no_tiene") {} ?>>
+												
+												<div class="col-12 col-lg-4">
+														<!-- NacionalIdad -->
+														<select 
+															id="nacionalidad_r" 
+															class="form-select" 
+															name="nacionalidad_est" 
+															required
+														>
+															<option selected value="">Nacionalidad</option>
+															<option <?php dato_sesion_opt("V","nacionalidad_est","s",3);?> value="V">V</option>
+															<option <?php dato_sesion_opt("E","nacionalidad_est","s",3);?> value="E">E</option>
+														</select>
+												</div>
+												<div class="col-12 col-lg-8">
+														<!-- Número de cédula -->
+														<input 
+															id="cedula_est"
+															class="form-control" 
+															type="text" 
+															name="cedula_est" 
+															maxlength="8" 
+															minlength="7"
+															placeholder="Número de cedula" 
+															required
+															value="<?php echo dato_sesion_i("cedula_est",3);?>"
+														>
+												</div>
+
+											</fieldset>
+
+											<div class="col-12 col-lg-12 mt-2 mb-2">
+												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos.</span>
+											</div>
+										</div>
+
 										<!-- Cédula escolar -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-4">
@@ -263,65 +322,6 @@ $nivel = 2;
 
 											<div class="col-12 col-lg-12 mt-2 mb-2">
 												<span class="form-text">La cédula escolar es opcional, pero será requerida si el estudiante no posee cédula.</span>
-											</div>
-										</div>
-
-										<div class="row mb-5">
-											<div class="col-12 mb-4">
-												<div class="form-check form-switch form-check-inline">
-													<input 
-														id="usar_c_e" 
-														class="form-check-input" 
-														type="checkbox" 
-														name="usar_c_e" 
-														value="no_tiene" 
-													>
-													<label for="usar_c_e" class="form-label">
-														El estudiante no tiene cédula.
-													</label>
-												</div>
-										</div>
-
-										<!-- Cédula -->
-										<div class="row mb-4">
-											<div class="col-12 col-lg-2">
-												<label class="form-label requerido">Cédula:</label>
-											</div>
-											
-											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (dato_sesion_i("usar_c_e",3) == "no_tiene") {} ?>>
-												
-												<div class="col-12 col-lg-4">
-														<!-- NacionalIdad -->
-														<select 
-															id="nacionalidad_r" 
-															class="form-select" 
-															name="nacionalidad_est" 
-															required
-														>
-															<option selected value="">Nacionalidad</option>
-															<option <?php dato_sesion_opt("V","nacionalidad_est","s",3);?> value="V">V</option>
-															<option <?php dato_sesion_opt("E","nacionalidad_est","s",3);?> value="E">E</option>
-														</select>
-												</div>
-												<div class="col-12 col-lg-8">
-														<!-- Número de cédula -->
-														<input 
-															id="cedula_est"
-															class="form-control" 
-															type="text" 
-															name="cedula_est" 
-															maxlength="8" 
-															minlength="7"
-															placeholder="Número de cedula" 
-															required
-															value="<?php echo dato_sesion_i("cedula_est",3);?>"
-														>
-												</div>
-
-											</fieldset>
-
-											<div class="col-12 col-lg-12 mt-2 mb-2">
-												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos.</span>
 											</div>
 										</div>
 
@@ -992,9 +992,9 @@ $nivel = 2;
 											</div>
 
 											<span class="form-text">
-												-El índice(IMC) se calcula automáticamente al ingresar talla y peso, y puede ser editado si no es lo suficientemente preciso.
+												-En el caso de desconocer la talla, peso o estatura del estudiante, dejar vacío el campo.
 												<br>
-												-En el caso de no conocer la talla, peso, índice(IMC), circunferencia braquial del estudiante. Dejar vacíos esos campos.
+												-El índice(IMC) se calcula automáticamente al ingresar talla y peso.
 											</span>
 										</div>
 										

@@ -214,11 +214,46 @@
 			$conexion = conectarBD();
 
 			// Muestra todos los padres que cuenten con un empleo
-			$sql = "SELECT COUNT(*) as nro_p_empleados FROM `vista_padres` WHERE `empleo` != ''";
+
+			$sub_con = "
+				SELECT
+			    `vista_padres`.`cedula`
+				FROM
+			    `vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or 
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`vista_padres`.`empleo` != '' 
+			";
+
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+
+			// Muestra todos los representantes que cuenten con un empleo
+			$sql = "SELECT COUNT(*) as nro_p_empleados FROM ($sub_con) as sub_con";
 
 			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
 			$padre = $consulta_padre->fetch_assoc();
-			
+
 			desconectarBD($conexion);
 
 			return $nro_p_empleados = $padre["nro_p_empleados"];
@@ -275,27 +310,55 @@
 
 
 		// Retorna el número de estudiantes en el rango de sueldos minimos que ganan (Se puede filtrar por año y por seccion) 
-		public function get_nro_sueldos_rem($sueldos = 1) {
+		public function get_nro_sueldos_rem($sueldos = 1, $exclusivo = false,$anio = NULL,$seccion = NULL,) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_sueldos_rem FROM `vista_padres` WHERE `remuneracion` >= 0";
+			$sub_con = "
+				SELECT
+			    `vista_padres`.`cedula`
+				FROM
+			    `vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`empleo` != '' AND 
+					`remuneracion` >= 0
+			";
 
-			// filtra para aquellos padres que tengan una remuneracion mayor y igual a la especificada
-			// siempre y cuando sea mayor a 1
-			if ($sueldos > 1) {
-				
-				$sql .= " AND ";
-				$filtros = [];
+			// filtra para aquellos representantes que tengan una remuneracion mayor y/o 
+			// igual a la especificada siempre y cuando sea mayor a 1
+			if ($exclusivo == true) {
+				$aux = "=";
+			}
+			else {
+				$aux = ">=";
+			}
 
-				// anexar los filtros con array_merge()
+			$sub_con .= " AND `remuneracion` $aux  $sueldos";
 
-				$filtro_nro_sueldos = "`remuneracion` >= $sueldos";
-				$filtros = array_merge($filtros,[$filtro_nro_sueldos]);
 
-				// agregará un AND entre cada condicion siempre que haya más de una
-				$sql .= implode(" AND ", $filtros);
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
 
 			}
+
+			// Se deben filtrar los desempleados de esta consulta pues tienen 0 como número de sueldos
+			$sql = "SELECT COUNT(*) as nro_sueldos_rem FROM ($sub_con) as sub_con";
 
 			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
 			$padre = $consulta_padre->fetch_assoc();
@@ -307,10 +370,42 @@
 
 
 		// Retorna el número de padres con cierto tipo de remuneracion (Se puede filtrar por año y por seccion) 
-		public function get_nro_frec_rem($f_remuneracion = "Mensual") {
+		public function get_nro_frec_rem($f_remuneracion = "Mensual",$anio = NULL,$seccion = NULL) {
 			$conexion = conectarBD();
 
-			$sql = "SELECT COUNT(*) as nro_frec_rem FROM `vista_padres` WHERE `tipo_remuneracion` = '$f_remuneracion'";
+			$sub_con = "
+				SELECT
+			    `vista_padres`.`cedula`
+				FROM
+			    `vista_padres`
+				INNER JOIN `vista_estudiantes` ON 
+					`vista_estudiantes`.`cedula_padre` = `vista_padres`.`cedula` or
+					`vista_estudiantes`.`cedula_madre` = `vista_padres`.`cedula`
+				WHERE
+					`vista_padres`.`tipo_remuneracion` = '$f_remuneracion'
+			";
+
+			// si alguno de los dos se asigna
+			if ($anio != NULL or $seccion != NULL) {
+
+				$sub_con .= " AND ";
+
+				$fil = [];
+
+				if ($anio != NULL) {
+					$fil[] = " `vista_estudiantes`.`grado_a_cursar` = '$anio'";
+				}
+
+				if ($seccion != NULL) {
+					$fil[] = " `vista_estudiantes`.`seccion` = '$seccion'";
+				}
+
+				$sub_con .= implode(" AND ", $fil);
+
+			}
+
+			// Se deben filtrar los desempleados de esta consulta pues tienen 0 como número de sueldos
+			$sql = "SELECT COUNT(*) as nro_frec_rem FROM ($sub_con) as sub_con";
 
 			$consulta_padre = $conexion->query($sql) or die("error: ".$conexion->error);
 			$padre = $consulta_padre->fetch_assoc();

@@ -8,7 +8,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con IMC saludable (<?php echo $anio;?>).</p>
+			<p class="h6">Estudiantes que cuentan con indice de masa corporal saludable (<?php echo $anio;?>).</p>
 		</div>
 		<div class="card-body">
 			<div class="row">

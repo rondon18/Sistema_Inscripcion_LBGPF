@@ -3,7 +3,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por municipio</p>
+			<p class="h6">Representantes según el municipio en que viven</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->

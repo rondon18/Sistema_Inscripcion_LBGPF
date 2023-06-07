@@ -57,36 +57,54 @@
 	$vac_covid19_est = new vac_covid19_est();
 	$vacunas_est = new vacunas_est();
 
-	// estudiante
-	$estudiantes->set_cedula_persona($_POST['cedula']);
-	$datos_estudiante = $estudiantes->consultar_estudiantes();
+	if (!isset($_POST['cedula'],$_POST['orden'])) {
+		// estudiante
+		$estudiantes->set_cedula_persona($_POST['cedula']);
+		$datos_estudiante = $estudiantes->consultar_estudiantes();
 
-	$telefonos->set_cedula_persona($_POST['cedula']);
-	$tlfs_estudiante = $telefonos->consultar_telefonos();
+		$telefonos->set_cedula_persona($_POST['cedula']);
+		$tlfs_estudiante = $telefonos->consultar_telefonos();
 
-	
-	// representante
-	$representantes->set_cedula_persona($_POST['cedula_representante']);
-	$datos_representante = $representantes->consultar_representantes();
+		
+		// representante
+		$representantes->set_cedula_persona($_POST['cedula_representante']);
+		$datos_representante = $representantes->consultar_representantes();
 
-	$telefonos->set_cedula_persona($_POST['cedula_representante']);
-	$tlfs_representante = $telefonos->consultar_telefonos();
+		$telefonos->set_cedula_persona($_POST['cedula_representante']);
+		$tlfs_representante = $telefonos->consultar_telefonos();
 
-	
-	// padre
-	$padres->set_cedula_persona($_POST['cedula_padre']);
-	$datos_padre = $padres->consultar_padres();
+		
+		// padre
+		$padres->set_cedula_persona($_POST['cedula_padre']);
+		$datos_padre = $padres->consultar_padres();
 
-	$telefonos->set_cedula_persona($_POST['cedula_padre']);
-	$tlfs_padre = $telefonos->consultar_telefonos();
+		$telefonos->set_cedula_persona($_POST['cedula_padre']);
+		$tlfs_padre = $telefonos->consultar_telefonos();
 
 
-	// madre
-	$padres->set_cedula_persona($_POST['cedula_madre']);
-	$datos_madre = $padres->consultar_padres();
+		// madre
+		$padres->set_cedula_persona($_POST['cedula_madre']);
+		$datos_madre = $padres->consultar_padres();
 
-	$telefonos->set_cedula_persona($_POST['cedula_madre']);
-	$tlfs_madre = $telefonos->consultar_telefonos();
+		$telefonos->set_cedula_persona($_POST['cedula_madre']);
+		$tlfs_madre = $telefonos->consultar_telefonos();
+	}
+
+	else {
+		if (isset($_POST['orden'])) {
+			if ($_POST['orden'] == "eliminar") {
+
+				$_SESSION['orden'] = $_POST['orden'];
+				$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
+
+				var_dump($_SESSION['orden']);
+				var_dump($_SESSION['eliminar_estudiante']);
+
+				header('Location: ../../controladores/registros/control_registros.php');
+			}
+		}
+	}
+
 
 
 	$nivel = 2;
@@ -905,10 +923,29 @@
 						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 						
 						<!-- Eliminar registro de estudiante -->
-						<form action="#" method="post" style="display: inline-block;">
+						<form action="#" method="post" style="display: inline-block;" onsubmit="confirmar_envio(event)">
 
-							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
-							<button class="btn btn-primary" type="submit" onclick="return confirmacion();" name="orden" value="eliminar">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+							<input 
+								type="hidden" 
+								name="cedula" 
+								value="<?php echo $datos_estudiante['cedula'];?>"
+							>
+
+							<input 
+								type="hidden" 
+								name="orden" 
+								value="eliminar"
+							>
+
+							<button 
+								class="btn btn-primary" 
+								type="submit" 
+								name="orden" 
+								value="eliminar"
+							>
+								Eliminar 
+								<i class="fas fa-trash-can fa-lg ms-2"></i>
+							</button>
 
 						</form>
 						<?php endif;?>
@@ -922,19 +959,31 @@
 		<?php include '../../ayuda.php'; ?>
 	</main>
 
+
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" defer>
-	function confirmacion() {
-		//Pregunta si desea realizar la acción la cancela si selecciona NO
-		if(confirm("¿Desea realizar esta accion?")) {
-			alert("Acción ejecutada");
-			return true;
-		}
-		else {
-			alert("Acción cancelada");
-			return false;
-		}
-	}
+  function confirmar_envio(event) {
+    event.preventDefault(); // Detiene la acción predeterminada del evento onSubmit
+    
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas realizar esta acción?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, continua',
+      cancelButtonText: 'No, detente'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si el usuario confirma la acción, se envía el formulario
+        event.target.submit();
+      }
+    });
+  }
 </script>
 </body>
 </html>

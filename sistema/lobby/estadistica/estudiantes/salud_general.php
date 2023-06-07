@@ -4,7 +4,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con IMC saludable (Global).</p>
+			<p class="h6">Estudiantes que cuentan con IMC saludable.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -63,7 +63,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que padecen alguna enfermedad (Global).</p>
+			<p class="h6">Estudiantes que padecen alguna enfermedad.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -121,7 +121,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según su tipo de sangre (Global).</p>
+			<p class="h6">Estudiantes según su tipo de sangre.</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes con carnet de la patria (general) -->
@@ -258,7 +258,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según su lateralidad (Global).</p>
+			<p class="h6">Estudiantes según su lateralidad.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -321,7 +321,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes vacunados contra el Covid-19 (Global).</p>
+			<p class="h6">Estudiantes vacunados contra el Covid-19.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -381,7 +381,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas (Global).</p>
+			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -531,7 +531,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas (Global).</p>
+			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -596,7 +596,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con una dieta especial (Global).</p>
+			<p class="h6">Estudiantes que cuentan con una dieta especial.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -656,7 +656,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que tienen algún padecimiento (Global).</p>
+			<p class="h6">Estudiantes que tienen algún padecimiento.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -715,7 +715,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes con algún impedimento físico (Global).</p>
+			<p class="h6">Estudiantes con algún impedimento físico.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -774,7 +774,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes con alguna necesidad educativa especial (Global).</p>
+			<p class="h6">Estudiantes con alguna necesidad educativa especial.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -833,7 +833,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes por condición de la vista (Global).</p>
+			<p class="h6">Estudiantes por condición de la vista.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -895,7 +895,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes por condición dental (Global).</p>
+			<p class="h6">Estudiantes por condición dental.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -957,7 +957,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes con carnet de discapacidad (Global).</p>
+			<p class="h6">Estudiantes con carnet de discapacidad.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">

@@ -17,7 +17,7 @@
 			echo $respaldo;
 
 			// comandos a ejecutar
-			$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost base_proyecto_nueva > ../respaldos/$respaldo";
+			$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v2 > ../respaldos/$respaldo";
 
 			// ejecución y salida de éxito o errores
 			system($command,$output);
@@ -35,7 +35,7 @@
 		public function restaurar_bd($respaldo) {
 			#Devuelve la base de datos a un estado anterior o a su estado inicial
 
-			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost base_proyecto_nueva < ../respaldos/".$respaldo;
+			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v2 < ../respaldos/".$respaldo;
 
 			// ejecución y salida de éxito o errores
 			system($command,$output);

@@ -2,7 +2,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Población académica por género (Global).</p>
+			<p class="h6">Población académica por género.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">

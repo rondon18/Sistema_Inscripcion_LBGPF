@@ -121,13 +121,37 @@
 			$titulo = $_POST['estadistica_est'];
 
 			require("estudiantes.php");
-			
-			echo "
+
+			$header = 
+			"
 		    <ul class='nav'>
 	        <li class='nav-item'><p class='h4'>$titulo</p></li>
 		     	<li class='nav-item ms-auto'><a hrer='#' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#filtros_estadistica_est'>Cambiar estadisticas</a></li>
 		    </ul>
 			";
+
+			if ($_POST['anio_est'] == "Global") {
+				$header .= "<span class='p-0'> <b>Año a mostrar</b>: " . "Todos" . "</span>";
+			} 
+
+			else {
+				$header .= "<span class='p-0'> <b>Año a mostrar</b>: " . $_POST["anio_est"] . "</span>";
+			}
+
+			
+
+
+			if (isset($_POST['seccion_est'])) {
+				if ($_POST['seccion_est'] == "Global") {
+					$header .= "<span class='p-0'> <b>Seccion a mostrar</b>: " . "Todas" . "</span>";
+				} 
+
+				else {
+					$header .= "<span class='p-0'> <b>Sección a mostrar</b>: " . $_POST["seccion_est"] . "</span>";
+				}
+			}
+
+			echo $header;
 
 			switch ($_POST["estadistica_est"]) {
 				
@@ -432,7 +456,11 @@
 					<div class="card-footer">
 						<a href="index.php" class="btn btn-primary">
 							<i class="fa-solid fa-lg me-2 fa-backward"></i>
-							Menú de estadísticas
+							Volver
+						</a>
+						<a href="index.php" class="btn btn-primary">
+							<i class="fa-solid fa-lg me-2 fa-home"></i>
+							Volver al menú principal
 						</a>
 					</div>
 					

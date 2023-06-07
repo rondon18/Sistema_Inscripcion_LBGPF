@@ -2,7 +2,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con canaima (Global).</p>
+			<p class="h6">Estudiantes que cuentan con canaima.</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes con canaima (general) -->
@@ -63,7 +63,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con acceso a internet (Global).</p>
+			<p class="h6">Estudiantes que cuentan con acceso a internet.</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes con acceso a internet (general) -->
@@ -122,7 +122,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes que cuentan con carnet de la patria (Global).</p>
+			<p class="h6">Estudiantes que cuentan con carnet de la patria.</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes con carnet de la patria (general) -->

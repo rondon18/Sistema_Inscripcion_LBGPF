@@ -4,7 +4,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tipo de vivienda</p>
+			<p class="h6">Representantes según su tipo de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -73,7 +73,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por condición de vivienda</p>
+			<p class="h6">Representantes según las condiciones de su vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -136,7 +136,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tenencia de vivienda</p>
+			<p class="h6">Representantes según su tenencia de vivienda</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->

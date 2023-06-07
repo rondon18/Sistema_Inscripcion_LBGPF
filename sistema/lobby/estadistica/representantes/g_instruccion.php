@@ -3,7 +3,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por grado de instrucción</p>
+			<p class="h6">Representantes según su grado de instrucción</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->

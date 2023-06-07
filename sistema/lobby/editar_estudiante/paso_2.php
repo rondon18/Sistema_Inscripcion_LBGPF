@@ -786,7 +786,7 @@ $nivel = 2;
 												<!-- Lugar del trabajo -->
 												<div class="row mb-4">
 													<div class="col-12 col-lg-12">
-														<label class="form-label requerido">Lugar del trabajo:</label>
+														<label class="form-label">Lugar del trabajo:</label>
 														<textarea 
 															id="lugar_trabajo_p" 
 															class="mb-2 form-control" 
@@ -804,7 +804,7 @@ $nivel = 2;
 												<div class="row mb-4">
 													<div class="col-12 col-lg-6">
 														<!-- Cantidad de sueldos mínimos como remuneración -->
-														<label class="form-label requerido">Remuneración:</label>
+														<label class="form-label">Remuneración:</label>
 														<input 
 															id="remuneracion_p" 
 															class="mb-2 form-control text-end" 
@@ -821,7 +821,7 @@ $nivel = 2;
 													</div>
 													<!-- Tipo de remuneración -->
 													<div class="col-12 col-lg-6">
-														<label class="form-label requerido">Tipo de remuneración:</label>
+														<label class="form-label">Tipo de remuneración:</label>
 														<select 
 															id="tipo_remuneracion_p" 
 															class="form-select" 
@@ -1537,7 +1537,7 @@ $nivel = 2;
 												<!-- Lugar del trabajo -->
 												<div class="row mb-4">
 													<div class="col-12 col-lg-12">
-														<label class="form-label requerido">Lugar del trabajo:</label>
+														<label class="form-label">Lugar del trabajo:</label>
 														<textarea 
 															id="lugar_trabajo_m" 
 															class="mb-2 form-control" 
@@ -1555,7 +1555,7 @@ $nivel = 2;
 												<div class="row mb-4">
 													<div class="col-12 col-lg-6">
 														<!-- Cantidad de sueldos mínimos como remuneración -->
-														<label class="form-label requerido">Remuneración:</label>
+														<label class="form-label">Remuneración:</label>
 														<input 
 															id="remuneracion_m" 
 															class="mb-2 form-control text-end" 
@@ -1572,7 +1572,7 @@ $nivel = 2;
 													</div>
 													<!-- Tipo de remuneración -->
 													<div class="col-12 col-lg-6">
-														<label class="form-label requerido">Tipo de remuneración:</label>
+														<label class="form-label">Tipo de remuneración:</label>
 														<select 
 															id="tipo_remuneracion_m" 
 															class="form-select" 

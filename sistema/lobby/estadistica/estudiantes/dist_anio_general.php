@@ -6,10 +6,10 @@
 <div class="col-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Población académica por año (Global).</p>
+			<p class="h6">Población académica por año.</p>
 		</div>
 		<div class="card-body">
-			<!-- Estudiantes por grado (Global) -->
+			<!-- Estudiantes por grado -->
 			<div class="row">
 				<div class="col-8 col-md-4 mx-auto mb-3 d-flex justify-content-center align-items-center">
 					<canvas id="grafico1" class="mx-auto"></canvas>

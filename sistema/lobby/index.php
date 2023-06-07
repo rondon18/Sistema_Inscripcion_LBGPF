@@ -192,7 +192,6 @@
 		  icon: 'success',
 		  title: 'Proceso exitoso',
 		  showConfirmButton: false,
-		  toast: true,
 		  timer: 2000 // tiempo en milisegundos (en este caso, 2 segundos)
 		})
 		<?php endif ?>

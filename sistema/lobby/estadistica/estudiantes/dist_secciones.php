@@ -17,7 +17,7 @@
 			<p class="h6">Población académica de <?php echo strtolower($anio);?> (<?php echo $seccion;?>).</p>
 		</div>
 		<div class="card-body">
-			<!-- Estudiantes por grado (Global) -->
+			<!-- Estudiantes por grado -->
 			<div class="row">
 				<div class="col-8 col-md-4 mx-auto mb-3 d-flex justify-content-center align-items-center">
 					<canvas id="dist_<?php echo $anio_seccion;?>" class="mx-auto"></canvas>

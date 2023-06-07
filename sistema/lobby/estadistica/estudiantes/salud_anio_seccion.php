@@ -5,7 +5,7 @@
 		<canvas id="repitentes_general" class="mx-auto"></canvas>
 	</div>
 	<div class="col-9">
-		<p class="h5">Estudiantes repitentes (Global).</p>
+		<p class="h5">Estudiantes repitentes.</p>
 		
 		<table class="table table-bordered table-striped">
 			<thead>

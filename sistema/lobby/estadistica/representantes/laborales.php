@@ -64,7 +64,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por remuneración</p>
+			<p class="h6">Representantes según la remuneración que reciben</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -127,7 +127,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Representantes por tipo de remuneración</p>
+			<p class="h6">Representantes según su tipo de remuneración</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->

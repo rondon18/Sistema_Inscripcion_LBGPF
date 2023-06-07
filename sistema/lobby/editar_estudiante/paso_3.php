@@ -225,6 +225,22 @@ $nivel = 2;
 											</div>
 										</div>
 
+										<div class="row mb-5">
+											<div class="col-12 mb-4">
+												<div class="form-check form-switch form-check-inline">
+													<input 
+														id="usar_c_e" 
+														class="form-check-input" 
+														type="checkbox" 
+														name="usar_c_e" 
+														value="no_tiene" 
+														<?php if (strlen(dato_input("cedula","dp") > 10)) { echo "checked";} ?>
+													>
+													<label for="usar_c_e" class="form-label">
+														El estudiante no tiene cédula.
+													</label>
+												</div>
+										</div>
 
 										<!-- Cédula -->
 										<div class="row mb-4">
@@ -274,22 +290,6 @@ $nivel = 2;
 											</div>
 										</div>
 
-										<div class="row mb-5">
-											<div class="col-12 mb-4">
-												<div class="form-check form-switch form-check-inline">
-													<input 
-														id="usar_c_e" 
-														class="form-check-input" 
-														type="checkbox" 
-														name="usar_c_e" 
-														value="no_tiene" 
-														<?php if (strlen(dato_input("cedula","dp") > 10)) { echo "checked";} ?>
-													>
-													<label for="usar_c_e" class="form-label">
-														El estudiante no tiene cédula.
-													</label>
-												</div>
-										</div>
 
 										<!-- Cédula escolar -->
 										<div class="row mb-4">
