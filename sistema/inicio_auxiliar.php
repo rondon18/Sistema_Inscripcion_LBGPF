@@ -10,7 +10,7 @@
 	if (isset($_POST['nacionalidad'],$_POST['cedula'])) {
 		require_once('controladores/conexion.php');
 		$cedula = $_POST['nacionalidad'].$_POST['cedula'];
-		$usuario->set_cedula($cedula);
+		$usuario->set_cedula_persona($cedula);
 		if ($datos_usuario = $usuario->consultar_usuario()) {
 			$nombre = $datos_usuario['p_nombre']. " " .$datos_usuario['p_apellido'];
 			$pregunta_1 = $datos_usuario['pregunta_seg_1'];
@@ -19,7 +19,8 @@
 			// $respuesta_2 = $datos_usuario['respuesta_2'];
 		}
 		else {
-			header('Location: index.php?error_cedula');
+			// header('Location: index.php?error_cedula');
+
 		}
 	}
 ?>

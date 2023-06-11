@@ -61,7 +61,7 @@
 	elseif (isset($_POST['cedula'],$_POST['respuesta_1'],$_POST['respuesta_2'])) {
 		
 		// verifica los datos del usuario
-		$usuarios->set_cedula($_POST['cedula']);
+		$usuarios->set_cedula_persona($_POST['cedula']);
 		if ($datos_usuario = $usuarios->consultar_usuario()) {
 			// si al menos una de las dos preguntas admite el acceso
 			if (($_POST['respuesta_1'] == $datos_usuario['respuesta_1']) or ($_POST['respuesta_2'] == $datos_usuario['respuesta_2'])) {
