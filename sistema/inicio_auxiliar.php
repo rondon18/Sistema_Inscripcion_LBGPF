@@ -19,7 +19,7 @@
 			// $respuesta_2 = $datos_usuario['respuesta_2'];
 		}
 		else {
-			// header('Location: index.php?error_cedula');
+			header('Location: index.php?error_cedula');
 
 		}
 	}

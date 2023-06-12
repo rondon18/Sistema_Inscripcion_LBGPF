@@ -62,20 +62,9 @@
 
 						<div class="row">
 
-							<!-- Selector de seccion -->
-							<div class="col-12 col-lg-3">
-								<ul class="nav flex-lg-column nav-pills nav-fill mb-4 gap-2">
-									<li class="nav-item">
-										<a id="link1" class="nav-link active" href="#">Datos personales</a>
-									</li>
-									<li class="nav-item">
-										<a id="link2" class="nav-link" href="#">Datos de usuario</a>
-									</li>
-								</ul>
-							</div>
 							
 							<!-- Contenedor del formulario -->
-							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
+							<div class="col-12" style="max-height: 60vh; overflow-y: auto;">
 									<!-- Botones de acción -->
 									<div class="row mb-4 text-center text-md-end">
 										<div class="col-12 col-lg-12 pt-1">
@@ -101,7 +90,7 @@
 										</div>
 									</div>
 									<!-- Seccion de datos personales -->
-									<section id="seccion1" class="row">
+									<section id="seccion1" class="row px-4">
 										<!-- Titulo de la seccion -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
@@ -179,7 +168,7 @@
 
 
 									<!-- Seccion de datos de usuario -->
-									<section id="seccion2" class="row">
+									<section id="seccion2" class="row px-4">
 										<!-- Titulo de la seccion -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">

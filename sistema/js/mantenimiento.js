@@ -106,7 +106,7 @@ $( "#boton-restaurar" ).click(function( event ) {
      //Da un mensaje de alerta si no es valido y retorna a la seccion de datos de contacto
      Swal.fire(
       'Atención',
-      'Seleccione un punto de respaldo ante de continuar',
+      'Seleccione un punto de restauración antes de continuar',
       'info'
     );
   }
