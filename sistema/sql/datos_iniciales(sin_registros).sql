@@ -844,7 +844,7 @@ START TRANSACTION;
 USE `sis_reg_lb_gpf_v2`;
 INSERT INTO `sis_reg_lb_gpf_v2`.`personas` (`cedula`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellido`, `fecha_nacimiento`, `lugar_nacimiento`, `genero`, `estado_civil`, `email`, `grado_academico`) VALUES ('V27919566', 'Elber', 'Alonso', 'Rondón', 'Hernández', '2001-05-05', 'Mérida', 'M', 'Soltero(a)', 'earh_2001@outlook.com', 'Universitario');
 INSERT INTO `sis_reg_lb_gpf_v2`.`personas` (`cedula`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellido`, `fecha_nacimiento`, `lugar_nacimiento`, `genero`, `estado_civil`, `email`, `grado_academico`) VALUES ('V28636530', 'María', 'Gabriela', 'Ballestero', 'Rodríguez', '2002-05-09', 'Caja seca', 'F', 'Soltero(a)', 'mgba952@gmail.com', 'Universitario');
-INSERT INTO `sis_reg_lb_gpf_v2`.`personas` (`cedula`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellido`, `fecha_nacimiento`, `lugar_nacimiento`, `genero`, `estado_civil`, `email`, `grado_academico`) VALUES ('V26985572', 'Franklin', 'Darío', 'Contreras', 'Rodríguez', DEFAULT, DEFAULT, 'M', 'Soltero(a)', 'contreras19.franklin@gmail.com', 'Universitario');
+INSERT INTO `sis_reg_lb_gpf_v2`.`personas` (`cedula`, `p_nombre`, `s_nombre`, `p_apellido`, `s_apellido`, `fecha_nacimiento`, `lugar_nacimiento`, `genero`, `estado_civil`, `email`, `grado_academico`) VALUES ('V17341885', 'María','Elena','González','González', '1989-12-21', DEFAULT, 'F', 'Soltero(a)', 'maryg280@gmail.com', 'Universitario');
 
 COMMIT;
 
@@ -856,7 +856,6 @@ START TRANSACTION;
 USE `sis_reg_lb_gpf_v2`;
 INSERT INTO `sis_reg_lb_gpf_v2`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V27919566', 'Desarrollador', '0', '12345', 'Color favorito', 'Azúl', 'Nombre de mascota', 'Mia');
 INSERT INTO `sis_reg_lb_gpf_v2`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V28636530', 'Desarrollador', '0', 'Gab_952', 'Color favorito', 'Azúl', DEFAULT, DEFAULT);
-INSERT INTO `sis_reg_lb_gpf_v2`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V26985572', 'Desarrollador', '0', '12345', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
-
+INSERT INTO `sis_reg_lb_gpf_v2`.`usuarios` (`cedula_persona`, `rol`, `privilegios`, `contraseña`, `pregunta_seg_1`, `respuesta_1`, `pregunta_seg_2`, `respuesta_2`) VALUES ('V17341885', 'Docente', '1', 'Azul==1971', '¿Cuál es tu heroe favorito?', 'Gonzalo Picón Febres', 'Color que más te gusta', 'Verde');
 COMMIT;
 
