@@ -1,0 +1,24 @@
+{
+    "name": "rondon18/sistema_proyecto",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.27",
+        "setasign/fpdf": "1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rondon18\\SistemaProyecto\\": "src/"
+        },
+        "classmap": [
+            "sistema/clases"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Elber Rondón",
+            "email": "78270677+rondon18@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
+    }
+}
