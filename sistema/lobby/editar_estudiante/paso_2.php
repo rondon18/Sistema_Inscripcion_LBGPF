@@ -181,7 +181,7 @@ $nivel = 2;
 												</div>
 
 												<?php 
-													$nac = trim(dato_input("cedula","dp"),"123456789");
+													$nac = trim(dato_input("cedula","dp"),"0123456789");
 													$nro_c = trim(dato_input("cedula","dp"),"VE");
 												?>
 
@@ -930,7 +930,7 @@ $nivel = 2;
 												</div>
 
 												<?php 
-													$nac = trim(dato_input("cedula","dm"),"123456789");
+													$nac = trim(dato_input("cedula","dm"),"0123456789");
 													$nro_c = trim(dato_input("cedula","dm"),"VE");
 												?>
 

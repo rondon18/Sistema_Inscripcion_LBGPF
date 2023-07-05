@@ -251,7 +251,7 @@ $nivel = 2;
 											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (strlen(dato_input("cedula","de") > 10)) { echo "disabled";} ?>>
 												
 												<?php 
-													$nac = trim(dato_input("cedula","de"),"123456789");
+													$nac = trim(dato_input("cedula","de"),"0123456789");
 													$nro_c = trim(dato_input("cedula","de"),"VE");
 												?>
 

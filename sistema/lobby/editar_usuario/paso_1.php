@@ -38,9 +38,7 @@
 
 		// Redirecciona al paso 2
 		header('Location: ../../controladores/control_usuarios.php');
-
-		var_dump($_SESSION['datos_usuario_nuevo']);
-
+		
 	}
 
 
@@ -155,7 +153,7 @@
 										</div>
 
 										<?php 
-											$nacionalidad = trim($datos_usuario["cedula"],"123456789");
+											$nacionalidad = trim($datos_usuario["cedula"],"0123456789");
 											$cedula = trim($datos_usuario["cedula"],"VE"); 
 										?>
 
