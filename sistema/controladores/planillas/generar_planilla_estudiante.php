@@ -117,7 +117,7 @@
 	// #PARTE DEL ESTUDIANTE
 
 	$pdf->Image('../../img/foto.jpg',170,44,32,0);
-	$pdf->Cell(0,20,utf8_decode('PLANILLA DEL ESTUDIANTE'),0,1,'C');
+	$pdf->Cell(0,20,utf8_decode('PLANILLA DE REGISTRO DE ESTUDIANTE'),0,1,'C');
 	$pdf->SetFont('Arial','',8);
 	$pdf->SetXY(50.1,44);
 	$pdf->Cell(22,12,utf8_decode('1er año fecha'),1,0);
@@ -147,9 +147,8 @@
 
 	$pdf->Cell(0,6,utf8_decode('DATOS PERSONALES'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
-	$pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL Estudiantes: ' . $datos_estudiante['p_nombre'].' '.$datos_estudiante['s_nombre'].' '.$datos_estudiante['p_apellido'].' '.$datos_estudiante['s_apellido']),1,1);
+	$pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL ESTUDIANTE: ' . $datos_estudiante['p_nombre'].' '.$datos_estudiante['s_nombre'].' '.$datos_estudiante['p_apellido'].' '.$datos_estudiante['s_apellido']),1,1);
 	$pdf->Cell(70,6,utf8_decode('CÉDULA DE IDENTIDAD: ' . $datos_estudiante['cedula']),1,0);
-	$pdf->Cell(26,6,utf8_decode('EDAD: ' . calcular_edad($datos_estudiante['fecha_nacimiento'])." Años"),1,0);
 	// OJO: LA CANTIDAD DEL ARREGLO VARIA
 
 	$t_est = "";
@@ -159,12 +158,24 @@
 		$t_est .= "  ";
 	}
 
+	if ($datos_estudiante['genero'] == "M") {
+		$genero = "Masculino";
+	}
+	elseif ($datos_estudiante['genero'] == "M") {
+		$genero = "Femenino";
+	}
 
-	$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . $t_est),1,1);
-	$pdf->Cell(57,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $datos_estudiante['fecha_nacimiento']),1,0);
+	$pdf->Cell(40,6,utf8_decode('GÉNERO: ' .  $genero),1,0);
+	$pdf->Cell(26,6,utf8_decode('EDAD: ' . calcular_edad($datos_estudiante['fecha_nacimiento'])." Años"),1,0);
+	$pdf->Cell(0,6,utf8_decode('FECHA DE NACIMIENTO: ' .  $datos_estudiante['fecha_nacimiento']),1,1);
 	$pdf->SetFont('Arial','',7);
 	$pdf->Cell(0,6,utf8_decode('LUGAR DE NACIMIENTO: ' . $datos_estudiante['lugar_nacimiento']),1,1);
+	$pdf->Cell(0,6,utf8_decode('TELÉFONOS, MÓVIL Y CASA: ' . $t_est),1,1);
 	$pdf->Cell(0,6,utf8_decode('CORREO ELECTRÓNICO: ' . $datos_estudiante['email']),1,1);
+
+
+	$pdf->Cell(98,6,utf8_decode('GRADO A CURSAR: ' . $datos_estudiante['grado_a_cursar']),1,0);
+	$pdf->Cell(98,6,utf8_decode('SECCIÓN A CURSAR: ' . $datos_estudiante['seccion']),1,1);
 
 	// Si esta vacio no repite
 	if(empty($datos_estudiante['grado_repetido'])) {
@@ -182,14 +193,13 @@
 		$mat_pendientes = "Si";
 	}
 
-	$pdf->Cell(17,6,utf8_decode('REPITE: '. $mat_repitente),1,0);
-	$pdf->Cell(140,6,utf8_decode('CUÁLES MATERIAS: ' . $datos_estudiante['materias_repetidas']),1,0);
+	$pdf->Cell(30,6,utf8_decode('ES REPITENTE: '. $mat_repitente),1,0);
 	$pdf->Cell(0,6,utf8_decode('QUÉ AÑO REPITE: ' . $datos_estudiante['grado_repetido']),1,1);
+	$pdf->Cell(0,6,utf8_decode('CUÁLES MATERIAS: ' . $datos_estudiante['materias_repetidas']),1,1);
 	$pdf->Cell(37,6,utf8_decode('MATERIAS PENDIENTES: ' . $mat_pendientes),1,0);
 	$pdf->Cell(0,6,utf8_decode('CUÁLES MATERIAS PENDIENTES: ' . $datos_estudiante['materias_pendientes']),1,1);
 	$pdf->SetFont('Arial','',9);
 	$pdf->Cell(0,6,utf8_decode('PLANTEL DE PROCEDENCIA: ' . $datos_estudiante['plantel_proced']),1,1);
-	$pdf->Ln(6);
 
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
@@ -261,16 +271,15 @@
 	$pdf->Cell(0,6,utf8_decode('SERIAL: ' . $datos_estudiante['serial_carnet']),1,1);
 	$pdf->SetFont('Arial','',9);
 	$pdf->Cell(0,6,utf8_decode('CUENTA CON ACCESO A INTERNET: ' . $datos_estudiante['acceso_internet']),1,1);
-	$pdf->Ln(6);
 
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('DATOS DE SALUD'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
 	$pdf->Cell(36,6,utf8_decode('ANTROPOMÉTRICOS'),1,0);
 	$pdf->Cell(40,6,utf8_decode('ÍNDICE: ' . $datos_estudiante['indice_m_c']),1,0);
-	$pdf->Cell(40,6,utf8_decode('TALLA: ' . $datos_estudiante['estatura']),1,0);
-	$pdf->Cell(40,6,utf8_decode('PESO: ' . $datos_estudiante['peso']),1,0);
-	$pdf->Cell(40,6,utf8_decode('C.BRAZO: ' . $datos_estudiante['circ_braquial']),1,1);
+	$pdf->Cell(40,6,utf8_decode('TALLA: ' . $datos_estudiante['estatura'] . 'cm'),1,0);
+	$pdf->Cell(40,6,utf8_decode('PESO: ' . $datos_estudiante['peso'] . 'kg'),1,0);
+	$pdf->Cell(40,6,utf8_decode('C.BRAZO: ' . $datos_estudiante['circ_braquial'] . 'cm'),1,1);
 	$pdf->Cell(36,6,utf8_decode('TALLAS DE ROPA'),1,0);
 	$pdf->Cell(53.3,6,utf8_decode('PANTALÓN: ' . $datos_estudiante['pantalon']),1,0);
 	$pdf->Cell(53.3,6,utf8_decode('CAMISA: ' . $datos_estudiante['camisa']),1,0);
@@ -281,7 +290,7 @@
 	$pdf->Cell(0,6,utf8_decode('LATERALIDAD: ' . $datos_estudiante['lateralidad']),1,1);
 	$pdf->Cell(68,6,utf8_decode('CONDICIÓN DE LA DENTADURA: ' . $datos_estudiante['condicion_dental']),1,0);
 	$pdf->Cell(0,6,utf8_decode('CONDICIÓN OFTALMOLÓGICA: ' . $datos_estudiante['condicion_vista']),1,1);
-	$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA CONDICION de salud: ' . rtrim($datos_estudiante['impedimento_fisico'],",") ),1,1);
+	$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA CONDICION DE SALUD: ' . rtrim($datos_estudiante['impedimento_fisico'],",") ),1,1);
 	$pdf->Cell(0,6,utf8_decode('PRESENTA ALGUNA DE NECESIDAD EDUCATIVA ESPECIAL: ' . $datos_estudiante['necesidad_educativa']),1,1);
 	
 	if (empty( $datos_estudiante['institucion_medica'])) {
@@ -310,15 +319,46 @@
 	$pdf->Cell(0,6,utf8_decode('LOTE: ' . $datos_estudiante['lote']),1,1);
 
 
-	// Parte del representante
 
-	$pdf->AddPage();
-	$pdf->SetFont('Arial','',14);
-	$pdf->SetFillColor(226,239,217);
-	$pdf->Cell(0,10,utf8_decode('PLANILLA DEL REPRESENTANTE'),0,1,'C');
+	$vacunas_est->set_cedula_estudiante($datos_estudiante['cedula']);
+	$vacunas_estudiante = $vacunas_est->consultar_vacunas_est();
+
+	$vacunas = [];
+
+	foreach ($vacunas_estudiante as $vac) {
+		$vacunas[$vac['espec_vacuna']] = $vac['estado_vacuna'];
+	}
+	// var_dump($vacunas);
+
+
+
+	$pdf->SetFont('Arial','',8);
+
+	$pdf->Cell(98,6,utf8_decode('OTRAS VACUNAS APLICADAS:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA VPH:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA TDAP:'),1,1);
+
+	$pdf->Cell(49,6,utf8_decode('VACUNA MENACWY:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA HEPATITIS A:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA HEPATITIS B:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA IPV:'),1,1);
+
+	$pdf->Cell(49,6,utf8_decode('VACUNA MMR:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA VARICELA:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA ANTIAMARILICA:'),1,0);
+	$pdf->Cell(49,6,utf8_decode('VACUNA ANTIGRIPAL:'),1,1);
+
+
 
 	$pdf->Ln(6);
 
+	// Parte del representante
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,10,utf8_decode('PLANILLA DE LOS PADRES'),0,1,'C');
+
+	$pdf->SetFillColor(226,239,217);
+
+	$pdf->SetFillColor(33, 158, 188);
 	$pdf->Cell(0,6,utf8_decode('DATOS DEL PADRE'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
 
@@ -412,8 +452,32 @@
 		$pdf->Cell(0,6,"",1,1);
 	}
 
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,6,utf8_decode('DATOS ECONÓMICOS'),1,1,'C',1);
+	$pdf->SetFont('Arial','',9);
+
+
+	$pdf->Cell(50,6,utf8_decode('TRABAJA: ' . $datos_padre['empleo']),1,0);
+	$pdf->Cell(0,6,utf8_decode('EN QUÉ SE DESEMPEÑA: ' . $datos_padre['empleo']),1,1);
+
+
+	$pdf->Cell(0,6,utf8_decode('LUGAR TRABAJO: ' . $datos_padre['lugar_trabajo']),1,1);
+	$pdf->Cell(63,6,utf8_decode('GRADO DE INSTRUCCIÓN: ' . $datos_padre['grado_academico']),1,0);
+	#AJUSTAR Índice DEL Teléfono Y VARIABLE PARA EL REPRESENTANTE
+	$pdf->Cell(64,6,utf8_decode('REMUNERACIÓN (Sueldos mínimos): ' . $datos_padre['remuneracion']),1,0);
+	$pdf->Cell(0,6,utf8_decode('TIPO DE REMUNERACIÓN: ' . $datos_padre['tipo_remuneracion']),1,1);
+
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
+	$pdf->SetFont('Arial','',9);
+	$pdf->Cell(65,6,utf8_decode('CONDICIONES DE LA VIVIENDA: ' . $datos_padre['condicion']),1,0);
+	$pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_padre['tipo']),1,0);
+	$pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_padre['tenencia']),1,1);
+
 	$pdf->Ln(6);
 
+
+	$pdf->SetFillColor(255, 183, 3);
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('DATOS DE LA MADRE'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
@@ -508,12 +572,39 @@
 		$pdf->Cell(0,6,"",1,1);
 	}
 
-	// Parte del representante
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,6,utf8_decode('DATOS ECONÓMICOS'),1,1,'C',1);
+	$pdf->SetFont('Arial','',9);
 
-	$pdf->Ln(6);
+
+	$pdf->Cell(50,6,utf8_decode('TRABAJA: ' . $datos_madre['empleo']),1,0);
+	$pdf->Cell(0,6,utf8_decode('EN QUÉ SE DESEMPEÑA: ' . $datos_madre['empleo']),1,1);
+
+
+	$pdf->Cell(0,6,utf8_decode('LUGAR TRABAJO: ' . $datos_madre['lugar_trabajo']),1,1);
+	$pdf->Cell(63,6,utf8_decode('GRADO DE INSTRUCCIÓN: ' . $datos_madre['grado_academico']),1,0);
+	#AJUSTAR Índice DEL Teléfono Y VARIABLE PARA EL REPRESENTANTE
+	$pdf->Cell(64,6,utf8_decode('REMUNERACIÓN (Sueldos mínimos): ' . $datos_madre['remuneracion']),1,0);
+	$pdf->Cell(0,6,utf8_decode('TIPO DE REMUNERACIÓN: ' . $datos_madre['tipo_remuneracion']),1,1);
+
 
 	$pdf->SetFont('Arial','',14);
-	$pdf->Cell(0,6,utf8_decode('DATOS DEL REPRESENTANTE'),1,1,'C',1);
+	$pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
+	$pdf->SetFont('Arial','',9);
+	$pdf->Cell(65,6,utf8_decode('CONDICIONES DE LA VIVIENDA: ' . $datos_madre['condicion']),1,0);
+	$pdf->Cell(65,6,utf8_decode('TIPO DE VIVIENDA: ' . $datos_madre['tipo']),1,0);
+	$pdf->Cell(0,6,utf8_decode('TENENCIA DE LA VIVIENDA: ' . $datos_madre['tenencia']),1,1);
+
+
+	$pdf->AddPage();
+
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,10,utf8_decode('PLANILLA DEL REPRESENTANTE'),0,1,'C');
+	$pdf->SetFillColor(226,239,217);
+
+	// Parte del representante
+	$pdf->SetFont('Arial','',14);
+	$pdf->Cell(0,6,utf8_decode('DATOS PERSONALES'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
 
 	$pdf->Cell(0,6,utf8_decode('NOMBRES Y APELLIDOS DEL REPRESENTANTE: ' . $datos_representante['p_nombre'].' '.$datos_representante['s_nombre']. ' ' . $datos_representante['p_apellido'].' '.$datos_representante['s_apellido']),1,1);
@@ -595,6 +686,7 @@
 
 	$pdf->Ln(6);
 
+
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('DATOS ECONÓMICOS'),1,1,'C',1);
 	$pdf->SetFont('Arial','',9);
@@ -619,6 +711,7 @@
 	// $pdf->Multicell(0,6,utf8_decode("DESINFECTANTE: SI____ LITRO NO_____ , CLORO: SI____ LITRO NO_____, CERA: SI____ LITRO NO_____, JABÓN SI____ LITRO NO____\nLAVAPLATOS: SI____ LITRO NO_____, DESENGRASANTE SI____ LITRO  NO_____, OTRO: ____________________________________\nARTÍCULOS DE OFICINA: LÁPIZ SI____ NO_____, LAPICERO SI____ NO_____, MARCADOR SI____ NO_____ OTRO__________________\nHOJAS BLANCAS: SI_______CANT APROX NO_____, HOJAS DE RECICLAJE: SI_______CANT APROX NO ______ \nDONARÁ UTENSILIOS PARA EL COMEDOR: CUCHARILLA: SI____  NO____ LO TRAERÁ DIARIO____, TENEDOR:  SI____  NO____ LO TRAERÁ DIARIO____"),'L,R,B',0);
 
 	$pdf->Ln(6);
+
 
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('DATOS SOCIALES'),1,1,'C',1);
@@ -648,7 +741,7 @@
 	$inicio_p_acad = $per_academico->get_inicio();
 	$fin_p_acad = $per_academico->get_fin();
 	
-	$pdf->AddPage();
+	$pdf->Ln(6);
 
 	$pdf->SetFont('Arial','',14);
 	$pdf->Cell(0,6,utf8_decode('INFORMACIÓN ADICIONAL'),1,1,'C',1);
@@ -661,6 +754,8 @@
 	$pdf->Cell(0,6,utf8_decode('SE COMPROMETE A PARTICIPAR EN TODAS LAS CONVOCATORIAS DEL PLANTEL                            SI______ NO_______'),1,1);
 	$pdf->MultiCell(0,5.1,utf8_decode("ASISTIÓ AL TALLER DICTADO POR LA INSTITUCIÓN EN RELACIÓN A LAS NORMAS \nDE CONVIVENCIA, DERECHOS Y DEBERES DE PADRES, REPRESENTANTES Y ESTUDIANTES         SI______ NO_______"),1,1);
 	$pdf->MultiCell(0,10.6,utf8_decode("RESPONSABLE DE LA INSCRIPCIÓN: (solo para personal de la institución)__________________________________\nFIRMA DEL REPRESENTANTE: _____________________________________\nFIRMA DEL ESTUDIANTE: _____________________________________\nFIRMA DEL RESPONSABLE DE LA INSTITUCIÓN: _____________________________________\n"),1,1);
+
+	$pdf->AddPage();
 
 	$pdf->SetFont('Arial','',14);
 	$pdf->Ln(6);
@@ -679,6 +774,20 @@
 	$pdf->SetFont('Arial','',9);
 	
 	$pdf->MultiCell(0,6,utf8_decode("1.CÉDULA\n2.FICHA DE INSCRIPCIÓN\n3.CERTIFICADO DE PROMOCIÓN\n4.CERTIFICACIÓN DE CALIFICACIONES\n5.FOTOS\n6.PERMISO CEDNA\n6.INFORME MÉDICO"),1,0);
+
+	$fecha_actual = date("d-m-Y");
+
+	date_default_timezone_set("America/Caracas");
+	setlocale(LC_ALL, 'es_VE.UTF-8','esp');
+	/* Convertimos la fecha a marca de tiempo */
+	$marca = strtotime($fecha_actual);
+
+
+	$fecha_expedicion = utf8_encode(strftime('%A')). ", " .strftime('%e de %B de %Y', $marca). ".";
+
+	$pdf->Ln(6);
+
+	$pdf->Write(6,utf8_decode('Planilla expedida a el ' . $fecha_expedicion));
 
 	$nombre_archivo = "Planilla de inscripcion ".$datos_estudiante['cedula'].".pdf";
 
