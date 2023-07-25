@@ -84,6 +84,17 @@
 									<!-- Sección de datos personales -->
 									<section id="seccion1" class="row my-2">
 										
+										<div class="alert alert-warning d-flex alert-dismissible fade show" role="alert">
+											<div class="align-self-center">
+												<i class="fa-solid fa-triangle-exclamation fa-3x me-2"></i>
+											</div>
+											<div style="font-size: .93rem">
+												Tenemos inconvenientes al momento de cambiar si el representante es el padre o la madre. Si desea hacer que el padre o la madre pase a ser el nuevo representante, debe regresar y pulsar el botón <b>Cambiar representante</b>, especificar y actualizar quien es el representante antes de hacer la actualización completa de datos de una inscripción.
+												<a href="../consultar/?sec=est" class="alert-link">Presione aquí para volver al área de consulta</a>.
+												<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+											</div>
+										</div>
+
 										<!-- Titulo de la sección -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">

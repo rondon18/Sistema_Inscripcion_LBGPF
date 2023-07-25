@@ -133,6 +133,18 @@
 			return $representante;
 		}
 
+		public function verificar_representantes() {
+
+			$check = $this->consultar_representantes();
+			if ($check != null) {
+				return true;
+			}
+			else {
+				return false;
+			}
+
+		}
+
 
 		public function mostrar_representados() {
 			// Muestra los estudiantes que representa el representante

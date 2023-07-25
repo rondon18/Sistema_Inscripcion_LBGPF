@@ -310,6 +310,15 @@
 						<button class="btn btn-sm btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
 
 					</form>
+
+					<form action="../editar_estudiante/cambiar_representante.php" method="post" style="display: inline-block;">
+						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+						<button class="btn btn-sm btn-primary" type="submit">
+							Cambiar representante
+							<i class="fas fa-user-edit fa-lg ms-2"></i>
+						</button>
+					</form>
+
 					<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 					
 					<!-- Eliminar registro de estudiante -->
