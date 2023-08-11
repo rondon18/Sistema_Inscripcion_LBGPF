@@ -156,6 +156,9 @@
 			SELECT
 				`cedula`,
 				`p_nombre`,
+				`s_nombre`,
+				`p_apellido`,
+				`s_apellido`,
 				`grado_a_cursar`
 			FROM
 				`vista_estudiantes`

@@ -74,19 +74,19 @@
 		}
 
 		public function consultar_vacunas_est() {
-			// Muestra todos los telefonos registrados
+			// Muestra todas las vacunas disponibles
 			$conexion = conectarBD();
 
 			$cedula_estudiante = $this->get_cedula_estudiante();
 
 			$sql = "SELECT * FROM `vacunas_est` WHERE `cedula_estudiante` = '$cedula_estudiante'";
 
-			$consulta_telefonos = $conexion->query($sql) or die("error: ".$conexion->error);
-			$telefonos = $consulta_telefonos->fetch_all(MYSQLI_ASSOC);
+			$consulta_vacunas = $conexion->query($sql) or die("error: ".$conexion->error);
+			$vacunas = $consulta_vacunas->fetch_all(MYSQLI_ASSOC);
 			
 			desconectarBD($conexion);
 
-			return $telefonos;
+			return $vacunas;
 		}
 
 		public function verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) {

@@ -2,7 +2,8 @@
 	$(document).ready( function () {
 		var table = $('#estudiantes').DataTable({
 			
-			"order": [[ 5, "asc" ],[ 0, "desc" ],],
+			// "order": [[ 5, "asc" ],[ 0, "desc" ],],
+			"order": [],
 			"pagingType": "full",
 			"language": {"url": "../../js/datatables-español.json"},
 			

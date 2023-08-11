@@ -60,6 +60,9 @@ $lista_representantes = $representantes->mostrar_representantes();
 			<th>Datos economicos</th>
 			<th>Banco de la cuenta</th>
 
+			<!-- Acciones -->
+			<th>Acciones</th>
+
 		</thead>
 		<tbody>
 			<?php foreach ($lista_representantes as $representante): ?>
@@ -73,61 +76,13 @@ $lista_representantes = $representantes->mostrar_representantes();
 				<td>
 					<?php echo $representante['p_apellido'].' '.$representante['s_apellido'];?>		
 				</td>
-				<td><?php echo $representante['fecha_nacimiento'];?></td>
+				<td><?php echo formatear_fecha($representante['fecha_nacimiento']);?></td>
 				<td><?php echo $representante['lugar_nacimiento'];?></td>
 				<td><?php echo genero($representante['genero']); ?></td>
 				<td><?php echo $representante['email'];?></td>
 
-				<?php 
 
-					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
-
-					$direccion = "";
-
-					if (empty($representante['estado'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['estado']." ";
-					}
-					if (empty($representante['municipio'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['municipio']." ";
-					}
-					if (empty($representante['parroquia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['parroquia']." ";
-					}
-					if (empty($representante['sector'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['sector']." ";
-					}
-					if (empty($representante['calle'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['calle']." ";
-					}
-					if (empty($representante['nro_casa'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['nro_casa']." ";
-					}
-					if (empty($representante['punto_referencia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $representante['punto_referencia']." ";
-					}
-				?>
-				<td style="min-width: 100vw"><?php echo $direccion;?></td>
+				<td style="min-width: 100vw"><?php echo direccion_completa($representante);?></td>
 				<td><?php echo $representante['estado_civil'];?></td>
 				<td><?php echo $representante['grado_academico'];?></td>
 				
@@ -173,6 +128,25 @@ $lista_representantes = $representantes->mostrar_representantes();
 				<td></td>
 				<td><?php echo $representante['banco'];?></td>
 
+				<!-- Acciones -->
+				<td>
+					<div class="d-inline-block">
+						<form action="consultar_representante.php" method="post"	>
+
+							<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
+							<input type="hidden" name="accion" value="consultar">
+
+							<button
+								type="submit"
+								role="button"
+								class="btn btn-primary btn-sm"
+								name="consultar"
+							>
+								Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i>
+							</button>
+						</form>
+					</div>
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>

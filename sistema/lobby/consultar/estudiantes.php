@@ -173,64 +173,15 @@
 				<td><?php echo $estudiante['cedula'];?></td>
 				<td><?php echo $estudiante['p_nombre']." ".$estudiante['s_nombre'];?></td>
 				<td><?php echo $estudiante['p_apellido']." ".$estudiante['s_apellido'];?></td>		
-				<td><?php echo $estudiante['fecha_nacimiento'];?></td>
-				<td><?php echo comprobar_vacio(calcular_edad($estudiante['fecha_nacimiento']),"E");?></td>
+				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
+				<td><?php echo calcular_edad($estudiante['fecha_nacimiento']);?> años</td>
 				<td><?php echo $estudiante['grado_a_cursar'];?></td>
 				<td><?php echo $estudiante['seccion'];?></td>
 				<td><?php echo genero($estudiante['genero']);?></td>
 				<td><?php echo $estudiante['email'];?></td>
 
-				<?php 
 
-					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
-
-					$direccion = "";
-
-					if (empty($estudiante['estado'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['estado']." ";
-					}
-					if (empty($estudiante['municipio'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['municipio']." ";
-					}
-					if (empty($estudiante['parroquia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['parroquia']." ";
-					}
-					if (empty($estudiante['sector'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['sector']." ";
-					}
-					if (empty($estudiante['calle'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['calle']." ";
-					}
-					if (empty($estudiante['nro_casa'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['nro_casa']." ";
-					}
-					if (empty($estudiante['punto_referencia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['punto_referencia']." ";
-					}
-				?>
-
-				<td><?php echo $direccion;?></td>
+				<td><?php echo direccion_completa($estudiante);?></td>
 
 				<!-- Ficha médica del estudiante -->
 				<td><?php echo $estudiante['camisa'];?></td>
@@ -260,8 +211,8 @@
 				<td><?php echo $estudiante['id_per_academico'];?></td>
 
 				<!-- identificadores de madre, padre y representante -->
-				<td><?php echo $estudiante['cedula_padre'];?></td>
 				<td><?php echo $estudiante['cedula_madre'];?></td>
+				<td><?php echo $estudiante['cedula_padre'];?></td>
 				<td><?php echo $estudiante['cedula_representante'];?></td>
 
 				<!-- Acciones -->
