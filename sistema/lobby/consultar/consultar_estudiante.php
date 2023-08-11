@@ -169,20 +169,49 @@
 						<!--Generar planilla de inscripción-->
 						<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;">
 							
-							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
-							<input type="hidden" name="cedula_padre" value="<?php echo $datos_padre['cedula'];?>">
-							<input type="hidden" name="cedula_madre" value="<?php echo $datos_madre['cedula'];?>">
-							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+							<input
+								type="hidden"
+								name="cedula"
+								value="<?php echo $datos_estudiante['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_padre"
+								value="<?php echo $datos_padre['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_madre"
+								value="<?php echo $datos_madre['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_representante"
+								value="<?php echo $datos_representante['cedula'];?>"
+							>
 
 							<button class="btn btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 
 						</form>
 						
+
 						<!--Generar acta de compromiso-->
 						<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;">
 
-							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
-							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+							<input
+								type="hidden"
+								name="cedula"
+								value="<?php echo $datos_estudiante['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_representante"
+								value="<?php echo $datos_representante['cedula'];?>"
+							>
 
 							<button class="btn btn-danger" type="submit" name="Generar planilla de Compromiso">Generar planilla de compromiso <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
 
@@ -191,12 +220,37 @@
 						<!-- Editar registro del estudiante -->
 						<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
 
-							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
-							<input type="hidden" name="cedula_padre" value="<?php echo $datos_padre['cedula'];?>">
-							<input type="hidden" name="cedula_madre" value="<?php echo $datos_madre['cedula'];?>">
-							<input type="hidden" name="cedula_representante" value="<?php echo $datos_representante['cedula'];?>">
+							<input
+								type="hidden"
+								name="cedula"
+								value="<?php echo $datos_estudiante['cedula'];?>"
+							>
 
-							<button class="btn btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+							<input
+								type="hidden"
+								name="cedula_padre"
+								value="<?php echo $datos_padre['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_madre"
+								value="<?php echo $datos_madre['cedula'];?>"
+							>
+
+							<input
+								type="hidden"
+								name="cedula_representante"
+								value="<?php echo $datos_representante['cedula'];?>"
+							>
+
+							<button
+								class="btn btn-primary"
+								type="submit"
+								name="editar"
+							>
+								Editar <i class="fas fa-pen fa-lg ms-2"></i>
+							</button>
 
 						</form>
 						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
