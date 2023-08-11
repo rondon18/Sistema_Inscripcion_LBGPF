@@ -1,3 +1,2 @@
-sistema/respaldos/
-!sistema/respaldos/.gitkeep
+sistema/respaldos/*.sql
 sistema/pruebas/
