@@ -33,6 +33,7 @@ $lista_padres = $padres->mostrar_padres();
 			<th>Dirección</th>
 			<th>Estado Civil</th>
 			<th>Hijos en el plantel</th>
+			<th>Acciones</th>
 		</thead>
 		<tbody>
 
@@ -53,20 +54,22 @@ $lista_padres = $padres->mostrar_padres();
 					<?php 
 
 						if ($padre['genero'] == "F") {
-							echo "Madre";
+							$rol = "Madre";
 						}
 						else {
-							echo "Padre";
+							$rol = "Padre";
 						}
+
+						echo $rol;
 
 					?>
 				</td>
-				<td class="text-center"><?php $padre['fecha_nacimiento']; ?></td>
-				<td><?php $padre['lugar_nacimiento']; ?></td>
-				<td style="min-width:160px;"><?php $padre['email']; ?></td>
+				<td class="text-center"><?php echo formatear_fecha($padre['fecha_nacimiento']); ?></td>
+				<td><?php echo $padre['lugar_nacimiento']; ?></td>
+				<td style="min-width:160px;"><?php echo $padre['email']; ?></td>
 
 				<td style="min-width: 100vw"><?php echo direccion_completa($padre);?></td>
-				<td><?php $padre['estado_civil']; ?></td>
+				<td><?php echo $padre['estado_civil']; ?></td>
 
 				<td>
 					<?php
@@ -85,6 +88,27 @@ $lista_padres = $padres->mostrar_padres();
 						// echo $padres->contar_hijos();
 
 					?>
+				</td>
+
+				<!-- Acciones -->
+				<td>
+					<div class="d-inline-block">
+						<form action="consultar_padre.php" method="post">
+
+							<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+							<input type="hidden" name="rol" value="<?php echo $rol;?>">
+							<input type="hidden" name="accion" value="consultar">
+
+							<button
+								type="submit"
+								role="button"
+								class="btn btn-primary btn-sm"
+								name="consultar"
+							>
+								Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i>
+							</button>
+						</form>
+					</div>
 				</td>
 
 			</tr>

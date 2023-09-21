@@ -146,6 +146,14 @@
 			);
 		</script>
 
+		<?php elseif(isset($_GET['inactividad'])): ?>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Atencion',
+				'Su sesión fue cerrada debido a la inactividad',
+				'info'
+			);
+		</script>
 		<?php endif ?>
 	</body>
 </html>

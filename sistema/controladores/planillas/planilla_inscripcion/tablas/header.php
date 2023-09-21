@@ -8,7 +8,11 @@
 	</div>
 
 	<p class="text-center text-uppercase mb-2" style="font-size: 1.5rem">
-		INSCRIPCIÓN AÑO ESCOLAR <?php echo date("Y") . "-" . date('Y', strtotime('+1 year')) ; ?>
+		INSCRIPCIÓN AÑO ESCOLAR
+		<?php
+			echo "2023-2024";
+			// echo date("Y") . "-" . date('Y', strtotime('+1 year')) ;
+		?>
 	</p>
 
 	<p class="text-center text-uppercase" style="font-size: 1.1rem">

@@ -36,15 +36,32 @@
 			$pais_residencia = $this->get_pais_residencia();
 
 			$sql = "
-				UPDATE
+				INSERT INTO
 					`padres`
-				SET
-					`pais_residencia` = '$pais_residencia'
-				WHERE
-					`cedula_persona` = '$cedula_persona'
+					(
+						`cedula_persona`,
+						`pais_residencia`
+					)
+				VALUES
+					(
+					'$cedula_persona',
+					'$pais_residencia'
+					)
+				ON DUPLICATE KEY UPDATE
+					`cedula_persona` = `cedula_persona`,
+					`pais_residencia` = '$pais_residencia';
 			";
 
-			// echo $sql;
+			// $sql = "
+			// 	UPDATE
+			// 		`padres`
+			// 	SET
+			// 		`pais_residencia` = '$pais_residencia'
+			// 	WHERE
+			// 		`cedula_persona` = '$cedula_persona'
+			// ";
+
+			echo $sql;
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
@@ -93,6 +110,7 @@
 			SELECT
 				`cedula`,
 				`p_nombre`,
+				`p_apellido`,
 				`grado_a_cursar`
 			FROM
 				`vista_estudiantes`

@@ -29,7 +29,6 @@
 	</p>
 	<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
 		<thead style="font-size: 95%">
-			<th>Nro de registro.</th>
 			<th>Usuario</th>
 			<th>Fecha de entrada</th>
 			<th>Hora de entrada</th>
@@ -41,15 +40,11 @@
 		<?php foreach ($registros_bitácora as $registro): ?>
 
 			<tr>
-				
-				<td>
-					<?php echo $registro['id_bitacora'];?>
-				</td>
 
 				<td><?php echo $registro['cedula_usuario'];?></td>
 
 				<td style="min-width: 170px;">
-					<?php echo $registro['fecha_ingreso'];?>
+					<?php echo formatear_fecha($registro['fecha_ingreso']);?>
 				</td>
 
 				<td style="min-width: 170px;">
@@ -59,7 +54,7 @@
 				<td style="min-width: 180px">
 					<?php 
 						if($registro['fecha_salida'] != "0000-00-00") { 
-							echo $registro['fecha_salida'];
+							echo formatear_fecha($registro['fecha_salida']);
 						} 
 						else {
 							echo "Sesión no cerrada correctamente";

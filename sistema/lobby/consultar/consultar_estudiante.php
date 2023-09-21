@@ -139,23 +139,26 @@
 
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
 
-						<table
-							id="Estudiante"
-							class="table table-bordered m-0"
-							style="max-width:100%;"
-						>
-							<tbody class="small text-uppercase">
-								<?php
+						<div class="table-responsive">
+							<table
+								id="Estudiante"
+								class="table table-bordered m-0"
+								style="max-width:100%;"
+							>
+								<tbody class="small text-uppercase">
+									<?php
 
-									require('../../controladores/planillas/planilla_inscripcion/tablas/estudiantes.php');
-									require('../../controladores/planillas/planilla_inscripcion/tablas/madre.php');
-									require('../../controladores/planillas/planilla_inscripcion/tablas/padre.php');
-									require('../../controladores/planillas/planilla_inscripcion/tablas/representante.php');
-									require('../../controladores/planillas/planilla_inscripcion/tablas/observaciones.php');
+										require('../../controladores/planillas/planilla_inscripcion/tablas/estudiantes.php');
+										require('../../controladores/planillas/planilla_inscripcion/tablas/madre.php');
+										require('../../controladores/planillas/planilla_inscripcion/tablas/padre.php');
+										require('../../controladores/planillas/planilla_inscripcion/tablas/representante.php');
+										require('../../controladores/planillas/planilla_inscripcion/tablas/observaciones.php');
 
-								?>
-							</tbody>
-						</table>
+									?>
+								</tbody>
+							</table>
+						</div>
+
 
 					</div>
 

@@ -243,7 +243,7 @@ $("#formulario_padres").validate({
 		cedula_m: {
 			digits: true,
 			maxlength:11,
-min: 8000000,
+			min: 8000000,
 			max: 30000000,
 		},
 		codigo_carnet_matria_m: {

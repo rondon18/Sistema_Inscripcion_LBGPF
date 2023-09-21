@@ -12,21 +12,37 @@
 	require('../../controladores/conexion.php');
 	require('../../clases/bitacora.php');
 
-	require('../../clases/representantes.php');
+	require('../../clases/padres.php');
 	require('../../clases/telefonos.php');
 
 	$bitacora = new bitacora();
-	$representantes = new representantes();
+	$padres = new padres();
 	$telefonos = new telefonos();
 
 	if (!isset($_POST['cedula'],$_POST['orden'])) {
 
-		// Instanciacion y consulta de representante
-		$representantes->set_cedula_persona($_POST['cedula']);
-		$datos_representante = $representantes->consultar_representantes();
+		if (strtolower($_POST['rol']) == "padre") {
+			// padre
+			$padres->set_cedula_persona($_POST['cedula']);
+			$datos_padre = $padres->consultar_padres();
 
-		$telefonos->set_cedula_persona($_POST['cedula']);
-		$tlfs_representante = $telefonos->consultar_telefonos();
+			$telefonos->set_cedula_persona($_POST['cedula']);
+			$tlfs_padre = $telefonos->consultar_telefonos();
+		}
+		elseif (strtolower($_POST['rol']) == "madre") {
+			// madre
+			$padres->set_cedula_persona($_POST['cedula']);
+			$datos_madre = $padres->consultar_padres();
+
+			$telefonos->set_cedula_persona($_POST['cedula']);
+			$tlfs_madre = $telefonos->consultar_telefonos();
+		}
+
+
+
+
+
+
 
 	}
 
@@ -91,7 +107,7 @@
 
 						<div class="table-responsive">
 							<table
-								id="Representante"
+								id="Padre"
 								class="table table-bordered m-0"
 								style="max-width:100%;"
 							>
@@ -100,20 +116,26 @@
 
 										// Para especificar que mostrar y que no
 										$configuracion = [
-											"mostrar_vinculo_representante" => false,
-											"listar_representados" => true,
+											"listar_hijos" => true,
 										];
 
-										require('../../controladores/planillas/planilla_inscripcion/tablas/representante.php');
+										if (strtolower($_POST['rol']) == "padre") {
+											require('../../controladores/planillas/planilla_inscripcion/tablas/padre.php');
+										}
+										elseif (strtolower($_POST['rol']) == "madre") {
+											require('../../controladores/planillas/planilla_inscripcion/tablas/madre.php');
+										}
+
 
 									?>
 								</tbody>
 							</table>
 						</div>
+
 					</div>
 
 					<div class="card-footer">
-						<a href="index.php?sec=rep" class="btn btn-primary">
+						<a href="index.php?sec=pad" class="btn btn-primary">
 							<i class="fa-solid fa-lg me-2 fa-home"></i>
 							Menú principal
 						</a>

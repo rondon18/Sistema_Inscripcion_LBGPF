@@ -228,3 +228,45 @@
 			</span>
 		</td>
 	</tr>
+
+	<?php if (isset($configuracion) and $configuracion["listar_hijos"] == true): ?>
+		<?php
+			$lista_hijos = $padres->mostrar_hijos();
+		?>
+		<tr>
+			<th class="text-center bg-warning" colspan="6">Hijos regitrados</th>
+		</tr>
+		<?php foreach ($lista_hijos as $hijo): ?>
+			<tr>
+				<td colspan="1">
+					<b>
+						Cédula:
+					</b>
+					<span>
+						<?php
+							echo $hijo['cedula'];?>
+					</span>
+				</td>
+				<td colspan="3">
+					<b>
+						Nombre y apellido:
+					</b>
+					<span>
+						<?php
+							echo
+								$hijo['p_nombre'] . " " .
+								$hijo['p_apellido']
+						;?>
+					</span>
+				</td>
+				<td colspan="2">
+					<b>
+						Año que cursa:
+					</b>
+					<span>
+						<?php echo $hijo['grado_a_cursar'];?>
+					</span>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	<?php endif ?>

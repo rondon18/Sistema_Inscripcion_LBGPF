@@ -8,6 +8,7 @@
 	}
 
 
+	require('../../lobby/consultar/funciones.php');
 	require('../../clases/bitacora.php');
 	require('../../controladores/conexion.php');
 
@@ -85,11 +86,6 @@
 	// Adaptar una entrada para cada accion (insertar, editar y eliminar)
 	$bitacora = new bitacora();
 
-	// var_dump($_POST);
-
-	// foreach ($_POST as $key => $value) {
-	// 	echo $key." --> ".$value."<br>";
-	// }
 
 	// Verifica que se ha solicitado un reporte
 	if (isset($_POST['reporte'])) {

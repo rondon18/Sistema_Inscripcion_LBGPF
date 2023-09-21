@@ -119,7 +119,7 @@
 	?>
 	
 	<p class="mt-4" style="font-size: .85rem;">
-		Planilla expedida el día viernes, <?php echo $fecha_expedicion; ?>
+		Planilla expedida el día, <?php echo $fecha_expedicion; ?>
 	</p>
 
 </body>

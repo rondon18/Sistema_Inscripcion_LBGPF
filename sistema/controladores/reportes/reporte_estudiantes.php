@@ -361,7 +361,7 @@
 				$estudiante["cedula_escolar"],
 				$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
 				$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
-				$estudiante["fecha_nacimiento"],
+				formatear_fecha($estudiante["fecha_nacimiento"]),
 				$estudiante["lugar_nacimiento"],
 				$estudiante["genero"],
 			]

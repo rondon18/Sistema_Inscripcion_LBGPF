@@ -426,7 +426,7 @@
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
 		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_nuevo_usuario.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
