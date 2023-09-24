@@ -78,7 +78,9 @@
 	$usuarios = new usuarios();
 
 
-	// var_dump($_SESSION);
+	var_dump($_SESSION['datos_madre']['cedula']);
+	var_dump($_SESSION['datos_padre']['cedula']);
+	var_dump($_SESSION['datos_estudiante']['cedula']);
 
 	
 	

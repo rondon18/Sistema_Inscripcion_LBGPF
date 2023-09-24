@@ -161,6 +161,7 @@
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Padre") {
+			echo "CAMINO A";
 
 			// si alguno de los dos esta vacio, se agrega una cedula provisional
 			if (empty(dato_sesion_i("nacionalidad_p",2)) or (empty(dato_sesion_i("cedula_p",2)))) {
@@ -280,6 +281,7 @@
 		}
 		// Cuando el representante es el padre se reusan los datos para evitar registros redundantes.
 		else {
+			echo "CAMINO B";
 			$padres->set_cedula_persona($cedula_representante);
 			$padres->set_pais_residencia("Venezuela");
 			$padres->editar_padres();
@@ -287,6 +289,7 @@
 
 			// Almacena la cédula del padre
 			$cedula_padre = $personas->get_cedula();
+
 		}
 
 			// var_dump($personas);
@@ -304,6 +307,8 @@
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Madre") {
+			echo "CAMINO A";
+
 			// si alguno de los dos esta vacio, se agrega una cedula provisional
 			if (empty(dato_sesion_i("nacionalidad_m",2)) or (empty(dato_sesion_i("cedula_m",2)))) {
 				$cedula_provisional_m = "V".$personas->generar_cedula_provisional();
@@ -431,6 +436,7 @@
 			// Almacena la cédula del padre
 			$cedula_madre = $personas->get_cedula();
 
+			echo "CAMINO B";
 		}
 
 
@@ -709,7 +715,7 @@
 	
 
 		// elimina los valores almacenados en sesion de este proceso
-		unset($_SESSION['orden'],$_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		// unset($_SESSION['orden'],$_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
 
 	}
 	else {

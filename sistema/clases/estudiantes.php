@@ -77,6 +77,25 @@
 			$cedula_madre = $this->get_cedula_madre();
 			$cedula_representante = $this->get_cedula_representante();
 
+			/*
+
+				Debido a un error al asignar la cédula de la madre, ando haciendo esto.
+				La cédula de la madre estuvo asignandose con la cédula del padre, y esto pasa con todas las ediciones
+				al parecer. En ese caso se va a tener en cuenta la relacion del representante, en este caso como solo ocurre
+				si el representante es la madre, se va a
+
+			*/
+
+			if ($cedula_madre == $cedula_padre) {
+				if ($relacion_representante == "Madre") {
+					$cedula_madre = $cedula_representante;
+				}
+				// elseif ($relacion_representante == "Padre") {
+				// 	$cedula_padre = $cedula_representante;
+				// }
+			}
+
+
 			$sql = "
 				UPDATE
 			    `estudiantes`
@@ -92,11 +111,37 @@
 			    `cedula_persona` = '$cedula_persona'
 			";
 
-			echo $sql;
+			echo $sql."<br><br>";
+
+
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			/*
+
+				Luego se debe comprobar que no hayan registros con ese error en la base de datos
+				a lo que se consulta si existe algún registro con ese error y se actualiza automáticamente
+
+			*/
+
+			$sql = "
+				UPDATE IGNORE
+					`estudiantes`
+				SET
+					`cedula_madre` = `cedula_representante`
+				WHERE
+						`relacion_representante` = 'Madre'
+					and
+						`cedula_padre` = `cedula_madre`
+
+			";
+
+			echo $sql."<br><br>";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
 			desconectarBD($conexion);
+
 		}
 
 

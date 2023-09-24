@@ -106,6 +106,7 @@
 					`cedula` = '$cedula_actual';
 			";
 
+			echo $sql."<br><br>";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 

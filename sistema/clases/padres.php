@@ -61,7 +61,8 @@
 			// 		`cedula_persona` = '$cedula_persona'
 			// ";
 
-			echo $sql;
+			echo $sql."<br><br>";
+
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 

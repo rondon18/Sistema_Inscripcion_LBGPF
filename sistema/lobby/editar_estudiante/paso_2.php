@@ -126,7 +126,6 @@ $nivel = 2;
 														type="text" 
 														name="primer_nombre_p"
 														placeholder="Primer nombre"
-														required 
 														value="<?php echo dato_input("p_nombre","dp");?>"
 													>
 												</div>
@@ -875,7 +874,6 @@ $nivel = 2;
 														type="text" 
 														name="primer_nombre_m"
 														placeholder="Primer nombre"
-														required 
 														value="<?php echo dato_input("p_nombre","dm");?>"
 													>
 												</div>
