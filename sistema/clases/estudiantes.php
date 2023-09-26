@@ -61,6 +61,8 @@
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
+			$this->corregir_c_madres();
+
 			desconectarBD($conexion);
 		}
 
@@ -113,32 +115,9 @@
 
 			echo $sql."<br><br>";
 
-
-
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
-			/*
-
-				Luego se debe comprobar que no hayan registros con ese error en la base de datos
-				a lo que se consulta si existe algún registro con ese error y se actualiza automáticamente
-
-			*/
-
-			$sql = "
-				UPDATE IGNORE
-					`estudiantes`
-				SET
-					`cedula_madre` = `cedula_representante`
-				WHERE
-						`relacion_representante` = 'Madre'
-					and
-						`cedula_padre` = `cedula_madre`
-
-			";
-
-			echo $sql."<br><br>";
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
+			$this->corregir_c_madres();
 
 			desconectarBD($conexion);
 
@@ -306,6 +285,38 @@
 			desconectarBD($conexion);
 
 			return $estudiante;
+
+		}
+
+		public function corregir_c_madres() {
+
+			$conexion = conectarBD();
+			
+
+			/*
+
+				Luego se debe comprobar que no hayan registros con ese error en la base de datos
+				a lo que se consulta si existe algún registro con ese error y se actualiza automáticamente
+
+			*/
+
+			$sql = "
+				UPDATE IGNORE
+					`estudiantes`
+				SET
+					`cedula_madre` = `cedula_representante`
+				WHERE
+						`relacion_representante` = 'Madre'
+					and
+						`cedula_padre` = `cedula_madre`
+
+			";
+
+			echo $sql."<br><br>";
+
+			$conexion->query($sql) or die("error: ".$conexion->error);
+
+			desconectarBD($conexion);
 
 		}
 
