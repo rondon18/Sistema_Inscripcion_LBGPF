@@ -1,5 +1,5 @@
 	<?php
-		$nombreImagen = "../../img/logo.jpg";
+		$nombreImagen = "../img/logo.jpg";
 		$imagenBase64 = "data:image/jpg;base64," . base64_encode(file_get_contents($nombreImagen));
 	?>
 
@@ -10,8 +10,9 @@
 	<p class="text-center text-uppercase mb-2" style="font-size: 1.5rem">
 		INSCRIPCIÓN AÑO ESCOLAR
 		<?php
-			echo "2023-2024";
+			// echo "2023-2024";
 			// echo date("Y") . "-" . date('Y', strtotime('+1 year')) ;
+		echo $per_academico->get_inicio() . "-" . $per_academico->get_fin();
 		?>
 	</p>
 

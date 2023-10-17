@@ -18,11 +18,11 @@
 
 	$nivel = 1;
 
-	// var_dump($_SESSION);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +33,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 		<link rel="icon" type="img/png" href="../img/icono.png">
 	</head>
+
 	<body>
 		
 		<main class="d-flex flex-column justify-content-between vh-100">
@@ -54,9 +55,9 @@
 								<span class="text-muted">¿Qué desea hacer?</span>
 							</div>
 						</section>
+
 						<section class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
 
-							
 							<!-- Gestionar registros -->
 							<div class="col px-2 px-md-4 py-2">
 								<div class="card bg-light">
@@ -170,8 +171,6 @@
 									</div>
 								</div>
 							</div>
-
-
 						</section>
 					</div>
 				</div>

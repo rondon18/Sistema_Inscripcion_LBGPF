@@ -78,12 +78,6 @@
 	$usuarios = new usuarios();
 
 
-	var_dump($_SESSION['datos_madre']['cedula']);
-	var_dump($_SESSION['datos_padre']['cedula']);
-	var_dump($_SESSION['datos_estudiante']['cedula']);
-
-	
-	
 	/*
 
 	Comprueba que accion se quiere realizar y llama el controlador correspondiente

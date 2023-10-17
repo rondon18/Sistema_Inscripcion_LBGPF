@@ -712,10 +712,18 @@
 		$grado_a_cursar_est->set_id_per_academico($per_academico->get_id_per_academico());
 		$grado_a_cursar_est->editar_grado_a_cursar_est();
 		// var_dump($grado_a_cursar_est);
+
+		// inscripciones
+
+		$inscripciones->set_fecha(date("Y-m-d"));
+		$inscripciones->set_hora(date("h:i:s a"));
+		$inscripciones->set_cedula_usuario($_SESSION['datos_login']["cedula"]);
+		$inscripciones->set_cedula_estudiante($cedula_estudiante);
+		$inscripciones->insertar_inscripciones();
 	
 
 		// elimina los valores almacenados en sesion de este proceso
-		// unset($_SESSION['orden'],$_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		unset($_SESSION['orden'],$_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
 
 	}
 	else {

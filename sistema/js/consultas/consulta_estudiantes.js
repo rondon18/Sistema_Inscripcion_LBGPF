@@ -2,13 +2,13 @@
 	$(document).ready( function () {
 		var table = $('#estudiantes').DataTable({
 			
-			// "order": [[ 5, "asc" ],[ 0, "desc" ],],
 			"order": [],
 			"pagingType": "full",
+			// "deferData": true,
+			// "deferRender": false,
+			// "processingIndicator": '<div class="loading">Cargando...</div>',
 			"language": {"url": "../../js/datatables-español.json"},
 			
-
-
 			dom: '<"nav nav-fill mb-2"<B><"ms-auto d-none d-md-inline-block"l><"ms-md-4"f>>rt<".nav"<"mx-auto m-md-0"i><"ms-md-auto"p>>',
 
 			buttons: [

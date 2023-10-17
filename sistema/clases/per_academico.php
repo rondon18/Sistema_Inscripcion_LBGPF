@@ -10,61 +10,111 @@
 
 		// constructor
 		// calcula el periodo acacemico en curso segun la fecha del servidor
+
+		/*
+
+			Probablemente id_per_academico sea retirado, una vez normalizada la BD se puede optar a una
+			clave compuesta entre el año de inicio y el año de fin
+
+			| anio_inicio | anio_fin |
+			| 2023        | 2024     |
+			| 2024        | 2025     |
+
+		*/
 		
 		public function __construct() {
-			
+
+			// Establese la region para Venezuela (Hora, fecha, etc)
 			date_default_timezone_set("America/Caracas");
-			$mes = date('m');
-			
 
-			$anio_actual = (int)date('Y');
+			// Toma la fecha actual al momento de comprobar
 
-			
-			// si el mes actual es entre septiembre y marzo, se inscribe para este año 
-			if ($mes >= 9 or $mes <= 3) {
-				$this->set_inicio($anio_actual + 1);
-				$this->set_fin($anio_actual + 2);
+			$fecha_actual = new DateTime();
+
+			/*
+
+				Obtiene la fecha de cierre del periodo académico.
+				Toma el año actual de manera automatica, más
+
+						| | |
+						V V V
+
+			*/
+
+			$fecha_cierre = new DateTime((int)date('Y').'05-01');
+
+
+			// Compara la fecha actual con la fecha de finalización del periodo académico
+			if ($fecha_actual >= $fecha_cierre) {
+
+				// El inicio del año escolar será el año actual
+		    $this->set_inicio($fecha_actual->format('Y'));
+
+				// El fin del año escolar será el año proximo
+		    $this->set_fin($fecha_actual->format('Y') + 1);
+
 			}
-			// si no, para el siguente
 			else {
-				$this->set_inicio($anio_actual);
-				$this->set_fin($anio_actual + 1);
+
+				// El inicio del año escolar será el año anterior
+		    $this->set_fin($fecha_actual->format('Y') - 1);
+
+				// El fin del año escolar será el año actual
+		    $this->set_inicio($fecha_actual->format('Y'));
+
 			}
 
+			// Concatena ambos para formar el id del periodo académico
 			$id_per_academico = $this->get_inicio().$this->get_fin();
-			
 			$this->set_id_per_academico($id_per_academico);
 
+			// guarda el periodo académico actual o inserta uno nuevo
 			$this->insertar_per_academico();
+
 		}
+
 
 		public function insertar_per_academico() {
 
-			// si no hay un registro previo
-			if ($this->consultar_per_academico($this->get_id_per_academico()) < 1) {
-				$conexion = conectarBD();
+			$conexion = conectarBD();
 
-				// el id es la concatenacion del año de inicio y el año de fin
-				$id_per_academico = $this->get_inicio().$this->get_fin();
-				
-				$inicio = $this->get_inicio();
-				$fin = $this->get_fin();
+			// el id es la concatenacion del año de inicio y el año de fin
+			$id_per_academico = $this->get_inicio().$this->get_fin();
 
-				$sql = "
-					INSERT INTO `per_academico`(`id_per_academico`, `inicio`, `fin`)
-					VALUES(
+			$inicio = $this->get_inicio();
+			$fin = $this->get_fin();
+
+			$sql = "
+				INSERT INTO
+					`per_academico`
+					(
+						`id_per_academico`,
+						`inicio`,
+						`fin`
+					)
+				VALUES
+					(
 				    '$id_per_academico',
 				    '$inicio',
 				    '$fin'
 					)
-					ON DUPLICATE KEY UPDATE
-					`id_per_academico` = `id_per_academico`;
-				";
+				ON DUPLICATE KEY UPDATE
+				`id_per_academico` = `id_per_academico`;
+			";
 
-				$conexion->query($sql) or die("error: ".$conexion->error);
-				desconectarBD($conexion);
-			}
+			$conexion->query($sql) or die("error: ".$conexion->error);
+			desconectarBD($conexion);
 		}
+
+
+		/*
+
+			Esta funcion puede que se vaya (es un poco redundate si se usa el ON DUPLICATE en el constructor)
+
+					| | |
+					V V V
+
+		*/
 
 		public function consultar_per_academico($id_per_academico) {
 			// consulta si el periodo academico ya existe

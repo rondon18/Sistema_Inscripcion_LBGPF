@@ -217,70 +217,85 @@
 
 				<!-- Acciones -->
 				<td>
-					<!--Generar planilla de inscripción-->
-					<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;">
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
 
-						<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+					<div>
 
+						<!-- Consultar información completa del estudiante -->
+						<form action="consultar_estudiante.php" method="post" style="display: inline-block;">
+
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+
+							<button class="btn btn-sm btn-primary" type="submit" name="consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
+
+						</form>
+
+						<!-- Editar registro del estudiante -->
+						<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
+
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+
+							<button class="btn btn-sm btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
+
+						</form>
+
+						<form action="../editar_estudiante/cambiar_representante.php" method="post" style="display: inline-block;">
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<button class="btn btn-sm btn-primary" type="submit">
+								Cambiar representante
+								<i class="fas fa-user-edit fa-lg ms-2"></i>
+							</button>
+						</form>
+
+						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
+
+						<!-- Eliminar registro de estudiante -->
+						<form action="#" method="post" style="display: inline-block;" onsubmit="confirmar_envio(event)">
+
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<input type="hidden" name="orden" value="eliminar">
+							<button class="btn btn-sm btn-primary" type="submit">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
+
+						</form>
+						<?php endif;?>
+
+					</div>
+
+					<form action="../../controladores/control_planillaje.php" method="post">
+						<div>
+							<div class="input-group input-group-sm">
+
+								<!-- Texto de referencia -->
+					      <div class="input-group-text">Generación de planillas</div>
+
+					      <!-- Selector de documento -->
+								<select class="form-select" id="documento_solicitado" name="documento_solicitado" required>
+									<option value="">Indique el documento requerido</option>
+									<option value="1">Planilla de inscripción</option>
+									<option value="2">Acta de compromiso</option>
+									<option value="3">Todo el planillaje</option>
+								</select>
+
+								<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+								<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+								<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+								<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+
+								<!-- Botón para envíar la solicitud -->
+								<button type="submit" class="btn btn-danger">
+									Solicitar documento
+									<i class="fas fa-file-pdf fa-lg ms-1"></i>
+								</button>
+
+							</div>
+						</div>
 					</form>
-					
-					<!--Generar acta de compromiso-->
-					<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;">
 
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
-
-						<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla de Compromiso">Generar planilla de compromiso <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
-
-					</form>
-
-					<!-- Consultar información completa del estudiante -->
-					<form action="consultar_estudiante.php" method="post" style="display: inline-block;">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
-
-						<button class="btn btn-sm btn-primary" type="submit" name="consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
-
-					</form>
-
-					<!-- Editar registro del estudiante -->
-					<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
-
-						<button class="btn btn-sm btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
-
-					</form>
-
-					<form action="../editar_estudiante/cambiar_representante.php" method="post" style="display: inline-block;">
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<button class="btn btn-sm btn-primary" type="submit">
-							Cambiar representante
-							<i class="fas fa-user-edit fa-lg ms-2"></i>
-						</button>
-					</form>
-
-					<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
-					
-					<!-- Eliminar registro de estudiante -->
-					<form action="#" method="post" style="display: inline-block;" onsubmit="confirmar_envio(event)">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="orden" value="eliminar">
-						<button class="btn btn-sm btn-primary" type="submit">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
-
-					</form>
-					<?php endif;?>
 				</td>
 			</tr>
 			<?php endforeach ?>

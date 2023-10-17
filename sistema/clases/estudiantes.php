@@ -124,11 +124,29 @@
 		}
 
 
-		public function mostrar_estudiantes() {
+		public function mostrar_estudiantes($paginacion = false, $pagina = null, $tamanio_pag = 5) {
+
+			/*
+				Como parametros va a recibir si esta haciendo paginacion, el número de página y el
+				número de registros que se van a mostrar por página
+			*/
+
 			// Muestra todos los estudiantes registrados
 			$conexion = conectarBD();
 
 			$sql = "SELECT * FROM `vista_estudiantes`";
+
+			if ($paginacion == true) {
+				if ($pagina != null) {
+					// code...
+				}
+				else {
+					// code...
+				}
+
+			}
+
+
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			
@@ -137,6 +155,28 @@
 			desconectarBD($conexion);
 
 			return $lista_estudiantes;
+		}
+
+		public function contar_estudiantes() {
+			// Muestra todos los estudiantes registrados
+			$conexion = conectarBD();
+
+			$sql = "SELECT COUNT(*) as nro_estudiantes FROM `vista_estudiantes`";
+
+			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
+
+			$conteo = $resultado->fetch_assoc();
+
+			desconectarBD($conexion);
+
+			return $conteo["nro_estudiantes"];
+		}
+
+		public function obtener_nro_paginas($tamanio_pag, $pag_actual) {
+			if ($pag_actual <= $this->contar_estudiantes() and $pag_actual > 0) {
+				$nro_paginas = $this->contar_estudiantes() / $tamanio_pag;
+			}
+			return round($nro_paginas);
 		}
 
 

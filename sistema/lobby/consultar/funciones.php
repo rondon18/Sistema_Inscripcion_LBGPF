@@ -152,7 +152,7 @@ function direccion_completa($datos_persona) {
 		}
 	}
 
-	return implode(" ,", $direccion_completa);
+	return implode(", ", $direccion_completa);
 }
 
 function condiciones_salud($datos_persona) {

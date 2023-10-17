@@ -6,7 +6,7 @@
 	<tr>
 		<td colspan="6">
 			<b>
-				ESTÁ DISPUESTO A PARTICIPAR EN EL CONSEJO EDUCATIVO DEL AÑO 2023-2024:
+				ESTÁ DISPUESTO A PARTICIPAR EN EL CONSEJO EDUCATIVO DEL AÑO <?php echo $per_academico->get_inicio() . "-" . $per_academico->get_fin();?>:
 			</b>
 			<span>
 				Si ______

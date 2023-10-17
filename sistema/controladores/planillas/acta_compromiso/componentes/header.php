@@ -1,5 +1,5 @@
 	<?php
-		$nombreImagen = "../../img/logo.jpg";
+		$nombreImagen = "../img/logo.jpg";
 		$imagenBase64 = "data:image/jpg;base64," . base64_encode(file_get_contents($nombreImagen));
 	?>
 

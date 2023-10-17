@@ -12,7 +12,7 @@
 
 		<?php
 
-			$content = file_get_contents('../../css/bootstrap.css');
+			$content = file_get_contents('../css/bootstrap.css');
 			echo $content;
 
 		?>

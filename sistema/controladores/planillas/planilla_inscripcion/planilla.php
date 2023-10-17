@@ -12,7 +12,7 @@
 
 		<?php
 
-			$content = file_get_contents('../../css/bootstrap.css');
+			$content = file_get_contents('../css/bootstrap.css');
 			echo $content;
 
 		?>
@@ -119,7 +119,7 @@
 	?>
 	
 	<p class="mt-4" style="font-size: .85rem;">
-		Planilla expedida el día, <?php echo $fecha_expedicion; ?>
+		Planilla expedida el día <?php echo $fecha_expedicion; ?>
 	</p>
 
 </body>
