@@ -145,7 +145,7 @@
 	$imagen->setWorksheet($hoja);
 
 
-	$hoja->fromArray($encabezado, null, 'A2');
+	$hoja->fromArray(array_map("mb_strtoupper",$encabezado), null, 'A2');
 
 
 	// retorno de los datos como array de arrays
@@ -299,7 +299,7 @@
 		if (isset($_POST['filtro_parentesco']) and $_POST['filtro_parentesco'] != "Cualquiera") {
 			
 			if ($_POST['filtro_parentesco'] == "Padre" or $_POST['filtro_parentesco'] == "padre") {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 			}
@@ -308,7 +308,7 @@
 		
 		// Si el filtro marca cualquiera se muestra la fila
 		else {
-			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 			$i++;
 			$lineas++;
 		}
@@ -454,7 +454,7 @@
 		if (isset($_POST['filtro_parentesco']) and $_POST['filtro_parentesco'] != "Cualquiera") {
 
 			if ($_POST['filtro_parentesco'] == "Madre" or $_POST['filtro_parentesco'] == "madre") {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 			}
@@ -463,7 +463,7 @@
 		
 		// Si el filtro marca cualquiera se muestra la fila
 		else {
-			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 			$i++;
 			$lineas++;
 		}

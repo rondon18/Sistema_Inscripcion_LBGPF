@@ -172,70 +172,118 @@
 
 
 						<!-- Editar registro del estudiante -->
-						<form class="d-inline-block" action="../editar_estudiante/index.php" method="post">
-
+						<form
+							id="editar_registro_<?php echo $datos_estudiante['cedula'];?>"
+							class="d-inline-block"
+							action="../editar_estudiante/index.php"
+							method="post"
+						>
 							<input
 								type="hidden"
 								name="cedula"
 								value="<?php echo $datos_estudiante['cedula'];?>"
 							>
-
 							<input
 								type="hidden"
 								name="cedula_padre"
 								value="<?php echo $datos_padre['cedula'];?>"
 							>
-
 							<input
 								type="hidden"
 								name="cedula_madre"
 								value="<?php echo $datos_madre['cedula'];?>"
 							>
-
 							<input
 								type="hidden"
 								name="cedula_representante"
 								value="<?php echo $datos_representante['cedula'];?>"
 							>
-
-							<button
-								class="btn btn-primary"
-								type="submit"
-								name="editar"
-							>
-								Editar <i class="fas fa-pen fa-lg ms-2"></i>
-							</button>
-
 						</form>
+
+						<form
+							id="cambiar_representante_<?php echo $datos_estudiante['cedula'];?>"
+							action="../editar_estudiante/cambiar_representante.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+						</form>
+
 						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 						
 						<!-- Eliminar registro de estudiante -->
-						<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
-
+						<form
+							id="eliminar_registro_<?php echo $datos_estudiante['cedula'];?>"
+							class="d-inline-block"
+							action="#"
+							method="post"
+							onsubmit="confirmar_envio(event)"
+						>
 							<input 
 								type="hidden" 
 								name="cedula" 
 								value="<?php echo $datos_estudiante['cedula'];?>"
 							>
-
 							<input 
 								type="hidden" 
 								name="orden" 
 								value="eliminar"
 							>
-
-							<button 
-								class="btn btn-primary" 
-								type="submit" 
-								name="orden" 
-								value="eliminar"
-							>
-								Eliminar 
-								<i class="fas fa-trash-can fa-lg ms-2"></i>
-							</button>
-
 						</form>
 						<?php endif;?>
+
+						<div class="btn-group col-12 col-sm-auto" role="group" aria-label="Button group with nested dropdown">
+
+							<button
+								class="btn btn-sm btn-primary"
+								type="submit"
+								name="editar"
+								form="editar_registro_<?php echo $datos_estudiante['cedula'];?>"
+							>
+								Editar
+								<i class="fas fa-pen fa-lg ms-2"></i>
+							</button>
+
+							<div class="btn-group" role="group">
+
+								<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+									<span class="d-none d-sm-inline">Más opciones</span>
+								</button>
+
+								<ul class="dropdown-menu">
+
+									<li>
+										<button
+											class="dropdown-item"
+											type="submit"
+											form="cambiar_representante_<?php echo $datos_estudiante['cedula'];?>"
+										>
+											<i class="fas fa-user-edit fa-lg ms-2"></i>
+											Cambiar representante
+										</button>
+									</li>
+
+									<li>
+										<a class="dropdown-item" href="#">
+											<i class="fas fa-graduation-cap fa-lg ms-2"></i>
+											Promover
+										</a>
+									</li>
+
+									<li>
+										<button
+											class="dropdown-item"
+											type="submit"
+											form="eliminar_registro_<?php echo $datos_estudiante['cedula'];?>"
+										>
+											<i class="fas fa-trash-can fa-lg ms-2"></i>
+											Eliminar
+										</button>
+									</li>
+
+								</ul>
+							</div>
+						</div>
 
 						<form class="d-inline-block" action="../../controladores/control_planillaje.php" method="post">
 							<div class="input-group">

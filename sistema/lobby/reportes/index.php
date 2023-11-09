@@ -128,6 +128,29 @@
 									</div>
 								</div>
 							</div>
+
+
+
+							<?php include("filtros_nomina_estudiantil.php");?>
+							<!-- Nómina estudiantil -->
+							<div class="col px-2 px-md-4 py-2">
+								<div class="card bg-light">
+									<div class="card-body d-flex align-items-center">
+										<i class="fa-solid fa-clipboard-list fa-2xl m-2"></i>
+										<div class="px-2 w-100">
+											<h6 class="card-title mb-2">Nómina estudiantil.</h6>
+											<a
+												href="#"
+												class="btn btn-primary w-100 btn-sm stretched-link"
+												data-bs-toggle="modal"
+												data-bs-target="#modal_filtros_nomina_estudiantil"
+											>
+												Mostrar filtros
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</section>
 					</div>
 

@@ -114,6 +114,13 @@
 
 				break;
 
+			case 'nomina_estudiantil':
+
+				require("reporte_nomina_estudiantil.php");
+				header('Location: ../../lobby/reportes/index.php?exito');
+
+				break;
+
 			
 			default:
 				

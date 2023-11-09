@@ -298,9 +298,17 @@ $("#formulario_padres").validate({
 		},
 	},
 	onfocusout: function(element) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 	onkeyup: function(element, event) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 

@@ -344,7 +344,7 @@
 	$imagen->setWorksheet($hoja_estudiantes);
 
 
-	$hoja_estudiantes->fromArray($encabezado, null, 'A2');
+	$hoja_estudiantes->fromArray(array_map("mb_strtoupper",$encabezado), null, 'A2');
 
 
 	$i = 3;
@@ -372,7 +372,7 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					$estudiante["direccion"],
+					direccion_completa($estudiante),
 					$estudiante["con_quien_vive"],
 				]
 			);
@@ -600,7 +600,7 @@
 				]
 			);
 		}
-		$hoja_estudiantes->fromArray($datos_estudiante, null, 'A'.$i);
+		$hoja_estudiantes->fromArray(array_map("mb_strtoupper",$datos_estudiante), null, 'A'.$i);
 		$i++;
 	}
 
@@ -629,7 +629,7 @@
 		->getStartColor()
 		->setARGB('6CBFEB');
 
-		$hoja_estudiantes->getColumnDimension($j)->setWidth(150, 'pt');
+		$hoja_estudiantes->getColumnDimension($j)->setWidth(165, 'pt');
 
 		$hoja_estudiantes->setAutoFilter($fila_encabezado);
 	}
@@ -651,7 +651,7 @@
 		$hoja_representantes = $documento->getActiveSheet();
 		$hoja_representantes->setTitle("Representantes");
 		
-		$hoja_representantes->fromArray($encabezado_representante, null, 'A1');
+		$hoja_representantes->fromArray(array_map("mb_strtoupper",$encabezado_representante), null, 'A1');
 
 		$i = 2;
 
@@ -698,7 +698,7 @@
 				]
 			);
 
-			$hoja_representantes->fromArray($datos_representante, null, 'A'.$i);
+			$hoja_representantes->fromArray(array_map("mb_strtoupper",$datos_representante), null, 'A'.$i);
 			$i++;
 		}
 
@@ -742,7 +742,7 @@
 		$hoja_padres = $documento->getActiveSheet();
 		$hoja_padres->setTitle("Padres");
 
-		$hoja_padres->fromArray($encabezado_padres, null, 'A1');
+		$hoja_padres->fromArray(array_map("mb_strtoupper",$encabezado_padres), null, 'A1');
 
 
 		$i = 2;
@@ -843,7 +843,7 @@
 			);
 
 
-			$hoja_padres->fromArray($datos_padres, null, 'A'.$i);
+			$hoja_padres->fromArray(array_map("mb_strtoupper",$datos_padres), null, 'A'.$i);
 			$i++;
 		}
 

@@ -31,37 +31,37 @@ $lista_representantes = $representantes->mostrar_representantes();
 	<table id="representantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
 		<thead>
 			<!-- Datos personales -->
-			<th>Cédula</th>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Fecha de nacimiento</th>
-			<th>Lugar de nacimiento</th>
-			<th>Género</th>
-			<th>Correo Electrónico</th>
-			<th>Dirección</th>
-			<th>Estado civil</th>
-			<th>Grado de instrucción</th>
-			<th>Año del(os) representado(s)</th>
+			<th>CÉDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>FECHA DE NACIMIENTO</th>
+			<th>LUGAR DE NACIMIENTO</th>
+			<th>GÉNERO</th>
+			<th>CORREO ELECTRÓNICO</th>
+			<th>DIRECCIÓN</th>
+			<th>ESTADO CIVIL</th>
+			<th>GRADO DE INSTRUCCIÓN</th>
+			<th>AÑO DEL(OS) REPRESENTADO(S)</th>
 
 			<!-- Datos de vivienda -->
-			<th>Datos de vivienda</th>
-			<th>Tipo de vivienda</th>
-			<th>Tenencia de la vivienda</th>
-			<th>Condiciones de la vivienda</th>
+			<th>DATOS DE VIVIENDA</th>
+			<th>TIPO DE VIVIENDA</th>
+			<th>TENENCIA DE LA VIVIENDA</th>
+			<th>CONDICIONES DE LA VIVIENDA</th>
 
 			<!-- Datos laborales -->
-			<th>Datos laborales</th>
-			<th>Empleo</th>
-			<th>Dirección del trabajo</th>
-			<th>Remuneración</th>
-			<th>Tipo de remuneración</th>
+			<th>DATOS LABORALES</th>
+			<th>EMPLEO</th>
+			<th>DIRECCIÓN DEL TRABAJO</th>
+			<th>REMUNERACIÓN</th>
+			<th>TIPO DE REMUNERACIÓN</th>
 
 			<!-- Datos economicos -->
-			<th>Datos economicos</th>
-			<th>Banco de la cuenta</th>
+			<th>DATOS ECONOMICOS</th>
+			<th>BANCO DE LA CUENTA</th>
 
 			<!-- Acciones -->
-			<th>Acciones</th>
+			<th>ACCIONES</th>
 
 		</thead>
 		<tbody>
@@ -69,22 +69,22 @@ $lista_representantes = $representantes->mostrar_representantes();
 			<tr>
 				
 
-				<td><?php echo $representante['cedula'];?></td>
+				<td><?php echo mb_strtoupper($representante['cedula']);?></td>
 				<td>
-					<?php echo $representante['p_nombre'].' '.$representante['s_nombre'];?>
+					<?php echo mb_strtoupper($representante['p_nombre'].' '.$representante['s_nombre']);?>
 				</td>
 				<td>
-					<?php echo $representante['p_apellido'].' '.$representante['s_apellido'];?>		
+					<?php echo mb_strtoupper($representante['p_apellido'].' '.$representante['s_apellido']);?>
 				</td>
-				<td><?php echo formatear_fecha($representante['fecha_nacimiento']);?></td>
-				<td><?php echo $representante['lugar_nacimiento'];?></td>
-				<td><?php echo genero($representante['genero']); ?></td>
-				<td><?php echo $representante['email'];?></td>
+				<td><?php echo mb_strtoupper(formatear_fecha($representante['fecha_nacimiento']));?></td>
+				<td><?php echo mb_strtoupper($representante['lugar_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper(genero($representante['genero'])); ?></td>
+				<td><?php echo mb_strtoupper($representante['email']);?></td>
 
 
-				<td style="min-width: 100vw"><?php echo direccion_completa($representante);?></td>
-				<td><?php echo $representante['estado_civil'];?></td>
-				<td><?php echo $representante['grado_academico'];?></td>
+				<td style="min-width: 100vw"><?php echo mb_strtoupper(direccion_completa($representante));?></td>
+				<td><?php echo mb_strtoupper($representante['estado_civil']);?></td>
+				<td><?php echo mb_strtoupper($representante['grado_academico']);?></td>
 				
 				<td>
 					<?php
@@ -98,7 +98,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 						foreach ($representados as $representado) {
 							$grados_representados[] = $representado['grado_a_cursar'];
 						}
-						echo implode(',', $grados_representados);
+						echo mb_strtoupper(implode(',', $grados_representados));
 
 					?>
 				</td>
@@ -106,27 +106,27 @@ $lista_representantes = $representantes->mostrar_representantes();
 				<!-- Datos vivienda -->
 				<td></td>
 
-				<td><?php echo $representante['tipo'];?></td>
-				<td><?php echo $representante['tenencia'];?></td>
-				<td><?php echo $representante['condicion'];?></td>
+				<td><?php echo mb_strtoupper($representante['tipo']);?></td>
+				<td><?php echo mb_strtoupper($representante['tenencia']);?></td>
+				<td><?php echo mb_strtoupper($representante['condicion']);?></td>
 
 				<!-- Datos laborales -->
 				<td></td>
 				
-				<td><?php echo $representante['empleo'];?></td>
+				<td><?php echo mb_strtoupper($representante['empleo']);?></td>
 				<td>
-					<?php echo comprobar_vacio($representante['lugar_trabajo']);?>
+					<?php echo mb_strtoupper(comprobar_vacio($representante['lugar_trabajo']));?>
 				</td>
 				<td>
-					<?php echo comprobar_vacio($representante['remuneracion'],"R");?>
+					<?php echo mb_strtoupper(comprobar_vacio($representante['remuneracion'],"R"));?>
 				</td>
 				<td>
-					<?php echo comprobar_vacio($representante['tipo_remuneracion']);?>
+					<?php echo mb_strtoupper(comprobar_vacio($representante['tipo_remuneracion']));?>
 				</td>
 				
 				<!-- Datos economicos -->
 				<td></td>
-				<td><?php echo $representante['banco'];?></td>
+				<td><?php echo mb_strtoupper($representante['banco']);?></td>
 
 				<!-- Acciones -->
 				<td>

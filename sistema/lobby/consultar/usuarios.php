@@ -40,29 +40,29 @@
 	</p>
 	<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
 		<thead>
-			<th>Cédula</th>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Correo electrónico</th>
-			<th>Privilegios</th>
-			<th>Cargo</th>
-			<th>Acciones</th>
+			<th>CÉDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>CORREO ELECTRÓNICO</th>
+			<th>PRIVILEGIOS</th>
+			<th>CARGO</th>
+			<th>ACCIONES</th>
 		</thead>
 		<tbody>
 
 			<?php foreach ($lista_usuarios as $usuario): ?>
 			<tr>
 				
-				<td><?php echo $usuario['cedula'];?></td>
+				<td><?php echo mb_strtoupper($usuario['cedula']);?></td>
 
-				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_nombre']." ".$usuario['s_nombre'];?></td>
+				<td class="text-start" style="min-width: 180px;"><?php echo mb_strtoupper($usuario['p_nombre']." ".$usuario['s_nombre']);?></td>
 
-				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_apellido']." ".$usuario['s_apellido'];?></td>
+				<td class="text-start" style="min-width: 180px;"><?php echo mb_strtoupper($usuario['p_apellido']." ".$usuario['s_apellido']);?></td>
 
-				<td><?php echo $usuario['email']?></td>
-				<td><?php echo privilegios($usuario['privilegios']);?></td>
+				<td><?php echo mb_strtoupper($usuario['email'])?></td>
+				<td><?php echo mb_strtoupper(privilegios($usuario['privilegios']));?></td>
 
-				<td><?php echo $usuario['rol']?></td>
+				<td><?php echo mb_strtoupper($usuario['rol'])?></td>
 					
 				
 				<td style="min-width: 100vw;">

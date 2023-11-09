@@ -865,7 +865,22 @@ $nivel = 2;
 												>
 											</div>
 										</div>
-										
+										<div class="row mb-4">
+											<!-- Materias pendientes -->
+											<div class="col-12 col-lg-4">
+												<label for="materias_pendientes" class="form-label">Materias pendientes:</label>
+											</div>
+											<div class="col-12 col-lg-8">
+												<input
+													id="materias_pendientes"
+													class="form-control"
+													type="text"
+													name="materias_pendientes"
+													placeholder="¿Cuáles materias tiene pendientes?"
+													value="<?php echo dato_input("materias_pendientes","de");?>"
+												>
+											</div>
+										</div>
 										<!-- Estudiante repitente -->
 										<div class="row mb-3">
 											<!-- ¿El estudiante es repitente? -->
@@ -945,22 +960,7 @@ $nivel = 2;
 													>
 												</div>
 											</div>
-											<div class="row mb-4">
-												<!-- Materias pendientes -->
-												<div class="col-12 col-lg-4">
-													<label for="materias_pendientes" class="form-label">Materias pendientes:</label>
-												</div>
-												<div class="col-12 col-lg-8">
-													<input 
-														id="materias_pendientes" 
-														class="form-control" 
-														type="text"
-														name="materias_pendientes" 
-														placeholder="¿Cuáles materias tiene pendientes?"
-														value="<?php echo dato_input("materias_pendientes","de");?>"
-													>
-												</div>
-											</div>
+
 											<span class="form-text">En el caso de materias con que repite o tiene pendientes, si no sabe cuales son o no las recuerda. Dejar vacíos esos campos</span>
 										</fieldset>
 									</section>

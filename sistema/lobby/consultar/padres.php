@@ -23,17 +23,17 @@ $lista_padres = $padres->mostrar_padres();
 	</p>
 	<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
 		<thead>
-			<th>Cédula</th>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Rol</th>
-			<th>Fecha Nacimiento</th>
-			<th>Lugar Nacimiento</th>
-			<th>Correo Electrónico</th>
-			<th>Dirección</th>
-			<th>Estado Civil</th>
-			<th>Hijos en el plantel</th>
-			<th>Acciones</th>
+			<th>CÉDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>ROL</th>
+			<th>FECHA NACIMIENTO</th>
+			<th>LUGAR NACIMIENTO</th>
+			<th>CORREO ELECTRÓNICO</th>
+			<th>DIRECCIÓN</th>
+			<th>ESTADO CIVIL</th>
+			<th>HIJOS EN EL PLANTEL</th>
+			<th>ACCIONES</th>
 		</thead>
 		<tbody>
 
@@ -42,12 +42,12 @@ $lista_padres = $padres->mostrar_padres();
 				<td><?php echo $padre['cedula']; ?></td>
 				<td style="min-width:210px;">
 					<?php 
-						echo $padre['p_nombre']." ".$padre['s_nombre'];
+						echo mb_strtoupper($padre['p_nombre']." ".$padre['s_nombre']);
 					?>
 				</td>
 				<td style="min-width:210px;">
 					<?php 
-						echo $padre['p_apellido']." ".$padre['s_apellido'];
+						echo mb_strtoupper($padre['p_apellido']." ".$padre['s_apellido']);
 					?>
 				</td>
 				<td>
@@ -60,16 +60,16 @@ $lista_padres = $padres->mostrar_padres();
 							$rol = "Padre";
 						}
 
-						echo $rol;
+						echo mb_strtoupper($rol);
 
 					?>
 				</td>
-				<td class="text-center"><?php echo formatear_fecha($padre['fecha_nacimiento']); ?></td>
-				<td><?php echo $padre['lugar_nacimiento']; ?></td>
-				<td style="min-width:160px;"><?php echo $padre['email']; ?></td>
+				<td class="text-center"><?php echo formatear_fecha($padre['fecha_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper($padre['lugar_nacimiento']);?></td>
+				<td style="min-width:160px;"><?php echo mb_strtoupper($padre['email']);?></td>
 
-				<td style="min-width: 100vw"><?php echo direccion_completa($padre);?></td>
-				<td><?php echo $padre['estado_civil']; ?></td>
+				<td style="min-width: 100vw"><?php echo mb_strtoupper(direccion_completa($padre))?></td>
+				<td><?php echo mb_strtoupper($padre['estado_civil']);?></td>
 
 				<td>
 					<?php
@@ -83,7 +83,7 @@ $lista_padres = $padres->mostrar_padres();
 						foreach ($hijos as $hijo) {
 							$grados_hijos[] = $hijo['grado_a_cursar'];
 						}
-						echo implode(',', $grados_hijos);
+						echo mb_strtoupper(implode(',', $grados_hijos));
 
 						// echo $padres->contar_hijos();
 

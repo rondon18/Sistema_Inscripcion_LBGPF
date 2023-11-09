@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 
 // 
-// Cuenta el nuero de checkbox de la parte de salud y deshabilita el boton si no hay ninguno
+// Cuenta el numero de checkbox de la parte de salud y deshabilita el boton si no hay ninguno
 // 
 
 $(document).ready(function(){

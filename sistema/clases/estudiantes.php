@@ -124,7 +124,7 @@
 		}
 
 
-		public function mostrar_estudiantes($paginacion = false, $pagina = null, $tamanio_pag = 5) {
+		public function mostrar_estudiantes() {
 
 			/*
 				Como parametros va a recibir si esta haciendo paginacion, el número de página y el
@@ -134,19 +134,17 @@
 			// Muestra todos los estudiantes registrados
 			$conexion = conectarBD();
 
-			$sql = "SELECT * FROM `vista_estudiantes`";
-
-			if ($paginacion == true) {
-				if ($pagina != null) {
-					// code...
-				}
-				else {
-					// code...
-				}
-
-			}
-
-
+			$sql = "
+				SELECT
+					*
+				FROM
+					`vista_estudiantes`
+				ORDER BY
+					`id_per_academico` DESC,
+					`grado_a_cursar` ASC,
+					`seccion` ASC,
+					`cedula` ASC
+				";
 
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 			
@@ -196,21 +194,13 @@
 				  `lugar_nacimiento`,
 				  `genero`,
 				  `email`,
-				  CONCAT(
-				      `estado`,
-				      ' ',
-				      `municipio`,
-				      ' ',
-				      `parroquia`,
-				      ' ',
-				      `sector`,
-				      ' ',
-				      `calle`,
-				      ' ',
-				      `nro_casa`,
-				      ' ',
-				      `punto_referencia`
-				  ) AS direccion,
+		      `estado`,
+		      `municipio`,
+		      `parroquia`,
+		      `sector`,
+		      `calle`,
+		      `nro_casa`,
+		      `punto_referencia`,
 				  CONCAT(`codigo_carnet`, ' - ', `serial_carnet`) AS carnet_patria,
 				  `cedula_escolar`,
 				  `plantel_proced`,
@@ -295,6 +285,14 @@
 				$sql .= implode(" AND ", $filtros);
 
 			}
+
+			$sql .= "
+				ORDER BY
+					`id_per_academico` DESC,
+					`grado_a_cursar` ASC,
+					`seccion` ASC,
+					`cedula` ASC
+			";
 
 			// echo $sql;
 

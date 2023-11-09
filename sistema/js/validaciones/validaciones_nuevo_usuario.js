@@ -39,9 +39,17 @@ $("#formulario_usuario").validate({
 		},
 	},
 	onfocusout: function(element) {
+		$('input[type="text"]:not(input[name="clave"]), input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 	onkeyup: function(element, event) {
+		$('input[type="text"]:not(input[name="clave"]), input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 
