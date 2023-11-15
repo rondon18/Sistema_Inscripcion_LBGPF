@@ -57,10 +57,10 @@
 			else {
 
 				// El inicio del año escolar será el año anterior
-		    $this->set_fin($fecha_actual->format('Y') - 1);
+		    $this->set_fin($fecha_actual->format('Y'));
 
 				// El fin del año escolar será el año actual
-		    $this->set_inicio($fecha_actual->format('Y'));
+		    $this->set_inicio($fecha_actual->format('Y') - 1);
 
 			}
 

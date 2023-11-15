@@ -223,17 +223,18 @@
 		// Incluye incluir_direccion del padre
 		if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
 			
-			$direccion = 
-			[
-				$padre["municipio"],
-				$padre["parroquia"],
-				$padre["sector"],
-				$padre["calle"],
-				$padre["nro_casa"],
-				$padre["punto_referencia"],
-			];
+			// $direccion =
+			// [
+			// 	$padre["municipio"],
+			// 	$padre["parroquia"],
+			// 	$padre["sector"],
+			// 	$padre["calle"],
+			// 	$padre["nro_casa"],
+			// 	$padre["punto_referencia"],
+			// ];
 
-			$datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
+			// $datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
+			$datos_fila = array_merge($datos_fila,[direccion_completa($padre)],);
 		}
 
 

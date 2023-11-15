@@ -209,6 +209,15 @@
 							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
 						</form>
 
+						<form
+							id="cambiar_anio_seccion_<?php echo $datos_estudiante['cedula'];?>"
+							action="../editar_estudiante/cambiar_anio_seccion.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
+						</form>
+
 						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
 						
 						<!-- Eliminar registro de estudiante -->
@@ -264,10 +273,14 @@
 									</li>
 
 									<li>
-										<a class="dropdown-item" href="#">
+										<button
+											class="dropdown-item"
+											type="submit"
+											form="cambiar_anio_seccion_<?php echo $datos_estudiante['cedula'];?>"
+										>
 											<i class="fas fa-graduation-cap fa-lg ms-2"></i>
-											Promover
-										</a>
+											Actualizar año y sección
+										</button>
 									</li>
 
 									<li>
