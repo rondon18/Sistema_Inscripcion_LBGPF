@@ -123,35 +123,16 @@
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
-	<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
+	<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
 			<tr>
 				<!-- Datos del estudiante -->
 				<th>CÉDULA</th>
 				<th>NOMBRES</th>
 				<th>APELLIDOS</th>
 				<th>FECHA DE NACIMIENTO</th>
-				<th>EDAD</th>
-				<th>AÑO A CURSAR</th>
-				<th>SECCIÓN</th>
 				<th>GÉNERO</th>
-				<th>CORREO ELECTRÓNICO</th>
-				<th>DIRECCIÓN DE RESIDENCIA</th>
-
-				<!-- Ficha médica del estudiante -->
-				<th>TALLA DE CAMISA</th>
-				<th>TALLA DE PANTALÓN</th>
-				<th>TALLA DE ZAPATOS</th>
-				<th>ESTATURA</th>
-				<th>PESO</th>
-				<th>ÍNDICE</th>
-				<th>CIRC. BRAQUIAL</th>
-
-				<th>VACUNA COVID-19</th>
-
+				<th>AÑO A CURSAR</th>
 				<th>PERIODO ACADÉMICO</th>
 
 
@@ -165,7 +146,7 @@
 
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 			<?php foreach ($lista_estudiantes as $estudiante):?>
 			<tr>
 
@@ -174,38 +155,8 @@
 				<td><?php echo mb_strtoupper($estudiante['p_nombre']." ".$estudiante['s_nombre']);?></td>
 				<td><?php echo mb_strtoupper($estudiante['p_apellido']." ".$estudiante['s_apellido']);?></td>
 				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
-				<td><?php echo mb_strtoupper(calcular_edad($estudiante['fecha_nacimiento']));?> AÑOS</td>
-				<td><?php echo mb_strtoupper($estudiante['grado_a_cursar']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['seccion']);?></td>
-				<td><?php echo mb_strtoupper(genero($estudiante['genero']));?></td>
-				<td><?php echo mb_strtoupper($estudiante['email']);?></td>
-
-
-				<td><?php echo mb_strtoupper(direccion_completa($estudiante));?></td>
-
-				<!-- Ficha médica del estudiante -->
-				<td><?php echo mb_strtoupper($estudiante['camisa']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['pantalon']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['calzado']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['estatura']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['peso']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['indice_m_c']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['circ_braquial']);?></td>
-
-				<?php
-
-					// Hace que se imprima No vacunado o la vacuna y dosis aplicadas en vez de NV
-
-					if ($estudiante['vac_aplicada'] == "NV") {
-						$vac_covid = "No vacunado";
-					}
-					else {
-						$vac_covid = $estudiante['vac_aplicada']." (".$estudiante['dosis']." dosis)";
-					}
-
-				?>
-
-				<td><?php echo mb_strtoupper($vac_covid);?></td>
+				<td><?php echo $estudiante['genero'];?></td>
+				<td><?php echo mb_strtoupper($estudiante['grado_a_cursar']) . '"' . mb_strtoupper($estudiante['seccion']) . '"';?></td>
 
 				<!-- Periodo académico al que está registrado -->
 				<td><?php echo mb_strtoupper($estudiante['id_per_academico']);?></td>

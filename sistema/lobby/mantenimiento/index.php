@@ -66,7 +66,7 @@ $nivel = 2;
 				
 				<div class="card">
 					<div class="card-header text-center">
-						<b class="fs-4">Área de mantenimiento</b>
+						<b class="fs-5">Área de mantenimiento</b>
 					</div>
 					
 					<div class="card-body row">
@@ -177,7 +177,7 @@ $nivel = 2;
 	</body>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>

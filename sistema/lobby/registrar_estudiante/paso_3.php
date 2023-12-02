@@ -57,7 +57,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro - Estudiante</b>
+						<b class="fs-5">Formulario de registro - Estudiante</b>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -170,22 +170,6 @@ $nivel = 2;
 											</div>
 										</div>
 
-										<div class="row mb-5">
-											<div class="col-12 mb-4">
-												<div class="form-check form-switch form-check-inline">
-													<input 
-														id="usar_c_e" 
-														class="form-check-input" 
-														type="checkbox" 
-														name="usar_c_e" 
-														value="no_tiene" 
-													>
-													<label for="usar_c_e" class="form-label">
-														El estudiante no tiene cédula.
-													</label>
-												</div>
-										</div>
-
 										<!-- Cédula -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-2">
@@ -214,7 +198,7 @@ $nivel = 2;
 															class="form-control" 
 															type="text" 
 															name="cedula_est" 
-															maxlength="8" 
+															maxlength="14"
 															minlength="7"
 															placeholder="Número de cedula" 
 															required
@@ -225,103 +209,73 @@ $nivel = 2;
 											</fieldset>
 
 											<div class="col-12 col-lg-12 mt-2 mb-2">
-												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos.</span>
+												<span class="form-text">
+													La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos. En caso de no contar con
+													una cédula propia sino escolar,
+													<a id="boton_c_escolar" data-bs-toggle="modal" data-bs-target="#ayuda_c_escolar" href="#">Haga click aquí</a>
+													para mostrar ayuda respecto a esta.
+												</span>
 											</div>
 										</div>
 
-										<!-- Cédula escolar -->
-										<div class="row mb-4">
-											<div class="col-12 col-lg-4">
-												<label id="c_escolar" for="cedula_escolar_est" class="form-label">Cédula escolar:</label>
-											</div>
-								
-											<div class="col-11 col-lg-7">
-												<!-- Número de cédula escolar -->
-												<input 
-													id="cedula_escolar_est"
-													class="form-control" 
-													type="text" 
-													name="cedula_escolar_est" 
-													maxlength="14" 
-													minlength="12"
-													placeholder="Número de cedula escolar" 
-													value="<?php echo dato_sesion_i("cedula_escolar_est",3);?>"
-												>
-											</div>
-											<div class="col-1">
-												<button 
-													id="boton_c_escolar" 
-													class="btn btn-primary" 
-													type="button"
-													data-bs-toggle="modal" 
-													data-bs-target="#ayuda_c_escolar"
-												>
-													<i class="fa-solid fa-lg fa-circle-question"></i>
-												</button>
-												<div class="modal fade" id="ayuda_c_escolar" tabindex="-1" aria-labelledby="label_c_escolar" aria-hidden="true">
-													<div class="modal-dialog modal-dialog-scrollable">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="label_c_escolar">
-																	<i class="fa-solid fa-xl me-2 fa-circle-question"></i>
-																	Acerca de la cédula escolar.
-																</h5>
-																<button 
-																	type="button" 
-																	class="btn-close" 
-																	data-bs-dismiss="modal" 
-																	aria-label="Close"
-																></button>
-															</div>
-															<div class="modal-body">
-																<span>
-																	La cédula escolar está formada por doce caracteres:
-																</span>
+										<div class="modal fade" id="ayuda_c_escolar" tabindex="-1" aria-labelledby="label_c_escolar" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-scrollable">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="label_c_escolar">
+															<i class="fa-solid fa-xl me-2 fa-circle-question"></i>
+															Acerca de la cédula escolar.
+														</h5>
+														<button
+															type="button"
+															class="btn-close"
+															data-bs-dismiss="modal"
+															aria-label="Close"
+														></button>
+													</div>
+													<div class="modal-body">
+														<span>
+															La cédula escolar está formada por doce caracteres:
+														</span>
+														<ul>
+															<li>
+																El primero corresponde a la nacionalidad:
 																<ul>
 																	<li>
-																		El primero corresponde a la nacionalidad:
-																		<ul>
-																			<li>
-																				V si nació en Venezuela o si uno de los padres es venezolano,
-																				aunque el niño haya nacido en el exterior.
-																			</li>
-																			<li>
-																				E extranjero si es el caso.
-																			</li>
-																		</ul>
+																		V si nació en Venezuela o si uno de los padres es venezolano,
+																		aunque el niño haya nacido en el exterior.
 																	</li>
 																	<li>
-																		El segundo es un dígito que indica
-																		<ol>
-																			<li>parto sencillo</li>
-																			<li>morochos o gemelos: Nº 1 primer niño, Nº 2 segundo niño</li>
-																			<li>trillizos...</li>
-																		</ol>
-																	</li>
-																	<li>
-																		El tercero y cuarto dígito corresponden a las dos últimas cifras del
-																		año de nacimiento del niño.
-																	</li>
-																	<li>
-																		Los ocho dígitos restantes, corresponden al número de cédula de la madre,
-																		en caso de no existir, usar la del padre.
-																	</li>
-																	<li>
-																		Si el número de la cédula tiene siete dígitos, debe anteponer un cero
-																		antes del primer dígito.
+																		E extranjero si es el caso.
 																	</li>
 																</ul>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-															</div>
-														</div>
+															</li>
+															<li>
+																El segundo es un dígito que indica
+																<ol>
+																	<li>parto sencillo</li>
+																	<li>morochos o gemelos: Nº 1 primer niño, Nº 2 segundo niño</li>
+																	<li>trillizos...</li>
+																</ol>
+															</li>
+															<li>
+																El tercero y cuarto dígito corresponden a las dos últimas cifras del
+																año de nacimiento del niño.
+															</li>
+															<li>
+																Los ocho dígitos restantes, corresponden al número de cédula de la madre,
+																en caso de no existir, usar la del padre.
+															</li>
+															<li>
+																Si el número de la cédula tiene siete dígitos, debe anteponer un cero
+																antes del primer dígito.
+															</li>
+														</ul>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
 													</div>
 												</div>
-											</div>
-
-											<div class="col-12 col-lg-12 mt-2 mb-2">
-												<span class="form-text">La cédula escolar es opcional, pero será requerida si el estudiante no posee cédula.</span>
 											</div>
 										</div>
 
@@ -1862,7 +1816,7 @@ $nivel = 2;
 			<?php include('../../ayuda.php'); ?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>

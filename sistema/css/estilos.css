@@ -75,7 +75,53 @@ label.error {
 {
    margin-bottom: 0 !important;
 }
+
+.card-menu {
+  min-height: 80px;
+}
+
+.display-5 {
+  font-size: calc(1.1rem + 1.6vw) !important;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.overlay-login {
+  background:  url(../img/img-ref.jpg);
+  background-size: cover;
+}
+
+.interior-overlay-login {
+  background:  #00000088;
+}
+
+
+@media (max-width: 480px) {
+
+  .selector-consulta .btn span {
+    font-size: .60em;
+  }
+
+}
+
 @media (max-width: 575.98px) {
+
+  .card-menu {
+    min-height: 110px !important;
+  }
+
+  .lead {
+    font-size: calc(.8rem + 1vw) !important;;
+    font-weight: 300;
+  }
+
+
+  .link-menu {
+    font-size: 85%;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
   .w-xs-25 {
     width: 25% !important;
   }
@@ -95,14 +141,29 @@ label.error {
   .w-xs-auto {
     width: auto !important;
   }
+
+  .
+
 }
 
 optgroup:disabled {
   display: none !important;
 }
 
+.hover-grow, .hover-grow:focus, .hover-grow:focus-within{
+  transition: transform 0.2s ease-in-out, border-bottom 0.4s ease-in-out;
+}
+
+.hover-grow:hover, .hover-grow:focus, .hover-grow:focus-within {
+  transform: scale(1.025);
+  border-bottom: 4px solid dodgerblue;
+}
+
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
+
+
+
   .w-sm-25 {
     width: 25% !important;
   }

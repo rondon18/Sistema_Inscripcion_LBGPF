@@ -83,7 +83,8 @@
 				}
 
 				$usuarios->set_privilegios($privilegios);
-				$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevo']['clave']);
+				$clave = hash("sha256", $_SESSION['datos_usuario_nuevo']['clave']);
+				$usuarios->set_contrasenia($clave);
 				$usuarios->set_pregunta_seg_1($_SESSION['datos_usuario_nuevo']['pregunta_seg_1']);
 				$usuarios->set_respuesta_1($_SESSION['datos_usuario_nuevo']['respuesta_1']);
 				$usuarios->set_pregunta_seg_2($_SESSION['datos_usuario_nuevo']['pregunta_seg_2']);
@@ -150,8 +151,6 @@
 		// De editar perfil. Se debe cambiar
 		elseif ($_SESSION['orden'] == "editar_externo") {
 
-			var_dump($_SESSION["datos_usuario_nuevos"]);
-
 			// Datos de persona	
 
 			$cedula = $_SESSION['datos_usuario_nuevos']["nacionalidad_u"].$_SESSION['datos_usuario_nuevos']["cedula_u"];
@@ -179,7 +178,8 @@
 			$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevos']['respuesta_2']);
 			$usuarios->editar_usuarios();
 
-			$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevos']['clave']);
+			$clave = hash("sha256", $_SESSION['datos_usuario_nuevos']['clave']);
+			$usuarios->set_contrasenia($clave);
 			$usuarios->editar_contrasenia();
 
 			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);

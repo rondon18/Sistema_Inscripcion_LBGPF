@@ -99,7 +99,7 @@ $nivel = 2;
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Paso 3 - Datos del estudiante</title>
+		<title>Editar estudiante - Paso 3 - Datos del estudiante</title>
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
@@ -112,7 +112,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro - Estudiante</b>
+						<b class="fs-5">Formulario de edición - Estudiante</b>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -225,30 +225,13 @@ $nivel = 2;
 											</div>
 										</div>
 
-										<div class="row mb-5">
-											<div class="col-12 mb-4">
-												<div class="form-check form-switch form-check-inline">
-													<input 
-														id="usar_c_e" 
-														class="form-check-input" 
-														type="checkbox" 
-														name="usar_c_e" 
-														value="no_tiene" 
-														<?php if (strlen(dato_input("cedula","dp") > 10)) { echo "checked";} ?>
-													>
-													<label for="usar_c_e" class="form-label">
-														El estudiante no tiene cédula.
-													</label>
-												</div>
-										</div>
-
 										<!-- Cédula -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-2">
 												<label class="form-label requerido">Cédula:</label>
 											</div>
 											
-											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10" <?php if (strlen(dato_input("cedula","de") > 10)) { echo "disabled";} ?>>
+											<fieldset id="cedula_estudiante" class="row p-0 col-lg-10">
 												
 												<?php 
 													$nac = trim(dato_input("cedula","de"),"0123456789");
@@ -286,108 +269,74 @@ $nivel = 2;
 											</fieldset>
 
 											<div class="col-12 col-lg-12 mt-2 mb-2">
-												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos.</span>
+												<span class="form-text">
+													La cédula consta de una nacionalidad y de un número con alrededor de al menos 7 a 8 dígitos. En caso de no contar con
+													una cédula propia sino escolar,
+													<a id="boton_c_escolar" data-bs-toggle="modal" data-bs-target="#ayuda_c_escolar" href="#">Haga click aquí</a>
+													para mostrar ayuda respecto a esta.
+												</span>
 											</div>
-										</div>
-
-
-										<!-- Cédula escolar -->
-										<div class="row mb-4">
-											<div class="col-12 col-lg-4">
-												<label id="c_escolar" for="cedula_escolar_est" class="form-label">Cédula escolar:</label>
-											</div>
-								
-											<div class="col-11 col-lg-7">
-												<!-- Número de cédula escolar -->
-												<input 
-													id="cedula_escolar_est"
-													class="form-control" 
-													type="text" 
-													name="cedula_escolar_est" 
-													maxlength="14" 
-													minlength="12"
-													placeholder="Número de cedula escolar" 
-													value="<?php echo dato_input("cedula_escolar","de");?>"
-												>
-											</div>
-											<div class="col-1">
-												<button 
-													id="boton_c_escolar" 
-													class="btn btn-primary" 
-													type="button"
-													data-bs-toggle="modal" 
-													data-bs-target="#ayuda_c_escolar"
-												>
-													<i class="fa-solid fa-lg fa-circle-question"></i>
-												</button>
-												<div class="modal fade" id="ayuda_c_escolar" tabindex="-1" aria-labelledby="label_c_escolar" aria-hidden="true">
-													<div class="modal-dialog modal-dialog-scrollable">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="label_c_escolar">
-																	<i class="fa-solid fa-xl me-2 fa-circle-question"></i>
-																	Acerca de la cédula escolar.
-																</h5>
-																<button 
-																	type="button" 
-																	class="btn-close" 
-																	data-bs-dismiss="modal" 
-																	aria-label="Close"
-																></button>
-															</div>
-															<div class="modal-body">
-																<span>
-																	La cédula escolar está formada por doce caracteres:
-																</span>
+																					<div class="modal fade" id="ayuda_c_escolar" tabindex="-1" aria-labelledby="label_c_escolar" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-scrollable">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="label_c_escolar">
+															<i class="fa-solid fa-xl me-2 fa-circle-question"></i>
+															Acerca de la cédula escolar.
+														</h5>
+														<button
+															type="button"
+															class="btn-close"
+															data-bs-dismiss="modal"
+															aria-label="Close"
+														></button>
+													</div>
+													<div class="modal-body">
+														<span>
+															La cédula escolar está formada por doce caracteres:
+														</span>
+														<ul>
+															<li>
+																El primero corresponde a la nacionalidad:
 																<ul>
 																	<li>
-																		El primero corresponde a la nacionalidad:
-																		<ul>
-																			<li>
-																				V si nació en Venezuela o si uno de los padres es venezolano,
-																				aunque el niño haya nacido en el exterior.
-																			</li>
-																			<li>
-																				E extranjero si es el caso.
-																			</li>
-																		</ul>
+																		V si nació en Venezuela o si uno de los padres es venezolano,
+																		aunque el niño haya nacido en el exterior.
 																	</li>
 																	<li>
-																		El segundo es un dígito que indica
-																		<ol>
-																			<li>parto sencillo</li>
-																			<li>morochos o gemelos: Nº 1 primer niño, Nº 2 segundo niño</li>
-																			<li>trillizos...</li>
-																		</ol>
-																	</li>
-																	<li>
-																		El tercero y cuarto dígito corresponden a las dos últimas cifras del
-																		año de nacimiento del niño.
-																	</li>
-																	<li>
-																		Los ocho dígitos restantes, corresponden al número de cédula de la madre,
-																		en caso de no existir, usar la del padre.
-																	</li>
-																	<li>
-																		Si el número de la cédula tiene siete dígitos, debe anteponer un cero
-																		antes del primer dígito.
+																		E extranjero si es el caso.
 																	</li>
 																</ul>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-															</div>
-														</div>
+															</li>
+															<li>
+																El segundo es un dígito que indica
+																<ol>
+																	<li>parto sencillo</li>
+																	<li>morochos o gemelos: Nº 1 primer niño, Nº 2 segundo niño</li>
+																	<li>trillizos...</li>
+																</ol>
+															</li>
+															<li>
+																El tercero y cuarto dígito corresponden a las dos últimas cifras del
+																año de nacimiento del niño.
+															</li>
+															<li>
+																Los ocho dígitos restantes, corresponden al número de cédula de la madre,
+																en caso de no existir, usar la del padre.
+															</li>
+															<li>
+																Si el número de la cédula tiene siete dígitos, debe anteponer un cero
+																antes del primer dígito.
+															</li>
+														</ul>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
 													</div>
 												</div>
 											</div>
-
-											<div class="col-12 col-lg-12 mt-2 mb-2">
-												<span class="form-text">La cédula escolar es opcional, pero será requerida si el estudiante no posee cédula.</span>
-											</div>
 										</div>
-
-										
+										</div>
 
 
 										<!-- Genero -->
@@ -577,6 +526,37 @@ $nivel = 2;
 										</div>
 										
 										
+										<?php
+
+											$direccion_estudiante = direccion_completa($_SESSION["datos_estudiante"]);
+
+											/*
+												Verifica si la direccion donde vive el estudiante es igual a la marcada por el representante, o
+												si se especifico que vive con padre o madre.
+												Para poder hacer funcionar el checkbox
+											*/
+
+											switch ($direccion_estudiante) {
+
+												case direccion_completa($_SESSION["datos_representante"]):
+													$check_direccion_estudiante = "representante";
+													break;
+
+												case direccion_completa($_SESSION["datos_padre"]):
+													$check_direccion_estudiante = "padre";
+													break;
+
+												case direccion_completa($_SESSION["datos_madre"]):
+													$check_direccion_estudiante = "madre";
+													break;
+
+												default:
+													$check_direccion_estudiante = "otro";
+													break;
+											}
+
+										?>
+
 										<!-- Domicilio -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-3">
@@ -590,6 +570,7 @@ $nivel = 2;
 														type="radio" 
 														name="domicilio" 
 														value="representante"
+														<?php if ($check_direccion_estudiante == "representante") { echo "checked";} ?>
 														required
 													>
 													<label for="domicilio_representante" class="form-label">Representante </label>
@@ -602,6 +583,7 @@ $nivel = 2;
 														type="radio" 
 														name="domicilio" 
 														value="padre"
+														<?php if ($check_direccion_estudiante == "padre") { echo "checked";} ?>
 														required
 													>
 													<label for="domicilio_padre" class="form-label">Padre </label>
@@ -614,6 +596,7 @@ $nivel = 2;
 														type="radio" 
 														name="domicilio" 
 														value="madre"
+														<?php if ($check_direccion_estudiante == "madre") { echo "checked";} ?>
 														required
 													>
 													<label for="domicilio_madre" class="form-label">Madre </label>
@@ -626,6 +609,7 @@ $nivel = 2;
 														type="radio" 
 														name="domicilio" 
 														value="otro"
+														<?php if ($check_direccion_estudiante == "otro") { echo "checked";} ?>
 														required
 													>
 													<label for="domicilio_otro" class="form-label">Otro </label>
@@ -645,6 +629,8 @@ $nivel = 2;
 													class="form-control" 
 													name="direccion_est" 
 													required
+													value="<?php echo $direccion_estudiante; ?>"
+													<?php if ($check_direccion_estudiante != "otro") { echo "disabled";} ?>
 													disabled 
 												>
 											</div>
@@ -1960,7 +1946,7 @@ $nivel = 2;
 			<?php include('../../ayuda.php'); ?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>

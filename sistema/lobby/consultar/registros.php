@@ -24,9 +24,6 @@
 								
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
 	<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
 		<thead style="font-size: 95%">
 			<th>USUARIO</th>

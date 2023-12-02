@@ -18,11 +18,8 @@ $lista_padres = $padres->mostrar_padres();
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Padres registrados
-	</p>
-	<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
+	<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
 			<th>CÉDULA</th>
 			<th>NOMBRES</th>
 			<th>APELLIDOS</th>
@@ -30,22 +27,22 @@ $lista_padres = $padres->mostrar_padres();
 			<th>FECHA NACIMIENTO</th>
 			<th>LUGAR NACIMIENTO</th>
 			<th>CORREO ELECTRÓNICO</th>
-			<th>DIRECCIÓN</th>
 			<th>ESTADO CIVIL</th>
+			<th>DIRECCIÓN</th>
 			<th>HIJOS EN EL PLANTEL</th>
 			<th>ACCIONES</th>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 
 			<?php foreach ($lista_padres as $padre):?>
 			<tr>
 				<td><?php echo $padre['cedula']; ?></td>
-				<td style="min-width:210px;">
+				<td>
 					<?php 
 						echo mb_strtoupper($padre['p_nombre']." ".$padre['s_nombre']);
 					?>
 				</td>
-				<td style="min-width:210px;">
+				<td>
 					<?php 
 						echo mb_strtoupper($padre['p_apellido']." ".$padre['s_apellido']);
 					?>
@@ -66,10 +63,10 @@ $lista_padres = $padres->mostrar_padres();
 				</td>
 				<td class="text-center"><?php echo formatear_fecha($padre['fecha_nacimiento']);?></td>
 				<td><?php echo mb_strtoupper($padre['lugar_nacimiento']);?></td>
-				<td style="min-width:160px;"><?php echo mb_strtoupper($padre['email']);?></td>
+				<td><?php echo mb_strtoupper($padre['email']);?></td>
 
-				<td style="min-width: 100vw"><?php echo mb_strtoupper(direccion_completa($padre))?></td>
-				<td><?php echo mb_strtoupper($padre['estado_civil']);?></td>
+				<td style="min-width:200px"><?php echo mb_strtoupper($padre['estado_civil']);?></td>
+				<td><?php echo mb_strtoupper(direccion_completa($padre))?></td>
 
 				<td>
 					<?php

@@ -35,11 +35,8 @@
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
-	<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
+	<table id="usuarios" class="table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
 			<th>CÉDULA</th>
 			<th>NOMBRES</th>
 			<th>APELLIDOS</th>
@@ -48,7 +45,7 @@
 			<th>CARGO</th>
 			<th>ACCIONES</th>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 
 			<?php foreach ($lista_usuarios as $usuario): ?>
 			<tr>

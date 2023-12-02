@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `sis_reg_lb_gpf_v2`.`usuarios` (
   `cedula_persona` VARCHAR(45) NOT NULL,
   `rol` VARCHAR(45) NOT NULL,
   `privilegios` VARCHAR(45) NOT NULL,
-  `contraseña` VARCHAR(45) NOT NULL,
+  `contraseña` VARCHAR(64) NOT NULL,
   `pregunta_seg_1` VARCHAR(45) NOT NULL,
   `respuesta_1` VARCHAR(45) NOT NULL,
   `pregunta_seg_2` VARCHAR(45) NOT NULL,

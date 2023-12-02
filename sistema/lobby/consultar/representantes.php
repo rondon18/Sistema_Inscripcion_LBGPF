@@ -25,11 +25,8 @@ $lista_representantes = $representantes->mostrar_representantes();
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Representantes registrados
-	</p>
-	<table id="representantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
+	<table id="representantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
 			<!-- Datos personales -->
 			<th>CÉDULA</th>
 			<th>NOMBRES</th>
@@ -64,7 +61,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 			<th>ACCIONES</th>
 
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 			<?php foreach ($lista_representantes as $representante): ?>
 			<tr>
 				

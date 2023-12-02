@@ -29,8 +29,15 @@
 			<div class="container mx-md-5 px-md-5 my-5 align-self-center">
 				<div class="card shadow overflow-hidden rounded-3">
 					<div class="row">
-						<div class="col-lg-4 d-none d-lg-inline-block">
-							<img class="w-100 h-100" src="img/img-ref.jpg" alt="">
+						<div class="col-lg-4 d-none d-lg-inline-block overlay-login p-0">
+							<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center interior-overlay-login p-0">
+								<img class="w-50" src="img/icono.png" alt="">
+								  <p class="lead text-white mt-2 text-center mx-4">
+								  	Sistema de inscripción Liceo Bolivariano "Gonzalo Picón Febres"
+								  </p>
+
+								<span class="display-5"></span>
+							</div>
 						</div>
 						<?php if (!isset($_GET["contrasenia_olvidada"])): ?>
 							
@@ -107,7 +114,7 @@
 			<?php include('ayuda.php'); ?>
 		</main>
 		
-		<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>

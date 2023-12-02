@@ -40,7 +40,7 @@
 					<div class="card">
 						<!-- Titulo del contenedor -->
 						<div class="card-header text-center">
-							<b class="fs-4">Actualizacion de datos - Año y sección del estudiante</b>
+							<b class="fs-5">Actualizacion de datos - Año y sección del estudiante</b>
 						</div>
 						<div class="card-body">
 							<form action="../../controladores/cambiar_anio_seccion.php" method="post" id="cambiar_anio_seccion">
@@ -131,7 +131,7 @@
 			<?php include '../../ayuda.php';?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 		<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 	</body>

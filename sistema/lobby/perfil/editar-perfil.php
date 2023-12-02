@@ -52,7 +52,7 @@
 					
 					<!--Datos del representante-->
 					<div class="card-header text-center">
-						<b class="fs-4">Perfil de usuario</b>
+						<b class="fs-5">Perfil de usuario</b>
 					</div>
 					
 					<div class="card-body">
@@ -337,7 +337,7 @@
 		<?php include('../../footer.php');?>
 		<?php include('../../ayuda.php');?>
 	</main>
-<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 <script type="text/javascript" src="../../js/jquery.validate.min.js"></script>

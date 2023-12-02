@@ -1,4 +1,6 @@
 <?php  
+	// include 'personas.php';
+	// include '../controladores/conexion.php';
 
 	class usuarios extends personas {
 
@@ -105,7 +107,7 @@
 					`cedula_persona` = '$cedula_persona';
 			";
 
-			echo $sql;
+			echo $sql . "<br>";
 
 			$conexion->query($sql) or die("error: ".$conexion->error);
 
@@ -152,6 +154,8 @@
 			$contrasenia = $this->get_contrasenia();
 
 			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula' and contraseña = '$contrasenia';";
+
+			echo $sql;
 
 			$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
 			$usuario = $consulta_usuario->fetch_assoc();
@@ -228,5 +232,18 @@
 			$this->respuesta_2 = $respuesta_2;
 		}
 	}	
+
+
+
+	// $usuario = new usuarios();
+
+	// $lista_usuarios = $usuario->mostrar_usuarios();
+
+	// foreach ($lista_usuarios as $value) {
+
+	// 	$usuario->set_cedula_persona($value["cedula_persona"]);
+	// 	$usuario->set_contrasenia(hash("sha256", $value["contraseña"]));
+	// 	$usuario->editar_contrasenia();
+	// }
 
 ?>

@@ -25,7 +25,7 @@
 				<div class="card">
 					<!--Datos del representante-->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro</b>
+						<b class="fs-5">Formulario de registro</b>
 					</div>
 					
 					<div class="card-body">
@@ -625,7 +625,7 @@
 		<?php include '../../ayuda.php'; ?>
 	</main>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../js/validaciones/validaciones_inscripcion.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>

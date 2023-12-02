@@ -23,7 +23,7 @@
 			$contrasenia = $_POST['contraseña'];
 
 			$usuarios->set_cedula($cedula);
-			$usuarios->set_contrasenia($contrasenia);
+			$usuarios->set_contrasenia(hash("sha256", $contrasenia));
 
 			$chequeo_login = $usuarios->chequeo_login();
 
