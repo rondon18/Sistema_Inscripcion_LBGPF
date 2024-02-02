@@ -187,7 +187,7 @@
 						<!-- Editar registro del estudiante -->
 						<form
 							id="editar_registro_<?php echo $estudiante['cedula'];?>"
-							action="../editar_estudiante/index.php"
+							action="../editar_registro/index.php"
 							method="post"
 							style="display: inline-block;"
 						>
@@ -241,8 +241,8 @@
 							name="consultar"
 							form="consultar_registro_<?php echo $estudiante['cedula'];?>"
 						>
+							<i class="fas fa-magnifying-glass ms-2"></i>
 							Consultar
-							<i class="fas fa-magnifying-glass fa-lg ms-2"></i>
 						</button>
 
 						<button
@@ -251,13 +251,81 @@
 							name="editar"
 							form="editar_registro_<?php echo $estudiante['cedula'];?>"
 						>
+							<i class="fas fa-pen-to-square ms-2"></i>
 							Editar
-							<i class="fas fa-pen fa-lg ms-2"></i>
 						</button>
 
-						<div class="btn-group" role="group">
+						<div class="btn-group dropup" role="group">
 
 							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-pen-to-square ms-2"></i>
+								<span class="d-none d-sm-inline">Editar datos</span>
+							</button>
+
+							<ul class="dropdown-menu">
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+									>
+										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+										<i class="fas fa-user-edit ms-2"></i>
+										Estudiante
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+									>
+										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+										<i class="fas fa-user-edit ms-2"></i>
+										Madre
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+									>
+										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+										<i class="fas fa-user-edit ms-2"></i>
+										Padre
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+									>
+										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+										<i class="fas fa-user-edit ms-2"></i>
+										Representante
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+									>
+										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+										<i class="fas fa-user-edit ms-2"></i>
+										Registro completo
+									</button>
+								</li>
+
+							</ul>
+						</div>
+
+						<div class="btn-group dropup" role="group">
+
+							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-plus-circle ms-2"></i>
 								<span class="d-none d-sm-inline">Más opciones</span>
 							</button>
 
@@ -269,7 +337,7 @@
 										type="submit"
 										form="cambiar_representante_<?php echo $estudiante['cedula'];?>"
 									>
-										<i class="fas fa-user-edit fa-lg ms-2"></i>
+										<i class="fas fa-user-edit ms-2"></i>
 										Cambiar representante
 									</button>
 								</li>
@@ -280,7 +348,7 @@
 										type="submit"
 										form="cambiar_anio_seccion_<?php echo $estudiante['cedula'];?>"
 									>
-										<i class="fas fa-graduation-cap fa-lg ms-2"></i>
+										<i class="fas fa-graduation-cap ms-2"></i>
 										Actualizar año y sección
 									</button>
 								</li>
@@ -291,7 +359,7 @@
 										type="submit"
 										form="eliminar_registro_<?php echo $estudiante['cedula'];?>"
 									>
-										<i class="fas fa-trash-can fa-lg ms-2"></i>
+										<i class="fas fa-trash-can ms-2"></i>
 										Eliminar
 									</button>
 								</li>

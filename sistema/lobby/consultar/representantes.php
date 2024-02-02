@@ -39,23 +39,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 			<th>ESTADO CIVIL</th>
 			<th>GRADO DE INSTRUCCIÓN</th>
 			<th>AÑO DEL(OS) REPRESENTADO(S)</th>
-
-			<!-- Datos de vivienda -->
-			<th>DATOS DE VIVIENDA</th>
-			<th>TIPO DE VIVIENDA</th>
-			<th>TENENCIA DE LA VIVIENDA</th>
-			<th>CONDICIONES DE LA VIVIENDA</th>
-
-			<!-- Datos laborales -->
-			<th>DATOS LABORALES</th>
 			<th>EMPLEO</th>
-			<th>DIRECCIÓN DEL TRABAJO</th>
-			<th>REMUNERACIÓN</th>
-			<th>TIPO DE REMUNERACIÓN</th>
-
-			<!-- Datos economicos -->
-			<th>DATOS ECONOMICOS</th>
-			<th>BANCO DE LA CUENTA</th>
 
 			<!-- Acciones -->
 			<th>ACCIONES</th>
@@ -100,48 +84,40 @@ $lista_representantes = $representantes->mostrar_representantes();
 					?>
 				</td>
 				
-				<!-- Datos vivienda -->
-				<td></td>
-
-				<td><?php echo mb_strtoupper($representante['tipo']);?></td>
-				<td><?php echo mb_strtoupper($representante['tenencia']);?></td>
-				<td><?php echo mb_strtoupper($representante['condicion']);?></td>
-
-				<!-- Datos laborales -->
-				<td></td>
-				
 				<td><?php echo mb_strtoupper($representante['empleo']);?></td>
-				<td>
-					<?php echo mb_strtoupper(comprobar_vacio($representante['lugar_trabajo']));?>
-				</td>
-				<td>
-					<?php echo mb_strtoupper(comprobar_vacio($representante['remuneracion'],"R"));?>
-				</td>
-				<td>
-					<?php echo mb_strtoupper(comprobar_vacio($representante['tipo_remuneracion']));?>
-				</td>
-				
-				<!-- Datos economicos -->
-				<td></td>
-				<td><?php echo mb_strtoupper($representante['banco']);?></td>
 
 				<!-- Acciones -->
 				<td>
 					<div class="d-inline-block">
-						<form action="consultar_representante.php" method="post"	>
+						<form id="consultar_<?php echo $representante["cedula"];?>" action="consultar_representante.php" method="post"	>
 
 							<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
 							<input type="hidden" name="accion" value="consultar">
 
-							<button
-								type="submit"
-								role="button"
-								class="btn btn-primary btn-sm"
-								name="consultar"
-							>
-								Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i>
-							</button>
 						</form>
+						<form id="editar_<?php echo $representante["cedula"];?>" action="../editar_representante/index.php" method="post"	>
+
+							<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
+
+						</form>
+						<button
+							type="submit"
+							role="button"
+							class="btn btn-primary btn-sm"
+							name="consultar"
+							form="consultar_<?php echo $representante["cedula"];?>"
+						>
+							Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i>
+						</button>
+						<button
+							type="submit"
+							role="button"
+							class="btn btn-primary btn-sm"
+							name="consultar"
+							form="editar_<?php echo $representante["cedula"];?>"
+						>
+							Editar <i class="fas fa-pen fa-lg ms-2"></i>
+						</button>
 					</div>
 				</td>
 			</tr>

@@ -161,7 +161,6 @@
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Padre") {
-			echo "CAMINO A";
 
 			// si alguno de los dos esta vacio, se agrega una cedula provisional
 			if (empty(dato_sesion_i("nacionalidad_p",2)) or (empty(dato_sesion_i("cedula_p",2)))) {
@@ -281,7 +280,6 @@
 		}
 		// Cuando el representante es el padre se reusan los datos para evitar registros redundantes.
 		else {
-			echo "CAMINO B";
 			$padres->set_cedula_persona($cedula_representante);
 			$padres->set_pais_residencia("Venezuela");
 			$padres->editar_padres();
@@ -307,7 +305,6 @@
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Madre") {
-			echo "CAMINO A";
 
 			// si alguno de los dos esta vacio, se agrega una cedula provisional
 			if (empty(dato_sesion_i("nacionalidad_m",2)) or (empty(dato_sesion_i("cedula_m",2)))) {

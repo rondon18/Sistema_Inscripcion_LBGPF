@@ -439,9 +439,9 @@ $nivel = 2;
 														name="reside_en_el_pais_p"	
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] == "No conocido") {echo "selected";}?> value="NC">Desconoce</option>
+														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] == "No conocido" or empty($_SESSION["datos_padre"]["pais_residencia"])) {echo "selected";}?> value="NC">Desconoce</option>
 														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] == "Venezuela") {echo "selected";}?> value="Si">Si</option>
-														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_padre"]["pais_residencia"] != "Venezuela") {echo "selected";}?> value="No">No</option>
+														<option <?php if ($_SESSION["datos_padre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_padre"]["pais_residencia"] != "Venezuela" and !empty($_SESSION["datos_padre"]["pais_residencia"])) {echo "selected";}?> value="No">No</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -500,7 +500,7 @@ $nivel = 2;
 														required 
 														<?php if (
 															$_SESSION["datos_padre"]["pais_residencia"] != "No conocido" and 
-															$_SESSION["datos_padre"]["pais_residencia"] != "Venezuela"): ?>
+															$_SESSION["datos_padre"]["pais_residencia"] != "Venezuela" and !empty($_SESSION["datos_padre"]["pais_residencia"])): ?>
 														value="<?php echo dato_input("pais_residencia","dp");?>"
 														<?php else: ?>
 														disabled
@@ -1174,7 +1174,6 @@ $nivel = 2;
 												</div>
 											</div>
 
-
 											<div class="row mb-4">
 												<div class="col-12 col-lg-4">
 													<label class="form-label">¿Se encuentra en el país?:</label>
@@ -1186,9 +1185,9 @@ $nivel = 2;
 														name="reside_en_el_pais_m"	
 													>
 														<option selected value="">Seleccione una opción</option>
-														<option value="NC" <?php if ($_SESSION["datos_madre"]["pais_residencia"] == "No conocido") {echo "selected";}?>>Desconoce</option>
+														<option value="NC" <?php if ($_SESSION["datos_madre"]["pais_residencia"] == "No conocido" or empty($_SESSION["datos_madre"]["pais_residencia"])) {echo "selected";}?>>Desconoce</option>
 														<option value="Si" <?php if ($_SESSION["datos_madre"]["pais_residencia"] == "Venezuela") {echo "selected";}?>>Si</option>
-														<option value="No" <?php if ($_SESSION["datos_madre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_madre"]["pais_residencia"] != "Venezuela") {echo "selected";}?>>No</option>
+														<option value="No" <?php if ($_SESSION["datos_madre"]["pais_residencia"] != "No conocido" and $_SESSION["datos_madre"]["pais_residencia"] != "Venezuela" and !empty($_SESSION["datos_madre"]["pais_residencia"])) {echo "selected";}?>>No</option>
 													</select>
 												</div>
 												<div class="col-12 col-lg-4">
@@ -1247,7 +1246,7 @@ $nivel = 2;
 														required 
 														<?php if (
 															$_SESSION["datos_madre"]["pais_residencia"] != "No conocido" and 
-															$_SESSION["datos_madre"]["pais_residencia"] != "Venezuela"): ?>
+															$_SESSION["datos_madre"]["pais_residencia"] != "Venezuela" and !empty($_SESSION["datos_madre"]["pais_residencia"])): ?>
 														value="<?php echo dato_input("pais_residencia","dm");?>"
 														<?php else: ?>
 														disabled

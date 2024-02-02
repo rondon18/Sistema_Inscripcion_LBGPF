@@ -241,7 +241,7 @@
 						</form>
 						<?php endif;?>
 
-						<div class="btn-group col-12 col-sm-auto" role="group" aria-label="Button group with nested dropdown">
+						<div class="btn-group dropup col-12 col-sm-auto" role="group" aria-label="Button group with nested dropdown">
 
 							<button
 								class="btn btn-sm btn-primary"

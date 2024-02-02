@@ -100,7 +100,7 @@
 
 			$_SESSION['editar_registro'] = true;
 
-			header('Location: paso_3.php');
+			header('Location: paso_1.php');
 
 	}
 	else {

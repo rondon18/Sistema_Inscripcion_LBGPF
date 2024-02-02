@@ -256,17 +256,12 @@
 	</main>
 </div>
 
-<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 
 <script type="text/javascript" defer>
-
-	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-	  return new bootstrap.Tooltip(tooltipTriggerEl)
-	});
 
   function confirmar_envio(event) {
     event.preventDefault(); // Detiene la acción predeterminada del evento onSubmit
