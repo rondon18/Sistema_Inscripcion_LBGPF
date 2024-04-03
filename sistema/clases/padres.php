@@ -52,15 +52,6 @@
 					`pais_residencia` = '$pais_residencia';
 			";
 
-			// $sql = "
-			// 	UPDATE
-			// 		`padres`
-			// 	SET
-			// 		`pais_residencia` = '$pais_residencia'
-			// 	WHERE
-			// 		`cedula_persona` = '$cedula_persona'
-			// ";
-
 			echo $sql."<br><br>";
 
 

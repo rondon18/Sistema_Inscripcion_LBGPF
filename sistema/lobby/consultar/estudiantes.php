@@ -255,6 +255,53 @@
 							Editar
 						</button>
 
+						<!-- Editar datos del estudiante -->
+								<form
+									id="editar_estudiante_<?php echo $estudiante['cedula'];?>"
+									action="../editar_estudiante/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+									<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+									<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+									<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+								</form>
+
+
+								<!-- Editar datos de la madre del estudiante -->
+								<form
+									id="editar_madre_<?php echo $estudiante['cedula'];?>"
+									action="../editar_padre/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_padre" value="editar_padre">
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_madre'];?>">
+								</form>
+
+								<!-- Editar datos del padre del estudiante -->
+								<form
+									id="editar_padre_<?php echo $estudiante['cedula'];?>"
+									action="../editar_padre/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_padre" value="editar_padre">
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_padre'];?>">
+								</form>
+
+								<!-- Editar datos del representante del estudiante -->
+								<form
+									id="editar_representante_<?php echo $estudiante['cedula'];?>"
+									action="../editar_representante/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_representante" value="editar_representante">
+									<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+								</form>
+
 						<div class="btn-group dropup" role="group">
 
 							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -265,11 +312,14 @@
 							<ul class="dropdown-menu">
 
 								<li>
+
 									<button
 										class="dropdown-item"
 										type="submit"
+										form="editar_estudiante_<?php echo $estudiante['cedula'];?>"
+										name="editar"
 									>
-										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
+
 										<i class="fas fa-user-edit ms-2"></i>
 										Estudiante
 									</button>
@@ -279,8 +329,9 @@
 									<button
 										class="dropdown-item"
 										type="submit"
+										form="editar_madre_<?php echo $estudiante['cedula'];?>"
+										name="editar"
 									>
-										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
 										<i class="fas fa-user-edit ms-2"></i>
 										Madre
 									</button>
@@ -290,8 +341,9 @@
 									<button
 										class="dropdown-item"
 										type="submit"
+										form="editar_padre_<?php echo $estudiante['cedula'];?>"
+										name="editar"
 									>
-										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
 										<i class="fas fa-user-edit ms-2"></i>
 										Padre
 									</button>
@@ -301,8 +353,9 @@
 									<button
 										class="dropdown-item"
 										type="submit"
+										form="editar_representante_<?php echo $estudiante['cedula'];?>"
+										name="editar"
 									>
-										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
 										<i class="fas fa-user-edit ms-2"></i>
 										Representante
 									</button>
@@ -312,8 +365,9 @@
 									<button
 										class="dropdown-item"
 										type="submit"
+										form="editar_registro_<?php echo $estudiante['cedula'];?>"
+										name="editar"
 									>
-										<!-- form="cambiar_representante_<?php echo $estudiante['cedula'];?>" -->
 										<i class="fas fa-user-edit ms-2"></i>
 										Registro completo
 									</button>

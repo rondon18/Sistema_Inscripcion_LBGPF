@@ -1,6 +1,6 @@
 <?php
 
-	include("funciones.php");
+	include("../editar_registro/funciones.php");
 	session_start();
 
 	if (!$_SESSION['login']) {
@@ -29,7 +29,7 @@
 		$_SESSION['datos_inscripcion']['datos_representante'] = $datos_representante;
 
 		// Redirecciona al paso 2
-		header('Location: paso_2.php');
+		header('Location: ../../controladores/registros/control_registros.php');
 }
 
 ?>
@@ -79,7 +79,7 @@
 
 							<!-- Contenedor del formulario -->
 							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
-								<form id="formulariorepresentante" action="paso_1.php" method="POST">
+								<form id="formulariorepresentante" action="editar_representante.php" method="POST">
 									
 									<!-- Sección de datos personales -->
 									<section id="seccion1" class="row my-2">

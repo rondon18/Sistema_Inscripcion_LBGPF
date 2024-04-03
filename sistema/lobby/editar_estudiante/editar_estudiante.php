@@ -1,5 +1,5 @@
 <?php
-include("funciones.php");
+include("../editar_registro/funciones.php");
 
 session_start();
 if (!$_SESSION['login']) {
@@ -7,12 +7,6 @@ if (!$_SESSION['login']) {
 	exit();
 }
 
-
-// Verifica si el paso 1 fue completado para evitar un ingreso escribiendo en la url, si no.
-// regresa al paso 1
-if (!isset($_SESSION['paso_1'],$_SESSION['paso_2'])) {
-	header('Location: paso_2.php');
-}
 else {
 	// El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
 	// Verificación al momento de enviar el formulario
@@ -143,7 +137,7 @@ $nivel = 2;
 							
 							<!-- Contenedor del formulario -->
 							<div class="col-12 col-lg-9 py-0" style="max-height: 60vh; overflow-y: auto;">
-								<form id="formulario_estudiantes" action="paso_3.php" method="POST">
+								<form id="formulario_estudiantes" action="editar_estudiante.php" method="POST">
 									
 									<!-- Datos personales -->
 									<section id="seccion1" class="row my-2">
@@ -1916,13 +1910,9 @@ $nivel = 2;
 						</div>
 					</div>
 					<div class="card-footer nav justify-content-md-between">
-						<a class="btn btn-primary" href="../index.php">
+						<a class="btn btn-primary" href="../consultar/index.php">
 							<i class="fa-solid fa-lg me-2 fa-home"></i>
 							Volver al inicio
-						</a>
-						<a class="btn btn-primary ms-2" href="paso_2.php">
-							<i class="fa-solid fa-lg me-2 fa-undo"></i>
-							Volver al paso anterior
 						</a>
 						<div class="ms-auto">
 							<button id="boton_anterior" class="btn btn-primary" type="button">

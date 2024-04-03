@@ -87,51 +87,105 @@
 	// Adaptar una entrada para cada accion (insertar, editar y eliminar)
 	$bitacora = new bitacora();
 
-	// Nuevo registro
-	if ($_SESSION['orden'] == "insertar") {
-		require('nuevo_registro.php');
-		
-		$_SESSION['acciones'] .= ', Registra un estudiante';
-		$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
-		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
-		$bitacora->actualizar_bitacora();
+	if (isset($_SESSION['orden'])) {
+		// Nuevo registro
+		if ($_SESSION['orden'] == "insertar") {
+			require('nuevo_registro.php');
 
-		header('Location: ../../lobby/consultar/index.php?exito');
+			$_SESSION['acciones'] .= ', Registra un estudiante';
+			$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+			$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+			$bitacora->actualizar_bitacora();
 
+			header('Location: ../../lobby/consultar/index.php?exito');
+
+		}
+
+
+		// Editar registro
+		elseif ($_SESSION['orden'] == "editar") {
+
+			// Valida para confirmar cual de los modulos de editar utilizar
+
+			$accion = "";
+
+			switch ($_SESSION['tipo_edicion']) {
+
+
+				// Edita solo el estudiante
+				case 'estudiante':
+
+					// funciones usadas durante el proceso de registro
+					require("../../lobby/registrar_estudiante/funciones.php");
+					require('editar/editar_estudiante.php');
+					$accion = "Edita al estudiante: ". $_SESSION['datos_estudiante']['cedula'];
+
+					break;
+
+				// Edita solo el padre o madre del estudiante
+				case 'padre':
+
+					// funciones usadas durante el proceso de registro
+					require("../../lobby/registrar_estudiante/funciones.php");
+					require('editar/editar_padre.php');
+					$accion = "Edita al padre/madre: ". $_SESSION['datos_padre']['cedula'];
+
+					break;
+
+				// Edita el representante del estudiante
+				case 'representante':
+
+					// funciones usadas durante el proceso de registro
+					require("../../lobby/registrar_estudiante/funciones.php");
+					require('editar/editar_representante.php');
+					$accion = "Edita al representante: ". dato_sesion_i("nacionalidad_r").dato_sesion_i("cedula_r");
+
+					break;
+
+				// Edita el registro completo
+				case 'registro_completo':
+					
+					require('editar_registro.php');
+					$accion = "Edita el registro del estudiante: ". dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3);
+
+					break;
+
+				// Opción por defecto: redirigir al menu principal
+				default:
+					// code...
+					break;
+
+			}
+
+			$_SESSION['acciones'] .= ', '. $accion;
+			$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+			$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+			$bitacora->actualizar_bitacora();
+
+			header('Location: ../../lobby/consultar/index.php?exito');
+
+		}
+
+
+		// Eliminar registro
+		elseif ($_SESSION['orden'] == "eliminar") {
+			require('eliminar_registro.php');
+
+			$_SESSION['acciones'] .= ', Elimina un estudiante';
+			$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+			$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+			$bitacora->actualizar_bitacora();
+
+			header('Location: ../../lobby/consultar/index.php?sec=est&exito');
+
+		}
+
+		// Caso aparte
+		else {
+			header('Location: ../../lobby/');
+		}
 	}
-
-
-	// Editar registro
-	elseif ($_SESSION['orden'] == "editar") {
-		require('editar_registro.php');
-		
-		$_SESSION['acciones'] .= ', Edita un estudiante';
-		$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
-		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
-		$bitacora->actualizar_bitacora();
-		
-		header('Location: ../../lobby/consultar/index.php?exito');
-
-	}
-
-
-	// Eliminar registro
-	elseif ($_SESSION['orden'] == "eliminar") {
-		require('eliminar_registro.php');
-		
-		$_SESSION['acciones'] .= ', Elimina un estudiante';
-		$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
-		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
-		$bitacora->actualizar_bitacora();
-		
-		header('Location: ../../lobby/consultar/index.php?sec=est&exito');
-
-	}
-
-
-	// Caso aparte
 	else {
-
+		header('Location: ../../lobby/');
 	}
-
 ?>

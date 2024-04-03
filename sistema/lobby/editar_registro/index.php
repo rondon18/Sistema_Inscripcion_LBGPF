@@ -100,6 +100,8 @@
 
 			$_SESSION['editar_registro'] = true;
 
+			$_SESSION['tipo_edicion'] = "registro_completo";
+
 			header('Location: paso_1.php');
 
 	}

@@ -95,11 +95,15 @@ $lista_representantes = $representantes->mostrar_representantes();
 							<input type="hidden" name="accion" value="consultar">
 
 						</form>
-						<form id="editar_<?php echo $representante["cedula"];?>" action="../editar_representante/index.php" method="post"	>
-
-							<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
-
-						</form>
+						<form
+									id="editar_<?php echo $representante['cedula'];?>"
+									action="../editar_representante/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_representante" value="editar_representante">
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_representante'];?>">
+								</form>
 						<button
 							type="submit"
 							role="button"
