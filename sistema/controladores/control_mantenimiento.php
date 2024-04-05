@@ -6,7 +6,7 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
+require('../logs/error_handler.php');
 require_once('../controladores/conexion.php');
 require_once('../clases/mantenimiento.php');
 

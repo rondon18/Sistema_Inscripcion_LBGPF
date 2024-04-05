@@ -8,6 +8,7 @@
 
 	require('funciones.php');
 
+	require("../../logs/error_handler.php");
 	require("../../controladores/conexion.php");
 	require('../../clases/bitacora.php');
 

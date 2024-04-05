@@ -5,6 +5,7 @@
 	require("conexion.php");
 
 	// Llama las clases
+	require('../logs/error_handler.php');
 	require_once('../clases/bitacora.php');
 	require_once('../clases/personas.php');
 	require_once('../clases/usuarios.php');

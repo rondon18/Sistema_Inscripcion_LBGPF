@@ -14,7 +14,6 @@
 
 
 		// Llama las clases y componentes necesarios
-
 		require('../../lobby/consultar/funciones.php');
 		require('../conexion.php');
 		require('../../clases/bitacora.php');

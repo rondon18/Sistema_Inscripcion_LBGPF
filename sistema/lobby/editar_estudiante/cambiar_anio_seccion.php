@@ -1,6 +1,6 @@
 <?php
 
-	include("funciones.php");
+	include("../editar_registro/funciones.php");
 	session_start();
 
 	if (!$_SESSION['login']) {
@@ -11,25 +11,12 @@
 	require('../../controladores/conexion.php');
 	require('../../clases/personas.php');
 	require('../../clases/estudiantes.php');
-	require('../../clases/representantes.php');
-	require('../../clases/padres.php');
 
 	// estudiante
 	$estudiantes = new estudiantes();
-	$representantes = new representantes();
-	$padres = new padres();
 
 	$estudiantes->set_cedula_persona($_POST['cedula']);
 	$datos_estudiante = $estudiantes->consultar_estudiantes();
-
-	$representantes->set_cedula_persona($datos_estudiante['cedula_representante']);
-	$datos_representante = $representantes->consultar_representantes();
-
-	$padres->set_cedula_persona($datos_estudiante['cedula_padre']);
-	$datos_padre = $padres->consultar_padres();
-
-	$padres->set_cedula_persona($datos_estudiante['cedula_madre']);
-	$datos_madre = $padres->consultar_padres();
 
 
 	$nivel = 2;
@@ -39,7 +26,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Paso 1 - Datos del representante</title>
+		<title>Actualizar grado y sección de estudiante</title>
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
@@ -53,13 +40,13 @@
 					<div class="card">
 						<!-- Titulo del contenedor -->
 						<div class="card-header text-center">
-							<b class="fs-5">Actualizacion de datos - Cambiar representante</b>
+							<b class="fs-5">Actualizacion de datos - Año y sección del estudiante</b>
 						</div>
 						<div class="card-body">
-							<form action="../../controladores/cambiar_representante.php" method="post" id="cambiar_representante">
+							<form action="../../controladores/cambiar_anio_seccion.php" method="post" id="cambiar_anio_seccion">
 
 								<p>
-									Cambio de representante del estudiante:
+									Actualmete el estudiante:
 									<b>
 										<?php echo $datos_estudiante['p_nombre'] . " " . $datos_estudiante['p_apellido'];?>
 									</b>
@@ -67,42 +54,53 @@
 									<b>
 										CI:<?php echo $datos_estudiante['cedula'];?>
 									</b>
+									Se encuentra cursando:
+									<b>
+										<?php echo $datos_estudiante['grado_a_cursar'];?>
+									</b>
+									Sección:
+									<b>
+										<?php echo ' "' . $datos_estudiante['seccion'] . '"';?>
+									</b>
 								</p>
 
-								<p>
-									Actualmente
-									<b>
-										<?php echo $datos_representante['p_nombre'] . " " . $datos_representante['p_apellido'];?>
-									</b>
-									con
-									<b>
-										CI:<?php echo $datos_representante['cedula'];?>
-									</b>
-									es su representante.
-									¿Quién pasa a ser el representante del estudiante?
+
+								<p class="mb-4">
+									A continuación, indique a que a año y a que sección sera asignado el estudiante.
 								</p>
 
-								<?php if ($datos_padre['cedula'] != $datos_representante['cedula']):?>
-								<div class="form-check">
-								  <input class="form-check-input" type="radio" value="padre" id="padre" name="nuevo_representante" required>
-								  <label class="form-check-label" for="padre">
-								    <?php echo $datos_padre['cedula'];?>.
-								    <?php echo $datos_padre['p_nombre'] . " " . $datos_padre['p_apellido'];?>
-								    (Padre)
-								  </label>
+								<!-- Año a cursar -->
+								<div class="row mb-2">
+									<div class="col-12 col-lg-4">
+										<label for="grado_a_cursar" class="form-label requerido">¿Que año va a cursar?:</label>
+									</div>
+									<div class="col-12 col-lg-8">
+										<select class="form-select mb-2" name="grado_a_cursar" required>
+											<option selected value="">Seleccione una opción</option>
+											<option value="Primer año">Primer año</option>
+											<option value="Segundo año">Segundo año</option>
+											<option value="Tercer año">Tercer año</option>
+											<option value="Cuarto año">Cuarto año</option>
+											<option value="Quinto año">Quinto año</option>
+										</select>
+									</div>
 								</div>
-								<?php endif ?>
 
-								<?php if ($datos_madre['cedula'] != $datos_representante['cedula']):?>
-								<div class="form-check">
-								  <input class="form-check-input" type="radio" value="madre" id="madre" name="nuevo_representante" required>
-								  <label class="form-check-label" for="madre">
-								    <?php echo $datos_madre['cedula'];?>.
-								    <?php echo $datos_madre['p_nombre'] . " " . $datos_madre['p_apellido'];?>
-								    (Madre)
-								  </label>
+								<!-- Año a cursar -->
+								<div class="row">
+									<div class="col-12 col-lg-4">
+										<label for="seccion_a_cursar" class="form-label requerido">¿Que sección va a cursar?:</label>
+									</div>
+									<div class="col-12 col-lg-8">
+										<select class="form-select mb-2" name="seccion_a_cursar" required>
+											<option selected value="">Seleccione una opción</option>
+											<option value="A">Sección "A"</option>
+											<option value="B">Sección "B"</option>
+											<option value="C">Sección "C"</option>
+											<option value="D">Sección "D"</option>
+										</select>
+									</div>
 								</div>
-								<?php endif ?>
 
 								<input
 									type="hidden"
@@ -118,7 +116,7 @@
 								Volver
 							</a>
 							<div class="ms-auto">
-								<button form="cambiar_representante" class="btn btn-primary" type="submit">
+								<button form="cambiar_anio_seccion" class="btn btn-primary" type="submit">
 									Guardar y continuar
 									<i class="fa-solid fa-lg ms-2 fa-floppy-disk"></i>
 								</button>

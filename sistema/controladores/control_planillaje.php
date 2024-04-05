@@ -15,7 +15,7 @@
 
 
 	// Llama las clases y componentes necesarios
-
+	require('../logs/error_handler.php');
 	require('../lobby/consultar/funciones.php');
 	require('../controladores/conexion.php');
 	require('../clases/bitacora.php');

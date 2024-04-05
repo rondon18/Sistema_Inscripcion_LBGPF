@@ -6,7 +6,7 @@
 		header('Location: ../index.php?exito');
 		exit();
 	}
-
+	require('../logs/error_handler.php');
 	require('../clases/bitacora.php');
 	require('../controladores/conexion.php');
 	

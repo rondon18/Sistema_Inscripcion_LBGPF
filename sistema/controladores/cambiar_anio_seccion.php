@@ -6,7 +6,7 @@
 		header('Location: ../../index.php');
 		exit();
 	}
-
+	require('../logs/error_handler.php');
 	require('conexion.php');
 	require('../clases/estudiantes.php');
 	require('../clases/grado_a_cursar_est.php');

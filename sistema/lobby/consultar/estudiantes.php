@@ -156,7 +156,7 @@
 				<td><?php echo mb_strtoupper($estudiante['p_apellido']." ".$estudiante['s_apellido']);?></td>
 				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
 				<td><?php echo $estudiante['genero'];?></td>
-				<td><?php echo mb_strtoupper($estudiante['grado_a_cursar']) . '"' . mb_strtoupper($estudiante['seccion']) . '"';?></td>
+				<td><?php echo mb_strtoupper($estudiante['grado_a_cursar']) . ' "' . mb_strtoupper($estudiante['seccion']) . '"';?></td>
 
 				<!-- Periodo académico al que está registrado -->
 				<td><?php echo mb_strtoupper($estudiante['id_per_academico']);?></td>
