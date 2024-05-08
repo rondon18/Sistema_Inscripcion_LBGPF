@@ -1,9 +1,6 @@
 <?php  
 
 	class grado_a_cursar_est {
-
-		// 
-
 		private $grado_a_cursar;
 		private $seccion;
 		private $cedula_estudiante;
@@ -92,23 +89,73 @@
 
 		// SETTERS
 		public function set_seccion($seccion) {
-			$this->seccion = $seccion;
+			try {
+				$secciones = ["a","b","c","d",];
+				if (!in_array(strtolower($seccion), $secciones)) {
+					throw new Exception("La seccion: ($seccion) se encuentra fuera de los valores admitidos");
+				}
+				$this->seccion = ucfirst($seccion);
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function set_grado_a_cursar($grado_a_cursar) {
+			try {
+				$grados = [
+					"primer año",
+					"segundo año",
+					"tercer año",
+					"cuarto año",
+					"quinto año",
+				];
+				if (!in_array(strtolower($grado_a_cursar), $grados)) {
+					throw new Exception("El grado: ($grado_a_cursar) se encuentra fuera de los valores admitidos");
+				}
+				$this->grado_a_cursar = ucfirst(strtolower($grado_a_cursar));
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 			$this->grado_a_cursar = $grado_a_cursar;
 		}
 
 		public function set_cedula_estudiante($cedula_estudiante) {
-			$this->cedula_estudiante = $cedula_estudiante;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_estudiante)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_estudiante) <= 4 || strlen($cedula_estudiante) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->cedula_estudiante = $cedula_estudiante;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function set_id_per_academico($id_per_academico) {
-			$this->id_per_academico = $id_per_academico;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($id_per_academico)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+				// Validar la longitud y el formato de la cédula
+				if (is_numeric($id_per_academico)) {
+					throw new Exception("El ID $id_per_academico tiene un formato inválido");
+				}
+				$this->id_per_academico = $id_per_academico;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
-
-
-
 	}
-
 ?>

@@ -21,7 +21,6 @@
 		public function __construct() {}
 
 		public function insertar_persona() {
-
 			try {
 				if (!$conexion = conectarBD()) {
 					throw new Exception("No se pudo conectar a bd");
@@ -428,7 +427,7 @@
 				// Validar la longitud y el formato del nombre
 				if (!in_array(strtolower($estado_civil),["soltero(a)","casado(a)","divorciado(a)","viudo(a)"])) {
 
-					throw new Exception("El estado civil: $estado_civil es inválido");
+					throw new Exception("El estado civil: '$estado_civil' es inválido");
 				}
 
 				// Si el nombre es válido, asignarlo a la propiedad

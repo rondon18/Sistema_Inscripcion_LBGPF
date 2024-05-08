@@ -1,0 +1,12 @@
+07-05-2024 08:05:20 PM | Descripción del error: El número de cédula no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (305)
+
+07-05-2024 08:06:14 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+
+07-05-2024 08:06:52 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+
+07-05-2024 08:07:04 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+
+07-05-2024 08:18:05 PM | Descripción del error: La accion realizada no puede estar vacia | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (318)
+
+07-05-2024 08:18:29 PM | Descripción del error: La hora de entrada: Lorem ipsum dolor sit, amet consectetur, adipisicing elit. Consequuntur perspiciatis, ipsum voluptatibus excepturi iusto iure hic. Ullam expedita quae perspiciatis, dolor optio nostrum dicta illum eligendi eum harum saepe repudiandae. no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (323)
+

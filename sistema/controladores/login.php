@@ -41,6 +41,9 @@
 				$_SESSION['id_bitacora'] = $bitacora->iniciar_bitacora();
 				$_SESSION['acciones'] = "Inicia Sesión";
 
+				var_dump($_SESSION['id_bitacora']);
+				var_dump($_SESSION['acciones']);
+
 				header('Location: ../lobby/index.php');
 
 			}

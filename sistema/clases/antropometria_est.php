@@ -16,68 +16,91 @@
 		// CONSTRUCTOR
 		public function __construct(){}
 
-
 		public function insertar_antropometria_est() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$estatura = $this->get_estatura();
-			$peso = $this->get_peso();
-			$indice_m_c = $this->get_indice_m_c();
-			$circ_braquial = $this->get_circ_braquial();
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$estatura = mysqli_escape_string($conexion,$this->get_estatura());
+					$peso = mysqli_escape_string($conexion,$this->get_peso());
+					$indice_m_c = mysqli_escape_string($conexion,$this->get_indice_m_c());
+					$circ_braquial = mysqli_escape_string($conexion,$this->get_circ_braquial());
 
-			$conexion = conectarBD();
-
-			$sql = "
-				INSERT INTO `antropometria_est`(
-			    `cedula_estudiante`,
-			    `estatura`,
-			    `peso`,
-			    `indice_m_c`,
-			    `circ_braquial`
-				)
-				VALUES(
-			    '$cedula_estudiante',
-			    '$estatura',
-			    '$peso',
-			    '$indice_m_c',
-			    '$circ_braquial'
-				)
-				ON DUPLICATE KEY UPDATE
-				`cedula_estudiante` = `cedula_estudiante`;
-			";
-
-			// echo $sql;
-			
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			desconectarBD($conexion);
+					$sql = "
+						INSERT INTO `antropometria_est`(
+					    `cedula_estudiante`,
+					    `estatura`,
+					    `peso`,
+					    `indice_m_c`,
+					    `circ_braquial`
+						)
+						VALUES(
+					    '$cedula_estudiante',
+					    '$estatura',
+					    '$peso',
+					    '$indice_m_c',
+					    '$circ_braquial'
+						)
+						ON DUPLICATE KEY UPDATE
+							`cedula_estudiante` = `cedula_estudiante`;
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function editar_antropometria_est() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$estatura = $this->get_estatura();
-			$peso = $this->get_peso();
-			$indice_m_c = $this->get_indice_m_c();
-			$circ_braquial = $this->get_circ_braquial();
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$estatura = mysqli_escape_string($conexion,$this->get_estatura());
+					$peso = mysqli_escape_string($conexion,$this->get_peso());
+					$indice_m_c = mysqli_escape_string($conexion,$this->get_indice_m_c());
+					$circ_braquial = mysqli_escape_string($conexion,$this->get_circ_braquial());
 
-			$conexion = conectarBD();
-
-			$sql = "
-				UPDATE
-			    `antropometria_est`
-				SET
-			    `estatura` = '$estatura',
-			    `peso` = '$peso',
-			    `indice_m_c` = '$indice_m_c',
-			    `circ_braquial` = '$circ_braquial'
-				WHERE
-			    `cedula_estudiante` = '$cedula_estudiante'
-			";
-
-			// echo $sql;
-			
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			desconectarBD($conexion);
+					$sql = "
+						UPDATE
+					    `antropometria_est`
+						SET
+					    `estatura` = '$estatura',
+					    `peso` = '$peso',
+					    `indice_m_c` = '$indice_m_c',
+					    `circ_braquial` = '$circ_braquial'
+						WHERE
+					    `cedula_estudiante` = '$cedula_estudiante'
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}		
 
 
@@ -105,19 +128,102 @@
 
 		// SETTERS
 		public function set_cedula_estudiante($cedula_estudiante) {
-			$this->cedula_estudiante = $cedula_estudiante;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_estudiante)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_estudiante) <= 4 || strlen($cedula_estudiante) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->cedula_estudiante = $cedula_estudiante;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_estatura($estatura) {
-			$this->estatura = $estatura;
+			// estatura se recibe en centimetros
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($estatura)) {
+					$this->estatura = 0;
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if ($estatura < 0 || $estatura > 300 || !is_numeric($estatura)) {
+					throw new Exception("La estatura: ($estatura) se encuentra fuera de los valores admitidos");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->estatura = $estatura;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_peso($peso) {
-			$this->peso = $peso;
+			// peso se recibe en kilogramos
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($peso)) {
+					$this->peso = 0;
+				}
+
+				// Validar la longitud y el formato de la cédula
+				// Suponemos de 20Kg a 200Kg como una medida amplia para el peso de los estudiantes, incluyendo decimales
+				if ($peso < 20 || $peso > 200 || !is_numeric($peso)) {
+					throw new Exception("El peso: ($peso) se encuentra fuera de los valores admitidos");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->peso = $peso;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_indice_m_c($indice_m_c) {
-			$this->indice_m_c = $indice_m_c;
+			// imc se recibe en unidades
+			try {
+				if (empty($indice_m_c)) {
+					$this->indice_m_c = 0;
+				}
+
+				// Validar la longitud y el formato de la cédula
+				// Suponemos que un indice de masa corporal sano oscila los 20 puntos, este mismo valor deberá admitir valores entre 0 y 30 para dar un margen ancho
+				if ($indice_m_c < 0 || $indice_m_c > 30 || !is_numeric($indice_m_c)) {
+					throw new Exception("El indice_m_c: ($indice_m_c) se encuentra fuera de los valores admitidos");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->indice_m_c = $indice_m_c;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_circ_braquial($circ_braquial) {
-			$this->circ_braquial = $circ_braquial;
+			// La circunferencia braquial se mide en centimetros
+			try {
+				if (empty($circ_braquial)) {
+					$this->circ_braquial = 0;
+				}
+
+				if ($circ_braquial < 15 || $circ_braquial > 60 || !is_numeric($circ_braquial)) {
+					throw new Exception("El circ_braquial: ($circ_braquial) se encuentra fuera de los valores admitidos");
+				}
+
+				// Si la cédula es válida, asignarla a la propiedad
+				$this->circ_braquial = $circ_braquial;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 	}
 

@@ -65,13 +65,11 @@
 						desconectarBD($conexion);
 						return $lista_representantes = [];
 					}
-
 				}
 			}
 			catch (Exception $e) {
 				miManejadorExcepcion($e);
 			}
-
 		}
 
 

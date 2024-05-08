@@ -297,7 +297,7 @@ if (isset($_POST['paso_1'])) {
 													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta">Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?">¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
@@ -327,7 +327,7 @@ if (isset($_POST['paso_1'])) {
 													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta">Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?">¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>

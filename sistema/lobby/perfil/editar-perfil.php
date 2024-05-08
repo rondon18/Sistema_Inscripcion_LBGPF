@@ -248,7 +248,7 @@
 													<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Color que más te gusta"){echo "selected";}?>>Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "¿Cuál es tu comida favorita?"){echo "selected";}?>>¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "¿Cuál es tu héroe favorito?"){echo "selected";}?>>¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "¿Cuál fue tu primer número de Teléfono?"){echo "selected";}?>>¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas" <?php if($_SESSION['datos_login']['pregunta_seg_1'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
@@ -279,7 +279,7 @@
 													<option value="Ciudad preferida de vacaciones" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Ciudad preferida de vacaciones"){echo "selected";}?>>Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Color que más te gusta"){echo "selected";}?>>Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "¿Cuál es tu comida favorita?"){echo "selected";}?>>¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "¿Cuál es tu heroe favorito?"){echo "selected";}?>>¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "¿Cuál es tu héroe favorito?"){echo "selected";}?>>¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "¿Cuál fue tu primer número de Teléfono?"){echo "selected";}?>>¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Equipo deportivo preferido"){echo "selected";}?>>Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas" <?php if($_SESSION['datos_login']['pregunta_seg_2'] == "Fecha de aniversario de bodas"){echo "selected";}?>>Fecha de aniversario de bodas</option>
