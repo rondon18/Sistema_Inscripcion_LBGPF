@@ -251,11 +251,11 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_persona) <= 4 || strlen($cedula_persona) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
+				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
 					throw new Exception("El número de cédula tiene un formato inválido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->cedula_persona = $cedula_persona;
 			}
 			catch (Exception $e) {
@@ -279,13 +279,13 @@
 			];
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array($rol,$roles)) {
 
 					throw new Exception("El rol: '$rol' es inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->rol = $rol;
 			}
 			catch (Exception $e) {
@@ -295,11 +295,11 @@
 
 		public function set_privilegios($privilegios) {
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if ($privilegios > 2 or $privilegios < 0 and !is_numeric($privilegios)) {
 					throw new Exception("El privilegio: '$privilegios' es inválido");
 				}
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->privilegios = $privilegios;
 			}
 			catch (Exception $e) {
@@ -326,7 +326,7 @@
 					throw new Exception("El formato de la contraseña: '$contrasenia' es invalido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->contrasenia = $contrasenia;
 			}
 			catch (Exception $e) {
@@ -346,7 +346,7 @@
 				if(strlen($contrasenia) < 64 || strlen($contrasenia) > 64) {
 					throw new Exception("El formato de la contraseña: '$contrasenia' es invalido");
 				}
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->contrasenia = $contrasenia;
 			}
 			catch (Exception $e) {
@@ -371,11 +371,11 @@
 			];
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array($pregunta_seg_1, $preguntas) ) {
 					throw new Exception("La pregunta de seguridad 1: '$pregunta_seg_1' no es valida");
 				}
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->pregunta_seg_1 = $pregunta_seg_1;
 			}
 			catch (Exception $e) {
@@ -404,11 +404,11 @@
 			];
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array($pregunta_seg_2, $preguntas) ) {
 					throw new Exception("La pregunta de seguridad 2: '$pregunta_seg_2' no es valida");
 				}
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->pregunta_seg_2 = $pregunta_seg_2;
 			}
 			catch (Exception $e) {

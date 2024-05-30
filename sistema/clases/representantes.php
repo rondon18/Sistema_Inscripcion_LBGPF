@@ -1088,11 +1088,11 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_persona) <= 4 || strlen($cedula_persona) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
+				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
 					throw new Exception("El número de cédula $cedula_persona tiene un formato inválido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->cedula_persona = $cedula_persona;
 			}
 			catch (Exception $e) {

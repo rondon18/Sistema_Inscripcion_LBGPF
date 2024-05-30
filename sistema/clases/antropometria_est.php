@@ -135,11 +135,11 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) <= 4 || strlen($cedula_estudiante) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->cedula_estudiante = $cedula_estudiante;
 			}
 			catch (Exception $e) {
@@ -159,7 +159,7 @@
 					throw new Exception("La estatura: ($estatura) se encuentra fuera de los valores admitidos");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->estatura = $estatura;
 			}
 			catch (Exception $e) {
@@ -180,7 +180,7 @@
 					throw new Exception("El peso: ($peso) se encuentra fuera de los valores admitidos");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->peso = $peso;
 			}
 			catch (Exception $e) {
@@ -200,7 +200,7 @@
 					throw new Exception("El indice_m_c: ($indice_m_c) se encuentra fuera de los valores admitidos");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->indice_m_c = $indice_m_c;
 			}
 			catch (Exception $e) {
@@ -218,7 +218,7 @@
 					throw new Exception("El circ_braquial: ($circ_braquial) se encuentra fuera de los valores admitidos");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->circ_braquial = $circ_braquial;
 			}
 			catch (Exception $e) {

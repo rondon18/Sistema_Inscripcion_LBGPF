@@ -335,7 +335,7 @@
 					throw new Exception("El número de cédula $cedula_usuario tiene un formato inválido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->cedula_usuario = $cedula_usuario;
 			}
 			catch (Exception $e) {

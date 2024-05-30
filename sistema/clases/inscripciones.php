@@ -77,10 +77,42 @@
 			$this->hora = $hora;
 		}
 		public function set_cedula_usuario($cedula_usuario) {
-			$this->cedula_usuario = $cedula_usuario;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_usuario)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_usuario) < 4 || strlen($cedula_usuario) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_usuario)) {
+					throw new Exception("El número de cédula $cedula_usuario tiene un formato inválido");
+				}
+
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->cedula_usuario = $cedula_usuario;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_cedula_estudiante($cedula_estudiante) {
-			$this->cedula_estudiante = $cedula_estudiante;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_estudiante)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
+				}
+
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->cedula_estudiante = $cedula_estudiante;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 	}

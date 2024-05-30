@@ -267,11 +267,11 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula) <= 4 || strlen($cedula) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula)) {
+				if (strlen($cedula) < 4 || strlen($cedula) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula)) {
 					throw new Exception("El número de cédula tiene un formato inválido");
 				}
 
-				// Si la cédula es válida, asignarla a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->cedula = $cedula;
 			}
 			catch (Exception $e) {
@@ -289,12 +289,12 @@
 			}
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (strlen($p_nombre) <= 4 || strlen($p_nombre) >= 40 || !preg_match('/^[a-zA-Z]+$/', $p_nombre)) {
 					throw new Exception("El primer nombre tiene un formato inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->p_nombre = $p_nombre;
 			}
 			catch (Exception $e) {
@@ -311,12 +311,12 @@
 			}
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (strlen($s_nombre) <= 4 || strlen($s_nombre) >= 40 || !preg_match('/^[a-zA-Z]+$/', $s_nombre)) {
 					throw new Exception("El segundo nombre tiene un formato inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->s_nombre = $s_nombre;
 			}
 			catch (Exception $e) {
@@ -332,12 +332,12 @@
 			}
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (strlen($p_apellido) <= 4 || strlen($p_apellido) >= 40 || !preg_match('/^[a-zA-Z]+$/', $p_apellido)) {
 					throw new Exception("El primer apellido tiene un formato inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->p_apellido = $p_apellido;
 			}
 			catch (Exception $e) {
@@ -353,12 +353,12 @@
 			}
 
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (strlen($s_apellido) <= 4 || strlen($s_apellido) >= 40 || !preg_match('/^[a-zA-Z]+$/', $s_apellido)) {
 					throw new Exception("El segundo apellido tiene un formato inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->s_apellido = $s_apellido;
 			}
 			catch (Exception $e) {
@@ -392,14 +392,13 @@
 		}
 		
 		public function set_lugar_nacimiento($lugar_nacimiento) {
-
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (strlen($lugar_nacimiento) <= 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $lugar_nacimiento)) {
 					throw new Exception("El lugar de nacimiento $lugar_nacimiento cuenta con un formato inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->lugar_nacimiento = $lugar_nacimiento;
 			}
 			catch (Exception $e) {
@@ -409,12 +408,12 @@
 		
 		public function set_genero($genero) {
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($genero),["f","m"])) {
 					throw new Exception("El genero: $genero es inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->genero = $genero;
 			}
 			catch (Exception $e) {
@@ -424,13 +423,13 @@
 		
 		public function set_estado_civil($estado_civil) {
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($estado_civil),["soltero(a)","casado(a)","divorciado(a)","viudo(a)"])) {
 
 					throw new Exception("El estado civil: '$estado_civil' es inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->estado_civil = $estado_civil;
 			}
 			catch (Exception $e) {
@@ -445,13 +444,13 @@
 				return;
 			}
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 					throw new Exception("El correo electronico: $email es inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->email = $email;
 			}
 			catch (Exception $e) {
@@ -461,13 +460,13 @@
 		
 		public function set_grado_academico($grado_academico) {
 			try {
-				// Validar la longitud y el formato del nombre
+				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($grado_academico),["primaria","bachillerato","universitario"])) {
 
 					throw new Exception("El grado academico: $grado_academico es inválido");
 				}
 
-				// Si el nombre es válido, asignarlo a la propiedad
+				// Si el dato es válido, asignarlo a la propiedad
 				$this->grado_academico = $grado_academico;
 			}
 			catch (Exception $e) {
