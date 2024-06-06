@@ -19,81 +19,103 @@
 
 
 		public function insertar_direcciones() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
+					$estado = mysqli_escape_string($conexion,$this->get_estado());
+					$municipio = mysqli_escape_string($conexion,$this->get_municipio());
+					$parroquia = mysqli_escape_string($conexion,$this->get_parroquia());
+					$sector = mysqli_escape_string($conexion,$this->get_sector());
+					$calle = mysqli_escape_string($conexion,$this->get_calle());
+					$nro_casa = mysqli_escape_string($conexion,$this->get_nro_casa());
+					$punto_referencia = mysqli_escape_string($conexion,$this->get_punto_referencia());
 
-			$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
-			$estado = mysqli_escape_string($conexion,$this->get_estado());
-			$municipio = mysqli_escape_string($conexion,$this->get_municipio());
-			$parroquia = mysqli_escape_string($conexion,$this->get_parroquia());
-			$sector = mysqli_escape_string($conexion,$this->get_sector());
-			$calle = mysqli_escape_string($conexion,$this->get_calle());
-			$nro_casa = mysqli_escape_string($conexion,$this->get_nro_casa());
-			$punto_referencia = mysqli_escape_string($conexion,$this->get_punto_referencia());
-			
-			$sql = "
-				INSERT INTO `direcciones`(
-					`cedula_persona`,
-					`estado`,
-					`municipio`,
-					`parroquia`,
-					`sector`,
-					`calle`,
-					`nro_casa`,
-					`punto_referencia`
-				)
-				VALUES(
-					'$cedula_persona',
-					'$estado',
-					'$municipio',
-					'$parroquia',
-					'$sector',
-					'$calle',
-					'$nro_casa',
-					'$punto_referencia'
-				)
-				ON DUPLICATE KEY UPDATE
-				`cedula_persona` = `cedula_persona`;
-			";
-
-			// echo $sql;
-			
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+					$sql = "
+						INSERT INTO `direcciones`(
+							`cedula_persona`,
+							`estado`,
+							`municipio`,
+							`parroquia`,
+							`sector`,
+							`calle`,
+							`nro_casa`,
+							`punto_referencia`
+						)
+						VALUES(
+							'$cedula_persona',
+							'$estado',
+							'$municipio',
+							'$parroquia',
+							'$sector',
+							'$calle',
+							'$nro_casa',
+							'$punto_referencia'
+						)
+						ON DUPLICATE KEY UPDATE
+						`cedula_persona` = `cedula_persona`;
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function editar_direcciones() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
+					$estado = mysqli_escape_string($conexion,$this->get_estado());
+					$municipio = mysqli_escape_string($conexion,$this->get_municipio());
+					$parroquia = mysqli_escape_string($conexion,$this->get_parroquia());
+					$sector = mysqli_escape_string($conexion,$this->get_sector());
+					$calle = mysqli_escape_string($conexion,$this->get_calle());
+					$nro_casa = mysqli_escape_string($conexion,$this->get_nro_casa());
+					$punto_referencia = mysqli_escape_string($conexion,$this->get_punto_referencia());
 
-			$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
-			$estado = mysqli_escape_string($conexion,$this->get_estado());
-			$municipio = mysqli_escape_string($conexion,$this->get_municipio());
-			$parroquia = mysqli_escape_string($conexion,$this->get_parroquia());
-			$sector = mysqli_escape_string($conexion,$this->get_sector());
-			$calle = mysqli_escape_string($conexion,$this->get_calle());
-			$nro_casa = mysqli_escape_string($conexion,$this->get_nro_casa());
-			$punto_referencia = mysqli_escape_string($conexion,$this->get_punto_referencia());
-			
-			$sql = "
-				UPDATE
-    			`direcciones`
-				SET
-			    `estado` = '$estado',
-			    `municipio` = '$municipio',
-			    `parroquia` = '$parroquia',
-			    `sector` = '$sector',
-			    `calle` = '$calle',
-			    `nro_casa` = '$nro_casa',
-			    `punto_referencia` = '$punto_referencia'
-				WHERE
-			    `cedula_persona` = '$cedula_persona'
-			";
-
-			// echo $sql;
-			
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+					$sql = "
+						UPDATE
+		    			`direcciones`
+						SET
+					    `estado` = '$estado',
+					    `municipio` = '$municipio',
+					    `parroquia` = '$parroquia',
+					    `sector` = '$sector',
+					    `calle` = '$calle',
+					    `nro_casa` = '$nro_casa',
+					    `punto_referencia` = '$punto_referencia'
+						WHERE
+					    `cedula_persona` = '$cedula_persona'
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		
 		// getters
@@ -139,7 +161,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
+				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_persona)) {
 					throw new Exception("El número de cédula $cedula_persona tiene un formato inválido");
 				}
 
@@ -152,7 +174,16 @@
 		}
 		
 		public function set_estado($estado) {
-			$this->estado = $estado;
+			try {
+				// Validar la longitud y el formato del dato
+				if (!ctype_alpha($estado) || strlen($estado) > 30) {
+					throw new Exception("El estado: $estado es inválido");
+				}
+				$this->estado = $estado;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		
 		public function set_municipio($municipio) {
@@ -166,7 +197,7 @@
 			];
 			try {
 				// Validar la longitud y el formato del dato
-				if (!in_array(strtolower($municipio),$municipios_merida)) {
+				if (!in_array(strtoupper($municipio),$municipios_merida)) {
 					throw new Exception("El municipio: $municipio es inválido");
 				}
 				$this->municipio = $municipio;

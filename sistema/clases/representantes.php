@@ -1088,7 +1088,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_persona)) {
+				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_persona)) {
 					throw new Exception("El número de cédula $cedula_persona tiene un formato inválido");
 				}
 

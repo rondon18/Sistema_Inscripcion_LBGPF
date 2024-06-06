@@ -5,7 +5,7 @@
 	require("conexion.php");
 
 	// Llama las clases
-	require('../logs/error_handler.php');
+	require_once('../logs/error_handler.php');
 	require_once('../clases/bitacora.php');
 	require_once('../clases/personas.php');
 	require_once('../clases/usuarios.php');
@@ -40,9 +40,6 @@
 
 				$_SESSION['id_bitacora'] = $bitacora->iniciar_bitacora();
 				$_SESSION['acciones'] = "Inicia Sesión";
-
-				var_dump($_SESSION['id_bitacora']);
-				var_dump($_SESSION['acciones']);
 
 				header('Location: ../lobby/index.php');
 

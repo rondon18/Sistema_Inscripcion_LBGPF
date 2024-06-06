@@ -215,6 +215,7 @@
 				miManejadorExcepcion($e);
 			}
 		}
+
 		public function set_fecha_ingreso($fecha_ingreso) {
 			if (empty($fecha_ingreso) or $fecha_ingreso == NULL) {
 				$this->fecha_ingreso = "0000-00-00";
@@ -238,7 +239,6 @@
 			catch (Exception $e) {
 				miManejadorExcepcion($e);
 			}
-			$this->fecha_ingreso = $fecha_ingreso;
 		}
 		public function set_fecha_salida($fecha_salida) {
 			if (empty($fecha_salida) or $fecha_salida == NULL) {
@@ -313,8 +313,7 @@
 				throw new Exception("La accion realizada no puede estar vacia");
 			}
 			try {
-				// En este caso solo se valida que la longitud no sea muy corta o muy larga
-				if (strlen($acciones_realizadas) > 200 || strlen($acciones_realizadas) < 3) {
+				if (!preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $acciones_realizadas)) {
 					throw new Exception("La hora de entrada: ".$acciones_realizadas. " no tiene un formato valido");
 				}
 				$this->acciones_realizadas = $acciones_realizadas;
@@ -331,7 +330,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_usuario) <= 4 || strlen($cedula_usuario) >= 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_usuario)) {
+				if (strlen($cedula_usuario) <= 4 || strlen($cedula_usuario) >= 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_usuario)) {
 					throw new Exception("El número de cédula $cedula_usuario tiene un formato inválido");
 				}
 

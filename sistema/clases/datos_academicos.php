@@ -128,7 +128,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 
@@ -148,7 +148,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($a_repetido) <= 4 || strlen($a_repetido) >= 25 || !preg_match('/^[a-zA-Z0-9]+$/', $a_repetido)) {
+				if (strlen($a_repetido) <= 4 || strlen($a_repetido) >= 25 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $a_repetido)) {
 					throw new Exception("El año repetido $a_repetido tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -168,7 +168,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($materias_repetidas) <= 4 || strlen($materias_repetidas) >= 50 || !preg_match('/^[a-zA-Z0-9]+$/', $materias_repetidas)) {
+				if (strlen($materias_repetidas) <= 4 || strlen($materias_repetidas) >= 50 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $materias_repetidas)) {
 					throw new Exception("El año repetido $materias_repetidas tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -187,7 +187,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($materias_pendientes) <= 4 || strlen($materias_pendientes) >= 50 || !preg_match('/^[a-zA-Z0-9]+$/', $materias_pendientes)) {
+				if (strlen($materias_pendientes) <= 4 || strlen($materias_pendientes) >= 50 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $materias_pendientes)) {
 					throw new Exception("Las materias repetidas $materias_pendientes tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad

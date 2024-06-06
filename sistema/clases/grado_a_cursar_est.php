@@ -9,65 +9,85 @@
 		// CONSTRUCTOR
 		public function __construct() {}
 
-
 		public function insertar_grado_a_cursar_est() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$grado_a_cursar = mysqli_escape_string($conexion,$this->get_grado_a_cursar());
+					$seccion = mysqli_escape_string($conexion,$this->get_seccion());
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$id_per_academico = mysqli_escape_string($conexion,$this->get_id_per_academico());
 
-			$grado_a_cursar = $this->get_grado_a_cursar();
-			$seccion = $this->get_seccion();
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$id_per_academico = $this->get_id_per_academico();
-
-			$sql = "
-				INSERT INTO `grado_a_cursar_est`(
-					`grado_a_cursar`,
-					`seccion`,
-					`cedula_estudiante`,
-					`id_per_academico`
-				)
-				VALUES(
-					'$grado_a_cursar',
-					'$seccion',
-					'$cedula_estudiante',
-					'$id_per_academico'
-				)
-				ON DUPLICATE KEY UPDATE
-				`id_per_academico` = `id_per_academico`;
-			";
-
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+					$sql = "
+						INSERT INTO `grado_a_cursar_est`(
+							`grado_a_cursar`,
+							`seccion`,
+							`cedula_estudiante`,
+							`id_per_academico`
+						)
+						VALUES(
+							'$grado_a_cursar',
+							'$seccion',
+							'$cedula_estudiante',
+							'$id_per_academico'
+						)
+						ON DUPLICATE KEY UPDATE
+						`id_per_academico` = `id_per_academico`;
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function editar_grado_a_cursar_est() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$grado_a_cursar = mysqli_escape_string($conexion,$this->get_grado_a_cursar());
+					$seccion = mysqli_escape_string($conexion,$this->get_seccion());
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$id_per_academico = mysqli_escape_string($conexion,$this->get_id_per_academico());
 
-			$grado_a_cursar = $this->get_grado_a_cursar();
-			$seccion = $this->get_seccion();
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$id_per_academico = $this->get_id_per_academico();
-
-			$sql = "
-				UPDATE
-					`grado_a_cursar_est`
-				SET
-					`grado_a_cursar` = '$grado_a_cursar',
-					`seccion` = '$seccion',
-					`id_per_academico` = '$id_per_academico'
-				WHERE
-					`cedula_estudiante` = '$cedula_estudiante'
-			";
-
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+					$sql = "
+						UPDATE
+							`grado_a_cursar_est`
+						SET
+							`grado_a_cursar` = '$grado_a_cursar',
+							`seccion` = '$seccion',
+							`id_per_academico` = '$id_per_academico'
+						WHERE
+							`cedula_estudiante` = '$cedula_estudiante'
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
-
 
 		// GETTERS
 		public function get_seccion() {
@@ -129,7 +149,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula_estudiante)) {
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 

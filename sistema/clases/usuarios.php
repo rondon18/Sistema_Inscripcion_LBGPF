@@ -322,7 +322,7 @@
 				// El _ parece que cuenta como alfanumerico en vez de caracter especial, pasa igual con tildes y la ñ
 				$caracteres_especiales = preg_match('@[^\w]@', $contrasenia);
 
-				if(!$mayusculas || !$minusculas || !$numeros || !$caracteres_especiales || strlen($contrasenia) < 8) {
+				if(!$mayusculas || !$minusculas || !$numeros || !$caracteres_especiales || strlen($contrasenia) < 8 || strlen($contrasenia) > 20) {
 					throw new Exception("El formato de la contraseña: '$contrasenia' es invalido");
 				}
 

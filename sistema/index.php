@@ -80,15 +80,29 @@
 							<div class="row">
 								<div class="col-12 col-lg mb-2">
 									<label for="contraseña" class="form-label requerido">Contraseña:</label>
-									<input 
-										id="contraseña" 
-										class="form-control" 
-										type="password" 
-										name="contraseña" 
-										placeholder="Contraseña de ingreso" 
-										autocomplete="off" 
-										required
-									>
+									<div class="input-group">
+										<input
+											id="contraseña"
+											class="form-control"
+											type="password"
+											name="contraseña"
+											maxlength="20"
+											placeholder="Contraseña de ingreso"
+											autocomplete="off"
+											required
+										>
+										<button
+											type="button"
+											id="cambiar_visibilidad"
+											class="btn btn-outline-primary"
+											data-bs-toggle="tooltip"
+											data-bs-placement="top"
+											title="Mostrar / Ocultar contraseña"
+										>
+											<i id="vis_icon" class="fa-solid fa-eye"></i>
+										</button>
+									</div>
+									<label id="contraseña-error" class="error" for="contraseña" style="display: none;"></label>
 								</div>
 							</div>
 							<div class="row mt-3">

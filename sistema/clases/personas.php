@@ -267,7 +267,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula) < 4 || strlen($cedula) > 11 || !preg_match('/^[a-zA-Z0-9]+$/', $cedula)) {
+				if (strlen($cedula) < 4 || strlen($cedula) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula)) {
 					throw new Exception("El número de cédula tiene un formato inválido");
 				}
 
@@ -290,7 +290,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($p_nombre) <= 4 || strlen($p_nombre) >= 40 || !preg_match('/^[a-zA-Z]+$/', $p_nombre)) {
+				if (strlen($p_nombre) <= 4 || strlen($p_nombre) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $p_nombre)) {
 					throw new Exception("El primer nombre tiene un formato inválido");
 				}
 
@@ -312,7 +312,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($s_nombre) <= 4 || strlen($s_nombre) >= 40 || !preg_match('/^[a-zA-Z]+$/', $s_nombre)) {
+				if (strlen($s_nombre) <= 4 || strlen($s_nombre) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $s_nombre)) {
 					throw new Exception("El segundo nombre tiene un formato inválido");
 				}
 
@@ -333,7 +333,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($p_apellido) <= 4 || strlen($p_apellido) >= 40 || !preg_match('/^[a-zA-Z]+$/', $p_apellido)) {
+				if (strlen($p_apellido) <= 4 || strlen($p_apellido) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $p_apellido)) {
 					throw new Exception("El primer apellido tiene un formato inválido");
 				}
 
@@ -354,7 +354,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($s_apellido) <= 4 || strlen($s_apellido) >= 40 || !preg_match('/^[a-zA-Z]+$/', $s_apellido)) {
+				if (strlen($s_apellido) <= 4 || strlen($s_apellido) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $s_apellido)) {
 					throw new Exception("El segundo apellido tiene un formato inválido");
 				}
 

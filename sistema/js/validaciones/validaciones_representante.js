@@ -172,6 +172,7 @@ jQuery.validator.addMethod("lettersonly", function(value, element)
 return this.optional(element) || /^[a-zA-ZñÑáéíóúÁÉÍÓÚ," "]+$/i.test(value);
 }, "Solo caracteres alfabeticos y/o espacios, por favor.");
 
+
 $("#formulariorepresentante").validate({
 	rules:{
 
@@ -266,6 +267,10 @@ $("#formulariorepresentante").validate({
 		nro_cuenta: {
 			digits: true,
 		},
+		remuneracion_r: {
+			min: 0,
+			max: 1000,
+		},
 
 		// trabajo
 		prefijo_trabajo_r: {
@@ -307,6 +312,11 @@ $("#formulariorepresentante").validate({
 		},
 
 	},
+	messages: {
+    remuneracion_r: {
+      remuneracion: "El valor debe ser un número con decimales múltiplos de 0.5",
+    },
+  },
 	onfocusout: function(element) {
 		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
       // Convertir el contenido a mayúsculas

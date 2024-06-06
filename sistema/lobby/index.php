@@ -8,6 +8,7 @@
 
 	require('../clases/bitacora.php');
 	require('../controladores/conexion.php');
+	require('../logs/error_handler.php');
 
 	$bitacora = new bitacora();
 	$_SESSION['acciones'] .= ', Visita menú principal';

@@ -132,9 +132,6 @@
 			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
 
 			desconectarBD($conexion);
-
-			// echo $resultado->num_rows;
-			
 			return $resultado->num_rows;
 		}
 		

@@ -1,12 +1,136 @@
-07-05-2024 08:05:20 PM | Descripción del error: El número de cédula no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (305)
+02-06-2024 09:30:57 PM | Descripción del error: El correo electronico: ASFSDF@SJBDKFJSDF es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (450)
 
-07-05-2024 08:06:14 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+02-06-2024 11:45:57 PM | Descripción del error: Ha ocurrido un error con el comando (C:/xampp/mysql/bin/mysqldump) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\mantenimiento.php | linea (29)
 
-07-05-2024 08:06:52 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+02-06-2024 11:46:19 PM | Descripción del error: Ha ocurrido un error con el comando (C:/xampp/mysql/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v2 > ../respaldos/respaldo__03-06-2024__05-46-18.sql) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\mantenimiento.php | linea (29)
 
-07-05-2024 08:07:04 PM | Descripción del error: La hora: 1111:11:11 no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (285)
+02-06-2024 11:46:32 PM | Descripción del error: Ha ocurrido un error con el comando (C:/xampp/mysql/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v2 > ../respaldos/respaldo__03-06-2024__05-46-31.sql) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\mantenimiento.php | linea (29)
 
-07-05-2024 08:18:05 PM | Descripción del error: La accion realizada no puede estar vacia | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (318)
+03-06-2024 01:53:23 AM | Descripción del error: El primer nombre tiene un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (294)
 
-07-05-2024 08:18:29 PM | Descripción del error: La hora de entrada: Lorem ipsum dolor sit, amet consectetur, adipisicing elit. Consequuntur perspiciatis, ipsum voluptatibus excepturi iusto iure hic. Ullam expedita quae perspiciatis, dolor optio nostrum dicta illum eligendi eum harum saepe repudiandae. no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (323)
+03-06-2024 01:53:23 AM | Descripción del error: El estado civil: '' es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (429)
+
+03-06-2024 01:53:23 AM | Descripción del error: El grado academico:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (466)
+
+03-06-2024 01:53:23 AM | Descripción del error: El estado:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+03-06-2024 01:53:23 AM | Descripción del error: El municipio:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+03-06-2024 01:53:23 AM | Descripción del error: La parroquia:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+03-06-2024 01:53:24 AM | Descripción del error: La condicion de la canaima:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_sociales.php | linea (153)
+
+03-06-2024 01:53:24 AM | Descripción del error: El tipo de sangre: NCN no es válido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_salud.php | linea (240)
+
+03-06-2024 01:53:24 AM | Descripción del error: La estatura: () se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (159)
+
+03-06-2024 01:53:24 AM | Descripción del error: El peso: () se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (180)
+
+03-06-2024 01:53:24 AM | Descripción del error: El indice_m_c: () se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (200)
+
+03-06-2024 01:53:24 AM | Descripción del error: El circ_braquial: () se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (218)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion social  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (164)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion fisica:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (179)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion personal:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (194)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion familiar:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (209)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion academico:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (224)
+
+03-06-2024 01:53:24 AM | Descripción del error: La observacion otra:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (239)
+
+03-06-2024 01:53:24 AM | Descripción del error: El ID 20232024 tiene un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\grado_a_cursar_est.php | linea (172)
+
+03-06-2024 01:53:24 AM | Descripción del error: Cannot add or update a child row: a foreign key constraint fails (`sis_reg_lb_gpf_v2`.`grado_a_cursar_est`, CONSTRAINT `fk_grado_a_cursar_est_per_academico1` FOREIGN KEY (`id_per_academico`) REFERENCES `per_academico` (`id_per_academico`) ON DELETE CASCADE O) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\grado_a_cursar_est.php | linea (78)
+
+03-06-2024 01:53:24 AM | Descripción del error: La hora de entrada: 01:53:24 am no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\inscripciones.php | linea (125)
+
+05-06-2024 09:24:08 PM | Descripción del error: El estado: Mérida es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+05-06-2024 09:24:08 PM | Descripción del error: El municipio: CEL es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+05-06-2024 09:24:08 PM | Descripción del error: La parroquia: Matriz es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+05-06-2024 09:24:08 PM | Descripción del error: El empleo ALBAÑIL  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (154)
+
+05-06-2024 09:24:08 PM | Descripción del error: La remuneracion 350000 cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (192)
+
+05-06-2024 09:24:08 PM | Descripción del error: El tipo de remuneración: Quincenal es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (208)
+
+05-06-2024 09:24:08 PM | Descripción del error: El tipo de vivienda: Casa es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (154)
+
+05-06-2024 09:24:08 PM | Descripción del error: El banco:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_economicos.php | linea (166)
+
+05-06-2024 09:24:08 PM | Descripción del error: El tipo_cuenta:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_economicos.php | linea (178)
+
+05-06-2024 09:24:08 PM | Descripción del error: El la relacion de contacto auxiliar (VECINO ) tiene un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\contactos_aux.php | linea (236)
+
+05-06-2024 09:24:09 PM | Descripción del error: El lugar de nacimiento  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (398)
+
+05-06-2024 09:24:09 PM | Descripción del error: El estado civil: '' es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (429)
+
+05-06-2024 09:24:09 PM | Descripción del error: El grado academico:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (466)
+
+05-06-2024 09:24:09 PM | Descripción del error: El estado:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+05-06-2024 09:24:09 PM | Descripción del error: El municipio:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+05-06-2024 09:24:09 PM | Descripción del error: La parroquia:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+05-06-2024 09:24:09 PM | Descripción del error: El tipo de remuneración:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (208)
+
+05-06-2024 09:24:09 PM | Descripción del error: La condicion de la vivienda:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (141)
+
+05-06-2024 09:24:09 PM | Descripción del error: El tipo de vivienda:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (154)
+
+05-06-2024 09:24:09 PM | Descripción del error: El lugar de nacimiento  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (398)
+
+05-06-2024 09:24:09 PM | Descripción del error: El estado civil: '' es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (429)
+
+05-06-2024 09:24:09 PM | Descripción del error: El grado academico:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (466)
+
+05-06-2024 09:24:10 PM | Descripción del error: El estado:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+05-06-2024 09:24:10 PM | Descripción del error: El municipio:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+05-06-2024 09:24:10 PM | Descripción del error: La parroquia:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+05-06-2024 09:24:10 PM | Descripción del error: El tipo de remuneración:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (208)
+
+05-06-2024 09:24:10 PM | Descripción del error: La condicion de la vivienda:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (141)
+
+05-06-2024 09:24:10 PM | Descripción del error: El tipo de vivienda:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (154)
+
+05-06-2024 09:24:10 PM | Descripción del error: El segundo apellido tiene un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (358)
+
+05-06-2024 09:24:10 PM | Descripción del error: El estado civil: '' es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (429)
+
+05-06-2024 09:24:10 PM | Descripción del error: El grado academico:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (466)
+
+05-06-2024 09:24:10 PM | Descripción del error: El estado:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+05-06-2024 09:24:10 PM | Descripción del error: El municipio:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+05-06-2024 09:24:10 PM | Descripción del error: La parroquia:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+05-06-2024 09:24:10 PM | Descripción del error: El estado: Mérida es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (180)
+
+05-06-2024 09:24:10 PM | Descripción del error: El municipio: CEL es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (201)
+
+05-06-2024 09:24:10 PM | Descripción del error: La parroquia: Matriz es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\direcciones.php | linea (302)
+
+05-06-2024 09:24:11 PM | Descripción del error: La condicion de la canaima:  es inválida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_sociales.php | linea (153)
+
+05-06-2024 09:24:11 PM | Descripción del error: El tipo de sangre: A+ no es válido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_salud.php | linea (240)
+
+05-06-2024 09:24:14 PM | Descripción del error: La observacion otra:  cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\observaciones_est.php | linea (239)
+
+05-06-2024 09:24:14 PM | Descripción del error: El ID 20242025 tiene un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\grado_a_cursar_est.php | linea (172)
+
+05-06-2024 09:24:14 PM | Descripción del error: Cannot add or update a child row: a foreign key constraint fails (`sis_reg_lb_gpf_v2`.`grado_a_cursar_est`, CONSTRAINT `fk_grado_a_cursar_est_per_academico1` FOREIGN KEY (`id_per_academico`) REFERENCES `per_academico` (`id_per_academico`) ON DELETE CASCADE O) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\grado_a_cursar_est.php | linea (41)
+
+05-06-2024 09:24:14 PM | Descripción del error: La hora de entrada: 09:24:14 pm no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\inscripciones.php | linea (125)
 
