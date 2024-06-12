@@ -44,17 +44,17 @@
 			<div class="container-md">
 				<div class="card w-100 my-3">
 					<div class="card-header text-center">
-						<b class="fs-5">Menú principal</b>
+						<b class="fs-5">MENÚ PRINCIPAL</b>
 					</div>
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
-						<section class="px-sm-3 px-md-5 py-2 py-sm-4 mb-2 mb-sm-0 d-flex flex-column flex-sm-row align-items-center">
-							<img class="me-sm-4 mb-4 mb-sm-0" src="../img/icono.png" alt="Icono del sistema" width="100">
+						<section class="px-sm-3 px-md-5 pt-2 pb-2 pb-sm-4 mb-2 mb-sm-0 d-flex flex-column flex-sm-row align-items-center">
 							<div class="text-center text-sm-start">
 								<p class="display-5 mb-1">
 									Bienvenido(a), <?php echo $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['p_apellido'];?>.
 								</p>
 								<span class="lead fs-6 text-muted">¿Qué desea hacer?</span>
 							</div>
+							<img class="d-none d-sm-inline-block ms-sm-auto mb-4 mb-sm-0" src="../img/icono.png" alt="Icono del sistema" width="125">
 						</section>
 
 						<section class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 px-md-5 g-4 mb-4">

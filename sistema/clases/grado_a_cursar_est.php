@@ -165,11 +165,11 @@
 			try {
 				// Validar que la cédula no esté vacía
 				if (empty($id_per_academico)) {
-					throw new Exception("El número de cédula no puede estar vacío");
+					throw new Exception("El ID de periodo académico no puede estar vacío");
 				}
 				// Validar la longitud y el formato de la cédula
-				if (is_numeric($id_per_academico)) {
-					throw new Exception("El ID $id_per_academico tiene un formato inválido");
+				if (!is_numeric($id_per_academico) || strlen($id_per_academico) > 8) {
+					throw new Exception("El ID de periodo académico ($id_per_academico) tiene un formato inválido");
 				}
 				$this->id_per_academico = $id_per_academico;
 			}

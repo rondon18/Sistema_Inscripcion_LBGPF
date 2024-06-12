@@ -270,14 +270,7 @@
 			}
 			try {
 				// validamos que se usen numeros y :
-				if (!preg_match('^[0-9:]+$^', $hora_ingreso)) {
-					throw new Exception("La hora de entrada: ".$hora_ingreso. " no tiene un formato valido");
-				}
-				else {
-					$hora = explode(":", $hora_ingreso);
-				}
-				if (!checkdate($hora[0],$hora[1],$hora[2]) || count($hora) > 3|| count($hora) < 3){
-					throw new Exception("La hora: ".$hora_ingreso. " no tiene un formato valido");
+				if (!preg_match('^((0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9]))?$^', $hora_ingreso)) {
 					throw new Exception("La hora de entrada: ".$hora_ingreso. " no tiene un formato valido");
 				}
 				$this->hora_ingreso = $hora_ingreso;
@@ -292,15 +285,8 @@
 			}
 			try {
 				// validamos que se usen numeros y :
-				if (!preg_match('^[0-9:]+$^', $hora_salida)) {
-					throw new Exception("La hora de entrada: ".$hora_salida. " no tiene un formato valido");
-				}
-				else {
-					$hora = explode(":", $hora_salida);
-				}
-				if (!checkdate($hora[0],$hora[1],$hora[2]) || count($hora) > 3|| count($hora) < 3){
-					throw new Exception("La hora: ".$hora_salida. " no tiene un formato valido");
-					throw new Exception("La hora de entrada: ".$hora_salida. " no tiene un formato valido");
+				if (!preg_match('^((0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9]))?$^', $hora_salida)) {
+					throw new Exception("La hora de salida: ".$hora_salida. " no tiene un formato valido");
 				}
 				$this->hora_salida = $hora_salida;
 			}
@@ -313,7 +299,7 @@
 				throw new Exception("La accion realizada no puede estar vacia");
 			}
 			try {
-				if (!preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $acciones_realizadas)) {
+				if (!preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $acciones_realizadas)) {
 					throw new Exception("La hora de entrada: ".$acciones_realizadas. " no tiene un formato valido");
 				}
 				$this->acciones_realizadas = $acciones_realizadas;

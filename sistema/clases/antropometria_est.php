@@ -213,8 +213,7 @@
 				if (empty($circ_braquial)) {
 					$this->circ_braquial = 0;
 				}
-
-				if ($circ_braquial < 15 || $circ_braquial > 60 || !is_numeric($circ_braquial)) {
+				if ($circ_braquial < 21 || $circ_braquial > 30 || !is_numeric($circ_braquial)) {
 					throw new Exception("El circ_braquial: ($circ_braquial) se encuentra fuera de los valores admitidos");
 				}
 

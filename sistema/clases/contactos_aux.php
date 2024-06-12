@@ -158,7 +158,7 @@
 			}
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($nombre) <= 4 || strlen($nombre) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $nombre)) {
+				if (strlen($nombre) <= 4 || strlen($nombre) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $nombre)) {
 					throw new Exception("El nombre ($nombre) tiene un formato inválido");
 				}
 
@@ -177,7 +177,7 @@
 			}
 			try {
 				// Validar la longitud y el formato del apellido
-				if (strlen($apellido) <= 4 || strlen($apellido) >= 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $apellido)) {
+				if (strlen($apellido) <= 4 || strlen($apellido) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $apellido)) {
 					throw new Exception("El apellido ($apellido) tiene un formato inválido");
 				}
 
@@ -232,7 +232,7 @@
 			}
 			try {
 				// Validar la longitud y el formato del relacion
-				if (strlen($relacion) <= 3 || strlen($relacion) >= 50 || !ctype_alpha($relacion)) {
+				if (strlen($relacion) < 3 || strlen($relacion) >= 50 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i',$relacion)) {
 					throw new Exception("El la relacion de contacto auxiliar ($relacion) tiene un formato inválido");
 				}
 				// Si la relacion es válida, asignarlo a la propiedad

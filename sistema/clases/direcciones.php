@@ -175,8 +175,13 @@
 		
 		public function set_estado($estado) {
 			try {
+				// Si el dato esta vacio por defecto se mantendrá así
+				if (empty($estado)) {
+					$this->estado = $estado;
+					return;
+				}
 				// Validar la longitud y el formato del dato
-				if (!ctype_alpha($estado) || strlen($estado) > 30) {
+				if (!preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i',$estado) || strlen($estado) > 30) {
 					throw new Exception("El estado: $estado es inválido");
 				}
 				$this->estado = $estado;
@@ -193,7 +198,7 @@
 				"GUA","JCS","JBR","LIB",
 				"MIR","ORL","PNO","PLL",
 				"RAN","RDA","SMA","SUC",
-				"TOV","TFC","ZEA",
+				"TOV","TFC","ZEA", ""
 			];
 			try {
 				// Validar la longitud y el formato del dato
@@ -209,92 +214,93 @@
 		
 		public function set_parroquia($parroquia) {
 			$parroquias_merida = [
-				"Presidente Betancourt",
-				"Presidente Páez",
-				"Presidente Rómulo Gallegos",
-				"Gabriel Picón Gonzalez",
-				"Hector Amable Mora",
-				"Jose Nucete Sardi",
-				"Pulido Mendez",
-				"La Azulita",
-				"Santa Cruz De Mora",
-				"Mesa Bolívar",
-				"Mesa De Las Palmas",
-				"Aricagua",
-				"San Antonio",
-				"Canaguá",
-				"Capuri",
-				"Chacantá",
-				"El Molino",
-				"Guaimaral",
-				"Mucutuy",
-				"Mucuchachi",
-				"Fernández Peña",
-				"Matriz",
-				"Montalbán",
-				"Acequias",
-				"Jají",
-				"La Mesa",
-				"San Jose Del Sur",
-				"Tucaní",
-				"Florencio Ramírez",
-				"Santo Domingo",
-				"Las Piedras",
-				"Guaraque",
-				"Mesa De Quintero",
-				"Río Negro",
-				"Arapuey",
-				"Palmira",
-				"Torondoy",
-				"San Cristobal De Torondoy",
-				"Antonio Spinetti Dini",
-				"Arias",
-				"Caracciolo Parra Pérez",
-				"Domingo Peña",
-				"El Llano",
-				"Gonzalo Picón Febres",
-				"Jacinto Plaza",
-				"Juan Rodríguez Suárez",
-				"Lasso De La Vega",
-				"Mariano Picón Salas",
-				"Milla",
-				"Osuna Rodríguez",
-				"Sagrario",
-				"El Morro",
-				"Los Nevados",
-				"Timotes",
-				"Andrés Eloy Blanco",
-				"La Venta",
-				"Piñango",
-				"Santa Elena De Arenales",
-				"Eloy Paredes",
-				"San Rafael De Alcázar",
-				"Santa María De Caparo",
-				"Pueblo Llano",
-				"Mucuchies",
-				"Cacute",
-				"La Toma",
-				"Mucuruba",
-				"San Rafael",
-				"Bailadores",
-				"Geronimo Maldonado",
-				"Tabay",
-				"Lagunillas",
-				"Chiguará",
-				"Estanquez",
-				"La Trampa",
-				"Pueblo Nuevo Del Sur",
-				"San Juan",
-				"Tovar",
-				"El Amparo",
-				"El Llano",
-				"San Francisco",
-				"Nueva Bolivia",
-				"Independencia",
-				"María De La Concepción Palacios B",
-				"Santa Apolonia",
-				"Zea",
-				"Caño El Tigre",
+				"presidente betancourt",
+				"presidente páez",
+				"presidente rómulo gallegos",
+				"gabriel picón gonzalez",
+				"hector amable mora",
+				"jose nucete sardi",
+				"pulido mendez",
+				"la azulita",
+				"santa cruz de mora",
+				"mesa bolívar",
+				"mesa de las palmas",
+				"aricagua",
+				"san antonio",
+				"canaguá",
+				"capuri",
+				"chacantá",
+				"el molino",
+				"guaimaral",
+				"mucutuy",
+				"mucuchachi",
+				"fernández peña",
+				"matriz",
+				"montalbán",
+				"acequias",
+				"jají",
+				"la mesa",
+				"san jose del sur",
+				"tucaní",
+				"florencio ramírez",
+				"santo domingo",
+				"las piedras",
+				"guaraque",
+				"mesa de quintero",
+				"río negro",
+				"arapuey",
+				"palmira",
+				"torondoy",
+				"san cristobal de torondoy",
+				"antonio spinetti dini",
+				"arias",
+				"caracciolo parra pérez",
+				"domingo peña",
+				"el llano",
+				"gonzalo picón febres",
+				"jacinto plaza",
+				"juan rodríguez suárez",
+				"lasso de la vega",
+				"mariano picón salas",
+				"milla",
+				"osuna rodríguez",
+				"sagrario",
+				"el morro",
+				"los nevados",
+				"timotes",
+				"andrés eloy blanco",
+				"la venta",
+				"piñango",
+				"santa elena de arenales",
+				"eloy paredes",
+				"san rafael de alcázar",
+				"santa maría de caparo",
+				"pueblo llano",
+				"mucuchies",
+				"cacute",
+				"la toma",
+				"mucuruba",
+				"san rafael",
+				"bailadores",
+				"geronimo maldonado",
+				"tabay",
+				"lagunillas",
+				"chiguará",
+				"estanquez",
+				"la trampa",
+				"pueblo nuevo del sur",
+				"san juan",
+				"tovar",
+				"el amparo",
+				"el llano",
+				"san francisco",
+				"nueva bolivia",
+				"independencia",
+				"maría de la concepción palacios b",
+				"santa apolonia",
+				"zea",
+				"caño el tigre",
+				""
 			];
 			try {
 				// Validar la longitud y el formato del dato
@@ -316,7 +322,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($sector) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $sector)) {
+				if (strlen($sector) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $sector)) {
 					throw new Exception("El sector $sector cuenta con un formato inválido");
 				}
 
@@ -336,7 +342,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($calle) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $calle)) {
+				if (strlen($calle) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $calle)) {
 					throw new Exception("La calle $calle cuenta con un formato inválido");
 				}
 
@@ -356,7 +362,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $nro_casa)) {
+				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $nro_casa)) {
 					throw new Exception("El número de casa $nro_casa cuenta con un formato inválido");
 				}
 
@@ -376,7 +382,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $nro_casa)) {
+				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $nro_casa)) {
 					throw new Exception("El número de casa $nro_casa cuenta con un formato inválido");
 				}
 

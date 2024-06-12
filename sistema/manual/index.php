@@ -31,7 +31,7 @@
 
 
 					<div class="card-header text-center">
-						<b class="fs-5">Manual de usuario</b>
+						<b class="fs-5">MANUAL DE USUARIO</b>
 					</div>
 
 
@@ -49,13 +49,13 @@
 						?>
 						<?php if (!isset($_GET['con']) or !in_array($_GET['con'], $secciones)): ?>
 						<section class="px-3 px-md-5 py-3 d-flex align-items-center">
-							<img class="me-5" src="../img/icono.png" alt="Icono del sistema" width="96">
-							<div>
-								<p class="h4 mb-1">
-									Bienvenido al módulo de ayuda y manual del sistema
+							<div class="text-center text-sm-start">
+								<p class="display-5 mb-1">
+									Bienvenido al módulo de ayuda y manual del sistema.
 								</p>
-								<span class="text-muted">¿Sobre que desea consultar?</span>
+								<span class="lead fs-6 text-muted">¿Sobre que desea consultar?</span>
 							</div>
+							<img class="d-none d-sm-inline-block ms-sm-auto mb-4 mb-sm-0" src="../img/icono.png" alt="Icono del sistema" width="125">
 						</section>
 							
 						<?php endif ?>

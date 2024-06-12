@@ -229,6 +229,14 @@
 		}
 
 		public function set_tipo_sangre($tipo_sangre) {
+			$tipos_admitidos = [
+				"a+","a-","an",
+				"b+","b-","bn",
+				"ab+","ab-","abn",
+				"o+","o-","on",
+				"nc+","nc-","ncn",
+				"", //Vacio por si el parametro viene vacio
+			];
 			try {
 				// Si el dato esta vacio por defecto se mantendrá así
 				if (empty($tipo_sangre)) {
@@ -236,7 +244,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato (Solo grupos sanguineos seguidos de un +/-)
-				if (strlen($tipo_sangre) <= 3 || strlen($tipo_sangre) >= 4 || !preg_match('/^[abcno]+(-|\+)$/',$tipo_sangre)) {
+				if (!in_array(strtolower($tipo_sangre), $tipos_admitidos)) {
 					throw new Exception("El tipo de sangre: $tipo_sangre no es válido");
 				}
 				$this->tipo_sangre = $tipo_sangre;
@@ -254,7 +262,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($medicacion) <= 3 || strlen($medicacion) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $medicacion)) {
+				if (strlen($medicacion) < 3 || strlen($medicacion) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $medicacion)) {
 					throw new Exception("La medicacion $medicacion cuenta con un formato inválido");
 				}
 
@@ -274,7 +282,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($dieta_especial) <= 3 || strlen($dieta_especial) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $dieta_especial)) {
+				if (strlen($dieta_especial) < 3 || strlen($dieta_especial) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $dieta_especial)) {
 					throw new Exception("La dieta $dieta_especial cuenta con un formato inválido");
 				}
 
@@ -294,7 +302,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($padecimiento) <= 3 || strlen($padecimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $padecimiento)) {
+				if (strlen($padecimiento) < 3 || strlen($padecimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $padecimiento)) {
 					throw new Exception("El padecimiento $padecimiento cuenta con un formato inválido");
 				}
 
@@ -314,7 +322,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($impedimento_fisico) <= 3 || strlen($impedimento_fisico) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $impedimento_fisico)) {
+				if (strlen($impedimento_fisico) < 3 || strlen($impedimento_fisico) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $impedimento_fisico)) {
 					throw new Exception("El impedimento fisico $impedimento_fisico cuenta con un formato inválido");
 				}
 
@@ -334,7 +342,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($necesidad_educativa) <= 3 || strlen($necesidad_educativa) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $necesidad_educativa)) {
+				if (strlen($necesidad_educativa) < 3 || strlen($necesidad_educativa) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $necesidad_educativa)) {
 					throw new Exception("La necesidad educativa $necesidad_educativa cuenta con un formato inválido");
 				}
 
@@ -382,7 +390,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($institucion_medica) <= 3 || strlen($institucion_medica) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $institucion_medica)) {
+				if (strlen($institucion_medica) < 3 || strlen($institucion_medica) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $institucion_medica)) {
 					throw new Exception("La institucion medica $institucion_medica cuenta con un formato inválido");
 				}
 
@@ -402,7 +410,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($carnet_discapacidad) <= 3 || strlen($carnet_discapacidad) >= 25 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $carnet_discapacidad)) {
+				if (strlen($carnet_discapacidad) < 3 || strlen($carnet_discapacidad) >= 25 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $carnet_discapacidad)) {
 					throw new Exception("El carnet de discapacidad $carnet_discapacidad cuenta con un formato inválido");
 				}
 

@@ -121,15 +121,8 @@
 			}
 			try {
 				// validamos que se usen numeros y :
-				if (!preg_match('^[0-9:]+$^', $hora)) {
-					throw new Exception("La hora de entrada: ".$hora. " no tiene un formato valido");
-				}
-				else {
-					$hora = explode(":", $hora);
-				}
-				if (!checkdate($hora[0],$hora[1],$hora[2]) || count($hora) > 3|| count($hora) < 3){
-					throw new Exception("La hora: ".$hora. " no tiene un formato valido");
-					throw new Exception("La hora de entrada: ".$hora. " no tiene un formato valido");
+				if (!preg_match('^((0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9]))?$^', $hora)) {
+					throw new Exception("La hora de inscripción: ".$hora. " no tiene un formato valido");
 				}
 				$this->hora = $hora;
 			}

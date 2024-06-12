@@ -1,0 +1,17 @@
+
+
+
+06-06-2024 11:38:44 PM | Descripción del error: La hora de entrada: 11:38:44 pm no tiene un formato valido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\inscripciones.php | linea (125)
+
+07-06-2024 12:11:45 AM | Descripción del error: El número de cédula no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (129)
+
+07-06-2024 12:11:45 AM | Descripción del error: El tipo de remuneración:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (210)
+
+07-06-2024 12:12:54 AM | Descripción del error: El número de cédula no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (129)
+
+07-06-2024 12:12:54 AM | Descripción del error: El tipo de remuneración:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (210)
+
+07-06-2024 12:13:23 AM | Descripción del error: El número de cédula no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (129)
+
+07-06-2024 12:15:01 AM | Descripción del error: El tipo de vivienda:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_vivienda.php | linea (154)
+

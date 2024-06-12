@@ -18,81 +18,106 @@
 		public function __construct(){}
 
 		public function insertar_condiciones_est() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$visual = mysqli_escape_string($conexion,$this->get_visual());
+					$motora = mysqli_escape_string($conexion,$this->get_motora());
+					$auditiva = mysqli_escape_string($conexion,$this->get_auditiva());
+					$escritura = mysqli_escape_string($conexion,$this->get_escritura());
+					$lectura = mysqli_escape_string($conexion,$this->get_lectura());
+					$lenguaje = mysqli_escape_string($conexion,$this->get_lenguaje());
+					$embarazo = mysqli_escape_string($conexion,$this->get_embarazo());
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$visual = $this->get_visual();
-			$motora = $this->get_motora();
-			$auditiva = $this->get_auditiva();
-			$escritura = $this->get_escritura();
-			$lectura = $this->get_lectura();
-			$lenguaje = $this->get_lenguaje();
-			$embarazo = $this->get_embarazo();
+					$sql = "
+						INSERT INTO `condiciones_est`(
+						    `cedula_estudiante`,
+						    `visual`,
+						    `motora`,
+						    `auditiva`,
+						    `escritura`,
+						    `lectura`,
+						    `lenguaje`,
+						    `embarazo`
+						)
+						VALUES(
+						    '$cedula_estudiante',
+						    '$visual',
+						    '$motora',
+						    '$auditiva',
+						    '$escritura',
+						    '$lectura',
+						    '$lenguaje',
+						    '$embarazo'
+						)
+						ON DUPLICATE KEY UPDATE
+						`cedula_estudiante` = `cedula_estudiante`;
+					";
 
-			$sql = "
-				INSERT INTO `condiciones_est`(
-				    `cedula_estudiante`,
-				    `visual`,
-				    `motora`,
-				    `auditiva`,
-				    `escritura`,
-				    `lectura`,
-				    `lenguaje`,
-				    `embarazo`
-				)
-				VALUES(
-				    '$cedula_estudiante',
-				    '$visual',
-				    '$motora',
-				    '$auditiva',
-				    '$escritura',
-				    '$lectura',
-				    '$lenguaje',
-				    '$embarazo'
-				)
-				ON DUPLICATE KEY UPDATE
-				`cedula_estudiante` = `cedula_estudiante`;
-			";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
 
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function editar_condiciones_est() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$visual = mysqli_escape_string($conexion,$this->get_visual());
+					$motora = mysqli_escape_string($conexion,$this->get_motora());
+					$auditiva = mysqli_escape_string($conexion,$this->get_auditiva());
+					$escritura = mysqli_escape_string($conexion,$this->get_escritura());
+					$lectura = mysqli_escape_string($conexion,$this->get_lectura());
+					$lenguaje = mysqli_escape_string($conexion,$this->get_lenguaje());
+					$embarazo = mysqli_escape_string($conexion,$this->get_embarazo());
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$visual = $this->get_visual();
-			$motora = $this->get_motora();
-			$auditiva = $this->get_auditiva();
-			$escritura = $this->get_escritura();
-			$lectura = $this->get_lectura();
-			$lenguaje = $this->get_lenguaje();
-			$embarazo = $this->get_embarazo();
+					$sql = "
+						UPDATE
+					    `condiciones_est`
+						SET
+					    `visual` = '$visual',
+					    `motora` = '$motora',
+					    `auditiva` = '$auditiva',
+					    `escritura` = '$escritura',
+					    `lectura` = '$lectura',
+					    `lenguaje` = '$lenguaje',
+					    `embarazo` = '$embarazo'
+						WHERE
+					    `cedula_estudiante` = '$cedula_estudiante'
+					";
 
-			$sql = "
-				UPDATE
-			    `condiciones_est`
-				SET
-			    `visual` = '$visual',
-			    `motora` = '$motora',
-			    `auditiva` = '$auditiva',
-			    `escritura` = '$escritura',
-			    `lectura` = '$lectura',
-			    `lenguaje` = '$lenguaje',
-			    `embarazo` = '$embarazo'
-				WHERE
-			    `cedula_estudiante` = '$cedula_estudiante'
-			";
-
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 
@@ -127,26 +152,103 @@
 		public function set_cedula_estudiante($cedula_estudiante) {
 			$this->cedula_estudiante = $cedula_estudiante;
 		}
+
 		public function set_visual($visual) {
-			$this->visual = $visual;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["v",""];
+			try {
+				if (!in_array(strtolower($visual), $opciones_validas)) {
+					throw new Exception("La condición visual: ($visual) tiene un formato inválido");
+				}
+				$this->visual = $visual;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_motora($motora) {
-			$this->motora = $motora;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["m",""];
+			try {
+				if (!in_array(strtolower($motora), $opciones_validas)) {
+					throw new Exception("La condición motora: ($motora) tiene un formato inválido");
+				}
+				$this->motora = $motora;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_auditiva($auditiva) {
-			$this->auditiva = $auditiva;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["a",""];
+			try {
+				if (!in_array(strtolower($auditiva), $opciones_validas)) {
+					throw new Exception("La condición auditiva: ($auditiva) tiene un formato inválido");
+				}
+				$this->auditiva = $auditiva;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_escritura($escritura) {
-			$this->escritura = $escritura;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["e",""];
+			try {
+				if (!in_array(strtolower($escritura), $opciones_validas)) {
+					throw new Exception("La condición escritura: ($escritura) tiene un formato inválido");
+				}
+				$this->escritura = $escritura;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_lectura($lectura) {
-			$this->lectura = $lectura;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["l",""];
+			try {
+				if (!in_array(strtolower($lectura), $opciones_validas)) {
+					throw new Exception("La condición lectura: ($lectura) tiene un formato inválido");
+				}
+				$this->lectura = $lectura;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_lenguaje($lenguaje) {
-			$this->lenguaje = $lenguaje;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["l",""];
+			try {
+				if (!in_array(strtolower($lenguaje), $opciones_validas)) {
+					throw new Exception("La condición lenguaje: ($lenguaje) tiene un formato inválido");
+				}
+				$this->lenguaje = $lenguaje;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_embarazo($embarazo) {
-			$this->embarazo = $embarazo;
+			// Opciones consideradas valida, se toma en cuenta una cadena vacía
+			$opciones_validas = ["e",""];
+			try {
+				if (!in_array(strtolower($embarazo), $opciones_validas)) {
+					throw new Exception("La condición embarazo: ($embarazo) tiene un formato inválido");
+				}
+				$this->embarazo = $embarazo;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 	}

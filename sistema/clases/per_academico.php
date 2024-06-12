@@ -21,56 +21,47 @@
 			| 2024        | 2025     |
 
 		*/
+
+		// Esta clase requiere conexion.php
+
 		
 		public function __construct() {
 
-			// Establese la region para Venezuela (Hora, fecha, etc)
-			date_default_timezone_set("America/Caracas");
 
-			// Toma la fecha actual al momento de comprobar
-
-			$fecha_actual = new DateTime();
-
-			/*
-
-				Obtiene la fecha de cierre del periodo académico.
-				Toma el año actual de manera automatica, más
-
-						| | |
-						V V V
-
-			*/
-
-			$fecha_cierre = new DateTime((int)date('Y').'05-01');
-
-
-			// Compara la fecha actual con la fecha de finalización del periodo académico
-			if ($fecha_actual >= $fecha_cierre) {
-
-				// El inicio del año escolar será el año actual
-		    $this->set_inicio($fecha_actual->format('Y'));
-
-				// El fin del año escolar será el año proximo
-		    $this->set_fin($fecha_actual->format('Y') + 1);
-
+			try {
+				// Establese la region para Venezuela (Hora, fecha, etc)
+				date_default_timezone_set("America/Caracas");
+				// Toma la fecha actual al momento de comprobar
+				$fecha_actual = new DateTime();
+				/*
+					Obtiene la fecha de cierre del periodo académico.
+					Toma el año actual de manera automatica, más
+							| | |
+							V V V
+				*/
+				$fecha_cierre = new DateTime((int)date('Y').'05-01');
+				// Compara la fecha actual con la fecha de finalización del periodo académico
+				if ($fecha_actual >= $fecha_cierre) {
+					// El inicio del año escolar será el año actual
+			    $this->set_inicio($fecha_actual->format('Y'));
+					// El fin del año escolar será el año proximo
+			    $this->set_fin($fecha_actual->format('Y') + 1);
+				}
+				else {
+					// El inicio del año escolar será el año anterior
+			    $this->set_fin($fecha_actual->format('Y'));
+					// El fin del año escolar será el año actual
+			    $this->set_inicio($fecha_actual->format('Y') - 1);
+				}
+				// Concatena ambos para formar el id del periodo académico
+				$id_per_academico = $this->get_inicio().$this->get_fin();
+				$this->set_id_per_academico($id_per_academico);
+				// guarda el periodo académico actual o inserta uno nuevo
+				$this->insertar_per_academico();
 			}
-			else {
-
-				// El inicio del año escolar será el año anterior
-		    $this->set_fin($fecha_actual->format('Y'));
-
-				// El fin del año escolar será el año actual
-		    $this->set_inicio($fecha_actual->format('Y') - 1);
-
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
 			}
-
-			// Concatena ambos para formar el id del periodo académico
-			$id_per_academico = $this->get_inicio().$this->get_fin();
-			$this->set_id_per_academico($id_per_academico);
-
-			// guarda el periodo académico actual o inserta uno nuevo
-			$this->insertar_per_academico();
-
 		}
 
 

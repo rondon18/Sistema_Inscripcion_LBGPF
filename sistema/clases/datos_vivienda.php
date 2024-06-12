@@ -134,7 +134,7 @@
 		}
 		
 		public function set_condicion($condicion) {
-			$condiciones = ["buena","mala","regular",];
+			$condiciones = ["buena","mala","regular",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($condicion),$condiciones)) {
@@ -147,7 +147,7 @@
 			}
 		}
 		public function set_tipo($tipo) {
-			$tipos_vivienda = ["Casa","Apartamento","Rancho","Quinta","Habitación",];
+			$tipos_vivienda = ["casa","apartamento","rancho","quinta","habitación",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($tipo),$tipos_vivienda)) {
@@ -168,7 +168,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($tenencia) <= 3 || strlen($tenencia) >= 50 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $tenencia)) {
+				if (strlen($tenencia) < 3 || strlen($tenencia) >= 50 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $tenencia)) {
 					throw new Exception("La tenencia de vivienda $tenencia cuenta con un formato inválido");
 				}
 

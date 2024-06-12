@@ -9,7 +9,7 @@
 
 	if (isset(
 				$_POST['editar_representante'],
-				$_POST['cedula'],
+				$_POST['cedula_representante'],
 			)
 		) {
 
@@ -70,10 +70,12 @@
 			$_SESSION['tlfs_representante'] = $telefonos->consultar_telefonos();
 
 
+
 			$_SESSION['editar_registro'] = true;
 
 			$_SESSION['tipo_edicion'] = "representante";
 
+			var_dump($_POST);
 
 			header('Location: editar_representante.php');
 

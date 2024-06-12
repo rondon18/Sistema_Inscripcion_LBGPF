@@ -102,7 +102,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 									style="display: inline-block;"
 								>
 									<input type="hidden" name="editar_representante" value="editar_representante">
-									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_representante'];?>">
+									<input type="hidden" name="cedula" value="<?php echo $representante['cedula'];?>">
 								</form>
 						<button
 							type="submit"
@@ -117,7 +117,7 @@ $lista_representantes = $representantes->mostrar_representantes();
 							type="submit"
 							role="button"
 							class="btn btn-primary btn-sm"
-							name="consultar"
+							name="editar"
 							form="editar_<?php echo $representante["cedula"];?>"
 						>
 							Editar <i class="fas fa-pen fa-lg ms-2"></i>

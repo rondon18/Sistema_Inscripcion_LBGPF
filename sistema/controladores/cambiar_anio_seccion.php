@@ -28,7 +28,7 @@
 	// inscripciones
 
 	$inscripciones->set_fecha(date("Y-m-d"));
-	$inscripciones->set_hora(date("h:i:s a"));
+	$inscripciones->set_hora(date("H:i:s"));
 	$inscripciones->set_cedula_usuario($_SESSION['datos_login']["cedula"]);
 	$inscripciones->set_cedula_estudiante($_POST['cedula_estudiante']);
 	$inscripciones->insertar_inscripciones();

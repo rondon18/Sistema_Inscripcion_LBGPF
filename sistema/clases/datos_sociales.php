@@ -132,7 +132,7 @@
 		}
 		
 		public function set_tiene_canaima($tiene_canaima) {
-			$condiciones = ["si","no",];
+			$condiciones = ["si","no",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($tiene_canaima),$condiciones)) {
@@ -146,7 +146,7 @@
 		}
 		
 		public function set_condicion_canaima($condicion_canaima) {
-			$condiciones = ["buena","mala","regular",];
+			$condiciones = ["muy buenas condiciones","buenas condiciones","malas condiciones","muy malas condiciones",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($condicion_canaima),$condiciones)) {
@@ -160,7 +160,7 @@
 		}
 		
 		public function set_acceso_internet($acceso_internet) {
-			$condiciones = ["si","no",];
+			$condiciones = ["si","no",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($acceso_internet),$condiciones)) {

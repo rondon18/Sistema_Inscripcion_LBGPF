@@ -150,7 +150,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($empleo) <= 3 || strlen($empleo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $empleo)) {
+				if (strlen($empleo) < 3 || strlen($empleo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $empleo)) {
 					throw new Exception("El empleo $empleo cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -169,7 +169,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($lugar_trabajo) <= 3 || strlen($lugar_trabajo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/', $lugar_trabajo)) {
+				if (strlen($lugar_trabajo) < 3 || strlen($lugar_trabajo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $lugar_trabajo)) {
 					throw new Exception("El lugar_trabajo $lugar_trabajo cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -187,12 +187,14 @@
 					$this->remuneracion = 0;
 					return;
 				}
-				// Validar la longitud y el formato del dato
-				if ($remuneracion < 0 || $remuneracion >= 500) {
-					throw new Exception("La remuneracion $remuneracion cuenta con un formato inválido");
+				else {
+					// Validar la longitud y el formato del dato
+					if ($remuneracion < 0 || $remuneracion >= 500) {
+						throw new Exception("La remuneracion ($remuneracion) cuenta con un formato inválido");
+					}
+					// Si el dato es válido, asignarlo a la propiedad
+					$this->remuneracion = $remuneracion;
 				}
-				// Si el dato es válido, asignarlo a la propiedad
-				$this->remuneracion = $remuneracion;
 			}
 			catch (Exception $e) {
 				$this->remuneracion = 0;
@@ -201,7 +203,7 @@
 		}
 
 		public function set_tipo_remuneracion($tipo_remuneracion) {
-			$remuneraciones = ["Diaria","Semanal","Quincenal","Mensual",];
+			$remuneraciones = ["Diaria","Semanal","Quincenal","Mensual",""];
 			try {
 				// Validar la longitud y el formato del dato
 				if (!in_array(strtolower($tipo_remuneracion),$remuneraciones)) {
