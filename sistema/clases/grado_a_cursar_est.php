@@ -123,13 +123,7 @@
 
 		public function set_grado_a_cursar($grado_a_cursar) {
 			try {
-				$grados = [
-					"primer año",
-					"segundo año",
-					"tercer año",
-					"cuarto año",
-					"quinto año",
-				];
+				$grados = ["primer año","segundo año","tercer año","cuarto año","quinto año",];
 				if (!in_array(strtolower($grado_a_cursar), $grados)) {
 					throw new Exception("El grado: ($grado_a_cursar) se encuentra fuera de los valores admitidos");
 				}
@@ -149,7 +143,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_estudiante)) {
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^(V|E)[0-9]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 

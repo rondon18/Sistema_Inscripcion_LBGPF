@@ -155,7 +155,7 @@
 
 		public function set_visual($visual) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["v",""];
+			$opciones_validas = ["visual",""];
 			try {
 				if (!in_array(strtolower($visual), $opciones_validas)) {
 					throw new Exception("La condición visual: ($visual) tiene un formato inválido");
@@ -169,7 +169,7 @@
 
 		public function set_motora($motora) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["m",""];
+			$opciones_validas = ["motora",""];
 			try {
 				if (!in_array(strtolower($motora), $opciones_validas)) {
 					throw new Exception("La condición motora: ($motora) tiene un formato inválido");
@@ -183,7 +183,7 @@
 
 		public function set_auditiva($auditiva) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["a",""];
+			$opciones_validas = ["auditiva",""];
 			try {
 				if (!in_array(strtolower($auditiva), $opciones_validas)) {
 					throw new Exception("La condición auditiva: ($auditiva) tiene un formato inválido");
@@ -197,7 +197,7 @@
 
 		public function set_escritura($escritura) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["e",""];
+			$opciones_validas = ["escritura",""];
 			try {
 				if (!in_array(strtolower($escritura), $opciones_validas)) {
 					throw new Exception("La condición escritura: ($escritura) tiene un formato inválido");
@@ -211,7 +211,7 @@
 
 		public function set_lectura($lectura) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["l",""];
+			$opciones_validas = ["lectura",""];
 			try {
 				if (!in_array(strtolower($lectura), $opciones_validas)) {
 					throw new Exception("La condición lectura: ($lectura) tiene un formato inválido");
@@ -225,7 +225,7 @@
 
 		public function set_lenguaje($lenguaje) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["l",""];
+			$opciones_validas = ["lenguaje",""];
 			try {
 				if (!in_array(strtolower($lenguaje), $opciones_validas)) {
 					throw new Exception("La condición lenguaje: ($lenguaje) tiene un formato inválido");
@@ -239,7 +239,7 @@
 
 		public function set_embarazo($embarazo) {
 			// Opciones consideradas valida, se toma en cuenta una cadena vacía
-			$opciones_validas = ["e",""];
+			$opciones_validas = ["embarazo",""];
 			try {
 				if (!in_array(strtolower($embarazo), $opciones_validas)) {
 					throw new Exception("La condición embarazo: ($embarazo) tiene un formato inválido");

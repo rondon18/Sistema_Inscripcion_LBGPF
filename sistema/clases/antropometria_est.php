@@ -135,7 +135,6 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 
@@ -152,6 +151,7 @@
 				// Validar que la cédula no esté vacía
 				if (empty($estatura)) {
 					$this->estatura = 0;
+					return;
 				}
 
 				// Validar la longitud y el formato de la cédula
@@ -172,6 +172,7 @@
 				// Validar que la cédula no esté vacía
 				if (empty($peso)) {
 					$this->peso = 0;
+					return;
 				}
 
 				// Validar la longitud y el formato de la cédula
@@ -192,6 +193,7 @@
 			try {
 				if (empty($indice_m_c)) {
 					$this->indice_m_c = 0;
+					return;
 				}
 
 				// Validar la longitud y el formato de la cédula
@@ -212,6 +214,7 @@
 			try {
 				if (empty($circ_braquial)) {
 					$this->circ_braquial = 0;
+					return;
 				}
 				if ($circ_braquial < 21 || $circ_braquial > 30 || !is_numeric($circ_braquial)) {
 					throw new Exception("El circ_braquial: ($circ_braquial) se encuentra fuera de los valores admitidos");

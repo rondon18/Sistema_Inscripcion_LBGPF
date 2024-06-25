@@ -24,10 +24,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_p_g_academico("Primaria",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_p_g_academico("Bachillerato",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_p_g_academico("Universitario",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
+								<td><?php echo $nro_primaria = $padres->get_nro_p_g_academico("Primaria",$anio,$seccion);?></td>
+								<td><?php echo $nro_bachillerato = $padres->get_nro_p_g_academico("Bachillerato",$anio,$seccion);?></td>
+								<td><?php echo $nro_universitario = $padres->get_nro_p_g_academico("Universitario",$anio,$seccion);?></td>
+								<td><?php echo $nro_primaria + $nro_bachillerato + $nro_universitario;?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -46,9 +46,9 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_p_g_academico("Primaria",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_p_g_academico("Bachillerato",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_p_g_academico("Universitario",$anio,$seccion);?>,
+			        	<?php echo $nro_primaria;?>,
+			        	<?php echo $nro_bachillerato;?>,
+			        	<?php echo $nro_universitario;?>,
 			      	],
 			        borderWidth: 1
 			      }]

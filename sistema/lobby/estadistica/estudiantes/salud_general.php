@@ -381,7 +381,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas.</p>
+			<p class="h6">Estudiantes según la vacuna contra el Covid-19 aplicada.</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -393,7 +393,7 @@
 						<table class="table table-sm table-bordered table-striped">
 							<thead class="text-nowrap">
 								<tr>
-									<th class="text-center">Grupo sanguíneo</th>
+									<th class="text-center">Nombre de la vacuna</th>
 									<th class="text-center">Número de estudiantes</th>
 								</tr>
 							</thead>
@@ -467,9 +467,9 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Total de estudiantes</th>
+									<th>Total de estudiantes vacunados</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_estudiantes();?>
+										<?php echo $estudiantes->get_nro_vacunados_c19();?>
 									</td>
 								</tr>
 							</tfoot>

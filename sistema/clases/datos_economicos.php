@@ -159,6 +159,7 @@
 				"citibank n.a.",
 				"banco nacional de crédito, c.a.",
 				"instituto municipal de crédito popular",
+				"",
 			];
 			try {
 				// Validar la longitud y el formato del dato
@@ -174,7 +175,7 @@
 		public function set_tipo_cuenta($tipo_cuenta) {
 			try {
 				// Validar la longitud y el formato del dato
-				if (!in_array(strtolower($tipo_cuenta),["ahorro","corriente"])) {
+				if (!in_array(strtolower($tipo_cuenta),["ahorro","corriente",""])) {
 					throw new Exception("El tipo_cuenta: $tipo_cuenta es inválido");
 				}
 				$this->tipo_cuenta = $tipo_cuenta;

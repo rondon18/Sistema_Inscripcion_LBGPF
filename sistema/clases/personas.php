@@ -257,7 +257,6 @@
 
 		// SETTERS
 		public function set_cedula($cedula) {
-
 			try {
 				// Validar que la cédula no esté vacía
 				if (empty($cedula)) {
@@ -267,7 +266,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula) < 4 || strlen($cedula) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula)) {
+				if (strlen($cedula) < 4 || strlen($cedula) > 11 || !preg_match('/^(V|E)[0-9]+$/', $cedula)) {
 					throw new Exception("El número de cédula ($cedula) tiene un formato inválido");
 				}
 
@@ -277,7 +276,6 @@
 			catch (Exception $e) {
 				miManejadorExcepcion($e);
 			}
-
 		}
 
 		public function set_p_nombre($p_nombre) {
@@ -393,6 +391,10 @@
 		
 		public function set_lugar_nacimiento($lugar_nacimiento) {
 			try {
+				if (empty($lugar_nacimiento) or $lugar_nacimiento == "") {
+					$this->lugar_nacimiento = $lugar_nacimiento;
+					return;
+				}
 				// Validar la longitud y el formato del dato
 				if (strlen($lugar_nacimiento) < 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $lugar_nacimiento)) {
 					throw new Exception("El lugar de nacimiento ($lugar_nacimiento) cuenta con un formato inválido");

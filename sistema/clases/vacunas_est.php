@@ -127,15 +127,57 @@
 
 		// SETTERS 
 		public function set_cedula_estudiante($cedula_estudiante) {
-			$this->cedula_estudiante = $cedula_estudiante;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_estudiante)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^(V|E)[0-9]+$/', $cedula_estudiante)) {
+					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->cedula_estudiante = $cedula_estudiante;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
-
 		public function set_espec_vacuna($espec_vacuna) {
-			$this->espec_vacuna = $espec_vacuna;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($espec_vacuna)) {
+					throw new Exception("La especificacion de la vacuna aplicada no puede estar vacia");
+				}
+				$opciones = ["antiamarilica","antigripal","hep_a","hep_b","ipv","menacwy","mmr","tdap","varicela","vph",];
+				// Validar la longitud y el formato del dato
+				if (!in_array(strtolower($espec_vacuna), $opciones)) {
+					throw new Exception("La vacuna ($espec_vacuna) es inválida");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->espec_vacuna = $espec_vacuna;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function set_estado_vacuna($estado_vacuna) {
-			$this->estado_vacuna = $estado_vacuna;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($estado_vacuna)) {
+					throw new Exception("El estado de la vacuna no puede estar vacío");
+				}
+				// Validar la longitud y el formato del dato
+				if (!in_array(strtolower($estado_vacuna), ["aplicada","no aplicada",])) {
+					throw new Exception("La vacuna ($estado_vacuna) es inválida");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->estado_vacuna = $estado_vacuna;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 

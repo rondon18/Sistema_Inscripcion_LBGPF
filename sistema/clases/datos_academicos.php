@@ -128,7 +128,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_estudiante)) {
+				if (strlen($cedula_estudiante) < 4 || strlen($cedula_estudiante) > 11 || !preg_match('/^(V|E)[0-9]+$/', $cedula_estudiante)) {
 					throw new Exception("El número de cédula $cedula_estudiante tiene un formato inválido");
 				}
 
@@ -147,10 +147,14 @@
 					$this->a_repetido = $a_repetido;
 					return;
 				}
-				// Validar la longitud y el formato de la cédula
-				if (strlen($a_repetido) <= 4 || strlen($a_repetido) >= 25 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $a_repetido)) {
-					throw new Exception("El año repetido $a_repetido tiene un formato inválido");
+				$grados = ["primer año","segundo año","tercer año","cuarto año","quinto año",""];
+				if (!in_array(strtolower($a_repetido), $grados)) {
+					throw new Exception("El año repetido: ($a_repetido) se encuentra fuera de los valores admitidos");
 				}
+				// Validar la longitud y el formato de la cédula
+				// if (strlen($a_repetido) <= 4 || strlen($a_repetido) >= 25 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $a_repetido)) {
+				// 	throw new Exception("El año repetido $a_repetido tiene un formato inválido");
+				// }
 				// Si el dato es válido, asignarlo a la propiedad
 				$this->a_repetido = $a_repetido;
 			}

@@ -503,7 +503,6 @@
 		// Datos del estudiante
 
 		$estudiantes->set_cedula_persona($cedula_estudiante);
-		$estudiantes->set_cedula_escolar(dato_sesion_i("cedula_escolar_est",3));
 		$estudiantes->set_plantel_proced(dato_sesion_i("plantel_procedencia",3));
 		$estudiantes->set_con_quien_vive(dato_sesion_i("con_quien_vive",3));
 		$estudiantes->set_relacion_representante(dato_sesion_i("vinculo_r"));
@@ -660,7 +659,7 @@
 		$inscripciones->insertar_inscripciones();
 
 		// elimina los valores almacenados en sesion de este proceso
-		unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		// unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
 
 	}
 	else {

@@ -153,7 +153,7 @@
 
 				// Opción por defecto: redirigir al menu principal
 				default:
-					// code...
+					header('Location: ../../lobby/consultar/index.php');
 					break;
 
 			}

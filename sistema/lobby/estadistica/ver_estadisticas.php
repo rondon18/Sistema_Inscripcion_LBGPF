@@ -7,6 +7,7 @@
 	}
 
 	require("../../controladores/conexion.php");
+	require("../../logs/error_handler.php");
 	require('../../clases/bitacora.php');
 	require('../../clases/estudiantes.php');
 	require('../../clases/representantes.php');
@@ -22,13 +23,9 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 2;
-
 	$estudiantes = new estudiantes();
 	$representantes = new representantes();
 	$padres = new padres();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

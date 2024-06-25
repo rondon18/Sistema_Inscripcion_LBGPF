@@ -24,8 +24,8 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_p_empleados();?></td>
-								<td><?php echo $padres->get_nro_padres() - $padres->get_nro_p_empleados();?></td>
+								<td><?php echo $empleados = $padres->get_nro_p_empleados();?></td>
+								<td><?php echo $desempleados = $padres->get_nro_padres() - $padres->get_nro_p_empleados();?></td>
 								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
@@ -45,8 +45,8 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-								<?php echo $padres->get_nro_p_empleados();?>,
-								<?php echo $padres->get_nro_padres() - $padres->get_nro_p_empleados();?>,
+								<?php echo $empleados;?>,
+								<?php echo $desempleados;?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -64,7 +64,7 @@
 <div class="col-md-6 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Padres por remuneración</p>
+			<p class="h6">Padres que cuentan con empleo por remuneración</p>
 		</div>
 		<div class="card-body">
 			<!-- Estudiantes por género (general) -->
@@ -144,15 +144,25 @@
 								<th><span class="badge" style="background: #ff6384;"> </span> Semanal</th>
 								<th><span class="badge" style="background: #ff9f40;"> </span> Quincenal</th>
 								<th><span class="badge" style="background: #ffcd56;"> </span> Mensual</th>
+								<th><span class="badge" style="background: #4bc0c0;"> </span> Otra</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$nro_padres_empleados = $padres->get_nro_p_empleados();
+							$f_pago_diaria = $padres->get_nro_frec_rem("Diaria");
+							$f_pago_semanal = $padres->get_nro_frec_rem("Semanal");
+							$f_pago_quincenal = $padres->get_nro_frec_rem("Quincenal");
+							$f_pago_mensual = $padres->get_nro_frec_rem("Mensual");
+							$f_pago_otra = $nro_padres_empleados - ($f_pago_diaria+$f_pago_mensual+$f_pago_semanal+$f_pago_quincenal);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_frec_rem("Diaria");?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Semanal");?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Quincenal");?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Mensual");?></td>
+								<td><?php echo $f_pago_diaria;?></td>
+								<td><?php echo $f_pago_semanal;?></td>
+								<td><?php echo $f_pago_quincenal;?></td>
+								<td><?php echo $f_pago_mensual;?></td>
+								<td><?php echo $f_pago_otra;?></td>
 								<td><?php echo $padres->get_nro_p_empleados();?></td>
 							</tr>
 						</tbody>
@@ -172,10 +182,11 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_frec_rem("Diaria");?>,
-			        	<?php echo $padres->get_nro_frec_rem("Semanal");?>,
-			        	<?php echo $padres->get_nro_frec_rem("Quincenal");?>,
-			        	<?php echo $padres->get_nro_frec_rem("Mensual");?>,
+			        	<?php echo $f_pago_diaria;?>,
+			        	<?php echo $f_pago_semanal;?>,
+			        	<?php echo $f_pago_quincenal;?>,
+			        	<?php echo $f_pago_mensual;?>,
+			        	<?php echo $f_pago_otra;?>,
 			      	],
 			        borderWidth: 1
 			      }]

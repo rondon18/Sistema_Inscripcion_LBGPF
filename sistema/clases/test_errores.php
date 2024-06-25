@@ -57,13 +57,14 @@
 	$usuarios = new usuarios();
 	$bitacora = new bitacora();
 
-	// // $datos_vivienda->set_tipo("");
-	// // $direcciones->set_estado("sdfsdvfjhdvfasdasjhdvjahsdvjahsvdjhasvdjhavsdjh");
-	// // $datos_laborales->set_tipo_remuneracion("");
 
-	// // $datos_sociales->set_tiene_canaima("");
-	// // $datos_sociales->set_condicion_canaima("");
-	// // $datos_sociales->set_acceso_internet("");
+	// $datos_vivienda->set_tipo("");
+	// $direcciones->set_estado("sdfsdvfjhdvfasdasjhdvjahsdvjahsvdjhasvdjhavsdjh");
+	// $datos_laborales->set_tipo_remuneracion("");
+
+	// $datos_sociales->set_tiene_canaima("");
+	// $datos_sociales->set_condicion_canaima("");
+	// $datos_sociales->set_acceso_internet("");
 	// $datos_salud->set_tipo_sangre("O+");
 	// $antropometria_est->set_circ_braquial("25");
 
@@ -89,4 +90,33 @@
 	// $condiciones_est->set_lenguaje("x");
 	// $condiciones_est->set_embarazo("x");
 
+	// $estudiantes->
+
+	// $con = conectarBD();
+
+	// $padres = $con->query("select cedula_padre from estudiantes");
+	// $madres = $con->query("select cedula_madre from estudiantes");
+
+	// $con_padres = $padres->fetch_all(MYSQLI_ASSOC);
+	// $con_madres = $madres->fetch_all(MYSQLI_ASSOC);
+
+
+	// $array = [];
+	// foreach ($con_padres as $key => $value) {
+	// 	$array[] = $value["cedula_padre"];
+	// }
+	// foreach ($con_madres as $key => $value) {
+	// 	$array[] = $value["cedula_madre"];
+	// }
+
+	// $padres = $con->query("select cedula_persona from padres");
+	// $con_padres = $padres->fetch_all(MYSQLI_ASSOC);
+
+	// $contador = 0;
+	// foreach ($con_padres as $key => $value) {
+	// 	if (!in_array($value["cedula_persona"],$array)) {
+	// 		$contador++;
+	// 	}
+	// }
+	// var_dump($contador);
  ?>

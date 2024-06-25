@@ -16,18 +16,28 @@
 					<table class="table table-sm table-bordered table-striped table-responsive">
 						<thead>
 							<tr>
-								<th><span class="badge" style="background: #36a2eb;"> </span> 1 Hijo.</th>
-								<th><span class="badge" style="background: #ff6384;"> </span> 2 Hijos.</th>
-								<th><span class="badge" style="background: #ff9f40;"> </span> Al menos 3 Hijos.</th>
+								<th><span class="badge" style="background: #36a2eb;"> </span> 0 Hijos.</th>
+								<th><span class="badge" style="background: #ff6384;"> </span> 1 Hijo.</th>
+								<th><span class="badge" style="background: #ff9f40;"> </span> 2 Hijos.</th>
+								<th><span class="badge" style="background: #ffcd56;"> </span> Al menos 3 Hijos.</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$total_padres = $padres->get_nro_padres();
+							$hijos_1 = $padres->get_nro_hijos(1);
+							$hijos_2 = $padres->get_nro_hijos(2);
+							$hijos_3 = $padres->get_nro_hijos(3);
+							$hijos_0 = $total_padres - ($hijos_1 + $hijos_2 + $hijos_3);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_hijos(1);?></td>
-								<td><?php echo $padres->get_nro_hijos(2);?></td>
-								<td><?php echo $padres->get_nro_hijos(3);?></td>
-								<td><?php echo $padres->get_nro_padres();?></td>
+
+								<td><?php echo $hijos_0;?></td>
+								<td><?php echo $hijos_1;?></td>
+								<td><?php echo $hijos_2;?></td>
+								<td><?php echo $hijos_3;?></td>
+								<td><?php echo $hijos_1 + $hijos_2 + $hijos_3 + $hijos_0;?></td>
 							</tr>
 						</tbody>
 						<tbody>
@@ -46,9 +56,11 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_hijos(1);?>,
-			        	<?php echo $padres->get_nro_hijos(2);?>,
-			        	<?php echo $padres->get_nro_hijos(3);?>,
+
+			        	<?php echo $hijos_0;?>,
+			        	<?php echo $hijos_1;?>,
+			        	<?php echo $hijos_2;?>,
+			        	<?php echo $hijos_3;?>,
 			      	],
 			        borderWidth: 1
 			      }]

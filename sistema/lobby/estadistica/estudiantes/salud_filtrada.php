@@ -1,7 +1,7 @@
 <?php 
 
 	$anio_seccion = strtolower(str_replace(" ", "_", $anio)."_".$seccion);
-	
+
 ?>
 
 <!-- Estudiantes por IMC (general) -->
@@ -146,55 +146,55 @@
 								<tr>
 									<th><span class="badge" style="background: #36a2eb;"> </span> A+</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("A+");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("A+",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff6384;"> </span> A-</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("A-");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("A-",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff9f40;"> </span> B+</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("B+");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("B+",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ffcd56;"> </span> B-</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("B-");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("B-",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #4bc0c0;"> </span> AB+</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("AB+");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("AB+",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #9966ff;"> </span> AB-</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("AB-");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("AB-",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #c9cbcf;"> </span> O+</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("O+");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("O+",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #a05d89;"> </span> O-</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("O-");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("O-",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #2f9cb9;"> </span> Desconocido</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_tipo_sangre("NCNC");?>
+										<?php echo $estudiantes->get_nro_tipo_sangre("NCN",$anio,$seccion);?>
 									</td>
 								</tr>
 							</tbody>
@@ -217,15 +217,15 @@
 						      datasets: [{
 						        label: 'Número de estudiantes',
 						        data: [
-											<?php echo $estudiantes->get_nro_tipo_sangre("A+");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("A-");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("B+");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("B-");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("AB+");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("AB-");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("O+");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("O-");?>,
-											<?php echo $estudiantes->get_nro_tipo_sangre("NCNC");?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("A+",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("A-",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("B+",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("B-",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("AB+",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("AB-",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("O+",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("O-",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_tipo_sangre("NCN",$anio,$seccion);?>,
 						      	],
 						      	// se establecen manualmente dado que a partir del octavo valor se repiten los colores del primero
 						      	backgroundColor: [
@@ -282,9 +282,9 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><?php echo $estudiantes->get_nro_lateralidad("Zurdo");?></td>
-									<td><?php echo $estudiantes->get_nro_lateralidad("Diestro");?></td>
-									<td><?php echo $estudiantes->get_nro_lateralidad("Ambidextro");?></td>
+									<td><?php echo $estudiantes->get_nro_lateralidad("Zurdo",$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_lateralidad("Diestro",$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_lateralidad("Ambidextro",$anio,$seccion);?></td>
 									<td><?php echo $estudiantes->get_nro_estudiantes($anio,$seccion);?></td>
 								</tr>
 							</tbody>
@@ -344,8 +344,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><?php echo $estudiantes->get_nro_vacunados_c19($anio,$seccion);?></td>
-									<td><?php echo $estudiantes->get_nro_estudiantes($anio,$seccion) - $estudiantes->get_nro_vacunados_c19($anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_vacunados_c19("Cualquiera",$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_estudiantes($anio,$seccion) - $estudiantes->get_nro_vacunados_c19("Cualquiera",$anio,$seccion);?></td>
 									<td><?php echo $estudiantes->get_nro_estudiantes($anio,$seccion);?></td>
 								</tr>
 							</tbody>
@@ -361,8 +361,8 @@
 						      datasets: [{
 						        label: 'Número de estudiantes',
 						        data: [
-											<?php echo $estudiantes->get_nro_vacunados_c19($anio,$seccion);?>,
-											<?php echo $estudiantes->get_nro_estudiantes($anio,$seccion) - $estudiantes->get_nro_vacunados_c19($anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Cualquiera",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_estudiantes($anio,$seccion) - $estudiantes->get_nro_vacunados_c19("Cualquiera",$anio,$seccion);?>,
 						      	],
 						        borderWidth: 1
 						      }]
@@ -385,7 +385,7 @@
 <div class="col-md-12 p-2 my-4">
 	<div class="card">
 		<div class="card-header">
-			<p class="h6">Estudiantes según dosis de vacuna contra el Covid-19 aplicadas (<?php echo $anio;?>).</p>
+			<p class="h6">Estudiantes según la vacuna contra el Covid-19 aplicada (<?php echo $anio;?>).</p>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -397,7 +397,7 @@
 						<table class="table table-sm table-bordered table-striped">
 							<thead class="text-nowrap">
 								<tr>
-									<th class="text-center">Grupo sanguíneo</th>
+									<th class="text-center">Nombre de la vacuna</th>
 									<th class="text-center">Número de estudiantes</th>
 								</tr>
 							</thead>
@@ -405,75 +405,75 @@
 								<tr>
 									<th><span class="badge" style="background: #36a2eb;"> </span> Pfizer/BioNTech</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Pfizer/BioNTech");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Pfizer/BioNTech",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff6384;"> </span> Moderna</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Moderna");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Moderna",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff9f40;"> </span> AztraZeneca</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("AztraZeneca");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("AztraZeneca",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ffcd56;"> </span> Janssen</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Janssen");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Janssen",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #4bc0c0;"> </span> Sinopharm</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Sinopharm");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Sinopharm",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #9966ff;"> </span> Sinovac</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Sinovac");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Sinovac",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #c9cbcf;"> </span> Bharat</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Bharat");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Bharat",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #a05d89;"> </span> CanSinoBIO</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("CanSinoBIO");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("CanSinoBIO",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #2f9cb9;"> </span> Valneva</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Valneva");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Valneva",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #7fdbff;"> </span> Novavax</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Novavax");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Novavax",$anio,$seccion);?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #d688cb ;"> </span> Otra vacuna</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_vacunados_c19("Otra");?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Otra",$anio,$seccion);?>
 									</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>Total de estudiantes</th>
+									<th>Total de estudiantes vacunados</th>
 									<td class="text-center">
-										<?php echo $estudiantes->get_nro_estudiantes($anio,$seccion);?>
+										<?php echo $estudiantes->get_nro_vacunados_c19("Cualquiera",$anio,$seccion);?>
 									</td>
 								</tr>
 							</tfoot>
@@ -488,17 +488,17 @@
 						      datasets: [{
 						        label: 'Número de estudiantes',
 						        data: [
-											<?php echo $estudiantes->get_nro_vacunados_c19("Pfizer/BioNTech");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Moderna");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("AztraZeneca");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Janssen");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Sinopharm");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Sinovac");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Bharat");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("CanSinoBIO");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Valneva");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Novavax");?>,
-											<?php echo $estudiantes->get_nro_vacunados_c19("Otra");?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Pfizer/BioNTech",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Moderna",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("AztraZeneca",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Janssen",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Sinopharm",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Sinovac",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Bharat",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("CanSinoBIO",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Valneva",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Novavax",$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_vacunados_c19("Otra",$anio,$seccion);?>,
 						      	],
 						      	// se establecen manualmente dado que a partir del octavo valor se repiten los colores del primero
 						      	backgroundColor: [
@@ -556,10 +556,10 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(1,true);?></td>
-									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(2,true);?></td>
-									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(3,false);?></td>
-									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(0,true);?></td>
+									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(1,true,$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(2,true,$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(3,false,$anio,$seccion);?></td>
+									<td><?php echo $estudiantes->get_nro_dosis_anti_c19(0,true,$anio,$seccion);?></td>
 									<td><?php echo $estudiantes->get_nro_estudiantes($anio,$seccion);?></td>
 								</tr>
 							</tbody>
@@ -575,10 +575,10 @@
 						      datasets: [{
 						        label: 'Número de estudiantes',
 						        data: [
-											<?php echo $estudiantes->get_nro_dosis_anti_c19(1,true);?>,
-											<?php echo $estudiantes->get_nro_dosis_anti_c19(2,true);?>,
-											<?php echo $estudiantes->get_nro_dosis_anti_c19(3,false);?>,
-											<?php echo $estudiantes->get_nro_dosis_anti_c19(0,true);?>,
+											<?php echo $estudiantes->get_nro_dosis_anti_c19(1,true,$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_dosis_anti_c19(2,true,$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_dosis_anti_c19(3,false,$anio,$seccion);?>,
+											<?php echo $estudiantes->get_nro_dosis_anti_c19(0,true,$anio,$seccion);?>,
 						      	],
 						        borderWidth: 1
 						      }]

@@ -161,7 +161,7 @@
 				}
 
 				// Validar la longitud y el formato de la cédula
-				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_persona)) {
+				if (strlen($cedula_persona) < 4 || strlen($cedula_persona) > 11 || !preg_match('/^(V|E)[0-9]+$/', $cedula_persona)) {
 					throw new Exception("El número de cédula $cedula_persona tiene un formato inválido");
 				}
 
@@ -365,7 +365,6 @@
 				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $nro_casa)) {
 					throw new Exception("El número de casa $nro_casa cuenta con un formato inválido");
 				}
-
 				// Si el dato es válido, asignarlo a la propiedad
 				$this->nro_casa = $nro_casa;
 			}
@@ -377,17 +376,17 @@
 		public function set_punto_referencia($punto_referencia) {
 			try {
 				// Si el dato esta vacio por defecto se mantendrá así
-				if (empty($nro_casa)) {
-					$this->nro_casa = $nro_casa;
+				if (empty($punto_referencia)) {
+					$this->punto_referencia = $punto_referencia;
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $nro_casa)) {
-					throw new Exception("El número de casa $nro_casa cuenta con un formato inválido");
+				if (strlen($punto_referencia) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $punto_referencia)) {
+					throw new Exception("El punto de referencia $punto_referencia cuenta con un formato inválido");
 				}
 
 				// Si el dato es válido, asignarlo a la propiedad
-				$this->nro_casa = $nro_casa;
+				$this->punto_referencia = $punto_referencia;
 			}
 			catch (Exception $e) {
 				miManejadorExcepcion($e);

@@ -7,6 +7,7 @@
 	}
 
 	require("../../controladores/conexion.php");
+	require("../../logs/error_handler.php");
 	require('../../clases/bitacora.php');
 	require('../../clases/estudiantes.php');
 	require('../../clases/representantes.php');

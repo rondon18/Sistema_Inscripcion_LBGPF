@@ -11,7 +11,7 @@
 
 	require('../../controladores/conexion.php');
 	require('../../clases/bitacora.php');
-
+	require("../../logs/error_handler.php");
 	require('../../clases/estudiantes.php');
 	require('../../clases/padres.php');
 	require('../../clases/representantes.php');

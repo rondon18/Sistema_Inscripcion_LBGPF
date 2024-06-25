@@ -26,8 +26,6 @@
 
 		
 		public function __construct() {
-
-
 			try {
 				// Establese la region para Venezuela (Hora, fecha, etc)
 				date_default_timezone_set("America/Caracas");
@@ -66,64 +64,64 @@
 
 
 		public function insertar_per_academico() {
-
-			$conexion = conectarBD();
-
-			// el id es la concatenacion del año de inicio y el año de fin
-			$id_per_academico = $this->get_inicio().$this->get_fin();
-
-			$inicio = $this->get_inicio();
-			$fin = $this->get_fin();
-
-			$sql = "
-				INSERT INTO
-					`per_academico`
-					(
-						`id_per_academico`,
-						`inicio`,
-						`fin`
-					)
-				VALUES
-					(
-				    '$id_per_academico',
-				    '$inicio',
-				    '$fin'
-					)
-				ON DUPLICATE KEY UPDATE
-				`id_per_academico` = `id_per_academico`;
-			";
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			desconectarBD($conexion);
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					// el id es la concatenacion del año de inicio y el año de fin
+					$id_per_academico = mysqli_escape_string($conexion,$this->get_inicio()).mysqli_escape_string($conexion,$this->get_fin());
+					$inicio = mysqli_escape_string($conexion,$this->get_inicio());
+					$fin = mysqli_escape_string($conexion,$this->get_fin());
+					$sql = " INSERT INTO `per_academico` (`id_per_academico`, `inicio`, `fin`) VALUES ('$id_per_academico', '$inicio', '$fin') ON DUPLICATE KEY UPDATE `id_per_academico` = `id_per_academico`;";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
-
 		/*
-
 			Esta funcion puede que se vaya (es un poco redundate si se usa el ON DUPLICATE en el constructor)
-
 					| | |
 					V V V
-
 		*/
 
 		public function consultar_per_academico($id_per_academico) {
-			// consulta si el periodo academico ya existe
-			$conexion = conectarBD();
-
-			$sql = "
-				SELECT
-			    *
-				FROM
-			    `per_academico`
-				WHERE
-			    `id_per_academico` = '$id_per_academico'
-			";
-
-			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
-			return $resultado->num_rows;
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					// consulta si el periodo academico ya existe
+					$id_per_academico = mysqli_escape_string($conexion,$id_per_academico);
+					$sql = "SELECT * FROM `per_academico` WHERE `id_per_academico` = '$id_per_academico';";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$resultado = $conexion->query($sql);
+						desconectarBD($conexion);
+						return $resultado->num_rows;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return 0;
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return 0;
+			}
 		}
 		
 
@@ -144,15 +142,60 @@
 
 		// SETTERS
 		public function set_id_per_academico($id_per_academico) {
-			$this->id_per_academico = $id_per_academico;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($id_per_academico)) {
+					throw new Exception("El id del periodo escolar no puede estar vacío");
+					return;
+				}
+				// Validar la longitud y el formato de la cédula
+				if (strlen($id_per_academico) != 8 || !preg_match('/^[0-9]+$/', $id_per_academico)) {
+					throw new Exception("El id del periodo escolar ($id_per_academico) tiene un formato inválido");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->id_per_academico = $id_per_academico;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		
 		public function set_inicio($inicio) {
-			$this->inicio = $inicio;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($inicio)) {
+					throw new Exception("El inicio de periodo escolar no puede estar vacío");
+					return;
+				}
+				// Validar la longitud y el formato de la cédula
+				if (strlen($inicio) != 4 || !preg_match('/^[0-9]+$/', $inicio)) {
+					throw new Exception("El inicio de periodo escolar ($inicio) tiene un formato inválido");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->inicio = $inicio;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		
 		public function set_fin($fin) {
-			$this->fin = $fin;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($fin)) {
+					throw new Exception("El fin de periodo escolar no puede estar vacío");
+					return;
+				}
+				// Validar la longitud y el formato de la cédula
+				if (strlen($fin) != 4 || !preg_match('/^[0-9]+$/', $fin)) {
+					throw new Exception("El fin de periodo escolar ($fin) tiene un formato inválido");
+				}
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->fin = $fin;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 	}
 
