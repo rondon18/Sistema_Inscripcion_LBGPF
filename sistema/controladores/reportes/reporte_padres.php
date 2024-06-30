@@ -193,9 +193,7 @@
 		$padres->set_cedula_persona($estudiante["cedula_padre"]);
 		$padre = $padres->consultar_padres();
 
-		// var_dump($padre);
 
-		// echo "<br><br><br>";
 
 		// Incluye los datos personales
 		$datos_fila = array_merge(
@@ -349,9 +347,7 @@
 		$padres->set_cedula_persona($estudiante["cedula_madre"]);
 		$padre = $padres->consultar_padres();
 
-		// var_dump($padre);
 
-		// echo "<br><br><br>";
 
 		// Incluye los datos personales
 		$datos_fila = array_merge(

@@ -32,7 +32,6 @@
 
 		// Inserta la persona
 		$personas->editar_persona($_SESSION['datos_estudiante']['cedula']);
-		// var_dump($personas);
 
 		// Almacena la cédula del representante
 		$cedula_estudiante = $personas->get_cedula();
@@ -45,7 +44,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_principal_est",3));
 		$telefonos->set_numero(dato_sesion_i("telefono_principal_est",3));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 		// Telefono secundario
 		$telefonos->set_cedula_persona($cedula_estudiante);
@@ -53,7 +51,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_secundario_est",3));
 		$telefonos->set_numero(dato_sesion_i("telefono_secundario_est",3));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 		// carnet_patria
 
@@ -61,7 +58,6 @@
 		$carnet_patria->set_codigo_carnet(dato_sesion_i("codigo_carnet_patria_est",3));
 		$carnet_patria->set_serial_carnet(dato_sesion_i("serial_carnet_patria_est",3));
 		$carnet_patria->editar_carnet_patria();
-		// var_dump($carnet_patria);
 
 
 		// direcciones
@@ -119,9 +115,6 @@
 		$estudiantes->editar_estudiantes();
 
 
-		// var_dump($estudiantes->get_cedula_padre());
-		// var_dump($estudiantes->get_cedula_madre());
-		// var_dump($estudiantes);
 
 		// datos_academicos
 
@@ -130,7 +123,6 @@
 		$datos_academicos->set_materias_repetidas(dato_sesion_i("materias_repitente",3));
 		$datos_academicos->set_materias_pendientes(dato_sesion_i("materias_pendientes",3));
 		$datos_academicos->editar_datos_academicos();
-		// var_dump($datos_academicos);
 
 		// datos_sociales
 
@@ -139,7 +131,6 @@
 		$datos_sociales->set_condicion_canaima(dato_sesion_i("condiciones_canaima",3));
 		$datos_sociales->set_acceso_internet(dato_sesion_i("internet_vivienda",3));
 		$datos_sociales->editar_datos_sociales();
-		// var_dump($datos_sociales);
 
 
 		// datos_salud
@@ -158,7 +149,6 @@
 		$datos_salud->set_institucion_medica(dato_sesion_i("institucion_medica",3));
 		$datos_salud->set_carnet_discapacidad(dato_sesion_i("nro_carnet_discapacidad",3));
 		$datos_salud->editar_datos_salud();
-		// var_dump($datos_salud);
 
 
 		// tallas_est
@@ -168,7 +158,6 @@
 		$tallas_est->set_pantalon(dato_sesion_i("talla_pantalon",3));
 		$tallas_est->set_calzado(dato_sesion_i("talla_zapatos",3));
 		$tallas_est->editar_tallas_est();
-		// var_dump($tallas_est);
 
 
 		// antropometria_est
@@ -179,7 +168,6 @@
 		$antropometria_est->set_indice_m_c(dato_sesion_i("indice",3));
 		$antropometria_est->set_circ_braquial(dato_sesion_i("c_braquial",3));
 		$antropometria_est->editar_antropometria_est();
-		// var_dump($antropometria_est);
 
 
 		// vacunas_est
@@ -212,7 +200,6 @@
 				$vacunas_est->set_estado_vacuna("No aplicada");
 			}
 			$vacunas_est->editar_vacunas_est();
-			// var_dump($vacunas_est);
 		}
 
 
@@ -231,7 +218,6 @@
 		$vac_covid19_est->set_lote(dato_sesion_i("lote",3));
 
 		$vac_covid19_est->editar_vac_covid19_est();
-		// var_dump($vac_covid19_est);
 
 
 
@@ -246,7 +232,6 @@
 		$condiciones_est->set_lenguaje(dato_sesion_i("cond_lenguaje",3));
 		$condiciones_est->set_embarazo(dato_sesion_i("cond_embarazo",3));
 		$condiciones_est->editar_condiciones_est();
-		// var_dump($condiciones_est);
 
 
 
@@ -260,7 +245,6 @@
 		$observaciones_est->set_academico(dato_sesion_i("observaciones_academico",3));
 		$observaciones_est->set_otra(dato_sesion_i("observaciones_otra",3));
 		$observaciones_est->editar_observaciones_est();
-		// var_dump($observaciones_est);
 
 		// grado_a_cursar_est
 
@@ -269,7 +253,6 @@
 		$grado_a_cursar_est->set_cedula_estudiante($cedula_estudiante);
 		$grado_a_cursar_est->set_id_per_academico($per_academico->get_id_per_academico());
 		$grado_a_cursar_est->editar_grado_a_cursar_est();
-		// var_dump($grado_a_cursar_est);
 
 		// inscripciones
 
@@ -292,7 +275,7 @@
 
 	}
 	else {
-		// echo "b";
+
 	}
 
 ?>

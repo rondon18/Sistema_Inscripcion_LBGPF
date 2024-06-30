@@ -65,8 +65,6 @@
 
 <?php 
 
-	// var_dump($_POST);
-
 	// lista con la paleta de colores para las graficas, se itera al momento de ciclar los valores
 	
 	$array_colores = [

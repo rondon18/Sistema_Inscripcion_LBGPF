@@ -574,7 +574,6 @@
 					]
 				);
 
-				// var_dump($estudiante);
 			}
 
 
@@ -637,7 +636,6 @@
 	// alto de la fila con los banners
 	$hoja_estudiantes->getRowDimension('1')->setRowHeight(30);
 
-	// var_dump($encabezado_representante);
 
 
 

@@ -28,7 +28,7 @@
 					// primera accion como inicia sesión
 					$acciones_realizadas = mysqli_escape_string($conexion,"Inicia sesión");
 
-					$cedula_usuario = $this->get_cedula_usuario();
+					$cedula_usuario = mysqli_escape_string($conexion,$this->get_cedula_usuario());
 
 					$sql = "
 						INSERT INTO `bitacora`(

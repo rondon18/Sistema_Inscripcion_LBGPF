@@ -8,17 +8,6 @@
 	}
 
 
-	if (isset($_POST['orden'])) {
-		if ($_POST['orden'] == "eliminar") {
-
-			$_SESSION['orden'] = $_POST['orden'];
-			$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
-
-			header('Location: ../../controladores/registros/control_registros.php');
-		}
-	}
-
-
 
 	require("../../clases/estudiantes.php");
 	require("../../clases/representantes.php");
@@ -126,24 +115,17 @@
 	<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
 		<thead class="text-truncate">
 			<tr>
-				<!-- Datos del estudiante -->
 				<th>CÉDULA</th>
-				<th>NOMBRES</th>
-				<th>APELLIDOS</th>
-				<th>FECHA DE NACIMIENTO</th>
+				<th>NOMBRE COMPLETO</th>
 				<th>GÉNERO</th>
+				<th>FECHA DE NACIMIENTO</th>
+				<th>ESTADO</th>
 				<th>AÑO A CURSAR</th>
 				<th>PERIODO ACADÉMICO</th>
-
-
+				<th>CÉDULA DEL REPRESENTANTE</th>
 				<th>CÉDULA DE LA MADRE</th>
 				<th>CÉDULA DEL PADRE</th>
-				<th>CÉDULA DEL REPRESENTANTE</th>
-
-
-				<!-- Botones de acción -->
 				<th>ACCIONES</th>
-
 			</tr>
 		</thead>
 		<tbody class="text-truncate">
@@ -152,19 +134,28 @@
 
 				<!-- Datos del estudiante -->
 				<td><?php echo mb_strtoupper($estudiante['cedula']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['p_nombre']." ".$estudiante['s_nombre']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['p_apellido']." ".$estudiante['s_apellido']);?></td>
-				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['p_nombre']." ".$estudiante['s_nombre']." ".$estudiante['p_apellido']." ".$estudiante['s_apellido']);?></td>
 				<td><?php echo $estudiante['genero'];?></td>
-				<td><?php echo mb_strtoupper($estudiante['grado_a_cursar']) . ' "' . mb_strtoupper($estudiante['seccion']) . '"';?></td>
+				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['estado_inscripcion']);?></td>
+				<td>
+					<?php
+						if (!empty($estudiante['grado_a_cursar']) && !empty($estudiante['seccion'])) {
+							echo mb_strtoupper($estudiante['grado_a_cursar']) . ' "' . mb_strtoupper($estudiante['seccion']) . '"';
+						}
+						else {
+							echo mb_strtoupper($estudiante["estado_inscripcion"]);
+						}
+					?>
+				</td>
 
 				<!-- Periodo académico al que está registrado -->
 				<td><?php echo mb_strtoupper($estudiante['id_per_academico']);?></td>
 
 				<!-- identificadores de madre, padre y representante -->
+				<td><?php echo mb_strtoupper($estudiante['cedula_representante']);?></td>
 				<td><?php echo mb_strtoupper($estudiante['cedula_madre']);?></td>
 				<td><?php echo mb_strtoupper($estudiante['cedula_padre']);?></td>
-				<td><?php echo mb_strtoupper($estudiante['cedula_representante']);?></td>
 
 				<!-- Acciones -->
 				<td>
@@ -214,21 +205,6 @@
 						>
 							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
 						</form>
-
-						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
-
-						<!-- Eliminar registro de estudiante -->
-						<form
-							id="eliminar_registro_<?php echo $estudiante['cedula'];?>"
-							action="#"
-							method="post"
-							style="display: inline-block;"
-							onsubmit="confirmar_envio(event)"
-						>
-							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-							<input type="hidden" name="orden" value="eliminar">
-						</form>
-						<?php endif;?>
 
 					</div>
 
@@ -404,17 +380,6 @@
 									>
 										<i class="fas fa-graduation-cap ms-2"></i>
 										Actualizar año y sección
-									</button>
-								</li>
-
-								<li>
-									<button
-										class="dropdown-item"
-										type="submit"
-										form="eliminar_registro_<?php echo $estudiante['cedula'];?>"
-									>
-										<i class="fas fa-trash-can ms-2"></i>
-										Eliminar
 									</button>
 								</li>
 

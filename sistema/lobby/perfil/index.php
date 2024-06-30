@@ -244,7 +244,7 @@
 													En esta pequeña área se encuentran las opciones para editar su perfil o darse de baja como usuario. Cada uno con su respectivo botón.
 												</p>
 
-												<a class="btn btn-sm btn-primary" href="editar-perfil.php">
+												<a class="btn btn-sm btn-primary" href="editar_perfil.php">
 													<i class="fa-solid me-2 fa-user-edit"></i>
 													Editar perfil
 												</a>

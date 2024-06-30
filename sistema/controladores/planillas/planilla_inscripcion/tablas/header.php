@@ -10,8 +10,6 @@
 	<p class="text-center text-uppercase mb-2" style="font-size: 1.5rem">
 		INSCRIPCIÓN AÑO ESCOLAR
 		<?php
-			// echo "2023-2024";
-			// echo date("Y") . "-" . date('Y', strtotime('+1 year')) ;
 		echo $per_academico->get_inicio() . "-" . $per_academico->get_fin();
 		?>
 	</p>

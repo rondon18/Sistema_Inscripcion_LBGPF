@@ -26,22 +26,17 @@
 	$vacunas_est = new vacunas_est();
 
 	if (!isset($_POST['cedula'],$_POST['orden'])) {
-
 		// Instanciacion y consulta de estudiante
 		$estudiantes->set_cedula_persona($_POST['cedula']);
 		$datos_estudiante = $estudiantes->consultar_estudiantes();
-
 		$telefonos->set_cedula_persona($_POST['cedula']);
 		$tlfs_estudiante = $telefonos->consultar_telefonos();
-
 		$vacunas_est->set_cedula_estudiante($datos_estudiante['cedula']);
 		$vacunas_estudiante = $vacunas_est->consultar_vacunas_est();
-
 		
 		// Instanciacion y consulta de representante
 		$representantes->set_cedula_persona($_POST['cedula_representante']);
 		$datos_representante = $representantes->consultar_representantes();
-
 		$telefonos->set_cedula_persona($_POST['cedula_representante']);
 		$tlfs_representante = $telefonos->consultar_telefonos();
 
@@ -49,38 +44,15 @@
 		// Instanciacion y consulta de padre
 		$padres->set_cedula_persona($_POST['cedula_padre']);
 		$datos_padre = $padres->consultar_padres();
-
 		$telefonos->set_cedula_persona($_POST['cedula_padre']);
 		$tlfs_padre = $telefonos->consultar_telefonos();
-
 
 		// Instanciacion y consulta de madre
 		$padres->set_cedula_persona($_POST['cedula_madre']);
 		$datos_madre = $padres->consultar_padres();
-
 		$telefonos->set_cedula_persona($_POST['cedula_madre']);
 		$tlfs_madre = $telefonos->consultar_telefonos();
 	}
-
-	else {
-
-		// el boton de eliminar genera una acción sobre esta misma vista
-
-		// Verifica que se haya especificado una orden y que esta sea eliminar
-		if (isset($_POST['orden'])) {
-			if ($_POST['orden'] == "eliminar") {
-
-				// Se almacena en sesion temporalmente
-				$_SESSION['orden'] = $_POST['orden'];
-				$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
-
-				// Redirecciona al controlador para ejecutar la eliminacion
-				header('Location: ../../controladores/registros/control_registros.php');
-			}
-		}
-	}
-
-	$nivel = 2;
 
 ?>
 
@@ -218,28 +190,6 @@
 							<input type="hidden" name="cedula" value="<?php echo $datos_estudiante['cedula'];?>">
 						</form>
 
-						<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
-						
-						<!-- Eliminar registro de estudiante -->
-						<form
-							id="eliminar_registro_<?php echo $datos_estudiante['cedula'];?>"
-							class="d-inline-block"
-							action="#"
-							method="post"
-							onsubmit="confirmar_envio(event)"
-						>
-							<input 
-								type="hidden" 
-								name="cedula" 
-								value="<?php echo $datos_estudiante['cedula'];?>"
-							>
-							<input 
-								type="hidden" 
-								name="orden" 
-								value="eliminar"
-							>
-						</form>
-						<?php endif;?>
 
 						<div class="btn-group dropup col-12 col-sm-auto" role="group" aria-label="Button group with nested dropdown">
 
@@ -280,17 +230,6 @@
 										>
 											<i class="fas fa-graduation-cap fa-lg ms-2"></i>
 											Actualizar año y sección
-										</button>
-									</li>
-
-									<li>
-										<button
-											class="dropdown-item"
-											type="submit"
-											form="eliminar_registro_<?php echo $datos_estudiante['cedula'];?>"
-										>
-											<i class="fas fa-trash-can fa-lg ms-2"></i>
-											Eliminar
 										</button>
 									</li>
 

@@ -18,8 +18,6 @@
 	// personas
 	$personas = new personas();
 	$usuarios = new usuarios();
-
-	// var_dump($_SESSION);
 	
 	if (isset($_SESSION['orden'])) {
 		if ($_SESSION['orden'] == "insertar") {

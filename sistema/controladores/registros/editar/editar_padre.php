@@ -10,7 +10,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+
 
 
 			// Datos de persona
@@ -28,7 +28,6 @@
 
 			// Inserta la persona
 			$personas->editar_persona($_SESSION['datos_padre']['cedula']);
-			// var_dump($personas);
 
 			// Almacena la cédula del padre
 			$cedula_padre = $personas->get_cedula();
@@ -41,7 +40,6 @@
 			$telefonos->set_prefijo(dato_sesion_i("prefijo_principal_p",2));
 			$telefonos->set_numero(dato_sesion_i("telefono_principal_p",2));
 			$telefonos->editar_telefono();
-			// var_dump($telefonos);
 
 			// Telefono secundario
 			$telefonos->set_cedula_persona($cedula_padre);
@@ -49,9 +47,6 @@
 			$telefonos->set_prefijo(dato_sesion_i("prefijo_secundario_p",2));
 			$telefonos->set_numero(dato_sesion_i("telefono_secundario_p",2));
 			$telefonos->editar_telefono();
-			// var_dump($telefonos);
-
-
 
 			// direcciones
 
@@ -64,7 +59,6 @@
 			$direcciones->set_nro_casa("");
 			$direcciones->set_punto_referencia(dato_sesion_i("direccion_p",2));
 			$direcciones->editar_direcciones();
-			// var_dump($direcciones);
 
 			// Datos del representante
 
@@ -82,7 +76,6 @@
 				$padres->set_pais_residencia(dato_sesion_i("pais_p",2));
 			}
 			$padres->editar_padres();
-			// var_dump($padres);
 
 
 			// datos_laborales
@@ -92,7 +85,6 @@
 			$datos_laborales->set_remuneracion(dato_sesion_i("remuneracion_p",2));
 			$datos_laborales->set_tipo_remuneracion(dato_sesion_i("tipo_remuneracion_p",2));
 			$datos_laborales->editar_datos_laborales();
-			// var_dump($datos_laborales);
 
 			// Telefono del trabajo
 			$telefonos->set_cedula_persona($cedula_padre);
@@ -100,7 +92,6 @@
 			$telefonos->set_prefijo(dato_sesion_i("prefijo_trabajo_p",2));
 			$telefonos->set_numero(dato_sesion_i("telefono_trabajo_p",2));
 			$telefonos->editar_telefono();
-			// var_dump($telefonos);
 
 
 			// datos_vivienda
@@ -116,7 +107,6 @@
 				$datos_vivienda->set_tenencia(dato_sesion_i("tenencia_vivienda_p",2));
 			}
 			$datos_vivienda->editar_datos_vivienda();
-			// var_dump($datos_vivienda);
 
 
 		// elimina los valores almacenados en sesion de este proceso
@@ -129,7 +119,7 @@
 
 	}
 	else {
-		// echo "b";
+
 	}
 
 ?>

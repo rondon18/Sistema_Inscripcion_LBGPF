@@ -1,12 +1,7 @@
 <?php
 	session_start();
-
 	$nivel = 1;
-
 	$manual = true;
-
-	// // var_dump($_SESSION);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -55,6 +55,8 @@
 						$conexion->query($sql);
 						desconectarBD($conexion);
 						$this->corregir_c_madres();
+						$this->set_estado("Inscrito");
+						$this->cambiar_estado();
 					}
 					catch (mysqli_sql_exception $e) {
 						miManejadorExcepcion($e);
@@ -113,6 +115,32 @@
 						$conexion->query($sql);
 						desconectarBD($conexion);
 						$this->corregir_c_madres();
+						$this->set_estado("Inscrito");
+						$this->cambiar_estado();
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
+		}
+		public function cambiar_estado() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
+					$estado = mysqli_escape_string($conexion,$this->get_estado());
+					$sql = "UPDATE `estudiantes` SET `estado` = '$estado' WHERE `cedula_persona` = '$cedula_persona' ";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
 					}
 					catch (mysqli_sql_exception $e) {
 						miManejadorExcepcion($e);
@@ -261,7 +289,8 @@
 							`acceso_internet`,
 							`grado_a_cursar`,
 							`seccion`,
-							`id_per_academico`
+							`id_per_academico`,
+							`estado_inscripcion`
 						FROM
 							`vista_estudiantes`
 					";
@@ -1087,6 +1116,10 @@
 			return $this->cedula_representante;
 		}
 
+		public function get_estado() {
+			return $this->estado;
+		}
+
 		// SETTERS
 		public function set_cedula_persona($cedula_persona) {
 			try {
@@ -1222,5 +1255,20 @@
 				miManejadorExcepcion($e);
 			}
 		}
+
+		public function set_estado($estado) {
+			$estados = ["inscrito","retirado","egresado",];
+			try {
+				// Validar la longitud y el formato del dato
+				if (!in_array(strtolower($estado),$estados)) {
+					throw new Exception("El estado del estudiante: $estado es inválido");
+				}
+				$this->estado = $estado;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
+		}
+
 	}
 ?>

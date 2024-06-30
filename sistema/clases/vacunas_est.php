@@ -13,101 +13,118 @@
 		public function __construct() {}
 
 		public function insertar_vacunas_est() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$espec_vacuna = mysqli_escape_string($conexion,$this->get_espec_vacuna());
+					$estado_vacuna = mysqli_escape_string($conexion,$this->get_estado_vacuna());
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$espec_vacuna = $this->get_espec_vacuna();
-			$estado_vacuna = $this->get_estado_vacuna();
-
-			// Verifica si no hay un registro previo para evitar excendentes
-			if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
-				$conexion = conectarBD();
-
-				$sql = "
-					INSERT INTO `vacunas_est`(
-						`cedula_estudiante`,
-						`espec_vacuna`,
-						`estado_vacuna`
-					)
-					VALUES(
-						'$cedula_estudiante',
-						'$espec_vacuna',
-						'$estado_vacuna'
-					)
-					ON DUPLICATE KEY UPDATE
-					`cedula_estudiante` = `cedula_estudiante`;
-				";
-
-				// echo $sql;
-				
-				$conexion->query($sql) or die("error: ".$conexion->error);
-
-				desconectarBD($conexion);
+					// Verifica si no hay un registro previo para evitar excendentes
+					if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
+						$sql = "INSERT INTO `vacunas_est`(`cedula_estudiante`, `espec_vacuna`, `estado_vacuna` ) VALUES( '$cedula_estudiante', '$espec_vacuna', '$estado_vacuna' ) ON DUPLICATE KEY UPDATE `cedula_estudiante` = `cedula_estudiante`;";
+					}
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
 			}
 		}
 
 		public function editar_vacunas_est() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$espec_vacuna = mysqli_escape_string($conexion,$this->get_espec_vacuna());
+					$estado_vacuna = mysqli_escape_string($conexion,$this->get_estado_vacuna());
 
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$espec_vacuna = $this->get_espec_vacuna();
-			$estado_vacuna = $this->get_estado_vacuna();
-
-			// Verifica si no hay un registro previo para evitar excendentes
-			if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
-				$conexion = conectarBD();
-
-				$sql = "
-					UPDATE
-					  `vacunas_est`
-					SET
-					  `estado_vacuna` = 'estado_vacuna'
-					WHERE
-					  `cedula_estudiante` = 'cedula_estudiante' AND
-					  `espec_vacuna` = 'espec_vacuna'
-				";
-
-				// echo $sql;
-				
-				$conexion->query($sql) or die("error: ".$conexion->error);
-
-				desconectarBD($conexion);
+					// Verifica si no hay un registro previo para evitar excendentes
+					if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
+						$sql = "UPDATE `vacunas_est` SET `estado_vacuna` = 'estado_vacuna' WHERE `cedula_estudiante` = 'cedula_estudiante' AND `espec_vacuna` = 'espec_vacuna';";
+					}
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
 			}
 		}
 
 		public function consultar_vacunas_est() {
-			// Muestra todas las vacunas disponibles
-			$conexion = conectarBD();
-
-			$cedula_estudiante = $this->get_cedula_estudiante();
-
-			$sql = "SELECT * FROM `vacunas_est` WHERE `cedula_estudiante` = '$cedula_estudiante'";
-
-			$consulta_vacunas = $conexion->query($sql) or die("error: ".$conexion->error);
-			$vacunas = $consulta_vacunas->fetch_all(MYSQLI_ASSOC);
-			
-			desconectarBD($conexion);
-
-			return $vacunas;
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					// Muestra todas las vacunas disponibles
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$sql = "SELECT * FROM `vacunas_est` WHERE `cedula_estudiante` = '$cedula_estudiante'";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$consulta_vacunas = $conexion->query($sql);
+						$vacunas = $consulta_vacunas->fetch_all(MYSQLI_ASSOC);
+						desconectarBD($conexion);
+						return $vacunas;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return null;
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return null;
+			}
 		}
 
 		public function verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) {
-			$conexion = conectarBD();
-
-			$sql = "
-				SELECT
-					*
-				FROM
-					`vacunas_est`
-				WHERE
-					`cedula_estudiante` = '$cedula_estudiante' 
-						AND 
-					`espec_vacuna` = '$espec_vacuna';
-			";
-			
-			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
-			
-			return $resultado->num_rows;
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$sql = "SELECT * FROM `vacunas_est` WHERE `cedula_estudiante` = '$cedula_estudiante' AND `espec_vacuna` = '$espec_vacuna';";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$resultado = $conexion->query($sql);
+						desconectarBD($conexion);
+						return $resultado->num_rows;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return 0;
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return 0;
+			}
 		}
 
 
@@ -179,8 +196,6 @@
 				miManejadorExcepcion($e);
 			}
 		}
-
-
 	}
 
 ?>

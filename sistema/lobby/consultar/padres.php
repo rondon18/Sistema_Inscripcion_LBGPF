@@ -81,9 +81,6 @@ $lista_padres = $padres->mostrar_padres();
 							$grados_hijos[] = $hijo['grado_a_cursar'];
 						}
 						echo mb_strtoupper(implode(',', $grados_hijos));
-
-						// echo $padres->contar_hijos();
-
 					?>
 				</td>
 

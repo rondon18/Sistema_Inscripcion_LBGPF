@@ -13,63 +13,58 @@
 		// CONSTRUCTOR
 		public function __construct() {}
 
-
 		public function insertar_vac_covid19_est() {
-			$conexion = conectarBD();
-
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$vac_aplicada = $this->get_vac_aplicada();
-			$dosis = $this->get_dosis();
-			$lote = $this->get_lote();
-
-			$sql = "
-				INSERT INTO `vac_covid19_est`(
-					`cedula_estudiante`,
-					`vac_aplicada`,
-					`dosis`,
-					`lote`
-				)
-				VALUES(
-					'$cedula_estudiante',
-					'$vac_aplicada',
-					'$dosis',
-					'$lote'
-				)
-				ON DUPLICATE KEY UPDATE
-				`cedula_estudiante` = `cedula_estudiante`;
-			";
-
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$vac_aplicada = mysqli_escape_string($conexion,$this->get_vac_aplicada());
+					$dosis = mysqli_escape_string($conexion,$this->get_dosis());
+					$lote = mysqli_escape_string($conexion,$this->get_lote());
+					$sql = "INSERT INTO `vac_covid19_est`( `cedula_estudiante`, `vac_aplicada`, `dosis`, `lote` ) VALUES( '$cedula_estudiante', '$vac_aplicada', '$dosis', '$lote' ) ON DUPLICATE KEY UPDATE `cedula_estudiante` = `cedula_estudiante`; ";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function editar_vac_covid19_est() {
-			$conexion = conectarBD();
-
-			$cedula_estudiante = $this->get_cedula_estudiante();
-			$vac_aplicada = $this->get_vac_aplicada();
-			$dosis = $this->get_dosis();
-			$lote = $this->get_lote();
-
-			$sql = "
-				UPDATE
-				  `vac_covid19_est`
-				SET
-				  `vac_aplicada` = '$vac_aplicada',
-				  `dosis` = '$dosis',
-				  `lote` = '$lote'
-				WHERE
-				  `cedula_estudiante` = '$cedula_estudiante'
-			";
-
-			// echo $sql;
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-
-			desconectarBD($conexion);
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_estudiante = mysqli_escape_string($conexion,$this->get_cedula_estudiante());
+					$vac_aplicada = mysqli_escape_string($conexion,$this->get_vac_aplicada());
+					$dosis = mysqli_escape_string($conexion,$this->get_dosis());
+					$lote = mysqli_escape_string($conexion,$this->get_lote());
+					$sql = "UPDATE `vac_covid19_est` SET `vac_aplicada` = '$vac_aplicada', `dosis` = '$dosis', `lote` = '$lote' WHERE `cedula_estudiante` = '$cedula_estudiante' ";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		// GETTERS

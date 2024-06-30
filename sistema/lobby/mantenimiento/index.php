@@ -23,17 +23,6 @@ $bitacora->actualizar_bitacora();
 $listado = glob('../../respaldos/*', GLOB_NOSORT);
 $listado = array_reverse($listado,true);
 
-
-// Auxiliar para verificar que vuelca glob()
-// echo "<table border='1' style='margin-top:100px'>";
-// foreach ($listado as $key => $value) {
-// 	echo "<tr>";
-// 	echo "<td>".$key."</td>";
-// 	echo "<td>".$value."</td>";
-// 	echo "</tr>";
-// }
-// echo "</table>";
-
 function hallarRespaldosEsp($dato){
 	if (strlen(substr($dato, 16)) != 34) {
 		return true;

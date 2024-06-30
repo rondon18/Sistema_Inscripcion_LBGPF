@@ -167,20 +167,6 @@
 
 		}
 
-
-		// Eliminar registro
-		elseif ($_SESSION['orden'] == "eliminar") {
-			require('eliminar_registro.php');
-
-			$_SESSION['acciones'] .= ', Elimina un estudiante';
-			$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
-			$bitacora->set_acciones_realizadas($_SESSION['acciones']);
-			$bitacora->actualizar_bitacora();
-
-			header('Location: ../../lobby/consultar/index.php?sec=est&exito');
-
-		}
-
 		// Caso aparte
 		else {
 			header('Location: ../../lobby/');

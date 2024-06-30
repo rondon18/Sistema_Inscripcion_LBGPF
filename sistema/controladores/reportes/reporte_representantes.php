@@ -230,10 +230,6 @@
 		$representantes->set_cedula_persona($estudiante["cedula_representante"]);
 		$representante = $representantes->consultar_representantes();
 
-		// var_dump($representante);
-
-		// echo "<br><br><br>";
-
 		// Incluye los datos personales
 		$datos_fila = array_merge(
 
@@ -419,7 +415,6 @@
 
 	}
 
-	// echo $lineas;
 
 	// Estilos de la cabecera
 	$max_col = $hoja->getHighestColumn();

@@ -123,7 +123,7 @@
 
 		public function set_grado_a_cursar($grado_a_cursar) {
 			try {
-				$grados = ["primer año","segundo año","tercer año","cuarto año","quinto año",];
+				$grados = ["primer año","segundo año","tercer año","cuarto año","quinto año",""];
 				if (!in_array(strtolower($grado_a_cursar), $grados)) {
 					throw new Exception("El grado: ($grado_a_cursar) se encuentra fuera de los valores admitidos");
 				}

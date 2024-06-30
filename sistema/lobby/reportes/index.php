@@ -18,8 +18,6 @@
 
 	$nivel = 2;
 
-	// var_dump($_SESSION);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

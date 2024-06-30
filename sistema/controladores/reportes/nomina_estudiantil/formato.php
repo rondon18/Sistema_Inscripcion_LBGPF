@@ -6,7 +6,7 @@
 </head>
 
 
-<body class="m-0 p-0">
+<body class="m-0 p-0" style="font-family: Arial,sans-serif;">
 
 	<style type="text/css">
 

@@ -31,7 +31,6 @@
 
 		// edita la persona
 		$personas->editar_persona($_SESSION['datos_representante']['cedula']);
-		// var_dump($personas);
 
 		// Almacena la cédula del representante
 		$cedula_representante = $personas->get_cedula();
@@ -45,7 +44,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_principal_r"));
 		$telefonos->set_numero(dato_sesion_i("telefono_principal_r"));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 
 		// Telefono secundario
@@ -54,7 +52,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_secundario_r"));
 		$telefonos->set_numero(dato_sesion_i("telefono_secundario_r"));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 		// Telefono auxiliar
 		$telefonos->set_cedula_persona($cedula_representante);
@@ -62,7 +59,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_auxiliar_r"));
 		$telefonos->set_numero(dato_sesion_i("telefono_auxiliar_r"));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 
 		// carnet_patria
@@ -71,7 +67,6 @@
 		$carnet_patria->set_codigo_carnet(dato_sesion_i("codigo_carnet_patria_r"));
 		$carnet_patria->set_serial_carnet(dato_sesion_i("serial_carnet_patria_r"));
 		$carnet_patria->editar_carnet_patria();
-		// var_dump($carnet_patria);
 
 
 		// direcciones
@@ -85,7 +80,6 @@
 		$direcciones->set_nro_casa(dato_sesion_i("nro_casa"));
 		$direcciones->set_punto_referencia(dato_sesion_i("punto_referencia"));
 		$direcciones->editar_direcciones();
-		// var_dump($direcciones);
 
 
 		// Datos del representante
@@ -97,7 +91,6 @@
 		$datos_laborales->set_remuneracion(dato_sesion_i("remuneracion_r"));
 		$datos_laborales->set_tipo_remuneracion(dato_sesion_i("tipo_remuneracion_r"));
 		$datos_laborales->editar_datos_laborales();
-		// var_dump($datos_laborales);
 
 		// Telefono del trabajo
 		$telefonos->set_cedula_persona($cedula_representante);
@@ -105,7 +98,6 @@
 		$telefonos->set_prefijo(dato_sesion_i("prefijo_trabajo_r"));
 		$telefonos->set_numero(dato_sesion_i("telefono_trabajo_r"));
 		$telefonos->editar_telefono();
-		// var_dump($telefonos);
 
 
 
@@ -122,7 +114,6 @@
 			$datos_vivienda->set_tenencia(dato_sesion_i("tenencia_vivienda_r"));
 		}
 		$datos_vivienda->editar_datos_vivienda();
-		// var_dump($datos_vivienda);
 
 
 		// datos_economicos
@@ -131,7 +122,6 @@
 		$datos_economicos->set_tipo_cuenta(dato_sesion_i("tipo_cuenta"));
 		$datos_economicos->set_nro_cuenta(dato_sesion_i("nro_cuenta"));
 		$datos_economicos->editar_datos_economicos();
-		// var_dump($datos_economicos);
 
 
 		// contactos_aux
@@ -142,7 +132,6 @@
 		$contactos_aux->set_nro_telefono(dato_sesion_i("telefono_principal_aux"));
 		$contactos_aux->set_relacion(dato_sesion_i("relacion_auxiliar"));
 		$contactos_aux->editar_contactos_aux();
-		// var_dump($contactos_aux);
 
 
 

@@ -57,7 +57,6 @@
 						`cedula_persona` = `cedula_persona`;
 					";
 
-					// echo $sql;
 
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
@@ -99,7 +98,6 @@
 							`cedula_persona` = '$cedula_persona';
 					";
 
-					// echo $sql;
 
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
@@ -137,7 +135,6 @@
 							`cedula_persona` = '$cedula_persona';
 					";
 
-					// echo $sql;
 
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
@@ -156,54 +153,88 @@
 		}
 
 		public function mostrar_usuarios() {
-			// Muestra todos los usuarios registrados
-			$conexion = conectarBD();
-
-			$sql = "SELECT * FROM `vista_usuarios`";
-
-			$resultado = $conexion->query($sql) or die("error: ".$conexion->error);
-
-			$lista_usuarios = $resultado->fetch_all(MYSQLI_ASSOC);
-
-			desconectarBD($conexion);
-
-			return $lista_usuarios;
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$sql = "SELECT * FROM `vista_usuarios`";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$resultado = $conexion->query($sql);
+						$lista_usuarios = $resultado->fetch_all(MYSQLI_ASSOC);
+						desconectarBD($conexion);
+						return $lista_usuarios;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return [];
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return [];
+			}
 		}
 
 
 		public function consultar_usuario() {
-
-			$conexion = conectarBD();
-
-			$cedula = $this->get_cedula_persona();
-
-			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula';";
-
-			$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
-			$usuario = $consulta_usuario->fetch_assoc();
-
-			desconectarBD($conexion);
-
-			return $usuario;
-
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula = mysqli_escape_string($conexion,$this->get_cedula_persona());
+					$sql = "SELECT * FROM `vista_usuarios` WHERE `cedula` = '$cedula';";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$consulta_usuario = $conexion->query($sql);
+						$usuario = $consulta_usuario->fetch_assoc();
+						desconectarBD($conexion);
+						return $usuario;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return null;
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return null;
+			}
 		}
 
 		public function chequeo_login() {
-			$conexion = conectarBD();
-
-			$cedula = $this->get_cedula();
-			$contrasenia = $this->get_contrasenia();
-
-			$sql = "SELECT * FROM vista_usuarios WHERE cedula = '$cedula' and contraseña = '$contrasenia';";
-
-			// echo $sql;
-
-			$consulta_usuario = $conexion->query($sql) or die("error: ".$conexion->error);
-			$usuario = $consulta_usuario->fetch_assoc();
-
-			desconectarBD($conexion);
-
-			return $usuario;
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula = mysqli_escape_string($conexion,$this->get_cedula());
+					$contrasenia = mysqli_escape_string($conexion,$this->get_contrasenia());
+					$sql = "SELECT * FROM `vista_usuarios` WHERE `cedula` = '$cedula' and `contraseña` = '$contrasenia';";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$consulta_usuario = $conexion->query($sql);
+						$usuario = $consulta_usuario->fetch_assoc();
+						desconectarBD($conexion);
+						return $usuario;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+						return null;
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return null;
+			}
 		}
 
 		// GETTERS

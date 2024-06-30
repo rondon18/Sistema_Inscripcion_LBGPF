@@ -11,6 +11,7 @@
 	require('../../lobby/consultar/funciones.php');
 	require('../../clases/bitacora.php');
 	require('../../controladores/conexion.php');
+	require('../../logs/error_handler.php');
 
 	require("../../clases/antropometria_est.php");
 	require("../../clases/carnet_patria.php");

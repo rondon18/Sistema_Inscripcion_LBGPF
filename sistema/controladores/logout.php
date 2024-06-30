@@ -42,7 +42,6 @@
 		header('Location: ../index.php');
 	}
 
-	
 	// finaliza cualquier script php
 	exit();
 ?>

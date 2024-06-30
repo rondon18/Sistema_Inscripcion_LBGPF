@@ -6,13 +6,13 @@
 		header('Location: ../../index.php');
 		exit();
 	}
-	require('../logs/error_handler.php');
 	require('conexion.php');
 	require('../clases/estudiantes.php');
 	require('../clases/representantes.php');
 	require('../clases/datos_economicos.php');
 	require('../clases/carnet_patria.php');
 	require('../clases/contactos_aux.php');
+	// require('../logs/error_handler.php');
 
 	$estudiantes = new estudiantes();
 	$representantes = new representantes();
@@ -49,7 +49,6 @@
 
 	// Actualizacion del estudiante
 
-	$estudiantes->set_cedula_escolar($datos_estudiante['cedula_escolar']);
 	$estudiantes->set_plantel_proced($datos_estudiante['plantel_proced']);
 	$estudiantes->set_con_quien_vive($datos_estudiante['con_quien_vive']);
 	$estudiantes->set_cedula_padre($datos_estudiante['cedula_padre']);
@@ -66,6 +65,6 @@
 
 	$estudiantes->editar_estudiantes();
 
-	header('Location: ../lobby/consultar/');
+	header('Location: ../lobby/consultar/?exito');
 
 ?>

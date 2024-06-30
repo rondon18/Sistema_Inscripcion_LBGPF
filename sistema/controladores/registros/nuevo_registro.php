@@ -2,7 +2,7 @@
 
 	if ($_SESSION['orden'] == "insertar" and isset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3'])) {
 
-		// echo "insertar";
+		
 
 
 		// funciones usadas durante el proceso de registro
@@ -146,7 +146,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+			
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Padre") {
@@ -277,7 +277,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+			
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Madre") {
@@ -663,6 +663,6 @@
 
 	}
 	else {
-		// echo "b";
+		
 	}
 ?>
