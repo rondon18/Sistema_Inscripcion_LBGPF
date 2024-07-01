@@ -1,6 +1,6 @@
-// Deja una ventana de 15 minutos por si el usuario deja el equipo por momentos
+// Deja una ventana de 5 minutos por si el usuario deja el equipo por momentos
 
-var minutos = 15;
+var minutos = 5;
 var segundos = minutos * 60;
 
 var inactivityTime = segundos * 1000; 

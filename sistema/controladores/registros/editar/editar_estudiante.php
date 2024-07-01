@@ -11,12 +11,7 @@
 		// Persona
 
 		// si alguno de los dos esta vacio, se usará le cédula escolar
-		if (empty(dato_sesion_i("nacionalidad_est",3)) or (empty(dato_sesion_i("cedula_est",3)))) {
-			$personas->set_cedula(dato_sesion_i("cedula_escolar_est",3));
-		}
-		else {
-			$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
-		}
+		$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
 
 		// Datos de persona
 		$personas->set_p_nombre(dato_sesion_i("primer_nombre_est",3));
@@ -105,7 +100,6 @@
 		// Datos del estudiante
 
 		$estudiantes->set_cedula_persona($cedula_estudiante);
-		$estudiantes->set_cedula_escolar(dato_sesion_i("cedula_escolar_est",3));
 		$estudiantes->set_plantel_proced(dato_sesion_i("plantel_procedencia",3));
 		$estudiantes->set_con_quien_vive(dato_sesion_i("con_quien_vive",3));
 		$estudiantes->set_relacion_representante($_SESSION['datos_estudiante']['relacion_representante']);

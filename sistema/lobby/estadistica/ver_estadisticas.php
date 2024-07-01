@@ -30,7 +30,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Consultar registros</title>
+		<title>Consultar estadisticas</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
@@ -49,7 +49,7 @@
 			<div class="container-md">
 				<div class="card w-100">
 					<div class="card-header text-center">
-						<b class="fs-5">Consulta de estadisticas de <?php echo $_POST['estadistica'];?></b>
+						<b class="fs-5">CONSULTA DE ESTADISTICAS DE <?php echo mb_strtoupper($_POST['estadistica']);?></b>
 					</div>
 					<div class="card-body small" style="max-height: 65vh; overflow-y:auto;">
 

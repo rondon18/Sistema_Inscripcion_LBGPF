@@ -33,9 +33,6 @@ else {
 		header('Location: paso_3.php');
 	}
 }
-
-$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,7 +52,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de registro - Padres</b>
+						<b class="fs-5">FORMULARIO DE REGISTRO - PADRES</b>
 					</div>
 					<div class="card-body">
 						

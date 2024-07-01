@@ -15,9 +15,6 @@
 	$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
-
-	$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,7 +37,7 @@
 			<div class="container-md">
 				<div class="card w-100 my-3">
 					<div class="card-header text-center">
-						<b class="fs-5">Área de reportes</b>
+						<b class="fs-5">ÁREA DE REPORTES</b>
 					</div>
 
 

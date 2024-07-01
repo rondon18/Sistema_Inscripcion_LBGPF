@@ -35,7 +35,6 @@
 								  <p class="lead text-white mt-2 text-center mx-4">
 								  	Sistema de inscripción Liceo Bolivariano "Gonzalo Picón Febres"
 								  </p>
-
 								<span class="display-5"></span>
 							</div>
 						</div>
@@ -173,6 +172,15 @@
 				'Atencion',
 				'Su sesión fue cerrada debido a la inactividad',
 				'info'
+			);
+		</script>
+
+		<?php elseif(isset($_GET['denegado'])): ?>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Atencion',
+				'Su usuario se encuentra inhabilitado',
+				'warning'
 			);
 		</script>
 		<?php endif ?>

@@ -419,12 +419,8 @@
 		// Persona
 
 		// si alguno de los dos esta vacio, se usará le cédula escolar
-		if (empty(dato_sesion_i("nacionalidad_est",3)) or (empty(dato_sesion_i("cedula_est",3)))) {
-			$personas->set_cedula(dato_sesion_i("cedula_escolar_est",3));
-		}
-		else {
-			$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
-		}
+
+		$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
 
 		// Datos de persona	
 		$personas->set_p_nombre(dato_sesion_i("primer_nombre_est",3));

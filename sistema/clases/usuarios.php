@@ -12,6 +12,7 @@
 		private $respuesta_1;
 		private $pregunta_seg_2;
 		private $respuesta_2;
+		private $estado;
 
 
 		// CONSTRUCTOR
@@ -115,7 +116,6 @@
 			}
 		}
 
-
 		public function editar_contrasenia() {
 
 			try {
@@ -179,7 +179,6 @@
 			}
 		}
 
-
 		public function consultar_usuario() {
 			try {
 				if (!$conexion = conectarBD()) {
@@ -216,7 +215,7 @@
 				else {
 					$cedula = mysqli_escape_string($conexion,$this->get_cedula());
 					$contrasenia = mysqli_escape_string($conexion,$this->get_contrasenia());
-					$sql = "SELECT * FROM `vista_usuarios` WHERE `cedula` = '$cedula' and `contraseña` = '$contrasenia';";
+					$sql = "SELECT * FROM `vista_usuarios` WHERE `cedula` = '$cedula' and `contraseña` = '$contrasenia' and `estado` != 'Inactivo';";
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
 						$consulta_usuario = $conexion->query($sql);
@@ -234,6 +233,44 @@
 			catch (Exception $e) {
 				miManejadorExcepcion($e);
 				return null;
+			}
+		}
+
+		public function cambiar_estado() {
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					$cedula_persona = mysqli_escape_string($conexion,$this->get_cedula_persona());
+					$estado = mysqli_escape_string($conexion,$this->get_estado());
+
+					switch (strtolower($estado)) {
+						case 'activo':
+							$sql = "UPDATE `usuarios` SET `estado` = 'Inactivo' WHERE `cedula_persona` = '$cedula_persona';";
+							break;
+						case 'inactivo':
+							$sql = "UPDATE `usuarios` SET `estado` = 'Activo' WHERE `cedula_persona` = '$cedula_persona';";
+							break;
+
+						default:
+							throw new Exception("No se puede cambiar el estado, el estado ingresado no es válido");
+							break;
+					}
+
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
 			}
 		}
 
@@ -270,6 +307,9 @@
 			return $this->respuesta_2;
 		}
 
+		public function get_estado() {
+			return $this->estado;
+		}
 
 		// SETTERS
 		public function set_cedula_persona($cedula_persona) {
@@ -449,6 +489,21 @@
 
 		public function set_respuesta_2($respuesta_2) {
 			$this->respuesta_2 = $respuesta_2;
+		}
+
+		public function set_estado($estado) {
+			$estados = ["activo","inactivo"];
+			try {
+				// Validar la longitud y el formato del dato
+				if (!in_array(strtolower($estado),$estados)) {
+					throw new Exception("El estado del usuario: $estado es inválido");
+				}
+				$this->estado = $estado;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+				return null;
+			}
 		}
 	}
 

@@ -721,7 +721,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($pais_residencia) < 3 || strlen($pais_residencia) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $pais_residencia)) {
+				if (strlen($pais_residencia) < 3 || strlen($pais_residencia) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $pais_residencia)) {
 					throw new Exception("El país de residencia ($pais_residencia) cuenta con un formato inválido");
 				}
 

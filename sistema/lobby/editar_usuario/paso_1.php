@@ -6,9 +6,6 @@
 		header('Location: ../index.php');
 		exit();
 	}
-
-	$nivel = 2;
-
 	require("../../controladores/conexion.php");
 	require("../../clases/personas.php");
 	require("../../clases/usuarios.php");
@@ -48,7 +45,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Formulario de registro de usuarios</title>
+		<title>Formulario de edicion de usuarios</title>
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
@@ -61,7 +58,7 @@
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de registro - Usuario</b>
+						<b class="fs-5">FORMULARIO DE EDICION - USUARIO</b>
 					</div>
 					<div class="card-body">
 						<div class="row">

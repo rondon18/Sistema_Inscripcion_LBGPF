@@ -90,9 +90,6 @@ function estado_vacuna($n_vacuna) {
 	}
 }
 
-
-$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -112,7 +109,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de edición - Estudiante</b>
+						<b class="fs-5">FORMULARIO DE EDICIÓN - ESTUDIANTE</b>
 					</div>
 					<div class="card-body">
 						<div class="row">

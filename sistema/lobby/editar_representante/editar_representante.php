@@ -7,9 +7,6 @@
 		header('Location: ../index.php');
 		exit();
 	}
-
-	$nivel = 2;
-
 	// El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
 
 	// Verificación al momento de enviar el formulario
@@ -38,7 +35,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Editar estudiante - Paso 1 - Datos del representante</title>
+		<title>Editar representante</title>
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
@@ -51,7 +48,7 @@
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de edición - Representante</b>
+						<b class="fs-5">FORMULARIO DE EDICIÓN - REPRESENTANTE</b>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -1092,7 +1089,7 @@
 														name="representante_trabaja" 
 														value="Si" 
 														required
-														<?php if (!empty($_SESSION["datos_representante"]["empleo"])) {echo "checked";};?>
+														<?php if (!empty($_SESSION["datos_representante"]["empleo"] && strtolower($_SESSION["datos_representante"]["empleo"]) != "desempleado")) {echo "checked";};?>
 													>
 												</div>
 												<!-- Caso: No -->
@@ -1105,7 +1102,7 @@
 														name="representante_trabaja" 
 														value="No" 
 														required
-														<?php if (empty($_SESSION["datos_representante"]["empleo"])) {echo "checked";};?>
+														<?php if (empty($_SESSION["datos_representante"]["empleo"]) || strtolower($_SESSION["datos_representante"]["empleo"]) == "desempleado") {echo "checked";};?>
 													>
 												</div>
 												<label id="representante_trabaja-error" class="error w-100" style="display:none;" for="representante_trabaja"></label>

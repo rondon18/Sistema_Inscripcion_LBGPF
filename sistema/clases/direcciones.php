@@ -181,7 +181,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (!preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i',$estado) || strlen($estado) > 30) {
+				if (!preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i',$estado) || strlen($estado) > 30) {
 					throw new Exception("El estado: $estado es inválido");
 				}
 				$this->estado = $estado;
@@ -322,7 +322,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($sector) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $sector)) {
+				if (strlen($sector) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;\-?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $sector)) {
 					throw new Exception("El sector $sector cuenta con un formato inválido");
 				}
 
@@ -342,7 +342,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($calle) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $calle)) {
+				if (strlen($calle) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;\-?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $calle)) {
 					throw new Exception("La calle $calle cuenta con un formato inválido");
 				}
 
@@ -362,7 +362,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $nro_casa)) {
+				if (strlen($nro_casa) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;\-?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $nro_casa)) {
 					throw new Exception("El número de casa $nro_casa cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -381,7 +381,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($punto_referencia) > 80 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $punto_referencia)) {
+				if (strlen($punto_referencia) > 150 || !preg_match('/^[a-zA-Z0-9\s.,:;\-?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $punto_referencia)) {
 					throw new Exception("El punto de referencia $punto_referencia cuenta con un formato inválido");
 				}
 

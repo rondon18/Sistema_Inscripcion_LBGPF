@@ -31,9 +31,6 @@ function hallarRespaldosEsp($dato){
 		return false;
 	}
 }
-
-$nivel = 2;
-
 ?>
 
 
@@ -55,7 +52,7 @@ $nivel = 2;
 				
 				<div class="card">
 					<div class="card-header text-center">
-						<b class="fs-5">Área de mantenimiento</b>
+						<b class="fs-5">ÁREA DE MANTENIMIENTO</b>
 					</div>
 					
 					<div class="card-body row">

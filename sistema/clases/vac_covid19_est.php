@@ -112,7 +112,7 @@
 				}
 				$opciones = ["nv","pfizer/biontech","moderna","aztrazeneca","janssen","sinopharm","sinovac","bharat","cansinobio","valneva","novavax",];
 				// Validar la longitud y el formato de la cédula
-				if (!in_array(strtolower($vac_aplicada),$opciones) || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ/]+$/i', $vac_aplicada)) {
+				if (!in_array(strtolower($vac_aplicada),$opciones) || !preg_match('/^[a-zA-Z0-9\s\/.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $vac_aplicada)) {
 					throw new Exception("La vacuna contra el Covid19 ($vac_aplicada) tiene un formato inválido o está fuera de las opciones preestablecidas");
 				}
 				// Si el dato es válido, asignarlo a la propiedad

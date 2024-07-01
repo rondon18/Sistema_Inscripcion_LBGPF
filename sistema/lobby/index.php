@@ -17,7 +17,7 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 1;
+
 
 ?>
 

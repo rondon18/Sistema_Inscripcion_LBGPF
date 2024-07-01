@@ -7,9 +7,6 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
-$nivel = 2;
-
 // El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
 
 // Verificación al momento de enviar el formulario
@@ -51,7 +48,7 @@ if (isset($_POST['paso_1'])) {
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de registro - Representante</b>
+						<b class="fs-5">FORMULARIO DE REGISTRO - REPRESENTANTE</b>
 					</div>
 					<div class="card-body">
 						<div class="row">

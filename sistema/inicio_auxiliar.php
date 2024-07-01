@@ -15,12 +15,9 @@
 			$nombre = $datos_usuario['p_nombre']. " " .$datos_usuario['p_apellido'];
 			$pregunta_1 = $datos_usuario['pregunta_seg_1'];
 			$pregunta_2 = $datos_usuario['pregunta_seg_2'];
-			// $respuesta_1 = $datos_usuario['respuesta_1'];
-			// $respuesta_2 = $datos_usuario['respuesta_2'];
 		}
 		else {
 			header('Location: index.php?error_cedula');
-
 		}
 	}
 ?>

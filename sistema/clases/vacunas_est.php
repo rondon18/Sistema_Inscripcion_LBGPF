@@ -56,6 +56,9 @@
 					if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
 						$sql = "UPDATE `vacunas_est` SET `estado_vacuna` = 'estado_vacuna' WHERE `cedula_estudiante` = 'cedula_estudiante' AND `espec_vacuna` = 'espec_vacuna';";
 					}
+					else {
+						return;
+					}
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
 						$conexion->query($sql);

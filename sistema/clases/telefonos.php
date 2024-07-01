@@ -167,15 +167,15 @@
 		public function set_relacion($relacion) {
 			try {
 				// Validar que la cédula no esté vacía
-				if (empty($cedula_persona)) {
+				if (empty($relacion)) {
 					throw new Exception("El número de cédula no puede estar vacío");
 				}
 				// Validar la longitud y el formato de la cédula
 				if (!in_array(strtolower($relacion), ["principal","secundario","auxiliar","trabajo",])) {
-					throw new Exception("El número de cédula $cedula_persona tiene un formato inválido");
+					throw new Exception("La relación del teléfono ($relacion) tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
-				$this->cedula_persona = $cedula_persona;
+				$this->relacion = $relacion;
 			}
 			catch (Exception $e) {
 				miManejadorExcepcion($e);

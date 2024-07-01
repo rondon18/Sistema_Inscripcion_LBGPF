@@ -52,6 +52,14 @@
 		$datos_madre = $padres->consultar_padres();
 		$telefonos->set_cedula_persona($_POST['cedula_madre']);
 		$tlfs_madre = $telefonos->consultar_telefonos();
+
+
+		// Actualiza la bitácora
+		$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+		$_SESSION['acciones'] .= ", Consulta el estudiante " .  $_POST['cedula'];
+		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+		$bitacora->actualizar_bitacora();
+
 	}
 
 ?>
@@ -106,7 +114,7 @@
 				<div class="card w-100">
 
 					<div class="card-header text-center">
-						<b class="fs-5">Consulta de registros</b>
+						<b class="fs-5">CONSULTA DE REGISTROS</b>
 					</div>
 
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
@@ -236,7 +244,7 @@
 								</ul>
 							</div>
 						</div>
-
+						<?php if ($datos_estudiante["estado_inscripcion"] == "Inscrito"): ?>
 						<form class="d-inline-block" action="../../controladores/control_planillaje.php" method="post">
 							<div class="input-group">
 
@@ -264,7 +272,7 @@
 
 							</div>
 						</form>
-
+						<?php endif ?>
 					</div>
 					
 				</div>

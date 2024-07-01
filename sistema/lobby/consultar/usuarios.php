@@ -22,10 +22,11 @@
 
 	if (isset($_POST['orden'])) {
 
-		if ($_POST['orden'] == "eliminar") {
+		if ($_POST['orden'] == "cambiar_estado") {
 
 			$_SESSION['orden'] = $_POST['orden'];
-			$_SESSION['eliminar_usuario'] = $_POST['cedula'];
+			$_SESSION['usuario'] = $_POST['cedula'];
+			$_SESSION['estado'] = $_POST['estado'];
 
 			header('Location: ../../controladores/control_usuarios.php');
 		}
@@ -43,6 +44,7 @@
 			<th>CORREO ELECTRÓNICO</th>
 			<th>PRIVILEGIOS</th>
 			<th>CARGO</th>
+			<th>ESTADO</th>
 			<th>ACCIONES</th>
 		</thead>
 		<tbody class="text-truncate">
@@ -60,6 +62,7 @@
 				<td><?php echo mb_strtoupper(privilegios($usuario['privilegios']));?></td>
 
 				<td><?php echo mb_strtoupper($usuario['rol'])?></td>
+				<td><?php echo mb_strtoupper($usuario['estado'])?></td>
 					
 				
 				<td style="min-width: 100vw;">
@@ -77,8 +80,8 @@
 
 					<div class="d-inline-block">
 						<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
-							Eliminar Usuario
-							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
+							Cambiar estado
+							<i class="fa-solid fa-user-cog fa-lg ms-2"></i>
 						</button>
 					</div>
 
@@ -94,10 +97,11 @@
 
 					<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
 						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
-						<input type="hidden" name="orden" value="eliminar">
+						<input type="hidden" name="estado" value="<?php echo $usuario['estado'];?>">
+						<input type="hidden" name="orden" value="cambiar_estado">
 						<button class="btn btn-sm btn-danger" type="submit">
-							Eliminar Usuario
-							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
+							Cambiar estado
+							<i class="fa-solid fa-user-cog fa-lg ms-2"></i>
 						</button>
 					</form>
 

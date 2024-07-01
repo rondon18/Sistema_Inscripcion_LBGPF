@@ -17,9 +17,6 @@
 
 	$estudiantes->set_cedula_persona($_POST['cedula']);
 	$datos_estudiante = $estudiantes->consultar_estudiantes();
-
-
-	$nivel = 2;
 ?>
 <!DOCTYPE html>
 <html lang="es">

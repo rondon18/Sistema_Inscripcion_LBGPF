@@ -9,6 +9,7 @@
 		private $cedula_padre;
 		private $cedula_madre;
 		private $cedula_representante;
+		private $estado;
 
 		// CONSTRUCTOR
 		public function __construct() {}

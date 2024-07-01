@@ -288,7 +288,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($p_nombre) < 3 || strlen($p_nombre) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $p_nombre)) {
+				if (strlen($p_nombre) < 3 || strlen($p_nombre) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $p_nombre)) {
 					throw new Exception("El primer nombre ($p_nombre) tiene un formato inválido");
 				}
 
@@ -310,7 +310,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($s_nombre) < 3 || strlen($s_nombre) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $s_nombre)) {
+				if (strlen($s_nombre) < 3 || strlen($s_nombre) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $s_nombre)) {
 					throw new Exception("El segundo nombre ($s_nombre) tiene un formato inválido");
 				}
 
@@ -331,7 +331,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($p_apellido) < 3 || strlen($p_apellido) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $p_apellido)) {
+				if (strlen($p_apellido) < 2 || strlen($p_apellido) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $p_apellido)) {
 					throw new Exception("El primer apellido ($p_apellido) tiene un formato inválido");
 				}
 
@@ -352,7 +352,7 @@
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (strlen($s_apellido) < 3 || strlen($s_apellido) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $s_apellido)) {
+				if (strlen($s_apellido) < 2 || strlen($s_apellido) > 40 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $s_apellido)) {
 					throw new Exception("El segundo apellido ($s_apellido) tiene un formato inválido");
 				}
 
@@ -396,7 +396,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($lugar_nacimiento) < 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $lugar_nacimiento)) {
+				if (strlen($lugar_nacimiento) < 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $lugar_nacimiento)) {
 					throw new Exception("El lugar de nacimiento ($lugar_nacimiento) cuenta con un formato inválido");
 				}
 

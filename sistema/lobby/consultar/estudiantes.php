@@ -387,6 +387,7 @@
 						</div>
 					</div>
 
+					<?php if ($estudiante["estado_inscripcion"] == "Inscrito"): ?>
 					<form action="../../controladores/control_planillaje.php" method="post">
 						<div>
 							<div class="input-group input-group-sm flex-nowrap">
@@ -419,6 +420,8 @@
 							</div>
 						</div>
 					</form>
+					<?php endif ?>
+
 
 				</td>
 			</tr>

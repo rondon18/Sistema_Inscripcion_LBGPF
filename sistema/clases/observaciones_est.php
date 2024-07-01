@@ -165,7 +165,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($social) < 3 || strlen($social) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $social)) {
+				if (strlen($social) < 3 || strlen($social) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $social)) {
 					throw new Exception("La observacion social $social cuenta con un formato inválido");
 				}
 
@@ -185,7 +185,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($fisico) < 3 || strlen($fisico) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $fisico)) {
+				if (strlen($fisico) < 3 || strlen($fisico) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $fisico)) {
 					throw new Exception("La observacion fisica: $fisico cuenta con un formato inválido");
 				}
 
@@ -205,7 +205,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($personal) < 3 || strlen($personal) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $personal)) {
+				if (strlen($personal) < 3 || strlen($personal) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $personal)) {
 					throw new Exception("La observacion personal: $personal cuenta con un formato inválido");
 				}
 
@@ -225,7 +225,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($familiar) < 3 || strlen($familiar) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $familiar)) {
+				if (strlen($familiar) < 3 || strlen($familiar) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $familiar)) {
 					throw new Exception("La observacion familiar: $familiar cuenta con un formato inválido");
 				}
 
@@ -245,7 +245,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($academico) < 3 || strlen($academico) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $academico)) {
+				if (strlen($academico) < 3 || strlen($academico) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $academico)) {
 					throw new Exception("La observacion academico: $academico cuenta con un formato inválido");
 				}
 
@@ -265,7 +265,7 @@
 				}
 				// Validar la longitud y el formato del dato
 
-				if (strlen($otra) < 3 || strlen($otra) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $otra)) {
+				if (strlen($otra) < 3 || strlen($otra) >= 150 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $otra)) {
 					throw new Exception("La observacion otra: $otra cuenta con un formato inválido");
 				}
 

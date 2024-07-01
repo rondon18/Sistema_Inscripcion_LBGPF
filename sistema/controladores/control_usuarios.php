@@ -94,7 +94,6 @@
 
 		}
 		
-
 		// De editar perfil. Se debe cambiar
 		elseif ($_SESSION['orden'] == "editar") {
 
@@ -186,23 +185,20 @@
 
 		}
 		
-
-		elseif ($_SESSION['orden'] == "eliminar") {
-			if (isset($_SESSION['eliminar_usuario'])) {
-			
-				$personas->set_cedula($_SESSION['eliminar_usuario']);
-				$personas->eliminar_persona();
-
-				header('Location: ../lobby/consultar/index.php?sec=usu&exito');
+		elseif ($_SESSION['orden'] == "cambiar_estado") {
+			if (isset($_SESSION['usuario'],$_SESSION['estado'])) {
+				$usuarios->set_cedula_persona($_SESSION['usuario']);
+				$usuarios->set_estado($_SESSION['estado']);
+				$usuarios->cambiar_estado();
+				header('Location: ../lobby/consultar/index.php?sec=usr&exito');
 			}
 		}
 
 		elseif ($_SESSION['orden'] == "baja") {
-			if (isset($_SESSION['eliminar_usuario'])) {
-			
-				$personas->set_cedula($_SESSION['eliminar_usuario']);
-				$personas->eliminar_persona();
-
+			if (isset($_SESSION['datos_login'])) {
+				$usuarios->set_cedula_persona($_SESSION['datos_login']["cedula"]);
+				$usuarios->set_estado("Activo");
+				$usuarios->cambiar_estado();
 				header('Location: logout.php');
 			}
 		}

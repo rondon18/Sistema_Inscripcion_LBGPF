@@ -19,9 +19,6 @@
 	$bitacora->actualizar_bitacora();
 
 	$nombre_completo = $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['s_nombre']." ".$_SESSION['datos_login']['p_apellido']." ".$_SESSION['datos_login']['s_apellido'];
-
-	$nivel = 2;
-
 	if (isset($_POST['orden'])) {
 		if ($_POST['orden'] == "baja") {
 
@@ -55,7 +52,7 @@
 					
 					<!--Datos del representante-->
 					<div class="card-header text-center">
-						<b class="fs-5">Perfil de usuario</b>
+						<b class="fs-5">PERFIL DE USUARIO</b>
 					</div>
 					
 					<div class="card-body">

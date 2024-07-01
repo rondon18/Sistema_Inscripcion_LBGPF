@@ -28,7 +28,6 @@
 		$encabezado,
 		[
 			"Cédula del estudiante",
-			"Cédula escolar del estudiante",
 			"Nombres",
 			"Apellidos",
 			"Fecha de nacimiento",
@@ -358,7 +357,6 @@
 			$datos_estudiante,
 			[
 				$estudiante["cedula"],
-				$estudiante["cedula_escolar"],
 				$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
 				$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
 				formatear_fecha($estudiante["fecha_nacimiento"]),

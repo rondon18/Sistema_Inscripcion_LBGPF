@@ -299,7 +299,7 @@
 				throw new Exception("La accion realizada no puede estar vacia");
 			}
 			try {
-				if (!preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $acciones_realizadas)) {
+				if (!preg_match('/[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ][^,_:]+/i', $acciones_realizadas)) {
 					throw new Exception("La hora de entrada: ".$acciones_realizadas. " no tiene un formato valido");
 				}
 				$this->acciones_realizadas = $acciones_realizadas;

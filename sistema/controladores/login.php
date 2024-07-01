@@ -65,17 +65,19 @@
 		$usuarios->set_cedula_persona($_POST['cedula']);
 		if ($datos_usuario = $usuarios->consultar_usuario()) {
 			// si al menos una de las dos preguntas admite el acceso
-			if (($_POST['respuesta_1'] == $datos_usuario['respuesta_1']) or ($_POST['respuesta_2'] == $datos_usuario['respuesta_2'])) {
-				session_start();
 
+			if ($datos_usuario['estado'] == "Inactivo") {
+				header('Location: ../index.php?denegado');
+				exit();
+			}
+
+			if ($_POST['respuesta_1'] == $datos_usuario['respuesta_1'] || $_POST['respuesta_2'] == $datos_usuario['respuesta_2']) {
+				session_start();
 				$_SESSION['datos_login'] = $datos_usuario;
 				$_SESSION['login'] = true;
-
 				$bitacora->set_cedula_usuario($_POST['cedula']);
-
 				$_SESSION['id_bitacora'] = $bitacora->iniciar_bitacora();
 				$_SESSION['acciones'] = "Inicia Sesión (inicio alterno)";
-
 				header('Location: ../lobby/index.php');
 			}
 			else {

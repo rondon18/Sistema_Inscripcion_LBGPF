@@ -168,7 +168,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($tenencia) < 3 || strlen($tenencia) >= 50 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñ]+$/i', $tenencia)) {
+				if (strlen($tenencia) < 3 || strlen($tenencia) >= 50 || !preg_match('/^[a-zA-Z\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $tenencia)) {
 					throw new Exception("La tenencia de vivienda $tenencia cuenta con un formato inválido");
 				}
 

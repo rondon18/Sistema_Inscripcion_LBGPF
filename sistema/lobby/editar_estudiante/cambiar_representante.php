@@ -30,16 +30,13 @@
 
 	$padres->set_cedula_persona($datos_estudiante['cedula_madre']);
 	$datos_madre = $padres->consultar_padres();
-
-
-	$nivel = 2;
 ?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Paso 1 - Datos del representante</title>
+		<title>Cambiar representante</title>
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/all.min.css"/>
@@ -53,7 +50,7 @@
 					<div class="card">
 						<!-- Titulo del contenedor -->
 						<div class="card-header text-center">
-							<b class="fs-5">Actualizacion de datos - Cambiar representante</b>
+							<b class="fs-5">ACTUALIZACION DE DATOS - CAMBIAR REPRESENTANTE</b>
 						</div>
 						<div class="card-body">
 							<form action="../../controladores/cambiar_representante.php" method="post" id="cambiar_representante">

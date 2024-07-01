@@ -77,8 +77,6 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -100,7 +98,7 @@
 			<div class="container-md">
 				<div class="card w-100">
 					<div class="card-header text-center">
-						<b class="fs-5">Gestión de <?php echo $seccion_activa; ?></b>
+						<b class="fs-5">GESTIÓN DE <?php echo mb_strtoupper($seccion_activa); ?></b>
 					</div>
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
 

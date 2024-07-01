@@ -22,9 +22,6 @@
 	$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
-
-	$nivel = 2;
-
 	$estudiantes = new estudiantes();
 	$representantes = new representantes();
 	$padres = new padres();
@@ -34,7 +31,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Consultar registros</title>
+		<title>Consultar estadísticas</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
@@ -76,7 +73,7 @@
 			<div class="container-md">
 				<div class="card w-100">
 					<div class="card-header text-center">
-						<b class="fs-5">Consulta de estadisticas</b>
+						<b class="fs-5">CONSULTA DE ESTADISTICAS</b>
 					</div>
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
 

@@ -24,9 +24,6 @@ if (!$_SESSION['login']) {
 		// Redirecciona al paso 3
 		header('Location: ../../controladores/registros/control_registros.php');
 	}
-
-$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,7 +43,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-5">Formulario de edición - Padres</b>
+						<b class="fs-5">FORMULARIO DE EDICIÓN - PADRES</b>
 					</div>
 					<div class="card-body">
 
@@ -320,7 +317,7 @@ $nivel = 2;
 														list="prefijos"
 														maxlength="4"
 														placeholder="Prefijo"
-														value="<?php echo $_SESSION['tlfs_padre'][0]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -332,7 +329,7 @@ $nivel = 2;
 														placeholder="Número"
 														maxlength="12"
 														minlength="7"
-														value="<?php echo $_SESSION['tlfs_padre'][0]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -350,7 +347,7 @@ $nivel = 2;
 														list="prefijos"
 														maxlength="4"
 														placeholder="Prefijo"
-														value="<?php echo $_SESSION['tlfs_padre'][1]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -362,7 +359,7 @@ $nivel = 2;
 														placeholder="Número"
 														maxlength="12"
 														minlength="7"
-														value="<?php echo $_SESSION['tlfs_padre'][1]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -726,7 +723,7 @@ $nivel = 2;
 															list="prefijos"
 															maxlength="4"
 															placeholder="Prefijo"
-															value="<?php echo $_SESSION['tlfs_padre'][2]["prefijo"];?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["prefijo"] ?? NULL;?>"
 														>
 													</div>
 													<div class="col-12 col-lg-6">
@@ -738,7 +735,7 @@ $nivel = 2;
 															placeholder="Número"
 															maxlength="12"
 															minlength="7"
-															value="<?php echo $_SESSION['tlfs_padre'][2]["numero"];?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["numero"] ?? NULL;?>"
 														>
 													</div>
 													<!-- Información adicional -->

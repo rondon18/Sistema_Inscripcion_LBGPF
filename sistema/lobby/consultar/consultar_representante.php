@@ -27,18 +27,19 @@
 
 		$telefonos->set_cedula_persona($_POST['cedula']);
 		$tlfs_representante = $telefonos->consultar_telefonos();
-
+		// Actualiza la bitácora
+		$bitacora->set_id_bitacora($_SESSION['id_bitacora']);
+		$_SESSION['acciones'] .= ", Consulta el representante " .  $_POST['cedula'];
+		$bitacora->set_acciones_realizadas($_SESSION['acciones']);
+		$bitacora->actualizar_bitacora();
 	}
-
-	$nivel = 2;
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Consultar estudiante</title>
+	<title>Consultar representante</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
@@ -84,7 +85,7 @@
 				<div class="card w-100">
 
 					<div class="card-header text-center">
-						<b class="fs-5">Consulta de registros</b>
+						<b class="fs-5">CONSULTA DE REGISTROS</b>
 					</div>
 
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
