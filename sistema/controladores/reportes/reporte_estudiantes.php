@@ -587,12 +587,25 @@
 				);
 			}
 
+			// Verifica que en el reporte el estudiante aparezca con su estado de inscripción en vez de
+			// un grado o sección si esta retirado o egresado
+
+
+			if ($estudiante["estado_inscripcion"] != "Inscrito") {
+				$grado_estudiante =  $estudiante["estado_inscripcion"];
+				$seccion_estudiante =  $estudiante["estado_inscripcion"];
+			}
+			else {
+				$grado_estudiante =  $estudiante["grado_a_cursar"];
+				$seccion_estudiante =  'Sección "' . $estudiante["seccion"]. '"';
+			}
+
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
 					$estudiante["plantel_proced"],
-					$estudiante["grado_a_cursar"],
-					'Sección "' . $estudiante["seccion"]. '"',
+					$grado_estudiante,
+					$seccion_estudiante,
 					$estudiante["id_per_academico"],
 				]
 			);

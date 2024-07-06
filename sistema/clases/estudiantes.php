@@ -447,7 +447,6 @@
 		public function filtros_estadistica($sql,$grado = "Cualquiera",$seccion = "Cualquiera") {
 			try {
 				if (empty($sql)) {
-					echo "vacio";
 					return $sql;
 				}
 				// Opciones validas para los filtros
@@ -470,6 +469,9 @@
 					}
 					$filtros[] = "`seccion` = '$seccion'";
 				}
+
+				$filtros[] = "`estado_inscripcion` in('Inscrito')";
+
 				// Si hay al menos un filtro, agrega la clausula where
 				if (count($filtros) > 0) {
 					if (str_contains(strtolower($sql), "where")) {

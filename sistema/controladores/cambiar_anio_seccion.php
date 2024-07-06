@@ -19,8 +19,6 @@
 	$inscripciones = new inscripciones();
 	$per_academico = new per_academico();
 
-	var_dump($_POST);
-
 	if (isset($_POST['estado_inscripcion'])) {
 		$estudiantes->set_cedula_persona($_POST['cedula_estudiante']);
 		$estudiantes->set_estado($_POST['estado_inscripcion']);

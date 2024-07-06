@@ -17,10 +17,10 @@
 			// comandos a ejecutar
 
 			// Ruta en windows
-			$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v2 > ../respaldos/$respaldo";
+			$command = "C:/xampp/mysql/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v3 > ../respaldos/$respaldo";
 
 			// Ruta en GNU/Linux: Instalacion generica con LAMPP (Cambiar si se hace con otro o se elige otra ruta)
-			// $command = "/opt/lampp/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v2 > ../respaldos/$respaldo";
+			// $command = "/opt/lampp/bin/mysqldump -u root -h Localhost sis_reg_lb_gpf_v3 > ../respaldos/$respaldo";
 
 			// ejecución y salida de éxito o errores
 
@@ -46,10 +46,10 @@
 			// Devuelve la base de datos a un estado anterior o a su estado inicial
 
 			// Ruta en windows
-			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v2 < ../respaldos/".$respaldo;
+			$command = "C:/xampp/mysql/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v3 < ../respaldos/".$respaldo;
 
 			// Ruta en GNU/Linux: Instalacion generica con LAMPP (Cambiar si se hace con otro o se elige otra ruta)
-			// $command = "/opt/lampp/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v2 < ../respaldos/".$respaldo;
+			// $command = "/opt/lampp/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v3 < ../respaldos/".$respaldo;
 
 
 			try {

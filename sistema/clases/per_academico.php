@@ -37,9 +37,16 @@
 							| | |
 							V V V
 				*/
-				$fecha_cierre = new DateTime((int)date('Y').'05-01');
+
+				// La fecha tope de inscripcion sera el primero de mayo del año en curso
+				$fecha_cierre = new DateTime((int)date('Y').'-05-01');
+
+
 				// Compara la fecha actual con la fecha de finalización del periodo académico
 				if ($fecha_actual >= $fecha_cierre) {
+					// Si la fecha actual sobrepasa o es igual a la de cierre. El año escolar se toma como el año siguiente al actual si se
+					// llama de manera manual
+					
 					// El inicio del año escolar será el año actual
 			    $this->set_inicio($fecha_actual->format('Y'));
 					// El fin del año escolar será el año proximo
