@@ -8,6 +8,6 @@
 	</div>
 
 	<p class="text-center text-uppercase mb-4" style="font-size: 1.2rem">
-		ACTA DE COMPROMISO DEL REPRESENTANTE
+		COMPROMISO DEL REPRESENTANTE
 	</p>
 
