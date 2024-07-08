@@ -62,7 +62,13 @@
 				<td><?php echo mb_strtoupper(privilegios($usuario['privilegios']));?></td>
 
 				<td><?php echo mb_strtoupper($usuario['rol'])?></td>
-				<td><?php echo mb_strtoupper($usuario['estado'])?></td>
+				<td class="text-center">
+					<?php if (strtolower($usuario['estado']) == "inactivo"): // Para habilitar el usuario?>
+						<span class="badge rounded-pill bg-danger text-white"><?php echo mb_strtoupper($usuario['estado'])?></span>
+					<?php elseif (strtolower($usuario['estado']) == "activo"):  // Para deshabilitar el usuario?>
+						<span class="badge rounded-pill bg-success text-white"><?php echo mb_strtoupper($usuario['estado'])?></span>
+					<?php endif ?>
+				</td>
 					
 				
 				<td style="min-width: 100vw;">
@@ -99,10 +105,22 @@
 						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
 						<input type="hidden" name="estado" value="<?php echo $usuario['estado'];?>">
 						<input type="hidden" name="orden" value="cambiar_estado">
-						<button class="btn btn-sm btn-danger" type="submit">
-							Cambiar estado
-							<i class="fa-solid fa-user-cog fa-lg ms-2"></i>
+						<?php if (strtolower($usuario['estado']) == "inactivo"): // Para habilitar el usuario?>
+						<button class="btn btn-success btn-sm" type="submit">
+							Habilitar
+							<i class="ms-1 fa-solid fa-user-lock"></i>
+							<i class="fa-solid fa-arrow-right"></i>
+							<i class="fa-solid fa-user-check"></i>
 						</button>
+
+						<?php elseif (strtolower($usuario['estado']) == "activo"):  // Para deshabilitar el usuario?>
+						<button class="btn btn-danger btn-sm" type="submit">
+							Deshabilitar
+							<i class="ms-1 fa-solid fa-user-check"></i>
+							<i class="fa-solid fa-arrow-right"></i>
+							<i class="fa-solid fa-user-lock"></i>
+						</button>
+						<?php endif ?>
 					</form>
 
 					<?php endif;?>
@@ -112,6 +130,7 @@
 		</tbody>
 	</table>
 </div>
+
 							
 <script src="../../datatables/datatables.min.js" defer></script>
 <script src="../../js/consultas/consulta_usuarios.js" defer></script>

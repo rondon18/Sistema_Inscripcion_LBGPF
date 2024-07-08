@@ -42,7 +42,8 @@
 							`pregunta_seg_1`,
 							`respuesta_1`,
 							`pregunta_seg_2`,
-							`respuesta_2`
+							`respuesta_2`,
+							`estado`
 						)
 						VALUES(
 							'$cedula_persona',
@@ -52,12 +53,14 @@
 							'$pregunta_seg_1',
 							'$respuesta_1',
 							'$pregunta_seg_2',
-							'$respuesta_2'
+							'$respuesta_2',
+							'Activo'
 						)
 						ON DUPLICATE KEY UPDATE
 						`cedula_persona` = `cedula_persona`;
 					";
 
+					// El estado del usuario será por defecto Activo al ser creado
 
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
@@ -254,7 +257,7 @@
 							break;
 
 						default:
-							throw new Exception("No se puede cambiar el estado, el estado ingresado no es válido");
+							throw new Exception("No se puede cambiar el estado, el estado ($estado) no es válido");
 							break;
 					}
 

@@ -87,6 +87,7 @@
 				$usuarios->set_respuesta_1($_SESSION['datos_usuario_nuevo']['respuesta_1']);
 				$usuarios->set_pregunta_seg_2($_SESSION['datos_usuario_nuevo']['pregunta_seg_2']);
 				$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevo']['respuesta_2']);
+				$usuarios->set_estado("activo");
 				$usuarios->insertar_usuarios();
 
 				header('Location: ../lobby/consultar/index.php?exito');

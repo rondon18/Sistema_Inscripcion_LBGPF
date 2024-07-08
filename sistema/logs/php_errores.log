@@ -10,3 +10,11 @@
 
 06-07-2024 06:33:41 PM | Descripción del error: El ID no puede estar vacío | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\bitacora.php | linea (210)
 
+07-07-2024 02:35:04 PM | Descripción del error: El estado del usuario:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (499)
+
+07-07-2024 02:35:04 PM | Descripción del error: No se puede cambiar el estado, el estado ingresado no es válido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (257)
+
+07-07-2024 02:35:27 PM | Descripción del error: El estado del usuario:  es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (499)
+
+07-07-2024 02:35:27 PM | Descripción del error: No se puede cambiar el estado, el estado ingresado no es válido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (257)
+
