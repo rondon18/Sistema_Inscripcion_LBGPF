@@ -340,21 +340,22 @@
 		public function set_rol($rol) {
 
 			$roles = [
-				"Desarrollador(a)",
-				"Director(a)",
-				"Subdirector(a)",
-				"Secretario(a)",
-				"Coordinador(a) de primer año",
-				"Coordinador(a) de segundo año",
-				"Coordinador(a) de tercer año",
-				"Coordinador(a) de cuarto año",
-				"Coordinador(a) de quinto año",
-				"Docente"
+				"desarrollador(a)",
+				"director(a)",
+				"subdirector(a)",
+				"secretario(a)",
+				"coordinador(a) de primer año",
+				"coordinador(a) de segundo año",
+				"coordinador(a) de tercer año",
+				"coordinador(a) de cuarto año",
+				"coordinador(a) de quinto año",
+				"docente",
+				"usuario",
 			];
 
 			try {
 				// Validar la longitud y el formato del dato
-				if (!in_array($rol,$roles)) {
+				if (!in_array(strtolower($rol),$roles)) {
 
 					throw new Exception("El rol: '$rol' es inválido");
 				}

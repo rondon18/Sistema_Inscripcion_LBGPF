@@ -110,7 +110,7 @@
 		// SETTERS
 		public function set_seccion($seccion) {
 			try {
-				$secciones = ["a","b","c","d",];
+				$secciones = ["a","b","c","d",""];
 				if (!in_array(strtolower($seccion), $secciones)) {
 					throw new Exception("La seccion: ($seccion) se encuentra fuera de los valores admitidos");
 				}

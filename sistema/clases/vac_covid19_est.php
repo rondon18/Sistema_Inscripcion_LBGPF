@@ -108,11 +108,12 @@
 			try {
 				// Validar que la cédula no esté vacía
 				if (empty($vac_aplicada)) {
-					throw new Exception("La vacuna contra el Covid19 no puede estar vacia");
+					$this->vac_aplicada = "NV";
+					return;
 				}
 				$opciones = ["nv","pfizer/biontech","moderna","aztrazeneca","janssen","sinopharm","sinovac","bharat","cansinobio","valneva","novavax",];
 				// Validar la longitud y el formato de la cédula
-				if (!in_array(strtolower($vac_aplicada),$opciones) || !preg_match('/^[a-zA-Z0-9\s\/.,:;?!áéíóúüÁÉÍÓÚÜ]+$/i', $vac_aplicada)) {
+				if (!preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $vac_aplicada)) {
 					throw new Exception("La vacuna contra el Covid19 ($vac_aplicada) tiene un formato inválido o está fuera de las opciones preestablecidas");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -120,6 +121,7 @@
 			}
 			catch (Exception $e) {
 				miManejadorExcepcion($e);
+				$this->vac_aplicada = "NV";
 			}
 		}
 		
@@ -127,7 +129,8 @@
 			try {
 				// Validar que la cédula no esté vacía
 				if (empty($dosis)) {
-					throw new Exception("El número de dosis de vacuna contra el Covid19 no puede estar vacío");
+					$this->dosis = 0;
+					return;
 				}
 				// Validar la longitud y el formato de la cédula
 				if ($dosis < 0 || $dosis > 10 || !preg_match('/^[0-9]+$/i', $dosis)) {
@@ -149,7 +152,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($lote) < 10 || strlen($lote) > 15 || !preg_match('/^[A-Z0-9-]+$/i', $lote)) {
+				if (strlen($lote) < 5 || strlen($lote) > 15 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $lote)) {
 					throw new Exception("El número de lote contra el Covid19 ($lote) tiene un formato inválido o está fuera del rango preestablecido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad

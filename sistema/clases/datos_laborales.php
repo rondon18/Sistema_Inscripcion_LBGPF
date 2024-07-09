@@ -150,7 +150,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($empleo) < 3 || strlen($empleo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $empleo)) {
+				if (strlen($empleo) < 3 || strlen($empleo) >= 200 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $empleo)) {
 					throw new Exception("El empleo $empleo cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -169,7 +169,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($lugar_trabajo) < 3 || strlen($lugar_trabajo) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $lugar_trabajo)) {
+				if (strlen($lugar_trabajo) < 3 || strlen($lugar_trabajo) >= 200 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $lugar_trabajo)) {
 					throw new Exception("El lugar_trabajo $lugar_trabajo cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad

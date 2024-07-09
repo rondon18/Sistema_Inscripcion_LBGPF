@@ -1907,7 +1907,7 @@ function estado_vacuna($n_vacuna) {
 						</div>
 					</div>
 					<div class="card-footer nav justify-content-md-between">
-						<a class="btn btn-primary" href="../consultar/index.php">
+						<a class="btn btn-primary" href="../consultar/index.php?sec=est">
 							<i class="fa-solid fa-lg me-2 fa-home"></i>
 							Volver al inicio
 						</a>

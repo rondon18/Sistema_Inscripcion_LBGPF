@@ -365,7 +365,7 @@
 		}
 
 		public function set_fecha_nacimiento($fecha_nacimiento) {
-			if (empty($fecha_nacimiento) or $fecha_nacimiento == NULL) {
+			if (empty($fecha_nacimiento) or $fecha_nacimiento == NULL or $fecha_nacimiento == "0000-00-00") {
 				$this->fecha_nacimiento = "0000-00-00";
 				return;
 			}
@@ -396,7 +396,7 @@
 					return;
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($lugar_nacimiento) < 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜñÑ]+$/i', $lugar_nacimiento)) {
+				if (strlen($lugar_nacimiento) < 3 || strlen($lugar_nacimiento) >= 200 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $lugar_nacimiento)) {
 					throw new Exception("El lugar de nacimiento ($lugar_nacimiento) cuenta con un formato inválido");
 				}
 
@@ -411,7 +411,7 @@
 		public function set_genero($genero) {
 			try {
 				// Validar la longitud y el formato del dato
-				if (!in_array(strtolower($genero),["f","m"])) {
+				if (!in_array(strtolower($genero),["f","m",""])) {
 					throw new Exception("El genero: $genero es inválido");
 				}
 

@@ -130,3 +130,13 @@ $("#boton_guardar").click(function() {
   }
   $("#seccion1").hide();
 });
+$(document).ready(function() {
+$('#cambiar_visibilidad').on('mouseout', function() {
+  $(this).tooltip('hide');
+});
+});
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

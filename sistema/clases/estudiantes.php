@@ -1151,7 +1151,7 @@
 					throw new Exception("El plantel de procedencia no puede estar vacio");
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($plantel_proced) < 3 || strlen($plantel_proced) >= 120 || !preg_match("/^[\w\sáéíóúüÁÉÍÓÚÜñ!#&(),.;¿¡!?\'\"`]+$/i", $plantel_proced)) {
+				if (strlen($plantel_proced) < 3 || strlen($plantel_proced) >= 120 || !preg_match("/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i", $plantel_proced)) {
 					throw new Exception("El plantel de procedencia $plantel_proced cuenta con un formato inválido");
 				}
 
@@ -1170,7 +1170,7 @@
 					throw new Exception("El plantel de procedencia no puede estar vacio");
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($con_quien_vive) < 3 || strlen($con_quien_vive) >= 60 || !preg_match('/^[\w\sáéíóúüÁÉÍÓÚÜñ!\"\'#&(),.;¿¡!?`]+$/i', $con_quien_vive)) {
+				if (strlen($con_quien_vive) < 3 || strlen($con_quien_vive) >= 60 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $con_quien_vive)) {
 					throw new Exception("La personas con quien vive $con_quien_vive cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -1188,7 +1188,7 @@
 					throw new Exception("El plantel de procedencia no puede estar vacio");
 				}
 				// Validar la longitud y el formato del dato
-				if (strlen($relacion_representante) < 3 || strlen($relacion_representante) >= 60 || !preg_match('/^[\w\sáéíóúüÁÉÍÓÚÜñ!\"\'#&(),.;¿¡!?`]+$/i', $relacion_representante)) {
+				if (strlen($relacion_representante) < 3 || strlen($relacion_representante) >= 60 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $relacion_representante)) {
 					throw new Exception("La relacion del representante $relacion_representante cuenta con un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
