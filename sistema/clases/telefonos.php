@@ -29,6 +29,9 @@
 					if ($this->verificar_telefono($cedula_persona,$relacion) < 1) {
 						$sql = "INSERT INTO `telefonos`(`cedula_persona`,`relacion`,`prefijo`,`numero`) VALUES('$cedula_persona','$relacion','$prefijo','$numero') ON DUPLICATE KEY UPDATE `cedula_persona` = `cedula_persona`;";
 					}
+					else {
+						return;
+					}
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
 						$conexion->query($sql);
