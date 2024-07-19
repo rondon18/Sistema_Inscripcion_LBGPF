@@ -152,7 +152,7 @@
 					throw new Exception("El año repetido: ($a_repetido) se encuentra fuera de los valores admitidos");
 				}
 				// Validar la longitud y el formato de la cédula
-				// if (strlen($a_repetido) <= 4 || strlen($a_repetido) >= 25 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $a_repetido)) {
+				// if (strlen($a_repetido) < 4 || strlen($a_repetido) >= 25 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $a_repetido)) {
 				// 	throw new Exception("El año repetido $a_repetido tiene un formato inválido");
 				// }
 				// Si el dato es válido, asignarlo a la propiedad
@@ -172,7 +172,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($materias_repetidas) <= 4 || strlen($materias_repetidas) >= 50 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $materias_repetidas)) {
+				if (strlen($materias_repetidas) < 4 || strlen($materias_repetidas) >= 50 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $materias_repetidas)) {
 					throw new Exception("El año repetido $materias_repetidas tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad
@@ -191,7 +191,7 @@
 					return;
 				}
 				// Validar la longitud y el formato de la cédula
-				if (strlen($materias_pendientes) <= 4 || strlen($materias_pendientes) >= 50 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $materias_pendientes)) {
+				if (strlen($materias_pendientes) < 4 || strlen($materias_pendientes) >= 50 || !preg_match('/^[\w\sàáâãéèêëìíîïòóôõùúûüÀÁÂÃÉÈÊËÌÍÎÏÒÓÔÕÙÚÛÜñÑª\!\"\'\-\#\&\(\)\,\.\;\¿\¡\!\?\`\°\/\:\|]+$/i', $materias_pendientes)) {
 					throw new Exception("Las materias repetidas $materias_pendientes tiene un formato inválido");
 				}
 				// Si el dato es válido, asignarlo a la propiedad

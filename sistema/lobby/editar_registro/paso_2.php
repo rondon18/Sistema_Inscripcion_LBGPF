@@ -353,7 +353,7 @@ else {
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo" 
-														value="<?php echo $_SESSION['tlfs_padre'][0]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -365,7 +365,7 @@ else {
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7" 
-														value="<?php echo $_SESSION['tlfs_padre'][0]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][0]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -383,7 +383,7 @@ else {
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo"
-														value="<?php echo $_SESSION['tlfs_padre'][1]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -395,7 +395,7 @@ else {
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7"
-														value="<?php echo $_SESSION['tlfs_padre'][1]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_padre'][1]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -759,7 +759,7 @@ else {
 															list="prefijos" 
 															maxlength="4" 
 															placeholder="Prefijo"
-															value="<?php echo $_SESSION['tlfs_padre'][2]["prefijo"];?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["prefijo"] ?? NULL;?>"
 														>
 													</div>
 													<div class="col-12 col-lg-6">
@@ -771,7 +771,7 @@ else {
 															placeholder="Número" 
 															maxlength="12" 
 															minlength="7"
-															value="<?php echo $_SESSION['tlfs_padre'][2]["numero"];?>"
+															value="<?php echo $_SESSION['tlfs_padre'][2]["numero"] ?? NULL;?>"
 														>
 													</div>
 													<!-- Información adicional -->
@@ -1100,7 +1100,7 @@ else {
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo" 
-														value="<?php echo $_SESSION['tlfs_madre'][0]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_madre'][0]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -1112,7 +1112,7 @@ else {
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7" 
-														value="<?php echo $_SESSION['tlfs_madre'][0]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_madre'][0]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -1130,7 +1130,7 @@ else {
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo"
-														value="<?php echo $_SESSION['tlfs_madre'][1]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_madre'][1]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-7 mb-2">
@@ -1142,7 +1142,7 @@ else {
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7"
-														value="<?php echo $_SESSION['tlfs_madre'][1]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_madre'][1]["numero"] ?? NULL;?>"
 													>
 												</div>
 											</div>
@@ -1508,7 +1508,7 @@ else {
 															list="prefijos" 
 															maxlength="4" 
 															placeholder="Prefijo"
-															value="<?php echo $_SESSION['tlfs_madre'][2]["prefijo"];?>"
+															value="<?php echo $_SESSION['tlfs_madre'][2]["prefijo"] ?? NULL;?>"
 														>
 													</div>
 													<div class="col-12 col-lg-6">
@@ -1520,7 +1520,7 @@ else {
 															placeholder="Número" 
 															maxlength="12" 
 															minlength="7"
-															value="<?php echo $_SESSION['tlfs_madre'][2]["numero"];?>"
+															value="<?php echo $_SESSION['tlfs_madre'][2]["numero"] ?? NULL;?>"
 														>
 													</div>
 													<!-- Información adicional -->

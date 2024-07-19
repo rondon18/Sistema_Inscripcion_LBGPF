@@ -12,7 +12,7 @@
 	require('../clases/datos_economicos.php');
 	require('../clases/carnet_patria.php');
 	require('../clases/contactos_aux.php');
-	// require('../logs/error_handler.php');
+	require('../logs/error_handler.php');
 
 	$estudiantes = new estudiantes();
 	$representantes = new representantes();

@@ -777,7 +777,7 @@
 													maxlength="4" 
 													placeholder="Prefijo" 
 													required
-													value="<?php echo $_SESSION['tlfs_representante'][0]["prefijo"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][0]["prefijo"] ?? NULL;?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-2">
@@ -790,7 +790,7 @@
 													maxlength="12" 
 													minlength="7" 
 													required
-													value="<?php echo $_SESSION['tlfs_representante'][0]["numero"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][0]["numero"] ?? NULL;?>"
 												>
 											</div>
 										</div>
@@ -809,7 +809,7 @@
 													list="prefijos" 
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo $_SESSION['tlfs_representante'][1]["prefijo"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][1]["prefijo"] ?? NULL;?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-2">
@@ -821,7 +821,7 @@
 													placeholder="Número" 
 													maxlength="12" 
 													minlength="7"
-													value="<?php echo $_SESSION['tlfs_representante'][1]["numero"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][1]["numero"] ?? NULL;?>"
 												>
 											</div>
 										</div>
@@ -840,7 +840,7 @@
 													list="prefijos" 
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo $_SESSION['tlfs_representante'][2]["prefijo"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][2]["prefijo"] ?? NULL;?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-2">
@@ -852,7 +852,7 @@
 													placeholder="Número" 
 													maxlength="12" 
 													minlength="7"
-													value="<?php echo $_SESSION['tlfs_representante'][2]["numero"];?>" 
+													value="<?php echo $_SESSION['tlfs_representante'][2]["numero"] ?? NULL;?>"
 												>
 											</div>
 										</div>
@@ -1149,7 +1149,7 @@
 														list="prefijos" 
 														maxlength="4" 
 														placeholder="Prefijo"
-														value="<?php echo $_SESSION['tlfs_representante'][3]["prefijo"];?>"
+														value="<?php echo $_SESSION['tlfs_representante'][3]["prefijo"] ?? NULL;?>"
 													>
 												</div>
 												<div class="col-12 col-lg-6">
@@ -1161,7 +1161,7 @@
 														placeholder="Número" 
 														maxlength="12" 
 														minlength="7"
-														value="<?php echo $_SESSION['tlfs_representante'][3]["numero"];?>"
+														value="<?php echo $_SESSION['tlfs_representante'][3]["numero"] ?? NULL;?>"
 													>
 												</div>
 												<!-- Información adicional -->

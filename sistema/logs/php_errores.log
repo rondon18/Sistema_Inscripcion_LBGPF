@@ -1,56 +1,12 @@
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (joildaca31311383gmail.com) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
+17-07-2024 01:15:18 PM | Descripción del error: Unknown column 'estado' in 'where clause' | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (224)
 
-09-07-2024 02:05:45 AM | Descripción del error: El indice_m_c: (55.56) se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (203)
+17-07-2024 01:15:57 PM | Descripción del error: Unknown column 'estado' in 'where clause' | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (224)
 
-09-07-2024 02:05:45 AM | Descripción del error: El indice_m_c: (67) se encuentra fuera de los valores admitidos | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\antropometria_est.php | linea (203)
+17-07-2024 01:16:03 PM | Descripción del error: Unknown column 'estado' in 'where clause' | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (224)
 
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (piliam9qgmail.com) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
+17-07-2024 01:16:10 PM | Descripción del error: Unknown column 'estado' in 'where clause' | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (224)
 
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (600) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
+17-07-2024 01:16:11 PM | Descripción del error: Unknown column 'estado' in 'where clause' | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (224)
 
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1500) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (600) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1200) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (MARIADIANAESTEFANY@GMAIL-COM) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1500) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (0000000000000000000@0000000000000) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (dennys.burusa123@hotmail) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1900) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (520) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (0000000000000000000@0000000000000) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (600) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1200) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (MARIADIANAESTEFANY@GMAIL-COM) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1500) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (0000000000000000000@0000000000000) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (1900) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: La remuneracion (520) cuenta con un formato inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\datos_laborales.php | linea (193)
-
-09-07-2024 02:05:45 AM | Descripción del error: El correo electronico: (solmary@gmail) es inválido | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\personas.php | linea (452)
-
-09-07-2024 02:05:45 AM | Descripción del error: La pregunta de seguridad 1: 'Color favorito' no es valida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (451)
-
-09-07-2024 02:05:45 AM | Descripción del error: La pregunta de seguridad 2: 'Azul' no es valida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (484)
-
-09-07-2024 02:05:45 AM | Descripción del error: La pregunta de seguridad 1: '' no es valida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (451)
-
-09-07-2024 02:05:45 AM | Descripción del error: La pregunta de seguridad 2: '' no es valida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (484)
-
-09-07-2024 02:05:45 AM | Descripción del error: La pregunta de seguridad 2: '¿Cuál es tu heroe favorito?' no es valida | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\usuarios.php | linea (484)
+17-07-2024 01:25:52 PM | Descripción del error: Ha ocurrido un error con el comando (C:/xampp/mysql/bin/mysql -u root -h Localhost sis_reg_lb_gpf_v3 < ../respaldos/respaldo__17-07-2024__18-18-25 (probada).sql) | En el archivo: C:\xampp\htdocs\Sistema_Inscripcion_LBGPF\sistema\clases\mantenimiento.php | linea (58)
 

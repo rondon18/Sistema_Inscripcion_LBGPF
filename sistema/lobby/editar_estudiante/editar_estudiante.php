@@ -446,7 +446,7 @@ function estado_vacuna($n_vacuna) {
 													minlength="4"
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo $_SESSION['tlfs_estudiante'][0]["prefijo"];?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][0]["prefijo"] ?? NULL;?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-3">
@@ -459,7 +459,7 @@ function estado_vacuna($n_vacuna) {
 													minlength="7" 
 													maxlength="7"
 													placeholder="Número telefonico" 
-													value="<?php echo $_SESSION['tlfs_estudiante'][0]["numero"];?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][0]["numero"] ?? NULL;?>"
 												>
 											</div>
 											<!-- Teléfono secundario -->
@@ -477,7 +477,7 @@ function estado_vacuna($n_vacuna) {
 													minlength="4"
 													maxlength="4" 
 													placeholder="Prefijo"
-													value="<?php echo $_SESSION['tlfs_estudiante'][1]["prefijo"];?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][1]["prefijo"] ?? NULL;?>"
 												>
 											</div>
 											<div class="col-12 col-lg-7 mb-3">
@@ -490,7 +490,7 @@ function estado_vacuna($n_vacuna) {
 													minlength="7" 
 													maxlength="7"
 													placeholder="Número telefonico"
-													value="<?php echo $_SESSION['tlfs_estudiante'][1]["numero"];?>"
+													value="<?php echo $_SESSION['tlfs_estudiante'][1]["numero"] ?? NULL;?>"
 												>
 											</div>
 										</div>
