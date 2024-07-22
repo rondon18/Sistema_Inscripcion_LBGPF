@@ -28,12 +28,12 @@ function formatoFechaCompleto($fecha) {
 
 function generoCompleto($genero) {
 	if ($genero == "M") {
-		$ret = "Masculino";
+		$genero = "Masculino";
 	}
 	elseif ($genero == "F") {
-		$ret = "Femenino";
+		$genero = "Femenino";
 	}
-	return $ret;
+	return $genero;
 }
 
 function testRol() {

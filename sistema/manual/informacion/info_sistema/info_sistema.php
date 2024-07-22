@@ -29,23 +29,23 @@
 <div class="px-3">
   
   <p>
-  	Versión: 2.1
+  	Versión: 7.6
   </p>
 
   <p>
-  	Actualización: 6  jun 2023.
+    Actualización: 17 julio 2024.
   </p>
 
   <p>
-	Tamaño del sistema: 47.9 MB
+  	Tamaño del sistema: 90 MB (descomprimido).
   </p>
 
   <p>
-  	SO requerido: Windows 7 y versiones posteriores, 64 bits.
+    SO requerido: Windows 7 y versiones posteriores, 64 bits, GNU/Linux.
   </p>
 
   <p>
-  	Fecha de lanzamiento: 14 sep 2022.
+    Fecha de lanzamiento: 14 septiembre 2022.
   </p>
 
 </div>

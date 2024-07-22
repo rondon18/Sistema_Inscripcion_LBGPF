@@ -33,9 +33,6 @@ else {
 		header('Location: paso_3.php');
 	}
 }
-
-$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,7 +52,7 @@ $nivel = 2;
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro - Padres</b>
+						<b class="fs-5">FORMULARIO DE REGISTRO - PADRES</b>
 					</div>
 					<div class="card-body">
 						
@@ -1685,9 +1682,9 @@ $nivel = 2;
 			<?php include('../../ayuda.php');?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_padres.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>

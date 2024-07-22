@@ -6,9 +6,6 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
-$nivel = 2;
-
 // El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
 
 // Verificación al momento de enviar el formulario
@@ -51,7 +48,7 @@ if (isset($_POST['paso_1'])) {
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro - Usuario</b>
+						<b class="fs-5">FORMULARIO DE REGISTRO - USUARIO</b>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -147,8 +144,8 @@ if (isset($_POST['paso_1'])) {
 											<div class="col-12 col-lg-4">
 													<select id="nacionalidad_u" class="form-select" name="nacionalidad_u" required>
 														<option value="">Nacionalidad</option>
-														<option value="V">V</option>
-														<option value="E">E</option>
+														<option value="V">Venezolano(a)</option>
+														<option value="E">Extranjero(a)</option>
 													</select>
 											</div>
 											<div class="col-12 col-lg-6">
@@ -191,7 +188,7 @@ if (isset($_POST['paso_1'])) {
 											</div>											
 											<div class="col-12 col-lg-3">
 												<div class="form-check form-check-inline">
-													<label for="genero_f" class="form-label">F</label>
+													<label for="genero_f" class="form-label">Femenino</label>
 													<input 
 														id="genero_f" 
 														class="form-check-input" 
@@ -202,7 +199,7 @@ if (isset($_POST['paso_1'])) {
 													>
 												</div>
 												<div class="form-check form-check-inline">
-													<label for="genero_m" class="form-label">M</label>
+													<label for="genero_m" class="form-label">Masculino</label>
 													<input 
 														id="genero_m" 
 														class="form-check-input" 
@@ -268,20 +265,6 @@ if (isset($_POST['paso_1'])) {
 											</div>
 										</div>
 
-										<!-- Privilegios sobre el sistema -->
-										<div class="row mb-2">
-											<div class="col-12 col-md-4">
-												<p class="h6">
-													Privilegios:
-												</p>
-											</div>
-											<div class="col-12 col-md-8">
-												<p>
-													
-												</p>
-											</div>
-										</div>
-
 										<!-- Preguntas de seguridad -->
 										<div class="row mb-2">
 											<div class="col-12">
@@ -297,7 +280,7 @@ if (isset($_POST['paso_1'])) {
 													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta">Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?">¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
@@ -327,7 +310,7 @@ if (isset($_POST['paso_1'])) {
 													<option value="Ciudad preferida de vacaciones">Ciudad preferida de vacaciones</option>
 													<option value="Color que más te gusta">Color que más te gusta</option>
 													<option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
-													<option value="¿Cuál es tu heroe favorito?">¿Cuál es tu heroe favorito?</option>
+													<option value="¿Cuál es tu héroe favorito?">¿Cuál es tu héroe favorito?</option>
 													<option value="¿Cuál fue tu primer número de Teléfono?">¿Cuál fue tu primer número de Teléfono?</option>
 													<option value="Equipo deportivo preferido">Equipo deportivo preferido</option>
 													<option value="Fecha de aniversario de bodas">Fecha de aniversario de bodas</option>
@@ -356,18 +339,34 @@ if (isset($_POST['paso_1'])) {
 											</div>
 
 											<div class="col-12 col-md-8">
-												<input 
-													class="form-control mb-4 mb-md-2" 
-													name="clave" 
-													type="text" 
-													placeholder="Contraseña" 
-													minlength="8" 
-													maxlength="22" 
-													required 
-												>
+												<div class="input-group">
+													<input
+														id="clave"
+														class="form-control"
+														type="password"
+														name="clave"
+														minlength="8"
+														maxlength="20"
+														placeholder="Contraseña"
+														autocomplete="off"
+														required
+													>
+													<button
+														type="button"
+														id="cambiar_visibilidad"
+														class="btn btn-outline-primary"
+														data-bs-toggle="tooltip"
+														data-bs-placement="top"
+														title="Mostrar / Ocultar contraseña"
+													>
+														<i id="vis_icon" class="fa-solid fa-eye"></i>
+													</button>
+												</div>
+												<label id="contraseña-error" class="error" for="clave" style="display: none;"></label>
 											</div>
+
 										</div>
-										<span class="form-text">La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (!@#$%^&*).</span>								
+
 									</section>
 
 									<input type="hidden" name="paso_1" value="paso_1">
@@ -403,9 +402,9 @@ if (isset($_POST['paso_1'])) {
 			<?php include '../../ayuda.php';?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_nuevo_usuario.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>

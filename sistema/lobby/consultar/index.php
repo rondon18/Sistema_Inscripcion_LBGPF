@@ -8,11 +8,11 @@
 
 	require('funciones.php');
 
+	require("../../logs/error_handler.php");
 	require("../../controladores/conexion.php");
 	require('../../clases/bitacora.php');
 
 	$bitacora = new bitacora();
-	$_SESSION['acciones'] .= ', Consulta estudiantes';
 
 	$active_est = "";
 	$active_rep = "";
@@ -26,16 +26,19 @@
 			case 'est':
 				$_SESSION['acciones'] .= ', Consulta estudiantes';
 				$active_est = "active";
+				$seccion_activa = "estudiantes";
 				break;
 			
 			case 'rep':
 				$_SESSION['acciones'] .= ', Consulta representantes';
 				$active_rep = "active";
+				$seccion_activa = "representantes";
 				break;
 			
 			case 'pad':
 				$_SESSION['acciones'] .= ', Consulta padres';
 				$active_pad = "active";
+				$seccion_activa = "padres";
 				break;
 			
 			case 'usr':
@@ -43,8 +46,9 @@
 				if ($_SESSION['datos_login']['privilegios'] > 1) {
 					header('Location: index.php?error');
 				}
-				$_SESSION['acciones'] .= ', Consulta estudiantes';
+				$_SESSION['acciones'] .= ', Consulta usuarios';
 				$active_usr = "active";
+				$seccion_activa = "usuarios";
 				break;
 			
 			case 'reg':
@@ -54,15 +58,18 @@
 				}
 				$_SESSION['acciones'] .= ', Consulta bitácora';
 				$active_reg = "active";
+				$seccion_activa = "bitácora";
 				break;
 			
 			default:
-				$_SESSION['acciones'] .= ', Consulta estudiantes';
+				$_SESSION['acciones'] .= ', Visita área de consulta (Sección invalida)';
+				$seccion_activa = "registros";
 				break;
 		} 
 	}
 	else {
 		$_SESSION['acciones'] .= ', Visita área de consulta';
+		$seccion_activa = "registros";
 	}
 
 	// Actualiza la bitácora
@@ -70,13 +77,11 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 2;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Consultar registros</title>
+		<title>Gestión de <?php echo $seccion_activa; ?></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
@@ -85,29 +90,6 @@
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css"/>
 		<link rel="icon" type="img/png" href="../../img/icono.png">
 	</head>
-	<style media="screen">
-		.dataTables_paginate a {
-			color: #fff !important;
-			background-color: #0d6efd !important;
-			border-color: #0d6efd !important;
-			display: inline-block !important;
-			font-weight: 400 !important;
-			line-height: 1.5 !important;
-			text-align: center !important;
-			text-decoration: none !important;
-			vertical-align: middle !important;
-			cursor: pointer !important;
-			-webkit-user-select: none !important;
-			-moz-user-select: none !important;
-			user-select: none !important;
-			border: 1px solid transparent !important;
-			padding: 0.375rem 0.75rem !important;
-			font-size: 1rem !important;
-			border-radius: 0.25rem !important;
-			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
-			margin: .25rem;
-		}
-	</style>
 	<body>
 		<main class="d-flex flex-column justify-content-between vh-100">
 			
@@ -116,37 +98,91 @@
 			<div class="container-md">
 				<div class="card w-100">
 					<div class="card-header text-center">
-						<b class="fs-4">Consulta de registros</b>
+						<b class="fs-5">GESTIÓN DE <?php echo mb_strtoupper($seccion_activa); ?></b>
 					</div>
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
 
 						<!--Selector de consulta-->
-						<div class="bg-primary mb-4 p-2 rounded-2 text-white shadow border w-100">
-							<div class="selector-consulta d-flex flex-column flex-sm-row gap-2 align-items-center justify-content-evenly">
-								<p class="h4 m-0 text-center">Consultar:</p>
-								<a href="index.php?sec=est" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_est; ?>">
-									<i class="fas fa-lg fa-children me-2 hvr-icon"></i>
-									Estudiantes
-								</a>
-								<a href="index.php?sec=rep" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_rep; ?>">
-									<i class="fas fa-lg fa-users me-2 hvr-icon"></i>
-									Representantes
-								</a>
-								<a href="index.php?sec=pad" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_pad; ?>">
-									<i class="fas fa-lg fa-person me-2 hvr-icon"></i>
-									Padres
-								</a>
-								<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
-								<a href="index.php?sec=usr" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_usr; ?>">
-									<i class="fas fa-lg fa-user me-2 hvr-icon"></i>
-									Usuarios
-								</a>
-								<a href="index.php?sec=reg" class="btn btn-outline-light btn-sm hvr-icon-grow <?php echo $active_reg; ?>">
-									<i class="fas fa-lg fa-clipboard me-2 hvr-icon"></i>
-									Registros
-								</a>
-								<?php endif ?>
+						<div class="mb-4 w-100">
+
+							<div class="selector-consulta">
+
+								<div class="btn-group btn-group-sm w-100">
+
+
+									<!-- Al área de estudiantes -->
+									<a
+										href="index.php?sec=est"
+										class="btn btn-outline-primary <?php echo $active_est;?>"
+										data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										title="Presione para ir al área de estudiantes"
+									>
+										<i class="fas fa-lg fa-children mb-1 mb-sm-0 me-sm-1"></i>
+										<span class="m-0">Estudiantes</span>
+									</a>
+
+
+									<!-- Al área de representantes -->
+									<a
+										href="index.php?sec=rep"
+										class="btn btn-outline-primary <?php echo $active_rep;?>"
+										data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										title="Presione para ir al área de representantes"
+									>
+										<i class="fas fa-lg fa-users mb-1 mb-sm-0 me-sm-1"></i>
+										<span class="m-0">Representantes</span>
+									</a>
+
+
+									<!-- Al área de padres -->
+									<a
+										href="index.php?sec=pad"
+										class="btn btn-outline-primary <?php echo $active_pad;?>"
+										data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										title="Presione para ir al área de padres"
+									>
+										<i class="fas fa-lg fa-person mb-1 mb-sm-0 me-sm-1"></i>
+										<span class="m-0">Padres</span>
+									</a>
+
+
+
+									<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
+
+									<!-- Al área de usuarios -->
+									<a
+										href="index.php?sec=usr"
+										class="btn btn-outline-primary <?php echo $active_usr;?>"
+										data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										title="Presione para ir al área de usuarios"
+									>
+										<i class="fas fa-lg fa-user mb-1 mb-sm-0 me-sm-1"></i>
+										<span class="m-0">Usuarios</span>
+									</a>
+
+
+									<!-- Al área de registros -->
+									<a
+										href="index.php?sec=reg"
+										class="btn btn-outline-primary <?php echo $active_reg;?>"
+										data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										title="Presione para ir al área de registros"
+									>
+										<i class="fas fa-lg fa-clipboard mb-1 mb-sm-0 me-sm-1"></i>
+										<span class="m-0">Registros</span>
+									</a>
+
+									<?php endif ?>
+
+								</div>
+
 							</div>
+
 						</div>
 
 						<div style="max-height 70vh;min-height 60vh; overflow-y: auto;">
@@ -180,12 +216,24 @@
 										break;
 									
 									default:
-										echo '<p class="text-center">Seleccione una opción para comenzar</p>';
+										echo '
+										<p class="text-center lead my-4">
+											<i class="fas fa-lg fa-arrow-up me-1 d-none d-sm-inline"></i>
+											Seleccione una opción para comenzar
+											<i class="fas fa-lg fa-arrow-up ms-1 d-none d-sm-inline"></i>
+										</p>
+										';
 										break;
 								} 
 							}
 							else {
-								echo '<p class="text-center">Seleccione una opción para comenzar</p>';
+								echo '
+								<p class="text-center lead my-4">
+									<i class="fas fa-lg fa-arrow-up me-1 d-none d-sm-inline"></i>
+									Seleccione una opción para comenzar
+									<i class="fas fa-lg fa-arrow-up ms-1 d-none d-sm-inline"></i>
+								</p>
+								';
 							}
 						?>	
 						</div>
@@ -207,6 +255,7 @@
 	</main>
 </div>
 
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>

@@ -184,7 +184,7 @@
 	$imagen->setWorksheet($hoja);
 
 
-	$hoja->fromArray($encabezado, null, 'A2');
+	$hoja->fromArray(array_map("mb_strtoupper",$encabezado), null, 'A2');
 
 
 	// retorno de los datos como array de arrays
@@ -216,7 +216,7 @@
 				$estudiante["cedula"],
 				$estudiante["p_nombre"]. " " .$estudiante["s_nombre"],
 				$estudiante["p_apellido"]. " " .$estudiante["s_apellido"],
-				$estudiante["fecha_nacimiento"],
+				formatear_fecha($estudiante["fecha_nacimiento"]),
 				$estudiante["genero"],
 				$estudiante["grado_a_cursar"],
 				'Sección "' . $estudiante["seccion"] . '"',
@@ -230,10 +230,6 @@
 		$representantes->set_cedula_persona($estudiante["cedula_representante"]);
 		$representante = $representantes->consultar_representantes();
 
-		// var_dump($representante);
-
-		// echo "<br><br><br>";
-
 		// Incluye los datos personales
 		$datos_fila = array_merge(
 
@@ -243,7 +239,7 @@
 				$representante["cedula"],
 				$representante["p_nombre"]. " " .$representante["s_nombre"],
 				$representante["p_apellido"]. " " .$representante["s_apellido"],
-				$representante["fecha_nacimiento"],
+				formatear_fecha($representante["fecha_nacimiento"]),
 				$representante["lugar_nacimiento"],
 				$representante["genero"],
 				$representante["estado_civil"],
@@ -260,17 +256,17 @@
 		// Incluye incluir_direccion del representante
 		if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
 			
-			$direccion = 
-			[
-				$representante["municipio"],
-				$representante["parroquia"],
-				$representante["sector"],
-				$representante["calle"],
-				$representante["nro_casa"],
-				$representante["punto_referencia"],
-			];
+			// $direccion =
+			// [
+			// 	$representante["municipio"],
+			// 	$representante["parroquia"],
+			// 	$representante["sector"],
+			// 	$representante["calle"],
+			// 	$representante["nro_casa"],
+			// 	$representante["punto_referencia"],
+			// ];
 
-			$datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
+			$datos_fila = array_merge($datos_fila,[direccion_completa($representante)],);
 		}
 
 
@@ -386,7 +382,7 @@
 			if ($_POST['filtro_relacion'] == "Padre" or $_POST['filtro_relacion'] == "padre") {
 				$fil = ["Padre","padre"];
 				if (in_array($estudiante["relacion_representante"], $fil)) {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 				}
@@ -395,7 +391,7 @@
 			elseif ($_POST['filtro_relacion'] == "Madre" or $_POST['filtro_relacion'] == "madre") {
 				$fil = ["Madre","madre"];
 				if (in_array($estudiante["relacion_representante"], $fil)) {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 				}
@@ -404,7 +400,7 @@
 			elseif ($_POST['filtro_relacion'] == "Otro" or $_POST['filtro_relacion'] == "otro") {
 				$fil = ["Padre","Madre","padre","madre"];
 				if (!in_array($estudiante["relacion_representante"], $fil)) {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 				}
@@ -412,14 +408,13 @@
 		}
 		// Si el filtro marca cualquiera se muestra la fila
 		else {
-			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 			$i++;
 			$lineas++;
 		}
 
 	}
 
-	// echo $lineas;
 
 	// Estilos de la cabecera
 	$max_col = $hoja->getHighestColumn();

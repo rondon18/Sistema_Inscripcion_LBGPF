@@ -77,6 +77,9 @@
 	$imagen->getShadow()->setDirection(45);
 	$imagen->setWorksheet($hoja);
 
+	foreach ($encabezado as $dato) {
+		$dato = strtoupper($dato);
+	}
 
 	$hoja->fromArray($encabezado, null, 'A2');
 
@@ -125,6 +128,9 @@
 			$datos_fila = array_merge($datos_fila,["Usuario invitado"]);
 		}
 		
+		foreach ($datos_fila as $dato) {
+			$dato = strtoupper($dato);
+		}
 
 		$hoja->fromArray($datos_fila, null, 'A'.$i);
 		$i++;

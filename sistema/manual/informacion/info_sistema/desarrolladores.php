@@ -14,18 +14,18 @@
   </p>
 
   <p>
-  	Adrián Ganzález: Técnico Superior Universitario en Informática.
-	Correo: adrian2001.gm@gmail.com
+  	Elber Rondón: Técnico Superior Universitario en Informática.
+    Correo: elber.alonso16@gmail.com
   </p>
 
   <p>
-	Elber Rondón: Técnico Superior Universitario en Informática.
-	Correo: elber.alonso16@gmail.com
+    María Ballestero: Técnico Superior Universitario en Informática.
+    Correo: mgbrodriguez952@gmail.com
   </p>
 
   <p>
-	María Ballestero: Técnico Superior Universitario en Informática.
-	Correo: mgbrodriguez952@gmail.com
+    Pacheco Yeniffer: Técnico superior en informática.
+    Correo: pachecojenniferk921@gmail.com
   </p>
 
   <p>

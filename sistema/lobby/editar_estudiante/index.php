@@ -10,9 +10,6 @@
 	if (isset(
 				$_POST['editar'],
 				$_POST['cedula'],
-				$_POST['cedula_representante'],
-				$_POST['cedula_padre'],
-				$_POST['cedula_madre']
 			)
 		) {
 
@@ -99,8 +96,9 @@
 			$_SESSION['tlfs_madre'] = $telefonos->consultar_telefonos();
 
 			$_SESSION['editar_registro'] = true;
+			$_SESSION['tipo_edicion'] = "estudiante";
 
-			header('Location: paso_1.php');
+			header('Location: editar_estudiante.php');
 
 	}
 	else {

@@ -18,104 +18,55 @@ $lista_padres = $padres->mostrar_padres();
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Padres registrados
-	</p>
-	<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
-			<th>Cédula</th>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Rol</th>
-			<th>Fecha Nacimiento</th>
-			<th>Lugar Nacimiento</th>
-			<th>Correo Electrónico</th>
-			<th>Dirección</th>
-			<th>Estado Civil</th>
-			<th>Hijos en el plantel</th>
+	<table id="padres" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 88%;">
+		<thead class="text-truncate">
+			<th>CÉDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>ROL</th>
+			<th>FECHA NACIMIENTO</th>
+			<th>LUGAR DE NACIMIENTO</th>
+			<th>ESTADO CIVIL</th>
+			<th>CORREO ELECTRÓNICO</th>
+			<th>DIRECCIÓN</th>
+			<th>HIJOS EN EL PLANTEL</th>
+			<th>ACCIONES</th>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 
 			<?php foreach ($lista_padres as $padre):?>
 			<tr>
-				<td><?php echo comprobar_vacio($padre['cedula']); ?></td>
-				<td style="min-width:210px;">
+				<td><?php echo $padre['cedula']; ?></td>
+				<td>
 					<?php 
-						echo comprobar_vacio($padre['p_nombre'])." ".$padre['s_nombre']; 
+						echo mb_strtoupper($padre['p_nombre']." ".$padre['s_nombre']);
 					?>
 				</td>
-				<td style="min-width:210px;">
+				<td>
 					<?php 
-						echo comprobar_vacio($padre['p_apellido'])." ".$padre['s_apellido']; 
+						echo mb_strtoupper($padre['p_apellido']." ".$padre['s_apellido']);
 					?>
 				</td>
 				<td>
 					<?php 
 
-						if ($padre['genero'] == "M") {
-							echo "Madre";
+						if ($padre['genero'] == "F") {
+							$rol = "Madre";
 						}
 						else {
-							echo "Padre";
+							$rol = "Padre";
 						}
+
+						echo mb_strtoupper($rol);
 
 					?>
 				</td>
-				<td class="text-center"><?php echo comprobar_vacio($padre['fecha_nacimiento'],"F"); ?></td>
-				<td><?php echo comprobar_vacio($padre['lugar_nacimiento']); ?></td>
-				<td style="min-width:160px;"><?php echo comprobar_vacio($padre['email']); ?></td>
+				<td class="text-center"><?php echo formatear_fecha($padre['fecha_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper($padre['lugar_nacimiento']);?></td>
 
-				<?php 
-
-					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
-
-					$direccion = "";
-
-					if (empty($padre['estado'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['estado']." ";
-					}
-					if (empty($padre['municipio'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['municipio']." ";
-					}
-					if (empty($padre['parroquia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['parroquia']." ";
-					}
-					if (empty($padre['sector'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['sector']." ";
-					}
-					if (empty($padre['calle'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['calle']." ";
-					}
-					if (empty($padre['nro_casa'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['nro_casa']." ";
-					}
-					if (empty($padre['punto_referencia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $padre['punto_referencia']." ";
-					}
-				?>
-				<td style="min-width: 100vw"><?php echo $direccion;?></td>
-				<td><?php echo comprobar_vacio($padre['estado_civil']); ?></td>
+				<td><?php echo mb_strtoupper($padre['estado_civil']);?></td>
+				<td style="min-width: 100vw"><?php echo mb_strtoupper($padre['email']);?></td>
+				<td style="min-width: 100vw"><?php echo mb_strtoupper(direccion_completa($padre))?></td>
 
 				<td>
 					<?php
@@ -129,11 +80,51 @@ $lista_padres = $padres->mostrar_padres();
 						foreach ($hijos as $hijo) {
 							$grados_hijos[] = $hijo['grado_a_cursar'];
 						}
-						echo implode(',', $grados_hijos);
-
-						// echo $padres->contar_hijos();
-
+						echo mb_strtoupper(implode(',', $grados_hijos));
 					?>
+				</td>
+
+				<!-- Acciones -->
+				<td>
+
+					<form id="consultar_<?php echo $padre['cedula']?>" action="consultar_padre.php" method="post" class="d-none">
+
+						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+						<input type="hidden" name="rol" value="<?php echo $rol;?>">
+						<input type="hidden" name="accion" value="consultar">
+
+					</form>
+
+					<form id="editar_<?php echo $padre['cedula']?>" action="../editar_padre/index.php" method="post" class="d-none">
+
+						<input type="hidden" name="cedula" value="<?php echo $padre['cedula'];?>">
+						<input type="hidden" name="rol" value="<?php echo $rol;?>">
+						<input type="hidden" name="editar_padre" value="editar_padre">
+
+					</form>
+
+					<div class="btn-group">
+
+						<button
+							type="submit"
+							role="button"
+							class="btn btn-primary btn-sm"
+							name="consultar"
+							form="consultar_<?php echo $padre['cedula']?>"
+						>
+							Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i>
+						</button>
+
+						<button
+							type="submit"
+							role="button"
+							class="btn btn-primary btn-sm"
+							name="consultar"
+							form="editar_<?php echo $padre['cedula']?>"
+						>
+							Editar <i class="fas fa-pen-to-square fa-lg ms-2"></i>
+						</button>
+					</div>
 				</td>
 
 			</tr>

@@ -7,9 +7,6 @@ if (!$_SESSION['login']) {
 	header('Location: ../index.php');
 	exit();
 }
-
-$nivel = 2;
-
 // El formulario redirecciona a sí mismo, luego al paso 2 una vez se asignan las variables de sesión
 
 // Verificación al momento de enviar el formulario
@@ -51,7 +48,7 @@ if (isset($_POST['paso_1'])) {
 				<div class="card">
 					<!-- Titulo del contenedor -->
 					<div class="card-header text-center">
-						<b class="fs-4">Formulario de registro - Representante</b>
+						<b class="fs-5">FORMULARIO DE REGISTRO - REPRESENTANTE</b>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -93,7 +90,46 @@ if (isset($_POST['paso_1'])) {
 												</span>
 											</div>
 										</div>
-										
+
+										<!-- Cédula -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-2">
+												<label class="form-label requerido">Cédula:</label>
+											</div>
+
+											<div class="col-12 col-lg-3">
+													<!-- Nacionalidad -->
+													<select
+														id="nacionalidad_r"
+														class="form-select"
+														name="nacionalidad_r"
+														required
+													>
+														<option value="">Nacionalidad</option>
+														<option value="V" <?php dato_sesion_opt("V","nacionalidad_r","s");?>>V</option>
+														<option value="E" <?php dato_sesion_opt("E","nacionalidad_r","s");?>>E</option>
+													</select>
+											</div>
+											<div class="col-12 col-lg-7">
+
+													<!-- Número de cédula -->
+													<input
+														id="cedula_r"
+														class="form-control"
+														type="text"
+														name="cedula_r"
+														maxlength="8"
+														minlength="7"
+														placeholder="Número de cedula"
+														required
+														value="<?php echo dato_sesion_i("cedula_r");?>"
+													>
+											</div>
+
+											<div class="col-12 col-lg-12 mt-2 p-0">
+												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de 7 a 8 dígitos.</span>
+											</div>
+										</div>
 
 										<!-- Nombres -->
 										<div class="row mb-4">
@@ -171,43 +207,6 @@ if (isset($_POST['paso_1'])) {
 										</div>
 
 
-										<!-- Cédula -->
-										<div class="row mb-4">
-											<div class="col-12 col-lg-2">
-												<label class="form-label requerido">Cédula:</label>
-											</div>
-											<div class="col-12 col-lg-3">
-													<!-- Nacionalidad -->
-													<select 
-														id="nacionalidad_r" 
-														class="form-select" 
-														name="nacionalidad_r" 
-														required
-													>
-														<option value="">Nacionalidad</option>
-														<option value="V" <?php dato_sesion_opt("V","nacionalidad_r","s");?>>V</option>
-														<option value="E" <?php dato_sesion_opt("E","nacionalidad_r","s");?>>E</option>
-													</select>
-											</div>
-											<div class="col-12 col-lg-7">
-
-													<!-- Número de cédula -->
-													<input 
-														id="cedula_r" 
-														class="form-control" 
-														type="text" 
-														name="cedula_r" 
-														maxlength="8" 
-														minlength="7" 
-														placeholder="Número de cedula"
-														required 
-														value="<?php echo dato_sesion_i("cedula_r");?>"
-													>
-											</div>
-											<div class="col-12 col-lg-12 mt-2">
-												<span class="form-text">La cédula consta de una nacionalidad y de un número con alrededor de 7 a 8 dígitos.</span>
-											</div>
-										</div>
 
 
 
@@ -1548,9 +1547,9 @@ if (isset($_POST['paso_1'])) {
 			<?php include '../../ayuda.php';?>
 		</main>
 		<script type="text/javascript" src="../../js/sweetalert2.js"></script>
-		<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="../../js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="../../js/validaciones/additional-methods.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_es.min.js"></script>
 		<script type="text/javascript" src="../../js/validaciones/validaciones_representante.js"></script>
 		<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>

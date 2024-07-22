@@ -22,16 +22,27 @@
 								<th><span class="badge" style="background: #ff9f40;"> </span> Rancho</th>
 								<th><span class="badge" style="background: #ffcd56;"> </span> Quinta</th>
 								<th><span class="badge" style="background: #44b4b4;"> </span> Habitación</th>
+								<th><span class="badge" style="background: #9966ff;"> </span> Otro / No especifica</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$nro_padres = $padres->get_nro_padres();
+							$nro_casa = $padres->get_nro_tipo_v("Casa");
+							$nro_apartamento = $padres->get_nro_tipo_v("Apartamento");
+							$nro_rancho = $padres->get_nro_tipo_v("Rancho");
+							$nro_quinta = $padres->get_nro_tipo_v("Quinta");
+							$nro_habitación = $padres->get_nro_tipo_v("Habitación");
+							$nro_otro = $nro_padres - ($nro_casa+$nro_apartamento+$nro_rancho+$nro_quinta+$nro_habitación);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_tipo_v("Casa");?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Apartamento");?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Rancho");?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Quinta");?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Habitación");?></td>
+								<td><?php echo $nro_casa;?></td>
+								<td><?php echo $nro_apartamento;?></td>
+								<td><?php echo $nro_rancho;?></td>
+								<td><?php echo $nro_quinta;?></td>
+								<td><?php echo $nro_habitación;?></td>
+								<td><?php echo $nro_otro;?></td>
 								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
@@ -51,11 +62,12 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_tipo_v("Casa");?>,
-			        	<?php echo $padres->get_nro_tipo_v("Apartamento");?>,
-			        	<?php echo $padres->get_nro_tipo_v("Rancho");?>,
-			        	<?php echo $padres->get_nro_tipo_v("Quinta");?>,
-			        	<?php echo $padres->get_nro_tipo_v("Habitación");?>,
+			        	<?php echo $nro_casa;?>,
+			        	<?php echo $nro_apartamento;?>,
+			        	<?php echo $nro_rancho;?>,
+			        	<?php echo $nro_quinta;?>,
+			        	<?php echo $nro_habitación;?>,
+			        	<?php echo $nro_otro;?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -89,14 +101,22 @@
 								<th><span class="badge" style="background: #36a2eb;"> </span> Buena</th>
 								<th><span class="badge" style="background: #ff6384;"> </span> Regular</th>
 								<th><span class="badge" style="background: #ff9f40;"> </span> Mala</th>
+								<th><span class="badge" style="background: #ffcd56;"> </span> Otro / No especifica</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$cond_v_buena = $padres->get_nro_condicion_v("Buena");
+							$cond_v_regular = $padres->get_nro_condicion_v("Regular");
+							$cond_v_mala = $padres->get_nro_condicion_v("Mala");
+							$cond_v_otra = $nro_padres - ($cond_v_buena + $cond_v_regular + $cond_v_mala);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_condicion_v("Buena");?></td>
-								<td><?php echo $padres->get_nro_condicion_v("Regular");?></td>
-								<td><?php echo $padres->get_nro_condicion_v("Mala");?></td>
+								<td><?php echo $cond_v_buena;?></td>
+								<td><?php echo $cond_v_regular;?></td>
+								<td><?php echo $cond_v_mala;?></td>
+								<td><?php echo $cond_v_otra;?></td>
 								<td><?php echo $padres->get_nro_padres();?></td>
 							</tr>
 						</tbody>
@@ -116,9 +136,10 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_condicion_v("Buena");?>,
-			        	<?php echo $padres->get_nro_condicion_v("Regular");?>,
-			        	<?php echo $padres->get_nro_condicion_v("Mala");?>,
+			        	<?php echo $cond_v_buena;?>,
+			        	<?php echo $cond_v_regular;?>,
+			        	<?php echo $cond_v_mala;?>,
+			        	<?php echo $cond_v_otra;?>,
 			      	],
 			        borderWidth: 1
 			      }]

@@ -2,7 +2,7 @@
 
 	if ($_SESSION['orden'] == "editar" and isset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3'])) {
 
-		// echo "insertar";
+
 
 
 		// funciones usadas durante el proceso de registro
@@ -126,7 +126,7 @@
 		$datos_economicos->set_banco(dato_sesion_i("banco"));		
 		$datos_economicos->set_tipo_cuenta(dato_sesion_i("tipo_cuenta"));		
 		$datos_economicos->set_nro_cuenta(dato_sesion_i("nro_cuenta"));	
-		$datos_economicos->editar_datos_economicos();	
+		$datos_economicos->editar_datos_economicos();
 
 
 		// contactos_aux
@@ -146,7 +146,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Padre") {
@@ -267,7 +267,10 @@
 
 			// Almacena la cédula del padre
 			$cedula_padre = $personas->get_cedula();
+
 		}
+
+
 
 		/*
 
@@ -277,10 +280,11 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Madre") {
+
 			// si alguno de los dos esta vacio, se agrega una cedula provisional
 			if (empty(dato_sesion_i("nacionalidad_m",2)) or (empty(dato_sesion_i("cedula_m",2)))) {
 				$cedula_provisional_m = "V".$personas->generar_cedula_provisional();
@@ -307,8 +311,9 @@
 			// Inserta la persona
 			$personas->editar_persona($_SESSION['datos_madre']['cedula']);
 
-			// Almacena la cédula del padre
+			// Almacena la cédula de la madre
 			$cedula_madre = $personas->get_cedula();
+
 
 			// Telefonos
 
@@ -394,11 +399,16 @@
 		else {
 			$padres->set_cedula_persona($cedula_representante);
 			$padres->set_pais_residencia("Venezuela");
-			// $padres->editar_padres();
+			$padres->editar_padres();
 
 			// Almacena la cédula del padre
 			$cedula_madre = $personas->get_cedula();
+
+			echo "CAMINO B";
 		}
+
+
+
 
 		/*
 
@@ -409,12 +419,8 @@
 		// Persona
 
 		// si alguno de los dos esta vacio, se usará le cédula escolar
-		if (empty(dato_sesion_i("nacionalidad_est",3)) or (empty(dato_sesion_i("cedula_est",3)))) {
-			$personas->set_cedula(dato_sesion_i("cedula_escolar_est",3));
-		}
-		else {
-			$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
-		}
+
+		$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
 
 		// Datos de persona	
 		$personas->set_p_nombre(dato_sesion_i("primer_nombre_est",3));
@@ -503,7 +509,6 @@
 		// Datos del estudiante
 
 		$estudiantes->set_cedula_persona($cedula_estudiante);
-		$estudiantes->set_cedula_escolar(dato_sesion_i("cedula_escolar_est",3));
 		$estudiantes->set_plantel_proced(dato_sesion_i("plantel_procedencia",3));
 		$estudiantes->set_con_quien_vive(dato_sesion_i("con_quien_vive",3));
 		$estudiantes->set_relacion_representante(dato_sesion_i("vinculo_r"));
@@ -511,6 +516,7 @@
 		$estudiantes->set_cedula_madre($cedula_madre);
 		$estudiantes->set_cedula_representante($cedula_representante);
 		$estudiantes->editar_estudiantes();
+
 
 
 		// datos_academicos
@@ -650,14 +656,29 @@
 		$grado_a_cursar_est->set_cedula_estudiante($cedula_estudiante);
 		$grado_a_cursar_est->set_id_per_academico($per_academico->get_id_per_academico());
 		$grado_a_cursar_est->editar_grado_a_cursar_est();
+
+		// inscripciones
+
+		$inscripciones->set_fecha(date("Y-m-d"));
+		$inscripciones->set_hora(date("H:i:s"));
+		$inscripciones->set_cedula_usuario($_SESSION['datos_login']["cedula"]);
+		$inscripciones->set_cedula_estudiante($cedula_estudiante);
+		$inscripciones->insertar_inscripciones();
 	
 
 		// elimina los valores almacenados en sesion de este proceso
-		unset($_SESSION['orden'],$_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		unset(
+			$_SESSION['orden'],
+			$_SESSION['datos_inscripcion'],
+			$_SESSION['paso_1'],
+			$_SESSION['paso_2'],
+			$_SESSION['paso_3'],
+			$_SESSION['tipo_edicion']
+		);
 
 	}
 	else {
-		// echo "b";
+
 	}
 
 ?>

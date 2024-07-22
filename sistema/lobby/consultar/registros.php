@@ -24,61 +24,53 @@
 								
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
 	<table id="bitácora" class="text-uppercase table table-striped table-bordered table-sm w-100">
 		<thead style="font-size: 95%">
-			<th>Nro de registro.</th>
-			<th>Usuario</th>
-			<th>Fecha de entrada</th>
-			<th>Hora de entrada</th>
-			<th>Fecha de cierre</th>
-			<th>Hora de cierre</th>
-			<th>Acciones realizadas</th>
+			<th>USUARIO</th>
+			<th>FECHA DE ENTRADA</th>
+			<th>HORA DE ENTRADA</th>
+			<th>FECHA DE CIERRE</th>
+			<th>HORA DE CIERRE</th>
+			<th>ACCIONES REALIZADAS</th>
 		</thead>
 		<tbody style="font-size: .85em;">
 		<?php foreach ($registros_bitácora as $registro): ?>
 
 			<tr>
-				
-				<td>
-					<?php echo $registro['id_bitacora'];?>
-				</td>
 
-				<td><?php echo $registro['cedula_usuario'];?></td>
+				<td><?php echo mb_strtoupper($registro['cedula_usuario']);?></td>
 
 				<td style="min-width: 170px;">
-					<?php echo $registro['fecha_ingreso'];?>
+					<?php echo mb_strtoupper(formatear_fecha($registro['fecha_ingreso']));?>
 				</td>
 
 				<td style="min-width: 170px;">
-					<?php echo $registro['hora_ingreso'];?>
+					<?php echo mb_strtoupper($registro['hora_ingreso']);?>
 				</td>
 
 				<td style="min-width: 180px">
 					<?php 
 						if($registro['fecha_salida'] != "0000-00-00") { 
-							echo $registro['fecha_salida'];
+							echo mb_strtoupper(formatear_fecha($registro['fecha_salida']));
 						} 
 						else {
-							echo "Sesión no cerrada correctamente";
+							echo mb_strtoupper("Sesión no cerrada correctamente");
 						}
 					?>		
 				</td>
 				<td style="min-width: 180px">
 					<?php 
 						if($registro['hora_salida'] != "00:00:00") {
-							echo $registro['hora_salida'];
+							echo mb_strtoupper($registro['hora_salida']);
 						}
 						else {
-							echo "Sesión no cerrada correctamente";
+							echo mb_strtoupper("Sesión no cerrada correctamente");
 						}
 					?>
 				</td>
 				
 				<td style="min-width: 400px">
-					<?php echo $registro['acciones_realizadas'];?>
+					<?php echo mb_strtoupper($registro['acciones_realizadas']);?>
 				</td>
 			
 			</tr>

@@ -15,12 +15,9 @@
 			$nombre = $datos_usuario['p_nombre']. " " .$datos_usuario['p_apellido'];
 			$pregunta_1 = $datos_usuario['pregunta_seg_1'];
 			$pregunta_2 = $datos_usuario['pregunta_seg_2'];
-			// $respuesta_1 = $datos_usuario['respuesta_1'];
-			// $respuesta_2 = $datos_usuario['respuesta_2'];
 		}
 		else {
 			header('Location: index.php?error_cedula');
-
 		}
 	}
 ?>
@@ -69,15 +66,17 @@
 				</div>
 			</div>
 
-			<div class="row mt-3">
-				<div class="col-12 col-lg mb-2 d-flex gap-3 justify-content-start">
-					<a class="btn btn-primary" href="index.php">
-						<i class="fa-solid fa-xl me-2 fa-home"></i>
+			<div class="row row-cols-2 row-cols-sm-12 mt-3 g-1">
+				<div class="col col-sm-auto">
+					<a class="btn btn-primary btn-sm" href="index.php">
+						<i class="fa-solid fa-lg me-1 fa-home"></i>
 						Volver
 					</a>
-					<button class="btn btn-primary" type="submit" name="verificar_datos" value="Verificar">
+				</div>
+				<div class="col col-sm-auto">
+					<button class="btn btn-primary btn-sm" type="submit" name="verificar_datos" value="Verificar">
 						Verificar datos
-						<i class="fa-solid fa-lg fa-search ms-2"></i>
+						<i class="fa-solid fa-lg fa-search ms-1"></i>
 					</button>
 				</div>
 			</div>

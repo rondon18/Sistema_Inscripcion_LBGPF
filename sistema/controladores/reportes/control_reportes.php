@@ -8,8 +8,10 @@
 	}
 
 
+	require('../../lobby/consultar/funciones.php');
 	require('../../clases/bitacora.php');
 	require('../../controladores/conexion.php');
+	require('../../logs/error_handler.php');
 
 	require("../../clases/antropometria_est.php");
 	require("../../clases/carnet_patria.php");
@@ -85,11 +87,6 @@
 	// Adaptar una entrada para cada accion (insertar, editar y eliminar)
 	$bitacora = new bitacora();
 
-	// var_dump($_POST);
-
-	// foreach ($_POST as $key => $value) {
-	// 	echo $key." --> ".$value."<br>";
-	// }
 
 	// Verifica que se ha solicitado un reporte
 	if (isset($_POST['reporte'])) {
@@ -114,6 +111,13 @@
 			case 'padres':
 				
 				require("reporte_padres.php");
+				header('Location: ../../lobby/reportes/index.php?exito');
+
+				break;
+
+			case 'nomina_estudiantil':
+
+				require("reporte_nomina_estudiantil.php");
 				header('Location: ../../lobby/reportes/index.php?exito');
 
 				break;

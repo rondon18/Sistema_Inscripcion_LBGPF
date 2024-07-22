@@ -8,6 +8,7 @@
 
 	require('../clases/bitacora.php');
 	require('../controladores/conexion.php');
+	require('../logs/error_handler.php');
 
 	$bitacora = new bitacora();
 	$_SESSION['acciones'] .= ', Visita menú principal';
@@ -16,13 +17,13 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 1;
 
-	// var_dump($_SESSION);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +34,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/all.min.css"/>
 		<link rel="icon" type="img/png" href="../img/icono.png">
 	</head>
+
 	<body>
 		
 		<main class="d-flex flex-column justify-content-between vh-100">
@@ -42,43 +44,55 @@
 			<div class="container-md">
 				<div class="card w-100 my-3">
 					<div class="card-header text-center">
-						<b class="fs-4">Menú principal</b>
+						<b class="fs-5">MENÚ PRINCIPAL</b>
 					</div>
 					<div class="card-body" style="max-height: 65vh; overflow-y:auto;">
-						<section class="px-3 px-md-5 py-4 d-flex align-items-center">
-							<img class="me-5" src="../img/icono.png" alt="Icono del sistema" width="100">
-							<div>
-								<p class="h3 mb-1">
+						<section class="px-sm-3 px-md-5 pt-2 pb-2 pb-sm-4 mb-2 mb-sm-0 d-flex flex-column flex-sm-row align-items-center">
+							<div class="text-center text-sm-start">
+								<p class="display-5 mb-1">
 									Bienvenido(a), <?php echo $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['p_apellido'];?>.
 								</p>
-								<span class="text-muted">¿Qué desea hacer?</span>
+								<span class="lead fs-6 text-muted">¿Qué desea hacer?</span>
 							</div>
+							<img class="d-none d-sm-inline-block ms-sm-auto mb-4 mb-sm-0" src="../img/icono.png" alt="Icono del sistema" width="125">
 						</section>
-						<section class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
 
-							
+						<section class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 px-md-5 g-4 mb-4">
+
+
 							<!-- Gestionar registros -->
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-magnifying-glass fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Gestionar registros.</h6>
-											<a href="consultar/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Visitar sección</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								<?php if ($_SESSION['datos_login']['privilegios'] < 2): ?>
+								title="Consulte, edite y genere distintas planillas. Además de poder gestionar registros y usuarios."
+								<?php else: ?>
+								title="Consulte, edite y genere distintas planillas."
+								<?php endif ?>
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-magnifying-glass fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="consultar/index.php">Gestionar registros.</a>
 										</div>
 									</div>
 								</div>
 							</div>
-
 
 							<!-- Registrar estudiante -->
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-user-plus fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Registrar estudiante.</h6>
-											<a href="registrar_estudiante/paso_1.php" class="btn btn-primary w-100 btn-sm stretched-link">Iniciar inscripción</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Inicie el proceso de inscripción de un estudiante de nuevo ingreso."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-user-plus fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="registrar_estudiante/paso_1.php">Registrar estudiante.</a>
 										</div>
 									</div>
 								</div>
@@ -86,27 +100,35 @@
 
 
 							<!-- Generar reporte -->
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-file-export fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Generar reporte.</h6>
-											<a href="reportes/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Ver opciones</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Genere distintos tipos de reportes en formato de hoja de calculo (Excel)."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-file-export fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="reportes/index.php">Generar reporte.</a>
 										</div>
 									</div>
 								</div>
 							</div>
 
 
-							<!-- Generar reporte -->
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Consultar estadisticas.</h6>
-											<a href="estadistica/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Visitar seccion</a>
+							<!-- Estadísticas -->
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Consulte las estadisticas del sistema (Estudiantes, padres y representantes)."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-chart-column fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="estadistica/index.php">Consultar estadisticas.</a>
 										</div>
 									</div>
 								</div>
@@ -117,26 +139,35 @@
 							
 
 							<!-- Registrar usuario -->
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-user-plus fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Registrar usuario.</h6>
-											<a href="registrar_usuario/paso_1.php" class="btn btn-primary w-100 btn-sm stretched-link">Iniciar proceso</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Registre usuarios nuevos para operar el sistema."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start py-4">
+										<i class="fa-solid fa-user-plus fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="registrar_usuario/paso_1.php">Registrar usuario.</a>
 										</div>
 									</div>
 								</div>
 							</div>
 
 
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-wrench fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Gestionar sistema.</h6>
-											<a href="mantenimiento/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Verificar sistema</a>
+							<!-- Gestión del sistema -->
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Gestione los repaldos y puntos de restauración del sistema."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-wrench fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="mantenimiento/index.php">Gestionar sistema.</a>
 										</div>
 									</div>
 								</div>
@@ -146,32 +177,38 @@
 							<?php endif?>
 
 
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-user fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Ver mi perfil.</h6>
-											<a href="perfil/index.php" class="btn btn-primary w-100 btn-sm stretched-link">Ir al perfil</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Consulte y actualice su perfil de usuario."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-user fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="perfil/index.php">Ver mi perfil.</a>
 										</div>
 									</div>
 								</div>
 							</div>
 
 
-							<div class="col px-2 px-md-4 py-2">
-								<div class="card bg-light">
-									<div class="card-body d-flex align-items-center">
-										<i class="fa-solid fa-power-off fa-2xl m-2"></i>
-										<div class="px-2 w-100">
-											<h6 class="card-title mb-2">Cerrar sesión.</h6>
-											<a href="../controladores/logout.php" class="btn btn-primary w-100 btn-sm stretched-link">Salir</a>
+							<div
+								class="col"
+								data-bs-toggle="tooltip"
+								data-bs-placement="top"
+								title="Cierra sesión y sale del sistema."
+							>
+								<div class="card bg-light shadow hover-grow card-menu">
+									<div class="card-body d-flex flex-column flex-sm-row gap-3 align-items-center justify-content-center justify-content-sm-start">
+										<i class="fa-solid fa-power-off fa-2xl mt-3 mt-sm-0 mb-2 mb-sm-0"></i>
+										<div class="px-sm-2 w-100">
+											<a class="link-dark text-decoration-none stretched-link link-menu" href="../controladores/logout.php">Cerrar sesión.</a>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
 						</section>
 					</div>
 				</div>
@@ -184,7 +221,7 @@
 		
 	</body>
 	<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../js/sweetalert2.js"></script>
 	<script type="text/javascript">
 		<?php if (isset($_GET['exito'])): ?>
@@ -195,6 +232,10 @@
 		  timer: 2000 // tiempo en milisegundos (en este caso, 2 segundos)
 		})
 		<?php endif ?>
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
 	</script>
 	<script type="text/javascript" src="../js/logout_inactividad.js"></script>
 

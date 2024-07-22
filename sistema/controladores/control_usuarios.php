@@ -6,7 +6,7 @@
 		header('Location: ../index.php?exito');
 		exit();
 	}
-
+	require('../logs/error_handler.php');
 	require('../clases/bitacora.php');
 	require('../controladores/conexion.php');
 	
@@ -18,8 +18,6 @@
 	// personas
 	$personas = new personas();
 	$usuarios = new usuarios();
-
-	// var_dump($_SESSION);
 	
 	if (isset($_SESSION['orden'])) {
 		if ($_SESSION['orden'] == "insertar") {
@@ -83,11 +81,13 @@
 				}
 
 				$usuarios->set_privilegios($privilegios);
-				$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevo']['clave']);
+				$clave = hash("sha256", $_SESSION['datos_usuario_nuevo']['clave']);
+				$usuarios->set_contrasenia($clave);
 				$usuarios->set_pregunta_seg_1($_SESSION['datos_usuario_nuevo']['pregunta_seg_1']);
 				$usuarios->set_respuesta_1($_SESSION['datos_usuario_nuevo']['respuesta_1']);
 				$usuarios->set_pregunta_seg_2($_SESSION['datos_usuario_nuevo']['pregunta_seg_2']);
 				$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevo']['respuesta_2']);
+				$usuarios->set_estado("activo");
 				$usuarios->insertar_usuarios();
 
 				header('Location: ../lobby/consultar/index.php?exito');
@@ -95,7 +95,6 @@
 
 		}
 		
-
 		// De editar perfil. Se debe cambiar
 		elseif ($_SESSION['orden'] == "editar") {
 
@@ -150,8 +149,6 @@
 		// De editar perfil. Se debe cambiar
 		elseif ($_SESSION['orden'] == "editar_externo") {
 
-			var_dump($_SESSION["datos_usuario_nuevos"]);
-
 			// Datos de persona	
 
 			$cedula = $_SESSION['datos_usuario_nuevos']["nacionalidad_u"].$_SESSION['datos_usuario_nuevos']["cedula_u"];
@@ -179,7 +176,8 @@
 			$usuarios->set_respuesta_2($_SESSION['datos_usuario_nuevos']['respuesta_2']);
 			$usuarios->editar_usuarios();
 
-			$usuarios->set_contrasenia($_SESSION['datos_usuario_nuevos']['clave']);
+			$clave = hash("sha256", $_SESSION['datos_usuario_nuevos']['clave']);
+			$usuarios->set_contrasenia($clave);
 			$usuarios->editar_contrasenia();
 
 			unset($_SESSION['editar_usuario'],$_SESSION['datos_nuevos'],$_SESSION['orden']);
@@ -188,23 +186,20 @@
 
 		}
 		
-
-		elseif ($_SESSION['orden'] == "eliminar") {
-			if (isset($_SESSION['eliminar_usuario'])) {
-			
-				$personas->set_cedula($_SESSION['eliminar_usuario']);
-				$personas->eliminar_persona();
-
-				header('Location: ../lobby/consultar/index.php?sec=usu&exito');
+		elseif ($_SESSION['orden'] == "cambiar_estado") {
+			if (isset($_SESSION['usuario'],$_SESSION['estado'])) {
+				$usuarios->set_cedula_persona($_SESSION['usuario']);
+				$usuarios->set_estado($_SESSION['estado']);
+				$usuarios->cambiar_estado();
+				header('Location: ../lobby/consultar/index.php?sec=usr&exito');
 			}
 		}
 
 		elseif ($_SESSION['orden'] == "baja") {
-			if (isset($_SESSION['eliminar_usuario'])) {
-			
-				$personas->set_cedula($_SESSION['eliminar_usuario']);
-				$personas->eliminar_persona();
-
+			if (isset($_SESSION['datos_login'])) {
+				$usuarios->set_cedula_persona($_SESSION['datos_login']["cedula"]);
+				$usuarios->set_estado("Activo");
+				$usuarios->cambiar_estado();
 				header('Location: logout.php');
 			}
 		}

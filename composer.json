@@ -2,7 +2,7 @@
     "name": "rondon18/sistema_proyecto",
     "require": {
         "phpoffice/phpspreadsheet": "^1.27",
-        "setasign/fpdf": "1.8"
+        "dompdf/dompdf": "^2.0"
     },
     "autoload": {
         "psr-4": {

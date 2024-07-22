@@ -1,7 +1,7 @@
 -- Insercion de datos de pruebas
 
 -- periodo academico para los registros
-INSERT INTO `per_academico`(`id_per_academico`, `inicio`, `fin`) VALUES ('20222023','2022','2023');
+INSERT IGNORE INTO `per_academico`(`id_per_academico`, `inicio`, `fin`) VALUES ('20222023','2022','2023');
 
 
 
@@ -9,7 +9,7 @@ INSERT INTO `per_academico`(`id_per_academico`, `inicio`, `fin`) VALUES ('202220
 
 -- 33 persona en total
 
-insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
+insert into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values
 ('V28278648','Heriberto','Coraline','Truter','Fewster','1978-03-28','69 Granby Way','F','Viudo(a)','cfewster0@weebly.com','Primaria'),
 ('V9933359','Ambur','Willy','Voller','Shakshaft','1995-11-08','56292 Lighthouse Bay Hill','M','Viudo(a)','wshakshaft1@google.co.jp','Bachillerato'),
 ('V31950478','Sabrina','Torrence','Burcombe','Eddowis','1984-10-16','0 Marquette Pass','M','Soltero(a)','teddowis2@xing.com','Universitario'),
@@ -44,9 +44,11 @@ insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_naci
 ('V20909176','Verene','Lacee','Tweed','Crane','1998-07-23','54 Boyd Lane','F','Viudo(a)','lcranev@auda.org.au','Universitario'),
 ('V33641397','Eimile','Tamma','Krysztofowicz','Caldron','1975-09-26','5 Transport Parkway','M','Soltero(a)','tcaldronw@npr.org','Primaria');
 
+UPDATE `estudiantes` SET `estado`='Inscrito';
 
 
-INSERT  INTO `representantes`(`cedula_persona`) VALUES 
+
+INSERT INTO `representantes`(`cedula_persona`) VALUES
 ('V28278648'),
 ('V9933359'),
 ('V31950478'),
@@ -82,7 +84,7 @@ INSERT  INTO `representantes`(`cedula_persona`) VALUES
 ('V33641397');
 
 
-insert  into telefonos (cedula_persona,relacion,prefijo,numero) values
+insert into telefonos (cedula_persona,relacion,prefijo,numero) values
 ('V28278648','Principal',8507,4671140),
 ('V9933359','Principal',7134,6638885),
 ('V31950478','Principal',5385,1913649),
@@ -216,118 +218,117 @@ insert  into telefonos (cedula_persona,relacion,prefijo,numero) values
 ('V20909176','Trabajo',7610,4605838),
 ('V33641397','Trabajo',2202,9264428);
 
-
-insert  into datos_economicos (cedula_representante,banco,tipo_cuenta,nro_cuenta) values 
-('V28278648','qdnvqvinhvfubf','jcfqlwiethcsks','40096411743168529536'),
-('V9933359','kfzgypcalpffhm','gzcjjiftntwsyi','59220790020061719476'),
-('V31950478','eibbflgzdbvqjj','wipjpcvwtcglyi','13928067292912938081'),
-('V38590950','ekcchraywbfsjw','ifhxtwmqpxiged','65577857535305206897'),
-('V18526161','iyqxcgelewyqsm','gjazxraqvjhveq','37021013029754166438'),
-('V33118292','zrgiddsustpcdh','miibwhapfzywbb','52308805040893606435'),
-('V28302608','bxmavmumngoueb','jnloxsvmybwblc','20747053919318580583'),
-('V18424188','fykhfgixlcqeyt','uomqetryrkbayp','92766260644427755100'),
-('V32238738','mashoqhiilgwby','eqcczeotwjqnak','04584711573450612781'),
-('V16561305','cayhvfrdpnvlon','mzegkoqaxolqny','89223478069671830359'),
-('V11046976','oxagitbdmtjpyb','caxdbelsyyzavq','44406345175937457984'),
-('V20568611','wadgseujhbnbhe','tdnphwtvyaaoay','44114687850673484646'),
-('V27252225','qsfzscmgjowvjs','lnjajsnckfbdjh','65061315989923310578'),
-('V22601755','gjxkponvctythp','qyyeaqjsyvrfco','19240978676877671171'),
-('V33574387','wdsnmvmfwskbgs','ndwkmunvewjczr','10865776303569857886'),
-('V35634816','wpesaqzwoeslgu','lhibqasokkfakh','04166130529442538776'),
-('V27717006','jolpgekauoqhww','upnexrsvldeoqk','39829349609106609087'),
-('V31694733','nzhcocfuivxhqs','itowqvldzgujzi','29553597620398191582'),
-('V18905517','qyxnmocotifwxx','qcbyogeijfqeqv','05529493016318853073'),
-('V5714261','nkndorohbbukok','bxmatvsetwozdg','01638923997876310471'),
-('V19987910','kuimfnyveeczie','ltquuytvuwaxfm','51606508274947637363'),
-('V4459062','aaidylitjmadkh','znzfvbcidnciuh','48249338762250173460'),
-('V22177376','szzgigzmikvoep','yoglmcsqwgnhyh','34168564959306203519'),
-('V35208115','mmbrgwuwhtuksn','iynoctzwjmhmvn','70388014792574449398'),
-('V32113794','stwrnxojajiluw','bbyrlrxfktsmae','86693484217896376468'),
-('V36732297','wwjmefmagdahpb','axkclcgtkovfya','37496468451133874255'),
-('V5344562','khgczhotscalwm','uuedgcphmkpnmr','90083578558225722384'),
-('V25050145','mkfrhptklochvq','fcslepitnvijds','32418021629534524891'),
-('V30196324','fbcwstqyjaocsb','irluliteujhryo','64180053471581453016'),
-('V21412330','tbaybefgjgysav','jmlayigzydefmb','78415875219700765380'),
-('V28798356','zcvtykzxqlhmhf','pckkyvmcaxgfgm','17908490722419695151'),
-('V20909176','umobozazyxgxfa','wxygkjuoujyofs','18220339642511846724'),
-('V33641397','tzorjjwfzbshlu','ajzqnwyablrivl','54058154676141480668');
-
+insert into datos_economicos (cedula_representante,banco,tipo_cuenta,nro_cuenta) values
+('V28278648','Banco de Venezuela S.A.','Corriente','40096411743168529536'),
+('V9933359','Venezolano de Crédito S.A.','Corriente','59220790020061719476'),
+('V31950478','Banco Mercantil, C.A','Corriente','13928067292912938081'),
+('V38590950','Banco Provincial, S.A.','Corriente','65577857535305206897'),
+('V18526161','Bancaribe C.A.','Corriente','37021013029754166438'),
+('V33118292','Banco Exterior C.A.','Corriente','52308805040893606435'),
+('V28302608','Banco Occidental de Descuento, C.A.','Corriente','20747053919318580583'),
+('V18424188','Banco Caroní C.A.','Corriente','92766260644427755100'),
+('V32238738','Banesco S.A.C.A.','Corriente','04584711573450612781'),
+('V16561305','Banco Sofitasa C.A.','Corriente','89223478069671830359'),
+('V11046976','Banco Plaza C.A.','Corriente','44406345175937457984'),
+('V20568611','Banco de la Gente Emprendedora C.A. - Bangente','Corriente','44114687850673484646'),
+('V27252225','Banco del Pueblo Soberano, C.A.','Corriente','65061315989923310578'),
+('V22601755','Banco Fondo Común C.A.','Corriente','19240978676877671171'),
+('V33574387','100% Banco, C.A.','Corriente','10865776303569857886'),
+('V35634816','DelSur, C.A.','Corriente','04166130529442538776'),
+('V27717006','Banco del Tesoro, C.A.','Ahorro','39829349609106609087'),
+('V31694733','Banco Agrícola de Venezuela, C.A','Ahorro','29553597620398191582'),
+('V18905517','Bancrecer, S.A.','Ahorro','05529493016318853073'),
+('V5714261','Mi Banco C.A.','Ahorro','01638923997876310471'),
+('V19987910','Banco Activo, C.A.','Ahorro','51606508274947637363'),
+('V4459062','Bancamiga, C.A.','Ahorro','48249338762250173460'),
+('V22177376','Banco Internacional de Desarrollo, C.A.','Corriente','34168564959306203519'),
+('V35208115','Banplus, C.A.','Corriente','70388014792574449398'),
+('V32113794','Banco Bicentenario C.A.','Corriente','86693484217896376468'),
+('V36732297','Banco de la Fuerza Armada Nacional Bolivariana - BANFANB','Corriente','37496468451133874255'),
+('V5344562','Citibank N.A.','Corriente','90083578558225722384'),
+('V25050145','Banco Nacional de Crédito, C.A.','Corriente','32418021629534524891'),
+('V30196324','Instituto Municipal de Crédito Popular','Corriente','64180053471581453016'),
+('V21412330','Banco de Venezuela S.A.','Corriente','78415875219700765380'),
+('V28798356','Venezolano de Crédito S.A.','Corriente','17908490722419695151'),
+('V20909176','Banco Mercantil, C.A','Corriente','18220339642511846724'),
+('V33641397','Banco Provincial, S.A.','Corriente','54058154676141480668');
 
 
 
-insert  into contactos_aux (cedula_representante,nombre,apellido,prefijo_telefono,nro_telefono,relacion) values 
-('V28278648','Nikos','Das','1097','7032642','vecino'),
-('V9933359','Kristal','Madrell','0367','6134269','vecino'),
-('V31950478','Vikky','Spurden','2610','8704153','tia'),
-('V38590950','Karl','Huffer','4009','8605864','abuelo'),
-('V18526161','Alis','Le Batteur','6787','7857451','tia'),
-('V33118292','Sherlock','Copello','3184','6629975','abuelo'),
-('V28302608','Rickert','Panks','9897','3942391','abuelo'),
-('V18424188','Ara','Westmarland','8113','3405125','abuelo'),
-('V32238738','Irv','Reynish','6278','6383501','vecino'),
-('V16561305','Nikki','MacTrustie','8762','4374186','abuelo'),
-('V11046976','Perl','Deboo','6230','6039083','abuelo'),
-('V20568611','Willi','Padfield','3044','3363234','tio'),
-('V27252225','Raddie','Scarrisbrick','5067','9136098','vecino'),
-('V22601755','Glynda','Antonacci','5349','1163223','abuelo'),
-('V33574387','Gallard','Bryant','9898','3364573','abuelo'),
-('V35634816','Cherida','Olohan','7785','0029102','tio'),
-('V27717006','Merle','Matyatin','9561','4779709','abuelo'),
-('V31694733','Stormi','Benthall','1072','9475052','tia'),
-('V18905517','Morganica','Winyard','4054','8048823','vecino'),
-('V5714261','Adele','Mulgrew','7659','6559825','tia'),
-('V19987910','Filip','Balser','0234','2064687','abuelo'),
-('V4459062','Nowell','Jovicevic','2937','6522156','vecino'),
-('V22177376','Will','Mobley','1524','5880683','tia'),
-('V35208115','Luca','Troy','8225','2980569','vecino'),
-('V32113794','Jaquelin','Harrowell','7643','7177341','tia'),
-('V36732297','Anestassia','Stud','4313','7522019','abuelo'),
-('V5344562','Arte','Norton','0673','2118126','abuelo'),
-('V25050145','Bernardo','Currie','7225','9576338','vecino'),
-('V30196324','Alic','Budcock','8575','0267944','abuelo'),
-('V21412330','Nat','Earp','7139','6053013','tio'),
-('V28798356','Brinna','Devonside','4818','6858954','tio'),
-('V20909176','Roxy','Curgenuer','9871','0999274','abuelo'),
-('V33641397','Joline','Rodenburg','4387','7061043','abuelo');
+
+insert into contactos_aux (cedula_representante,nombre,apellido,prefijo_telefono,nro_telefono,relacion) values
+('V28278648','NIKOS','DAS','1097','7032642','VECINO'),
+('V9933359','KRISTAL','MADRELL','0367','6134269','VECINO'),
+('V31950478','VIKKY','SPURDEN','2610','8704153','TIA'),
+('V38590950','KARL','HUFFER','4009','8605864','ABUELO'),
+('V18526161','ALIS','LE BATTEUR','6787','7857451','TIA'),
+('V33118292','SHERLOCK','COPELLO','3184','6629975','ABUELO'),
+('V28302608','RICKERT','PANKS','9897','3942391','ABUELO'),
+('V18424188','ARA','WESTMARLAND','8113','3405125','ABUELO'),
+('V32238738','IRV','REYNISH','6278','6383501','VECINO'),
+('V16561305','NIKKI','MACTRUSTIE','8762','4374186','ABUELO'),
+('V11046976','PERL','DEBOO','6230','6039083','ABUELO'),
+('V20568611','WILLI','PADFIELD','3044','3363234','TIO'),
+('V27252225','RADDIE','SCARRISBRICK','5067','9136098','VECINO'),
+('V22601755','GLYNDA','ANTONACCI','5349','1163223','ABUELO'),
+('V33574387','GALLARD','BRYANT','9898','3364573','ABUELO'),
+('V35634816','CHERIDA','OLOHAN','7785','0029102','TIO'),
+('V27717006','MERLE','MATYATIN','9561','4779709','ABUELO'),
+('V31694733','STORMI','BENTHALL','1072','9475052','TIA'),
+('V18905517','MORGANICA','WINYARD','4054','8048823','VECINO'),
+('V5714261','ADELE','MULGREW','7659','6559825','TIA'),
+('V19987910','FILIP','BALSER','0234','2064687','ABUELO'),
+('V4459062','NOWELL','JOVICEVIC','2937','6522156','VECINO'),
+('V22177376','WILL','MOBLEY','1524','5880683','TIA'),
+('V35208115','LUCA','TROY','8225','2980569','VECINO'),
+('V32113794','JAQUELIN','HARROWELL','7643','7177341','TIA'),
+('V36732297','ANESTASSIA','STUD','4313','7522019','ABUELO'),
+('V5344562','ARTE','NORTON','0673','2118126','ABUELO'),
+('V25050145','BERNARDO','CURRIE','7225','9576338','VECINO'),
+('V30196324','ALIC','BUDCOCK','8575','0267944','ABUELO'),
+('V21412330','NAT','EARP','7139','6053013','TIO'),
+('V28798356','BRINNA','DEVONSIDE','4818','6858954','TIO'),
+('V20909176','ROXY','CURGENUER','9871','0999274','ABUELO'),
+('V33641397','JOLINE','RODENBURG','4387','7061043','ABUELO');
 
 
 
-insert  into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
-('V28278648','Honduras','China','Joconal','Dinggou','Springview','78','0 Esker Parkway'),
-('V9933359','Aland Islands','China','Lemland','Sanli','Daystar','72','5 Summerview Parkway'),
-('V31950478','Czech Republic','Ukraine','Raškovice','Shchastya','Mccormick','66','68 Carey Alley'),
-('V38590950','Colombia','Guam','Sáchica','Agana Heights Village','Straubel','70','5520 Birchwood Hill'),
-('V18526161','Dominican Republic','China','Las Matas de Farfán','Xiangride','Jenifer','51','067 Loeprich Trail'),
-('V33118292','Bulgaria','Philippines','Lyubimets','Maindang','Homewood','97','81 Menomonie Lane'),
-('V28302608','Indonesia','Brazil','Cijoho','Iracemápolis','Green Ridge','66','78377 Main Point'),
-('V18424188','Argentina','Afghanistan','Chichinales','Barakī Barak','American Ash','21','38105 Cody Crossing'),
-('V32238738','Serbia','United States','Despotovac','Portland','Southridge','22','7 Oak Junction'),
-('V16561305','Namibia','Syria','Tsumeb','Sarāqib','Mandrake','14','9787 Moland Drive'),
-('V11046976','Argentina','Peru','Arauco','Julcamarca','Dunning','26','31 Laurel Place'),
-('V20568611','China','Argentina','Jiangzao','El Soberbio','New Castle','77','63 Sommers Alley'),
-('V27252225','Russia','Czech Republic','Zheleznogorsk','Podolí','Meadow Ridge','48','882 Vidon Pass'),
-('V22601755','Portugal','United States','Vila Franca do Campo','Tucson','Sachs','55','92882 Harbort Circle'),
-('V33574387','Armenia','Japan','Karanlukh','Chiryū','Spohn','04','205 Mandrake Terrace'),
-('V35634816','Brazil','Chad','Água Preta','Bokoro','Judy','50','32 Fairfield Way'),
-('V27717006','China','Portugal','Baiyang','Loureiro','Transport','14','3 Larry Center'),
-('V31694733','China','Japan','Sanjia','Nagai','Corscot','52','4 Burrows Road'),
-('V18905517','Norway','Honduras','Steinkjer','La Estancia','Grover','56','428 Hermina Parkway'),
-('V5714261','China','Russia','Qiaotou','Solntsevo','Waywood','31','29531 Fremont Avenue'),
-('V19987910','Greece','Kosovo','Rízoma','Dubova (Driloni)','Bay','98','6282 Elmside Parkway'),
-('V4459062','Mexico','Ethiopia','Fovissste','Hāgere Selam','Linden','72','6 Canary Center'),
-('V22177376','Afghanistan','Brazil','Ţāqchah Khānah','Espírito Santo do Pinhal','Petterle','65','01694 Heffernan Trail'),
-('V35208115','Morocco','Poland','Talzemt','Łużna','Hansons','32','12740 Glendale Avenue'),
-('V32113794','Argentina','United States','Zapala','Fort Smith','Golf View','87','1027 Hauk Place'),
-('V36732297','Brazil','Portugal','Murici','São Miguel','Kingsford','54','4 Corry Trail'),
-('V5344562','Brazil','Mexico','Pereira Barreto','San Miguel','Darwin','88','37 Homewood Avenue'),
-('V25050145','France','China','Montpellier','Hujiaba','Farmco','13','14 4th Trail'),
-('V30196324','France','Japan','Villeneuve-d''Ascq','Ōdachō-ōda','Basil','89','99 2nd Alley'),
-('V21412330','Saudi Arabia','China','Tabūk','Golug','Old Shore','03','7 Myrtle Street'),
-('V28798356','Indonesia','China','Gereneng','Huxu','Lyons','49','02 Amoth Drive'),
-('V20909176','Philippines','France','Guinticgan','Bordeaux','Pearson','98','78 Maple Wood Trail'),
-('V33641397','Brazil','Indonesia','Castro','Tebingtinggi','Bobwhite','08','60211 Lakewood Gardens Way');
+insert into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values
+('V28278648','HONDURAS','CHINA','JOCONAL','DINGGOU','SPRINGVIEW','78','0 ESKER PARKWAY'),
+('V9933359','ALAND ISLANDS','CHINA','LEMLAND','SANLI','DAYSTAR','72','5 SUMMERVIEW PARKWAY'),
+('V31950478','CZECH REPUBLIC','UKRAINE','RAŠKOVICE','SHCHASTYA','MCCORMICK','66','68 CAREY ALLEY'),
+('V38590950','COLOMBIA','GUAM','SÁCHICA','AGANA HEIGHTS VILLAGE','STRAUBEL','70','5520 BIRCHWOOD HILL'),
+('V18526161','DOMINICAN REPUBLIC','CHINA','LAS MATAS DE FARFÁN','XIANGRIDE','JENIFER','51','067 LOEPRICH TRAIL'),
+('V33118292','BULGARIA','PHILIPPINES','LYUBIMETS','MAINDANG','HOMEWOOD','97','81 MENOMONIE LANE'),
+('V28302608','INDONESIA','BRAZIL','CIJOHO','IRACEMÁPOLIS','GREEN RIDGE','66','78377 MAIN POINT'),
+('V18424188','ARGENTINA','AFGHANISTAN','CHICHINALES','BARAKĪ BARAK','AMERICAN ASH','21','38105 CODY CROSSING'),
+('V32238738','SERBIA','UNITED STATES','DESPOTOVAC','PORTLAND','SOUTHRIDGE','22','7 OAK JUNCTION'),
+('V16561305','NAMIBIA','SYRIA','TSUMEB','SARĀQIB','MANDRAKE','14','9787 MOLAND DRIVE'),
+('V11046976','ARGENTINA','PERU','ARAUCO','JULCAMARCA','DUNNING','26','31 LAUREL PLACE'),
+('V20568611','CHINA','ARGENTINA','JIANGZAO','EL SOBERBIO','NEW CASTLE','77','63 SOMMERS ALLEY'),
+('V27252225','RUSSIA','CZECH REPUBLIC','ZHELEZNOGORSK','PODOLÍ','MEADOW RIDGE','48','882 VIDON PASS'),
+('V22601755','PORTUGAL','UNITED STATES','VILA FRANCA DO CAMPO','TUCSON','SACHS','55','92882 HARBORT CIRCLE'),
+('V33574387','ARMENIA','JAPAN','KARANLUKH','CHIRYŪ','SPOHN','04','205 MANDRAKE TERRACE'),
+('V35634816','BRAZIL','CHAD','ÁGUA PRETA','BOKORO','JUDY','50','32 FAIRFIELD WAY'),
+('V27717006','CHINA','PORTUGAL','BAIYANG','LOUREIRO','TRANSPORT','14','3 LARRY CENTER'),
+('V31694733','CHINA','JAPAN','SANJIA','NAGAI','CORSCOT','52','4 BURROWS ROAD'),
+('V18905517','NORWAY','HONDURAS','STEINKJER','LA ESTANCIA','GROVER','56','428 HERMINA PARKWAY'),
+('V5714261','CHINA','RUSSIA','QIAOTOU','SOLNTSEVO','WAYWOOD','31','29531 FREMONT AVENUE'),
+('V19987910','GREECE','KOSOVO','RÍZOMA','DUBOVA (DRILONI)','BAY','98','6282 ELMSIDE PARKWAY'),
+('V4459062','MEXICO','ETHIOPIA','FOVISSSTE','HĀGERE SELAM','LINDEN','72','6 CANARY CENTER'),
+('V22177376','AFGHANISTAN','BRAZIL','ŢĀQCHAH KHĀNAH','ESPÍRITO SANTO DO PINHAL','PETTERLE','65','01694 HEFFERNAN TRAIL'),
+('V35208115','MOROCCO','POLAND','TALZEMT','ŁUŻNA','HANSONS','32','12740 GLENDALE AVENUE'),
+('V32113794','ARGENTINA','UNITED STATES','ZAPALA','FORT SMITH','GOLF VIEW','87','1027 HAUK PLACE'),
+('V36732297','BRAZIL','PORTUGAL','MURICI','SÃO MIGUEL','KINGSFORD','54','4 CORRY TRAIL'),
+('V5344562','BRAZIL','MEXICO','PEREIRA BARRETO','SAN MIGUEL','DARWIN','88','37 HOMEWOOD AVENUE'),
+('V25050145','FRANCE','CHINA','MONTPELLIER','HUJIABA','FARMCO','13','14 4TH TRAIL'),
+('V30196324','FRANCE','JAPAN','VILLENEUVE-D''ASCQ','ŌDACHŌ-ŌDA','BASIL','89','99 2ND ALLEY'),
+('V21412330','SAUDI ARABIA','CHINA','TABŪK','GOLUG','OLD SHORE','03','7 MYRTLE STREET'),
+('V28798356','INDONESIA','CHINA','GERENENG','HUXU','LYONS','49','02 AMOTH DRIVE'),
+('V20909176','PHILIPPINES','FRANCE','GUINTICGAN','BORDEAUX','PEARSON','98','78 MAPLE WOOD TRAIL'),
+('V33641397','BRAZIL','INDONESIA','CASTRO','TEBINGTINGGI','BOBWHITE','08','60211 LAKEWOOD GARDENS WAY');
 
-insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
+insert into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values
 ('V28278648','Mala','Rancho','Alquilada'),
 ('V9933359','Regular','Apartamento','NC'),
 ('V31950478','Mala','Quinta','Propia'),
@@ -363,7 +364,7 @@ insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values
 ('V33641397','Mala','Casa','NC');
 
 
-insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
+insert into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values
 ('V28278648', 'Financial Analyst', '39 Rusk Junction', 18, 'Mensual'),
 ('V9933359', 'Software Consultant', '5813 Iowa Parkway', 7, 'Quincenal'),
 ('V31950478', 'Programmer Analyst III', '0 Erie Parkway', 4, 'Mensual'),
@@ -400,7 +401,7 @@ insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,t
 
 
 
-insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
+insert into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values
 ('V28278648','3088914649','0938828868'),
 ('V9933359','3052152932','3826866050'),
 ('V31950478','1760971017','7708357769'),
@@ -443,7 +444,7 @@ insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values
 -- V36515502,V14832231,V80920371,V27049463,V45072650,V41090241,V04667374,V75137320,V24992920,V97836554,V93029260,V66483433,V24055118,V95165912,V85321459,V99806340,V21227139,V02286258,V64765176,V77427358,V35386169,V36756164,V02288319,V81395335,V49593189,V50117141,V49469440,V13336593,V32952482,V15801593,V79112540,V53738892,V80812803,V87971733,V65612580,V23386453,V30926499,V10457386,V04388769,V60544306,V09838593,V06594327,V96168440,V69314620,V98673367,V86711817,V89673979,V98670740,V43206204,V43736580,V63368952,V32626329,V33854591,V48829993,V68542148,V99570421,V62990915,V11425279,V87727632,V55136102,V99392868,V82808667,V34714307,V70783876,V46631827,V56118810
 
 
-insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
+insert into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values
 ('V36515502','Phillipe','Mohandis','Lockett','Corselles','1996-03-06','24706 Merrick Plaza','M','Viudo(a)','mcorselles0@gnu.org','Bachillerato'),
 ('V14832231','Caritta','Casi','Winslet','Garden','1991-07-10','9756 Longview Terrace','M','Soltero(a)','cgarden1@weather.com','Bachillerato'),
 ('V80920371','Erick','Roxanne','Doding','Fairnington','1970-10-22','03290 Northport Hill','F','Soltero(a)','rfairnington2@umn.edu','Universitario'),
@@ -513,76 +514,76 @@ insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_naci
 
 
 
-insert  into padres (cedula_persona,pais_residencia) values 
-('V36515502','China'),
-('V14832231','China'),
-('V80920371','China'),
-('V27049463','Ukraine'),
-('V45072650','United States'),
-('V41090241','China'),
-('V04667374','China'),
-('V75137320','Indonesia'),
-('V24992920','Czech Republic'),
-('V97836554','Peru'),
-('V93029260','Sweden'),
-('V66483433','Egypt'),
-('V24055118','Indonesia'),
-('V95165912','Philippines'),
-('V85321459','Panama'),
-('V99806340','China'),
-('V21227139','Indonesia'),
-('V02286258','Indonesia'),
-('V64765176','Venezuela'),
-('V77427358','Thailand'),
-('V35386169','Brazil'),
-('V36756164','Japan'),
-('V02288319','Philippines'),
-('V81395335','Honduras'),
-('V49593189','Sweden'),
-('V50117141','Guatemala'),
-('V49469440','Indonesia'),
-('V13336593','Philippines'),
-('V32952482','Indonesia'),
-('V15801593','Portugal'),
-('V79112540','Indonesia'),
-('V53738892','Spain'),
-('V80812803','Bosnia and Herzegovina'),
-('V87971733','China'),
-('V65612580','Norway'),
-('V23386453','Palestinian Territory'),
-('V30926499','Andorra'),
-('V10457386','Philippines'),
-('V04388769','China'),
-('V60544306','Chad'),
-('V09838593','Indonesia'),
-('V06594327','Peru'),
-('V96168440','Ukraine'),
-('V69314620','Canada'),
-('V98673367','Brazil'),
-('V86711817','Russia'),
-('V89673979','Russia'),
-('V98670740','China'),
-('V43206204','United Kingdom'),
-('V43736580','Indonesia'),
-('V63368952','Pakistan'),
-('V32626329','China'),
-('V33854591','Slovenia'),
-('V48829993','Argentina'),
-('V68542148','France'),
-('V99570421','China'),
-('V62990915','Thailand'),
-('V11425279','Argentina'),
-('V87727632','Benin'),
-('V55136102','China'),
-('V99392868','Vietnam'),
-('V82808667','China'),
-('V34714307','Indonesia'),
-('V70783876','China'),
-('V46631827','Argentina'),
-('V56118810','Indonesia');
+insert into padres (cedula_persona,pais_residencia) values
+('V36515502','CHINA'),
+('V14832231','CHINA'),
+('V80920371','CHINA'),
+('V27049463','UKRAINE'),
+('V45072650','UNITED STATES'),
+('V41090241','CHINA'),
+('V04667374','CHINA'),
+('V75137320','INDONESIA'),
+('V24992920','CZECH REPUBLIC'),
+('V97836554','PERU'),
+('V93029260','SWEDEN'),
+('V66483433','EGYPT'),
+('V24055118','INDONESIA'),
+('V95165912','PHILIPPINES'),
+('V85321459','PANAMA'),
+('V99806340','CHINA'),
+('V21227139','INDONESIA'),
+('V02286258','INDONESIA'),
+('V64765176','VENEZUELA'),
+('V77427358','THAILAND'),
+('V35386169','BRAZIL'),
+('V36756164','JAPAN'),
+('V02288319','PHILIPPINES'),
+('V81395335','HONDURAS'),
+('V49593189','SWEDEN'),
+('V50117141','GUATEMALA'),
+('V49469440','INDONESIA'),
+('V13336593','PHILIPPINES'),
+('V32952482','INDONESIA'),
+('V15801593','PORTUGAL'),
+('V79112540','INDONESIA'),
+('V53738892','SPAIN'),
+('V80812803','BOSNIA AND HERZEGOVINA'),
+('V87971733','CHINA'),
+('V65612580','NORWAY'),
+('V23386453','PALESTINIAN TERRITORY'),
+('V30926499','ANDORRA'),
+('V10457386','PHILIPPINES'),
+('V04388769','CHINA'),
+('V60544306','CHAD'),
+('V09838593','INDONESIA'),
+('V06594327','PERU'),
+('V96168440','UKRAINE'),
+('V69314620','CANADA'),
+('V98673367','BRAZIL'),
+('V86711817','RUSSIA'),
+('V89673979','RUSSIA'),
+('V98670740','CHINA'),
+('V43206204','UNITED KINGDOM'),
+('V43736580','INDONESIA'),
+('V63368952','PAKISTAN'),
+('V32626329','CHINA'),
+('V33854591','SLOVENIA'),
+('V48829993','ARGENTINA'),
+('V68542148','FRANCE'),
+('V99570421','CHINA'),
+('V62990915','THAILAND'),
+('V11425279','ARGENTINA'),
+('V87727632','BENIN'),
+('V55136102','CHINA'),
+('V99392868','VIETNAM'),
+('V82808667','CHINA'),
+('V34714307','INDONESIA'),
+('V70783876','CHINA'),
+('V46631827','ARGENTINA'),
+('V56118810','INDONESIA');
 
 
-insert  into telefonos (cedula_persona , relacion, prefijo, numero) values 
+insert into telefonos (cedula_persona , relacion, prefijo, numero) values
 ('V36515502', 'Principal', '3562', '93446467'),
 ('V14832231', 'Principal', '8319', '06186451'),
 ('V80920371', 'Principal', '3137', '29760640'),
@@ -783,7 +784,7 @@ insert  into telefonos (cedula_persona , relacion, prefijo, numero) values
 ('V56118810', 'Trabajo', '2736', '13004739');
 
 
-insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values 
+insert into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values
 ('V36515502','Regular','Rancho','NC'),
 ('V14832231','Buena','Rancho','Prestada'),
 ('V80920371','Regular','Casa','Propia'),
@@ -853,7 +854,7 @@ insert  into datos_vivienda (cedula_persona,condicion,tipo,tenencia) values
 
 
 
-insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values 
+insert into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,tipo_remuneracion) values
 ('V36515502', 'Occupational Therapist', '9 Mcguire Junction', 8, 'Mensual'),
 ('V14832231', 'Health Coach IV', '0666 Sutteridge Circle', 11, 'Quincenal'),
 ('V80920371', 'Civil Engineer', '9538 Towne Park', 20, 'Semanal'),
@@ -925,7 +926,7 @@ insert  into datos_laborales (cedula_persona,empleo,lugar_trabajo,remuneracion,t
 
 -- direcciones
 
-insert  into direcciones (cedula_persona, estado, municipio, parroquia, sector, calle, nro_casa, punto_referencia) values 
+insert into direcciones (cedula_persona, estado, municipio, parroquia, sector, calle, nro_casa, punto_referencia) values
 ('V36515502', 'South Africa', 'Indonesia', 'Bergvliet', 'Soe', 'Brown', '32', '3 Dottie Parkway'),
 ('V14832231', 'Brazil', 'Iran', 'Imbituba', 'Namīn', 'Heffernan', '78', '8959 Lake View Drive'),
 ('V80920371', 'Dominican Republic', 'Russia', 'Las Matas de Farfán', 'Vydreno', 'Monterey', '18', '6904 Mariners Cove Crossing'),
@@ -1004,44 +1005,44 @@ insert  into direcciones (cedula_persona, estado, municipio, parroquia, sector, 
 
 -- personas
 
-insert  into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values 
-('V34912585','Dagmar','Welbie','Caskey','Spence','2005-11-26','162 Texas Trail','M','','wspence0@economist.com',''),
-('V37749936','Rutherford','Mae','Stannering','Ockland','2005-07-18','455 Scoville Crossing','F','','mockland1@networkadvertising.org',''),
-('V33245132','Marketa','Kimberlee','Siddens','Triggle','2005-07-10','432 Nevada Point','M','','ktriggle2@cornell.edu',''),
-('V34523902','Hastings','Dacey','Kennon','Guislin','2009-11-30','61 Dexter Parkway','F','','dguislin3@cnet.com',''),
-('V39710197','Eimile','Waly','MacCaig','Ingolotti','2005-12-02','58522 Autumn Leaf Road','F','','wingolotti4@google.co.uk',''),
-('V34168455','Shayne','Bentlee','Condy','McElvine','2005-08-24','8 Trailsway Junction','F','','bmcelvine5@msn.com',''),
-('V30676984','Anitra','Clemmie','Thurby','Doudney','2010-01-17','9780 Spaight Alley','M','','cdoudney6@walmart.com',''),
-('V30617930','Babara','Lowell','Swetenham','Everwin','2004-05-05','54052 Kropf Court','F','','leverwin7@answers.com',''),
-('V32443424','Moise','Ermin','Heberden','Spadari','2006-06-02','99285 Dahle Center','F','','espadari8@ask.com',''),
-('V30548966','Amalie','Hertha','Mattielli','Matiashvili','2006-07-22','3310 Elmside Way','F','','hmatiashvili9@weather.com',''),
-('V34459825','Frederique','Teodora','Coxwell','Files','2009-12-20','04363 Springview Road','M','','tfilesa@globo.com',''),
-('V36684060','Karylin','Maximilien','Kilsby','Hutcheon','2009-07-22','05608 Elgar Center','M','','mhutcheonb@scribd.com',''),
-('V32204799','Sonny','Doralyn','Roxburgh','Gainforth','2007-01-26','53 Ridgeview Street','F','','dgainforthc@taobao.com',''),
-('V30522071','Lyle','Garnet','Dennehy','Edgar','2006-06-05','6358 Starling Crossing','F','','gedgard@oakley.com',''),
-('V34945013','Kiel','Arabel','Meffen','Rosthorn','2005-09-30','03 Oxford Parkway','F','','arosthorne@bluehost.com',''),
-('V30439025','Seward','Maryann','Munkley','Bischof','2007-07-19','7044 Stuart Park','M','','mbischoff@blogtalkradio.com',''),
-('V31719804','Nefen','Claus','Partkya','Nendick','2007-07-07','6 Meadow Vale Way','F','','cnendickg@indiatimes.com',''),
-('V34396526','Ware','Ian','Spivey','Paula','2004-07-30','38 Rowland Way','M','','ipaulah@typepad.com',''),
-('V33695137','Berkie','Elnar','Harrow','Leifer','2008-08-04','8966 Twin Pines Lane','F','','eleiferi@webeden.co.uk',''),
-('V36533048','Ortensia','Gizela','Sorro','Boliver','2009-11-22','85 Center Crossing','F','','gboliverj@miitbeian.gov.cn',''),
-('V39749877','Angie','Melitta','Attlee','Matantsev','2009-03-13','5657 Moulton Plaza','F','','mmatantsevk@livejournal.com',''),
-('V36739965','Trudi','Thornie','Andreone','Ibanez','2006-02-22','12 Meadow Vale Alley','F','','tibanezl@woothemes.com',''),
-('V31570581','Sidnee','Vicki','Kelledy','Luna','2006-01-01','8 Reindahl Street','M','','vlunam@unc.edu',''),
-('V38391590','Stormy','Lay','Piburn','Readmire','2005-07-22','6255 Loftsgordon Lane','F','','lreadmiren@geocities.jp',''),
-('V39675679','Car','Valentine','Banasevich','Ygo','2009-12-26','15968 Dawn Center','M','','vygoo@chronoengine.com',''),
-('V33815733','Raynell','Doy','Dymick','Lillecrap','2006-12-18','9 Shopko Lane','F','','dlillecrapp@phoca.cz',''),
-('V31468288','Jamima','Nathanil','Larrosa','McMillian','2007-08-02','28 Eagle Crest Parkway','F','','nmcmillianq@ted.com',''),
-('V33934992','De witt','Johnny','Taile','Mattsson','2007-02-26','38 Warbler Place','F','','jmattssonr@ed.gov',''),
-('V34646106','Bren','Kipp','Tuhy','Spencook','2006-04-12','96 Commercial Street','F','','kspencooks@howstuffworks.com',''),
-('V33012705','Bamby','Addia','Lempertz','Elt','2007-10-17','4380 Coleman Alley','M','','aeltt@ihg.com',''),
-('V37787295','Spense','Devonna','O'' Clovan','Tock','2007-05-19','727 Manley Junction','F','','dtocku@wikimedia.org',''),
-('V35130922','Kirstyn','Laureen','Paolino','Stubbe','2009-08-30','1 Corry Trail','F','','lstubbev@cmu.edu',''),
-('V35145513','Tedda','Abbey','Wynett','Davley','2007-05-28','988 Commercial Trail','F','','adavleyw@aol.com','');
+insert into personas (cedula,p_nombre,s_nombre,p_apellido,s_apellido,fecha_nacimiento,lugar_nacimiento,genero,estado_civil,email,grado_academico) values
+('V34912585','DAGMAR','WELBIE','CASKEY','SPENCE','2005-11-26','162 TEXAS TRAIL','M','','WSPENCE0@ECONOMIST.COM',''),
+('V37749936','RUTHERFORD','MAE','STANNERING','OCKLAND','2005-07-18','455 SCOVILLE CROSSING','F','','MOCKLAND1@NETWORKADVERTISING.ORG',''),
+('V33245132','MARKETA','KIMBERLEE','SIDDENS','TRIGGLE','2005-07-10','432 NEVADA POINT','M','','KTRIGGLE2@CORNELL.EDU',''),
+('V34523902','HASTINGS','DACEY','KENNON','GUISLIN','2009-11-30','61 DEXTER PARKWAY','F','','DGUISLIN3@CNET.COM',''),
+('V39710197','EIMILE','WALY','MACCAIG','INGOLOTTI','2005-12-02','58522 AUTUMN LEAF ROAD','F','','WINGOLOTTI4@GOOGLE.CO.UK',''),
+('V34168455','SHAYNE','BENTLEE','CONDY','MCELVINE','2005-08-24','8 TRAILSWAY JUNCTION','F','','BMCELVINE5@MSN.COM',''),
+('V30676984','ANITRA','CLEMMIE','THURBY','DOUDNEY','2010-01-17','9780 SPAIGHT ALLEY','M','','CDOUDNEY6@WALMART.COM',''),
+('V30617930','BABARA','LOWELL','SWETENHAM','EVERWIN','2004-05-05','54052 KROPF COURT','F','','LEVERWIN7@ANSWERS.COM',''),
+('V32443424','MOISE','ERMIN','HEBERDEN','SPADARI','2006-06-02','99285 DAHLE CENTER','F','','ESPADARI8@ASK.COM',''),
+('V30548966','AMALIE','HERTHA','MATTIELLI','MATIASHVILI','2006-07-22','3310 ELMSIDE WAY','F','','HMATIASHVILI9@WEATHER.COM',''),
+('V34459825','FREDERIQUE','TEODORA','COXWELL','FILES','2009-12-20','04363 SPRINGVIEW ROAD','M','','TFILESA@GLOBO.COM',''),
+('V36684060','KARYLIN','MAXIMILIEN','KILSBY','HUTCHEON','2009-07-22','05608 ELGAR CENTER','M','','MHUTCHEONB@SCRIBD.COM',''),
+('V32204799','SONNY','DORALYN','ROXBURGH','GAINFORTH','2007-01-26','53 RIDGEVIEW STREET','F','','DGAINFORTHC@TAOBAO.COM',''),
+('V30522071','LYLE','GARNET','DENNEHY','EDGAR','2006-06-05','6358 STARLING CROSSING','F','','GEDGARD@OAKLEY.COM',''),
+('V34945013','KIEL','ARABEL','MEFFEN','ROSTHORN','2005-09-30','03 OXFORD PARKWAY','F','','AROSTHORNE@BLUEHOST.COM',''),
+('V30439025','SEWARD','MARYANN','MUNKLEY','BISCHOF','2007-07-19','7044 STUART PARK','M','','MBISCHOFF@BLOGTALKRADIO.COM',''),
+('V31719804','NEFEN','CLAUS','PARTKYA','NENDICK','2007-07-07','6 MEADOW VALE WAY','F','','CNENDICKG@INDIATIMES.COM',''),
+('V34396526','WARE','IAN','SPIVEY','PAULA','2004-07-30','38 ROWLAND WAY','M','','IPAULAH@TYPEPAD.COM',''),
+('V33695137','BERKIE','ELNAR','HARROW','LEIFER','2008-08-04','8966 TWIN PINES LANE','F','','ELEIFERI@WEBEDEN.CO.UK',''),
+('V36533048','ORTENSIA','GIZELA','SORRO','BOLIVER','2009-11-22','85 CENTER CROSSING','F','','GBOLIVERJ@MIITBEIAN.GOV.CN',''),
+('V39749877','ANGIE','MELITTA','ATTLEE','MATANTSEV','2009-03-13','5657 MOULTON PLAZA','F','','MMATANTSEVK@LIVEJOURNAL.COM',''),
+('V36739965','TRUDI','THORNIE','ANDREONE','IBANEZ','2006-02-22','12 MEADOW VALE ALLEY','F','','TIBANEZL@WOOTHEMES.COM',''),
+('V31570581','SIDNEE','VICKI','KELLEDY','LUNA','2006-01-01','8 REINDAHL STREET','M','','VLUNAM@UNC.EDU',''),
+('V38391590','STORMY','LAY','PIBURN','READMIRE','2005-07-22','6255 LOFTSGORDON LANE','F','','LREADMIREN@GEOCITIES.JP',''),
+('V39675679','CAR','VALENTINE','BANASEVICH','YGO','2009-12-26','15968 DAWN CENTER','M','','VYGOO@CHRONOENGINE.COM',''),
+('V33815733','RAYNELL','DOY','DYMICK','LILLECRAP','2006-12-18','9 SHOPKO LANE','F','','DLILLECRAPP@PHOCA.CZ',''),
+('V31468288','JAMIMA','NATHANIL','LARROSA','MCMILLIAN','2007-08-02','28 EAGLE CREST PARKWAY','F','','NMCMILLIANQ@TED.COM',''),
+('V33934992','DE WITT','JOHNNY','TAILE','MATTSSON','2007-02-26','38 WARBLER PLACE','F','','JMATTSSONR@ED.GOV',''),
+('V34646106','BREN','KIPP','TUHY','SPENCOOK','2006-04-12','96 COMMERCIAL STREET','F','','KSPENCOOKS@HOWSTUFFWORKS.COM',''),
+('V33012705','BAMBY','ADDIA','LEMPERTZ','ELT','2007-10-17','4380 COLEMAN ALLEY','M','','AELTT@IHG.COM',''),
+('V37787295','SPENSE','DEVONNA','O'' CLOVAN','TOCK','2007-05-19','727 MANLEY JUNCTION','F','','DTOCKU@WIKIMEDIA.ORG',''),
+('V35130922','KIRSTYN','LAUREEN','PAOLINO','STUBBE','2009-08-30','1 CORRY TRAIL','F','','LSTUBBEV@CMU.EDU',''),
+('V35145513','TEDDA','ABBEY','WYNETT','DAVLEY','2007-05-28','988 COMMERCIAL TRAIL','F','','ADAVLEYW@AOL.COM','');
 
 -- telefonos
 
-insert  into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values 
+insert into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle,nro_casa,punto_referencia) values
 ('V34912585','China','Philippines','Zhongwei','Tiniguiban','Di Loreto','63','01764 Green Circle'),
 ('V37749936','Serbia','Ukraine','Užice','Drahovo','Elmside','82','66567 Crescent Oaks Drive'),
 ('V33245132','South Korea','Indonesia','Hwasun','Lokokrangan','Warbler','92','69 Pearson Junction'),
@@ -1079,7 +1080,7 @@ insert  into direcciones (cedula_persona,estado,municipio,parroquia,sector,calle
 
 
 
-insert  into telefonos (cedula_persona ,relacion,prefijo,numero) values 
+insert into telefonos (cedula_persona ,relacion,prefijo,numero) values
 ('V34912585','Principal','3351','22462090'),
 ('V37749936','Principal','6412','81758532'),
 ('V33245132','Principal','0463','49971945'),
@@ -1151,7 +1152,7 @@ insert  into telefonos (cedula_persona ,relacion,prefijo,numero) values
 
 -- carnet de la patria
 
-insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values 
+insert into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values
 ('V34912585','8058117395','2621466408'),
 ('V37749936','0751437264','0711745037'),
 ('V33245132','8822653051','8338663066'),
@@ -1190,40 +1191,40 @@ insert  into carnet_patria (cedula_persona,codigo_carnet,serial_carnet) values
 
 -- estudiantes
 
-insert  into estudiantes (cedula_persona,cedula_escolar,plantel_proced,con_quien_vive,relacion_representante,cedula_padre,cedula_madre,cedula_representante) values 
-('V34912585','V238729707678','Hahn,Weber and Botsford','ac tellus semper interdum mauris','Tio','V36515502','V87971733','V28278648'),
-('V37749936','V439514146382','Turner LLC','tincidunt eget tempus vel pede morbi porttitor','Tio','V14832231','V65612580','V9933359'),
-('V33245132','V950745894182','Mitchell and Sons','ante ipsum primis in','Tia','V80920371','V23386453','V31950478'),
-('V34523902','V613666747839','Moen-Keebler','magna at','Tia','V27049463','V30926499','V38590950'),
-('V39710197','V592249468135','Stamm,Franecki and Fahey','nec condimentum neque sapien placerat ante','Abuelo','V45072650','V10457386','V18526161'),
-('V34168455','V141217133025','Schaden,Beier and Gerhold','sit amet justo morbi ut odio cras','Abuelo','V41090241','V04388769','V33118292'),
-('V30676984','V083048126448','Lindgren,Blick and Lakin','fusce consequat nulla nisl nunc nisl duis','Tia','V04667374','V60544306','V28302608'),
-('V30617930','V656532296434','Ritchie Group','tempus vel pede morbi porttitor','Abuelo','V75137320','V09838593','V18424188'),
-('V32443424','V008760180297','Nitzsche Inc','in sapien iaculis congue vivamus metus','Tutor','V24992920','V06594327','V32238738'),
-('V30548966','V838531639021','Labadie Inc','et commodo vulputate justo in','Tia','V97836554','V96168440','V16561305'),
-('V34459825','V406154688459','Leffler-Okuneva','arcu libero rutrum ac lobortis','Abuelo','V93029260','V69314620','V11046976'),
-('V36684060','V848944616189','Effertz-Stamm','odio elementum','Tia','V66483433','V98673367','V20568611'),
-('V32204799','V336090437236','Abbott,Morar and Mayert','ac diam cras pellentesque volutpat dui maecenas tristique','Tio','V24055118','V86711817','V27252225'),
-('V30522071','V640658186367','Schmeler Group','nulla ultrices aliquet maecenas leo odio condimentum id','Tio','V95165912','V89673979','V22601755'),
-('V34945013','V617912720578','Prosacco,Johnson and Balistreri','ut massa quis','Tio','V85321459','V98670740','V33574387'),
-('V30439025','V988110868353','Jenkins,Jacobi and Russel','at nulla suspendisse potenti cras in purus','Tia','V99806340','V43206204','V35634816'),
-('V31719804','V963887266870','Kemmer-Ledner','amet nunc viverra dapibus nulla','Tutor','V21227139','V43736580','V27717006'),
-('V34396526','V393131791582','Nitzsche-Hahn','ornare consequat lectus in est risus auctor sed','Tio','V02286258','V63368952','V31694733'),
-('V33695137','V606086476985','Murray,Hoppe and Cummerata','nulla justo aliquam quis turpis eget elit sodales','Tio','V64765176','V32626329','V18905517'),
-('V36533048','V782058573103','Stanton and Sons','in hac habitasse','Tio','V77427358','V33854591','V5714261'),
-('V39749877','V775253286293','Ortiz,Schamberger and Lowe','ut rhoncus aliquet pulvinar sed nisl nunc','Tutor','V35386169','V48829993','V19987910'),
-('V36739965','V584110278744','Rath,Fay and Goyette','in congue etiam justo etiam pretium','Tia','V36756164','V68542148','V4459062'),
-('V31570581','V018937849773','Auer LLC','vestibulum ac est lacinia nisi','Abuelo','V02288319','V99570421','V22177376'),
-('V38391590','V776736969867','Franecki Inc','sociis natoque penatibus et magnis dis','Tio','V81395335','V62990915','V35208115'),
-('V39675679','V503846477317','Schmeler,Reichert and Cole','enim lorem ipsum dolor sit amet consectetuer','Abuelo','V49593189','V11425279','V32113794'),
-('V33815733','V457291943682','Wyman,Mohr and Jones','leo odio condimentum id luctus nec','Abuelo','V50117141','V87727632','V36732297'),
-('V31468288','V566809967936','Gusikowski,Von and Parker','maecenas pulvinar lobortis est phasellus sit','Tio','V49469440','V55136102','V5344562'),
-('V33934992','V091846139327','Emard,Stiedemann and Lemke','integer aliquet massa id lobortis convallis tortor','Tutor','V13336593','V99392868','V25050145'),
-('V34646106','V214208437166','Spencer Group','massa tempor convallis nulla neque','Tio','V32952482','V82808667','V30196324'),
-('V33012705','V267235192922','Gulgowski-Bosco','eget tincidunt','Tia','V15801593','V34714307','V21412330'),
-('V37787295','V713954918545','Cummings Group','in hac habitasse','Tia','V79112540','V70783876','V28798356'),
-('V35130922','V274904166371','Walter Inc','dolor vel est donec odio','Abuelo','V53738892','V46631827','V20909176'),
-('V35145513','V443801701880','Kassulke,Klocko and Wuckert','imperdiet nullam orci pede','Tio','V80812803','V56118810','V33641397');
+insert into estudiantes (cedula_persona,plantel_proced,con_quien_vive,relacion_representante,cedula_padre,cedula_madre,cedula_representante) values
+('V34912585','Hahn,Weber and Botsford','ac tellus semper interdum mauris','Tio','V36515502','V87971733','V28278648'),
+('V37749936','Turner LLC','tincidunt eget tempus vel pede morbi porttitor','Tio','V14832231','V65612580','V9933359'),
+('V33245132','Mitchell and Sons','ante ipsum primis in','Tia','V80920371','V23386453','V31950478'),
+('V34523902','Moen-Keebler','magna at','Tia','V27049463','V30926499','V38590950'),
+('V39710197','Stamm,Franecki and Fahey','nec condimentum neque sapien placerat ante','Abuelo','V45072650','V10457386','V18526161'),
+('V34168455','Schaden,Beier and Gerhold','sit amet justo morbi ut odio cras','Abuelo','V41090241','V04388769','V33118292'),
+('V30676984','Lindgren,Blick and Lakin','fusce consequat nulla nisl nunc nisl duis','Tia','V04667374','V60544306','V28302608'),
+('V30617930','Ritchie Group','tempus vel pede morbi porttitor','Abuelo','V75137320','V09838593','V18424188'),
+('V32443424','Nitzsche Inc','in sapien iaculis congue vivamus metus','Tutor','V24992920','V06594327','V32238738'),
+('V30548966','Labadie Inc','et commodo vulputate justo in','Tia','V97836554','V96168440','V16561305'),
+('V34459825','Leffler-Okuneva','arcu libero rutrum ac lobortis','Abuelo','V93029260','V69314620','V11046976'),
+('V36684060','Effertz-Stamm','odio elementum','Tia','V66483433','V98673367','V20568611'),
+('V32204799','Abbott,Morar and Mayert','ac diam cras pellentesque volutpat dui maecenas tristique','Tio','V24055118','V86711817','V27252225'),
+('V30522071','Schmeler Group','nulla ultrices aliquet maecenas leo odio condimentum id','Tio','V95165912','V89673979','V22601755'),
+('V34945013','Prosacco,Johnson and Balistreri','ut massa quis','Tio','V85321459','V98670740','V33574387'),
+('V30439025','Jenkins,Jacobi and Russel','at nulla suspendisse potenti cras in purus','Tia','V99806340','V43206204','V35634816'),
+('V31719804','Kemmer-Ledner','amet nunc viverra dapibus nulla','Tutor','V21227139','V43736580','V27717006'),
+('V34396526','Nitzsche-Hahn','ornare consequat lectus in est risus auctor sed','Tio','V02286258','V63368952','V31694733'),
+('V33695137','Murray,Hoppe and Cummerata','nulla justo aliquam quis turpis eget elit sodales','Tio','V64765176','V32626329','V18905517'),
+('V36533048','Stanton and Sons','in hac habitasse','Tio','V77427358','V33854591','V5714261'),
+('V39749877','Ortiz,Schamberger and Lowe','ut rhoncus aliquet pulvinar sed nisl nunc','Tutor','V35386169','V48829993','V19987910'),
+('V36739965','Rath,Fay and Goyette','in congue etiam justo etiam pretium','Tia','V36756164','V68542148','V4459062'),
+('V31570581','Auer LLC','vestibulum ac est lacinia nisi','Abuelo','V02288319','V99570421','V22177376'),
+('V38391590','Franecki Inc','sociis natoque penatibus et magnis dis','Tio','V81395335','V62990915','V35208115'),
+('V39675679','Schmeler,Reichert and Cole','enim lorem ipsum dolor sit amet consectetuer','Abuelo','V49593189','V11425279','V32113794'),
+('V33815733','Wyman,Mohr and Jones','leo odio condimentum id luctus nec','Abuelo','V50117141','V87727632','V36732297'),
+('V31468288','Gusikowski,Von and Parker','maecenas pulvinar lobortis est phasellus sit','Tio','V49469440','V55136102','V5344562'),
+('V33934992','Emard,Stiedemann and Lemke','integer aliquet massa id lobortis convallis tortor','Tutor','V13336593','V99392868','V25050145'),
+('V34646106','Spencer Group','massa tempor convallis nulla neque','Tio','V32952482','V82808667','V30196324'),
+('V33012705','Gulgowski-Bosco','eget tincidunt','Tia','V15801593','V34714307','V21412330'),
+('V37787295','Cummings Group','in hac habitasse','Tia','V79112540','V70783876','V28798356'),
+('V35130922','Walter Inc','dolor vel est donec odio','Abuelo','V53738892','V46631827','V20909176'),
+('V35145513','Kassulke,Klocko and Wuckert','imperdiet nullam orci pede','Tio','V80812803','V56118810','V33641397');
 
 
 
@@ -1231,7 +1232,7 @@ insert  into estudiantes (cedula_persona,cedula_escolar,plantel_proced,con_quien
 
 -- datos de salud
 
-insert  into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medicacion,dieta_especial,padecimiento,impedimento_fisico,necesidad_educativa,condicion_vista,condicion_dental,institucion_medica,carnet_discapacidad) values
+insert into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medicacion,dieta_especial,padecimiento,impedimento_fisico,necesidad_educativa,condicion_vista,condicion_dental,institucion_medica,carnet_discapacidad) values
 ('V34912585', 'Ambidextro', 'A+', 'enim lorem ipsum dolor sit amet consectetuer adipiscing', 'convallis eget eleifend luctus ultricies eu nibh', 'amet eros suspendisse accumsan tortor quis turpis sed ante vivamus', 'eleifend pede libero quis orci nullam molestie', 'vel nulla eget eros elementum pellentesque quisque porta', 'Mala', 'Mala', 'non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus', '2749022871'),
 ('V37749936', 'Zurdo', 'B+', 'mauris sit amet eros suspendisse accumsan tortor quis', 'semper est quam pharetra magna ac consequat metus sapien ut', 'quis justo maecenas rhoncus aliquam lacus morbi quis', 'interdum in ante vestibulum ante ipsum', 'nibh in quis justo maecenas rhoncus aliquam', 'Buena', 'Buena', 'tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris', '3700669992'),
 ('V33245132', 'Zurdo', 'O-', 'sit amet nunc viverra dapibus nulla suscipit ligula', 'odio odio elementum eu interdum eu tincidunt in leo', 'in felis donec semper sapien', 'diam cras pellentesque volutpat dui maecenas tristique est', 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam', 'Buena', 'Mala', 'massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum', '9166392866'),
@@ -1267,7 +1268,7 @@ insert  into datos_salud (cedula_estudiante ,lateralidad,tipo_sangre,medicacion,
 ('V35145513', 'Zurdo', 'A+', 'nam dui proin leo odio porttitor id consequat in', 'vulputate vitae nisl aenean lectus pellentesque eget nunc donec', 'aliquam erat volutpat in congue', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit', 'tellus nisi eu orci mauris lacinia sapien quis libero', 'Regular', 'Buena', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '8236774791');
 
 
-insert  into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) values 
+insert into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) values
 
 ('V34912585','vph','Aplicada'),
 ('V34912585','tdap','No aplicada'),
@@ -1634,7 +1635,7 @@ insert  into vacunas_est (cedula_estudiante,espec_vacuna,estado_vacuna) values
 
 
 
-insert  into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) values 
+insert into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) values
 ('V34912585','CanSinoBIO',2,'W4611791'),
 ('V37749936','Janssen',2,'M9987150'),
 ('V33245132','Novavax',1,'P1510795'),
@@ -1672,7 +1673,7 @@ insert  into vac_covid19_est (cedula_estudiante,vac_aplicada ,dosis,lote) values
 
 
 
-insert  into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values 
+insert into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values
 ('V34912585','3XL','XS',44),
 ('V37749936','L','2XL',40),
 ('V33245132','3XL','S',34),
@@ -1708,7 +1709,7 @@ insert  into tallas_est (cedula_estudiante,camisa,pantalon,calzado) values
 ('V35145513','3XL','2XL',33);
 
 
-insert  into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c,circ_braquial) values 
+insert into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c,circ_braquial) values
 ('V34912585',173,24,20,20),
 ('V37749936',182,36,22,14),
 ('V33245132',63,45,23,15),
@@ -1744,7 +1745,7 @@ insert  into antropometria_est (cedula_estudiante,estatura,peso,indice_m_c,circ_
 ('V35145513',149,61,19,23);
 
 
-insert  into observaciones_est (cedula_estudiante,social,fisico,personal,familiar,academico,otra) values 
+insert into observaciones_est (cedula_estudiante,social,fisico,personal,familiar,academico,otra) values
 ('V34912585','quis orci','nunc nisl duis bibendum felis sed interdum venenatis turpis enim','sit amet eleifend pede libero quis orci nullam','','ac neque duis bibendum morbi non quam nec dui','vitae ipsum aliquam non mauris morbi non'),
 ('V37749936','amet nunc viverra dapibus nulla suscipit ligula','vestibulum sed magna at nunc commodo placerat praesent','','ut ultrices vel augue vestibulum ante ipsum primis in faucibus','ipsum praesent blandit lacinia erat vestibulum sed magna','erat vestibulum sed magna at nunc commodo placerat praesent blandit'),
 ('V33245132','enim sit amet nunc viverra dapibus','tellus nisi eu orci mauris lacinia sapien quis','feugiat et eros vestibulum ac est lacinia nisi venenatis tristique','leo pellentesque ultrices mattis odio donec vitae','pede malesuada in imperdiet et','tristique in tempus sit amet sem fusce consequat'),
@@ -1782,7 +1783,7 @@ insert  into observaciones_est (cedula_estudiante,social,fisico,personal,familia
 
 
 
-insert  into datos_academicos (cedula_estudiante,a_repetido,materias_repetidas,materias_pendientes) values 
+insert into datos_academicos (cedula_estudiante,a_repetido,materias_repetidas,materias_pendientes) values
 ('V34912585','Tercer año','','proin'),
 ('V37749936','Primer año','',''),
 ('V33245132','Cuarto año','eget massa tempor','ante ipsum primis in faucibus'),
@@ -1821,7 +1822,7 @@ insert  into datos_academicos (cedula_estudiante,a_repetido,materias_repetidas,m
 
 
 
-insert  into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,acceso_internet) values 
+insert into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,acceso_internet) values
 ('V34912585','No','','No'),
 ('V37749936','No','','No'),
 ('V33245132','No','','Si'),
@@ -1858,7 +1859,7 @@ insert  into datos_sociales (cedula_estudiante,tiene_canaima,condicion_canaima,a
 
 
 
-insert  into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,seccion,id_per_academico) values 
+insert into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,seccion,id_per_academico) values
 ('V34912585', 'Quinto año', 'C', '20222023'),
 ('V37749936', 'Segundo año', 'C', '20222023'),
 ('V33245132', 'Primer año', 'A', '20222023'),
@@ -1895,7 +1896,7 @@ insert  into grado_a_cursar_est (cedula_estudiante,grado_a_cursar,seccion,id_per
 
 
 
-insert  into condiciones_est (cedula_estudiante, visual, motora, auditiva, escritura, lectura, lenguaje, embarazo) values 
+insert into condiciones_est (cedula_estudiante, visual, motora, auditiva, escritura, lectura, lenguaje, embarazo) values
 ('V34912585', 'visual', '', '', '', 'lectura', '', ''),
 ('V37749936', '', 'motora', '', 'escritura', '', 'lenguaje', ''),
 ('V33245132', '', '', 'auditiva', '', '', 'lenguaje', ''),
@@ -1930,37 +1931,37 @@ insert  into condiciones_est (cedula_estudiante, visual, motora, auditiva, escri
 ('V35130922', '', '', '', 'escritura', '', '', ''),
 ('V35145513', 'visual', 'motora', 'auditiva', '', 'lectura', 'lenguaje', 'embarazo');
 
-INSERT  INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`, `cedula_estudiante`) VALUES 
-(null,'2023-02-17','19:47:00','V27919566','V34912585'),
-(null,'2023-02-17','19:47:00','V27919566','V37749936'),
-(null,'2023-02-17','19:47:00','V27919566','V33245132'),
-(null,'2023-02-17','19:47:00','V27919566','V34523902'),
-(null,'2023-02-17','19:47:00','V27919566','V39710197'),
-(null,'2023-02-17','19:47:00','V27919566','V34168455'),
-(null,'2023-02-17','19:47:00','V27919566','V30676984'),
-(null,'2023-02-17','19:47:00','V27919566','V30617930'),
-(null,'2023-02-17','19:47:00','V27919566','V32443424'),
-(null,'2023-02-17','19:47:00','V27919566','V30548966'),
-(null,'2023-02-17','19:47:00','V27919566','V34459825'),
-(null,'2023-02-17','19:47:00','V27919566','V36684060'),
-(null,'2023-02-17','19:47:00','V27919566','V32204799'),
-(null,'2023-02-17','19:47:00','V27919566','V30522071'),
-(null,'2023-02-17','19:47:00','V27919566','V34945013'),
-(null,'2023-02-17','19:47:00','V27919566','V30439025'),
-(null,'2023-02-17','19:47:00','V27919566','V31719804'),
-(null,'2023-02-17','19:47:00','V27919566','V34396526'),
-(null,'2023-02-17','19:47:00','V27919566','V33695137'),
-(null,'2023-02-17','19:47:00','V27919566','V36533048'),
-(null,'2023-02-17','19:47:00','V27919566','V39749877'),
-(null,'2023-02-17','19:47:00','V27919566','V36739965'),
-(null,'2023-02-17','19:47:00','V27919566','V31570581'),
-(null,'2023-02-17','19:47:00','V27919566','V38391590'),
-(null,'2023-02-17','19:47:00','V27919566','V39675679'),
-(null,'2023-02-17','19:47:00','V27919566','V33815733'),
-(null,'2023-02-17','19:47:00','V27919566','V31468288'),
-(null,'2023-02-17','19:47:00','V27919566','V33934992'),
-(null,'2023-02-17','19:47:00','V27919566','V34646106'),
-(null,'2023-02-17','19:47:00','V27919566','V33012705'),
-(null,'2023-02-17','19:47:00','V27919566','V37787295'),
-(null,'2023-02-17','19:47:00','V27919566','V35130922'),
-(null,'2023-02-17','19:47:00','V27919566','V35145513');
+INSERT INTO `inscripciones`(`id_inscripcion`, `fecha`, `hora`, `cedula_usuario`, `cedula_estudiante`) VALUES
+(null,'2023-02-17','19:47:00','V11111111','V34912585'),
+(null,'2023-02-17','19:47:00','V11111111','V37749936'),
+(null,'2023-02-17','19:47:00','V11111111','V33245132'),
+(null,'2023-02-17','19:47:00','V11111111','V34523902'),
+(null,'2023-02-17','19:47:00','V11111111','V39710197'),
+(null,'2023-02-17','19:47:00','V11111111','V34168455'),
+(null,'2023-02-17','19:47:00','V11111111','V30676984'),
+(null,'2023-02-17','19:47:00','V11111111','V30617930'),
+(null,'2023-02-17','19:47:00','V11111111','V32443424'),
+(null,'2023-02-17','19:47:00','V11111111','V30548966'),
+(null,'2023-02-17','19:47:00','V11111111','V34459825'),
+(null,'2023-02-17','19:47:00','V11111111','V36684060'),
+(null,'2023-02-17','19:47:00','V11111111','V32204799'),
+(null,'2023-02-17','19:47:00','V11111111','V30522071'),
+(null,'2023-02-17','19:47:00','V11111111','V34945013'),
+(null,'2023-02-17','19:47:00','V11111111','V30439025'),
+(null,'2023-02-17','19:47:00','V11111111','V31719804'),
+(null,'2023-02-17','19:47:00','V11111111','V34396526'),
+(null,'2023-02-17','19:47:00','V11111111','V33695137'),
+(null,'2023-02-17','19:47:00','V11111111','V36533048'),
+(null,'2023-02-17','19:47:00','V11111111','V39749877'),
+(null,'2023-02-17','19:47:00','V11111111','V36739965'),
+(null,'2023-02-17','19:47:00','V11111111','V31570581'),
+(null,'2023-02-17','19:47:00','V11111111','V38391590'),
+(null,'2023-02-17','19:47:00','V11111111','V39675679'),
+(null,'2023-02-17','19:47:00','V11111111','V33815733'),
+(null,'2023-02-17','19:47:00','V11111111','V31468288'),
+(null,'2023-02-17','19:47:00','V11111111','V33934992'),
+(null,'2023-02-17','19:47:00','V11111111','V34646106'),
+(null,'2023-02-17','19:47:00','V11111111','V33012705'),
+(null,'2023-02-17','19:47:00','V11111111','V37787295'),
+(null,'2023-02-17','19:47:00','V11111111','V35130922'),
+(null,'2023-02-17','19:47:00','V11111111','V35145513');

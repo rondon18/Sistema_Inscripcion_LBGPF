@@ -2,13 +2,17 @@
 	$(document).ready( function () {
 		var table = $('#estudiantes').DataTable({
 			
-			"order": [[ 5, "asc" ],[ 0, "desc" ],],
+			"order": [],
 			"pagingType": "full",
-			"language": {"url": "../../js/datatables-español.json"},
+			// "deferData": true,
+			// "deferRender": false,
+			// "processingIndicator": '<div class="loading">Cargando...</div>',
+			"language": {
+				"url": "../../js/datatables-español.json",
+        searchPlaceholder: "Escriba aquí para filtrar los registros mostrados"
+			},
 			
-
-
-			dom: '<"nav nav-fill mb-2"<B><"ms-auto d-none d-md-inline-block"l><"ms-md-4"f>>rt<".nav"<"mx-auto m-md-0"i><"ms-md-auto"p>>',
+			dom: '<"nav nav-fill mb-2"<"w-xs-100"B><"small ms-auto d-none d-md-inline-block"l><"small ms-md-4 w-auto"f>>rt<".nav"<"small mx-auto m-md-0"i><"w-xs-100 w-sm-100 mx-auto mx-md-0 mt-2 mt-md-0 ms-md-auto"p>>',
 
 			buttons: [
 				
@@ -17,7 +21,7 @@
 						// Reporte general de estudiantes
 							className: 		'btn btn-sm btn-success',
 							extend: 		'excelHtml5',
-							text: 			'Generar reporte <i class="fas fa-lg fa-file-excel me-2"></i>',
+							text: 			'<span class="m-0 d-none d-sm-inline">Generar reporte</span><i class="fas fa-lg fa-file-excel mb-1 mb-sm-0 ms-sm-2"></i>',
 							exportOptions: {
 								columns: 	':not(:last-child)',
 							},
@@ -30,7 +34,7 @@
 				// filtros de consulta
 				{
 					className: 		'btn btn-sm btn-primary',
-					text: 'Filtrar<i class="fas fa-lg fa-search ms-2"></i>',
+					text: '<span class="m-0 d-none d-sm-inline">Filtrar</span><i class="fas fa-lg fa-search mb-1 mb-sm-0 ms-sm-2"></i>',
 	        action: function (e, node, config){
 	        	$('#modal_filtros').modal('show')
 	        },
@@ -39,7 +43,7 @@
 				// Boton parar ir a registrar un estudiante
 				{
 					className: 		'btn btn-sm btn-primary',
-					text: 				'Registrar estudiante<i class="fas fa-lg fa-user-plus ms-2"></i>',
+					text: 				'<span class="m-0 d-none d-sm-inline">Registrar estudiante</span><i class="fas fa-lg fa-user-plus mb-1 mb-sm-0 ms-sm-2"></i>',
 					action: function ( e, dt, button, config ) {
 						window.location = '../registrar_estudiante/paso_1.php';
 					}         

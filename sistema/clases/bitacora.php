@@ -1,9 +1,6 @@
 <?php  
 
 	class bitacora {
-
-		// 
-
 		private $id_bitacora;
 		private $fecha_ingreso;
 		private $fecha_salida;
@@ -12,122 +9,169 @@
 		private $acciones_realizadas;
 		private $cedula_usuario;
 
-
 		// CONSTRUCTOR
 		public function __construct(){}
 
-
 		// Primera instaciación de la bitacora (login)
 		public function iniciar_bitacora() {
-			
-			// conecta con la base de datos
-			$conexion = conectarBD();
-			
-			
-			// toma la fecha y hora actual para registrar el inicio de sesion
-			date_default_timezone_set("America/Caracas");
-			
-			$fecha_ingreso = date("Y-m-d");
-			$hora_ingreso = date("H:i:s");
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					// toma la fecha y hora actual para registrar el inicio de sesion
+					date_default_timezone_set("America/Caracas");
 
+					$fecha_ingreso = date("Y-m-d");
+					$hora_ingreso = date("H:i:s");
 
-			// primera accion como inicia sesión
-			$acciones_realizadas = "Inicia sesión";
+					// primera accion como inicia sesión
+					$acciones_realizadas = mysqli_escape_string($conexion,"Inicia sesión");
 
-			$cedula_usuario = $this->get_cedula_usuario();
+					$cedula_usuario = mysqli_escape_string($conexion,$this->get_cedula_usuario());
 
-			$sql = "
-				INSERT INTO `bitacora`(
-			    `id_bitacora`,
-			    `fecha_ingreso`,
-			    `fecha_salida`,
-			    `hora_ingreso`,
-			    `hora_salida`,
-			    `acciones_realizadas`,
-			    `cedula_usuario`
-				)
-				VALUES(
-			    NULL,
-			    '$fecha_ingreso',
-			    '',
-			    '$hora_ingreso',
-			    '',
-			    '$acciones_realizadas',
-			    '$cedula_usuario'
-				)
-			";
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			$id_bitacora = $conexion->insert_id;
-
-			desconectarBD($conexion);
-
-			return $id_bitacora;
+					$sql = "
+						INSERT INTO `bitacora`(
+					    `id_bitacora`,
+					    `fecha_ingreso`,
+					    `fecha_salida`,
+					    `hora_ingreso`,
+					    `hora_salida`,
+					    `acciones_realizadas`,
+					    `cedula_usuario`
+						)
+						VALUES(
+					    NULL,
+					    '$fecha_ingreso',
+					    '',
+					    '$hora_ingreso',
+					    '',
+					    '$acciones_realizadas',
+					    '$cedula_usuario'
+						);
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						$id_bitacora = $conexion->insert_id;
+						desconectarBD($conexion);
+						return $id_bitacora;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
-		// actualiza la bitacora en la base de datos sobre el mismo registro
+		// Actualiza la bitacora en la base de datos sobre el mismo registro
 		public function actualizar_bitacora(){
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					// toma la fecha y hora actual para registrar el cierre de sesion
+					$id_bitacora = mysqli_escape_string($conexion,$this->get_id_bitacora());
+					$acciones_realizadas = mysqli_escape_string($conexion,$this->get_acciones_realizadas());
 
-			// conecta con la base de datos
-			$conexion = conectarBD();
-
-			// toma la fecha y hora actual para registrar el cierre de sesion
-			$id_bitacora = $this->get_id_bitacora();
-			$acciones_realizadas = $this->get_acciones_realizadas();
-
-
-
-			// actualiza las acciones realizadas
-			$sql = "
-				UPDATE
-			    `bitacora`
-				SET
-			    `acciones_realizadas` = '$acciones_realizadas'
-				WHERE
-			    `id_bitacora` = '$id_bitacora';
-			";
-
-			// ejecuta la consulta y se desconecta
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			desconectarBD($conexion);
+					// actualiza las acciones realizadas
+					$sql = "
+						UPDATE
+					    `bitacora`
+						SET
+					    `acciones_realizadas` = '$acciones_realizadas'
+						WHERE
+					    `id_bitacora` = '$id_bitacora';
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function cerrar_bitacora(){
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					date_default_timezone_set("America/Caracas");
+					$fecha_salida = date("Y-m-d");
+					$hora_salida = date("H:i:s");
 
-			date_default_timezone_set("America/Caracas");
-			$fecha_salida = date("Y-m-d");
-			$hora_salida = date("H:i:s");
+					$id_bitacora = $this->get_id_bitacora();
 
-			$id_bitacora = $this->get_id_bitacora();
-
-			$sql = "
-				UPDATE
-					`bitacora`
-				SET
-					`fecha_salida` = '$fecha_salida',
-					`hora_salida` = '$hora_salida'
-				WHERE
-					`id_bitacora` = '$id_bitacora'
-			";
-
-			$conexion->query($sql) or die("error: ".$conexion->error);
-			desconectarBD($conexion);
+					$sql = "
+						UPDATE
+							`bitacora`
+						SET
+							`fecha_salida` = '$fecha_salida',
+							`hora_salida` = '$hora_salida'
+						WHERE
+							`id_bitacora` = '$id_bitacora'
+					";
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$conexion->query($sql);
+						desconectarBD($conexion);
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 
 		public function mostrar_bitacora() {
-			$conexion = conectarBD();
+			try {
+				if (!$conexion = conectarBD()) {
+					throw new Exception("No se pudo conectar a bd");
+				}
+				else {
+					date_default_timezone_set("America/Caracas");
+					$fecha_salida = date("Y-m-d");
+					$hora_salida = date("H:i:s");
 
-			$sql = "SELECT * FROM `bitacora` ORDER BY `id_bitacora` DESC";
+					$id_bitacora = $this->get_id_bitacora();
 
-			$consulta_registros = $conexion->query($sql) or die("error: ".$conexion->error);
-			$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
+					$sql = "SELECT * FROM `bitacora` ORDER BY `id_bitacora` DESC";
 
-			desconectarBD($conexion);
-
-			return $registros;
-	}
-
+					// Lo hace nuevamente para verificar la consulta sql
+					try {
+						$consulta_registros = $conexion->query($sql);
+						$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
+						desconectarBD($conexion);
+						return $registros;
+					}
+					catch (mysqli_sql_exception $e) {
+						miManejadorExcepcion($e);
+						desconectarBD($conexion);
+					}
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
+		}
 
 		// GETTERS
 		public function get_id_bitacora() {
@@ -161,109 +205,127 @@
 
 		// SETTERS
 		public function set_id_bitacora($id_bitacora) {
-			$this->id_bitacora = $id_bitacora;
+			try {
+				if (!is_numeric($id_bitacora)) {
+					throw new Exception("El ID no puede estar vacío");
+				}
+				$this->id_bitacora = $id_bitacora;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
+
 		public function set_fecha_ingreso($fecha_ingreso) {
-			$this->fecha_ingreso = $fecha_ingreso;
+			if (empty($fecha_ingreso) or $fecha_ingreso == NULL) {
+				$this->fecha_ingreso = "0000-00-00";
+				return;
+			}
+			try {
+				if (
+					!preg_match('/^[0-9-]+$/', $fecha_ingreso) or
+					!checkdate(
+						substr($fecha_ingreso, 5, 2),
+						substr($fecha_ingreso, 8, 2),
+						substr($fecha_ingreso, 0, 4)
+					)
+				)
+				{
+					throw new Exception("La fecha: ".$fecha_ingreso. " no tiene un formato valido");
+				} else {
+					$this->fecha_ingreso = $fecha_ingreso;
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_fecha_salida($fecha_salida) {
-			$this->fecha_salida = $fecha_salida;
+			if (empty($fecha_salida) or $fecha_salida == NULL) {
+				$this->fecha_salida = "0000-00-00";
+				return;
+			}
+			try {
+				if (
+					!preg_match('/^[0-9-]+$/', $fecha_salida) or
+					!checkdate(
+						substr($fecha_salida, 5, 2),
+						substr($fecha_salida, 8, 2),
+						substr($fecha_salida, 0, 4)
+					)
+				)
+				{
+					throw new Exception("La fecha: ".$fecha_salida. " no tiene un formato valido");
+				} else {
+					$this->fecha_salida = $fecha_salida;
+				}
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_hora_ingreso($hora_ingreso) {
-			$this->hora_ingreso = $hora_ingreso;
+			if (empty($hora_ingreso) or $hora_ingreso == NULL) {
+				throw new Exception("La hora de entrada no puede estar vacia");
+			}
+			try {
+				// validamos que se usen numeros y :
+				if (!preg_match('^((0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9]))?$^', $hora_ingreso)) {
+					throw new Exception("La hora de entrada: ".$hora_ingreso. " no tiene un formato valido");
+				}
+				$this->hora_ingreso = $hora_ingreso;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_hora_salida($hora_salida) {
-			$this->hora_salida = $hora_salida;
+			if (empty($hora_salida) or $hora_salida == NULL) {
+				throw new Exception("La hora de salida no puede estar vacia");
+			}
+			try {
+				// validamos que se usen numeros y :
+				if (!preg_match('^((0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9]))?$^', $hora_salida)) {
+					throw new Exception("La hora de salida: ".$hora_salida. " no tiene un formato valido");
+				}
+				$this->hora_salida = $hora_salida;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_acciones_realizadas($acciones_realizadas) {
-			$this->acciones_realizadas = $acciones_realizadas;
+			if (empty($acciones_realizadas) or $acciones_realizadas == NULL) {
+				throw new Exception("La accion realizada no puede estar vacia");
+			}
+			try {
+				if (!preg_match('/[a-zA-Z0-9\s.,:;?!áéíóúüÁÉÍÓÚÜ][^,_:]+/i', $acciones_realizadas)) {
+					throw new Exception("La hora de entrada: ".$acciones_realizadas. " no tiene un formato valido");
+				}
+				$this->acciones_realizadas = $acciones_realizadas;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 		public function set_cedula_usuario($cedula_usuario) {
-			$this->cedula_usuario = $cedula_usuario;
+			try {
+				// Validar que la cédula no esté vacía
+				if (empty($cedula_usuario)) {
+					throw new Exception("El número de cédula no puede estar vacío");
+				}
+
+				// Validar la longitud y el formato de la cédula
+				if (strlen($cedula_usuario) < 4 || strlen($cedula_usuario) > 11 || !preg_match('/^[a-zA-Z0-9\s]+$/', $cedula_usuario)) {
+					throw new Exception("El número de cédula $cedula_usuario tiene un formato inválido");
+				}
+
+				// Si el dato es válido, asignarlo a la propiedad
+				$this->cedula_usuario = $cedula_usuario;
+			}
+			catch (Exception $e) {
+				miManejadorExcepcion($e);
+			}
 		}
 	}
-
-// class bitacora {
-
-// 	public function __construct(){}
-
-// 	public function guardar_bitacora($idUsuarios){
-// 		$conexion = conectarBD();
-// 		date_default_timezone_set("America/Caracas");
-// 		$fechaActual = date("Y-m-d");
-// 		$horaActual = date("H:i:s");
-
-// 		$links = "Inicia Sesión";
-
-// 		$sql = "
-// 		INSERT INTO `bitacora`
-// 		(
-// 			`id_bitacora`, 
-// 			`idUsuarios`, 
-// 			`fechaInicioSesión`, 
-// 			`horaInicioSesión`, 
-// 			`linksVisitados`, 
-// 			`fechaFinalSesión`, 
-// 			`horaFinalSesión`
-// 		) 
-// 		VALUES (
-// 			NULL,
-// 			'$idUsuarios',
-// 			'$fechaActual',
-// 			'$horaActual',
-// 			'$links',
-// 			NULL,
-// 			NULL
-// 		)";
-
-// 		$conexion->query($sql) or die("error: ".$conexion->error);
-// 		$id_bitacora = $conexion->insert_id;
-
-// 		desconectarBD($conexion);
-
-// 		return $id_bitacora;
-// 	}
-
-// 	public function actualizar_bitacora($acciones,$id_bitacora){
-
-// 		$conexion = conectarBD();
-
-// 		$sql = "UPDATE `bitacora` SET
-// 		`linksVisitados`='$acciones'
-// 		WHERE `id_bitacora`='$id_bitacora'";
-
-// 		$conexion->query($sql) or die("error: ".$conexion->error);
-// 		desconectarBD($conexion);
-// 	}
-
-// 	public function cerrar_bitacora($id_bitacora){
-// 		$conexion = conectarBD();
-
-// 		date_default_timezone_set("America/Caracas");
-// 		$fechaFinal = date("Y-m-d");
-// 		$horaFinal = date("H:i:s");
-
-// 		$sql = "UPDATE `bitacora` SET
-// 		`fechaFinalSesión`='$fechaFinal',
-// 		`horaFinalSesión`='$horaFinal'
-// 		WHERE `id_bitacora`='$id_bitacora'";
-
-// 		$conexion->query($sql) or die("error: ".$conexion->error);
-// 		desconectarBD($conexion);
-// 	}
-
-// 	public function mostrar_bitacora() {
-// 			$conexion = conectarBD();
-
-// 			$sql = "SELECT * FROM `bitacora` ORDER BY `id_bitacora` DESC";
-
-// 			$consulta_registros = $conexion->query($sql) or die("error: ".$conexion->error);
-// 			$registros = $consulta_registros->fetch_all(MYSQLI_ASSOC);
-
-// 			desconectarBD($conexion);
-
-// 			return $registros;
-// 	}
-// }
-
 ?>

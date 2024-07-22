@@ -29,8 +29,14 @@
 			<div class="container mx-md-5 px-md-5 my-5 align-self-center">
 				<div class="card shadow overflow-hidden rounded-3">
 					<div class="row">
-						<div class="col-lg-4 d-none d-lg-inline-block">
-							<img class="w-100 h-100" src="img/img-ref.jpg" alt="">
+						<div class="col-lg-4 d-none d-lg-inline-block overlay-login p-0">
+							<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center interior-overlay-login p-0">
+								<img class="w-50" src="img/icono.png" alt="">
+								  <p class="lead text-white mt-2 text-center mx-4">
+								  	Sistema de inscripción Liceo Bolivariano "Gonzalo Picón Febres"
+								  </p>
+								<span class="display-5"></span>
+							</div>
 						</div>
 						<?php if (!isset($_GET["contrasenia_olvidada"])): ?>
 							
@@ -73,15 +79,29 @@
 							<div class="row">
 								<div class="col-12 col-lg mb-2">
 									<label for="contraseña" class="form-label requerido">Contraseña:</label>
-									<input 
-										id="contraseña" 
-										class="form-control" 
-										type="password" 
-										name="contraseña" 
-										placeholder="Contraseña de ingreso" 
-										autocomplete="off" 
-										required
-									>
+									<div class="input-group">
+										<input
+											id="contraseña"
+											class="form-control"
+											type="password"
+											name="contraseña"
+											maxlength="20"
+											placeholder="Contraseña de ingreso"
+											autocomplete="off"
+											required
+										>
+										<button
+											type="button"
+											id="cambiar_visibilidad"
+											class="btn btn-outline-primary"
+											data-bs-toggle="tooltip"
+											data-bs-placement="top"
+											title="Mostrar / Ocultar contraseña"
+										>
+											<i id="vis_icon" class="fa-solid fa-eye"></i>
+										</button>
+									</div>
+									<label id="contraseña-error" class="error" for="contraseña" style="display: none;"></label>
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -107,7 +127,7 @@
 			<?php include('ayuda.php'); ?>
 		</main>
 		
-		<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -146,6 +166,23 @@
 			);
 		</script>
 
+		<?php elseif(isset($_GET['inactividad'])): ?>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Atencion',
+				'Su sesión fue cerrada debido a la inactividad',
+				'info'
+			);
+		</script>
+
+		<?php elseif(isset($_GET['denegado'])): ?>
+		<script type="text/javascript" defer>
+			Swal.fire(
+				'Atencion',
+				'Su usuario se encuentra inhabilitado',
+				'warning'
+			);
+		</script>
 		<?php endif ?>
 	</body>
 </html>

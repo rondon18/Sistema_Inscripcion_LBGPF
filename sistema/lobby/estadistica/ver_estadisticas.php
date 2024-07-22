@@ -7,6 +7,7 @@
 	}
 
 	require("../../controladores/conexion.php");
+	require("../../logs/error_handler.php");
 	require('../../clases/bitacora.php');
 	require('../../clases/estudiantes.php');
 	require('../../clases/representantes.php');
@@ -22,18 +23,14 @@
 	$bitacora->set_acciones_realizadas($_SESSION['acciones']);
 	$bitacora->actualizar_bitacora();
 
-	$nivel = 2;
-
 	$estudiantes = new estudiantes();
 	$representantes = new representantes();
 	$padres = new padres();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Consultar registros</title>
+		<title>Consultar estadisticas</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
@@ -52,14 +49,14 @@
 			<div class="container-md">
 				<div class="card w-100">
 					<div class="card-header text-center">
-						<b class="fs-4">Consulta de estadisticas de <?php echo $_POST['estadistica'];?></b>
+						<b class="fs-5">CONSULTA DE ESTADISTICAS DE <?php echo mb_strtoupper($_POST['estadistica']);?></b>
 					</div>
 					<div class="card-body small" style="max-height: 65vh; overflow-y:auto;">
 
 						<div class="row px-4" style="max-height 70vh;min-height 60vh; overflow-y: auto;">
 							<script type="text/javascript" src="../../../node_modules/chart.js/dist/chart.umd.js"></script>
 							<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-							<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+							<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 							<script type="text/javascript" src="../../datatables/datatables.min.js"></script>
 							
 							<script type="text/javascript" src="../../js/sweetalert2.js"></script>
@@ -67,8 +64,6 @@
 
 
 <?php 
-
-	// var_dump($_POST);
 
 	// lista con la paleta de colores para las graficas, se itera al momento de ciclar los valores
 	
@@ -458,7 +453,7 @@
 							<i class="fa-solid fa-lg me-2 fa-backward"></i>
 							Volver
 						</a>
-						<a href="index.php" class="btn btn-primary">
+						<a href="../index.php" class="btn btn-primary">
 							<i class="fa-solid fa-lg me-2 fa-home"></i>
 							Volver al menú principal
 						</a>

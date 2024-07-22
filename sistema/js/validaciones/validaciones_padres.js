@@ -243,7 +243,7 @@ $("#formulario_padres").validate({
 		cedula_m: {
 			digits: true,
 			maxlength:11,
-min: 8000000,
+			min: 8000000,
 			max: 30000000,
 		},
 		codigo_carnet_matria_m: {
@@ -298,9 +298,17 @@ min: 8000000,
 		},
 	},
 	onfocusout: function(element) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 	onkeyup: function(element, event) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 

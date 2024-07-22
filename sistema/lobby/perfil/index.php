@@ -19,9 +19,6 @@
 	$bitacora->actualizar_bitacora();
 
 	$nombre_completo = $_SESSION['datos_login']['p_nombre']." ".$_SESSION['datos_login']['s_nombre']." ".$_SESSION['datos_login']['p_apellido']." ".$_SESSION['datos_login']['s_apellido'];
-
-	$nivel = 2;
-
 	if (isset($_POST['orden'])) {
 		if ($_POST['orden'] == "baja") {
 
@@ -55,7 +52,7 @@
 					
 					<!--Datos del representante-->
 					<div class="card-header text-center">
-						<b class="fs-4">Perfil de usuario</b>
+						<b class="fs-5">PERFIL DE USUARIO</b>
 					</div>
 					
 					<div class="card-body">
@@ -63,32 +60,25 @@
 						<div class="row">
 
 							
+							<!-- Selector de seccion -->
+							<div class="col-12 col-lg-3">
+								<ul class="nav flex-lg-column nav-pills nav-fill mb-4 gap-2">
+									<li class="nav-item">
+										<a id="link1" class="nav-link active" href="#">Datos personales</a>
+									</li>
+									<li class="nav-item">
+										<a id="link2" class="nav-link" href="#">Datos de usuario</a>
+									</li>
+									<li class="nav-item">
+										<a id="link3" class="nav-link" href="#">Gestión del perfil</a>
+									</li>
+								</ul>
+							</div>
+
+
 							<!-- Contenedor del formulario -->
-							<div class="col-12" style="max-height: 60vh; overflow-y: auto;">
-									<!-- Botones de acción -->
-									<div class="row mb-4 text-center text-md-end">
-										<div class="col-12 col-lg-12 pt-1">
-											
-											<a class="btn btn-sm btn-primary" href="editar-perfil.php">
-												<i class="fa-solid me-2 fa-user-edit"></i>
-												Editar perfil
-											</a>
-											
-											<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
-												
-												<input type="hidden" name="orden" value="baja">
-												<input type="hidden" name="cedula" value="<?php echo $_SESSION['datos_login']['cedula']; ?>">
+							<div class="col-12 col-lg-9" style="max-height: 60vh; overflow-y: auto;">
 
-												<button class="btn btn-sm btn-primary" type="submit">
-													<i class="fa-solid me-2 fa-user-minus"></i>
-													Darse de baja
-												</button>
-
-											</form>
-
-
-										</div>
-									</div>
 									<!-- Seccion de datos personales -->
 									<section id="seccion1" class="row px-4">
 										<!-- Titulo de la seccion -->
@@ -168,7 +158,7 @@
 
 
 									<!-- Seccion de datos de usuario -->
-									<section id="seccion2" class="row px-4">
+									<section id="seccion2" class="row px-4" style="display: none;">
 										<!-- Titulo de la seccion -->
 										<div class="row mb-4">
 											<div class="col-12 col-lg-12">
@@ -234,6 +224,44 @@
 											</div>
 										</div>										
 									</section>
+
+									<section id="seccion3" class="row px-4" style="display: none;">
+										<!-- Botones de acción -->
+										<div class="row mb-4">
+											<div class="col-12 col-lg-12 pt-1">
+
+												<!-- Titulo de la seccion -->
+												<div class="row mb-4">
+													<div class="col-12 col-lg-12">
+														<p class="h3">Gestión del perfil</p>
+													</div>
+												</div>
+
+												<p class="text-muted">
+													En esta pequeña área se encuentran las opciones para editar su perfil o darse de baja como usuario. Cada uno con su respectivo botón.
+												</p>
+
+												<a class="btn btn-sm btn-primary" href="editar_perfil.php">
+													<i class="fa-solid me-2 fa-user-edit"></i>
+													Editar perfil
+												</a>
+
+												<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
+
+													<input type="hidden" name="orden" value="baja">
+													<input type="hidden" name="cedula" value="<?php echo $_SESSION['datos_login']['cedula']; ?>">
+
+													<button class="btn btn-sm btn-primary" type="submit">
+														<i class="fa-solid me-2 fa-user-minus"></i>
+														Darse de baja
+													</button>
+
+												</form>
+
+
+											</div>
+										</div>
+									</section>
 							</div>
 
 						</div>
@@ -250,12 +278,15 @@
 		<?php include('../../footer.php'); ?>
 		<?php include('../../ayuda.php'); ?>
 	</main>
-	<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../../js/sweetalert2.js"></script>
+	<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="../../js/perfil.js"></script>
 	<script>
 	  function confirmar_envio(event) {
 	    event.preventDefault(); // Detiene la acción predeterminada del evento onSubmit
-	    
+
 	    Swal.fire({
 	      title: '¿Estás seguro?',
 	      text: '¿Deseas darse se baja como usuario?',
@@ -273,7 +304,5 @@
 	    });
 	  }
 	</script>
-	<script type="text/javascript" src="../../js/logout_inactividad.js"></script>
-	<script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

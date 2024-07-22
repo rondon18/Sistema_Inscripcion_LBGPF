@@ -144,15 +144,25 @@
 								<th><span class="badge" style="background: #ff6384;"> </span> Semanal</th>
 								<th><span class="badge" style="background: #ff9f40;"> </span> Quincenal</th>
 								<th><span class="badge" style="background: #ffcd56;"> </span> Mensual</th>
+								<th><span class="badge" style="background: #4bc0c0;"> </span> Otra</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$nro_padres_empleados = $padres->get_nro_p_empleados($anio,$seccion);
+							$f_pago_diaria = $padres->get_nro_frec_rem("Diaria",$anio,$seccion);
+							$f_pago_semanal = $padres->get_nro_frec_rem("Semanal",$anio,$seccion);
+							$f_pago_quincenal = $padres->get_nro_frec_rem("Quincenal",$anio,$seccion);
+							$f_pago_mensual = $padres->get_nro_frec_rem("Mensual",$anio,$seccion);
+							$f_pago_otra = $nro_padres_empleados - ($f_pago_diaria+$f_pago_mensual+$f_pago_semanal+$f_pago_quincenal);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_frec_rem("Diaria",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Semanal",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Quincenal",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_frec_rem("Mensual",$anio,$seccion);?></td>
+								<td><?php echo $f_pago_diaria;?></td>
+								<td><?php echo $f_pago_semanal;?></td>
+								<td><?php echo $f_pago_quincenal;?></td>
+								<td><?php echo $f_pago_mensual;?></td>
+								<td><?php echo $f_pago_otra;?></td>
 								<td><?php echo $padres->get_nro_p_empleados($anio,$seccion);?></td>
 							</tr>
 						</tbody>
@@ -172,10 +182,11 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_frec_rem("Diaria",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_frec_rem("Semanal",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_frec_rem("Quincenal",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_frec_rem("Mensual",$anio,$seccion);?>,
+			        	<?php echo $f_pago_diaria;?>,
+			        	<?php echo $f_pago_semanal;?>,
+			        	<?php echo $f_pago_quincenal;?>,
+			        	<?php echo $f_pago_mensual;?>,
+			        	<?php echo $f_pago_otra;?>,
 			      	],
 			        borderWidth: 1
 			      }]

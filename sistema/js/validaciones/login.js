@@ -29,3 +29,34 @@ $("#login").validate({
 		form.submit();
 	},
 });
+
+$(document).ready(function() {
+  $("#cambiar_visibilidad").click(function() {
+
+  	// Mostrar
+    if ($("#contraseña").attr("type") === "password") {
+      $("#contraseña").attr("type", "text");
+      $("#cambiar_visibilidad").toggleClass("active");
+      $("#vis_icon").toggleClass("fa-eye-slash");
+      $("#vis_icon").toggleClass("fa-eye");
+    }
+    // Ocultar
+    else {
+      $("#contraseña").attr("type", "password");
+      $("#cambiar_visibilidad").toggleClass("active");
+      $("#vis_icon").toggleClass("fa-eye");
+      $("#vis_icon").toggleClass("fa-eye-slash");
+    }
+  });
+})
+
+$(document).ready(function() {
+$('#cambiar_visibilidad').on('mouseout', function() {
+  $(this).tooltip('hide');
+});
+});
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

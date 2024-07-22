@@ -23,17 +23,6 @@ $bitacora->actualizar_bitacora();
 $listado = glob('../../respaldos/*', GLOB_NOSORT);
 $listado = array_reverse($listado,true);
 
-
-// Auxiliar para verificar que vuelca glob()
-// echo "<table border='1' style='margin-top:100px'>";
-// foreach ($listado as $key => $value) {
-// 	echo "<tr>";
-// 	echo "<td>".$key."</td>";
-// 	echo "<td>".$value."</td>";
-// 	echo "</tr>";
-// }
-// echo "</table>";
-
 function hallarRespaldosEsp($dato){
 	if (strlen(substr($dato, 16)) != 34) {
 		return true;
@@ -42,9 +31,6 @@ function hallarRespaldosEsp($dato){
 		return false;
 	}
 }
-
-$nivel = 2;
-
 ?>
 
 
@@ -66,7 +52,7 @@ $nivel = 2;
 				
 				<div class="card">
 					<div class="card-header text-center">
-						<b class="fs-4">Área de mantenimiento</b>
+						<b class="fs-5">ÁREA DE MANTENIMIENTO</b>
 					</div>
 					
 					<div class="card-body row">
@@ -177,7 +163,7 @@ $nivel = 2;
 	</body>
 <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
 
-<script type="text/javascript" src="../../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="../../js/sweetalert2.js"></script>
 <script type="text/javascript" src="../../js/logout_inactividad.js"></script>
 <script type="text/javascript" src="../../js/mantenimiento.js" defer></script>

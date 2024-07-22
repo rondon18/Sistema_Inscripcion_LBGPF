@@ -21,23 +21,22 @@
 
 <?php if (isset($manual)): ?>
 	
-<section class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
+<section class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 px-md-5 g-4 mb-4">
 
 
 
 	<!-- Inicio de sesión -->
 	<div 
-		class="col px-2 px-md-4 py-2"
+		class="col"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
 		title="Inicio de sesión e ingreso auxiliar."
 	>
-		<div class="card bg-light">
+		<div class="card bg-light shadow hover-grow card-menu">
 			<div class="card-body d-flex align-items-center">
 				<i class="fa-solid fa-right-to-bracket fa-2xl m-2"></i>
-				<div class="px-2 w-100">
-					<h6 class="card-title mb-2">Inicio de sesión.</h6>
-					<a href="?con=a" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+				<div class="px-sm-2 w-100">
+					<a href="?con=a" class="link-dark text-decoration-none stretched-link link-menu">Inicio de sesión.</a>
 				</div>
 			</div>
 		</div>
@@ -48,17 +47,16 @@
 	
 		<!-- Gestionar registros -->
 		<div 
-			class="col px-2 px-md-4 py-2"
+			class="col"
 			data-bs-toggle="tooltip" 
 			data-bs-placement="top" 
 			title="Proceso de inscripción, reportes rápidos y planillas."
 		>
-			<div class="card bg-light">
+			<div class="card bg-light shadow hover-grow card-menu">
 				<div class="card-body d-flex align-items-center">
 					<i class="fa-solid fa-clipboard-list fa-2xl m-2"></i>
-					<div class="px-2 w-100">
-						<h6 class="card-title mb-2">Gestionar registros.</h6>
-						<a href="?con=b" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<div class="px-sm-2 w-100">
+						<a href="?con=b" class="link-dark text-decoration-none stretched-link link-menu">Gestionar registros.</a>
 					</div>
 				</div>
 			</div>
@@ -67,17 +65,16 @@
 
 		<!-- Reporte -->
 		<div 
-			class="col px-2 px-md-4 py-2"
+			class="col"
 			data-bs-toggle="tooltip" 
 			data-bs-placement="top" 
 			title="Reportes complejos y sus variantes."
 		>
-			<div class="card bg-light">
+			<div class="card bg-light shadow hover-grow card-menu">
 				<div class="card-body d-flex align-items-center">
 					<i class="fa-solid fa-file-export fa-2xl m-2"></i>
-					<div class="px-2 w-100">
-						<h6 class="card-title mb-2">Reportes.</h6>
-						<a href="?con=c" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<div class="px-sm-2 w-100">
+						<a href="?con=c" class="link-dark text-decoration-none stretched-link link-menu">Reportes.</a>
 					</div>
 				</div>
 			</div>
@@ -86,17 +83,16 @@
 
 		<!-- Estadísticas -->
 		<div 
-			class="col px-2 px-md-4 py-2"
+			class="col"
 			data-bs-toggle="tooltip" 
 			data-bs-placement="top" 
 			title="Filtros e información mostrada."
 		>
-			<div class="card bg-light">
+			<div class="card bg-light shadow hover-grow card-menu">
 				<div class="card-body d-flex align-items-center">
 					<i class="fa-solid fa-chart-column fa-2xl m-2"></i>
-					<div class="px-2 w-100">
-						<h6 class="card-title mb-2">Estadística.</h6>
-						<a href="?con=d" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<div class="px-sm-2 w-100">
+						<a href="?con=d" class="link-dark text-decoration-none stretched-link link-menu">Estadística.</a>
 					</div>
 				</div>
 			</div>
@@ -104,17 +100,16 @@
 
 		<!-- Área del usuario -->
 		<div 
-			class="col px-2 px-md-4 py-2"
+			class="col"
 			data-bs-toggle="tooltip" 
 			data-bs-placement="top" 
 			title="Perfiles, capacidades y acciones posibles."
 		>
-			<div class="card bg-light">
+			<div class="card bg-light shadow hover-grow card-menu">
 				<div class="card-body d-flex align-items-center">
 					<i class="fa-solid fa-user fa-2xl m-2"></i>
-					<div class="px-2 w-100">
-						<h6 class="card-title mb-2">Área del usuario.</h6>
-						<a href="?con=e" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<div class="px-sm-2 w-100">
+						<a href="?con=e" class="link-dark text-decoration-none stretched-link link-menu">Área del usuario.</a>
 					</div>
 				</div>
 			</div>
@@ -124,17 +119,16 @@
 
 		<!-- Área de mantenimiento -->
 		<div 
-			class="col px-2 px-md-4 py-2"
+			class="col"
 			data-bs-toggle="tooltip" 
 			data-bs-placement="top" 
 			title="Respaldos y restauraciones del sistema."
 		>
-			<div class="card bg-light">
+			<div class="card bg-light shadow hover-grow card-menu">
 				<div class="card-body d-flex align-items-center">
 					<i class="fa-solid fa-broom fa-2xl m-2"></i>
-					<div class="px-2 w-100">
-						<h6 class="card-title mb-2">Área de mantenimiento.</h6>
-						<a href="?con=f" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+					<div class="px-sm-2 w-100">
+						<a href="?con=f" class="link-dark text-decoration-none stretched-link link-menu">Área de mantenimiento.</a>
 					</div>
 				</div>
 			</div>
@@ -144,17 +138,16 @@
 
 	<!-- Acerca del sistema -->
 	<div 
-		class="col px-2 px-md-4 py-2"
+		class="col"
 		data-bs-toggle="tooltip" 
 		data-bs-placement="top" 
 		title="Versíón actual, info. del sistema y de los autores."
 	>
-		<div class="card bg-light">
+		<div class="card bg-light shadow hover-grow card-menu">
 			<div class="card-body d-flex align-items-center">
 				<i class="fa-solid fa-circle-info fa-2xl m-2"></i>
-				<div class="px-2 w-100">
-					<h6 class="card-title mb-2">Acerca del sistema.</h6>
-					<a href="?con=g" class="btn btn-primary w-100 btn-sm stretched-link">Consultar</a>
+				<div class="px-sm-2 w-100">
+					<a href="?con=g" class="link-dark text-decoration-none stretched-link link-menu">Acerca del sistema.</a>
 				</div>
 			</div>
 		</div>

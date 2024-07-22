@@ -22,16 +22,27 @@
 								<th><span class="badge" style="background: #ff9f40;"> </span> Rancho</th>
 								<th><span class="badge" style="background: #ffcd56;"> </span> Quinta</th>
 								<th><span class="badge" style="background: #44b4b4;"> </span> Habitación</th>
+								<th><span class="badge" style="background: #9966ff;"> </span> Otro / No especifica</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$nro_padres = $padres->get_nro_padres($anio,$seccion);
+							$nro_casa = $padres->get_nro_tipo_v("Casa",$anio,$seccion);
+							$nro_apartamento = $padres->get_nro_tipo_v("Apartamento",$anio,$seccion);
+							$nro_rancho = $padres->get_nro_tipo_v("Rancho",$anio,$seccion);
+							$nro_quinta = $padres->get_nro_tipo_v("Quinta",$anio,$seccion);
+							$nro_habitación = $padres->get_nro_tipo_v("Habitación",$anio,$seccion);
+							$nro_otro = $nro_padres - ($nro_casa+$nro_apartamento+$nro_rancho+$nro_quinta+$nro_habitación);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_tipo_v("Casa",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Apartamento",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Rancho",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Quinta",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_tipo_v("Habitación",$anio,$seccion);?></td>
+								<td><?php echo $nro_casa;?></td>
+								<td><?php echo $nro_apartamento;?></td>
+								<td><?php echo $nro_rancho;?></td>
+								<td><?php echo $nro_quinta;?></td>
+								<td><?php echo $nro_habitación;?></td>
+								<td><?php echo $nro_otro;?></td>
 								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
@@ -51,11 +62,12 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_tipo_v("Casa",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_tipo_v("Apartamento",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_tipo_v("Rancho",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_tipo_v("Quinta",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_tipo_v("Habitación",$anio,$seccion);?>,
+			        	<?php echo $nro_casa;?>,
+			        	<?php echo $nro_apartamento;?>,
+			        	<?php echo $nro_rancho;?>,
+			        	<?php echo $nro_quinta;?>,
+			        	<?php echo $nro_habitación;?>,
+			        	<?php echo $nro_otro;?>,
 			      	],
 			        borderWidth: 1
 			      }]
@@ -89,14 +101,22 @@
 								<th><span class="badge" style="background: #36a2eb;"> </span> Buena</th>
 								<th><span class="badge" style="background: #ff6384;"> </span> Regular</th>
 								<th><span class="badge" style="background: #ff9f40;"> </span> Mala</th>
+								<th><span class="badge" style="background: #ffcd56;"> </span> Otro / No especifica</th>
 								<th>Total</th>
 							</tr>
 						</thead>
+						<?php
+							$cond_v_buena = $padres->get_nro_condicion_v("Buena",$anio,$seccion);
+							$cond_v_regular = $padres->get_nro_condicion_v("Regular",$anio,$seccion);
+							$cond_v_mala = $padres->get_nro_condicion_v("Mala",$anio,$seccion);
+							$cond_v_otra = $nro_padres - ($cond_v_buena + $cond_v_regular + $cond_v_mala);
+						?>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_condicion_v("Buena",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_condicion_v("Regular",$anio,$seccion);?></td>
-								<td><?php echo $padres->get_nro_condicion_v("Mala",$anio,$seccion);?></td>
+								<td><?php echo $cond_v_buena;?></td>
+								<td><?php echo $cond_v_regular;?></td>
+								<td><?php echo $cond_v_mala;?></td>
+								<td><?php echo $cond_v_otra;?></td>
 								<td><?php echo $padres->get_nro_padres($anio,$seccion);?></td>
 							</tr>
 						</tbody>
@@ -116,9 +136,10 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_condicion_v("Buena",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_condicion_v("Regular",$anio,$seccion);?>,
-			        	<?php echo $padres->get_nro_condicion_v("Mala",$anio,$seccion);?>,
+			        	<?php echo $cond_v_buena;?>,
+			        	<?php echo $cond_v_regular;?>,
+			        	<?php echo $cond_v_mala;?>,
+			        	<?php echo $cond_v_otra;?>,
 			      	],
 			        borderWidth: 1
 			      }]

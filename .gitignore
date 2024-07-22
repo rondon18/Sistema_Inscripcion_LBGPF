@@ -1,2 +1,3 @@
-sistema/respaldos/*
+sistema/respaldos/*.sql
+sistema/logs/*.log
 sistema/pruebas/

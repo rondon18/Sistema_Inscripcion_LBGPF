@@ -54,7 +54,7 @@
 				Estadísticas económicas, abarca:
 				<ul>
 					<li>Padres que cuentan con empleo</li>
-					<li>Padres por remuneración</li>
+					<li>Padres que cuentan con empleo por remuneración</li>
 					<li>Padres por tipo de remuneración</li>
 				</ul>
 			</li>

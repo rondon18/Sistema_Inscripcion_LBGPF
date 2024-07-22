@@ -148,14 +148,9 @@ $("#formulario_estudiantes").validate({
 		cedula_est: {
 			digits: true,
 			minlength: 8,
-			maxlength: 9,
-			min: 30000000,
-			max: 99999999,
-		},
-		cedula_escolar_est: {
-			minlength:12,
 			maxlength: 14,
-			alphanumeric: true,
+			min: 30000000,
+			max: 99999999999999,
 		},
 		
 		codigo_carnet_patria_est: {
@@ -193,9 +188,17 @@ $("#formulario_estudiantes").validate({
 		},
 	},
 	onfocusout: function(element) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 	onkeyup: function(element, event) {
+		$('input[type="text"], input[type="email"], textarea').each(function(index, element) {
+      // Convertir el contenido a mayúsculas
+      element.value = element.value.toUpperCase();
+    });
 		this.element(element); // triggers validation
 	},
 

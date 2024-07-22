@@ -2,7 +2,7 @@
 
 	if ($_SESSION['orden'] == "insertar" and isset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3'])) {
 
-		// echo "insertar";
+		
 
 
 		// funciones usadas durante el proceso de registro
@@ -146,7 +146,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+			
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Padre") {
@@ -277,7 +277,7 @@
 
 		// Persona
 
-		// echo $personas->generar_cedula_provisional();
+			
 
 		// Si el representante NO es el padre se registra paso a paso sus datos
 		if (dato_sesion_i("vinculo_r") != "Madre") {
@@ -409,12 +409,8 @@
 		// Persona
 
 		// si alguno de los dos esta vacio, se usará le cédula escolar
-		if (empty(dato_sesion_i("nacionalidad_est",3)) or (empty(dato_sesion_i("cedula_est",3)))) {
-			$personas->set_cedula(dato_sesion_i("cedula_escolar_est",3));
-		}
-		else {
-			$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
-		}
+		$personas->set_cedula(dato_sesion_i("nacionalidad_est",3).dato_sesion_i("cedula_est",3));
+
 
 		// Datos de persona	
 		$personas->set_p_nombre(dato_sesion_i("primer_nombre_est",3));
@@ -503,7 +499,6 @@
 		// Datos del estudiante
 
 		$estudiantes->set_cedula_persona($cedula_estudiante);
-		$estudiantes->set_cedula_escolar(dato_sesion_i("cedula_escolar_est",3));
 		$estudiantes->set_plantel_proced(dato_sesion_i("plantel_procedencia",3));
 		$estudiantes->set_con_quien_vive(dato_sesion_i("con_quien_vive",3));
 		$estudiantes->set_relacion_representante(dato_sesion_i("vinculo_r"));
@@ -654,16 +649,16 @@
 		// inscripciones
 
 		$inscripciones->set_fecha(date("Y-m-d"));
-		$inscripciones->set_hora(date("h:i:sa"));
+		$inscripciones->set_hora(date("H:i:s"));
 		$inscripciones->set_cedula_usuario($_SESSION['datos_login']["cedula"]);
 		$inscripciones->set_cedula_estudiante($cedula_estudiante);
 		$inscripciones->insertar_inscripciones();
 
 		// elimina los valores almacenados en sesion de este proceso
-		unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		// unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
 
 	}
 	else {
-		// echo "b";
+		
 	}
 ?>

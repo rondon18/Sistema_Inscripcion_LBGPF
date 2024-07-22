@@ -145,7 +145,7 @@
 	$imagen->setWorksheet($hoja);
 
 
-	$hoja->fromArray($encabezado, null, 'A2');
+	$hoja->fromArray(array_map("mb_strtoupper",$encabezado), null, 'A2');
 
 
 	// retorno de los datos como array de arrays
@@ -179,7 +179,7 @@
 				$estudiante["cedula"],
 				$estudiante["p_nombre"]. " " .$estudiante["s_nombre"],
 				$estudiante["p_apellido"]. " " .$estudiante["s_apellido"],
-				$estudiante["fecha_nacimiento"],
+				formatear_fecha($estudiante["fecha_nacimiento"]),
 				$estudiante["genero"],
 				$estudiante["grado_a_cursar"],
 				'Sección "' . $estudiante["seccion"] . '"',
@@ -193,9 +193,7 @@
 		$padres->set_cedula_persona($estudiante["cedula_padre"]);
 		$padre = $padres->consultar_padres();
 
-		// var_dump($padre);
 
-		// echo "<br><br><br>";
 
 		// Incluye los datos personales
 		$datos_fila = array_merge(
@@ -206,7 +204,7 @@
 				$padre["cedula"],
 				$padre["p_nombre"]. " " .$padre["s_nombre"],
 				$padre["p_apellido"]. " " .$padre["s_apellido"],
-				$padre["fecha_nacimiento"],
+				formatear_fecha($padre["fecha_nacimiento"]),
 				$padre["lugar_nacimiento"],
 				$padre["genero"],
 				$padre["estado_civil"],
@@ -223,17 +221,18 @@
 		// Incluye incluir_direccion del padre
 		if (isset($_POST['incluir_direccion']) and $_POST['incluir_direccion'] == "on") {
 			
-			$direccion = 
-			[
-				$padre["municipio"],
-				$padre["parroquia"],
-				$padre["sector"],
-				$padre["calle"],
-				$padre["nro_casa"],
-				$padre["punto_referencia"],
-			];
+			// $direccion =
+			// [
+			// 	$padre["municipio"],
+			// 	$padre["parroquia"],
+			// 	$padre["sector"],
+			// 	$padre["calle"],
+			// 	$padre["nro_casa"],
+			// 	$padre["punto_referencia"],
+			// ];
 
-			$datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
+			// $datos_fila = array_merge($datos_fila,[implode(" ", $direccion)],);
+			$datos_fila = array_merge($datos_fila,[direccion_completa($padre)],);
 		}
 
 
@@ -299,7 +298,7 @@
 		if (isset($_POST['filtro_parentesco']) and $_POST['filtro_parentesco'] != "Cualquiera") {
 			
 			if ($_POST['filtro_parentesco'] == "Padre" or $_POST['filtro_parentesco'] == "padre") {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 			}
@@ -308,7 +307,7 @@
 		
 		// Si el filtro marca cualquiera se muestra la fila
 		else {
-			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 			$i++;
 			$lineas++;
 		}
@@ -334,7 +333,7 @@
 				$estudiante["cedula"],
 				$estudiante["p_nombre"]. " " .$estudiante["s_nombre"],
 				$estudiante["p_apellido"]. " " .$estudiante["s_apellido"],
-				$estudiante["fecha_nacimiento"],
+				formatear_fecha($estudiante["fecha_nacimiento"]),
 				$estudiante["genero"],
 				$estudiante["grado_a_cursar"],
 				'Sección "' . $estudiante["seccion"] . '"',
@@ -348,9 +347,7 @@
 		$padres->set_cedula_persona($estudiante["cedula_madre"]);
 		$padre = $padres->consultar_padres();
 
-		// var_dump($padre);
 
-		// echo "<br><br><br>";
 
 		// Incluye los datos personales
 		$datos_fila = array_merge(
@@ -361,7 +358,7 @@
 				$padre["cedula"],
 				$padre["p_nombre"]. " " .$padre["s_nombre"],
 				$padre["p_apellido"]. " " .$padre["s_apellido"],
-				$padre["fecha_nacimiento"],
+				formatear_fecha($padre["fecha_nacimiento"]),
 				$padre["lugar_nacimiento"],
 				$padre["genero"],
 				$padre["estado_civil"],
@@ -454,7 +451,7 @@
 		if (isset($_POST['filtro_parentesco']) and $_POST['filtro_parentesco'] != "Cualquiera") {
 
 			if ($_POST['filtro_parentesco'] == "Madre" or $_POST['filtro_parentesco'] == "madre") {
-					$hoja->fromArray($datos_fila, null, 'A'.$i);
+					$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 					$i++;
 					$lineas++;
 			}
@@ -463,7 +460,7 @@
 		
 		// Si el filtro marca cualquiera se muestra la fila
 		else {
-			$hoja->fromArray($datos_fila, null, 'A'.$i);
+			$hoja->fromArray(array_map("mb_strtoupper",$datos_fila), null, 'A'.$i);
 			$i++;
 			$lineas++;
 		}

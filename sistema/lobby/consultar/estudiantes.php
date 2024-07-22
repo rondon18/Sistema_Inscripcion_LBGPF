@@ -8,17 +8,6 @@
 	}
 
 
-	if (isset($_POST['orden'])) {
-		if ($_POST['orden'] == "eliminar") {
-
-			$_SESSION['orden'] = $_POST['orden'];
-			$_SESSION['eliminar_estudiante'] = $_POST['cedula'];
-
-			header('Location: ../../controladores/registros/control_registros.php');
-		}
-	}
-
-
 
 	require("../../clases/estudiantes.php");
 	require("../../clases/representantes.php");
@@ -46,281 +35,394 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal_filtros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Filtrar consulta de estudiantes</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <form id="filtros_estudiantes" action="#" method="post">
-       	
-
-       	<div class="row mb-3">
-       		<div class="col-5">
-       			<label for="filtro_anio">
-		       		Año que cursan	
-		       	</label>
-       		</div>
-       		<div class="col-7">
-       			<select class="form-select" name="filtro_anio" id="filtro_anio">
-		       		<option value="Cualquiera">Cualquiera</option>
-		       		<option value="Primer año">Primer año</option>
-		       		<option value="Segundo año">Segundo año</option>
-		       		<option value="Tercer año">Tercer año</option>
-		       		<option value="Cuarto año">Cuarto año</option>
-		       		<option value="Quinto año">Quinto año</option>
-		       	</select>
-       		</div>
-       	</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Filtrar consulta de estudiantes</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			 <form id="filtros_estudiantes" action="#" method="post">
 
 
-       	<div class="row mb-3">
-       		<div class="col-5">
-       			<label for="filtro_seccion">
-		       		Sección actual	
-		       	</label>
-       		</div>
-       		<div class="col-7">
-       			<select class="form-select" name="filtro_seccion" id="filtro_seccion">
-		       		<option value="Cualquiera">Cualquiera</option>
-		       		<option value="A">A</option>
-		       		<option value="B">B</option>
-		       		<option value="C">C</option>
-		       		<option value="D">D</option>
-		       	</select>
-       		</div>
-       	</div>
+				<div class="row mb-3">
+					<div class="col-5">
+						<label for="filtro_anio">
+							Año que cursan
+						</label>
+					</div>
+					<div class="col-7">
+						<select class="form-select" name="filtro_anio" id="filtro_anio">
+							<option value="Cualquiera">Cualquiera</option>
+							<option value="Primer año">Primer año</option>
+							<option value="Segundo año">Segundo año</option>
+							<option value="Tercer año">Tercer año</option>
+							<option value="Cuarto año">Cuarto año</option>
+							<option value="Quinto año">Quinto año</option>
+						</select>
+					</div>
+				</div>
 
 
-       	<div class="row mb-3">
-       		<div class="col-5">
-       			<label for="filtro_genero">
-		       		Género	
-		       	</label>
-       		</div>
-       		<div class="col-7">
-       			<select class="form-select" name="filtro_genero" id="filtro_genero">
-		       		<option value="Cualquiera">Cualquiera</option>
-		       		<option value="F">Hembras</option>
-		       		<option value="M">Varones</option>
-		       	</select>
-       		</div>
-       	</div>
+				<div class="row mb-3">
+					<div class="col-5">
+						<label for="filtro_seccion">
+							Sección actual
+						</label>
+					</div>
+					<div class="col-7">
+						<select class="form-select" name="filtro_seccion" id="filtro_seccion">
+							<option value="Cualquiera">Cualquiera</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+						</select>
+					</div>
+				</div>
 
-       	<input type="hidden" name="filtros_estudiantes">
 
-       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" form="filtros_estudiantes">Aplicar filtros</button>
-      </div>
-    </div>
-  </div>
+				<div class="row mb-3">
+					<div class="col-5">
+						<label for="filtro_genero">
+							Género
+						</label>
+					</div>
+					<div class="col-7">
+						<select class="form-select" name="filtro_genero" id="filtro_genero">
+							<option value="Cualquiera">Cualquiera</option>
+							<option value="F">Hembras</option>
+							<option value="M">Varones</option>
+						</select>
+					</div>
+				</div>
+
+				<input type="hidden" name="filtros_estudiantes">
+
+			 </form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				<button type="submit" class="btn btn-primary" form="filtros_estudiantes">Aplicar filtros</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
-	<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
+	<table id="estudiantes" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
 			<tr>
-				<!-- Datos del estudiante -->
-				<th>Cédula</th>
-				<th>Nombres</th>
-				<th>Apellidos</th>
-				<th>Fecha de nacimiento</th>
-				<th>Edad</th>
-				<th>Año a cursar</th>
-				<th>Sección</th>
-				<th>Género</th>
-				<th>Correo electrónico</th>
-				<th>Dirección de residencia</th>
-
-				<!-- Ficha médica del estudiante -->
-				<th>Talla de camisa</th>
-				<th>Talla de pantalón</th>
-				<th>Talla de zapatos</th>
-				<th>Estatura</th>
-				<th>Peso</th>
-				<th>Índice</th>
-				<th>Circ. Braquial</th>
-
-				<th>Vacuna Covid-19</th>
-				
-				<th>Periodo académico</th>
-
-
-				<th>Cédula de la madre</th>
-				<th>Cédula del padre</th>
-				<th>Cédula del representante</th>
-
-
-				<!-- Botones de acción -->
-				<th>Acciones</th>
-
+				<th>CÉDULA</th>
+				<th>NOMBRE COMPLETO</th>
+				<th>GÉNERO</th>
+				<th>FECHA DE NACIMIENTO</th>
+				<th>ESTADO</th>
+				<th>AÑO A CURSAR</th>
+				<th>PERIODO ACADÉMICO</th>
+				<th>CÉDULA DEL REPRESENTANTE</th>
+				<th>CÉDULA DE LA MADRE</th>
+				<th>CÉDULA DEL PADRE</th>
+				<th>ACCIONES</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 			<?php foreach ($lista_estudiantes as $estudiante):?>
 			<tr>
-				
+
 				<!-- Datos del estudiante -->
-				<td><?php echo $estudiante['cedula'];?></td>
-				<td><?php echo $estudiante['p_nombre']." ".$estudiante['s_nombre'];?></td>
-				<td><?php echo $estudiante['p_apellido']." ".$estudiante['s_apellido'];?></td>		
-				<td><?php echo $estudiante['fecha_nacimiento'];?></td>
-				<td><?php echo comprobar_vacio(calcular_edad($estudiante['fecha_nacimiento']),"E");?></td>
-				<td><?php echo $estudiante['grado_a_cursar'];?></td>
-				<td><?php echo $estudiante['seccion'];?></td>
-				<td><?php echo genero($estudiante['genero']);?></td>
-				<td><?php echo $estudiante['email'];?></td>
-
-				<?php 
-
-					// Concatena la direccion completa con un espacio o con un vacio en caso de que el dato esté vacio
-
-					$direccion = "";
-
-					if (empty($estudiante['estado'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['estado']." ";
-					}
-					if (empty($estudiante['municipio'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['municipio']." ";
-					}
-					if (empty($estudiante['parroquia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['parroquia']." ";
-					}
-					if (empty($estudiante['sector'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['sector']." ";
-					}
-					if (empty($estudiante['calle'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['calle']." ";
-					}
-					if (empty($estudiante['nro_casa'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['nro_casa']." ";
-					}
-					if (empty($estudiante['punto_referencia'])) {
-						$direccion .= "";
-					}
-					else {
-						$direccion .= $estudiante['punto_referencia']." ";
-					}
-				?>
-
-				<td><?php echo $direccion;?></td>
-
-				<!-- Ficha médica del estudiante -->
-				<td><?php echo $estudiante['camisa'];?></td>
-				<td><?php echo $estudiante['pantalon'];?></td>
-				<td><?php echo $estudiante['calzado'];?></td>
-				<td><?php echo $estudiante['estatura'];?></td>
-				<td><?php echo $estudiante['peso'];?></td>
-				<td><?php echo $estudiante['indice_m_c'];?></td>
-				<td><?php echo $estudiante['circ_braquial'];?></td>
-
-				<?php  
-
-					// Hace que se imprima No vacunado o la vacuna y dosis aplicadas en vez de NV
-
-					if ($estudiante['vac_aplicada'] == "NV") {
-						$vac_covid = "No vacunado";
-					}
-					else {
-						$vac_covid = $estudiante['vac_aplicada']." (".$estudiante['dosis']." dosis)";
-					}
-
-				?>
-
-				<td><?php echo $vac_covid;?></td>
+				<td><?php echo mb_strtoupper($estudiante['cedula']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['p_nombre']." ".$estudiante['s_nombre']." ".$estudiante['p_apellido']." ".$estudiante['s_apellido']);?></td>
+				<td><?php echo $estudiante['genero'];?></td>
+				<td><?php echo formatear_fecha($estudiante['fecha_nacimiento']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['estado_inscripcion']);?></td>
+				<td>
+					<?php
+						if (!empty($estudiante['grado_a_cursar']) && !empty($estudiante['seccion'])) {
+							echo mb_strtoupper($estudiante['grado_a_cursar']) . ' "' . mb_strtoupper($estudiante['seccion']) . '"';
+						}
+						else {
+							echo mb_strtoupper($estudiante["estado_inscripcion"]);
+						}
+					?>
+				</td>
 
 				<!-- Periodo académico al que está registrado -->
-				<td><?php echo $estudiante['id_per_academico'];?></td>
+				<td><?php echo mb_strtoupper($estudiante['id_per_academico']);?></td>
 
 				<!-- identificadores de madre, padre y representante -->
-				<td><?php echo $estudiante['cedula_padre'];?></td>
-				<td><?php echo $estudiante['cedula_madre'];?></td>
-				<td><?php echo $estudiante['cedula_representante'];?></td>
+				<td><?php echo mb_strtoupper($estudiante['cedula_representante']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['cedula_madre']);?></td>
+				<td><?php echo mb_strtoupper($estudiante['cedula_padre']);?></td>
 
 				<!-- Acciones -->
 				<td>
-					<!--Generar planilla de inscripción-->
-					<form action="../../controladores/planillas/generar_planilla_estudiante.php" method="POST" style="display: inline-block;">
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
 
-						<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla">Generar planilla <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
+					<div>
 
+						<!-- Consultar información completa del estudiante -->
+						<form
+							id="consultar_registro_<?php echo $estudiante['cedula'];?>"
+							action="consultar_estudiante.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+						</form>
+
+						<!-- Editar registro del estudiante -->
+						<form
+							id="editar_registro_<?php echo $estudiante['cedula'];?>"
+							action="../editar_registro/index.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+							<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+							<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+							<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+						</form>
+
+						<form
+							id="cambiar_representante_<?php echo $estudiante['cedula'];?>"
+							action="../editar_estudiante/cambiar_representante.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+						</form>
+
+						<form
+							id="cambiar_anio_seccion_<?php echo $estudiante['cedula'];?>"
+							action="../editar_estudiante/cambiar_anio_seccion.php"
+							method="post"
+							style="display: inline-block;"
+						>
+							<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+						</form>
+
+					</div>
+
+
+					<div class="btn-group btn-group-sm col-12 col-sm-auto" role="group" aria-label="Button group with nested dropdown">
+
+						<button
+							class="btn btn-sm btn-primary"
+							type="submit"
+							name="consultar"
+							form="consultar_registro_<?php echo $estudiante['cedula'];?>"
+						>
+							<i class="fas fa-magnifying-glass ms-2"></i>
+							Consultar
+						</button>
+
+						<button
+							class="btn btn-sm btn-primary"
+							type="submit"
+							name="editar"
+							form="editar_registro_<?php echo $estudiante['cedula'];?>"
+						>
+							<i class="fas fa-pen-to-square ms-2"></i>
+							Editar
+						</button>
+
+						<!-- Editar datos del estudiante -->
+								<form
+									id="editar_estudiante_<?php echo $estudiante['cedula'];?>"
+									action="../editar_estudiante/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+									<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+									<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+									<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+								</form>
+
+
+								<!-- Editar datos de la madre del estudiante -->
+								<form
+									id="editar_madre_<?php echo $estudiante['cedula'];?>"
+									action="../editar_padre/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_padre" value="editar_padre">
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_madre'];?>">
+								</form>
+
+								<!-- Editar datos del padre del estudiante -->
+								<form
+									id="editar_padre_<?php echo $estudiante['cedula'];?>"
+									action="../editar_padre/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_padre" value="editar_padre">
+									<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula_padre'];?>">
+								</form>
+
+								<!-- Editar datos del representante del estudiante -->
+								<form
+									id="editar_representante_<?php echo $estudiante['cedula'];?>"
+									action="../editar_representante/index.php"
+									method="post"
+									style="display: inline-block;"
+								>
+									<input type="hidden" name="editar_representante" value="editar_representante">
+									<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+								</form>
+
+						<div class="btn-group dropup" role="group">
+
+							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-pen-to-square ms-2"></i>
+								<span class="d-none d-sm-inline">Editar datos</span>
+							</button>
+
+							<ul class="dropdown-menu">
+
+								<li>
+
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="editar_estudiante_<?php echo $estudiante['cedula'];?>"
+										name="editar"
+									>
+
+										<i class="fas fa-user-edit ms-2"></i>
+										Estudiante
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="editar_madre_<?php echo $estudiante['cedula'];?>"
+										name="editar"
+									>
+										<i class="fas fa-user-edit ms-2"></i>
+										Madre
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="editar_padre_<?php echo $estudiante['cedula'];?>"
+										name="editar"
+									>
+										<i class="fas fa-user-edit ms-2"></i>
+										Padre
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="editar_representante_<?php echo $estudiante['cedula'];?>"
+										name="editar"
+									>
+										<i class="fas fa-user-edit ms-2"></i>
+										Representante
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="editar_registro_<?php echo $estudiante['cedula'];?>"
+										name="editar"
+									>
+										<i class="fas fa-user-edit ms-2"></i>
+										Registro completo
+									</button>
+								</li>
+
+							</ul>
+						</div>
+
+						<div class="btn-group dropup" role="group">
+
+							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-plus-circle ms-2"></i>
+								<span class="d-none d-sm-inline">Más opciones</span>
+							</button>
+
+							<ul class="dropdown-menu">
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="cambiar_representante_<?php echo $estudiante['cedula'];?>"
+									>
+										<i class="fas fa-user-edit ms-2"></i>
+										Cambiar representante
+									</button>
+								</li>
+
+								<li>
+									<button
+										class="dropdown-item"
+										type="submit"
+										form="cambiar_anio_seccion_<?php echo $estudiante['cedula'];?>"
+									>
+										<i class="fas fa-graduation-cap ms-2"></i>
+										Actualizar año y sección
+									</button>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+
+					<?php if ($estudiante["estado_inscripcion"] == "Inscrito"): ?>
+					<form action="../../controladores/control_planillaje.php" method="post">
+						<div>
+							<div class="input-group input-group-sm flex-nowrap">
+
+								<!-- Texto de referencia -->
+								<div class="input-group-text">
+									<i class="fas fa-file fa-lg d-sm-none"></i>
+									<span class="d-none d-sm-inline">Generación de planillas</span>
+								</div>
+
+								<!-- Selector de documento -->
+								<select class="form-select" id="documento_solicitado" name="documento_solicitado" required>
+									<option value="">Indique el documento requerido</option>
+									<option value="1">Planilla de inscripción</option>
+									<option value="2">Acta de compromiso</option>
+									<option value="3">Todo el planillaje</option>
+								</select>
+
+								<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
+								<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
+								<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
+								<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
+
+								<!-- Botón para envíar la solicitud -->
+								<button type="submit" class="btn btn-primary">
+									<span class="d-none d-sm-inline">Solicitar documento</span>
+									<i class="fas fa-paper-plane fa-lg ms-sm-1"></i>
+								</button>
+
+							</div>
+						</div>
 					</form>
-					
-					<!--Generar acta de compromiso-->
-					<form action="../../controladores/planillas/generar_compromiso_representante.php" method="POST" style="display: inline-block;">
+					<?php endif ?>
 
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
 
-						<button class="btn btn-sm btn-danger" type="submit" name="Generar planilla de Compromiso">Generar planilla de compromiso <i class="fas fa-file-pdf fa-lg ms-2"></i></button>
-
-					</form>
-
-					<!-- Consultar información completa del estudiante -->
-					<form action="consultar_estudiante.php" method="post" style="display: inline-block;">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
-
-						<button class="btn btn-sm btn-primary" type="submit" name="consultar">Consultar <i class="fas fa-magnifying-glass fa-lg ms-2"></i></button>
-
-					</form>
-
-					<!-- Editar registro del estudiante -->
-					<form action="../editar_estudiante/index.php" method="post" style="display: inline-block;">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="cedula_padre" value="<?php echo $estudiante['cedula_padre'];?>">
-						<input type="hidden" name="cedula_madre" value="<?php echo $estudiante['cedula_madre'];?>">
-						<input type="hidden" name="cedula_representante" value="<?php echo $estudiante['cedula_representante'];?>">
-
-						<button class="btn btn-sm btn-primary" type="submit" name="editar">Editar <i class="fas fa-pen fa-lg ms-2"></i></button>
-
-					</form>
-					<?php if ($_SESSION['datos_login']['privilegios'] <= 1): ?>
-					
-					<!-- Eliminar registro de estudiante -->
-					<form action="#" method="post" style="display: inline-block;" onsubmit="confirmar_envio(event)">
-
-						<input type="hidden" name="cedula" value="<?php echo $estudiante['cedula'];?>">
-						<input type="hidden" name="orden" value="eliminar">
-						<button class="btn btn-sm btn-primary" type="submit">Eliminar <i class="fas fa-trash-can fa-lg ms-2"></i></button>
-
-					</form>
-					<?php endif;?>
 				</td>
 			</tr>
 			<?php endforeach ?>

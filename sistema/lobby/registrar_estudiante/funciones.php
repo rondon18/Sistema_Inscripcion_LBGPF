@@ -113,6 +113,34 @@ function activar_p_m($vin) {
 	}
 }
 
+function direccion_completa($datos_persona) {
+
+	$puntos_direccion = [
+		"estado",
+		"municipio",
+		"parroquia",
+		"sector",
+		"calle",
+		"nro_casa",
+		"punto_referencia",
+	];
+
+	$direccion_completa = [];
+
+	foreach ($puntos_direccion as $punto) {
+		if (!empty($datos_persona[$punto])) {
+			if ($punto == "municipio") {
+				$municipio = decodificar_municipio($datos_persona[$punto]);
+				$direccion_completa = array_merge($direccion_completa,["municipio ". $municipio]);
+			}
+			else {
+				$direccion_completa = array_merge($direccion_completa,[$datos_persona[$punto]]);
+			}
+		}
+	}
+
+	return implode(", ", $direccion_completa);
+}
 
 
 ?>

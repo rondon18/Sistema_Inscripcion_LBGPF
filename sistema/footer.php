@@ -1,17 +1,3 @@
-<?php 
-
-// Tomar en cuenta el nivel en que se cuenta para agregar los saltos atrás
-// $nivel
-
-$ruta_footer = "";
-
-for ($i=0; $i < $nivel; $i++) { 
-	$ruta_footer .= "../";
-}
-
-
-
-?>
 
 <footer class="w-100 bg-secondary d-flex justify-content-center text-center p-2">
 

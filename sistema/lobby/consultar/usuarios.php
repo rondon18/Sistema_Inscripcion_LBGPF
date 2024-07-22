@@ -22,10 +22,11 @@
 
 	if (isset($_POST['orden'])) {
 
-		if ($_POST['orden'] == "eliminar") {
+		if ($_POST['orden'] == "cambiar_estado") {
 
 			$_SESSION['orden'] = $_POST['orden'];
-			$_SESSION['eliminar_usuario'] = $_POST['cedula'];
+			$_SESSION['usuario'] = $_POST['cedula'];
+			$_SESSION['estado'] = $_POST['estado'];
 
 			header('Location: ../../controladores/control_usuarios.php');
 		}
@@ -35,34 +36,39 @@
 
 <!-- Tabla volcada -->
 <div class="table-responsive">
-	<p class="h4 text-uppercase border-2 border-bottom border-dark text-center mb-3">
-		Mostrando Estudiantes registrados
-	</p>
-	<table id="usuarios" class="text-uppercase table table-striped table-bordered table-sm w-100" style="font-size: 95%;">
-		<thead>
-			<th>Cédula</th>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Correo electrónico</th>
-			<th>Privilegios</th>
-			<th>Cargo</th>
-			<th>Acciones</th>
+	<table id="usuarios" class="table table-striped table-bordered table-sm w-100" style="font-size: 90%;">
+		<thead class="text-truncate">
+			<th>CÉDULA</th>
+			<th>NOMBRES</th>
+			<th>APELLIDOS</th>
+			<th>CORREO ELECTRÓNICO</th>
+			<th>PRIVILEGIOS</th>
+			<th>CARGO</th>
+			<th>ESTADO</th>
+			<th>ACCIONES</th>
 		</thead>
-		<tbody>
+		<tbody class="text-truncate">
 
 			<?php foreach ($lista_usuarios as $usuario): ?>
 			<tr>
 				
-				<td><?php echo $usuario['cedula'];?></td>
+				<td><?php echo mb_strtoupper($usuario['cedula']);?></td>
 
-				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_nombre']." ".$usuario['s_nombre'];?></td>
+				<td class="text-start" style="min-width: 180px;"><?php echo mb_strtoupper($usuario['p_nombre']." ".$usuario['s_nombre']);?></td>
 
-				<td class="text-start" style="min-width: 180px;"><?php echo $usuario['p_apellido']." ".$usuario['s_apellido'];?></td>
+				<td class="text-start" style="min-width: 180px;"><?php echo mb_strtoupper($usuario['p_apellido']." ".$usuario['s_apellido']);?></td>
 
-				<td><?php echo $usuario['email']?></td>
-				<td><?php echo privilegios($usuario['privilegios']);?></td>
+				<td><?php echo mb_strtoupper($usuario['email'])?></td>
+				<td><?php echo mb_strtoupper(privilegios($usuario['privilegios']));?></td>
 
-				<td><?php echo $usuario['rol']?></td>
+				<td><?php echo mb_strtoupper($usuario['rol'])?></td>
+				<td class="text-center">
+					<?php if (strtolower($usuario['estado']) == "inactivo"): // Para habilitar el usuario?>
+						<span class="badge rounded-pill bg-danger text-white"><?php echo mb_strtoupper($usuario['estado'])?></span>
+					<?php elseif (strtolower($usuario['estado']) == "activo"):  // Para deshabilitar el usuario?>
+						<span class="badge rounded-pill bg-success text-white"><?php echo mb_strtoupper($usuario['estado'])?></span>
+					<?php endif ?>
+				</td>
 					
 				
 				<td style="min-width: 100vw;">
@@ -80,8 +86,8 @@
 
 					<div class="d-inline-block">
 						<button class="btn btn-sm btn-danger" type="button" title="No se pueden eliminar Administradores" disabled style="cursor:no-drop;">
-							Eliminar Usuario
-							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
+							Cambiar estado
+							<i class="fa-solid fa-user-cog fa-lg ms-2"></i>
 						</button>
 					</div>
 
@@ -97,11 +103,24 @@
 
 					<form class="d-inline-block" action="#" method="post" onsubmit="confirmar_envio(event)">
 						<input type="hidden" name="cedula" value="<?php echo $usuario['cedula_persona'];?>">
-						<input type="hidden" name="orden" value="eliminar">
-						<button class="btn btn-sm btn-danger" type="submit">
-							Eliminar Usuario
-							<i class="fa-solid fa-user-minus fa-lg ms-2"></i>
+						<input type="hidden" name="estado" value="<?php echo $usuario['estado'];?>">
+						<input type="hidden" name="orden" value="cambiar_estado">
+						<?php if (strtolower($usuario['estado']) == "inactivo"): // Para habilitar el usuario?>
+						<button class="btn btn-success btn-sm" type="submit">
+							Habilitar
+							<i class="ms-1 fa-solid fa-user-lock"></i>
+							<i class="fa-solid fa-arrow-right"></i>
+							<i class="fa-solid fa-user-check"></i>
 						</button>
+
+						<?php elseif (strtolower($usuario['estado']) == "activo"):  // Para deshabilitar el usuario?>
+						<button class="btn btn-danger btn-sm" type="submit">
+							Deshabilitar
+							<i class="ms-1 fa-solid fa-user-check"></i>
+							<i class="fa-solid fa-arrow-right"></i>
+							<i class="fa-solid fa-user-lock"></i>
+						</button>
+						<?php endif ?>
 					</form>
 
 					<?php endif;?>
@@ -111,6 +130,7 @@
 		</tbody>
 	</table>
 </div>
+
 							
 <script src="../../datatables/datatables.min.js" defer></script>
 <script src="../../js/consultas/consulta_usuarios.js" defer></script>

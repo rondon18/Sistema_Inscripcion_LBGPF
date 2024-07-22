@@ -84,7 +84,9 @@ final class TestRunner
         $risky      = false;
         $skipped    = false;
 
-        ErrorHandler::instance()->enable();
+        if ($this->shouldErrorHandlerBeUsed($test)) {
+            ErrorHandler::instance()->enable();
+        }
 
         $collectCodeCoverage = CodeCoverage::instance()->isActive() &&
                                $shouldCodeCoverageBeCollected;
@@ -194,7 +196,8 @@ final class TestRunner
 
         ErrorHandler::instance()->disable();
 
-        if (!$incomplete &&
+        if (!$error &&
+            !$incomplete &&
             !$skipped &&
             $this->configuration->reportUselessTests() &&
             !$test->doesNotPerformAssertions() &&
@@ -210,8 +213,9 @@ final class TestRunner
             Event\Facade::emitter()->testConsideredRisky(
                 $test->valueObjectForEvents(),
                 sprintf(
-                    'This test is not expected to perform assertions but performed %d assertions',
+                    'This test is not expected to perform assertions but performed %d assertion%s',
                     $test->numberOfAssertionsPerformed(),
+                    $test->numberOfAssertionsPerformed() > 1 ? 's' : '',
                 ),
             );
         }
@@ -279,6 +283,7 @@ final class TestRunner
             $iniSettings   = GlobalState::getIniSettingsAsString();
         }
 
+        $exportObjects    = Event\Facade::emitter()->exportsObjects() ? 'true' : 'false';
         $coverage         = CodeCoverage::instance()->isActive() ? 'true' : 'false';
         $linesToBeIgnored = var_export(CodeCoverage::instance()->linesToBeIgnored(), true);
 
@@ -306,6 +311,7 @@ final class TestRunner
         $includePath             = "'." . $includePath . ".'";
         $offset                  = hrtime();
         $serializedConfiguration = $this->saveConfigurationForChildProcess();
+        $processResultFile       = tempnam(sys_get_temp_dir(), 'phpunit_');
 
         $var = [
             'bootstrap'                      => $bootstrap,
@@ -327,6 +333,8 @@ final class TestRunner
             'offsetSeconds'                  => $offset[0],
             'offsetNanoseconds'              => $offset[1],
             'serializedConfiguration'        => $serializedConfiguration,
+            'processResultFile'              => $processResultFile,
+            'exportObjects'                  => $exportObjects,
         ];
 
         if (!$runEntireClass) {
@@ -336,7 +344,7 @@ final class TestRunner
         $template->setVar($var);
 
         $php = AbstractPhpProcess::factory();
-        $php->runTestJob($template->render(), $test);
+        $php->runTestJob($template->render(), $test, $processResultFile);
 
         @unlink($serializedConfiguration);
     }
@@ -451,5 +459,14 @@ final class TestRunner
         }
 
         return $path;
+    }
+
+    private function shouldErrorHandlerBeUsed(TestCase $test): bool
+    {
+        if (MetadataRegistry::parser()->forMethod($test::class, $test->name())->isWithoutErrorHandler()->isNotEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 }

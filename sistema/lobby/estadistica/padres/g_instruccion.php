@@ -24,14 +24,15 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><?php echo $padres->get_nro_p_g_academico("Primaria");?></td>
-								<td><?php echo $padres->get_nro_p_g_academico("Bachillerato");?></td>
-								<td><?php echo $padres->get_nro_p_g_academico("Universitario");?></td>
-								<td><?php echo $padres->get_nro_padres();?></td>
+								<td><?php echo $nro_primaria = $padres->get_nro_p_g_academico("Primaria");?></td>
+								<td><?php echo $nro_bachillerato = $padres->get_nro_p_g_academico("Bachillerato");?></td>
+								<td><?php echo $nro_universitario = $padres->get_nro_p_g_academico("Universitario");?></td>
+								<td><?php echo $nro_primaria + $nro_bachillerato + $nro_universitario;?></td>
 							</tr>
 						</tbody>
 						<tbody>
 					</table>
+					<span class="small text-muted">Nota: En esta estadística no se contemplan padres con cédulas provicionales.</span>
 				</div>
 			</div>
 
@@ -46,9 +47,9 @@
 			      datasets: [{
 			        label: 'Nro. de padres',
 			        data: [
-			        	<?php echo $padres->get_nro_p_g_academico("Primaria");?>,
-			        	<?php echo $padres->get_nro_p_g_academico("Bachillerato");?>,
-			        	<?php echo $padres->get_nro_p_g_academico("Universitario");?>,
+			        	<?php echo $nro_primaria;?>,
+			        	<?php echo $nro_bachillerato;?>,
+			        	<?php echo $nro_universitario;?>,
 			      	],
 			        borderWidth: 1
 			      }]

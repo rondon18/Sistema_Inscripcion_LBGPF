@@ -28,7 +28,6 @@
 		$encabezado,
 		[
 			"Cédula del estudiante",
-			"Cédula escolar del estudiante",
 			"Nombres",
 			"Apellidos",
 			"Fecha de nacimiento",
@@ -344,7 +343,7 @@
 	$imagen->setWorksheet($hoja_estudiantes);
 
 
-	$hoja_estudiantes->fromArray($encabezado, null, 'A2');
+	$hoja_estudiantes->fromArray(array_map("mb_strtoupper",$encabezado), null, 'A2');
 
 
 	$i = 3;
@@ -358,10 +357,9 @@
 			$datos_estudiante,
 			[
 				$estudiante["cedula"],
-				$estudiante["cedula_escolar"],
 				$estudiante["p_nombre"] . " " . $estudiante["s_nombre"],
 				$estudiante["p_apellido"] . " " . $estudiante["s_apellido"],
-				$estudiante["fecha_nacimiento"],
+				formatear_fecha($estudiante["fecha_nacimiento"]),
 				$estudiante["lugar_nacimiento"],
 				$estudiante["genero"],
 			]
@@ -372,7 +370,7 @@
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
-					$estudiante["direccion"],
+					direccion_completa($estudiante),
 					$estudiante["con_quien_vive"],
 				]
 			);
@@ -574,7 +572,6 @@
 					]
 				);
 
-				// var_dump($estudiante);
 			}
 
 
@@ -590,17 +587,30 @@
 				);
 			}
 
+			// Verifica que en el reporte el estudiante aparezca con su estado de inscripción en vez de
+			// un grado o sección si esta retirado o egresado
+
+
+			if ($estudiante["estado_inscripcion"] != "Inscrito") {
+				$grado_estudiante =  $estudiante["estado_inscripcion"];
+				$seccion_estudiante =  $estudiante["estado_inscripcion"];
+			}
+			else {
+				$grado_estudiante =  $estudiante["grado_a_cursar"];
+				$seccion_estudiante =  'Sección "' . $estudiante["seccion"]. '"';
+			}
+
 			$datos_estudiante = array_merge(
 				$datos_estudiante,
 				[
 					$estudiante["plantel_proced"],
-					$estudiante["grado_a_cursar"],
-					'Sección "' . $estudiante["seccion"]. '"',
+					$grado_estudiante,
+					$seccion_estudiante,
 					$estudiante["id_per_academico"],
 				]
 			);
 		}
-		$hoja_estudiantes->fromArray($datos_estudiante, null, 'A'.$i);
+		$hoja_estudiantes->fromArray(array_map("mb_strtoupper",$datos_estudiante), null, 'A'.$i);
 		$i++;
 	}
 
@@ -629,7 +639,7 @@
 		->getStartColor()
 		->setARGB('6CBFEB');
 
-		$hoja_estudiantes->getColumnDimension($j)->setWidth(150, 'pt');
+		$hoja_estudiantes->getColumnDimension($j)->setWidth(165, 'pt');
 
 		$hoja_estudiantes->setAutoFilter($fila_encabezado);
 	}
@@ -637,7 +647,6 @@
 	// alto de la fila con los banners
 	$hoja_estudiantes->getRowDimension('1')->setRowHeight(30);
 
-	// var_dump($encabezado_representante);
 
 
 
@@ -651,7 +660,7 @@
 		$hoja_representantes = $documento->getActiveSheet();
 		$hoja_representantes->setTitle("Representantes");
 		
-		$hoja_representantes->fromArray($encabezado_representante, null, 'A1');
+		$hoja_representantes->fromArray(array_map("mb_strtoupper",$encabezado_representante), null, 'A1');
 
 		$i = 2;
 
@@ -698,7 +707,7 @@
 				]
 			);
 
-			$hoja_representantes->fromArray($datos_representante, null, 'A'.$i);
+			$hoja_representantes->fromArray(array_map("mb_strtoupper",$datos_representante), null, 'A'.$i);
 			$i++;
 		}
 
@@ -742,7 +751,7 @@
 		$hoja_padres = $documento->getActiveSheet();
 		$hoja_padres->setTitle("Padres");
 
-		$hoja_padres->fromArray($encabezado_padres, null, 'A1');
+		$hoja_padres->fromArray(array_map("mb_strtoupper",$encabezado_padres), null, 'A1');
 
 
 		$i = 2;
@@ -843,7 +852,7 @@
 			);
 
 
-			$hoja_padres->fromArray($datos_padres, null, 'A'.$i);
+			$hoja_padres->fromArray(array_map("mb_strtoupper",$datos_padres), null, 'A'.$i);
 			$i++;
 		}
 
