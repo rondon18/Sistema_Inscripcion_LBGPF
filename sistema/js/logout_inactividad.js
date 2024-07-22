@@ -1,5 +1,5 @@
 // Deja una ventana de 5 minutos por si el usuario deja el equipo por momentos
-
+  
 var minutos = 5;
 var segundos = minutos * 60;
 

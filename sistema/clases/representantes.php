@@ -1022,9 +1022,8 @@
 					}
 
 					else {
-						$sub_con .= " `vista_representantes`.`municipio` NOT IN ('Alberto Adriani','Andrés Bello','Antonio Pinto Salinas','Aricagua','Arzobispo Chacón','Campo Elías','Caracciolo Parra Olmedo','Cardenal Quintero','Guaraque','Julio César Salas','Justo Briceño','Libertador','Miranda','Obispo Ramos de Lora','Padre Noguera','Pueblo Llano','Rangel','Rivas Dávila','Santos Marquina','Sucre','Tovar','Tulio Febres Cordero','Zea') ";
+						$sub_con .= " `vista_representantes`.`municipio` NOT IN ('AAD','ABE','APS','ARI','ACH','CEL','CPO','CQU','GUA','JCS','JBR','LIB','MIR','ORL','PNO','PLL','RAN','RDA','SMA','SUC','TOV','TFC','ZEA') ";
 					}
-
 					// si alguno de los dos se asigna
 					if ($anio != NULL or $seccion != NULL) {
 

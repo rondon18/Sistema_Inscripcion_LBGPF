@@ -25,139 +25,139 @@
 								<tr>
 									<th><span class="badge" style="background: #36a2eb;"> </span> Alberto Adriani</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Alberto Adriani");?>
+										<?php echo $representantes->get_nro_r_municipio("AAD");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff6384;"> </span> Andrés Bello</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Andrés Bello");?>
+										<?php echo $representantes->get_nro_r_municipio("ABE");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff9f40;"> </span> Antonio Pinto Salinas</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Antonio Pinto Salinas");?>
+										<?php echo $representantes->get_nro_r_municipio("APS");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ffcd56;"> </span> Aricagua</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Aricagua");?>
+										<?php echo $representantes->get_nro_r_municipio("ARI");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #4bc0c0;"> </span> Arzobispo Chacón</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Arzobispo Chacón");?>
+										<?php echo $representantes->get_nro_r_municipio("ACH");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #9966ff;"> </span> Campo Elías</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Campo Elías");?>
+										<?php echo $representantes->get_nro_r_municipio("CEL");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #c9cbcf;"> </span> Caracciolo Parra Olmedo</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Caracciolo Parra Olmedo");?>
+										<?php echo $representantes->get_nro_r_municipio("CPO");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #a05d89;"> </span> Cardenal Quintero</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Cardenal Quintero");?>
+										<?php echo $representantes->get_nro_r_municipio("CQU");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #2f9cb9;"> </span> Guaraque</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Guaraque");?>
+										<?php echo $representantes->get_nro_r_municipio("GUA");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff6f69;"> </span> Julio César Salas</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Julio César Salas");?>
+										<?php echo $representantes->get_nro_r_municipio("JCS");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #77c9d4;"> </span> Justo Briceño</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Justo Briceño");?>
+										<?php echo $representantes->get_nro_r_municipio("JBR");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #b3d3c6;"> </span> Libertador</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Libertador");?>
+										<?php echo $representantes->get_nro_r_municipio("LIB");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #35518f;"> </span> Miranda</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Miranda");?>
+										<?php echo $representantes->get_nro_r_municipio("MIR");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #669bbc;"> </span> Obispo Ramos de Lora</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Obispo Ramos de Lora");?>
+										<?php echo $representantes->get_nro_r_municipio("ORL");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #3d3e3e;"> </span> Padre Noguera</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Padre Noguera");?>
+										<?php echo $representantes->get_nro_r_municipio("PNO");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #7dbbc3;"> </span> Pueblo Llano</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Pueblo Llano");?>
+										<?php echo $representantes->get_nro_r_municipio("PLL");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #a64b3c;"> </span> Rangel</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Rangel");?>
+										<?php echo $representantes->get_nro_r_municipio("RAN");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #f5e6ca;"> </span> Rivas Dávila</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Rivas Dávila");?>
+										<?php echo $representantes->get_nro_r_municipio("RDA");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #029386;"> </span> Santos Marquina</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Santos Marquina");?>
+										<?php echo $representantes->get_nro_r_municipio("SMA");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #ff00cc;"> </span> Sucre</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Sucre");?>
+										<?php echo $representantes->get_nro_r_municipio("SUC");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #8a3cc3;"> </span> Tovar</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Tovar");?>
+										<?php echo $representantes->get_nro_r_municipio("TOV");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #d98247;"> </span> Tulio Febres Cordero</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Tulio Febres Cordero");?>
+										<?php echo $representantes->get_nro_r_municipio("TFC");?>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="badge" style="background: #41ab7b;"> </span> Zea</th>
 									<td class="text-center">
-										<?php echo $representantes->get_nro_r_municipio("Zea");?>
+										<?php echo $representantes->get_nro_r_municipio("ZEA");?>
 									</td>
 								</tr>
 								<tr>
@@ -192,29 +192,29 @@
 			      datasets: [{
 			        label: 'Nro. de representantes',
 			        data: [
-								<?php echo $representantes->get_nro_r_municipio("Alberto Adriani");?>,
-								<?php echo $representantes->get_nro_r_municipio("Andrés Bello");?>,
-								<?php echo $representantes->get_nro_r_municipio("Antonio Pinto Salinas");?>,
-								<?php echo $representantes->get_nro_r_municipio("Aricagua");?>,
-								<?php echo $representantes->get_nro_r_municipio("Arzobispo Chacón");?>,
-								<?php echo $representantes->get_nro_r_municipio("Campo Elías");?>,
-								<?php echo $representantes->get_nro_r_municipio("Caracciolo Parra Olmedo");?>,
-								<?php echo $representantes->get_nro_r_municipio("Cardenal Quintero");?>,
-								<?php echo $representantes->get_nro_r_municipio("Guaraque");?>,
-								<?php echo $representantes->get_nro_r_municipio("Julio César Salas");?>,
-								<?php echo $representantes->get_nro_r_municipio("Justo Briceño");?>,
-								<?php echo $representantes->get_nro_r_municipio("Libertador");?>,
-								<?php echo $representantes->get_nro_r_municipio("Miranda");?>,
-								<?php echo $representantes->get_nro_r_municipio("Obispo Ramos de Lora");?>,
-								<?php echo $representantes->get_nro_r_municipio("Padre Noguera");?>,
-								<?php echo $representantes->get_nro_r_municipio("Pueblo Llano");?>,
-								<?php echo $representantes->get_nro_r_municipio("Rangel");?>,
-								<?php echo $representantes->get_nro_r_municipio("Rivas Dávila");?>,
-								<?php echo $representantes->get_nro_r_municipio("Santos Marquina");?>,
-								<?php echo $representantes->get_nro_r_municipio("Sucre");?>,
-								<?php echo $representantes->get_nro_r_municipio("Tovar");?>,
-								<?php echo $representantes->get_nro_r_municipio("Tulio Febres Cordero");?>,
-								<?php echo $representantes->get_nro_r_municipio("Zea");?>,
+								<?php echo $representantes->get_nro_r_municipio("AAD");?>,
+								<?php echo $representantes->get_nro_r_municipio("ABE");?>,
+								<?php echo $representantes->get_nro_r_municipio("APS");?>,
+								<?php echo $representantes->get_nro_r_municipio("ARI");?>,
+								<?php echo $representantes->get_nro_r_municipio("ACH");?>,
+								<?php echo $representantes->get_nro_r_municipio("CEL");?>,
+								<?php echo $representantes->get_nro_r_municipio("CPO");?>,
+								<?php echo $representantes->get_nro_r_municipio("CQU");?>,
+								<?php echo $representantes->get_nro_r_municipio("GUA");?>,
+								<?php echo $representantes->get_nro_r_municipio("JCS");?>,
+								<?php echo $representantes->get_nro_r_municipio("JBR");?>,
+								<?php echo $representantes->get_nro_r_municipio("LIB");?>,
+								<?php echo $representantes->get_nro_r_municipio("MIR");?>,
+								<?php echo $representantes->get_nro_r_municipio("ORL");?>,
+								<?php echo $representantes->get_nro_r_municipio("PNO");?>,
+								<?php echo $representantes->get_nro_r_municipio("PLL");?>,
+								<?php echo $representantes->get_nro_r_municipio("RAN");?>,
+								<?php echo $representantes->get_nro_r_municipio("RDA");?>,
+								<?php echo $representantes->get_nro_r_municipio("SMA");?>,
+								<?php echo $representantes->get_nro_r_municipio("SUC");?>,
+								<?php echo $representantes->get_nro_r_municipio("TOV");?>,
+								<?php echo $representantes->get_nro_r_municipio("TFC");?>,
+								<?php echo $representantes->get_nro_r_municipio("ZEA");?>,
 								<?php echo $representantes->get_nro_r_municipio("Otro");?>,
 			  	],
 			        borderWidth: 1,

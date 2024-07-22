@@ -38,23 +38,6 @@
 		</div>
 	</div>
 
-	<!-- Eliminación de regitros -->
-	<div 
-		class="col"
-		data-bs-toggle="tooltip" 
-		data-bs-placement="top" 
-		title="Perfiles, capacidades y acciones posibles."
-	>
-		<div class="card bg-light shadow hover-grow card-menu">
-			<div class="card-body d-flex align-items-center">
-				<i class="fa-solid fa-user-minus fa-2xl m-2"></i>
-				<div class="px-sm-2 w-100">
-					<a href="?con=b3" class="link-dark text-decoration-none stretched-link link-menu">Eliminación de regitros.</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- Consultar datos -->
 	<div 
 		class="col"
