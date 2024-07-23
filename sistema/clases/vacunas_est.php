@@ -26,6 +26,9 @@
 					if ($this->verificar_espec_vacuna($cedula_estudiante,$espec_vacuna) < 1) {
 						$sql = "INSERT INTO `vacunas_est`(`cedula_estudiante`, `espec_vacuna`, `estado_vacuna` ) VALUES( '$cedula_estudiante', '$espec_vacuna', '$estado_vacuna' ) ON DUPLICATE KEY UPDATE `cedula_estudiante` = `cedula_estudiante`;";
 					}
+					else {
+						return;
+					}
 					// Lo hace nuevamente para verificar la consulta sql
 					try {
 						$conexion->query($sql);

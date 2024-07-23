@@ -655,7 +655,7 @@
 		$inscripciones->insertar_inscripciones();
 
 		// elimina los valores almacenados en sesion de este proceso
-		// unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
+		unset($_SESSION['datos_inscripcion'],$_SESSION['paso_1'],$_SESSION['paso_2'],$_SESSION['paso_3']);
 
 	}
 	else {

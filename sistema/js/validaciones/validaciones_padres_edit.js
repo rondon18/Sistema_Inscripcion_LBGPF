@@ -168,7 +168,7 @@ $("#formulario_padres").validate({
 			digits: true,
 			maxlength:11,
 			min: 100,
-			max: 30000000,
+			max: 99999999,
 		},
 		codigo_carnet_patria_p: {
 			digits: true,
@@ -244,7 +244,7 @@ $("#formulario_padres").validate({
 			digits: true,
 			maxlength:11,
 			min: 100,
-			max: 30000000,
+			max: 99999999,
 		},
 		codigo_carnet_matria_m: {
 			digits: true,

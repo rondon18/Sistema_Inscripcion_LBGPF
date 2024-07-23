@@ -192,7 +192,7 @@ $("#formulariorepresentante").validate({
 		cedula_r: {
 			digits: true,
 			min: 2000000,
-			max: 30000000,
+			max: 99999999,
 		},
 		vinculo_otro : {
 			lettersonly: true,
