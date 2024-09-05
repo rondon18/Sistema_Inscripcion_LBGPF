@@ -33,7 +33,6 @@ use PHPUnit\Event\Test\PhpunitWarningTriggered;
 use PHPUnit\Event\Test\PhpWarningTriggered;
 use PHPUnit\Event\Test\Skipped as TestSkipped;
 use PHPUnit\Event\Test\WarningTriggered;
-use PHPUnit\Event\TestData\NoDataSetFromDataProviderException;
 use PHPUnit\Event\TestRunner\DeprecationTriggered as TestRunnerDeprecationTriggered;
 use PHPUnit\Event\TestRunner\ExecutionStarted;
 use PHPUnit\Event\TestRunner\WarningTriggered as TestRunnerWarningTriggered;
@@ -48,6 +47,8 @@ use PHPUnit\TextUI\Configuration\Source;
 use PHPUnit\TextUI\Configuration\SourceFilter;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class Collector
@@ -245,9 +246,6 @@ final class Collector
         $this->currentTestSuiteForTestClassFailed = false;
     }
 
-    /**
-     * @throws NoDataSetFromDataProviderException
-     */
     public function testSuiteFinished(TestSuiteFinished $event): void
     {
         if ($this->currentTestSuiteForTestClassFailed) {
@@ -348,6 +346,10 @@ final class Collector
 
     public function testTriggeredDeprecation(DeprecationTriggered $event): void
     {
+        if ($event->ignoredByTest()) {
+            return;
+        }
+
         if ($event->ignoredByBaseline()) {
             $this->numberOfIssuesIgnoredByBaseline++;
 
@@ -380,6 +382,10 @@ final class Collector
 
     public function testTriggeredPhpDeprecation(PhpDeprecationTriggered $event): void
     {
+        if ($event->ignoredByTest()) {
+            return;
+        }
+
         if ($event->ignoredByBaseline()) {
             $this->numberOfIssuesIgnoredByBaseline++;
 
