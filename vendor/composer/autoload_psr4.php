@@ -20,5 +20,6 @@ return array(
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
+    'Composer\\Pcre\\' => array($vendorDir . '/composer/pcre/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
 );
